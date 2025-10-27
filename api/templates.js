@@ -9,7 +9,7 @@ export default function handler(req, res) {
     res.setHeader("Content-Type", "application/json");
 
     // Find og læs template index filen
-    const filePath = path.join(process.cwd(), "data", "CDA_Templates", "cda_templates_index.json");
+    const filePath = path.join(process.cwd(), "data", "templates.json");
     const fileData = fs.readFileSync(filePath, "utf8");
     const data = JSON.parse(fileData);
 
