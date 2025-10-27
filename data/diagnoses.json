@@ -1,0 +1,16 @@
+[
+  {
+    "id": "adhd",
+    "navn": "ADHD",
+    "kategori": "Neurodevelopmental Disorder",
+    "beskrivelse": "Karakteriseret ved opmærksomhedsproblemer, impulsivitet og hyperaktivitet.",
+    "relaterede_diagnoser": ["autisme", "angst"]
+  },
+  {
+    "id": "autisme",
+    "navn": "Autismespektrumforstyrrelse",
+    "kategori": "Neurodevelopmental Disorder",
+    "beskrivelse": "Omfatter vanskeligheder med socialt samspil, kommunikation og gentagne mønstre.",
+    "relaterede_diagnoser": ["adhd", "sensorisk_overfølsomhed"]
+  }
+]
