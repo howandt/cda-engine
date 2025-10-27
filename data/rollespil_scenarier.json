@@ -1,0 +1,23 @@
+[
+  {
+    "id": "konflikt_klasse",
+    "titel": "Lærer forsøger at hjælpe en urolig elev",
+    "roller": ["lærer", "barn"],
+    "situationstype": "konflikt",
+    "dialog": [
+      {
+        "rolle": "lærer",
+        "tekst": "Du skal altså tie stille nu!"
+      },
+      {
+        "rolle": "barn",
+        "tekst": "Jeg prøver jo! Du bliver altid sur..."
+      }
+    ],
+    "system": {
+      "reaktion": "Kommunikationen låser.",
+      "alternativ": "Jeg kan se, du har svært ved at finde ro – vil du have hjælp til en pause?",
+      "refleksion": "Hvad ændrer det i barnets oplevelse?"
+    }
+  }
+]
