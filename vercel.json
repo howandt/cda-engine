@@ -43,6 +43,9 @@
       "src": "/api/emotion-engine",
       "dest": "/api/emotion-engine.js"
     },
+    { "src": "/api/diagnoser", 
+      "dest": "/api/diagnoser.js"
+    },
     {
       "src": "/(.*)",
       "dest": "/public/$1"
