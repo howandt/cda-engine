@@ -108,8 +108,8 @@
       "dest": "/public/templates.html"
     },
     {
-      "src": "/komorbiditet.html",
-      "dest": "/public/komorbiditet.html"
+      "src": "/komo-teswt.html",
+      "dest": "/public/komo-test.html"
     },
     {
       "src": "/(.*)",
