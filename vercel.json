@@ -3,102 +3,113 @@
     {
       "src": "api/**/*.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/api/cases",
       "dest": "/api/cases.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     },
     {
       "src": "/api/komorbiditet",
       "dest": "/api/komorbiditet.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     },
     {
       "src": "/api/specialister",
       "dest": "/api/specialister.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     },
     {
       "src": "/api/templates",
       "dest": "/api/templates.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     },
     {
       "src": "/api/rollespil",
       "dest": "/api/rollespil.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     },
     {
       "src": "/api/pbl-projects",
       "dest": "/api/pbl-projects.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     },
     {
       "src": "/api/quiz",
       "dest": "/api/quiz.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     },
     {
       "src": "/api/emotion-engine",
       "dest": "/api/emotion-engine.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
     },
     {
       "src": "/api/diagnoser",
       "dest": "/api/diagnoser.js",
-      "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
       }
+    },
+    {
+      "src": "/emotion-engine-test.html",
+      "dest": "/public/emotion-engine-test.html"
+    },
+    {
+      "src": "/pbl-matcher-test.html",
+      "dest": "/public/pbl-matcher-test.html"
+    },
+    {
+      "src": "/quiz-system-test.html",
+      "dest": "/public/quiz-system-test.html"
+    },
+    {
+      "src": "/diagnoser-test.html",
+      "dest": "/public/diagnoser-test.html"
+    },
+    {
+      "src": "/templates.html",
+      "dest": "/public/templates.html"
+    },
+    {
+      "src": "/komorbiditet-test.html",
+      "dest": "/public/komorbiditet-test.html"
     },
     {
       "src": "/(.*)",
@@ -115,11 +126,11 @@
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
+          "value": "GET, POST, OPTIONS"
         },
         {
           "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
+          "value": "Content-Type"
         }
       ]
     }
