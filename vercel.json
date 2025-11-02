@@ -108,7 +108,7 @@
       "dest": "/public/templates.html"
     },
     {
-      "src": "/komo-teswt.html",
+      "src": "/komo-test.html",
       "dest": "/public/komo-test.html"
     },
     {
