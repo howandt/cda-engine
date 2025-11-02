@@ -280,7 +280,7 @@
         "template_markdown": "# 💭 Hvad skete i dag, {child_name}?\n\n**Dagens dato:** ___________\n**Dagens vejr:** ☀️ ⛅ 🌧️ ❄️\n\n## 😊 Mine følelser i dag\nJeg følte mig mest: 😄 😊 😐 😟 😢 😠\n\n**Hvorfor følte jeg mig sådan?**\n_________________________________\n\n## 🎯 Det bedste ved dagen var:\n_________________________________\n\n## 😤 Det sværeste ved dagen var:\n_________________________________\n\n## 🏫 I skolen/børnehaven:\n**Hvad lavede vi?** ________________________________\n**Hvem legede jeg med?** ___________________________\n**Hvad var sjovt?** ________________________________\n**Hvad var svært?** _______________________________\n\n## 🏠 Derhjemme:\n**Hvem snakkede jeg med?** _________________________\n**Hvad lavede vi sammen?** _________________________\n\n{specific_focus_area ? ## 🎯 Særligt fokus: {specific_focus_area}\nHvordan gik det? ___________________________________ : }\n\n## ⭐ Jeg er stolt af:\n___________________________________\n\n## 🌟 I morgen vil jeg gerne:\n___________________________________\n\n---\n💬 **Lærer-erfaring (js):** *\"Refleksionsark hjalp stille pige med at fortælle om dagen - forældrene var så glade for endelig at forstå\"*"
       },
       {
-        "id": "school_avoidance_plan",
+        "id": "skolevagring_plan",
         "title": "Trinvis Plan mod Skolevægring",
         "category": "intervention",
         "target_group": "Lærere, forældre, pædagoger",
