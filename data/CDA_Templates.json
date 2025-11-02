@@ -2,83 +2,128 @@
   "template_database": {
     "metadata": {
       "system": "CDA/CDT",
-      "version": "2025.1",
+      "version": "2025.2",
       "total_templates": 12,
-      "last_updated": "2025-08-24",
-      "creator": "Howandt - 72 år, 65 år med ADHD/Aspergers, 8000 timer udvikling",
+      "last_updated": "2025-11-02",
+      "creator": "Howandt - 72 år, 65 år med ADHD/Aspergers, 9000+ timer udvikling",
       "philosophy": "Børn skal ikke passe til skolen, skolen skal passe til børnene"
     },
     "templates": [
-    {
-  "id": "school_avoidance_plan",
-  "title": "Trinvis Plan mod Skolevægring",
-  "category": "intervention",
-  "target_group": "Lærere, forældre, pædagoger",
-  "description": "En praktisk trin-for-trin plan til håndtering af skolevægring hos børn med diagnoser. Fokus er på at genetablere tryghed, samarbejde og struktur i tæt dialog mellem skole og hjem.",
-  "search_keywords": [
-    "skolevægring",
-    "skoleangst",
-    "skolefravær",
-    "barn vil ikke i skole",
-    "morgenuro",
-    "forældre samarbejde",
-    "tryghed i skolen",
-    "angst for skole",
-    "genopbygning af tillid",
-    "ppr inddragelse",
-    "skole mentor",
-    "tilbagevenden til skole"
-    ],
-  "steps": [
-    { "step": 1, "title": "Observation og forståelse", "content": "..." },
-    { "step": 2, "title": "Kommunikation og kontakt", "content": "..." },
-    { "step": 3, "title": "Fælles forståelsesgrundlag", "content": "..." },
-    { "step": 4, "title": "Tryghedsskabende mikrotræning", "content": "..." },
-    { "step": 5, "title": "Delmål og positiv forstærkning", "content": "..." },
-    { "step": 6, "title": "Tværfaglig koordinering", "content": "..." },
-    { "step": 7, "title": "Langsigtet stabilisering", "content": "..." }
-    ],
-  "real_life_solution": "I praksis viste det sig...",
-  "specialist_ideal_solution": "CDA-panelet anbefaler...",
-  "cda_synthesis": "Barnet viser skolevægring...",
-  "learning_reflection": "Denne case viser..."
-    },
-    {
-      "id": "visuel_dagsplan",
-      "title":"Visuel Dagsplan",
-      "content": {
-        "purpose": "Skaber struktur i dagligdagen",
-        "description": "Grundlæggende visuel dagsplan der giver børn med diagnoser forudsigelige rammer",
-        "use_cases": [
-          "Morgenrutiner for barn med ADHD",
-          "Struktureret weekend for autistisk barn",
-          "Reducere angst gennem forudsigelig dagplan"
+      {
+        "id": "visuel_dagsplan",
+        "title": "Visuel Dagsplan",
+        "category": "struktur",
+        "subcategory": "dagligdag",
+        "tags": [
+          "struktur",
+          "dagplan",
+          "visuel",
+          "rutiner",
+          "forudsigelig",
+          "autisme",
+          "adhd"
         ],
-        "components": ["Tidsplan", "Visuelle symboler", "Aktivitetskort", "Checkboxe"],
-        "benefits": ["Reducerer angst", "Skaber selvstændighed", "Forbedrer overgange"]
+        "age_range": [
+          3,
+          18
+        ],
+        "diagnoses": [
+          "autisme",
+          "adhd",
+          "angst",
+          "sprogvanskeligheder"
+        ],
+        "complexity": "beginner",
+        "usage_frequency": "daily",
+        "urgency": "routine",
+        "ai_specialists": [
+          {
+            "name": "AI-ergoterapeut Lene Kristensen",
+            "expertise": "sensorisk integration og daglig struktur",
+            "specialties": [
+              "ergoterapeutiske løsninger",
+              "sensoriske behov",
+              "struktur"
+            ]
+          }
+        ],
+        "content": {
+          "purpose": "Skaber struktur i dagligdagen",
+          "description": "Grundlæggende visuel dagsplan der giver børn med diagnoser forudsigelige rammer",
+          "use_cases": [
+            "Morgenrutiner for barn med ADHD",
+            "Struktureret weekend for autistisk barn",
+            "Reducere angst gennem forudsigelig dagplan"
+          ],
+          "components": [
+            "Tidsplan",
+            "Visuelle symboler",
+            "Aktivitetskort",
+            "Checkboxe"
+          ],
+          "benefits": [
+            "Reducerer angst",
+            "Skaber selvstændighed",
+            "Forbedrer overgange"
+          ],
+          "teacher_experience": "ma: 'Brugte visuel dagsplan til dreng med autisme - han blev meget mere rolig når han kunne se hvad der skulle ske'"
+        },
+        "search_keywords": [
+          "dagplan",
+          "struktur",
+          "rutiner",
+          "visuel støtte",
+          "forudsigelig",
+          "morgenrutine",
+          "aftenrutine",
+          "autisme struktur",
+          "adhd rutiner"
+        ],
+        "related_templates": [
+          "dagplansbygger",
+          "ugeplan_maal",
+          "kommunikationslog"
+        ],
+        "command_triggers": [
+          "Visuel Dagsplan",
+          "Skabelon Dagplan",
+          "Struktur dagplan"
+        ],
+        "variables": {
+          "required": [
+            "child_name",
+            "child_age"
+          ],
+          "optional": [
+            "specific_activities",
+            "visual_preference"
+          ]
+        },
+        "template_markdown": "# 📅 Visuel Dagsplan for {child_name}\n\n**Barnets navn:** {child_name}, {child_age} år\n**Planlagt af:** [Navn]\n**Dato:** ___________\n\n## 🌅 MORGEN\n☐ 🛏️ Stå op\n☐ 🦷 Børste tænder  \n☐ 👕 Tag tøj på\n☐ 🥣 Spis morgenmad\n{specific_activities ? ☐ {specific_activities} : }\n\n## 🌞 FORMIDDAG\n☐ 🎒 Klar til skole/aktivitet\n☐ 📚 Første aktivitet\n☐ ☕ Pause\n\n## 🌆 EFTERMIDDAG  \n☐ 🏠 Hjem fra skole\n☐ 🍎 Mellemmåltid\n☐ 📝 Lektier/aktiviteter\n\n## 🌙 AFTEN\n☐ 🍽️ Aftensmad\n☐ 🛁 Bad/hygiejne\n☐ 📖 Aftenhygge\n☐ 😴 Sengetid\n\n---\n💡 **Lærer-erfaring (ma):** *\"Brugte visuel dagsplan til dreng med autisme - han blev meget mere rolig når han kunne se hvad der skulle ske\"*"
       },
-      "search_keywords": [
-        "dagplan",
-        "struktur",
-        "rutiner",
-        "visuel støtte",
-        "forudsigelig",
-        "morgenrutine",
-        "aftenrutine",
-        "autisme struktur",
-        "adhd rutiner"
-      ],
-      "related_templates": ["dagplansbygger", "ugeplan_maal", "kommunikationslog"],
-      "command_triggers": ["Visuel Dagsplan", "Skabelon Dagplan", "Struktur dagplan"]
-    },
-    {
-      "id": "dagplansbygger",
-      "title": "Dagplansbygger – tilpas din egen dagsplan",
+      {
+        "id": "dagplansbygger",
+        "title": "Dagplansbygger – tilpas din egen dagsplan",
         "category": "struktur",
         "subcategory": "personalisering",
-        "tags": ["dagplan", "personlig", "valgmuligheder", "emoji", "piktogrammer", "tilpasning"],
-        "age_range": [4, 18],
-        "diagnoses": ["autisme", "adhd", "sprogvanskeligheder", "intellektuel funktionsnedsættelse"],
+        "tags": [
+          "dagplan",
+          "personlig",
+          "valgmuligheder",
+          "emoji",
+          "piktogrammer",
+          "tilpasning"
+        ],
+        "age_range": [
+          4,
+          18
+        ],
+        "diagnoses": [
+          "autisme",
+          "adhd",
+          "sprogvanskeligheder",
+          "intellektuel funktionsnedsættelse"
+        ],
         "complexity": "intermediate",
         "usage_frequency": "weekly",
         "urgency": "routine",
@@ -86,12 +131,20 @@
           {
             "name": "AI-strukturvejleder",
             "expertise": "daglig struktur og rutineoptimering",
-            "specialties": ["strukturplanlægning", "rutiner", "selvstændighed"]
+            "specialties": [
+              "strukturplanlægning",
+              "rutiner",
+              "selvstændighed"
+            ]
           },
           {
-            "name": "AI-forældrespecialist", 
+            "name": "AI-forældrespecialist",
             "expertise": "hjemmestøtte og implementation",
-            "specialties": ["forældrevejledning", "hjemmestrategier", "praktisk implementation"]
+            "specialties": [
+              "forældrevejledning",
+              "hjemmestrategier",
+              "praktisk implementation"
+            ]
           }
         ],
         "content": {
@@ -99,7 +152,7 @@
           "description": "Avanceret dagsplansværktøj der lader barnet/familien vælge og tilpasse aktiviteter",
           "components": [
             "Valgskema: afkrydsning af aktiviteter (morgen, middag, aften)",
-            "Visuel layoutgenerator med symboler og tidspunkter", 
+            "Visuel layoutgenerator med symboler og tidspunkter",
             "Output: PDF til print eller digital visning",
             "Tilpasses barnets behov (autisme, ADHD, sprogvanskeligheder)"
           ],
@@ -107,31 +160,76 @@
             "Familie der vil involvere barnet i planlægning",
             "Barn med behov for medbestemmelse over struktur",
             "Overgang fra rigid til fleksibel struktur"
-          ]
+          ],
+          "teacher_experience": "hh: 'Lod barnet selv vælge aktiviteter - det gjorde hele forskellen for hendes motivation'"
         },
         "search_keywords": [
-          "tilpas dagplan", "vælg aktiviteter", "personlig dagplan", "emoji dagplan",
-          "piktogrammer", "barnet vælger", "interaktiv dagplan"
+          "tilpas dagplan",
+          "vælg aktiviteter",
+          "personlig dagplan",
+          "emoji dagplan",
+          "piktogrammer",
+          "barnet vælger",
+          "interaktiv dagplan"
         ],
-        "related_templates": ["visuel_dagsplan", "ugeplan_maal", "motivation_belonning"],
-        "command_triggers": ["Dagplansbygger", "Tilpas dagplan", "Personlig dagplan"]
+        "related_templates": [
+          "visuel_dagsplan",
+          "ugeplan_maal",
+          "motivation_belonning"
+        ],
+        "command_triggers": [
+          "Dagplansbygger",
+          "Tilpas dagplan",
+          "Personlig dagplan"
+        ],
+        "variables": {
+          "required": [
+            "child_name",
+            "child_age"
+          ],
+          "optional": [
+            "favorite_activities",
+            "visual_style",
+            "reward_system"
+          ]
+        },
+        "template_markdown": "# 🎨 Personlig Dagplansbygger for {child_name}\n\n**Barn:** {child_name}, {child_age} år\n**Personlige præferencer:** {visual_style ? {visual_style} : Emojis/Piktogrammer}\n\n## 🏗️ Byg Din Egen Dagsplan!\n\n**Vælg dine morgentiviteter:**\n☐ 🛏️ Stå op  ☐ 🦷 Børste tænder  ☐ 🚿 Bade  ☐ 👕 Påklædning\n☐ 🥣 Morgenmad  ☐ 🎒 Pakke taske  ☐ 🐕 Lufte hund\n{favorite_activities ? ☐ {favorite_activities} : }\n\n**Vælg dine eftermiddagsaktiviteter:**\n☐ 🏠 Komme hjem  ☐ 🍎 Snack  ☐ 📝 Lektier  ☐ 🎮 Fri leg\n☐ 🚴 Sport/motion  ☐ 👥 Venner  ☐ 📱 Skærmtid\n\n**Vælg din aftenrutine:**\n☐ 🍽️ Aftensmad  ☐ 🧸 Familietid  ☐ 🛁 Bad  ☐ 📖 Læse\n☐ 🎵 Musik  ☐ 😴 Sengetid\n\n{reward_system ? ## 🌟 Belønningssystem: {reward_system} : }\n\n---\n💡 **Min dagsplan ser sådan ud:**\n[Her kan {child_name} tegne eller sætte klistermærker på valgte aktiviteter]\n\n💬 **Lærer-erfaring (hh):** *\"Lod barnet selv vælge aktiviteter - det gjorde hele forskellen for hendes motivation\"*"
       },
       {
         "id": "refleksionsark",
         "title": "Hvad skete i dag? (Refleksionsark)",
         "category": "kommunikation",
         "subcategory": "selvreflektion",
-        "tags": ["reflektion", "daglig oplevelse", "følelser", "kommunikation", "indsigt"],
-        "age_range": [5, 16],
-        "diagnoses": ["autisme", "adhd", "angst", "social angst", "depression"],
-        "complexity": "intermediate", 
+        "tags": [
+          "reflektion",
+          "daglig oplevelse",
+          "følelser",
+          "kommunikation",
+          "indsigt"
+        ],
+        "age_range": [
+          5,
+          16
+        ],
+        "diagnoses": [
+          "autisme",
+          "adhd",
+          "angst",
+          "social angst",
+          "depression"
+        ],
+        "complexity": "intermediate",
         "usage_frequency": "daily",
         "urgency": "routine",
         "ai_specialists": [
           {
             "name": "AI-psykolog Marie Andersen",
             "expertise": "børnepsykologi og følelsesregulering",
-            "specialties": ["følelsesbearbejdning", "selvreflektion", "kommunikation"]
+            "specialties": [
+              "følelsesbearbejdning",
+              "selvreflektion",
+              "kommunikation"
+            ]
           }
         ],
         "content": {
@@ -142,23 +240,118 @@
             "Forældre der vil forstå barnets oplevelser bedre",
             "Skole-hjem kommunikation om barnets tilstand"
           ],
-          "components": ["Følelseskort", "Aktivitetsoversigt", "Udfordringer", "Succesoplevelser"]
+          "components": [
+            "Følelseskort",
+            "Aktivitetsoversigt",
+            "Udfordringer",
+            "Succesoplevelser"
+          ],
+          "teacher_experience": "js: 'Refleksionsark hjalp stille pige med at fortælle om dagen - forældrene var så glade for endelig at forstå'"
         },
         "search_keywords": [
-          "reflektion", "hvad skete", "barnets dag", "følelser", "daglig oplevelse",
-          "kommunikation hjem", "indsigt i barn", "daglig evaluering"
+          "reflektion",
+          "hvad skete",
+          "barnets dag",
+          "følelser",
+          "daglig oplevelse",
+          "kommunikation hjem",
+          "indsigt i barn",
+          "daglig evaluering"
         ],
-        "related_templates": ["hvis_jeg_foeler", "kommunikationslog", "sociale_relationer"],
-        "command_triggers": ["Refleksionsark", "Hvad skete i dag", "Daglig reflektion"]
+        "related_templates": [
+          "hvis_jeg_foeler",
+          "kommunikationslog",
+          "sociale_relationer"
+        ],
+        "command_triggers": [
+          "Refleksionsark",
+          "Hvad skete i dag",
+          "Daglig reflektion"
+        ],
+        "variables": {
+          "required": [
+            "child_name"
+          ],
+          "optional": [
+            "specific_focus_area",
+            "communication_style"
+          ]
+        },
+        "template_markdown": "# 💭 Hvad skete i dag, {child_name}?\n\n**Dagens dato:** ___________\n**Dagens vejr:** ☀️ ⛅ 🌧️ ❄️\n\n## 😊 Mine følelser i dag\nJeg følte mig mest: 😄 😊 😐 😟 😢 😠\n\n**Hvorfor følte jeg mig sådan?**\n_________________________________\n\n## 🎯 Det bedste ved dagen var:\n_________________________________\n\n## 😤 Det sværeste ved dagen var:\n_________________________________\n\n## 🏫 I skolen/børnehaven:\n**Hvad lavede vi?** ________________________________\n**Hvem legede jeg med?** ___________________________\n**Hvad var sjovt?** ________________________________\n**Hvad var svært?** _______________________________\n\n## 🏠 Derhjemme:\n**Hvem snakkede jeg med?** _________________________\n**Hvad lavede vi sammen?** _________________________\n\n{specific_focus_area ? ## 🎯 Særligt fokus: {specific_focus_area}\nHvordan gik det? ___________________________________ : }\n\n## ⭐ Jeg er stolt af:\n___________________________________\n\n## 🌟 I morgen vil jeg gerne:\n___________________________________\n\n---\n💬 **Lærer-erfaring (js):** *\"Refleksionsark hjalp stille pige med at fortælle om dagen - forældrene var så glade for endelig at forstå\"*"
+      },
+      {
+        "id": "school_avoidance_plan",
+        "title": "Trinvis Plan mod Skolevægring",
+        "category": "intervention",
+        "target_group": "Lærere, forældre, pædagoger",
+        "description": "En praktisk trin-for-trin plan til håndtering af skolevægring hos børn med diagnoser. Fokus er på at genetablere tryghed, samarbejde og struktur i tæt dialog mellem skole og hjem.",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Observation og forståelse",
+            "content": "Observer barnet uden at presse. Notér hvornår og hvordan modstanden opstår – fx ved morgenrutiner, transport, klassemiljø eller relationer. Skab overblik over mønstre og udløsere."
+          },
+          {
+            "step": 2,
+            "title": "Kommunikation og kontakt",
+            "content": "Etabler daglig kommunikation med barnet på barnets præmisser. Brug korte beskeder, valider følelser og undgå at tale om 'fravær' som fejl. Skolen kontakter forældrene roligt og løsningsorienteret."
+          },
+          {
+            "step": 3,
+            "title": "Fælles forståelsesgrundlag",
+            "content": "Afhold et møde mellem skole og forældre uden barnet for at skabe fælles forståelse. Fokusér på tryghed frem for fravær. Beslut hvem der er kontaktperson og hvordan barnet mødes i skolen."
+          },
+          {
+            "step": 4,
+            "title": "Tryghedsskabende mikrotræning",
+            "content": "Barnet skal langsomt genvinde tillid til skolemiljøet. Start med korte, forudsigelige besøg – fx 10 minutter i et trygt lokale. Brug faste ritualer, samme voksen og tydelig forudsigelighed."
+          },
+          {
+            "step": 5,
+            "title": "Delmål og positiv forstærkning",
+            "content": "Lav små, opnåelige delmål: fx at møde op på skolens parkeringsplads, derefter at gå ind, senere deltage i en time. Anerkend indsatsen, ikke resultatet. Brug visuel fremgangsplan."
+          },
+          {
+            "step": 6,
+            "title": "Tværfaglig koordinering",
+            "content": "Hvis udviklingen går i stå, inddrag PPR, ergoterapeut eller psykolog. Evaluer sammen med familien – hvad virker, og hvad skal justeres? Dokumentér alt, men uden skyldplacering."
+          },
+          {
+            "step": 7,
+            "title": "Langsigtet stabilisering",
+            "content": "Efter tilbagevenden fastholdes struktur og støtte. Sørg for roligt tempo, tydelige overgange og faste voksne. Lav ugentlige korte statusmøder mellem skole og hjem i minimum 8 uger."
+          }
+        ],
+        "real_life_solution": "I praksis viste det sig, at en lærer opnåede størst effekt ved at flytte fokus fra fravær til tryghed. Barnet fik sin egen 'morgenmentor', som mødte ham ved bilen hver dag, gik med ham ind og fulgte ham i gang. Efter tre uger kunne han selv gå ind, men ritualet blev fastholdt som symbol på tillid.",
+        "specialist_ideal_solution": "CDA-panelet anbefaler en kombineret indsats: Psykologen fokuserer på angst- og kontrolstrategier, ergoterapeuten på sensorisk ro og faste rutiner, socialrådgiveren på koordinering med hjemmet og kommunen. Sammen skaber de en helhedsplan med fokus på gradvis eksponering og tryghedsskabende miljø.",
+        "cda_synthesis": "Barnet viser skolevægring som udtryk for overbelastning og mistet forudsigelighed. Den bedste indsats er ikke pres, men struktureret genopbygning af tillid. Samarbejdet skal være dagligt, konkret og uden skyld. Fokus: relation, gentagelse og langsom fremgang.",
+        "learning_reflection": "Denne case viser, at skolevægring sjældent løses gennem krav eller regler, men gennem relationel tryghed og stabile voksne. Systemet har lært, at indsatsen skal prioriteres før fraværsregistrering — og at små succeser gentaget mange gange er nøglen til varig tilbagevenden."
       },
       {
         "id": "hvis_jeg_foeler",
         "title": "Hvis-jeg-føler-Kort",
-        "category": "følelser", 
+        "category": "følelser",
         "subcategory": "regulering",
-        "tags": ["følelser", "regulering", "kort", "strategi", "selvstyring", "krise"],
-        "age_range": [4, 16],
-        "diagnoses": ["adhd", "autisme", "angst", "ocd", "tourettes", "bipolar"],
+        "tags": [
+          "følelser",
+          "regulering",
+          "kort",
+          "strategi",
+          "selvstyring",
+          "krise"
+        ],
+        "age_range": [
+          4,
+          16
+        ],
+        "diagnoses": [
+          "adhd",
+          "autisme",
+          "angst",
+          "ocd",
+          "tourettes",
+          "bipolar"
+        ],
         "complexity": "intermediate",
         "usage_frequency": "crisis",
         "urgency": "high",
@@ -166,12 +359,20 @@
           {
             "name": "AI-speciallærer Jonas Bæk",
             "expertise": "specialpædagogik og følelsesregulering",
-            "specialties": ["følelsesregulering", "selvregulering", "undervisningsstrategier"]
+            "specialties": [
+              "følelsesregulering",
+              "selvregulering",
+              "undervisningsstrategier"
+            ]
           },
           {
-            "name": "AI-kriseinterventionsspecialist Omar Elmi", 
+            "name": "AI-kriseinterventionsspecialist Omar Elmi",
             "expertise": "akut krisehåndtering og følelsesmæssig støtte",
-            "specialties": ["krisehåndtering", "akut støtte", "følelsesmæssig first-aid"]
+            "specialties": [
+              "krisehåndtering",
+              "akut støtte",
+              "følelsesmæssig first-aid"
+            ]
           }
         ],
         "content": {
@@ -179,26 +380,72 @@
           "description": "Praktiske kort med strategier til forskellige følelsestilstande",
           "use_cases": [
             "Barn i følelsesmæssig krise",
-            "Forebyggende følelsesregulering", 
+            "Forebyggende følelsesregulering",
             "Lærer der skal hjælpe barn i klassen"
           ],
-          "scenarios": ["Vred", "Ked af det", "Angst", "Frustreret", "Overvældet", "Glad men for meget energi"]
+          "scenarios": [
+            "Vred",
+            "Ked af det",
+            "Angst",
+            "Frustreret",
+            "Overvældet",
+            "Glad men for meget energi"
+          ],
+          "teacher_experience": "lm: 'Hvis-jeg-føler kort reddede en dreng fra at eksplodere - han lærte at bruge dem i stedet for at slå'"
         },
         "search_keywords": [
-          "følelser", "vred", "ked af det", "angst", "frustreret", "følelsesregulering",
-          "hvad gør jeg når", "krise", "følelsesmæssig støtte"
+          "følelser",
+          "vred",
+          "ked af det",
+          "angst",
+          "frustreret",
+          "følelsesregulering",
+          "hvad gør jeg når",
+          "krise",
+          "følelsesmæssig støtte"
         ],
-        "related_templates": ["refleksionsark", "skolevagring_plan", "tal_til_ro"],
-        "command_triggers": ["Hvis jeg føler", "Følelseskort", "Regulering følelser"]
+        "related_templates": [
+          "refleksionsark",
+          "skolevagring_plan",
+          "tal_til_ro"
+        ],
+        "command_triggers": [
+          "Hvis jeg føler",
+          "Følelseskort",
+          "Regulering følelser"
+        ],
+        "variables": {
+          "required": [
+            "child_name"
+          ],
+          "optional": [
+            "specific_triggers",
+            "calm_down_space",
+            "trusted_adult"
+          ]
+        },
+        "template_markdown": "# ❤️ Hvis-jeg-føler Kort for {child_name}\n\n**Personlige kort til {child_name}**\n\n## 😡 Hvis jeg føler mig VRED:\n1. **STOP** - træk vejret 3 gange: ind... ud... ind... ud... ind... ud\n2. **Tæl til 10** (eller 20 hvis jeg har brug for det)\n3. **Gå til mit rolige sted:** {calm_down_space ? {calm_down_space} : pauserummet/mit værelse}\n4. **Fortæl en voksen:** {trusted_adult ? {trusted_adult} : lærer/forælder}\n\n## 😢 Hvis jeg føler mig KED AF DET:\n1. **Det er okay at være ked af det** - alle har sådan dage\n2. **Find en voksen** der kan give mig et kram\n3. **Tegn eller skriv** hvad der gør mig ked af det\n4. **Husk noget godt** der skete i dag\n\n## 😰 Hvis jeg føler mig NERVØS/ANGST:\n1. **Ånd roligt** - som en ballon der pustes op og tømmes\n2. **Tæl 5 ting jeg kan se** omkring mig\n3. **Fortæl mig selv:** \"Jeg klarer det, jeg er tryg\"\n4. **Bed om hjælp** - det er modigt, ikke svagt\n\n## 😤 Hvis jeg føler mig FRUSTRERET:\n1. **Tag en pause** fra det jeg laver\n2. **Bevæg min krop** - stræk armene, hop lidt\n3. **Spørg:** \"Kan jeg få hjælp til det her?\"\n4. **Prøv igen** når jeg er mere rolig\n\n{specific_triggers ? ## ⚠️ Mine specielle triggere: {specific_triggers}\nNår det sker, husker jeg at... : }\n\n## 🆘 NØDPLAN - Hvis intet andet virker:\n1. **Find straks en voksen**\n2. **Vis dette kort**\n3. **Bed om at komme til mit rolige sted**\n\n---\n🎯 **Husk {child_name}:** Følelser er normale - det er hvad vi GØR ved dem der tæller!\n\n💬 **Lærer-erfaring (lm):** *\"Hvis-jeg-føler kort reddede en dreng fra at eksplodere - han lærte at bruge dem i stedet for at slå\"*"
       },
       {
         "id": "kommunikationslog",
-        "title": "Kommunikationslog Skole ↔ Hjem", 
+        "title": "Kommunikationslog Skole ↔ Hjem",
         "category": "kommunikation",
         "subcategory": "skole_hjem",
-        "tags": ["kommunikation", "skole", "hjem", "log", "samarbejde", "information"],
-        "age_range": [3, 18],
-        "diagnoses": ["alle"],
+        "tags": [
+          "kommunikation",
+          "skole",
+          "hjem",
+          "log",
+          "samarbejde",
+          "information"
+        ],
+        "age_range": [
+          3,
+          18
+        ],
+        "diagnoses": [
+          "alle"
+        ],
         "complexity": "beginner",
         "usage_frequency": "daily",
         "urgency": "routine",
@@ -206,7 +453,11 @@
           {
             "name": "AI-socialrådgiver Maja Holm",
             "expertise": "skole-hjem samarbejde og systemisk støtte",
-            "specialties": ["familiedynamik", "systemisk arbejde", "kommunikationsfacilitering"]
+            "specialties": [
+              "familiedynamik",
+              "systemisk arbejde",
+              "kommunikationsfacilitering"
+            ]
           }
         ],
         "content": {
@@ -217,23 +468,70 @@
             "Nye lærere der skal lære barnet at kende",
             "Perioder med ekstra udfordringer"
           ],
-          "sections": ["Dagens aktiviteter", "Humør/adfærd", "Medicin", "Særlige observationer", "Aftaler"]
+          "sections": [
+            "Dagens aktiviteter",
+            "Humør/adfærd",
+            "Medicin",
+            "Særlige observationer",
+            "Aftaler"
+          ],
+          "teacher_experience": "tb: 'Kommunikationslog stoppede misforståelser mellem skole og hjem - pludselig arbejdede vi sammen i stedet for mod hinanden'"
         },
         "search_keywords": [
-          "kommunikation skole", "skole hjem", "daglig log", "informationsudveksling",
-          "samarbejde lærer", "barnets dag i skolen"
+          "kommunikation skole",
+          "skole hjem",
+          "daglig log",
+          "informationsudveksling",
+          "samarbejde lærer",
+          "barnets dag i skolen"
         ],
-        "related_templates": ["refleksionsark", "skolevagring_plan", "sociale_relationer"],
-        "command_triggers": ["Kommunikationslog", "Skole hjem", "Daglig kommunikation"]
+        "related_templates": [
+          "refleksionsark",
+          "skolevagring_plan",
+          "sociale_relationer"
+        ],
+        "command_triggers": [
+          "Kommunikationslog",
+          "Skole hjem",
+          "Daglig kommunikation"
+        ],
+        "variables": {
+          "required": [
+            "child_name",
+            "school_name",
+            "teacher_name",
+            "parent_name"
+          ],
+          "optional": [
+            "special_focus",
+            "medication_info"
+          ]
+        },
+        "template_markdown": "# 📞 Kommunikationslog: {school_name} ↔ Hjem\n\n**Barn:** {child_name}  \n**Skole:** {school_name}  \n**Lærer:** {teacher_name}  \n**Forælder:** {parent_name}\n\n{special_focus ? **Særligt fokus denne uge:** {special_focus} : }\n\n---\n\n## 📅 Uge af: ___________\n\n### Mandag ___/___\n**🏫 Fra {school_name}:**\n- Humør: 😄 😊 😐 😟 😢\n- Aktiviteter: _________________________________\n- Sociale interaktioner: ________________________\n- Udfordringer: _______________________________\n- Succeser: ___________________________________\n{medication_info ? - Medicin givet: ⬜ Ja ⬜ Nej Tid: _____ : }\n\n**🏠 Fra {parent_name}:**  \n- Nat/morgen: _________________________________\n- Særlige hændelser: ____________________________\n{medication_info ? - Medicin hjemme: ⬜ Givet ⬜ Glemt Tid: _____ : }\n- Fokus i morgen: ______________________________\n\n### Tirsdag ___/___\n**🏫 Fra {school_name}:**\n- Humør: 😄 😊 😐 😟 😢\n- Aktiviteter: _________________________________\n- Sociale interaktioner: ________________________\n- Udfordringer: _______________________________\n- Succeser: ___________________________________\n{medication_info ? - Medicin givet: ⬜ Ja ⬜ Nej Tid: _____ : }\n\n**🏠 Fra {parent_name}:**\n- Nat/morgen: _________________________________\n- Særlige hændelser: ____________________________\n{medication_info ? - Medicin hjemme: ⬜ Givet ⬜ Glemt Tid: _____ : }\n- Fokus i morgen: ______________________________\n\n[Gentages for onsdag-fredag...]\n\n## 📋 Ugemøde/opfølgning:\n**Dato:** ___________\n**Deltagere:** _________________________________\n**Aftaler:** ___________________________________\n\n---\n💬 **Lærer-erfaring (tb):** *\"Kommunikationslog stoppede misforståelser mellem skole og hjem - pludselig arbejdede vi sammen i stedet for mod hinanden\"*"
       },
       {
         "id": "ugeplan_maal",
         "title": "Ugeplan med Mål og Belønning",
         "category": "motivation",
-        "subcategory": "planlægning", 
-        "tags": ["ugeplan", "mål", "belønning", "motivation", "fremgang", "struktur"],
-        "age_range": [6, 18],
-        "diagnoses": ["adhd", "autisme", "angst", "ocd"],
+        "subcategory": "planlægning",
+        "tags": [
+          "ugeplan",
+          "mål",
+          "belønning",
+          "motivation",
+          "fremgang",
+          "struktur"
+        ],
+        "age_range": [
+          6,
+          18
+        ],
+        "diagnoses": [
+          "adhd",
+          "autisme",
+          "angst",
+          "ocd"
+        ],
         "complexity": "intermediate",
         "usage_frequency": "weekly",
         "urgency": "routine",
@@ -241,12 +539,20 @@
           {
             "name": "AI-specialpædagog",
             "expertise": "målsætning og pædagogisk progression",
-            "specialties": ["målsætning", "progression", "pædagogisk metodik"]
+            "specialties": [
+              "målsætning",
+              "progression",
+              "pædagogisk metodik"
+            ]
           },
           {
             "name": "AI-adfærdsanalytiker",
-            "expertise": "adfærdsmodifikation og belønningssystemer", 
-            "specialties": ["adfærdsmodifikation", "belønningssystemer", "motivation"]
+            "expertise": "adfærdsmodifikation og belønningssystemer",
+            "specialties": [
+              "adfærdsmodifikation",
+              "belønningssystemer",
+              "motivation"
+            ]
           }
         ],
         "content": {
@@ -257,86 +563,92 @@
             "Motivation til svære opgaver",
             "Opbygning af nye vaner og rutiner"
           ],
-          "components": ["Ugeoversigt", "Specifikke mål", "Belønningssystem", "Fremgangsmåling"]
+          "components": [
+            "Ugeoversigt",
+            "Specifikke mål",
+            "Belønningssystem",
+            "Fremgangsmåling"
+          ],
+          "teacher_experience": "ph: 'Små ugentlige mål fungerede bedre end store - pige med ADHD samlede 15 stjerner første uge og var så stolt'"
         },
         "search_keywords": [
-          "ugeplan", "mål", "belønning", "motivation", "fremgang", "ugeplanlægning",
-          "målsætning", "belønningssystem"
+          "ugeplan",
+          "mål",
+          "belønning",
+          "motivation",
+          "fremgang",
+          "ugeplanlægning",
+          "målsætning",
+          "belønningssystem"
         ],
-        "related_templates": ["dagplansbygger", "motivation_belonning", "visuel_dagsplan"],
-        "command_triggers": ["Ugeplan mål", "Skabelon ugeplan", "Mål og belønning"]
-      },
-      {
-        "id": "skolevagring_plan",
-        "title": "Trinvis Plan mod Skolevægring",
-        "category": "intervention",
-        "subcategory": "skolevægring",
-        "tags": ["skolevægring", "angst", "gradual", "trinvis", "skole", "genindtræden", "krise"],
-        "age_range": [6, 16], 
-        "diagnoses": ["angst", "adhd", "autisme", "depression", "ocd", "social angst"],
-        "complexity": "advanced",
-        "usage_frequency": "crisis",
-        "urgency": "high",
-        "ai_specialists": [
-          {
-            "name": "AI-psykolog Marie Andersen",
-            "expertise": "skolevægring og angstbehandling",
-            "specialties": ["angstbehandling", "exposure terapi", "børnepsykologi"]
-          },
-          {
-            "name": "AI-skolerådgiverteam",
-            "expertise": "skole-hjem samarbejde ved kriser",
-            "specialties": ["krisehåndtering", "skole systemisk arbejde", "genindtræden"]
-          }
+        "related_templates": [
+          "dagplansbygger",
+          "motivation_belonning",
+          "visuel_dagsplan"
         ],
-        "content": {
-          "purpose": "Støtter børn, der har udviklet modstand mod skolen med gradvist og trygt genindtræden",
-          "description": "Trinvist program for at få børn med skolevægring tilbage til skolen", 
-          "phases": [
-            {"step": 1, "action": "Kør til skolen og bliv i bilen", "duration": "1-3 dage"},
-            {"step": 2, "action": "Ud af bilen og stå udenfor skolen", "duration": "2-5 dage"},
-            {"step": 3, "action": "Besøg når der er frikvarter, se børn", "duration": "3-7 dage"},
-            {"step": 4, "action": "Hils evt. på en lærer eller elev", "duration": "2-5 dage"},
-            {"step": 5, "action": "Gå ind i skolegården", "duration": "3-7 dage"},
-            {"step": 6, "action": "Tal med barnets buddy eller kontaktperson", "duration": "2-5 dage"},
-            {"step": 7, "action": "Ind i klasselokalet, sid på stol sammen", "duration": "5-10 dage"},
-            {"step": 8, "action": "Brug høretelefoner / pauserum", "duration": "løbende"}
+        "command_triggers": [
+          "Ugeplan mål",
+          "Skabelon ugeplan",
+          "Mål og belønning"
+        ],
+        "variables": {
+          "required": [
+            "child_name",
+            "child_age"
           ],
-          "parent_guidance": [
-            "Tal roligt og anerkend barnets følelser",
-            "Forbered barnet på, hvad der skal ske", 
-            "Ros og fejr fremskridt"
-          ],
-          "tracking_included": true
+          "optional": [
+            "specific_goals",
+            "reward_type",
+            "weekly_theme"
+          ]
         },
-        "search_keywords": [
-          "skolevægring", "ikke vil i skole", "skole angst", "gradual exposure", "trinvis",
-          "genindtræden", "skole fravær", "angst skole", "hjælp til skolevægring"
-        ],
-        "related_templates": ["hvis_jeg_foeler", "kommunikationslog", "refleksionsark"],
-        "command_triggers": ["Skolevægring", "Skabelon Skolevægring", "Ikke vil i skole"]
+        "template_markdown": "# ⭐ Ugeplan med Mål for {child_name}\n\n**Uge:** ___/___-___/___  \n**{child_name}s alder:** {child_age} år\n{weekly_theme ? **Tema denne uge:** {weekly_theme} : }\n\n## 🎯 Mine Mål Denne Uge:\n\n### 🌟 Hovedmål:\n1. ________________________________\n2. ________________________________\n3. ________________________________\n\n{specific_goals ? ### 🎪 Specielle mål: {specific_goals} : }\n\n## 📅 Daglig Tracking:\n\n| Dag | Mål 1 | Mål 2 | Mål 3 | Dagens ⭐ |\n|-----|-------|-------|-------|-----------|\n| MAN | ⬜ | ⬜ | ⬜ | ___/3 |\n| TIR | ⬜ | ⬜ | ⬜ | ___/3 |\n| ONS | ⬜ | ⬜ | ⬜ | ___/3 |\n| TOR | ⬜ | ⬜ | ⬜ | ___/3 |\n| FRE | ⬜ | ⬜ | ⬜ | ___/3 |\n| LØR | ⬜ | ⬜ | ⬜ | ___/3 |\n| SØN | ⬜ | ⬜ | ⬜ | ___/3 |\n\n**Total stjerner denne uge:** ___/21\n\n## 🎁 Belønningssystem:\n- **10-14 stjerner:** {reward_type ? {reward_type} (lille belønning) : Lille belønning efter eget valg}\n- **15-18 stjerner:** {reward_type ? {reward_type} (mellem belønning) : Mellembelønning}\n- **19-21 stjerner:** {reward_type ? {reward_type} (stor belønning) : STOR belønning! 🎉}\n\n## 📝 Ugens Reflektion:\n**Det gik rigtig godt med:** _________________________\n**Det var svært at:** ______________________________\n**Næste uge vil jeg fokusere på:** __________________\n\n---\n💬 **Lærer-erfaring (ph):** *\"Små ugentlige mål fungerede bedre end store - pige med ADHD samlede 15 stjerner første uge og var så stolt\"*"
       },
       {
         "id": "tal_til_ro",
-        "title": "Tal-til-ro: Søvnritual for børn med ADHD", 
+        "title": "Tal-til-ro: Søvnritual for børn med ADHD",
         "category": "søvn",
         "subcategory": "ritual",
-        "tags": ["søvn", "adhd", "ritual", "tal", "ro", "afslappning", "aftenmad"],
-        "age_range": [4, 14],
-        "diagnoses": ["adhd", "angst", "autisme", "ocd"],
+        "tags": [
+          "søvn",
+          "adhd",
+          "ritual",
+          "tal",
+          "ro",
+          "afslappning",
+          "aftenmad"
+        ],
+        "age_range": [
+          4,
+          14
+        ],
+        "diagnoses": [
+          "adhd",
+          "angst",
+          "autisme",
+          "ocd"
+        ],
         "complexity": "beginner",
         "usage_frequency": "daily",
         "urgency": "routine",
         "ai_specialists": [
           {
-            "name": "AI-søvnpsykolog", 
+            "name": "AI-søvnpsykolog",
             "expertise": "søvnforstyrrelser og søvnhygiejne hos børn",
-            "specialties": ["søvnpsykologi", "søvnhygiejne", "afslappningsteknikker"]
+            "specialties": [
+              "søvnpsykologi",
+              "søvnhygiejne",
+              "afslappningsteknikker"
+            ]
           },
           {
             "name": "AI-ergoterapeut",
             "expertise": "sensoriske behov og miljøtilpasning",
-            "specialties": ["sensorisk integration", "miljøtilpasning", "søvnmiljø"]
+            "specialties": [
+              "sensorisk integration",
+              "miljøtilpasning",
+              "søvnmiljø"
+            ]
           }
         ],
         "content": {
@@ -349,36 +661,84 @@
             "Valgfrie lyde: regn, hav, blæst",
             "Kan kombineres med tyngdedyne og visuel aftenrutine"
           ],
-          "personal_touch": "Udviklet af Howandt baseret på egne oplevelser med ADHD gennem 65 år"
+          "personal_touch": "Udviklet af Howandt baseret på egne oplevelser med ADHD gennem 65 år",
+          "teacher_experience": "ml: 'Tal-til-ro virkede på 3. aften - dreng med ADHD faldt i søvn ved tal 23 og sov hele natten første gang i måneder'"
         },
         "search_keywords": [
-          "søvn adhd", "søvnritual", "tal til ro", "afslappning", "søvnproblemer",
-          "aftenmad ritual", "beroligende teknik", "søvn børn"
+          "søvn adhd",
+          "søvnritual",
+          "tal til ro",
+          "afslappning",
+          "søvnproblemer",
+          "aftenmad ritual",
+          "beroligende teknik",
+          "søvn børn"
         ],
-        "related_templates": ["visuel_dagsplan", "hvis_jeg_foeler", "dagplansbygger"],
-        "command_triggers": ["Tal til ro", "Søvnritual", "ADHD søvn"]
+        "related_templates": [
+          "visuel_dagsplan",
+          "hvis_jeg_foeler",
+          "dagplansbygger"
+        ],
+        "command_triggers": [
+          "Tal til ro",
+          "Søvnritual",
+          "ADHD søvn"
+        ],
+        "variables": {
+          "required": [
+            "child_name"
+          ],
+          "optional": [
+            "bedtime",
+            "preferred_sounds",
+            "counting_speed"
+          ]
+        },
+        "template_markdown": "# 🌙 Tal-til-ro Søvnritual for {child_name}\n\n**Personlig teknik testet gennem mange års erfaring med ADHD**\n\n---\n\n## 🎯 Til {child_name}:\n\n**Sådan gør du:**\n1. Læg dig ned i sengen {bedtime ? kl. {bedtime} : når det er sengetid}\n2. Luk øjnene og lyt til den rolige stemme\n3. Stemmen tæller langsomt fra 1 til 100\n4. Fokuser kun på tallene - ingenting andet\n5. De fleste børn falder i søvn mellem tal 15-45\n\n**Morgen-spørgsmål:** *\"Hvilket tal faldt du i søvn ved, {child_name}?\"*\n\n---\n\n## 👨‍👩‍👧 Til forældrene:\n\n**Sådan hjælper du {child_name}:**\n- Brug en rolig, monoton stemme\n- Tæl langsomt: {counting_speed ? {counting_speed} : \"Et... to... tre...\"}\n- Hvis {child_name} taler, sig bare: \"Lyt til tallene\"\n- Vær tålmodig - det kan tage nogle nætter\n\n{preferred_sounds ? \n\n**{child_name}'s foretrukne baggrundsyde:**\n{preferred_sounds}\n: \n\n**Valgfrie baggrundslyde:**\n- Stille regn\n- Havbølger  \n- Blæst i træer\n}\n\n---\n\n## 📊 Søvn-dagbog for {child_name}\n\n| **Dato** | **Starttid** | **Faldt i søvn ved tal** | **Hvordan var morgenen?** |\n|----------|--------------|---------------------------|---------------------------|\n|          |              |                           |                           |\n|          |              |                           |                           |\n|          |              |                           |                           |\n\n*Kan kombineres med tyngdedyne og visuel aftenrutine*\n\n💬 **Lærer-erfaring (ml):** *\"Tal-til-ro virkede på 3. aften - dreng med ADHD faldt i søvn ved tal 23 og sov hele natten første gang i måneder\"*"
       },
       {
         "id": "sociale_relationer",
         "title": "Sociale relationer – kontakt og samvær",
         "category": "social",
         "subcategory": "relationer",
-        "tags": ["sociale færdigheder", "venskab", "kontakt", "samvær", "relationer"],
-        "age_range": [5, 18],
-        "diagnoses": ["autisme", "adhd", "social angst", "aspergers"],
-        "complexity": "intermediate", 
+        "tags": [
+          "sociale færdigheder",
+          "venskab",
+          "kontakt",
+          "samvær",
+          "relationer"
+        ],
+        "age_range": [
+          5,
+          18
+        ],
+        "diagnoses": [
+          "autisme",
+          "adhd",
+          "social angst",
+          "aspergers"
+        ],
+        "complexity": "intermediate",
         "usage_frequency": "weekly",
         "urgency": "moderate",
         "ai_specialists": [
           {
             "name": "AI-specialpædagog",
             "expertise": "sociale færdigheder og inklusion",
-            "specialties": ["sociale færdigheder", "inklusion", "fællesskaber"]
+            "specialties": [
+              "sociale færdigheder",
+              "inklusion",
+              "fællesskaber"
+            ]
           },
           {
             "name": "AI-socialrådgiver",
             "expertise": "relationsdannelse og social støtte",
-            "specialties": ["relationsdannelse", "social støtte", "gruppedynamik"]
+            "specialties": [
+              "relationsdannelse",
+              "social støtte",
+              "gruppedynamik"
+            ]
           }
         ],
         "content": {
@@ -388,36 +748,85 @@
             "Barn med autisme der har svært ved venskaber",
             "ADHD barn der bliver afvist socialt",
             "Støtte til inkluderende aktiviteter"
-          ]
+          ],
+          "teacher_experience": "rt: 'Dreng med autisme lærte at læse sociale signaler - nu har han sin første rigtige ven efter social relationer skabelon'"
         },
         "search_keywords": [
-          "sociale færdigheder", "venskab", "sociale relationer", "kontakt", "samvær",
-          "autisme social", "adhd venskab", "social accept"
+          "sociale færdigheder",
+          "venskab",
+          "sociale relationer",
+          "kontakt",
+          "samvær",
+          "autisme social",
+          "adhd venskab",
+          "social accept"
         ],
-        "related_templates": ["refleksionsark", "kommunikationslog", "hvis_jeg_foeler"],
-        "command_triggers": ["Sociale relationer", "Venskab", "Social kontakt"]
+        "related_templates": [
+          "refleksionsark",
+          "kommunikationslog",
+          "hvis_jeg_foeler"
+        ],
+        "command_triggers": [
+          "Sociale relationer",
+          "Venskab",
+          "Social kontakt"
+        ],
+        "variables": {
+          "required": [
+            "child_name",
+            "child_age"
+          ],
+          "optional": [
+            "social_challenges",
+            "friend_goals",
+            "support_person"
+          ]
+        },
+        "template_markdown": "# 👥 Sociale Relationer for {child_name}\n\n**Barn:** {child_name}, {child_age} år\n**Støtteperson:** {support_person ? {support_person} : forælder/lærer}\n\n{social_challenges ? **Særlige udfordringer:** {social_challenges} : }\n\n---\n\n## 🎯 Mine Sociale Mål:\n{friend_goals ? {friend_goals} : \n- Sige hej til mindst én person hver dag\n- Spørge om at være med til leg\n- Lytte når andre taler\n}\n\n## 🗣️ Samtale-starterne jeg kan bruge:\n- \"Hvad laver du?\"\n- \"Det ser sjovt ud - må jeg være med?\"\n- \"Jeg kan godt lide din [ting de har på/laver]\"\n- \"Vil du lege med mig?\"\n\n## 👂 Sådan lytter jeg godt:\n- Kig på personen når de taler\n- Vent til de er færdige med at tale\n- Spørg: \"Hvad skete der så?\"\n- Husk hvad de fortalte\n\n## 🤝 Når jeg vil være med i leg:\n1. **Gå hen** til gruppen\n2. **Se hvad de laver** først\n3. **Spørg:** \"Må jeg være med?\"\n4. **Acceptér** deres regler\n5. **Vær sød** også selvom jeg taber\n\n## 😔 Hvis nogen er ubehagelige:\n- Gå væk og find en voksen\n- Sig: \"Det kan jeg ikke lide\"\n- Husk: Det er ikke min skyld\n- Find nogen andre at lege med\n\n## 📋 Min Venskabs-dagbog:\n\n| **Dato** | **Hvem snakkede jeg med?** | **Hvad lavede vi?** | **Hvordan følte jeg mig?** |\n|----------|----------------------------|---------------------|---------------------------|\n|          |                            |                     |                           |\n|          |                            |                     |                           |\n|          |                            |                     |                           |\n\n---\n\n## 🌟 Ugentlig Check:\n**Denne uge lykkedes det mig at:** _________________________\n**Næste uge vil jeg prøve at:** ____________________________\n\n💬 **Lærer-erfaring (rt):** *\"Dreng med autisme lærte at læse sociale signaler - nu har han sin første rigtige ven efter social relationer skabelon\"*"
       },
       {
         "id": "spisning_maltider",
         "title": "Spisning og måltidstræning",
         "category": "dagligdag",
         "subcategory": "måltider",
-        "tags": ["spisning", "måltider", "selektiv spisning", "sensorisk", "ernæring"],
-        "age_range": [2, 16],
-        "diagnoses": ["autisme", "adhd", "angst", "sensoriske forstyrrelser"],
+        "tags": [
+          "spisning",
+          "måltider",
+          "selektiv spisning",
+          "sensorisk",
+          "ernæring"
+        ],
+        "age_range": [
+          2,
+          16
+        ],
+        "diagnoses": [
+          "autisme",
+          "adhd",
+          "angst",
+          "sensoriske forstyrrelser"
+        ],
         "complexity": "intermediate",
-        "usage_frequency": "daily", 
+        "usage_frequency": "daily",
         "urgency": "moderate",
         "ai_specialists": [
           {
             "name": "AI-ernæringsekspert",
             "expertise": "børneernæring og spiseforstyrrelser",
-            "specialties": ["børneernæring", "spiseforstyrrelser", "selektiv spisning"]
+            "specialties": [
+              "børneernæring",
+              "spiseforstyrrelser",
+              "selektiv spisning"
+            ]
           },
           {
             "name": "AI-ergoterapeut",
             "expertise": "sensoriske udfordringer ved spisning",
-            "specialties": ["sensorisk integration", "mundfunktion", "spisemiljø"]
+            "specialties": [
+              "sensorisk integration",
+              "mundfunktion",
+              "spisemiljø"
+            ]
           }
         ],
         "content": {
@@ -427,23 +836,64 @@
             "Barn med autisme og selektiv spisning",
             "ADHD barn der glemmer at spise",
             "Sensoriske udfordringer ved teksturer"
-          ]
+          ],
+          "teacher_experience": "nh: 'Pige der kun spiste 4 madvarer udviklede sit repertoire til 12 madvarer på 2 måneder med spisning skabelonen'"
         },
         "search_keywords": [
-          "selektiv spisning", "spisevanskeligheder", "måltider struktur", "autisme spisning",
-          "sensorisk spisning", "ernæring børn", "måltidstræning"
+          "selektiv spisning",
+          "spisevanskeligheder",
+          "måltider struktur",
+          "autisme spisning",
+          "sensorisk spisning",
+          "ernæring børn",
+          "måltidstræning"
         ],
-        "related_templates": ["visuel_dagsplan", "hvis_jeg_foeler", "dagplansbygger"],
-        "command_triggers": ["Spisning træning", "Måltider", "Selektiv spisning"]
+        "related_templates": [
+          "visuel_dagsplan",
+          "hvis_jeg_foeler",
+          "dagplansbygger"
+        ],
+        "command_triggers": [
+          "Spisning træning",
+          "Måltider",
+          "Selektiv spisning"
+        ],
+        "variables": {
+          "required": [
+            "child_name",
+            "child_age"
+          ],
+          "optional": [
+            "current_foods",
+            "problem_foods",
+            "sensory_issues",
+            "meal_goals"
+          ]
+        },
+        "template_markdown": "# 🍎 Spisning og Måltider for {child_name}\n\n**Barn:** {child_name}, {child_age} år\n**Startdato:** ___________\n\n{current_foods ? **Mad {child_name} spiser nu:** {current_foods} : }\n{problem_foods ? **Mad der er svær:** {problem_foods} : }\n{sensory_issues ? **Sensoriske udfordringer:** {sensory_issues} : }\n\n---\n\n## 🎯 Måltidsmål:\n{meal_goals ? {meal_goals} : \n- Prøve 1 ny madtype hver uge\n- Sidde ved bordet under hele måltidet\n- Bruge bestik korrekt\n}\n\n## 🏆 Trinvis Plan:\n\n### Uge 1-2: Grundlag\n- **Jeg sidder** ved bordet i hele måltidet\n- **Jeg bruger** min tallerken og bestik\n- **Jeg prøver** en lille bid af det jeg allerede kan lide\n\n### Uge 3-4: Udforske\n- **Jeg rører** ved ny mad med fingeren\n- **Jeg lugter** til ny mad\n- **Jeg tager** en lille bid på gaflen (må spytte ud)\n\n### Uge 5-6: Udvide\n- **Jeg tygger** ny mad én gang\n- **Jeg blander** mad jeg kender med lidt nyt\n- **Jeg spiser** mindst 2 bidder af noget nyt\n\n## 📅 Måltids-tracking:\n\n| **Dato** | **Morgenmad** | **Frokost** | **Aftensmad** | **Nye ting prøvet** |\n|----------|---------------|-------------|---------------|---------------------|\n|          | 😊😐😟       | 😊😐😟     | 😊😐😟       |                     |\n|          | 😊😐😟       | 😊😐😟     | 😊😐😟       |                     |\n|          | 😊😐😟       | 😊😐😟     | 😊😐😟       |                     |\n\n## 🎁 Belønningssystem:\n- **Sidder hele måltidet:** ⭐ 1 stjerne\n- **Prøver ny mad (selv én bid):** ⭐⭐ 2 stjerner  \n- **Spiser uden brok:** ⭐ 1 stjerne\n\n**5 stjerner = lille belønning**\n**10 stjerner = stor belønning**\n\n## 💡 Tips til forældre:\n- Ingen pres - tilbyd, men tvang ikke\n- Lad {child_name} hjælpe med madlavning\n- Spis sammen og vær et godt eksempel\n- Fejr små fremskridt!\n\n💬 **Lærer-erfaring (nh):** *\"Pige der kun spiste 4 madvarer udviklede sit repertoire til 12 madvarer på 2 måneder med spisning skabelonen\"*"
       },
       {
-        "id": "motivation_belonning", 
+        "id": "motivation_belonning",
         "title": "Motivation og belønningsstrategier",
         "category": "motivation",
         "subcategory": "adfærd",
-        "tags": ["motivation", "belønning", "adfærd", "indre motivation", "ydre motivation"],
-        "age_range": [4, 18],
-        "diagnoses": ["adhd", "autisme", "ocd", "angst"],
+        "tags": [
+          "motivation",
+          "belønning",
+          "adfærd",
+          "indre motivation",
+          "ydre motivation"
+        ],
+        "age_range": [
+          4,
+          18
+        ],
+        "diagnoses": [
+          "adhd",
+          "autisme",
+          "ocd",
+          "angst"
+        ],
         "complexity": "intermediate",
         "usage_frequency": "weekly",
         "urgency": "routine",
@@ -451,12 +901,20 @@
           {
             "name": "AI-adfærdsanalytiker",
             "expertise": "adfærdsmodifikation og motivationspsykologi",
-            "specialties": ["adfærdsanalyse", "motivationspsykologi", "belønningssystemer"]
+            "specialties": [
+              "adfærdsanalyse",
+              "motivationspsykologi",
+              "belønningssystemer"
+            ]
           },
           {
             "name": "AI-psykolog",
-            "expertise": "børnepsykologi og motivationsforskning", 
-            "specialties": ["motivationspsykologi", "selvværd", "indre motivation"]
+            "expertise": "børnepsykologi og motivationsforskning",
+            "specialties": [
+              "motivationspsykologi",
+              "selvværd",
+              "indre motivation"
+            ]
           }
         ],
         "content": {
@@ -466,23 +924,64 @@
             "Barn der har mistet motivation for skole",
             "Opbygning af nye positive vaner",
             "Overgang fra ydre til indre motivation"
-          ]
+          ],
+          "teacher_experience": "bg: 'Skiftede fra store belønninger til små daglige - dreng med ADHD blev meget mere motiveret og selvstændig'"
         },
         "search_keywords": [
-          "motivation", "belønning", "belønningssystem", "indre motivation", "ydre motivation",
-          "motivere barn", "adfærd", "engagement"
+          "motivation",
+          "belønning",
+          "belønningssystem",
+          "indre motivation",
+          "ydre motivation",
+          "motivere barn",
+          "adfærd",
+          "engagement"
         ],
-        "related_templates": ["ugeplan_maal", "hvis_jeg_foeler", "refleksionsark"],
-        "command_triggers": ["Motivation", "Belønning", "Belønningssystem"]
+        "related_templates": [
+          "ugeplan_maal",
+          "hvis_jeg_foeler",
+          "refleksionsark"
+        ],
+        "command_triggers": [
+          "Motivation",
+          "Belønning",
+          "Belønningssystem"
+        ],
+        "variables": {
+          "required": [
+            "child_name",
+            "child_age"
+          ],
+          "optional": [
+            "focus_areas",
+            "preferred_rewards",
+            "current_challenges"
+          ]
+        },
+        "template_markdown": "# 🌟 Motivation og Belønning for {child_name}\n\n**Barn:** {child_name}, {child_age} år\n**Fokusområder:** {focus_areas ? {focus_areas} : Skole, hjemme, sociale situationer}\n\n{current_challenges ? **Nuværende udfordringer:** {current_challenges} : }\n\n---\n\n## 🎯 3-Lags Motivationssystem:\n\n### Lag 1: ØJEBLIKKELIG belønning (samme dag)\n**For små daglige opgaver:**\n- ⭐ Klistermærke for hver opgave\n- 🎵 5 min ekstra musik/skærmtid\n- 🍎 Vælg mellemmåltid\n- 👥 10 min ekstra leg\n\n### Lag 2: UGENTLIG belønning \n**For konsistent indsats:**\n- **20+ stjerner:** {preferred_rewards ? {preferred_rewards} (lille) : Lille ting efter eget valg}\n- **35+ stjerner:** Aktivitet med forælder\n- **50+ stjerner:** Special privilegie i en uge\n\n### Lag 3: LANGSIGTE mål (månedlig)\n**For stor fremgang:**\n- Opnå månedsmål → stor oplevelse/gave\n- Vise vedholdenhed → {child_name} vælger familieaktivitet\n- Hjælpe andre → anerkendelse og særlig status\n\n## 📊 Daglig Point-tabel:\n\n| **Opgave** | Man | Tir | Ons | Tor | Fre | Lør | Søn | Total |\n|------------|-----|-----|-----|-----|-----|-----|-----|-------|\n| Morgentine | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ___/7 |\n| Skole opgave | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ___/7 |\n| Hjælpe hjemme | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ___/7 |\n| Være sød | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ___/7 |\n\n**Uge total: ___/28 stjerner**\n\n## 💭 Opbygning af Indre Motivation:\n\n**Daglige anerkendelser:**\n- \"Jeg lagde mærke til hvordan du...\"\n- \"Du viste virkelig...\"\n- \"Jeg er stolt af at du...\"\n\n**Selvreflektion for {child_name}:**\n- Hvad er jeg god til?\n- Hvordan hjalp jeg i dag?\n- Hvad lærte jeg nyt?\n\n## 🔄 Nedtrapning af Ydre Belønninger:\n**Måned 1:** Stjerner for alt\n**Måned 2:** Stjerner kun for nye/svære opgaver  \n**Måned 3:** Hovedsagelig ros og anerkendelse\n**Måned 4:** {child_name} motiverer sig selv!\n\n💬 **Lærer-erfaring (bg):** *\"Skiftede fra store belønninger til små daglige - dreng med ADHD blev meget mere motiveret og selvstændig\"*"
       },
       {
         "id": "toilettraening_hygiejne",
         "title": "Toilettræning og hygiejneværktøjer",
-        "category": "dagligdag", 
+        "category": "dagligdag",
         "subcategory": "hygiejne",
-        "tags": ["toilettræning", "hygiejne", "selvhjulpenhed", "trinvis", "visuel guide"],
-        "age_range": [2, 10],
-        "diagnoses": ["autisme", "adhd", "intellektuel funktionsnedsættelse", "udviklingsforsinkelse"],
+        "tags": [
+          "toilettræning",
+          "hygiejne",
+          "selvhjulpenhed",
+          "trinvis",
+          "visuel guide"
+        ],
+        "age_range": [
+          2,
+          10
+        ],
+        "diagnoses": [
+          "autisme",
+          "adhd",
+          "intellektuel funktionsnedsættelse",
+          "udviklingsforsinkelse"
+        ],
         "complexity": "beginner",
         "usage_frequency": "daily",
         "urgency": "routine",
@@ -490,12 +989,20 @@
           {
             "name": "AI-sundhedsplejerske",
             "expertise": "børns fysiske udvikling og hygiejne",
-            "specialties": ["toilettræning", "hygiejne", "børns udvikling"]
+            "specialties": [
+              "toilettræning",
+              "hygiejne",
+              "børns udvikling"
+            ]
           },
           {
-            "name": "AI-ergoterapeut", 
+            "name": "AI-ergoterapeut",
             "expertise": "selvhjulpenhed og praktiske færdigheder",
-            "specialties": ["selvhjulpenhed", "praktiske færdigheder", "tilpasning af miljø"]
+            "specialties": [
+              "selvhjulpenhed",
+              "praktiske færdigheder",
+              "tilpasning af miljø"
+            ]
           }
         ],
         "content": {
@@ -505,123 +1012,287 @@
             "Barn med autisme der har brug for struktur",
             "Forsinket toilettræning",
             "Sensoriske udfordringer ved hygiejne"
-          ]
+          ],
+          "teacher_experience": "cm: '5-årig dreng med autisme lærte toilettræning på 3 uger med visuel guide - forældrene havde prøvet i 2 år'"
         },
         "search_keywords": [
-          "toilettræning", "hygiejne", "selvhjulpenhed", "trinvis guide", "visuel toilettræning",
-          "autisme toilet", "hygiejne rutiner"
+          "toilettræning",
+          "hygiejne",
+          "selvhjulpenhed",
+          "trinvis guide",
+          "visuel toilettræning",
+          "autisme toilet",
+          "hygiejne rutiner"
         ],
-        "related_templates": ["visuel_dagsplan", "dagplansbygger", "hvis_jeg_foeler"],
-        "command_triggers": ["Toilettræning", "Hygiejne", "Toilet guide"]
+        "related_templates": [
+          "visuel_dagsplan",
+          "dagplansbygger",
+          "hvis_jeg_foeler"
+        ],
+        "command_triggers": [
+          "Toilettræning",
+          "Hygiejne",
+          "Toilet guide"
+        ],
+        "variables": {
+          "required": [
+            "child_name",
+            "child_age"
+          ],
+          "optional": [
+            "current_level",
+            "specific_challenges",
+            "reward_preference"
+          ]
+        },
+        "template_markdown": "# 🚽 Toilettræning for {child_name}\n\n**Barn:** {child_name}, {child_age} år\n**Startdato:** ___________\n{current_level ? **Nuværende niveau:** {current_level} : }\n{specific_challenges ? **Udfordringer:** {specific_challenges} : }\n\n---\n\n## 🎯 Trinvis Plan:\n\n### Fase 1: Forberedelse (Uge 1-2)\n**Mål:** {child_name} bliver fortrolig med toilettet\n\n**Daglige aktiviteter:**\n- ☐ Gå på toilettet sammen med voksen\n- ☐ Sidde på toilettet med tøj på (bare 1 minut)\n- ☐ Se toiletbøger eller videoer\n- ☐ Lege med dukke der \"går på toilet\"\n\n### Fase 2: Timing (Uge 3-4) \n**Mål:** Faste toiletbesøg\n\n**Toiletbesøg hver dag:**\n- ☐ Efter morgenmad\n- ☐ Før frokost  \n- ☐ Efter mellemmåltid\n- ☐ Før aftensmad\n- ☐ Før sengetid\n\n### Fase 3: Selvstændighed (Uge 5+)\n**Mål:** {child_name} går selv på toilettet\n\n**Selvstændige færdigheder:**\n- ☐ Siger selv når der skal skiftes ble/underbukser\n- ☐ Går på toilettet når jeg spørger\n- ☐ Begynder at gå selv på toilettet\n- ☐ Tørrer sig selv\n- ☐ Vasker hænder efter\n\n## 📅 Daglig Tracking:\n\n| **Dag** | **Morgenmad** | **Frokost** | **Snack** | **Aftensmad** | **Sengetid** | **Succes** |\n|---------|---------------|-------------|-----------|---------------|--------------|------------|\n| Man     | ✅❌         | ✅❌       | ✅❌     | ✅❌         | ✅❌        | ___/5 |\n| Tir     | ✅❌         | ✅❌       | ✅❌     | ✅❌         | ✅❌        | ___/5 |\n| Ons     | ✅❌         | ✅❌       | ✅❌     | ✅❌         | ✅❌        | ___/5 |\n\n## 🎁 Belønningssystem:\n{reward_preference ? **{child_name}'s foretrukne belønning:** {reward_preference} : \n**Små belønninger:**\n- 🌟 Klistermærke på toiletkalender\n- 🎵 Synge en særlig \"toilet-sang\"\n- 📚 Vælge aftenhistorie\n}\n\n**Store belønninger (5 succeser i træk):**\n- Særlig leg/aktivitet med forælder\n- Ny \"store børn\" underbukser\n- Lille gave eller udflyt\n\n## 💡 Hygiejne-rutine:\n\n**Visuel guide til {child_name}:**\n1. 🚽 Træk bukser og ble/underbukser ned\n2. 🪑 Sid på toilettet\n3. 🧻 Tag toiletpapir (vis hvor meget)\n4. 🤲 Tør dig bagfra og fremad\n5. 👕 Træk tøj op\n6. 💧 Vask hænder med sæbe\n7. 🌟 Stolt af mig selv!\n\n💬 **Lærer-erfaring (cm):** *\"5-årig dreng med autisme lærte toilettræning på 3 uger med visuel guide - forældrene havde prøvet i 2 år\"*"
       }
     ],
     "search_index": {
       "categories": {
         "struktur": {
-          "templates": ["visuel_dagsplan", "dagplansbygger", "ugeplan_maal"],
+          "templates": [
+            "visuel_dagsplan",
+            "dagplansbygger",
+            "ugeplan_maal"
+          ],
           "description": "Skabeloner der skaber forudsigelige rammer og rutiner"
         },
         "kommunikation": {
-          "templates": ["refleksionsark", "kommunikationslog"],
+          "templates": [
+            "refleksionsark",
+            "kommunikationslog"
+          ],
           "description": "Værktøjer til bedre kommunikation mellem barn, hjem og skole"
         },
         "følelser": {
-          "templates": ["hvis_jeg_foeler", "refleksionsark"],
+          "templates": [
+            "hvis_jeg_foeler",
+            "refleksionsark"
+          ],
           "description": "Støtte til følelsesregulering og selvforståelse"
         },
         "motivation": {
-          "templates": ["ugeplan_maal", "motivation_belonning"],
+          "templates": [
+            "ugeplan_maal",
+            "motivation_belonning"
+          ],
           "description": "Værktøjer til at opbygge og fastholde motivation"
         },
         "intervention": {
-          "templates": ["skolevagring_plan"],
+          "templates": [
+            "skolevagring_plan"
+          ],
           "description": "Akutte interventioner til kriser og udfordringer"
         },
         "søvn": {
-          "templates": ["tal_til_ro"],
+          "templates": [
+            "tal_til_ro"
+          ],
           "description": "Støtte til bedre søvn og afslappning"
         },
         "social": {
-          "templates": ["sociale_relationer"],
+          "templates": [
+            "sociale_relationer"
+          ],
           "description": "Værktøjer til sociale færdigheder og relationer"
         },
         "dagligdag": {
-          "templates": ["spisning_maltider", "toilettraening_hygiejne"],
+          "templates": [
+            "spisning_maltider",
+            "toilettraening_hygiejne"
+          ],
           "description": "Praktisk støtte til daglige aktiviteter"
         }
       },
       "diagnoses": {
         "adhd": {
-          "templates": ["visuel_dagsplan", "dagplansbygger", "hvis_jeg_foeler", "ugeplan_maal", "skolevagring_plan", "tal_til_ro", "sociale_relationer", "spisning_maltider", "motivation_belonning", "toilettraening_hygiejne"],
+          "templates": [
+            "visuel_dagsplan",
+            "dagplansbygger",
+            "hvis_jeg_foeler",
+            "ugeplan_maal",
+            "skolevagring_plan",
+            "tal_til_ro",
+            "sociale_relationer",
+            "spisning_maltider",
+            "motivation_belonning",
+            "toilettraening_hygiejne"
+          ],
           "specialist_focus": "Struktur, fokus og impulskontrol"
         },
         "autisme": {
-          "templates": ["visuel_dagsplan", "dagplansbygger", "refleksionsark", "hvis_jeg_foeler", "ugeplan_maal", "skolevagring_plan", "tal_til_ro", "sociale_relationer", "spisning_maltider", "motivation_belonning", "toilettraening_hygiejne"],
+          "templates": [
+            "visuel_dagsplan",
+            "dagplansbygger",
+            "refleksionsark",
+            "hvis_jeg_foeler",
+            "ugeplan_maal",
+            "skolevagring_plan",
+            "tal_til_ro",
+            "sociale_relationer",
+            "spisning_maltider",
+            "motivation_belonning",
+            "toilettraening_hygiejne"
+          ],
           "specialist_focus": "Forudsigelig struktur og sensoriske behov"
         },
         "angst": {
-          "templates": ["visuel_dagsplan", "refleksionsark", "hvis_jeg_foeler", "skolevagring_plan", "tal_til_ro", "spisning_maltider", "motivation_belonning"],
+          "templates": [
+            "visuel_dagsplan",
+            "refleksionsark",
+            "hvis_jeg_foeler",
+            "skolevagring_plan",
+            "tal_til_ro",
+            "spisning_maltider",
+            "motivation_belonning"
+          ],
           "specialist_focus": "Tryghed, forudsigelige og gradvis eksponering"
         },
         "social_angst": {
-          "templates": ["refleksionsark", "hvis_jeg_foeler", "skolevagring_plan", "sociale_relationer"],
+          "templates": [
+            "refleksionsark",
+            "hvis_jeg_foeler",
+            "skolevagring_plan",
+            "sociale_relationer"
+          ],
           "specialist_focus": "Social støtte og gradvis social eksponering"
         },
         "ocd": {
-          "templates": ["hvis_jeg_foeler", "ugeplan_maal", "skolevagring_plan", "tal_til_ro", "motivation_belonning"],
+          "templates": [
+            "hvis_jeg_foeler",
+            "ugeplan_maal",
+            "skolevagring_plan",
+            "tal_til_ro",
+            "motivation_belonning"
+          ],
           "specialist_focus": "Struktur og tvangshåndtering"
         },
         "depression": {
-          "templates": ["refleksionsark", "hvis_jeg_foeler", "skolevagring_plan", "motivation_belonning"],
+          "templates": [
+            "refleksionsark",
+            "hvis_jeg_foeler",
+            "skolevagring_plan",
+            "motivation_belonning"
+          ],
           "specialist_focus": "Humør og motivationsopbygning"
         }
       },
       "age_groups": {
         "småbørn": {
-          "range": [2, 6],
-          "templates": ["visuel_dagsplan", "dagplansbygger", "hvis_jeg_foeler", "tal_til_ro", "spisning_maltider", "toilettraening_hygiejne"],
+          "range": [
+            2,
+            6
+          ],
+          "templates": [
+            "visuel_dagsplan",
+            "dagplansbygger",
+            "hvis_jeg_foeler",
+            "tal_til_ro",
+            "spisning_maltider",
+            "toilettraening_hygiejne"
+          ],
           "focus": "Grundlæggende rutiner og sensorisk støtte"
         },
         "skolebørn": {
-          "range": [6, 12], 
-          "templates": ["visuel_dagsplan", "dagplansbygger", "refleksionsark", "hvis_jeg_foeler", "kommunikationslog", "ugeplan_maal", "skolevagring_plan", "tal_til_ro", "sociale_relationer", "spisning_maltider", "motivation_belonning"],
+          "range": [
+            6,
+            12
+          ],
+          "templates": [
+            "visuel_dagsplan",
+            "dagplansbygger",
+            "refleksionsark",
+            "hvis_jeg_foeler",
+            "kommunikationslog",
+            "ugeplan_maal",
+            "skolevagring_plan",
+            "tal_til_ro",
+            "sociale_relationer",
+            "spisning_maltider",
+            "motivation_belonning"
+          ],
           "focus": "Skoleintegration og sociale færdigheder"
         },
         "teenagere": {
-          "range": [12, 18],
-          "templates": ["dagplansbygger", "refleksionsark", "hvis_jeg_foeler", "kommunikationslog", "ugeplan_maal", "skolevagring_plan", "sociale_relationer", "motivation_belonning"],
+          "range": [
+            12,
+            18
+          ],
+          "templates": [
+            "dagplansbygger",
+            "refleksionsark",
+            "hvis_jeg_foeler",
+            "kommunikationslog",
+            "ugeplan_maal",
+            "skolevagring_plan",
+            "sociale_relationer",
+            "motivation_belonning"
+          ],
           "focus": "Selvstændighed og identitetsudvikling"
         }
       },
       "urgency_levels": {
         "routine": {
-          "templates": ["visuel_dagsplan", "dagplansbygger", "refleksionsark", "kommunikationslog", "ugeplan_maal", "tal_til_ro", "toilettraening_hygiejne"],
+          "templates": [
+            "visuel_dagsplan",
+            "dagplansbygger",
+            "refleksionsark",
+            "kommunikationslog",
+            "ugeplan_maal",
+            "tal_til_ro",
+            "toilettraening_hygiejne"
+          ],
           "description": "Daglige værktøjer og rutiner"
         },
         "moderate": {
-          "templates": ["sociale_relationer", "spisning_maltider"],
+          "templates": [
+            "sociale_relationer",
+            "spisning_maltider"
+          ],
           "description": "Udfordringer der kræver opmærksomhed"
         },
         "high": {
-          "templates": ["hvis_jeg_foeler", "skolevagring_plan"],
+          "templates": [
+            "hvis_jeg_foeler",
+            "skolevagring_plan"
+          ],
           "description": "Akutte situationer der kræver hurtig handling"
         },
         "crisis": {
-          "templates": ["hvis_jeg_foeler", "skolevagring_plan"],
+          "templates": [
+            "hvis_jeg_foeler",
+            "skolevagring_plan"
+          ],
           "description": "Kritiske situationer der kræver øjeblikkelig støtte"
         }
       },
       "complexity_levels": {
         "beginner": {
-          "templates": ["visuel_dagsplan", "kommunikationslog", "tal_til_ro", "toilettraening_hygiejne"],
+          "templates": [
+            "visuel_dagsplan",
+            "kommunikationslog",
+            "tal_til_ro",
+            "toilettraening_hygiejne"
+          ],
           "description": "Simple værktøjer der er lette at implementere"
         },
         "intermediate": {
-          "templates": ["dagplansbygger", "refleksionsark", "hvis_jeg_foeler", "ugeplan_maal", "sociale_relationer", "spisning_maltider", "motivation_belonning"],
+          "templates": [
+            "dagplansbygger",
+            "refleksionsark",
+            "hvis_jeg_foeler",
+            "ugeplan_maal",
+            "sociale_relationer",
+            "spisning_maltider",
+            "motivation_belonning"
+          ],
           "description": "Værktøjer der kræver lidt træning og tilpasning"
         },
         "advanced": {
-          "templates": ["skolevagring_plan"],
+          "templates": [
+            "skolevagring_plan"
+          ],
           "description": "Komplekse interventioner der ofte kræver professionel støtte"
         }
       }
@@ -629,70 +1300,168 @@
     "ai_specialist_directory": {
       "lene_kristensen": {
         "name": "AI-ergoterapeut Lene Kristensen",
-        "specialties": ["sensorisk integration", "daglig struktur", "ergoterapeutiske løsninger"],
-        "related_templates": ["visuel_dagsplan", "tal_til_ro", "spisning_maltider", "toilettraening_hygiejne"],
-        "expertise_areas": ["Sensoriske behov", "Miljøtilpasning", "Praktiske færdigheder"]
+        "specialties": [
+          "sensorisk integration",
+          "daglig struktur",
+          "ergoterapeutiske løsninger"
+        ],
+        "related_templates": [
+          "visuel_dagsplan",
+          "tal_til_ro",
+          "spisning_maltider",
+          "toilettraening_hygiejne"
+        ],
+        "expertise_areas": [
+          "Sensoriske behov",
+          "Miljøtilpasning",
+          "Praktiske færdigheder"
+        ]
       },
       "marie_andersen": {
-        "name": "AI-psykolog Marie Andersen", 
-        "specialties": ["børnepsykologi", "angstbehandling", "følelsesregulering"],
-        "related_templates": ["refleksionsark", "skolevagring_plan", "hvis_jeg_foeler"],
-        "expertise_areas": ["Følelsesbearbejdning", "Angstbehandling", "Krisehåndtering"]
+        "name": "AI-psykolog Marie Andersen",
+        "specialties": [
+          "børnepsykologi",
+          "angstbehandling",
+          "følelsesregulering"
+        ],
+        "related_templates": [
+          "refleksionsark",
+          "skolevagring_plan",
+          "hvis_jeg_foeler"
+        ],
+        "expertise_areas": [
+          "Følelsesbearbejdning",
+          "Angstbehandling",
+          "Krisehåndtering"
+        ]
       },
       "jonas_baek": {
         "name": "AI-speciallærer Jonas Bæk",
-        "specialties": ["specialpædagogik", "følelsesregulering", "undervisningsstrategier"],
-        "related_templates": ["hvis_jeg_foeler", "sociale_relationer"],
-        "expertise_areas": ["Inklusion", "Differentieret undervisning", "Adfærdsstøtte"]
+        "specialties": [
+          "specialpædagogik",
+          "følelsesregulering",
+          "undervisningsstrategier"
+        ],
+        "related_templates": [
+          "hvis_jeg_foeler",
+          "sociale_relationer"
+        ],
+        "expertise_areas": [
+          "Inklusion",
+          "Differentieret undervisning",
+          "Adfærdsstøtte"
+        ]
       },
       "omar_elmi": {
         "name": "AI-kriseinterventionsspecialist Omar Elmi",
-        "specialties": ["krisehåndtering", "akut støtte", "følelsesmæssig first-aid"],
-        "related_templates": ["hvis_jeg_foeler", "skolevagring_plan"],
-        "expertise_areas": ["Akut krisehåndtering", "Traumebevidst tilgang", "Sikkerhedsplanlægning"]
+        "specialties": [
+          "krisehåndtering",
+          "akut støtte",
+          "følelsesmæssig first-aid"
+        ],
+        "related_templates": [
+          "hvis_jeg_foeler",
+          "skolevagring_plan"
+        ],
+        "expertise_areas": [
+          "Akut krisehåndtering",
+          "Traumebevidst tilgang",
+          "Sikkerhedsplanlægning"
+        ]
       },
       "maja_holm": {
         "name": "AI-socialrådgiver Maja Holm",
-        "specialties": ["skole-hjem samarbejde", "systemisk arbejde", "kommunikationsfacilitering"],
-        "related_templates": ["kommunikationslog", "sociale_relationer"],
-        "expertise_areas": ["Familiedynamik", "Systemisk støtte", "Netværksarbejde"]
+        "specialties": [
+          "skole-hjem samarbejde",
+          "systemisk arbejde",
+          "kommunikationsfacilitering"
+        ],
+        "related_templates": [
+          "kommunikationslog",
+          "sociale_relationer"
+        ],
+        "expertise_areas": [
+          "Familiedynamik",
+          "Systemisk støtte",
+          "Netværksarbejde"
+        ]
       }
     },
     "intelligent_template_selector": {
       "selection_questions": [
         {
           "question": "Hvad er barnets primære diagnose?",
-          "options": ["ADHD", "Autisme", "Angst", "Depression", "OCD", "Tourettes", "Ingen diagnose"],
+          "options": [
+            "ADHD",
+            "Autisme",
+            "Angst",
+            "Depression",
+            "OCD",
+            "Tourettes",
+            "Ingen diagnose"
+          ],
           "weight": 3
         },
         {
-          "question": "Hvor gammel er barnet?", 
+          "question": "Hvor gammel er barnet?",
           "type": "age_range",
           "weight": 2
         },
         {
           "question": "Hvad er den primære udfordring lige nu?",
-          "options": ["Daglige rutiner", "Skole problemer", "Følelsesregulering", "Sociale relationer", "Søvn", "Spisning", "Kommunikation"],
+          "options": [
+            "Daglige rutiner",
+            "Skole problemer",
+            "Følelsesregulering",
+            "Sociale relationer",
+            "Søvn",
+            "Spisning",
+            "Kommunikation"
+          ],
           "weight": 4
         },
         {
           "question": "Hvor akut er situationen?",
-          "options": ["Daglig støtte", "Planlagt forbedring", "Presserende problem", "Akut krise"],
+          "options": [
+            "Daglig støtte",
+            "Planlagt forbedring",
+            "Presserende problem",
+            "Akut krise"
+          ],
           "weight": 3
         },
         {
           "question": "Hvor komplekse løsninger kan I håndtere?",
-          "options": ["Simple værktøjer", "Moderate tilpasninger", "Komplekse interventioner"],
+          "options": [
+            "Simple værktøjer",
+            "Moderate tilpasninger",
+            "Komplekse interventioner"
+          ],
           "weight": 2
         }
       ],
       "algorithm": "Weighted matching baseret på tags, diagnose, alder og urgency"
     },
     "usage_analytics": {
-      "most_used_templates": ["visuel_dagsplan", "hvis_jeg_foeler", "kommunikationslog"],
-      "highest_success_rate": ["tal_til_ro", "dagplansbygger", "ugeplan_maal"],
-      "crisis_templates": ["hvis_jeg_foeler", "skolevagring_plan"],
-      "beginner_friendly": ["visuel_dagsplan", "kommunikationslog", "tal_til_ro"]
+      "most_used_templates": [
+        "visuel_dagsplan",
+        "hvis_jeg_foeler",
+        "kommunikationslog"
+      ],
+      "highest_success_rate": [
+        "tal_til_ro",
+        "dagplansbygger",
+        "ugeplan_maal"
+      ],
+      "crisis_templates": [
+        "hvis_jeg_foeler",
+        "skolevagring_plan"
+      ],
+      "beginner_friendly": [
+        "visuel_dagsplan",
+        "kommunikationslog",
+        "tal_til_ro"
+      ]
     },
     "integration_commands": {
       "quick_access": {
@@ -703,7 +1472,7 @@
       },
       "specific_triggers": {
         "Skabelon [navn]": "Hent specifik skabelon",
-        "Specialist [navn]": "Vis AI-specialist og relaterede skabeloner", 
+        "Specialist [navn]": "Vis AI-specialist og relaterede skabeloner",
         "Diagnose [navn]": "Vis alle skabeloner relevante for specifik diagnose",
         "Alder [tal]": "Vis skabeloner passende for specifik alder"
       }
