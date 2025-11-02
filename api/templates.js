@@ -37,10 +37,12 @@ module.exports = async (req, res) => {
   try {
     const { type } = req.query;
 
+    // Hvis type=index, returner index filen
     if (type === 'index') {
       if (isCacheValid('index')) {
         console.log('[CACHE HIT] Templates Index');
         return res.status(200).json({
+          success: true,
           source: 'cache',
           data: cache.index.data,
           cached_at: new Date(cache.index.timestamp).toISOString()
@@ -52,17 +54,28 @@ module.exports = async (req, res) => {
       cache.index = { data, timestamp: Date.now() };
 
       return res.status(200).json({
+        success: true,
         source: 'github',
         data: data,
         fetched_at: new Date().toISOString()
       });
     }
 
+    // Standard: Returner fuld templates database
     if (isCacheValid('templates')) {
       console.log('[CACHE HIT] Templates');
+      const templateData = cache.templates.data;
+      
+      // Ekstrahér templates array fra nested struktur
+      const templates = templateData.template_database?.templates || [];
+      const metadata = templateData.template_database?.metadata || {};
+      
       return res.status(200).json({
+        success: true,
         source: 'cache',
-        data: cache.templates.data,
+        templates: templates,
+        metadata: metadata,
+        total: templates.length,
         cached_at: new Date(cache.templates.timestamp).toISOString()
       });
     }
@@ -71,15 +84,23 @@ module.exports = async (req, res) => {
     const data = await fetchFromGitHub('CDA_Templates.json');
     cache.templates = { data, timestamp: Date.now() };
 
+    // Ekstrahér templates array fra nested struktur
+    const templates = data.template_database?.templates || [];
+    const metadata = data.template_database?.metadata || {};
+
     return res.status(200).json({
+      success: true,
       source: 'github',
-      data: data,
+      templates: templates,
+      metadata: metadata,
+      total: templates.length,
       fetched_at: new Date().toISOString()
     });
 
   } catch (error) {
     console.error('Templates API error:', error);
     return res.status(500).json({
+      success: false,
       error: 'Failed to fetch templates',
       message: error.message
     });
