@@ -108,8 +108,8 @@
       "dest": "/public/templates.html"
     },
     {
-      "src": "/komo-test.html",
-      "dest": "/public/komo-test.html"
+      "src": "/comorbidity-test.html",
+      "dest": "/public/comorbidity-test.html"
     },
     {
       "src": "/(.*)",
