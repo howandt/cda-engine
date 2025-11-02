@@ -1,230 +1,374 @@
 {
-  "ADHD": {
-    "forekomst_total": "5–7% af skolebørn; oftere drenge end piger",
-    "relaterede_diagnoser": {
-      "Angst": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Barnet virker ængsteligt ved nye opgaver", "Undgår ukendte situationer", "Overreagerer på små fejl"], "pædagogisk_refleksion": "Når et barn med ADHD også har angst, kan det tolkes som ulyst eller trods. I virkeligheden handler det ofte om frygt for at fejle – skab forudsigelighed før du stiller krav." },
-      "Depression": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Tilbagetrækning", "Mistet interesse i leg eller læring", "Ofte ked af det eller irritabel"], "pædagogisk_refleksion": "Lav energi og irritabilitet bliver ofte forvekslet med dovenskab. For et barn med ADHD kan depression være skjult bag uro eller vrede." },
-      "Adfærdsforstyrrelse": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Hyppige konflikter", "Udfordrende adfærd i grupper", "Modstand mod regler"], "pædagogisk_refleksion": "Adfærdsproblemer kan være barnets sprog for stress. Struktur og tydelig anerkendelse dæmper kampresponsen." },
-      "Søvnforstyrrelse": { "forekomst": "25–50%", "tegn_at_være_opmærksom_på": ["Barnet falder sent i søvn", "Træthed om morgenen", "Ustabil døgnrytme"], "pædagogisk_refleksion": "Mangel på søvn forstærker ADHD-symptomer. Skab faste rytmer og rolige afslutninger på dagen." }
+  "comorbidity_data": [
+    {
+      "id": "adhd_comorbidity",
+      "primary_diagnosis": "ADHD",
+      "description": "ADHD forekommer ofte sammen med andre neuroudviklingsmæssige og psykiatriske tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "Autisme (ASF)",
+          "percentage": "30-50%",
+          "description": "Mange børn med ADHD har også autistiske træk eller fuld ASF-diagnose"
+        },
+        {
+          "condition": "ODD (Oppositionel Trodsig Adfærd)",
+          "percentage": "40-60%",
+          "description": "Trodsig og udfordrende adfærd ses ofte sammen med ADHD"
+        },
+        {
+          "condition": "Angst",
+          "percentage": "25-40%",
+          "description": "Angst og bekymringer er hyppige hos børn med ADHD"
+        },
+        {
+          "condition": "Depression",
+          "percentage": "15-20%",
+          "description": "Depression kan udvikle sig, især hos ubehandlet ADHD"
+        },
+        {
+          "condition": "Indlæringsvanskeligheder",
+          "percentage": "30-50%",
+          "description": "Dysleksi og andre indlæringsvanskeligheder ses ofte"
+        },
+        {
+          "condition": "Tic-lidelser/Tourette",
+          "percentage": "10-20%",
+          "description": "Motoriske og vokale tics kan forekomme sammen med ADHD"
+        }
+      ]
     },
-    "note": "ADHD har høj risiko for komorbiditet. Tidlig identifikation af angst og søvnproblemer kan reducere sekundære belastninger."
-  },
-
-  "Angst": {
-    "forekomst_total": "10–20% af børn og unge",
-    "relaterede_diagnoser": {
-      "ADHD": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Koncentrationsvanskeligheder", "Overfølsom for afvisning", "Indre uro"], "pædagogisk_refleksion": "Et ængsteligt barn kan virke uopmærksomt. Skeln mellem angst og impulsivitet, og giv tid i stedet for pres." },
-      "Depression": { "forekomst": "25–50%", "tegn_at_være_opmærksom_på": ["Tristhed", "Manglende glæde", "Skyldfølelse"], "pædagogisk_refleksion": "Vedvarende angst slider mentalt. Opfølg ved tegn på lavt humør eller håbløshed." },
-      "Autisme": { "forekomst": "10–40%", "tegn_at_være_opmærksom_på": ["Overvældelse i sociale rum", "Sensorisk overreaktion", "Behov for gentagelser"], "pædagogisk_refleksion": "Hos børn med ASF ses angst ofte som undgåelse. Tryghed før krav – det er nøglen." }
+    {
+      "id": "autism_comorbidity",
+      "primary_diagnosis": "Autisme (ASF)",
+      "description": "Autisme ses ofte sammen med andre neuroudviklingsmæssige og psykiatriske tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "ADHD",
+          "percentage": "30-50%",
+          "description": "ADHD og autisme overlapper ofte i symptomer og diagnosticering"
+        },
+        {
+          "condition": "Angst",
+          "percentage": "40-50%",
+          "description": "Angst er meget almindelig hos børn og voksne med autisme"
+        },
+        {
+          "condition": "Depression",
+          "percentage": "20-30%",
+          "description": "Depression ses især hos ældre børn og voksne med autisme"
+        },
+        {
+          "condition": "OCD",
+          "percentage": "10-20%",
+          "description": "Tvangstanker og tvangshandlinger kan ligne autistiske ritualer"
+        },
+        {
+          "condition": "Selektiv Mutisme",
+          "percentage": "5-10%",
+          "description": "Nogle autistiske børn taler kun i bestemte situationer"
+        },
+        {
+          "condition": "Epilepsi",
+          "percentage": "20-30%",
+          "description": "Neurologiske tilstande som epilepsi er mere almindelige ved autisme"
+        }
+      ]
     },
-    "note": "Angst er ofte sekundær til andre vanskeligheder og bør ses som en advarselslampe fremfor en separat diagnose."
-  },
-
-  "Depression": {
-    "forekomst_total": "2–3% af børn, 8% af unge",
-    "relaterede_diagnoser": {
-      "Angst": { "forekomst": "30–75%", "tegn_at_være_opmærksom_på": ["Bekymringer", "Søvnvanskeligheder", "Somatiske klager"], "pædagogisk_refleksion": "Depression og angst følges ofte ad. Undgå overfokus på præstation – skab oplevelse af mestring." },
-      "ADHD": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Rastløshed", "Konflikter med jævnaldrende", "Irritabilitet"], "pædagogisk_refleksion": "Hos børn med ADHD viser depression sig ofte som vrede og uro – ikke tristhed." },
-      "Spiseforstyrrelse": { "forekomst": "10–20%", "tegn_at_være_opmærksom_på": ["Kontrolbehov omkring mad", "Ændret appetit", "Lav selvfølelse"], "pædagogisk_refleksion": "Spiseforstyrret adfærd kan være forsøg på at genvinde kontrol i et kaotisk følelsesliv." }
+    {
+      "id": "anxiety_comorbidity",
+      "primary_diagnosis": "Angstlidelser",
+      "description": "Angst forekommer ofte sammen med andre psykiatriske tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "Depression",
+          "percentage": "40-60%",
+          "description": "Angst og depression ses meget ofte sammen"
+        },
+        {
+          "condition": "ADHD",
+          "percentage": "25-40%",
+          "description": "Angst kan både være en del af eller komorbid med ADHD"
+        },
+        {
+          "condition": "Autisme",
+          "percentage": "40-50%",
+          "description": "Mange autistiske børn oplever høje niveauer af angst"
+        },
+        {
+          "condition": "OCD",
+          "percentage": "20-30%",
+          "description": "Angst og OCD kan overlappe i symptomer"
+        },
+        {
+          "condition": "Selektiv Mutisme",
+          "percentage": "30-40%",
+          "description": "Selektiv mutisme ses ofte hos børn med angst"
+        },
+        {
+          "condition": "PTSD",
+          "percentage": "15-25%",
+          "description": "Angst kan udvikles efter traumatiske oplevelser"
+        }
+      ]
     },
-    "note": "Langvarig tristhed skal altid ses i relation til barnets omgivelser – ikke kun som indre problem."
-  },
-
-  "Autisme": {
-    "forekomst_total": "1–2% globalt",
-    "relaterede_diagnoser": {
-      "ADHD": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Impulsivitet", "Opmærksomhedsskift", "Motorisk uro"], "pædagogisk_refleksion": "Når ASF og ADHD overlapper, kan barnet virke både overfokuseret og ufokuseret – hjælp med struktur og rytme." },
-      "Angst": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Overreaktion på ændringer", "Tilbagetrækning", "Rigiditet"], "pædagogisk_refleksion": "Mange autistiske børn lever i konstant alarmberedskab. Miljøro reducerer angstniveauet markant." },
-      "Depression": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Tab af interesser", "Selvkritik", "Søvnændringer"], "pædagogisk_refleksion": "Vedvarende stress i sociale sammenhænge kan føre til udmattelsesdepression. Skab pauser fra social overbelastning." },
-      "Epilepsi": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Kortvarige fravær", "Motoriske episoder", "Uforklarlig træthed"], "pædagogisk_refleksion": "Epilepsi forekommer hyppigt ved ASF – informer lærere og personale om håndtering." }
+    {
+      "id": "ocd_comorbidity",
+      "primary_diagnosis": "OCD (Tvangslidelse)",
+      "description": "OCD ses ofte sammen med andre angstrelaterede og neuroudviklingsmæssige tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "Angst",
+          "percentage": "40-60%",
+          "description": "Generel angst og bekymringer ses ofte ved OCD"
+        },
+        {
+          "condition": "Depression",
+          "percentage": "30-50%",
+          "description": "Depression kan udvikles som følge af OCD-symptomer"
+        },
+        {
+          "condition": "Autisme",
+          "percentage": "10-20%",
+          "description": "Ritualer ved autisme kan ligne OCD-tvangshandlinger"
+        },
+        {
+          "condition": "ADHD",
+          "percentage": "10-20%",
+          "description": "ADHD og OCD kan forekomme samtidig"
+        },
+        {
+          "condition": "Tic-lidelser/Tourette",
+          "percentage": "20-30%",
+          "description": "Tics og OCD ses ofte sammen"
+        },
+        {
+          "condition": "Spiseforstyrrelser",
+          "percentage": "10-20%",
+          "description": "OCD kan manifestere sig som spisetvang eller ritualer omkring mad"
+        }
+      ]
     },
-    "note": "ASF skal altid forstås kontekstuelt – mange symptomer er miljøreaktioner, ikke defekter."
-  },
-
-  "Adfærdsforstyrrelse": {
-    "forekomst_total": "2–10% af børn, mest drenge",
-    "relaterede_diagnoser": {
-      "ADHD": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Impulsudbrud", "Trods mod autoritet", "Lav frustrationstærskel"], "pædagogisk_refleksion": "Ofte er det ADHD, der udløser adfærdsproblemer – ikke ond vilje. Struktur og rolige voksne virker bedre end straf." },
-      "Depression": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Pludselige vredesudbrud", "Tristhed efter konflikter", "Tilbagetrækning efter skænderier"], "pædagogisk_refleksion": "Bag hård adfærd ligger ofte sorg eller nederlag. Spørg hvad der skete, før du påtaler adfærden." },
-      "Angst": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Undgåelse af nye aktiviteter", "Fysisk uro før tests", "Aggression ved utryghed"], "pædagogisk_refleksion": "Nogle børn reagerer på angst med kamp. Tryghed og relation dæmper modstanden." }
+    {
+      "id": "ptsd_comorbidity",
+      "primary_diagnosis": "PTSD (Posttraumatisk Stresslidelse)",
+      "description": "PTSD opstår ofte sammen med andre psykiatriske tilstande efter traumer",
+      "comorbid_conditions": [
+        {
+          "condition": "Depression",
+          "percentage": "50-70%",
+          "description": "Depression er meget almindelig efter traumatiske oplevelser"
+        },
+        {
+          "condition": "Angst",
+          "percentage": "40-60%",
+          "description": "Angst og fobier ses ofte sammen med PTSD"
+        },
+        {
+          "condition": "Afhængighedslidelser",
+          "percentage": "30-50%",
+          "description": "Misbrug kan udvikles som selvmedicinering ved PTSD"
+        },
+        {
+          "condition": "Borderline (BPD)",
+          "percentage": "20-40%",
+          "description": "Langvarige traumer kan føre til både PTSD og BPD"
+        },
+        {
+          "condition": "DID (Dissociativ Identitetsforstyrrelse)",
+          "percentage": "5-10%",
+          "description": "Alvorlige og gentagne traumer kan udvikle DID"
+        },
+        {
+          "condition": "Søvnforstyrrelser",
+          "percentage": "70-90%",
+          "description": "Mareridt og søvnproblemer er meget almindelige ved PTSD"
+        }
+      ]
     },
-    "note": "Tidlig indsats i relation og miljø kan forhindre, at adfærd bliver identitet."
-  },
-
-  "Indlæringsvanskeligheder": {
-    "forekomst_total": "5–15% af skolebørn",
-    "relaterede_diagnoser": {
-      "ADHD": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Hurtig glemsomhed", "Manglende planlægning", "Uens præstationer"], "pædagogisk_refleksion": "ADHD-børn har brug for hjælp til at organisere tanker. Brug visuelle støtter." },
-      "Angst": { "forekomst": "10–25%", "tegn_at_være_opmærksom_på": ["Nervøsitet ved test", "Undgår at læse højt", "Perfektionistiske tendenser"], "pædagogisk_refleksion": "Læringsangst kan forveksles med dovenskab. Fejr små sejre i stedet for at måle tempo." },
-      "Depression": { "forekomst": "10–20%", "tegn_at_være_opmærksom_på": ["Mister troen på egne evner", "Undgår skole", "Ofte træt"], "pædagogisk_refleksion": "Gentagne nederlag kan skabe læringsafmagt. Giv barnet oplevelser af mestring." }
+    {
+      "id": "depression_comorbidity",
+      "primary_diagnosis": "Depression",
+      "description": "Depression forekommer ofte sammen med mange andre psykiatriske tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "Angst",
+          "percentage": "50-70%",
+          "description": "Angst og depression ses meget ofte sammen"
+        },
+        {
+          "condition": "ADHD",
+          "percentage": "15-30%",
+          "description": "Depression kan udvikles hos ubehandlet ADHD"
+        },
+        {
+          "condition": "Autisme",
+          "percentage": "20-30%",
+          "description": "Mange autistiske personer oplever depression"
+        },
+        {
+          "condition": "PTSD",
+          "percentage": "30-50%",
+          "description": "Depression opstår ofte efter traumatiske oplevelser"
+        },
+        {
+          "condition": "Spiseforstyrrelser",
+          "percentage": "20-40%",
+          "description": "Depression og spiseforstyrrelser ses ofte sammen"
+        },
+        {
+          "condition": "Afhængighedslidelser",
+          "percentage": "20-30%",
+          "description": "Misbrug kan være selvmedicinering ved depression"
+        }
+      ]
     },
-    "note": "Faglige vanskeligheder bør altid ses i relation til trivsel og selvbillede."
-  },
-
-  "Tics_og_Tourettes": {
-    "forekomst_total": "1–2% kroniske tics; 0.5–0.8% Tourettes",
-    "relaterede_diagnoser": {
-      "ADHD": { "forekomst": "50–60%", "tegn_at_være_opmærksom_på": ["Motorisk uro", "Korte opmærksomhedsspænd", "Ustabil adfærd"], "pædagogisk_refleksion": "Hos børn med Tourettes er uro ikke altid adfærd – nogle bevægelser er ufrivillige. Giv plads uden skam." },
-      "OCD": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Gentagelsesadfærd", "Perfektionisme", "Uro ved ændringer"], "pædagogisk_refleksion": "Skelnen mellem tic og tvang er vigtig. Reager med forståelse, ikke korrektion." },
-      "Angst": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Overreagerer på socialt pres", "Trækker sig fra aktiviteter", "Uro før præstation"], "pædagogisk_refleksion": "Tics forværres ved stress. Skab trygge rum og humoristisk normalisering." }
+    {
+      "id": "eating_disorders_comorbidity",
+      "primary_diagnosis": "Spiseforstyrrelser",
+      "description": "Spiseforstyrrelser ses ofte sammen med andre psykiatriske tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "Depression",
+          "percentage": "50-70%",
+          "description": "Depression er meget almindelig ved spiseforstyrrelser"
+        },
+        {
+          "condition": "Angst",
+          "percentage": "40-60%",
+          "description": "Angst og kontrol er centrale elementer ved spiseforstyrrelser"
+        },
+        {
+          "condition": "OCD",
+          "percentage": "20-40%",
+          "description": "Tvang omkring mad og vægt ses ofte ved spiseforstyrrelser"
+        },
+        {
+          "condition": "PTSD",
+          "percentage": "20-30%",
+          "description": "Traumer kan udløse eller forstærke spiseforstyrrelser"
+        },
+        {
+          "condition": "Autisme",
+          "percentage": "15-25%",
+          "description": "Sensoriske problemer og rutiner kan føre til spiseproblemer"
+        },
+        {
+          "condition": "Borderline (BPD)",
+          "percentage": "25-35%",
+          "description": "Spiseproblemer kan være en del af BPD-symptomatikken"
+        }
+      ]
     },
-    "note": "Tics forværres af kontrolpres. Afspænding og accept er bedre end opdragelse."
-  },
-
-"OCD": {
-  "forekomst_total": "1–3% af børn og unge",
-  "relaterede_diagnoser": {
-    "Angst": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Bekymringer", "Kontrolbehov", "Søvnvanskeligheder"], "pædagogisk_refleksion": "OCD og angst forstærker hinanden. Undgå at afvise ritualer brat – hjælp barnet til gradvis eksponering." },
-    "Depression": { "forekomst": "20–70%", "tegn_at_være_opmærksom_på": ["Træthed", "Mindre motivation", "Selvkritik"], "pædagogisk_refleksion": "Når OCD tapper energien, følger depression ofte. Anerkend barnets indsats frem for resultat." },
-    "Tics_og_Tourettes": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Små bevægelser", "Lyde", "Repetitiv adfærd"], "pædagogisk_refleksion": "Hos børn med tics kan tvang og tic flyde sammen – kræver differentieret pædagogik." }
-  },
-  "note": "OCD skal forstås som en angsttilstand – ikke som trods eller kontrolbehov."
-},
-
-"PTSD": {
-  "forekomst_total": "3–8% efter traumer",
-  "relaterede_diagnoser": {
-    "Depression": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Tristhed", "Træthed", "Skyld"], "pædagogisk_refleksion": "Et barn i traume kan ligne et barn i mistrivsel. Lyt mere end du spørger." },
-    "Angst": { "forekomst": "30–40%", "tegn_at_være_opmærksom_på": ["Overvågenhed", "Mareridt", "Undgåelse"], "pædagogisk_refleksion": "Tryghed er første skridt i al traumebehandling. Skab ro før du underviser." },
-    "ADHD": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Rastløshed", "Impulsivitet", "Vanskeligheder med fokus"], "pædagogisk_refleksion": "Traumer kan ligne ADHD. Spørg altid hvad barnet har været igennem – ikke kun hvordan det opfører sig." }
-  },
-  "note": "PTSD kræver stabil relation og forudsigelighed. Omgivelserne er en del af behandlingen."
-},
-
-"Spiseforstyrrelse": {
-  "forekomst_total": "1–5% af unge",
-  "relaterede_diagnoser": {
-    "Depression": { "forekomst": "40–50%", "tegn_at_være_opmærksom_på": ["Selvkritik", "Social tilbagetrækning", "Ændret appetit"], "pædagogisk_refleksion": "For barnet handler kontrol over mad ofte om at skabe kontrol over følelser." },
-    "Angst": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Bekymring for bedømmelse", "Perfektionisme", "Ritualer ved spisning"], "pædagogisk_refleksion": "Spiseangst handler om skam, ikke vilje. Giv tryghed, ikke pres." },
-    "OCD": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Gentagne handlinger", "Tælleri", "Kontroladfærd"], "pædagogisk_refleksion": "Spise- og tvangsadfærd overlapper – fokusér på fleksibilitet fremfor regler." }
-  },
-  "note": "Spiseforstyrrelser kræver ro, rytme og relationsstøtte – ikke kostkontrol alene."
-},
-
-"Bipolar": {
-  "forekomst_total": "1–2% af unge",
-  "relaterede_diagnoser": {
-    "ADHD": { "forekomst": "50–60%", "tegn_at_være_opmærksom_på": ["Store humørudsving", "Risikoadfærd", "Lav søvnbehov"], "pædagogisk_refleksion": "Mani kan ligne hyperaktivitet – men varer i dage. Observer mønstre, ikke øjeblikke." },
-    "Angst": { "forekomst": "30–40%", "tegn_at_være_opmærksom_på": ["Oprørthed", "Kropslig uro", "Overvågning af stemning"], "pædagogisk_refleksion": "Angst for næste humørsving forværrer tilstanden. Tryghed og forudsigelighed virker stabiliserende." },
-    "Adfærdsforstyrrelse": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Impulsiv vrede", "Regelbrud", "Manglende hæmning"], "pædagogisk_refleksion": "Aggression kan være et symptom på mani – ikke dårlig opdragelse." }
-  },
-  "note": "Balanceret struktur og stabil kontaktperson er afgørende ved bipolaritet."
-},
-
-"Skizofreni": {
-  "forekomst_total": "~1% (sjælden før 18 år)",
-  "relaterede_diagnoser": {
-    "Depression": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Social tilbagetrækning", "Mangel på motivation", "Flad mimik"], "pædagogisk_refleksion": "Negative symptomer forveksles ofte med dovenskab – vis forståelse for udmattelsen." },
-    "Angst": { "forekomst": "30–40%", "tegn_at_være_opmærksom_på": ["Mistænksomhed", "Frygt for fejl", "Undgåelse"], "pædagogisk_refleksion": "Angst og psykotiske oplevelser hænger ofte sammen – giv ro, ikke diskussion." }
-  },
-  "note": "Tidlig opdagelse er afgørende – relation og stabilitet før al læring."
-},
-
-"Personlighedsforstyrrelse": {
-  "forekomst_total": "3–5% af unge",
-  "relaterede_diagnoser": {
-    "Depression": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Selvhad", "Skiftende relationer", "Tomhedsfølelse"], "pædagogisk_refleksion": "Bag ustabilitet ligger ofte traumer og skam. Mød barnet med rolig, konsekvent tilstedeværelse." },
-    "Angst": { "forekomst": "40–50%", "tegn_at_være_opmærksom_på": ["Afvisningsfrygt", "Overreaktioner", "Kropslig stress"], "pædagogisk_refleksion": "Forudsigelighed og faste rammer dæmper angst for tab og svigt." }
-  },
-  "note": "Unge i udvikling skal forstås, ikke diagnosticeres for hurtigt – identitet tager tid."
-},
-
-"Søvnforstyrrelse": {
-  "forekomst_total": "20–30% af børn og unge",
-  "relaterede_diagnoser": {
-    "ADHD": { "forekomst": "25–50%", "tegn_at_være_opmærksom_på": ["Overtræthed", "Uro", "Svært ved at falde i søvn"], "pædagogisk_refleksion": "Søvnproblemer forstærker ADHD og angst. Hjælp barnet til rutiner, ikke medicin som førstevalg." },
-    "Angst": { "forekomst": "30–40%", "tegn_at_være_opmærksom_på": ["Mareridt", "Frygt for at sove alene", "Tidlig opvågnen"], "pædagogisk_refleksion": "Søvnangst er ofte relateret til kontroltab – brug beroligende rutiner og sansestøtte." }
-  },
-  "note": "Søvn er fundamentet for regulering. Fokusér på tryghed og rytme før disciplin."
-},
-
-"Sensorisk_forstyrrelse": {
-  "forekomst_total": "5–16% af skolebørn",
-  "relaterede_diagnoser": {
-    "Autisme": { "forekomst": "40–88%", "tegn_at_være_opmærksom_på": ["Overreaktion på sanser", "Afvisning af berøring", "Uro ved støj"], "pædagogisk_refleksion": "Sensorisk overload er ikke ulydighed – det er fysisk smerte. Reducér input før krav." },
-    "ADHD": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Uro i kroppen", "Behov for bevægelse", "Berøringssøgende adfærd"], "pædagogisk_refleksion": "Sansesøgende børn har brug for input – ikke skældud. Planlæg sansepauser." }
-  },
-  "note": "Sensorisk forståelse er nøglen til at forebygge konflikter i hverdagen."
-},
-
-"Selektiv_mutisme": {
-  "forekomst_total": "0.7–1.5% af skolebørn",
-  "relaterede_diagnoser": {
-    "Social_angst": { "forekomst": "70–80%", "tegn_at_være_opmærksom_på": ["Tavshed i skolen", "Taler hjemme", "Frygt for at fejle verbalt"], "pædagogisk_refleksion": "Tavshed er angst, ikke modstand. Giv barnet tid og tryghed før du forventer tale." },
-    "ADHD": { "forekomst": "10–15%", "tegn_at_være_opmærksom_på": ["Uro men tavshed", "Blikundgåelse", "Stressreaktion ved fokus"], "pædagogisk_refleksion": "Et barn kan både være hyperaktivt og mutistisk – nervøs energi uden udtryk kræver blide tilgange." }
-  },
-  "note": "Samarbejde mellem skole og hjem er centralt – pres ødelægger tillid."
-},
-
-"Reaktiv_tilknytningsforstyrrelse": {
-  "forekomst_total": "<1%, hyppigst ved omsorgssvigt",
-  "relaterede_diagnoser": {
-    "PTSD": { "forekomst": "20–40%", "tegn_at_være_opmærksom_på": ["Manglende tillid", "Overfladiske relationer", "Overreaktioner"], "pædagogisk_refleksion": "Barnet beskytter sig mod nærhed. Relation skal bygges, ikke kræves." },
-    "Udviklingsforsinkelse": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Social umodenhed", "Leg på lavt niveau", "Kognitiv forsinkelse"], "pædagogisk_refleksion": "Kognitiv støtte og stabil voksenkontakt kan genetablere tillid." }
-  },
-  "note": "Omsorg, stabilitet og tålmodighed er den primære behandling."
-},
-
-"Enuresis_encopresis": {
-  "forekomst_total": "Enuresis 5–10%, Encopresis 1–3%",
-  "relaterede_diagnoser": {
-    "ADHD": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Uheld i skole", "Manglende kropsbevidsthed", "Skamreaktioner"], "pædagogisk_refleksion": "Uheld handler sjældent om dovenskab – stress og kontroltab spiller ind." },
-    "Angst": { "forekomst": "15–25%", "tegn_at_være_opmærksom_på": ["Frygt for toilettet", "Bekymring ved fejl", "Følelsesmæssig uro"], "pædagogisk_refleksion": "Tryghed og støtte fremmer kontrol – straf forværrer." }
-  },
-  "note": "Skam er den største barriere. Normalisering og ro er vejen frem."
-},
-
-"Stofmisbrug": {
-  "forekomst_total": "5–10% af unge 12–17 år",
-  "relaterede_diagnoser": {
-    "Depression": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Selvmedicinering", "Tristhed", "Isolation"], "pædagogisk_refleksion": "Misbrug er ofte selvbehandling. Start med at forstå smerten bag adfærden." },
-    "ADHD": { "forekomst": "20–30%", "tegn_at_være_opmærksom_på": ["Impulsivitet", "Risikovillighed", "Søger spænding"], "pædagogisk_refleksion": "Tidlig støtte og struktur reducerer risiko for selvmedicinering hos ADHD-børn." }
-  },
-  "note": "Forebyggelse handler om meningsfuldhed og relation – ikke moralprædikener."
-},
-
-"Kropsopfattelsesforstyrrelse": {
-  "forekomst_total": "1–2% af unge",
-  "relaterede_diagnoser": {
-    "Depression": { "forekomst": "60–80%", "tegn_at_være_opmærksom_på": ["Selvkritik", "Lavt selvværd", "Spejlritualer"], "pædagogisk_refleksion": "Kropsfokus dækker over smerte. Mød det med samtale, ikke korrektion." },
-    "Angst": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Frygt for udseende", "Social undgåelse", "Perfektionisme"], "pædagogisk_refleksion": "Perfektionisme er ofte angst i forklædning – brug varme og humor." }
-  },
-  "note": "Sociale medier forstærker kropskritik – lær børn at skelne mellem virkelighed og idealer."
-},
-
-"Selvskadende_adfærd": {
-  "forekomst_total": "13–18% af unge",
-  "relaterede_diagnoser": {
-    "Depression": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Skjulte sår", "Sort tøj midt om sommeren", "Uforklarede smerter"], "pædagogisk_refleksion": "Selvskade handler om kontrol over kaos. Giv barnet et trygt rum at tale i." },
-    "Angst": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Hyperventilation", "Kropsspænding", "Selvforagt"], "pædagogisk_refleksion": "Selvskade dulmer angst. Støt barnet i at finde andre måder at regulere følelser på." }
-  },
-  "note": "Tidlig dialog og tryghed kan bryde mønstret – tavshed fastholder det."
-},
-
-"Dissociativ": {
-  "forekomst_total": "1–3% af børn og unge",
-  "relaterede_diagnoser": {
-    "PTSD": { "forekomst": "60–80%", "tegn_at_være_opmærksom_på": ["Fravær", "Tomt blik", "Hukommelseshuller"], "pædagogisk_refleksion": "Dissociation er en overlevelsesstrategi. Hjælp barnet tilbage til nuet gennem sansning og tryghed." },
-    "Depression": { "forekomst": "50–70%", "tegn_at_være_opmærksom_på": ["Tilbagetrækning", "Flad affekt", "Koncentrationsvanskeligheder"], "pædagogisk_refleksion": "Manglende nærvær kan være psykisk beskyttelse – ikke uinteresse." }
-  },
-  "note": "Kend dissociation som tegn på overbelastning, ikke dovenskab."
-},
-
-"Somatoform": {
-  "forekomst_total": "0.5–2% af børn og unge",
-  "relaterede_diagnoser": {
-    "Angst": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Mavepine", "Hovedpine", "Søvnproblemer"], "pædagogisk_refleksion": "Kroppen taler når ord mangler. Tag smerter alvorligt, også uden medicinsk forklaring." },
-    "Depression": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Træthed", "Appetitændring", "Fysiske klager"], "pædagogisk_refleksion": "Somatiske symptomer skjuler ofte sorg eller magtesløshed – spørg 'hvordan føles det' i stedet for 'hvorfor'." }
-  },
-  "note": "Helhedsforståelse er afgørende – krop og psyke er ikke adskilte."
-},
-
-"Kønsidentitet": {
-  "forekomst_total": "0.5–1.3% oplever kønsdysfori",
-  "relaterede_diagnoser": {
-    "Angst": { "forekomst": "40–60%", "tegn_at_være_opmærksom_på": ["Utryghed ved kropsændringer", "Social isolation", "Stress ved navne/pronominer"], "pædagogisk_refleksion": "Fejlbehandling skaber angst. Respekt for identitet er første beskyttelse." },
-    "Depression": { "forekomst": "30–50%", "tegn_at_være_opmærksom_på": ["Lavt selvværd", "Selvskadende tanker", "Social udmattelse"], "pædagogisk_refleksion": "Støttende miljøer reducerer depression hos transkønnede børn markant." }
-  },
-  "note": "Accept og tryghed reducerer psykisk belastning langt mere end debat."
-}
+    {
+      "id": "borderline_comorbidity",
+      "primary_diagnosis": "Borderline (BPD)",
+      "description": "Borderline ses ofte sammen med andre personlighedsforstyrrelser og psykiatriske tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "Depression",
+          "percentage": "60-80%",
+          "description": "Depression er meget almindelig ved borderline"
+        },
+        {
+          "condition": "PTSD",
+          "percentage": "40-60%",
+          "description": "Traumer er ofte en del af borderline-udviklingen"
+        },
+        {
+          "condition": "Afhængighedslidelser",
+          "percentage": "40-60%",
+          "description": "Misbrug ses ofte ved borderline"
+        },
+        {
+          "condition": "Spiseforstyrrelser",
+          "percentage": "30-50%",
+          "description": "Spiseproblemer kan være en del af BPD"
+        },
+        {
+          "condition": "ADHD",
+          "percentage": "20-30%",
+          "description": "Impulsivitet og følelsesmæssig dysregulering overlapper"
+        },
+        {
+          "condition": "Bipolar",
+          "percentage": "15-25%",
+          "description": "Humørsvingninger kan ligne bipolar lidelse"
+        }
+      ]
+    },
+    {
+      "id": "bipolar_comorbidity",
+      "primary_diagnosis": "Bipolar Lidelse",
+      "description": "Bipolar lidelse ses ofte sammen med andre psykiatriske tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "Angst",
+          "percentage": "40-60%",
+          "description": "Angst ses ofte mellem maniske og depressive episoder"
+        },
+        {
+          "condition": "ADHD",
+          "percentage": "20-30%",
+          "description": "ADHD og bipolar kan overlappe i symptomer"
+        },
+        {
+          "condition": "Afhængighedslidelser",
+          "percentage": "40-60%",
+          "description": "Misbrug er meget almindeligt ved bipolar lidelse"
+        },
+        {
+          "condition": "OCD",
+          "percentage": "15-25%",
+          "description": "Tvangssymptomer kan forekomme ved bipolar"
+        },
+        {
+          "condition": "Spiseforstyrrelser",
+          "percentage": "15-25%",
+          "description": "Spiseproblemer kan variere med humørsvingninger"
+        },
+        {
+          "condition": "Borderline (BPD)",
+          "percentage": "15-25%",
+          "description": "Humørsvingninger og impulsivitet kan overlappe"
+        }
+      ]
+    },
+    {
+      "id": "addiction_comorbidity",
+      "primary_diagnosis": "Afhængighedslidelser",
+      "description": "Afhængighed ses ofte sammen med andre psykiatriske tilstande",
+      "comorbid_conditions": [
+        {
+          "condition": "Depression",
+          "percentage": "40-60%",
+          "description": "Depression og misbrug forstærker ofte hinanden"
+        },
+        {
+          "condition": "Angst",
+          "percentage": "30-50%",
+          "description": "Angst kan føre til selvmedicinering med stoffer"
+        },
+        {
+          "condition": "ADHD",
+          "percentage": "20-30%",
+          "description": "Impulsivitet ved ADHD øger risiko for misbrug"
+        },
+        {
+          "condition": "PTSD",
+          "percentage": "30-50%",
+          "description": "Traumer kan føre til misbrug som håndteringsstrategi"
+        },
+        {
+          "condition": "Bipolar",
+          "percentage": "40-60%",
+          "description": "Misbrug er meget almindeligt ved bipolar lidelse"
+        },
+        {
+          "condition": "Borderline (BPD)",
+          "percentage": "40-60%",
+          "description": "Misbrug ses ofte som impulsiv adfærd ved BPD"
+        }
+      ]
+    }
+  ]
 }
