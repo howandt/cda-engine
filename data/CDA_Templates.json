@@ -10,11 +10,6 @@
     },
     "templates": [
     {
-      "id": "daglig_refleksion",
-      "related_templates": ["hvis_jeg_foeler", "kommunikationslog", "sociale_relationer"],
-      "command_triggers": ["Refleksionsark", "Hvad skete i dag", "Daglig reflektion"]
-    },
-    {
   "id": "school_avoidance_plan",
   "title": "Trinvis Plan mod Skolevægring",
   "category": "intervention",
@@ -50,6 +45,7 @@
     },
     {
       "id": "visuel_dagsplan",
+      "title":"Visuel Dagsplan",
       "content": {
         "purpose": "Skaber struktur i dagligdagen",
         "description": "Grundlæggende visuel dagsplan der giver børn med diagnoser forudsigelige rammer",
