@@ -422,7 +422,7 @@
 
         // Setup filter knapper
         function setupFilters() {
-            const types = [...new Set(allTemplates.map(t => t.type))];
+            const types = [...new Set(allTemplates.map(t => t.type || t.category || 'Generel'))];
             const filterButtons = document.getElementById('filterButtons');
             
             types.forEach(type => {
@@ -443,9 +443,18 @@
                 'Lektieplan': '📚',
                 'Evaluering': '✅',
                 'Kommunikation': '💬',
+                'kommunikation': '💬',
                 'Handlingsplan': '🎯',
                 'Møde': '🤝',
-                'Rapport': '📄'
+                'Rapport': '📄',
+                'struktur': '📅',
+                'følelser': '❤️',
+                'motivation': '⭐',
+                'intervention': '🚨',
+                'søvn': '😴',
+                'social': '👥',
+                'dagligdag': '🏠',
+                'Generel': '📝'
             };
             return icons[type] || '📝';
         }
@@ -471,18 +480,26 @@
 
             // Type filter
             if (currentFilter !== 'all') {
-                filtered = filtered.filter(t => t.type === currentFilter);
+                filtered = filtered.filter(t => {
+                    const type = t.type || t.category || 'Generel';
+                    return type === currentFilter;
+                });
             }
 
             // Search filter
             const searchTerm = document.getElementById('searchBox').value.toLowerCase();
             if (searchTerm) {
-                filtered = filtered.filter(t => 
-                    t.title.toLowerCase().includes(searchTerm) ||
-                    t.description.toLowerCase().includes(searchTerm) ||
-                    t.purpose.toLowerCase().includes(searchTerm) ||
-                    (t.target_group && t.target_group.toLowerCase().includes(searchTerm))
-                );
+                filtered = filtered.filter(t => {
+                    const title = (t.title || '').toLowerCase();
+                    const description = (t.description || t.content?.description || '').toLowerCase();
+                    const purpose = (t.purpose || t.content?.purpose || '').toLowerCase();
+                    const targetGroup = (t.target_group || t.content?.target_group || '').toLowerCase();
+                    
+                    return title.includes(searchTerm) ||
+                           description.includes(searchTerm) ||
+                           purpose.includes(searchTerm) ||
+                           targetGroup.includes(searchTerm);
+                });
             }
 
             displayTemplates(filtered);
@@ -521,16 +538,21 @@
             card.className = 'template-card';
             card.onclick = () => openModal(template);
 
-            const hasFields = template.fields && template.fields.length > 0;
-            const fieldCount = hasFields ? template.fields.length : 0;
+            const type = template.type || template.category || 'Generel';
+            const description = template.description || template.content?.description || 'Ingen beskrivelse';
+            const targetGroup = template.target_group || template.content?.target_group || 'Alle';
+            
+            // Check for fields in different places
+            const fields = template.fields || template.content?.components || [];
+            const fieldCount = Array.isArray(fields) ? fields.length : 0;
 
             card.innerHTML = `
                 <div class="template-title">${template.title}</div>
-                <div class="template-type">${getTypeIcon(template.type)} ${template.type}</div>
-                <div class="template-description">${template.description}</div>
+                <div class="template-type">${getTypeIcon(type)} ${type}</div>
+                <div class="template-description">${description}</div>
                 <div class="template-meta">
-                    <span>🎯 ${template.target_group || 'Alle'}</span>
-                    ${fieldCount > 0 ? `<span>📋 ${fieldCount} felter</span>` : ''}
+                    <span>🎯 ${targetGroup}</span>
+                    ${fieldCount > 0 ? `<span>📋 ${fieldCount} komponenter</span>` : ''}
                 </div>
             `;
 
@@ -542,15 +564,42 @@
             const modal = document.getElementById('modal');
             const modalBody = document.getElementById('modalBody');
 
+            const type = template.type || template.category || 'Generel';
+            const description = template.description || template.content?.description || 'Ingen beskrivelse';
+            const purpose = template.purpose || template.content?.purpose || 'Ikke angivet';
+            const targetGroup = template.target_group || template.content?.target_group || 'Alle';
+
+            // Build fields/components section
             let fieldsHTML = '';
-            if (template.fields && template.fields.length > 0) {
+            const fields = template.fields || template.content?.components || [];
+            if (Array.isArray(fields) && fields.length > 0) {
                 fieldsHTML = `
                     <div class="modal-section">
-                        <h3>📋 Felter i skabelonen</h3>
+                        <h3>📋 Komponenter</h3>
                         <ul>
-                            ${template.fields.map(field => `
-                                <li><strong>${field.label}:</strong> ${field.description}</li>
-                            `).join('')}
+                            ${fields.map(field => {
+                                if (typeof field === 'string') {
+                                    return `<li>${field}</li>`;
+                                } else if (field.label) {
+                                    return `<li><strong>${field.label}:</strong> ${field.description || ''}</li>`;
+                                } else {
+                                    return `<li>${JSON.stringify(field)}</li>`;
+                                }
+                            }).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            // Build use cases section
+            let useCasesHTML = '';
+            const useCases = template.use_cases || template.content?.use_cases || [];
+            if (Array.isArray(useCases) && useCases.length > 0) {
+                useCasesHTML = `
+                    <div class="modal-section">
+                        <h3>💡 Anvendelsesområder</h3>
+                        <ul>
+                            ${useCases.map(uc => `<li>${uc}</li>`).join('')}
                         </ul>
                     </div>
                 `;
@@ -559,24 +608,25 @@
             modalBody.innerHTML = `
                 <div class="modal-header">
                     <h2 class="modal-title">${template.title}</h2>
-                    <span class="modal-type">${getTypeIcon(template.type)} ${template.type}</span>
+                    <span class="modal-type">${getTypeIcon(type)} ${type}</span>
                 </div>
 
                 <div class="modal-section">
                     <h3>📝 Beskrivelse</h3>
-                    <p>${template.description}</p>
+                    <p>${description}</p>
                 </div>
 
                 <div class="modal-section">
                     <h3>🎯 Formål</h3>
-                    <p>${template.purpose}</p>
+                    <p>${purpose}</p>
                 </div>
 
                 ${fieldsHTML}
+                ${useCasesHTML}
 
                 <div class="modal-section">
                     <h3>👥 Målgruppe</h3>
-                    <p>${template.target_group || 'Alle'}</p>
+                    <p>${targetGroup}</p>
                 </div>
             `;
 
@@ -595,7 +645,7 @@
         function updateStats() {
             document.getElementById('totalCount').textContent = allTemplates.length;
             
-            const types = new Set(allTemplates.map(t => t.type));
+            const types = new Set(allTemplates.map(t => t.type || t.category || 'Generel'));
             document.getElementById('categoryCount').textContent = types.size;
             
             updateShownCount(allTemplates.length);
