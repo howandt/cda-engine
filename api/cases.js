@@ -1,82 +1,84 @@
-// Vercel Serverless Function - Cases API med caching
-const fetch = require('node-fetch');
+// Opdateret cases.js for api/cases.js
+// Returnerer ALLE cases hvis ingen fil specificeres
 
-// In-memory cache
-let cache = {
-  adhd_angst: { data: null, timestamp: 0 },
-  autisme_angst: { data: null, timestamp: 0 }
-};
-
-const CACHE_DURATION = 1000 * 60 * 60; // 1 time
-const GITHUB_BASE = 'https://raw.githubusercontent.com/howandt/cda-engine-clean/main/data/cases/';
-
-async function fetchFromGitHub(filename) {
-  const response = await fetch(`${GITHUB_BASE}${filename}`);
-  if (!response.ok) {
-    throw new Error(`GitHub fetch failed: ${response.status}`);
-  }
-  return await response.json();
-}
-
-function isCacheValid(cacheKey) {
-  const cached = cache[cacheKey];
-  if (!cached.data) return false;
-  const age = Date.now() - cached.timestamp;
-  return age < CACHE_DURATION;
-}
-
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
+  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
   try {
+    const baseUrl = 'https://raw.githubusercontent.com/howandt/cda-engine-clean/main/data/cases/';
+    
+    // Liste over alle case filer
+    const caseFiles = [
+      'adhd_angst_cases.json',
+      'autisme_angst_cases.json'
+    ];
+
+    // Hvis en specifik fil er anmodet
     const { file } = req.query;
-
-    if (!file) {
-      return res.status(200).json({
-        available_cases: [
-          'adhd_angst_cases.json',
-          'autisme_angst_cases.json'
-        ],
-        usage: '/api/cases?file=adhd_angst_cases.json'
-      });
+    
+    if (file) {
+      // Hent specifik fil
+      const response = await fetch(`${baseUrl}${file}`);
+      
+      if (!response.ok) {
+        return res.status(404).json({ 
+          error: 'File not found',
+          requested: file,
+          available: caseFiles 
+        });
+      }
+      
+      const data = await response.json();
+      return res.status(200).json(data);
     }
-
-    const cacheKey = file.replace('_cases.json', '').replace('.json', '');
-
-    if (isCacheValid(cacheKey)) {
-      console.log(`[CACHE HIT] ${file}`);
-      return res.status(200).json({
-        source: 'cache',
-        data: cache[cacheKey].data,
-        cached_at: new Date(cache[cacheKey].timestamp).toISOString()
-      });
+    
+    // INGEN FIL SPECIFICERET - RETURNER ALLE CASES!
+    console.log('Fetching all case files...');
+    
+    const allCases = [];
+    const errors = [];
+    
+    for (const fileName of caseFiles) {
+      try {
+        const response = await fetch(`${baseUrl}${fileName}`);
+        if (response.ok) {
+          const data = await response.json();
+          // Tilføj alle cases fra denne fil
+          if (Array.isArray(data)) {
+            allCases.push(...data);
+          } else if (data.cases && Array.isArray(data.cases)) {
+            allCases.push(...data.cases);
+          }
+          console.log(`✅ Loaded ${fileName}`);
+        } else {
+          errors.push(`Failed to load ${fileName}: ${response.status}`);
+        }
+      } catch (error) {
+        errors.push(`Error loading ${fileName}: ${error.message}`);
+      }
     }
-
-    console.log(`[CACHE MISS] ${file} - fetching from GitHub`);
-    const data = await fetchFromGitHub(file);
-
-    cache[cacheKey] = {
-      data: data,
-      timestamp: Date.now()
-    };
-
+    
+    // Returner alle cases samlet
     return res.status(200).json({
-      source: 'github',
-      data: data,
-      fetched_at: new Date().toISOString()
+      total_cases: allCases.length,
+      source_files: caseFiles,
+      cases: allCases,
+      errors: errors.length > 0 ? errors : undefined
     });
-
+    
   } catch (error) {
-    console.error('Cases API error:', error);
-    return res.status(500).json({
-      error: 'Failed to fetch cases',
-      message: error.message
+    console.error('API Error:', error);
+    return res.status(500).json({ 
+      error: 'Internal server error',
+      message: error.message 
     });
   }
-};
+}
