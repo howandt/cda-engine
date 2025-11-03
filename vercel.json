@@ -3,6 +3,10 @@
     {
       "src": "api/**/*.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -86,26 +90,6 @@
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type"
       }
-    },
-    {
-      "src": "/emotion-engine-test.html",
-      "dest": "/public/emotion-engine-test.html"
-    },
-    {
-      "src": "/pbl-matcher-test.html",
-      "dest": "/public/pbl-matcher-test.html"
-    },
-    {
-      "src": "/quiz-system-test.html",
-      "dest": "/public/quiz-system-test.html"
-    },
-    {
-      "src": "/diagnoser-test.html",
-      "dest": "/public/diagnoser-test.html"
-    },
-    {
-      "src": "/templates.html",
-      "dest": "/public/templates.html"
     },
     {
       "src": "/(.*)",
