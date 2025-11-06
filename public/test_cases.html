@@ -371,37 +371,35 @@
 
         // Load initial data
         async function loadInitialData() {
-            try {
-                const response = await fetch(`${API_BASE}/cases`);
-                const result = await response.json();
-                
-                // Check for GPT action format
-                if (!result.success) {
-                    throw new Error(result.error || 'API returnerede success: false');
-                }
-                
-                // Extract data from GPT action format
-                const data = result.data;
-                allCases = data.cases || [];
-                availableFiles = data.source_files || [];
-                
-                console.log(`✅ Loaded ${allCases.length} cases from API`);
-                
-                // Extract all unique diagnoses
-                allCases.forEach(c => {
-                    if (c.relevante_diagnoser) {
-                        c.relevante_diagnoser.forEach(d => allDiagnoses.add(d));
-                    }
-                });
+    try {
+        const response = await fetch(`${API_BASE}/cases`);
+        const result = await response.json();
 
-                populateFileSelect();
-                populateDiagnosisFilter();
-                updateStats();
-                displayCases(allCases);
-            } catch (error) {
-                showError('Kunne ikke indlæse cases: ' + error.message);
-            }
+        if (!result.success) {
+            throw new Error(result.error || "API returnerede success: false");
         }
+
+        const parsed = JSON.parse(result.source);
+        allCases = parsed.cases || [];
+        availableFiles = parsed.source_files || [];
+
+        console.log(`✅ Loaded ${allCases.length} cases from API`);
+
+        allCases.forEach(c => {
+            if (c.relevante_diagnoser) {
+                c.relevante_diagnoser.forEach(d => allDiagnoses.add(d));
+            }
+        });
+
+        populateFileSelect();
+        populateDiagnosisFilter();
+        updateStats();
+        displayCases(allCases);
+
+    } catch (error) {
+        showError("Kunne ikke indlæse cases: " + error.message);
+    }
+}
 
         function populateFileSelect() {
             const select = document.getElementById('fileSelect');
