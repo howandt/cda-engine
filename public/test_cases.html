@@ -552,39 +552,42 @@
         document.getElementById('diagnosisFilter').addEventListener('change', filterCases);
 
         async function filterCases() {
-            const selectedFile = document.getElementById('fileSelect').value;
-            const selectedDiagnosis = document.getElementById('diagnosisFilter').value;
+    const selectedFile = document.getElementById('fileSelect').value;
+    const selectedDiagnosis = document.getElementById('diagnosisFilter').value;
 
-            let filtered = allCases;
+    let filtered = allCases;
 
-            // Filter by file
-            if (selectedFile) {
-                try {
-                    const response = await fetch(`${API_BASE}/cases?file=${selectedFile}`);
-                    const result = await response.json();
-                    
-                    if (!result.success) {
-                        throw new Error(result.error || 'Kunne ikke hente fil');
-                    }
-                    
-                    filtered = result.data.cases || [];
-                    console.log(`✅ Filtered by file: ${filtered.length} cases`);
-                } catch (error) {
-                    showError('Kunne ikke indlæse fil: ' + error.message);
-                    return;
-                }
+    // 📁 Hvis en specifik fil vælges → hent fra API
+    if (selectedFile) {
+        try {
+            const response = await fetch(`${API_BASE}/cases?file=${selectedFile}`);
+            const result = await response.json();
+
+            if (!result.success) {
+                throw new Error(result.error || 'Kunne ikke hente fil');
             }
 
-            // Filter by diagnosis
-            if (selectedDiagnosis) {
-                filtered = filtered.filter(c => 
-                    c.relevante_diagnoser && c.relevante_diagnoser.includes(selectedDiagnosis)
-                );
-                console.log(`✅ Filtered by diagnosis: ${filtered.length} cases`);
-            }
+            // ✅ Parse source-strengen
+            const parsed = JSON.parse(result.source);
+            filtered = parsed.cases || [];
+            console.log(`✅ Filtered by file: ${filtered.length} cases`);
 
-            displayCases(filtered);
+        } catch (error) {
+            showError('Kunne ikke indlæse fil: ' + error.message);
+            return;
         }
+    }
+
+    // 🔍 Filtrér efter diagnose (hvis valgt)
+    if (selectedDiagnosis) {
+        filtered = filtered.filter(c =>
+            c.relevante_diagnoser && c.relevante_diagnoser.includes(selectedDiagnosis)
+        );
+        console.log(`✅ Filtered by diagnosis: ${filtered.length} cases`);
+    }
+
+    displayCases(filtered);
+}
 
         function showError(message) {
             const content = document.getElementById('content');
