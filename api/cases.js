@@ -1,4 +1,5 @@
 // Opdateret cases.js for api/cases.js
+// Matcher GPT action format: {success, source, data}
 // Returnerer ALLE cases hvis ingen fil specificeres
 
 export default async function handler(req, res) {
@@ -30,14 +31,25 @@ export default async function handler(req, res) {
       
       if (!response.ok) {
         return res.status(404).json({ 
+          success: false,
           error: 'File not found',
           requested: file,
           available: caseFiles 
         });
       }
       
-      const data = await response.json();
-      return res.status(200).json(data);
+      const fileData = await response.json();
+      
+      // Returner i GPT action format
+      return res.status(200).json({
+        success: true,
+        source: file,
+        data: {
+          total_cases: fileData.cases ? fileData.cases.length : 0,
+          source_files: [file],
+          cases: fileData.cases || []
+        }
+      });
     }
     
     // INGEN FIL SPECIFICERET - RETURNER ALLE CASES!
@@ -50,14 +62,12 @@ export default async function handler(req, res) {
       try {
         const response = await fetch(`${baseUrl}${fileName}`);
         if (response.ok) {
-          const data = await response.json();
+          const fileData = await response.json();
           // Tilføj alle cases fra denne fil
-          if (Array.isArray(data)) {
-            allCases.push(...data);
-          } else if (data.cases && Array.isArray(data.cases)) {
-            allCases.push(...data.cases);
+          if (fileData.cases && Array.isArray(fileData.cases)) {
+            allCases.push(...fileData.cases);
+            console.log(`✅ Loaded ${fileName}: ${fileData.cases.length} cases`);
           }
-          console.log(`✅ Loaded ${fileName}`);
         } else {
           errors.push(`Failed to load ${fileName}: ${response.status}`);
         }
@@ -66,17 +76,22 @@ export default async function handler(req, res) {
       }
     }
     
-    // Returner alle cases samlet
+    // Returner alle cases i GPT action format
     return res.status(200).json({
-      total_cases: allCases.length,
-      source_files: caseFiles,
-      cases: allCases,
-      errors: errors.length > 0 ? errors : undefined
+      success: true,
+      source: 'all_files',
+      data: {
+        total_cases: allCases.length,
+        source_files: caseFiles,
+        cases: allCases,
+        errors: errors.length > 0 ? errors : undefined
+      }
     });
     
   } catch (error) {
     console.error('API Error:', error);
     return res.status(500).json({ 
+      success: false,
       error: 'Internal server error',
       message: error.message 
     });
