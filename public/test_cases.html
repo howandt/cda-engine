@@ -453,35 +453,35 @@
         }
 
         function createCaseCard(caseData) {
-            const card = document.createElement('div');
-            card.className = 'case-card';
-            card.onclick = () => showCaseModal(caseData);
+    const card = document.createElement('div');
+    card.className = 'case-card';
+    card.onclick = () => showCaseModal(caseData);
 
-            const diagnosisTags = (caseData.relevante_diagnoser || [])
-                .map(d => `<span class="case-tag tag-diagnosis">${d}</span>`)
-                .join('');
+    // Sikkerhed: tjek om felterne findes
+    const titel = caseData.titel || "Ingen titel";
+    const beskrivelse = caseData.beskrivelse || caseData.problem || "Ingen beskrivelse";
+    const diagnoser = caseData.relevante_diagnoser || [];
+    const temaer = caseData.tema || [];
 
-            const themeTags = (caseData.tema || [])
-                .slice(0, 3)
-                .map(t => `<span class="case-tag tag-theme">${t}</span>`)
-                .join('');
+    const diagnosisTags = diagnoser.map(d => `<span class="case-tag tag-diagnosis">${d}</span>`).join('');
+    const themeTags = temaer.map(t => `<span class="case-tag tag-theme">${t}</span>`).join('');
 
-            card.innerHTML = `
-                <div class="case-header">
-                    <div class="case-title">${caseData.titel || 'Ingen titel'}</div>
-                    <div class="case-meta">
-                        ${diagnosisTags}
-                        ${themeTags}
-                    </div>
-                </div>
-                <div class="case-description">${caseData.beskrivelse || 'Ingen beskrivelse'}</div>
-                <div class="case-footer">
-                    💡 Klik for at se fuld case med strategier
-                </div>
-            `;
+    card.innerHTML = `
+        <div class="case-header">
+            <div class="case-title">${titel}</div>
+            <div class="case-meta">
+                ${diagnosisTags}
+                ${themeTags}
+            </div>
+        </div>
+        <div class="case-description">${beskrivelse}</div>
+        <div class="case-footer">
+            💡 Klik for at se fuld case med strategier
+        </div>
+    `;
 
-            return card;
-        }
+    return card;
+}
 
         function showCaseModal(caseData) {
             const modal = document.getElementById('caseModal');
