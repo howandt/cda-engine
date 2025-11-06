@@ -6,62 +6,62 @@ export default async function handler(req, res) {
     const { file } = req.query;
     const dataDir = path.join(process.cwd(), "data", "cases");
 
-    // Hent alle filer i /data/cases/
+    // Hent alle .json-filer i /data/cases/
     const files = fs.readdirSync(dataDir).filter(f => f.endsWith(".json"));
 
-    // 1️⃣ Hvis kun oversigt ønskes
-    if (!file) {
-      return res.status(200).json({
-        success: true,
-        source: "all_files",
-        data: {
-          total_cases: 0,
-          source_files: files,
-          cases: []
-        }
-      });
-    }
-
-    // 2️⃣ Hvis en specifik fil ønskes
-    const loadFile = async (filename) => {
+    // Hjælpefunktion til at læse en fil
+    const loadFile = (filename) => {
       const filePath = path.join(dataDir, filename);
       if (!fs.existsSync(filePath)) return null;
       const fileData = fs.readFileSync(filePath, "utf8");
-      return JSON.parse(fileData);
+      try {
+        return JSON.parse(fileData);
+      } catch (e) {
+        console.error("❌ Kunne ikke parse:", filename, e);
+        return null;
+      }
     };
 
-    // 3️⃣ Hvis ?file=all → hent alle
+    // 🔹 Hvis ?file=all → saml alle cases
     if (file === "all") {
       let combined = [];
       for (const f of files) {
-        const content = await loadFile(f);
-        if (content && content.cases) combined = combined.concat(content.cases);
+        const content = loadFile(f);
+        if (content?.cases) combined = combined.concat(content.cases);
       }
+
+      const result = { cases: combined, source_files: files };
       return res.status(200).json({
         success: true,
-        source: JSON.stringify({ cases: combined, source_files: files })
+        source: JSON.stringify(result)
       });
     }
 
-    // 4️⃣ Hvis ?file=<navn>.json → hent den ene
-    if (files.includes(file)) {
-      const content = await loadFile(file);
+    // 🔹 Hvis ?file=<navn>.json → hent specifik fil
+    if (file && files.includes(file)) {
+      const content = loadFile(file);
       return res.status(200).json({
         success: true,
         source: JSON.stringify(content)
       });
     }
 
-    // 5️⃣ Hvis fil ikke findes
-    return res.status(404).json({
-      success: false,
-      error: "Filen findes ikke.",
-      available_files: files
+    // 🔹 Hvis ingen ?file → hent ALLE cases (samlet oversigt)
+    let combined = [];
+    for (const f of files) {
+      const content = loadFile(f);
+      if (content?.cases) combined = combined.concat(content.cases);
+    }
+
+    const overview = { cases: combined, source_files: files };
+    return res.status(200).json({
+      success: true,
+      source: JSON.stringify(overview)
     });
 
   } catch (error) {
-    console.error("❌ CASES API FEJL:", error);
-    res.status(500).json({
+    console.error("❌ FEJL i /api/cases:", error);
+    return res.status(500).json({
       success: false,
       error: "Serverfejl: " + error.message
     });
