@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDA Cases Browser - Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            border-color: #667eea;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat-item {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .case-header {
+            margin-bottom: 15px;
+        }
+
+        .case-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .case-tag {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .tag-diagnosis {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+
+        .tag-theme {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .case-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .case-footer {
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            padding: 40px;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #c62828;
+        }
+
+        .no-cases {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            padding: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            margin: 40px auto;
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .modal-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .modal-section {
+            margin-bottom: 30px;
+        }
+
+        .modal-section h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-section p,
+        .modal-section li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .modal-section ul {
+            padding-left: 25px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .controls {
+                grid-template-columns: 1fr;
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 25px;
+                margin: 20px auto;
+            }
+
+            .modal-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 CDA Cases Browser</h1>
+            <p>Gennemse alle cases fra CDA systemet</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="fileSelect">📁 Vælg case fil:</label>
+                <select id="fileSelect">
+                    <option value="">Indlæser filer...</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="diagnosisFilter">🔍 Filtrér efter diagnose:</label>
+                <select id="diagnosisFilter">
+                    <option value="">Alle diagnoser</option>
+                </select>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalCases">0</span>
+                    <span class="stat-label">Total Cases</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="displayedCases">0</span>
+                    <span class="stat-label">Viste Cases</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="loading">⏳ Indlæser cases...</div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="caseModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://cda-engine-clean.vercel.app/api';
+        let allCases = [];
+        let availableFiles = [];
+        let allDiagnoses = new Set();
+
+        // Load initial data
+        async function loadInitialData() {
+            try {
+                const response = await fetch(`${API_BASE}/cases`);
+                const result = await response.json();
+                
+                // Check for GPT action format
+                if (!result.success) {
+                    throw new Error(result.error || 'API returnerede success: false');
+                }
+                
+                // Extract data from GPT action format
+                const data = result.data;
+                allCases = data.cases || [];
+                availableFiles = data.source_files || [];
+                
+                console.log(`✅ Loaded ${allCases.length} cases from API`);
+                
+                // Extract all unique diagnoses
+                allCases.forEach(c => {
+                    if (c.relevante_diagnoser) {
+                        c.relevante_diagnoser.forEach(d => allDiagnoses.add(d));
+                    }
+                });
+
+                populateFileSelect();
+                populateDiagnosisFilter();
+                updateStats();
+                displayCases(allCases);
+            } catch (error) {
+                showError('Kunne ikke indlæse cases: ' + error.message);
+            }
+        }
+
+        function populateFileSelect() {
+            const select = document.getElementById('fileSelect');
+            select.innerHTML = '<option value="">Alle filer</option>';
+            
+            availableFiles.forEach(file => {
+                const option = document.createElement('option');
+                option.value = file;
+                option.textContent = file.replace('.json', '').replace(/_/g, ' ');
+                select.appendChild(option);
+            });
+        }
+
+        function populateDiagnosisFilter() {
+            const select = document.getElementById('diagnosisFilter');
+            select.innerHTML = '<option value="">Alle diagnoser</option>';
+            
+            [...allDiagnoses].sort().forEach(diagnosis => {
+                const option = document.createElement('option');
+                option.value = diagnosis;
+                option.textContent = diagnosis;
+                select.appendChild(option);
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('totalCases').textContent = allCases.length;
+        }
+
+        function displayCases(cases) {
+            const content = document.getElementById('content');
+            
+            if (cases.length === 0) {
+                content.innerHTML = '<div class="no-cases">📭 Ingen cases matcher dine filtre</div>';
+                document.getElementById('displayedCases').textContent = '0';
+                return;
+            }
+
+            document.getElementById('displayedCases').textContent = cases.length;
+
+            const grid = document.createElement('div');
+            grid.className = 'cases-grid';
+
+            cases.forEach(caseData => {
+                const card = createCaseCard(caseData);
+                grid.appendChild(card);
+            });
+
+            content.innerHTML = '';
+            content.appendChild(grid);
+        }
+
+        function createCaseCard(caseData) {
+            const card = document.createElement('div');
+            card.className = 'case-card';
+            card.onclick = () => showCaseModal(caseData);
+
+            const diagnosisTags = (caseData.relevante_diagnoser || [])
+                .map(d => `<span class="case-tag tag-diagnosis">${d}</span>`)
+                .join('');
+
+            const themeTags = (caseData.tema || [])
+                .slice(0, 3)
+                .map(t => `<span class="case-tag tag-theme">${t}</span>`)
+                .join('');
+
+            card.innerHTML = `
+                <div class="case-header">
+                    <div class="case-title">${caseData.titel || 'Ingen titel'}</div>
+                    <div class="case-meta">
+                        ${diagnosisTags}
+                        ${themeTags}
+                    </div>
+                </div>
+                <div class="case-description">${caseData.beskrivelse || 'Ingen beskrivelse'}</div>
+                <div class="case-footer">
+                    💡 Klik for at se fuld case med strategier
+                </div>
+            `;
+
+            return card;
+        }
+
+        function showCaseModal(caseData) {
+            const modal = document.getElementById('caseModal');
+            const modalBody = document.getElementById('modalBody');
+
+            let html = `
+                <div class="modal-header">
+                    <h2 class="modal-title">${caseData.titel || 'Ingen titel'}</h2>
+                    <div class="case-meta">
+                        ${(caseData.relevante_diagnoser || [])
+                            .map(d => `<span class="case-tag tag-diagnosis">${d}</span>`)
+                            .join('')}
+                        ${(caseData.tema || [])
+                            .map(t => `<span class="case-tag tag-theme">${t}</span>`)
+                            .join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>📖 Beskrivelse</h3>
+                    <p>${caseData.beskrivelse || 'Ingen beskrivelse'}</p>
+                </div>
+
+                ${caseData.cda_guiding ? `
+                    <div class="modal-section">
+                        <h3>🎯 CDA Guiding</h3>
+                        <p>${caseData.cda_guiding}</p>
+                    </div>
+                ` : ''}
+
+                ${caseData.cdt_træning ? `
+                    <div class="modal-section">
+                        <h3>📚 CDT Træning</h3>
+                        ${caseData.cdt_træning.problem ? `<p><strong>Problem:</strong> ${caseData.cdt_træning.problem}</p>` : ''}
+                        ${caseData.cdt_træning.brugersvar ? `<p><strong>Brugersvar:</strong> ${caseData.cdt_træning.brugersvar}</p>` : ''}
+                        ${caseData.cdt_træning.evaluering ? `<p><strong>Evaluering:</strong> ${caseData.cdt_træning.evaluering}</p>` : ''}
+                        
+                        ${caseData.cdt_træning.feedback ? `
+                            <div style="margin-top: 15px;">
+                                <strong>Feedback:</strong>
+                                ${caseData.cdt_træning.feedback.effektiv ? `<p>✅ <strong>Effektiv:</strong> ${caseData.cdt_træning.feedback.effektiv}</p>` : ''}
+                                ${caseData.cdt_træning.feedback.delvis ? `<p>⚠️ <strong>Delvis:</strong> ${caseData.cdt_træning.feedback.delvis}</p>` : ''}
+                                ${caseData.cdt_træning.feedback.problematisk ? `<p>❌ <strong>Problematisk:</strong> ${caseData.cdt_træning.feedback.problematisk}</p>` : ''}
+                            </div>
+                        ` : ''}
+                    </div>
+                ` : ''}
+            `;
+
+            modalBody.innerHTML = html;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('caseModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('caseModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Filter handlers
+        document.getElementById('fileSelect').addEventListener('change', filterCases);
+        document.getElementById('diagnosisFilter').addEventListener('change', filterCases);
+
+        async function filterCases() {
+            const selectedFile = document.getElementById('fileSelect').value;
+            const selectedDiagnosis = document.getElementById('diagnosisFilter').value;
+
+            let filtered = allCases;
+
+            // Filter by file
+            if (selectedFile) {
+                try {
+                    const response = await fetch(`${API_BASE}/cases?file=${selectedFile}`);
+                    const result = await response.json();
+                    
+                    if (!result.success) {
+                        throw new Error(result.error || 'Kunne ikke hente fil');
+                    }
+                    
+                    filtered = result.data.cases || [];
+                    console.log(`✅ Filtered by file: ${filtered.length} cases`);
+                } catch (error) {
+                    showError('Kunne ikke indlæse fil: ' + error.message);
+                    return;
+                }
+            }
+
+            // Filter by diagnosis
+            if (selectedDiagnosis) {
+                filtered = filtered.filter(c => 
+                    c.relevante_diagnoser && c.relevante_diagnoser.includes(selectedDiagnosis)
+                );
+                console.log(`✅ Filtered by diagnosis: ${filtered.length} cases`);
+            }
+
+            displayCases(filtered);
+        }
+
+        function showError(message) {
+            const content = document.getElementById('content');
+            content.innerHTML = `<div class="error">❌ ${message}</div>`;
+        }
+
+        // Initialize
+        loadInitialData();
+    </script>
+</body>
+</html>
