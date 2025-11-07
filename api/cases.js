@@ -4,9 +4,19 @@ import path from "path";
 export default async function handler(req, res) {
   try {
     const { file } = req.query;
-    const dataDir = path.join(process.cwd(), "data", "cases");
 
-    // Find alle JSON-filer i /data/cases/
+    // 🔹 NY sti – matcher din nye struktur
+    const dataDir = path.join(process.cwd(), "data", "cases_ORIGINAL_ARCHIVE");
+
+    // Tjek at mappen eksisterer
+    if (!fs.existsSync(dataDir)) {
+      return res.status(404).json({
+        success: false,
+        error: `Mappe ikke fundet: ${dataDir}`
+      });
+    }
+
+    // Find alle JSON-filer i mappen
     const files = fs.readdirSync(dataDir).filter(f => f.endsWith(".json"));
 
     // Hjælpefunktion: indlæs og parse JSON-fil
@@ -18,17 +28,13 @@ export default async function handler(req, res) {
         const raw = fs.readFileSync(filePath, "utf8");
         const parsed = JSON.parse(raw);
 
-        // Hvis filen ER et array, pak den ind som { cases: [...] }
-        if (Array.isArray(parsed)) {
-          return { cases: parsed };
-        }
+        // Hvis filen er et array → pak den som { cases: [...] }
+        if (Array.isArray(parsed)) return { cases: parsed };
 
-        // Hvis den har et felt "cases", brug det direkte
-        if (parsed.cases) {
-          return parsed;
-        }
+        // Hvis der allerede findes "cases" → brug direkte
+        if (parsed.cases) return parsed;
 
-        // Ellers returner tomt fallback
+        // Ellers returnér tom struktur
         return { cases: [] };
       } catch (error) {
         console.error("❌ Parsefejl i", filename, error);
@@ -36,7 +42,7 @@ export default async function handler(req, res) {
       }
     };
 
-    // 🧠 Saml alle cases (brugt både ved oversigt og all)
+    // Saml alle cases på tværs af filer
     const collectAllCases = () => {
       let all = [];
       for (const f of files) {
@@ -46,7 +52,7 @@ export default async function handler(req, res) {
       return all;
     };
 
-    // 🔹 Hvis ?file=all → saml alle filer
+    // 🔸 Hvis ?file=all → returnér alt
     if (file === "all") {
       const combined = collectAllCases();
       const result = { cases: combined, source_files: files };
@@ -56,7 +62,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // 🔹 Hvis ?file=<specifik>
+    // 🔸 Hvis ?file=<specifik>
     if (file && files.includes(file)) {
       const content = loadFile(file);
       return res.status(200).json({
@@ -65,7 +71,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // 🔹 Standard: hent alt (oversigt + cases)
+    // 🔸 Standard: hent alt
     const combined = collectAllCases();
     const overview = { cases: combined, source_files: files };
 
