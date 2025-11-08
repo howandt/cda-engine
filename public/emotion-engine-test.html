@@ -158,6 +158,41 @@
   background: linear-gradient(135deg, #43a047 0%, #00c853 100%);
   box-shadow: 0 6px 15px rgba(0, 200, 83, 0.35);
 }
+
+/* 🎯 Emotion Engine Result Box */
+.result-box {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  min-height: 180px;           /* Ens højde, stabil visning */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Tilføj blød hover-effekt på desktop */
+.result-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Titel og tekst */
+.result-box h3 {
+  color: #2e7d32;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.result-box p {
+  color: #333;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
     </style>
 </head>
 <body>
