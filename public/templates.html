@@ -97,33 +97,39 @@
         }
 
         .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
 
-        .filter-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+/* Alle knapper bliver ens i størrelse og stil */
+.filter-buttons .filter-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 140px; /* Ens bredde */
+  height: 50px;     /* Ens højde */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
 
-        .filter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(118, 75, 162, 0.4);
-        }
-
-        .filter-btn.active {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            box-shadow: 0 4px 12px rgba(118, 75, 162, 0.6);
-        }
+.filter-buttons .filter-btn:hover,
+.filter-buttons .filter-btn.active {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3);
+}
 
         .stats {
             display: flex;
