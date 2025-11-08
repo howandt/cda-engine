@@ -119,19 +119,42 @@
             border-left: 5px solid #0d6efd;
         }
         .presets {
-            margin: 20px 0;
-        }
-        .preset-btn {
-            background: #6c757d;
-            padding: 10px 15px;
-            margin: 5px;
-            display: inline-block;
-            font-size: 14px;
-            width: auto;
-        }
-        .preset-btn:hover {
-            background: #5a6268;
-        }
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.presets h3 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+/* Ens, pæne grønne knapper */
+.preset-btn {
+  background: linear-gradient(135deg, #00c853 0%, #43a047 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  min-width: 160px;   /* Ens bredde */
+  height: 55px;       /* Ens højde */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 200, 83, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
+  white-space: nowrap; /* Ingen linjeskift */
+}
+
+.preset-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #43a047 0%, #00c853 100%);
+  box-shadow: 0 6px 15px rgba(0, 200, 83, 0.35);
+}
     </style>
 </head>
 <body>
