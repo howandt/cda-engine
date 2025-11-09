@@ -8,6 +8,33 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
+    .floating-back {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.2s;
+  display: none; /* skjules som standard */
+  z-index: 1000;
+}
+.floating-back:hover {
+  background: #1d4ed8;
+}
+@media (max-width: 768px) {
+  .floating-back {
+    bottom: 15px;
+    right: 15px;
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}
     body {
       font-family: "Segoe UI", system-ui, sans-serif;
       background: #f4f6f8;
@@ -195,20 +222,41 @@ activeTitle.style.display = "block";
 activeTitle.textContent = file.title || file.id;
 
 content.innerHTML = marked.parse(text);
-content.scrollIntoView({ behavior: "smooth" });
+          content.scrollIntoView({ behavior: "smooth" });
 
-          } catch (err) {
-            content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
-          }
-        };
-        list.appendChild(li);
-      });
-    } catch (err) {
-      content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
-    }
+          // --- Vis den flydende tilbage-knap, når case er åben ---
+          const backButton = document.getElementById("backButton");
+          if (backButton) backButton.style.display = "block";
+
+        } catch (err) {
+          content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
+        }
+      };
+      list.appendChild(li);
+    });
+  } catch (err) {
+    content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
+  }
+
+  // --- Flydende tilbage-knap funktionalitet ---
+  const backButton = document.getElementById("backButton");
+  if (backButton) {
+    backButton.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      backButton.style.display = "none";
+      content.innerHTML = "<em>🔍 Vælg en case for at se dens indhold her.</em>";
+
+      const activeTitle = document.getElementById("activeTitle");
+      if (activeTitle) activeTitle.style.display = "none";
+
+      const breadcrumb = document.getElementById("breadcrumb");
+      if (breadcrumb) breadcrumb.style.display = "none";
+    };
   }
 
   loadCases();
 </script>
+<!-- Flydende tilbage-knap -->
+<button id="backButton" class="floating-back">← Tilbage</button>
 </body>
 </html>
