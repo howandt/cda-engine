@@ -125,30 +125,32 @@
     }
 
     .status-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin-top: 20px;
-    }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
 
-    .status-card {
-      background: white;
-      padding: 12px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+.status-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
-    .status-card h4 {
-      font-size: 0.95rem;
-      color: #667eea;
-      margin-bottom: 5px;
-    }
+.status-card .number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 4px;
+}
 
-    .status-card p {
-      font-size: 0.9rem;
-      color: #333;
-    }
+.status-card .label {
+  font-size: 0.95rem;
+  color: #333;
+  white-space: nowrap;
+}
 
     .cdt-section {
       background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
@@ -264,43 +266,36 @@
 
   <div class="status-grid">
     <div class="status-card">
-      <h4>API Endpoints</h4>
-      <p>9</p>
+      <div class="number">9</div>
+      <div class="label">API'er</div>
     </div>
-
     <div class="status-card">
-      <h4>Diagnoser i systemet</h4>
-      <p>15</p>
+      <div class="number">15</div>
+      <div class="label">Diagnoser</div>
     </div>
-
     <div class="status-card">
-      <h4>Tilgængelige Templates</h4>
-      <p>12</p>
+      <div class="number">12</div>
+      <div class="label">Templates</div>
     </div>
-
     <div class="status-card">
-      <h4>Aktive Cases</h4>
-      <p>30+</p>
+      <div class="number">30+</div>
+      <div class="label">Cases</div>
     </div>
-
     <div class="status-card">
-      <h4>PBL Projekter</h4>
-      <p>17</p>
+      <div class="number">17</div>
+      <div class="label">PBL Projekter</div>
     </div>
-
     <div class="status-card">
-      <h4>Rollespil Scenarier</h4>
-      <p>8</p>
+      <div class="number">8</div>
+      <div class="label">Rollespil</div>
     </div>
-
     <div class="status-card">
-      <h4>Quiz Spørgsmål</h4>
-      <p>24</p>
+      <div class="number">24</div>
+      <div class="label">Quiz</div>
     </div>
-
     <div class="status-card">
-      <h4>Test-Sider</h4>
-      <p>6</p>
+      <div class="number">6</div>
+      <div class="label">Test-sider</div>
     </div>
   </div>
 </div>
