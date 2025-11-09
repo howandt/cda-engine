@@ -186,7 +186,11 @@
             const res = await fetch("cases/" + file.file);
             if (!res.ok) throw new Error("Kunne ikke hente " + file.file);
             const text = await res.text();
+
+            // 📘 Indsæt markdown og scroll ned til indholdet
             content.innerHTML = marked.parse(text);
+            content.scrollIntoView({ behavior: "smooth" });
+
           } catch (err) {
             content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
           }
