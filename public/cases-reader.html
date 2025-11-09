@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CDA Case Reader</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: system-ui, sans-serif;
@@ -13,47 +12,42 @@
       padding: 2rem;
       margin: 0;
     }
-
     header {
       text-align: center;
       margin-bottom: 2rem;
     }
-
     h1 {
       font-size: 1.8rem;
       margin-bottom: 0.5rem;
     }
-
-    .categories {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 2rem;
+      max-width: 500px;
     }
-
-    .category {
+    li {
       background: #fff;
-      border: 2px dashed #d0d7de;
-      border-radius: 12px;
-      padding: 1.2rem 1.5rem;
-      min-width: 220px;
-      text-align: center;
-      color: #555;
-      cursor: default;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin: 0.4rem 0;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      transition: 0.2s;
     }
-
-    .placeholder {
-      text-align: center;
-      color: #777;
+    li:hover {
+      background: #e9f2ff;
+    }
+    #fileContent {
       background: #fff;
       border-radius: 12px;
-      padding: 2rem;
-      max-width: 600px;
+      padding: 1.5rem;
+      max-width: 800px;
       margin: 0 auto;
       border: 1px solid #ddd;
+      white-space: pre-wrap;
+      text-align: left;
     }
-
     a.back {
       display: inline-block;
       margin-top: 2rem;
@@ -61,7 +55,6 @@
       color: #007bff;
       font-weight: 500;
     }
-
     a.back:hover {
       text-decoration: underline;
     }
@@ -70,20 +63,52 @@
 <body>
   <header>
     <h1>📚 Cases & Materiale</h1>
-    <p>Her vil du snart kunne se CDA's cases og materialer opdelt i kategorier.</p>
+    <p>Klik på en case for at læse dens indhold.</p>
   </header>
 
-  <section class="categories">
-    <div class="category">🩺 Diagnoser</div>
-    <div class="category">🧒 Børnecases</div>
-    <div class="category">👨‍🏫 Lærerforløb</div>
-    <div class="category">📘 Skabeloner</div>
-  </section>
+  <ul id="fileList"></ul>
 
-  <div class="placeholder">
-    <p><em>🔧 Placeholder: Her indlæses .md-filer i næste version.</em></p>
+  <div id="fileContent">
+    <em>🔍 Vælg en case fra listen for at se indholdet her.</em>
   </div>
 
   <a href="index.html" class="back">← Tilbage til forside</a>
+
+  <script>
+    const files = [
+      "CDA_BØRNEHAVE_KOMPLET.md",
+      "CDA_Cases_Adfærd.md",
+      "CDA_Cases_ADHD.md",
+      "CDA_Cases_ADHD_Autisme.md",
+      "CDA_Cases_Angst.md",
+      "CDA_Cases_Autisme.md",
+      "CDA_Cases_OBSERVATION.md",
+      "CDA_Cases_Social.md",
+      "CDA_Cases_INDEKS.md",
+      "CDA_Cases_OVERSIGT.md",
+      "README_CASEBANK.md"
+    ];
+
+    const fileList = document.getElementById("fileList");
+    const fileContent = document.getElementById("fileContent");
+
+    // Opret liste med klikfunktioner
+    files.forEach(file => {
+      const li = document.createElement("li");
+      li.textContent = file.replace(".md", "");
+      li.onclick = async () => {
+        fileContent.innerHTML = "<em>⏳ Henter " + file + "...</em>";
+        try {
+          const res = await fetch(file);
+          if (!res.ok) throw new Error("Kunne ikke hente " + file);
+          const text = await res.text();
+          fileContent.textContent = text;
+        } catch (err) {
+          fileContent.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
+        }
+      };
+      fileList.appendChild(li);
+    });
+  </script>
 </body>
 </html>
