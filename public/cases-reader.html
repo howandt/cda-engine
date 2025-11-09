@@ -99,7 +99,7 @@
       li.onclick = async () => {
         fileContent.innerHTML = "<em>⏳ Henter " + file + "...</em>";
         try {
-          const res = await fetch(file);
+          const res = await fetch("cases/" + file);
           if (!res.ok) throw new Error("Kunne ikke hente " + file);
           const text = await res.text();
           fileContent.textContent = text;
