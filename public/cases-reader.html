@@ -61,35 +61,67 @@
       transform: translateY(-2px);
     }
     #fileContent {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-      min-height: 200px;
-      text-align: left;
-    }
-    #fileContent h1, #fileContent h2, #fileContent h3 {
-      color: #2563eb;
-      margin-top: 1.5rem;
-    }
-    #fileContent ul {
-      margin-left: 1.2rem;
-    }
-    .back {
-      display: inline-block;
-      text-align: center;
-      padding: 0.75rem 1.2rem;
-      margin: 2rem auto;
-      background: #2563eb;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-    .back:hover {
-      background: #1d4ed8;
-    }
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  min-height: 200px;
+  text-align: left;
+  overflow-x: auto;          /* Tillader scroll kun hvis nødvendigt */
+  white-space: normal;       /* Sikrer at tekst brydes korrekt */
+  word-wrap: break-word;     /* Bryder meget lange ord eller URLs */
+  line-height: 1.6;          /* Giver luft i markdown-tekst */
+}
+
+#fileContent h1, 
+#fileContent h2, 
+#fileContent h3 {
+  color: #2563eb;
+  margin-top: 1.5rem;
+  line-height: 1.3;
+}
+
+#fileContent ul, 
+#fileContent ol {
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+#fileContent pre {
+  background: #f3f4f6;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;         /* Scroll kun i kodeblokke */
+}
+
+#fileContent table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+#fileContent th, 
+#fileContent td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  text-align: left;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+/* Mobiljusteringer */
+@media (max-width: 600px) {
+  #fileContent {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  #fileContent table {
+    display: block;
+    overflow-x: auto;
+  }
+}
   </style>
 </head>
 <body>
