@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CDA Case Reader</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <style>
     body {
       font-family: "Segoe UI", system-ui, sans-serif;
@@ -17,26 +18,32 @@
       flex-direction: column;
       min-height: 100vh;
     }
+
     header {
       text-align: center;
       padding: 2rem 1rem;
       background: white;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
+
     h1 {
       font-size: 1.8rem;
       margin-bottom: 0.5rem;
     }
+
     p.subtitle {
       color: #6b7280;
       margin: 0;
     }
+
     main {
       flex: 1;
       padding: 2rem 1rem;
       max-width: 900px;
       margin: 0 auto;
     }
+
+    /* --- CASE LISTE --- */
     ul#fileList {
       list-style: none;
       padding: 0;
@@ -45,6 +52,7 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 0.8rem;
     }
+
     ul#fileList li {
       background: white;
       border-radius: 12px;
@@ -55,43 +63,94 @@
       cursor: pointer;
       text-align: center;
     }
+
     ul#fileList li:hover {
       background: #f0f7ff;
       border-color: #bfdbfe;
       transform: translateY(-2px);
     }
+
+    /* --- CASE INDHOLD --- */
     #fileContent {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-  min-height: 200px;
-  text-align: left;
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      min-height: 200px;
+      text-align: left;
+      overflow-x: auto;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: break-word;
+      line-height: 1.6;
+    }
 
-  /* --- disse tre linjer er nøglen --- */
-  overflow-x: hidden;            /* fjerner horisontal scroll */
-  word-break: break-all;         /* bryder ord midt i linjen hvis nødvendigt */
-  overflow-wrap: anywhere;       /* tillader linjebrud hvor som helst */
-}
+    #fileContent h1, #fileContent h2, #fileContent h3 {
+      color: #2563eb;
+      margin-top: 1.5rem;
+      line-height: 1.3;
+    }
 
-#fileContent pre {
-  background: #f3f4f6;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;              /* kodeblokke må gerne scrolles vandret */
-  white-space: pre-wrap;         /* sikrer wrapping i kode */
-  word-break: break-all;
-}
+    #fileContent ul, #fileContent ol {
+      margin-left: 1.5rem;
+      padding-left: 0.5rem;
+    }
 
-@media (max-width: 600px) {
-  #fileContent {
-    padding: 1rem;
-    font-size: 0.95rem;
-  }
-}
+    #fileContent pre {
+      background: #f3f4f6;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    #fileContent table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    #fileContent th, #fileContent td {
+      border: 1px solid #e5e7eb;
+      padding: 0.5rem;
+      text-align: left;
+      vertical-align: top;
+      word-break: break-word;
+    }
+
+    /* --- TILBAGEKNAP --- */
+    .back {
+      display: inline-block;
+      text-align: center;
+      padding: 0.75rem 1.2rem;
+      margin: 2rem auto;
+      background: #2563eb;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .back:hover {
+      background: #1d4ed8;
+    }
+
+    @media (max-width: 600px) {
+      #fileContent {
+        padding: 1rem;
+        font-size: 0.95rem;
+      }
+
+      ul#fileList {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
     <h1>📚 Cases & Materiale</h1>
@@ -135,7 +194,6 @@
           const res = await fetch("cases/" + file);
           if (!res.ok) throw new Error("Kunne ikke hente " + file);
           const text = await res.text();
-          // Render markdown med marked.js
           content.innerHTML = marked.parse(text);
         } catch (err) {
           content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
@@ -143,47 +201,6 @@
       };
       list.appendChild(li);
     });
-    #fileContent * {
-  max-width: 100% !important;
-  white-space: normal !important;
-  word-break: break-word !important;
-  overflow-wrap: anywhere !important;
-}
   </script>
-  <script>
-  const files = [
-    "CDA_BØRNEHAVE_KOMPLET.md",
-    "CDA_Cases_Adfærd.md",
-    "CDA_Cases_ADHD.md",
-    "CDA_Cases_ADHD_Autisme.md",
-    "CDA_Cases_Angst.md",
-    "CDA_Cases_Autisme.md",
-    "CDA_Cases_OBSERVATION.md",
-    "CDA_Cases_Social.md",
-    "navigation/CDA_Cases_INDEKS.md",
-    "navigation/CDA_Cases_OVERSIGT.md",
-    "navigation/README_CASEBANK.md"
-  ];
-
-  const list = document.getElementById("fileList");
-  const content = document.getElementById("fileContent");
-
-  files.forEach(file => {
-    const li = document.createElement("li");
-    li.textContent = file.replace("navigation/", "").replace(".md", "");
-    li.onclick = async () => {
-      content.innerHTML = "<em>⏳ Henter " + file + "...</em>";
-      try {
-        const res = await fetch("cases/" + file);
-        if (!res.ok) throw new Error("Kunne ikke hente " + file);
-        const text = await res.text();
-        content.innerHTML = marked.parse(text);
-      } catch (err) {
-        content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
-      }
-    };
-    list.appendChild(li);
-  });
-</script>
 </body>
 </html>
