@@ -160,9 +160,10 @@
   <main>
     <ul id="fileList"></ul>
 
-    <div id="fileContent">
-      <em>🔍 Vælg en case for at se dens indhold her.</em>
-    </div>
+    <div id="activeTitle" style="display:none; font-size:1.4rem; font-weight:600; margin-bottom:1rem; color:#1d4ed8;"></div>
+<div id="fileContent">
+  <em>🔍 Vælg en case for at se dens indhold her.</em>
+</div>
 
     <a href="index.html" class="back">← Tilbage til forside</a>
   </main>
@@ -188,8 +189,13 @@
             const text = await res.text();
 
             // 📘 Indsæt markdown og scroll ned til indholdet
-            content.innerHTML = marked.parse(text);
-            content.scrollIntoView({ behavior: "smooth" });
+            // Sæt titlen øverst og vis indholdet
+const activeTitle = document.getElementById("activeTitle");
+activeTitle.style.display = "block";
+activeTitle.textContent = file.title || file.id;
+
+content.innerHTML = marked.parse(text);
+content.scrollIntoView({ behavior: "smooth" });
 
           } catch (err) {
             content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
