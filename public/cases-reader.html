@@ -216,27 +216,27 @@
             const text = await res.text();
 
             // 📘 Indsæt markdown og scroll ned til indholdet
-            // Sæt titlen øverst og vis indholdet
-const activeTitle = document.getElementById("activeTitle");
-activeTitle.style.display = "block";
-activeTitle.textContent = file.title || file.id;
+            const activeTitle = document.getElementById("activeTitle");
+            activeTitle.style.display = "block";
+            activeTitle.textContent = file.title || file.id;
 
-content.innerHTML = marked.parse(text);
-          content.scrollIntoView({ behavior: "smooth" });
+            content.innerHTML = marked.parse(text);
+            content.scrollIntoView({ behavior: "smooth" });
 
-          // --- Vis den flydende tilbage-knap, når case er åben ---
-          const backButton = document.getElementById("backButton");
-          if (backButton) backButton.style.display = "block";
+            // --- Vis den flydende tilbage-knap, når case er åben ---
+            const backButton = document.getElementById("backButton");
+            if (backButton) backButton.style.display = "block";
 
-        } catch (err) {
-          content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
-        }
-      };
-      list.appendChild(li);
-    });
-  } catch (err) {
-    content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
-  }
+          } catch (err) {
+            content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
+          }
+        };
+        list.appendChild(li);
+      });
+    } catch (err) {
+      content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
+    }
+  } // 👈 Denne manglede!
 
   // --- Flydende tilbage-knap funktionalitet ---
   const backButton = document.getElementById("backButton");
