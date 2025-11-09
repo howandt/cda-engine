@@ -4,9 +4,86 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CDA Case Reader</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f6f8fa;
+      color: #222;
+      padding: 2rem;
+      margin: 0;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .category {
+      background: #fff;
+      border: 2px dashed #d0d7de;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      min-width: 220px;
+      text-align: center;
+      color: #555;
+      cursor: default;
+    }
+
+    .placeholder {
+      text-align: center;
+      color: #777;
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      border: 1px solid #ddd;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: 500;
+    }
+
+    a.back:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body style="font-family:sans-serif;padding:20px;">
-  <h1>📚 CDA Case- og Materialelæser</h1>
-  <p>Her vil du senere kunne se indholdet af dine .md-filer opdelt i kategorier.</p>
+<body>
+  <header>
+    <h1>📚 Cases & Materiale</h1>
+    <p>Her vil du snart kunne se CDA's cases og materialer opdelt i kategorier.</p>
+  </header>
+
+  <section class="categories">
+    <div class="category">🩺 Diagnoser</div>
+    <div class="category">🧒 Børnecases</div>
+    <div class="category">👨‍🏫 Lærerforløb</div>
+    <div class="category">📘 Skabeloner</div>
+  </section>
+
+  <div class="placeholder">
+    <p><em>🔧 Placeholder: Her indlæses .md-filer i næste version.</em></p>
+  </div>
+
+  <a href="index.html" class="back">← Tilbage til forside</a>
 </body>
 </html>
