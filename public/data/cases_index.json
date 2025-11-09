@@ -1,0 +1,50 @@
+[
+  {
+    "id": "CDA_BØRNEHAVE_KOMPLET",
+    "file": "CDA_BØRNEHAVE_KOMPLET.md",
+    "type": "case",
+    "title": "🧸 CDA BØRNEHAVE CASES – Tidlige Varselstegn og Støtte (3-6 år)"
+  },
+  {
+    "id": "CDA_Cases_Adfærd",
+    "file": "CDA_Cases_Adfærd.md",
+    "type": "case",
+    "title": "Adfærds Cases – Modstand, Konflikter og Samarbejde"
+  },
+  {
+    "id": "CDA_Cases_ADHD",
+    "file": "CDA_Cases_ADHD.md",
+    "type": "diagnosis",
+    "title": "ADHD Cases – Opmærksomhed, Impulsivitet og Hyperaktivitet"
+  },
+  {
+    "id": "CDA_Cases_ADHD_Autisme",
+    "file": "CDA_Cases_ADHD_Autisme.md",
+    "type": "diagnosis",
+    "title": "ADHD + Autisme Cases – Dobbeltdiagnoser og Komplekse Behov"
+  },
+  {
+    "id": "CDA_Cases_Angst",
+    "file": "CDA_Cases_Angst.md",
+    "type": "diagnosis",
+    "title": "Angst Cases – Bekymringer, Frygt og Tryghed"
+  },
+  {
+    "id": "CDA_Cases_Autisme",
+    "file": "CDA_Cases_Autisme.md",
+    "type": "diagnosis",
+    "title": "Autisme Cases – Kommunikation, Sanser og Sociale Forhold"
+  },
+  {
+    "id": "CDA_Cases_OBSERVATION",
+    "file": "CDA_Cases_OBSERVATION.md",
+    "type": "case",
+    "title": "🔍 CDA OBSERVATION CASES – Når der endnu ikke er en diagnose"
+  },
+  {
+    "id": "CDA_Cases_Social",
+    "file": "CDA_Cases_Social.md",
+    "type": "case",
+    "title": "Sociale Cases – Venskaber, Mobning og Relationer (inkl. Børnehave)"
+  }
+]

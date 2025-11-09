@@ -168,39 +168,37 @@
   </main>
 
   <script>
-    const files = [
-      "CDA_BØRNEHAVE_KOMPLET.md",
-      "CDA_Cases_Adfærd.md",
-      "CDA_Cases_ADHD.md",
-      "CDA_Cases_ADHD_Autisme.md",
-      "CDA_Cases_Angst.md",
-      "CDA_Cases_Autisme.md",
-      "CDA_Cases_OBSERVATION.md",
-      "CDA_Cases_Social.md",
-      "navigation/CDA_Cases_INDEKS.md",
-      "navigation/CDA_Cases_OVERSIGT.md",
-      "navigation/README_CASEBANK.md"
-    ];
+  const list = document.getElementById("fileList");
+  const content = document.getElementById("fileContent");
 
-    const list = document.getElementById("fileList");
-    const content = document.getElementById("fileContent");
+  async function loadCases() {
+    try {
+      const res = await fetch("data/cases_index.json");
+      if (!res.ok) throw new Error("Kunne ikke hente cases_index.json");
+      const files = await res.json();
 
-    files.forEach(file => {
-      const li = document.createElement("li");
-      li.textContent = file.replace("navigation/", "").replace(".md", "");
-      li.onclick = async () => {
-        content.innerHTML = "<em>⏳ Henter " + file + "...</em>";
-        try {
-          const res = await fetch("cases/" + file);
-          if (!res.ok) throw new Error("Kunne ikke hente " + file);
-          const text = await res.text();
-          content.innerHTML = marked.parse(text);
-        } catch (err) {
-          content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
-        }
-      };
-      list.appendChild(li);
-    });
-  </script>
+      files.forEach(file => {
+        const li = document.createElement("li");
+        li.textContent = file.title || file.id;
+        li.onclick = async () => {
+          content.innerHTML = "<em>⏳ Henter " + file.file + "...</em>";
+          try {
+            const res = await fetch("cases/" + file.file);
+            if (!res.ok) throw new Error("Kunne ikke hente " + file.file);
+            const text = await res.text();
+            content.innerHTML = marked.parse(text);
+          } catch (err) {
+            content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
+          }
+        };
+        list.appendChild(li);
+      });
+    } catch (err) {
+      content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
+    }
+  }
+
+  loadCases();
+</script>
 </body>
 </html>
