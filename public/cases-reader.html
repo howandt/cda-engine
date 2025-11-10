@@ -242,18 +242,19 @@
 const backButton = document.getElementById("backButton");
 if (backButton) {
   backButton.onclick = () => {
-    // Find det element der faktisk scroller
-    const scrollTarget = document.scrollingElement || document.documentElement || document.body;
-    scrollTarget.scrollTo({ top: 0, behavior: "smooth" });
+    // Scroll først – derefter nulstil
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
-    backButton.style.display = "none";
-    content.innerHTML = "<em>🔍 Vælg en case for at se dens indhold her.</em>";
+    setTimeout(() => {
+      backButton.style.display = "none";
+      content.innerHTML = "<em>🔍 Vælg en case for at se dens indhold her.</em>";
 
-    const activeTitle = document.getElementById("activeTitle");
-    if (activeTitle) activeTitle.style.display = "none";
+      const activeTitle = document.getElementById("activeTitle");
+      if (activeTitle) activeTitle.style.display = "none";
 
-    const breadcrumb = document.getElementById("breadcrumb");
-    if (breadcrumb) breadcrumb.style.display = "none";
+      const breadcrumb = document.getElementById("breadcrumb");
+      if (breadcrumb) breadcrumb.style.display = "none";
+    }, 500); // vent 0.5 sekund, så scroll kan ske først
   };
 }
 
