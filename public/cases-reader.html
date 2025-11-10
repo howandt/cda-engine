@@ -239,23 +239,26 @@
   } // 👈 Denne manglede!
 
   // --- Flydende tilbage-knap funktionalitet ---
-  const backButton = document.getElementById("backButton");
-  if (backButton) {
-    backButton.onclick = () => {
-  document.querySelector('html, body').scrollTo({ top: 0, behavior: "smooth" });
-      document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-      backButton.style.display = "none";
-      content.innerHTML = "<em>🔍 Vælg en case for at se dens indhold her.</em>";
+const backButton = document.getElementById("backButton");
+if (backButton) {
+  backButton.onclick = () => {
+    // Scroll helt til toppen – virker i alle browsere
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 
-      const activeTitle = document.getElementById("activeTitle");
-      if (activeTitle) activeTitle.style.display = "none";
+    backButton.style.display = "none";
+    content.innerHTML = "<em>🔍 Vælg en case for at se dens indhold her.</em>";
 
-      const breadcrumb = document.getElementById("breadcrumb");
-      if (breadcrumb) breadcrumb.style.display = "none";
-    };
-  }
+    const activeTitle = document.getElementById("activeTitle");
+    if (activeTitle) activeTitle.style.display = "none";
 
-  loadCases();
+    const breadcrumb = document.getElementById("breadcrumb");
+    if (breadcrumb) breadcrumb.style.display = "none";
+  };
+}
+
+loadCases();
 </script>
 <!-- Flydende tilbage-knap -->
 <button id="backButton" class="floating-back">← Tilbage</button>
