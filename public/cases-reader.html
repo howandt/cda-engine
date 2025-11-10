@@ -237,15 +237,12 @@
       content.innerHTML = "<strong>⚠️ Fejl:</strong> " + err.message;
     }
   } // 👈 Denne manglede!
-
   // --- Flydende tilbage-knap funktionalitet ---
-const backButton = document.getElementById("backButton");
-if (backButton) {
-  backButton.onclick = () => {
-    // Scroll først – derefter nulstil
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const backButton = document.getElementById("backButton");
 
-    setTimeout(() => {
+  if (backButton) {
+    backButton.onclick = () => {
+      // Skjul og nulstil indholdet
       backButton.style.display = "none";
       content.innerHTML = "<em>🔍 Vælg en case for at se dens indhold her.</em>";
 
@@ -254,12 +251,17 @@ if (backButton) {
 
       const breadcrumb = document.getElementById("breadcrumb");
       if (breadcrumb) breadcrumb.style.display = "none";
-    }, 500); // vent 0.5 sekund, så scroll kan ske først
-  };
-}
 
-loadCases();
+      // Scroll EFTER layout er opdateret
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 100);
+    };
+  }
+
+  loadCases();
 </script>
+
 <!-- Flydende tilbage-knap -->
 <button id="backButton" class="floating-back">← Tilbage</button>
 </body>
