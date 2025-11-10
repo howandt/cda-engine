@@ -242,6 +242,7 @@
   const backButton = document.getElementById("backButton");
   if (backButton) {
     backButton.onclick = () => {
+  document.querySelector('html, body').scrollTo({ top: 0, behavior: "smooth" });
       document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
       backButton.style.display = "none";
       content.innerHTML = "<em>🔍 Vælg en case for at se dens indhold her.</em>";
