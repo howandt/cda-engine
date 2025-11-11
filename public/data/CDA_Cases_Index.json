@@ -1,0 +1,1449 @@
+[
+  {
+    "id": "12",
+    "title": "Mia 6 år – sanseudfordringer hos frisøren",
+    "age": 6,
+    "diagnoses": [
+      "Autisme"
+    ],
+    "contexts": [
+      "Fagfolk"
+    ],
+    "theme": "Sanser, frisør, klipning",
+    "problem": "Mia oplever stærkt ubehag ved frisørbesøg, især pga. lyde, berøring og materialer som klippekappe.",
+    "childVoice": "Mia 6 år – sanseudfordringer hos frisøren",
+    "mistakes": "* Tvinger barnet til standard rutine uden hensyn til sensorik * Afviser behovet for pauser eller forberedelse",
+    "solution": "* Giv mulighed for at undgå ubehagelige materialer * Brug genkendelige redskaber og visuel forberedelse * Indfør pauser og valg",
+    "tools": "* Klip uden kappe, evt. eget tæppe * Forberedelse med billeder hjemmefra * Brug af egen børnesaks eller spejl * Aftalte håndtegn ved pausebehov"
+  },
+  {
+    "id": "13",
+    "title": "Alex 8 år – uro ved klipning",
+    "age": 8,
+    "diagnoses": [
+      "ADHD"
+    ],
+    "contexts": [
+      "Fagfolk"
+    ],
+    "theme": "Frisør, bevægelse, opmærksomhed",
+    "problem": "Alex har svært ved at sidde stille under hårklip og mister hurtigt fokus. Det gør frisørbesøget stressende for både ham og de voksne.",
+    "childVoice": "Alex 8 år – uro ved klipning",
+    "mistakes": "* Forlanger stillesiddende ro i lang tid uden strategi * Overser behovet for bevægelse og stimuli",
+    "solution": "* Brug lege eller tælleopgaver som distraktion * Beløn roligt samarbejde med ros og pauser * Planlæg korte tider og tydelige mål",
+    "tools": "* \"Klip-tæl\"-lege undervejs * Korte klippeaftaler * Ros og belønning efter små dele er gennemført * Brug af fidget eller snack i ventetid"
+  },
+  {
+    "id": "14",
+    "title": "Emma 5 år – angst for hårklip",
+    "age": 5,
+    "diagnoses": [
+      "Angst"
+    ],
+    "contexts": [
+      "Fagfolk"
+    ],
+    "theme": "Tryghed, frisør, forklaring",
+    "problem": "Emma er bange for at få klippet hår og forestiller sig smerte eller fejl. Hun trækker sig og bliver utryg ved selve situationen.",
+    "childVoice": "Emma 5 år – angst for hårklip",
+    "mistakes": "* Forklarer ikke hvad der sker * Starter uden demonstration",
+    "solution": "* Brug forklarende og legende sprog * Vis processen på en dukke først * Giv barnet kontrol og positiv ramme",
+    "tools": "* Brug af dukkefrisør * Forklar med analogier: \"dansende sakse\" * Tæl-strategi og vejrtrækning * Beløn mod og samarbejde bagefter"
+  },
+  {
+    "id": "15",
+    "title": "Noah 9 år – modstand mod frisørbesøg",
+    "age": 9,
+    "diagnoses": [
+      "Adfærdsudfordringer"
+    ],
+    "contexts": [
+      "Fagfolk"
+    ],
+    "theme": "Motivation, belønning, valg",
+    "problem": "Noah nægter at tage til frisør. Han protesterer højlydt og nægter samarbejde.",
+    "childVoice": "Noah 9 år – modstand mod frisørbesøg",
+    "mistakes": "* Krav uden mening eller motivation * Manglende inddragelse i beslutning",
+    "solution": "* Gør frisørbesøg til et bytte (\"Først... så...\") * Giv valgmuligheder og belønning",
+    "tools": "* Aftale: frisør + yndlingsfilm bagefter * Barnet vælger klip og tid på dagen * Forudsigelighed og overskuelighed"
+  },
+  {
+    "id": "16",
+    "title": "Sophie 11 år – generthed hos frisøren",
+    "age": 11,
+    "diagnoses": [
+      "Social angst"
+    ],
+    "contexts": [
+      "Fagfolk"
+    ],
+    "theme": "Udtryk, kropssprog, selvværd",
+    "problem": "Sophie bliver genert og usikker hos frisøren. Hun føler sig iagttaget og undgår at sige sin mening.",
+    "childVoice": "Sophie 11 år – generthed hos frisøren",
+    "mistakes": "* Tvinger barnet til at sige noget højt * Undlader at forberede barnets valg på forhånd",
+    "solution": "* Giv barnet et billede at pege på i stedet * Giv valgfrihed for verbalt eller nonverbalt svar * Forbered sammen hjemmefra",
+    "tools": "* Vælg frisørbilleder hjemme og print dem * Lav frisørkort: \"kortere i spidserne\" osv. * Brug nik/peg i stedet for at tale"
+  },
+  {
+    "id": "17",
+    "title": "Nora 10 år – kaldt navne og ekskluderet",
+    "age": 10,
+    "diagnoses": [
+      "Social sårbarhed"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Mobning, følelsesmæssig skade",
+    "problem": "Nora bliver kaldt øgenavne og systematisk udelukket fra lege og gruppesnak. Hun trækker sig mere og mere og mister troen på, at nogen vil hende.",
+    "childVoice": "Nora 10 år – kaldt navne og ekskluderet",
+    "mistakes": "* Undlader at handle, fordi det ikke er \"fysisk mobning\" * Beder Nora selv \"sige fra\" uden at klæde hende på",
+    "solution": "* Anerkend mobning som mønster, ikke enkelthændelse * Skab alliancer og voksne der griber ind tidligt * Tilbyd trygge fællesskaber hvor Nora kan blomstre",
+    "tools": "* Observation og dokumentation af mønstre * Social historie om at være med uden at præstere * Fast tryghedsgruppe i frikvarteret * Kontaktperson/rollemodel-elev"
+  },
+  {
+    "id": "18",
+    "title": "Emil 11 år – usynlig mobning og eksklusion",
+    "age": 11,
+    "diagnoses": [
+      "ASF",
+      "social angst"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Skjult mobning, klassekultur",
+    "problem": "Emil bliver systematisk ignoreret. Når han rækker hånden op, overses han. Han bliver ikke nævnt i legeaftaler, og bag hans ryg griner nogle elever, når han siger noget.",
+    "childVoice": "Emil 11 år – usynlig mobning og eksklusion",
+    "mistakes": "* Antager det er social usikkerhed og ikke andres handlinger * Ignorerer \"manglende invitation\" som passiv mobning",
+    "solution": "* Tal højt om usynlig mobning i klassen * Aktivér voksne i gruppearbejde og klassekultur * Sæt ord på mikrohandlinger (fx udeladelser, blikke)",
+    "tools": "* Klassefællesskabsdag med samarbejdsøvelser * Læreren sammensætter grupper med inkluderende fokus * Sociale kort til klasseaktiviteter: \"Spørg én, du ikke plejer\" * Trivselssamtaler med anonym input fra hele klassen"
+  },
+  {
+    "id": "19",
+    "title": "Marcus 16 år – isolation og gaming-flugt",
+    "age": 16,
+    "diagnoses": [
+      "Autisme",
+      "depression"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem",
+      "Venner"
+    ],
+    "theme": "Social tilbagetrækning, gymnasium",
+    "problem": "Marcus har trukket sig helt tilbage fra sociale situationer på gymnasiet. Han spiser frokost alene, deltager ikke i gruppeprojekter og bruger al sin fritid på gaming. Hans karakterer falder, og han overvejer at droppe ud.",
+    "childVoice": "Marcus 16 år – isolation og gaming-flugt",
+    "mistakes": "* Fokuserer kun på gaming som \"problemet\" * Ignorerer underliggende depression og sociale udfordringer * Presser ham til deltagelse uden støtte",
+    "solution": "* Anerkend gaming som en mestring i en overvældende verden * Byg broer mellem hans interesser og sociale kontakt * Arbejd systematisk med depression og autisme sammen",
+    "tools": "* Find andre elever med samme gaming-interesser * Struktureret gruppeprojekt baseret på hans faglige styrker * Psykologsamtaler der integrerer autism og depression * Gradvis eksponering for sociale situationer med støtte * Gaming-klub eller esports-aktivitet på skolen"
+  },
+  {
+    "id": "20",
+    "title": "Lea 13 år – overgang og sensory meltdowns",
+    "age": 13,
+    "diagnoses": [
+      "ADHD",
+      "autisme",
+      "angst"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Ungdomsskole, overgang, sanser",
+    "problem": "Lea er startet på ungdomsskole og oplever daglige sammenbrud. Kombinationen af nye omgivelser, mere støj, skiftende lærere og social kompleksitet sender hende i konstant alarmberedskab. Hun får \"meltdowns\" flere gange ugentligt.",
+    "childVoice": "Lea 13 år – overgang og sensory meltdowns",
+    "mistakes": "* Behandler diagnoserne hver for sig i stedet for som et samspil * Forventer hurtig tilpasning uden graduel transition * Misforstår meltdowns som \"dårlig opførsel\"",
+    "solution": "* Anerkend den triple-diagnose som kompleks kombination * Skab struktur der tager højde for alle tre udfordringer * Lav graduel eksponering med mange exit-muligheder",
+    "tools": "* Sansekort over skolen: støjniveauer, sikre zoner * Fast \"base\" hun kan trække sig til ved overstimulering * Visuel støtte til skemaer og lokaleændringer * Tryghedsperson hun kan kontakte ved kriser * Reduceret timetal i overgangsfase"
+  },
+  {
+    "id": "21",
+    "title": "Oliver 15 år – perfektionisme og panikangst",
+    "age": 15,
+    "diagnoses": [
+      "ADHD",
+      "OCD",
+      "angst"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "Eksamen, perfektionisme, stress",
+    "problem": "Oliver er fanget i en ond cirkel hvor hans ADHD gør det svært at koncentrere sig, hans OCD kræver at alt skal være perfekt, og hans angst eskalerer når han ikke kan leve op til sine egne standarder. Især omkring eksamen får han panikangst.",
+    "childVoice": "Oliver 15 år – perfektionisme og panikangst",
+    "mistakes": "* Fokuserer kun på én diagnose ad gangen * Forsøger at \"slukke\" perfektionismen i stedet for at kanalisere den * Øger presset i stedet for at reducere det",
+    "solution": "* Anerkend at alle tre diagnoser påvirker hinanden * Brug strukturerede metoder der imødekommer alle behov * Skab realistiske mål og fejlacceptance",
+    "tools": "* Pomodoro-teknik tilpasset ADHD (korte intervaller) * \"God nok\"-standarder defineret på forhånd * Angstforebyggende rutiner før eksamen * Medicinsk opfølgning på alle tre diagnoser koordineret * Eksamenslettelser baseret på den samlede problematik"
+  },
+  {
+    "id": "22",
+    "title": "Sofia 17 år – familiekonflikt og spisning",
+    "age": 17,
+    "diagnoses": [
+      "Autisme",
+      "spiseforstyrrelser"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "Familie, kontrol, mad, autonomi",
+    "problem": "Sofia har udviklet ekstrem kontrol omkring mad, hvilket skaber store konflikter i familien. Hendes autism gør at hun har behov for rutiner, men spiseforstyrrelsen har overtaget disse rutiner. Familien er splittet mellem at støtte og konfrontere.",
+    "childVoice": "Sofia 17 år – familiekonflikt og spisning",
+    "mistakes": "* Kæmper mod autisme-rutinerne i stedet for at omdirigere dem * Familien bliver splittet i \"for\" og \"imod\" strategier * Ignorerer sammenhængen mellem kontrol og autisme",
+    "solution": "* Anerkend legitime autisme-behov mens man adresserer spiseforstyrrelsen * Skab familieenhed omkring behandlingsplan * Hjælp Sofia med at finde andre områder at få kontrol over",
+    "tools": "* Madplan der respekterer autism-behov og øger variation gradvist * Familiesamtaler med spiseforstyrrelsesekspert der forstår autism * Alternative kontrolområder: musik, træning, kreativitet * Struktureret måltidsrutiner hele familien kan følge * Autisme-tilpasset kognitiv adfærdsterapi"
+  },
+  {
+    "id": "23",
+    "title": "Ethan 14 år – vold og impulsregulering",
+    "age": 14,
+    "diagnoses": [
+      "ADHD",
+      "adfærdsforstyrrelse"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "Vold, impulsivitet, konsekvenser",
+    "problem": "Ethan reagerer med fysisk aggression når han bliver frustreret eller provokeret. Hans ADHD gør at han reagerer før han tænker, og adfærdsforstyrrelsen betyder at han har svært ved at forstå eller acceptere konsekvenser. Skolen overvejer bortvisning.",
+    "childVoice": "Ethan 14 år – vold og impulsregulering",
+    "mistakes": "* Fokuserer kun på konsekvenser uden at forstå triggers * Ignorerer neurobiologiske årsager til impulsivitet * Ekskluderer i stedet for at skabe struktureret støtte",
+    "solution": "* Identificer triggers og skab forebyggende strategier * Anerkend at hans hjerne fungerer anderledes * Kombiner klare grænser med empatisk støtte",
+    "tools": "* Trigger-kortlægning: hvad sker der lige før vold? * Alternativ adfærd: fysisk udfoldelse før frustration eskalerer * Øjeblikkelig de-eskalering: trygge rum og strategier * Medicinsk udredning af ADHD-behandling * Restorative justice: genoprettelse efter konflikter"
+  },
+  {
+    "id": "24",
+    "title": "Maya 16 år – selvskade og følelsesregulering",
+    "age": 16,
+    "diagnoses": [
+      "ADHD",
+      "borderline personality traits"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem",
+      "Venner"
+    ],
+    "theme": "Selvskade, følelser, relationer",
+    "problem": "Maya bruger selvskade til at regulere intense følelser. Hendes ADHD gør følelserne endnu mere overvældende, og borderline-træk betyder at hendes relationer er intense og ustabile. Hun skifter mellem at elske og hade de samme personer.",
+    "childVoice": "Maya 16 år – selvskade og følelsesregulering",
+    "mistakes": "* Fokuserer kun på at stoppe selvskaden uden at give alternativer * Ignorerer sammenhængen mellem ADHD og følelsesregulering * Mister tålmodigheden med hendes \"op-og-ned\" adfærd",
+    "solution": "* Lær alternative følelsesreguleringsstrategier * Anerkend at hendes følelser er reelt intense, ikke \"overdrivne\" * Skab stabile relationer der kan holde til hendes udsving",
+    "tools": "* DBT-færdigheder tilpasset ADHD: korte, konkrete teknikker * Alternative til selvskade: is, elastik, intens motion * Følelsesdagbog med ADHD-venlig struktur * Stabile voksne der ikke tager hendes udsving personligt * Medicinsk behandling der tager højde for begge diagnoser"
+  },
+  {
+    "id": "A1",
+    "title": "Mia 7 år – mild læseangst og koncentrationsbesvær",
+    "age": 7,
+    "diagnoses": [
+      "ADHD (mild)",
+      "angst (specifik - læsning)"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Læseangst, opmærksomhed, selvværd",
+    "problem": "Mia får angst når hun skal læse højt og mister helt fokus. Hun fidler med pennen, kigger ud af vinduet og begynder at græde når det er hendes tur.",
+    "childVoice": "Mia 7 år – mild læseangst og koncentrationsbesvær",
+    "mistakes": "* Tvinger hende til at læse højt \"for at vænne sig til det\" * Ignorerer at angsten blokerer for ADHD-medicin og strategier * Fokuserer kun på læsefærdigheder, ikke på angst-ADHD spiralen",
+    "solution": "* Anerkend at angst og ADHD forstærker hinanden * Skab tryghed først, læsning kommer derefter * Brug ADHD-venlige angst-strategier",
+    "tools": "* **Familie Jensen:** \"Vi øvede læsning hjemme med stopuret - 2 min af gangen. Mia kunne stoppe når som helst.\" * **Lærer Anne:** \"Mia fik lov at læse for mig alene først, så klassekammerater bagefter.\" * **Mor til Mia:** \"Vi lavede 'fejl-fest' hvor vi læste forkert med vilje og grinede af det.\" * **Speciallærer:** \"Brugte fidget-bold mens hun læste - hjalp både angst og koncentration.\""
+  },
+  {
+    "id": "A2",
+    "title": "Oliver 11 år – social angst og impulsiv adfærd",
+    "age": 11,
+    "diagnoses": [
+      "ADHD (moderat)",
+      "social angst"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Social angst, impulsivitet, venskaber",
+    "problem": "Oliver vil gerne være med, men når han bliver nervøs, siger han impulsivt ting der støder andre fra sig. Jo mere de trækker sig, jo mere desperat og impulsiv bliver han.",
+    "childVoice": "Oliver 11 år – social angst og impulsiv adfærd",
+    "mistakes": "* Beder ham \"tænke sig om\" uden at hjælpe med strategier * Fokuserer kun på impulsivitet, ignorerer den underliggende angst * Straffer den impulsive adfærd uden at forstå årsagen",
+    "solution": "* Anerkend at hans impulsivitet kommer af social angst * Giv ham konkrete sociale scripts og øvemuligheder * Skab succeser i mindre grupper først",
+    "tools": "* **Far til Oliver:** \"Vi øvede 'pause-knappen' - han lærte at sige 'lige et øjeblik' i stedet for at tale impulsivt.\" * **Lærer Thomas:** \"Oliver fik en 'social buddy' de første uger - en rolig klassekammerat der hjalp ham ind i lege.\" * **Mor til Oliver:** \"Vi spillede rollespil hjemme - øvede forskellige sociale situationer.\" * **Skolesocialrådgiver:** \"Lavede 'venskabsgruppe' med 3 andre børn hvor de øvede at være sammen.\""
+  },
+  {
+    "id": "A3",
+    "title": "Emma 14 år – panikangst og totalt fokustab",
+    "age": 14,
+    "diagnoses": [
+      "ADHD (svær)",
+      "panikangst"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Panikangst, eksamen, selvværd",
+    "problem": "Emma får panikangst ved eksamen og prøver, hvilket gør hendes allerede svære ADHD endnu værre. Hun kan ikke huske noget, får fysiske symptomer og overvejer at droppe ud.",
+    "childVoice": "Emma 14 år – panikangst og totalt fokustab",
+    "mistakes": "* Øger presset for at \"motivere\" hende * Behandler ADHD og panikangst separat * Afviser hendes fysiske symptomer som \"bare nervøsitet\"",
+    "solution": "* Anerkend at panikangst kan lamme ADHD-kompensationsstrategier totalt * Arbejd med angst-forebyggelse før man tackle ADHD-udfordringer * Kombiner medicinske og pædagogiske tilgange",
+    "tools": "* **Familie Nielsen:** \"Emma fik lov at tage prøver i lille rum med pause-muligheder hver 20. minut.\" * **Lærer Maria:** \"Vi lavede 'mini-prøver' ugentligt så hun vandt tillid til sin viden gradvist.\" * **Emmas psykolog:** \"Lærte vejrtrækningsøvelser specifikt tilpasset ADHD - korte, konkrete teknikker.\" * **Mor til Emma:** \"Vi filmede Emma når hun kunne stoffet hjemme - så hun kunne se hun faktisk kunne det.\""
+  },
+  {
+    "id": "A4",
+    "title": "Marcus 9 år – generaliseret angst og hyperaktivitet",
+    "age": 9,
+    "diagnoses": [
+      "ADHD (hyperaktiv type)",
+      "generaliseret angst"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "Konstant uro, bekymringer, søvn",
+    "problem": "Marcus er konstant i bevægelse og konstant bekymret. Hans angst gør ham endnu mere rastløs, og hans hyperaktivitet gør angsten værre. Han sover dårligt og er udmattet.",
+    "childVoice": "Marcus 9 år – generaliseret angst og hyperaktivitet",
+    "mistakes": "* Forsøger at få ham til at \"slappe af\" uden at forstå ADHD * Ignorerer at hyperaktivitet kan være angst-respons * Medicin fokus uden adfærdsstrategier",
+    "solution": "* Anerkend at bevægelse kan være hans måde at håndtere angst på * Find konstruktive kanaler for både uro og bekymringer * Koordiner medicin og miljøtilpasninger",
+    "tools": "* **Familie Andersen:** \"Marcus fik trampolin i haven - 10 min hop når angsten blev for stor.\" * **Lærer Klaus:** \"Lavede 'bekymringsboks' hvor Marcus kunne skrive bekymringer ned og smide dem væk.\" * **Mor til Marcus:** \"Aftensrutine med fysisk aktivitet INDEN ro-tid - det virkede bedre end omvendt.\" * **Speciallærer:** \"Marcus blev 'bevægelsesassistent' - fik lov at rejse sig og hjælpe andre som del af undervisningen.\""
+  },
+  {
+    "id": "A5",
+    "title": "Sofia 16 år – præstationsangst og prokrastination",
+    "age": 16,
+    "diagnoses": [
+      "ADHD (inattentiv type)",
+      "præstationsangst"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Prokrastination, perfektionisme, fremtidsangst",
+    "problem": "Sofia udsætter alt fordi hun er bange for ikke at være god nok. Hendes ADHD gør det svært at komme i gang, og angsten gør det endnu sværere. Hun ender i en ond cirkel af udsættelse og selvkritik.",
+    "childVoice": "Sofia 16 år – præstationsangst og prokrastination",
+    "mistakes": "* Kalder det \"dovenskab\" i stedet for at se angst-ADHD spiralen * Øger deadline-pres i stedet for at hjælpe med opstart * Fokuserer på resultater i stedet for proces",
+    "solution": "* Anerkend at prokrastination ofte er angst + ADHD-kombination * Nedbryd opgaver så de bliver håndterbare for både angst og opmærksomhed * Fokuser på at komme i gang, ikke på at være perfekt",
+    "tools": "* **Familie Larsen:** \"Sofia skrev bare ÉT ord for at starte - så kunne hun altid stoppe igen.\" * **Studievejleder:** \"Lavede 'fejl-fest' hvor Sofia skulle lave 10 stavefejl med vilje i første udkast.\" * **Mor til Sofia:** \"Timer-teknik: 15 min arbejde, så pause - gentag. Ingen forventning om at færdiggøre.\" * **Klassekammerat:** \"Study-buddy system hvor de sad sammen og arbejdede - Sofia turde starte når anden var der.\""
+  },
+  {
+    "id": "A6",
+    "title": "Jonathan 12 år – medicin-kompliceret angst og ADHD",
+    "age": 12,
+    "diagnoses": [
+      "ADHD",
+      "angst (medicin-kompliceret)"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "Medicin-bivirkninger, balance, symptom-håndtering",
+    "problem": "Jonathans ADHD-medicin hjælper på koncentrationen men forværrer hans angst. Angst-medicin hjælper på angsten men gør ADHD-symptomerne værre. Familie og skole føler sig magtesløse.",
+    "childVoice": "Jonathan 12 år – medicin-kompliceret angst og ADHD",
+    "mistakes": "* Fokuserer kun på medicin-tilpasning uden adfærdsstrategier * Behandler diagnnoserne uafhængigt af hinanden * Giver op på medicin i stedet for at finde balance",
+    "solution": "* Anerkend kompleksiteten og brug multifacetteret tilgang * Kombiner medicin-timing med adfærdsstrategier * Involver både læge, skole og familie i koordineret plan",
+    "tools": "* **Familie Christensen:** \"Jonathan tog ADHD-medicin kun til skole, brugte angst-strategier hjemme.\" * **Lærer Susanne:** \"Lavede 'medicin-skema' så Jonathan vidste hvornår han kunne forvente hvilke udfordringer.\" * **Mor til Jonathan:** \"Timing: ADHD-medicin om morgenen, angst-øvelser om eftermiddagen når medicin aftog.\" * **Børnepsykiater:** \"Lavede 'symptom-dagbog' så vi kunne finde den rigtige balance mellem medicin og miljø.\""
+  },
+  {
+    "id": "SV1",
+    "title": "Anna 8 år – angst-baseret skolevægring",
+    "age": 8,
+    "diagnoses": [
+      "Generaliseret angst",
+      "separationsangst"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Angst, separation, tryghed",
+    "problem": "Anna kan ikke forlade hjemmet om morgenen uden at få panikangst. Hun græder, kaster op og klynger sig til mor. Efter 6 uger hjemme bliver situationen værre hver dag.",
+    "childVoice": "Anna 8 år – angst-baseret skolevægring",
+    "mistakes": "",
+    "solution": "**Graduel eksponering kombineret med trygheds-strategier:** - Start med 30 minutter på skolen uden undervisning - Fast kontaktperson der mødte Anna ved indgang - \"Mor-telefon\" hver time de første uger - Visuel plan over dagen så Anna vidste hvornår hun kom hjem - Hjemme-skole koordination om samme besked: \"Du er tryg\"",
+    "tools": ""
+  },
+  {
+    "id": "SV2",
+    "title": "Marcus 12 år – autisme og sensorisk overload",
+    "age": 12,
+    "diagnoses": [
+      "Autisme",
+      "sensoriske udfordringer"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Sanser, overstimulering, struktur",
+    "problem": "Marcus begyndte at nægte at gå i skole efter sommerferien. Den nye skole var større, højere og mere kaotisk end hans gamle. Han får \"meltdowns\" ved tanken om skolegården og kantinen.",
+    "childVoice": "Marcus 12 år – autisme og sensorisk overload",
+    "mistakes": "",
+    "solution": "**Sensorisk tilpasset skole-miljø og graduel vænning:** - Kortlægning af alle sensoriske triggers på skolen - Alternative ruter der undgik støjende områder - Fast base-lokale Marcus kunne trække sig til - Noise-cancelling høretelefoner i frikvartererne - Struktureret tidsplan med visuelle støtte - Indføring af \"pause-kort\" han kunne bruge når det blev for meget",
+    "tools": ""
+  },
+  {
+    "id": "SV3",
+    "title": "Emma 14 år – social angst og mobning-traumer",
+    "age": 14,
+    "diagnoses": [
+      "Social angst",
+      "depression (udviklet efter mobning)"
+    ],
+    "contexts": [
+      "Skole",
+      "Venner"
+    ],
+    "theme": "Mobning, tillid, sociale relationer",
+    "problem": "Emma blev mobbet intensivt i 7.-8. klasse og udviklede så svær social angst at hun ikke kan være i samme rum som andre unge. Hun har været hjemme i 4 måneder og isolerer sig totalt.",
+    "childVoice": "Emma 14 år – social angst og mobning-traumer",
+    "mistakes": "",
+    "solution": "**Trauma-informeret tilgang med tillids-genopbygning:** - Start med online-undervisning for at bevare akademisk progress - Individuel terapi før gruppe-eksponering - Mikro-eksponeringer: først én person, så to, osv. - Valg af \"sikre\" personer til første kontakter - Klassen blev undervist i mobning og inklusion uden Emma til stede - Gradvis integration med fast støtteperson",
+    "tools": ""
+  },
+  {
+    "id": "SV4",
+    "title": "Oliver 10 år – ADHD og akademisk frustration",
+    "age": 10,
+    "diagnoses": [
+      "ADHD",
+      "læse- og skrivevanskeligheder"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "Akademisk stress, selvværd, frustration",
+    "problem": "Oliver nægter at gå i skole fordi han \"er dum og kan ikke følge med\". Hans ADHD gør det svært at koncentrere sig, og læse-skrive vanskeligheder får ham til at føle sig som en fiasko. Han får raserianfald ved lektie-tid.",
+    "childVoice": "Oliver 10 år – ADHD og akademisk frustration",
+    "mistakes": "",
+    "solution": "**Differentiereret undervisning og selvværds-genopbygning:** - Tilpassede opgaver der matchede Olivers niveau - Brug af hans styrker (mundtlig fremstilling, kreativitet) - Korte arbejdsperioder med hyppige pauser - Teknologisk støtte: oplæsningsprogrammer, voice-to-text - \"Succesoplevelser\" hver dag gennem målrettede opgaver - Lektiehjælp der fokuserede på strategier frem for indhold",
+    "tools": ""
+  },
+  {
+    "id": "SV5",
+    "title": "Sofia 16 år – perfektionisme og udbrændthed",
+    "age": 16,
+    "diagnoses": [
+      "Angst",
+      "perfektionistiske træk",
+      "mild depression"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Perfektionisme, stress, udbrændthed",
+    "problem": "Sofia var altid den \"dygtige elev\" men begyndte pludselig at blive hjemme fordi hun ikke kunne leve op til sine egne standarder. Hun arbejdede til langt ud på natten, blev aldrig færdig og følte sig som en fiasko.",
+    "childVoice": "Sofia 16 år – perfektionisme og udbrændthed",
+    "mistakes": "",
+    "solution": "**Gradueret eksponering og \"god nok\" standarder:** - Definerede \"god nok\" kriterier for hver opgave - Tidsbegrænsede opgaver - stop efter aftalt tid uanset \"færdighed\" - Eksplicit undervisning i \"konstruktive fejl\" - Støtte til at aflevere \"ufærdige\" opgaver for feedback - Samtaler om at læring sker gennem proces, ikke perfektion - Stress-management og søvnhygiejne",
+    "tools": ""
+  },
+  {
+    "id": "AA1",
+    "title": "Mia 6 år – hyperaktivitet møder rutinebehov",
+    "age": 6,
+    "diagnoses": [
+      "ADHD (hyperaktiv type)",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Rutiner vs. impulsivitet, struktur vs. bevægelse",
+    "problem": "Mia har brug for faste rutiner (autism) men kan ikke sidde stille længe nok til at følge dem (ADHD). Hun bliver frustreret når rutiner brydes, men bryder dem selv konstant ved at rejse sig og bevæge sig rundt.",
+    "childVoice": "Mia 6 år – hyperaktivitet møder rutinebehov",
+    "mistakes": "",
+    "solution": "**Bevægelses-integrerede rutiner:** - Rutiner der inkluderede bevægelse som fast del - \"Bevægelses-pauser\" indbygget i strukturen hver 10 minut - Visuelle rutiner hun kunne følge mens hun bevægede sig - Alternative siddepladser: balance-bold, ståpult, gulvplads - Rutiner der kunne udføres på forskellige måder men samme rækkefølge - \"Rutine-kort\" hun kunne tage med sig når hun bevægede sig",
+    "tools": ""
+  },
+  {
+    "id": "AA2",
+    "title": "Oliver 9 år – sociale regler og impulsiv kommunikation",
+    "age": 9,
+    "diagnoses": [
+      "ADHD",
+      "Autisme (mild)"
+    ],
+    "contexts": [
+      "Skole",
+      "Venner"
+    ],
+    "theme": "Social kommunikation, impulsivitet, regler",
+    "problem": "Oliver forstår sociale regler intellektuelt (autism) men kan ikke stoppe sig selv fra at bryde dem impulsivt (ADHD). Han afbryder konstant, siger upassende ting og forstår ikke hvorfor andre bliver irriterede.",
+    "childVoice": "Oliver 9 år – sociale regler og impulsiv kommunikation",
+    "mistakes": "",
+    "solution": "**Konkrete sociale værktøjer til impulsiv hjerne:** - \"Pause-knap\" strategi: fysisk berøring af egen arm før han talte - Korte, konkrete sociale scripts han kunne huske under pres - Visuelle kort med sociale regler han kunne se under samtaler - \"Tanke-timer\" hvor han måtte sige alt uden sociale regler - Rollespil hvor han øvede sociale situationer i rolige omgivelser - \"Social buddy\" der kunne giv",
+    "tools": ""
+  },
+  {
+    "id": "AA3",
+    "title": "Emma 12 år – sensorisk overload og opmærksomhedsproblemer",
+    "age": 12,
+    "diagnoses": [
+      "ADHD (inattentiv type)",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole",
+      "Venner"
+    ],
+    "theme": "Sanser, opmærksomhed, overstimulering",
+    "problem": "Emma kan ikke koncentrere sig om opgaver når der er den mindste lyd (autism), men ADHD gør at hun konstant leder efter stimuli. Hun er fanget mellem at have brug for ro og at søge distraktioner.",
+    "childVoice": "Emma 12 år – sensorisk overload og opmærksomhedsproblemer",
+    "mistakes": "",
+    "solution": "**Balanceret sensorisk miljø:** - Noise-cancelling høretelefoner med lav baggrundsmusik (white noise) - Kontrollerede stimuli: fidget-tools der ikke lavede lyd - Korte koncentrationsperioder (10-15 min) med sensoriske pauser - \"Stimuli-menu\" Emma kunne vælge fra når hun havde brug for mere input - Separate områder til forskellige aktiviteter: \"roligt hjørne\" vs. \"aktiv zone\" - Medicin-timing koord",
+    "tools": ""
+  },
+  {
+    "id": "AA4",
+    "title": "Lucas 15 år – social masking og udbrændthed",
+    "age": 15,
+    "diagnoses": [
+      "ADHD",
+      "Autisme (sent diagnosticeret)"
+    ],
+    "contexts": [
+      "Skole",
+      "Venner"
+    ],
+    "theme": "Masking, udbrændthed, autenticitet",
+    "problem": "Lucas har brugt år på at \"maskere\" sin autism ved at kopiere andres adfærd, men ADHD gør det enormt energikrævende. Han er totalt udbrændt, ved ikke hvem han egentlig er, og kan ikke længere opretholde facaden.",
+    "childVoice": "Lucas 15 år – social masking og udbrændthed",
+    "mistakes": "",
+    "solution": "**Gradvis autenticitet og energi-forvaltning:** - Psykologisk støtte til at forstå masking og dens omkostninger - \"Autenticitets-øvelser\" hvor Lucas kunne være sig selv i trygge rum - Energi-budgettering: prioritering af hvornår han \"maskerede\" - ADHD-strategier der respekterede hans autistiske behov - Åben kommunikation med udvalgte venner om hans diagnoser - Skole-tilpasninger der reducerede beh",
+    "tools": ""
+  },
+  {
+    "id": "AA5",
+    "title": "Noah 10 år – rigid tænkning og impulsive handlinger",
+    "age": 10,
+    "diagnoses": [
+      "ADHD",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Kognitiv fleksibilitet, impulsivitet, frustrationstoleranse",
+    "problem": "Noah har meget stive ideer om hvordan ting skal gøres (autism) men handler impulsivt når hans planer ikke virker (ADHD). Han kan ikke tænke kreativt under pres og eksploderer i frustrationer når ting ikke går som forventet.",
+    "childVoice": "Noah 10 år – rigid tænkning og impulsive handlinger",
+    "mistakes": "",
+    "solution": "**Struktureret fleksibilitet og frustrations-håndtering:** - \"Plan A, B, C\" strategi forberedt på forhånd for almindelige situationer - Visuelle \"hvis-så\" kort for alternative løsninger - \"Frustrations-termometer\" så Noah kunne mærke når han nærmede sig overload - \"Pause og plan\" øvelser før han handlede impulsivt - Rollespil med forskellige løsninger på samme problem - \"Eksperiment-mindset\": prøv",
+    "tools": ""
+  },
+  {
+    "id": "AS1",
+    "title": "Emma 7 år – bogstavelig forståelse og sociale misforståelser",
+    "age": 7,
+    "diagnoses": [
+      "Autisme",
+      "kommunikationsvanskeligheder"
+    ],
+    "contexts": [
+      "Skole",
+      "Venner"
+    ],
+    "theme": "Sprog, ironi, sociale signaler",
+    "problem": "Emma forstår alt bogstaveligt og misser sociale nuancer totalt. Når klassekammerater siger \"Det var da smart!\" sarkastisk, tror hun de roser hende. Hun forstår ikke kropssprog, ansigtsudtryk eller underforstået kommunikation.",
+    "childVoice": "Emma 7 år – bogstavelig forståelse og sociale misforståelser",
+    "mistakes": "",
+    "solution": "**Eksplicit social undervisning og direkte kommunikation:** - Sociale historier med billeder af ansigtsudtryk og kropssprog - \"Oversættelse\" af sociale situationer: \"Når Mia ruller med øjnene betyder det...\" - Direkte instruktion i sociale regler: \"Når nogen siger noget med vred stemme...\" - Rolleleg hvor Emma øvede at gætte stemninger - Lærere og forældre brugte direkte, konkret sprog - \"Social d",
+    "tools": ""
+  },
+  {
+    "id": "AS2",
+    "title": "Marcus 11 år – intense interesser og social isolation",
+    "age": 11,
+    "diagnoses": [
+      "Autisme",
+      "social isolation"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Specialinteresser, venskaber, inklusion",
+    "problem": "Marcus taler KUN om tog og kan snakke i timevis om lokomotiver og togmodeller. Andre børn finder ham kedelig og undgår ham. Han forstår ikke hvorfor andre ikke deler hans entusiasme og føler sig mere og mere ensom.",
+    "childVoice": "Marcus 11 år – intense interesser og social isolation",
+    "mistakes": "",
+    "solution": "**Bro-bygning mellem interesser og sociale kontakter:** - Fandt andre børn med transport-interesser (biler, fly, skibe) - \"Tog-klub\" hvor Marcus kunne dele viden med interesserede - Lærte Marcus at stille spørgsmål om andres interesser - \"Interesse-bytte\": Marcus hørte om andres hobbyer, de hørte om tog - Sociale lege baseret på hans viden (tog-tegning, bygge-aktiviteter) - Gradvis læring af \"samt",
+    "tools": ""
+  },
+  {
+    "id": "AS3",
+    "title": "Sofia 14 år – social angst og masking-udmattelse",
+    "age": 14,
+    "diagnoses": [
+      "Autisme",
+      "social angst"
+    ],
+    "contexts": [
+      "Skole",
+      "Venner"
+    ],
+    "theme": "Masking, autenticitet, ungdoms-sociale kompleksitet",
+    "problem": "Sofia har lært at \"maskere\" sin autisme ved at kopiere andre pigers adfærd, men det er enormt udmattende. Hun er konstant bange for at sige noget forkert og bruger al sin energi på at virke \"normal\". Hun er begyndt at undgå sociale situationer.",
+    "childVoice": "Sofia 14 år – social angst og masking-udmattelse",
+    "mistakes": "",
+    "solution": "**Gradueret autenticitet og stress-reduktion:** - Fandt en \"autisme-venlig\" vennegruppe gennem interesser - Lærte at være selektiv med hvor hun \"maskerede\" - \"Autenticitets-øvelser\" hvor hun kunne være sig selv - Stress-forvaltning og energi-budgettering - Åben kommunikation med udvalgte venner om autism - Alternative sociale aktiviteter med mindre pres",
+    "tools": ""
+  },
+  {
+    "id": "AS4",
+    "title": "Oliver 9 år – social naivitet og manipulation",
+    "age": 9,
+    "diagnoses": [
+      "Autisme",
+      "social naivitet"
+    ],
+    "contexts": [
+      "Skole",
+      "Venner"
+    ],
+    "theme": "Manipulation, udnyttelse, social beskyttelse",
+    "problem": "Oliver stoler på alle og kan ikke se når andre udnytter hans godtroenhed. Andre børn får ham til at give sine ting væk, gøre deres lektier eller komme i problemer ved at fortælle ham han skal \"gøre noget sjovt.\"",
+    "childVoice": "Oliver 9 år – social naivitet og manipulation",
+    "mistakes": "",
+    "solution": "**Beskyttelse og social kompetence-opbygning:** - Direkte undervisning i \"falske venner\" vs. \"ægte venner\" - Konkrete regler: \"Ægte venner beder dig aldrig om at bryde regler\" - \"Tjek med voksen\" regel før han gjorde noget usædvanligt - Sociale historier om manipulation og udnyttelse - Beskyttende tilsyn i sociale situationer - Opbygning af ægte venskaber med pålidelige børn",
+    "tools": ""
+  },
+  {
+    "id": "AS5",
+    "title": "Lea 16 år – perfekte sociale scripts og manglende spontanitet",
+    "age": 16,
+    "diagnoses": [
+      "Autisme (højtfungerende)",
+      "social rigiditet"
+    ],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Scripts, spontanitet, autentiske relationer",
+    "problem": "Lea har lært perfekte sociale scripts og kan håndtere forudsigelige sociale situationer, men går i panik når samtaler bliver spontane eller uventede. Hun virker \"robot-agtig\" og har svært ved at danne dybe relationer.",
+    "childVoice": "Lea 16 år – perfekte sociale scripts og manglende spontanitet",
+    "mistakes": "",
+    "solution": "**Fleksible sociale færdigheder og autentisk kommunikation:** - \"Improvisations-øvelser\" hvor hun lærte at håndtere uventede samtaler - \"Ægte respons\" træning: hvordan man udtrykker autentiske følelser - Gradvis reduktion af scripts til fordel for fleksible strategier - \"Det er okay at være forvirret\" træning - Hjælp til at dele sine ægte interesser og tanker - Practice med at stille oprigtige spø",
+    "tools": ""
+  },
+  {
+    "id": "MC1",
+    "title": "Emma 8 år – systematisk eksklusion og verbal mobning",
+    "age": 8,
+    "diagnoses": [
+      "Autisme",
+      "social sårbarhed"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Eksklusion, verbal mobning, social position",
+    "problem": "Emma bliver systematisk holdt ude af lege og aktiviteter. Børnene siger \"Du kan ikke være med\" og \"Du er mærkelig.\" Når hun prøver at slutte sig til grupper, flytter de sig væk. Hun spiser frokost alene og græder ofte i frikvartererne.",
+    "childVoice": "Emma 8 år – systematisk eksklusion og verbal mobning",
+    "mistakes": "",
+    "solution": "**Struktureret inklusion og klassekultur-ændring:** - Klassemøder om forskellighed og inklusion uden at nævne Emma specifikt - \"Inclusion buddy\" system hvor børn skiftedes til at inkludere alle - Strukturerede frikvartersaktiviteter med voksendeltagelse - Emmas styrker blev synliggjort gennem faglige bidrag - Direkte intervention når eksklusion blev observeret - Samtaler med nøglebørn om empati og",
+    "tools": ""
+  },
+  {
+    "id": "MC2",
+    "title": "Marcus 12 år – fysisk mobning pga. meltdowns",
+    "age": 12,
+    "diagnoses": [
+      "Autisme",
+      "ADHD"
+    ],
+    "contexts": [
+      "Skole",
+      "Venner"
+    ],
+    "theme": "Fysisk mobning, meltdowns, sårbarhed",
+    "problem": "Marcus bliver skubbet, sparket og \"testet\" af ældre drenge, især når han er overstimuleret. De ved at hvis de provokerer ham, får han et meltdown, som de filmer og deler. Han er begyndt at være aggressiv præventivt.",
+    "childVoice": "Marcus 12 år – fysisk mobning pga. meltdowns",
+    "mistakes": "",
+    "solution": "**Beskyttelse og forebyggelse kombineret med konsekvenser:** - Øget voksent tilsyn i \"højrisiko\" områder og tidspunkter - Identifikation og konfrontation af mobberne med konsekvenser - Meltdown-forebyggelse: tidlige varselsignaler og exit-strategier - \"Sikre zoner\" Marcus kunne søge til ved overstimulering - Undervisning af personale i at genkende provokation vs. spontane meltdowns - Klare konsekv",
+    "tools": ""
+  },
+  {
+    "id": "MC3",
+    "title": "Sofia 14 år – relationel mobning og social manipulation",
+    "age": 14,
+    "diagnoses": [
+      "ADHD",
+      "social angst"
+    ],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Relationel mobning, rygter, social manipulation",
+    "problem": "Sofia bliver udsat for sofistikeret relationel mobning: rygter, social isolation, online chikane. Andre piger bruger hendes ADHD-impulsivitet til at få hende til at sige eller gøre ting, som de så bruger imod hende.",
+    "childVoice": "Sofia 14 år – relationel mobning og social manipulation",
+    "mistakes": "",
+    "solution": "**Kompleks intervention i relationel dynamik:** - Direkte konfrontation af ringleader-piger med konsekvenser - Hjælp til Sofia med at identificere manipulation-taktikker - Digital literacy: hvordan man håndterer online mobning - \"Pause og tænk\" strategier før hun reagerede impulsivt - Opbygning af alternative venskaber uden for mobber-gruppen - Voksen-medieret konfliktløsning med restorative justi",
+    "tools": ""
+  },
+  {
+    "id": "MC4",
+    "title": "Oliver 10 år – fra offer til mobber",
+    "age": 10,
+    "diagnoses": [
+      "ADHD",
+      "adfærdsvanskeligheder"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Offer-til-mobber cyklus, selvforsvar vs. aggression",
+    "problem": "Oliver blev mobbet i årevis og har nu \"vendt den om\" ved selv at blive aggressiv og mobbe svagere børn. Han siger \"Nu er det min tur\" og viser samme hensynsløse adfærd som dem der mobbede ham.",
+    "childVoice": "Oliver 10 år – fra offer til mobber",
+    "mistakes": "",
+    "solution": "**Trauma-informeret tilgang med ansvarliggørelse:** - Anerkendelse af hans tidligere trauma fra mobning - Klare grænser og konsekvenser for hans aggressive adfærd - Terapi til at bearbejde hans egne mobning-oplevelser - Alternative måder at få magt og kontrol på - Empati-træning: hjælp ham til at se andres perspektiv - Restorative justice: genoprettelse overfor dem han har skadet",
+    "tools": ""
+  },
+  {
+    "id": "MC5",
+    "title": "Lea 15 år – bystandere der ikke griber ind",
+    "age": 15,
+    "diagnoses": [
+      "Autisme",
+      "bliver mobbet"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Bystander-ansvar, tilskuer-effekt, kollektiv handling",
+    "problem": "Lea bliver dagligt mobbet verbalt og online, mens hele klassen ser på uden at gribe ind. Mange synes det er synd for hende, men ingen tør sige fra eller hjælpe. Lærerne ved det ikke fordi det sker diskret.",
+    "childVoice": "Lea 15 år – bystandere der ikke griber ind",
+    "mistakes": "",
+    "solution": "**Bystander-intervention og kollektiv ansvar:** - Klasseundervisning i bystander-ansvar og interventions-strategier - \"Upstander\" kampagne hvor modigt indgriben blev anerkendt - Anonyme rapporterings-systemer så tilskuere kunne hjælpe sikkert - Træning i hvordan man gripper ind sikkert uden at blive næste offer - Klasse-kontrakt om kollektivt ansvar for hinandens sikkerhed - Leadership-træning for",
+    "tools": ""
+  },
+  {
+    "id": "BH1",
+    "title": "Emil 3 år – ekstrem rastløshed og impulsivitet",
+    "age": 3,
+    "diagnoses": [],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Tidlige varselstegn, normal vs. bekymrende uro",
+    "problem": "Emil kan ikke sidde stille i mere end 30 sekunder. Han rejser sig under måltider, forlader aktiviteter konstant, klatrer på møbler og løber væk fra voksne. Andre 3-årige kan sidde og lytte til en historie - Emil kan ikke.",
+    "childVoice": "Emil 3 år – ekstrem rastløshed og impulsivitet",
+    "mistakes": "",
+    "solution": "**Bevægelses-integreret børnehave-dag:** - Korte aktiviteter (2-5 min) med bevægelsespauser - \"Bevægelses-jobs\": Emil henter ting, rydder op, hjælper - Alternative siddepladser: bold, ståpult, gulvplads - Struktureret udendørs tid flere gange dagligt - Klare, korte instruktioner med visuel støtte - \"Energi-udløb\" aktiviteter før rolige aktiviteter",
+    "tools": "**Første trin:** Observation og dokumentation - Dokumenter specifikke situationer og varighed - Sammenlign med andre børn på samme alder - Noter hvad der hjælper og hvad der forværrer **Andet trin:** Tilpasning af miljø - Skab struktur der imødekommer hans bevægelsesbehov - Test forskellige strategier og dokumenter resultater - Involver ham i at finde løsninger **Tredje trin:** Kommunikation med forældre - Del observationer objektivt uden diagnoser - Foreslå fælles strategier hjemme og i børneha"
+  },
+  {
+    "id": "BH2",
+    "title": "Maja 4 år – opmærksomhedsproblemer og dagdrømmeri",
+    "age": 4,
+    "diagnoses": [],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Stille ADHD-tegn, opmærksomhedsvanskeligheder",
+    "problem": "Maja \"forsvinder\" mentalt midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn, og glemmer instruktioner med det samme. Andre børn færdiggør aktiviteter - Maja sidder ofte med det samme puslespil i timevis uden fremgang.",
+    "childVoice": "Maja 4 år – opmærksomhedsproblemer og dagdrømmeri",
+    "mistakes": "",
+    "solution": "**Opmærksomheds-støttende struktur:** - Øjenkontakt før alle instruktioner - Korte, enkle besked (maks 2 trin ad gangen) - Visuelle støttemidler og billeder - \"Check-in\" hver 5. minut under aktiviteter - Strukturerede aktiviteter med klar start og slut - \"Opmærksomheds-signaler\" (klap, musik) for at genforene gruppen",
+    "tools": "**Første trin:** Opmærksomheds-mapping - Identificer hvornår opmærksomheden er bedst/værst - Test forskellige måder at fange hendes opmærksomhed - Dokumenter hvad der virker og hvor længe **Andet trin:** Struktureret støtte - Implementer opmærksomheds-hjælpemidler - Byg rutiner der hjælper hende med at være tilstede - Lær hende selv at mærke når hun \"forsvinder\" **Tredje trin:** Kommunikation og opfølgning - Del observationer med forældre - Fælles strategier for hjemme og børnehave - Evaluér om "
+  },
+  {
+    "id": "BH3",
+    "title": "Lucas 5 år – impulsiv aggression og konflikter",
+    "age": 5,
+    "diagnoses": [],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Impulsiv aggression, sociale konsekvenser",
+    "problem": "Lucas slår og skubber andre børn næsten dagligt, især når han ikke får sin vilje eller når lege ikke går som han vil. Han virker bagefter ked af det og forstår ikke hvorfor andre ikke vil lege med ham.",
+    "childVoice": "Lucas 5 år – impulsiv aggression og konflikter",
+    "mistakes": "",
+    "solution": "**Impulskontrol og konflikt-forebyggelse:** - \"Stop og tænk\" øvelser før alle aktiviteter - Visuelle kort med alternative reaktioner - Strukturerede lege med klare regler og voksen-støtte - \"Ro-hjørne\" hvor Lucas kunne gå når han mærkede vrede - Rolleleg hvor han øvede at håndtere frustrationer - Positive peer-interaktioner med guidning",
+    "tools": "**Første trin:** Sikkerhed og øjeblikkelig intervention - Stop aggressiv adfærd øjeblikkeligt - Beskyt andre børn og bevar Lucas' værdighed - Hjælp ham til at forstå konsekvenser **Andet trin:** Lær alternative strategier - Øv \"pause\" before handling impulsivt - Konkrete værktøjer til håndtering af frustration - Rolleleg med forskellige konflikt-scenarier **Tredje trin:** Social genintegration - Facilitér positive interaktioner med andre børn - Hjælp gruppens dynamik og forståelse - Byg Lucas' s"
+  },
+  {
+    "id": "BH4",
+    "title": "Ida 6 år – overgang til skole og forværrede symptomer",
+    "age": 6,
+    "diagnoses": [],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Stress-forværring, strukturelle ændringer",
+    "problem": "Ida klarede sig relativt godt i børnehave, men efter skolestart er hun eksploderet i hyperaktivitet og opmærksomhedsproblemer. Hun kan ikke sidde stille i klassen, glemmer alt og får daglige sammenbrud.",
+    "childVoice": "Ida 6 år – overgang til skole og forværrede symptomer",
+    "mistakes": "",
+    "solution": "**Graduel skole-tilpasning med børnehave-elementer:** - Kortere skoledag første måneder - Bevægelsespauser indbygget i undervisning - Visuel støtte til alle rutiner og regler - \"Sikker base\" person Ida kunne søge til - Tæt kommunikation mellem skole og hjem - Bevarelse af nogle børnehave-rutiner under overgangen",
+    "tools": "**Første trin:** Reducér stress og pres - Tilpas forventninger til hendes udviklingsniveau - Skab forudsigelighed og tryghed - Bevar positive elementer fra børnehave **Andet trin:** Gradvis øgning af krav - Langsom introduktion af skole-strukturer - Fejr små fremskridt frem for at fokusere på mangler - Individuel tilgang til læring og deltagelse **Tredje trin:** Langsigtet planlægning - Evaluér om skolestrukturen matcher hendes behov - Planlæg for eventuel diagnose og støtte-tiltag - Forbered sk"
+  },
+  {
+    "id": "BH5",
+    "title": "Noah 4 år – sensorisk søgende adfærd og hyperaktivitet",
+    "age": 4,
+    "diagnoses": [],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Sensorisk-søgende vs. hyperaktivitet, komorbiditet",
+    "problem": "Noah søger konstant sensorisk input: han kører rundt, råber, klatrer, putter ting i munden, og kan aldrig få nok stimulering. Andre børn bliver overvældede af hans intensitet og energi.",
+    "childVoice": "Noah 4 år – sensorisk søgende adfærd og hyperaktivitet",
+    "mistakes": "",
+    "solution": "**Struktureret sensorisk diæt kombineret med ADHD-støtte:** - Planlagte sensoriske aktiviteter flere gange dagligt - \"Tunge arbejde\" (skubbe, trække, løfte) for at mætte systemet - Alternative sensoriske input: fidget tools, tygge-lege - Klare grænser for farlig sensorisk-søgende adfærd - Sensorisk ro-område når han blev overstimuleret - Koordination med ergoterapeut for sensorisk vurdering",
+    "tools": "**Første trin:** Sensorisk kortlægning - Identificer hvilke input han søger og undgår - Observér mønstre i hans sensorisk-søgende adfærd - Test forskellige former for input og deres effekt **Andet trin:** Struktureret sensorisk støtte - Implementer daglig \"sensorisk diæt\" - Giv acceptable alternativer til farlig adfærd - Balancér stimulering og ro-tid **Tredje trin:** Faglig koordination - Samarbejd med ergoterapeut om sensorisk vurdering - Koordinér ADHD- og sensorisk støtte - Forbered på poten"
+  },
+  {
+    "id": "BS1",
+    "title": "Sofie 3 år – parallel leg og manglende social interesse",
+    "age": 3,
+    "diagnoses": [],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Social isolation, leg-udvikling, kommunikation",
+    "problem": "Sofie leger altid alene eller parallelt med andre uden at interagere. Hun viser ingen interesse for andre børns aktiviteter, deler ikke legetøj og reagerer ikke når andre børn forsøger at inkludere hende.",
+    "childVoice": "Sofie 3 år – parallel leg og manglende social interesse",
+    "mistakes": "",
+    "solution": "**Graduel social leg-integration:** - Start med \"side-by-side\" aktiviteter uden krav om interaktion - Voksenstyret parallel leg hvor Sofie kunne observere andre - Enkle \"turn-taking\" lege med præfereret legetøj - \"Social leg-historier\" med billeder af leg og venskab - Strukturerede aktiviteter med klare roller for hvert barn - Positive forstærkning af selv små sociale bevægelser",
+    "tools": "**Første trin:** Observér og forstå hendes leg-præferencer - Identificer aktiviteter hun virkelig nyder - Observér om hun faktisk observerer andre børn - Test om hun responderer på simple sociale tilbud **Andet trin:** Byg broer til social leg - Brug hendes interesser som indgang til social leg - Faciliter simple, strukturerede interaktioner - Gradvis øgning af sociale krav **Tredje trin:** Vurdér udvikling og behov - Dokumentér fremskridt i social interesse - Kommunikér med forældre om observat"
+  },
+  {
+    "id": "BS2",
+    "title": "Marcus 4 år – aggressiv leg og venskabsproblemer",
+    "age": 4,
+    "diagnoses": [],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Aggressive leg-strategier, konflikthåndtering",
+    "problem": "Marcus ønsker at lege med andre, men hans leg bliver hurtigt for intens og fysisk. Han ødelægger andres byggeværker, \"overtager\" rollespil og bliver aggressiv når andre siger fra. Børnene begynder at undgå ham.",
+    "childVoice": "Marcus 4 år – aggressiv leg og venskabsproblemer",
+    "mistakes": "",
+    "solution": "**Struktureret leg med sociale regler:** - \"Leg-regler\" visualiseret med billeder og øvet dagligt - Voksenstyret leg hvor Marcus kunne øve at følge andres ideer - \"Hjælper-rolle\" hvor han assisterede i stedet for at overtage - Pause-strategier når leg blev for intens - Positive leg-oplevelser med børn der kunne matche hans energi - Social feedback: \"Se hvor glade de blev da du spurgte først!\"",
+    "tools": "**Første trin:** Lær grundlæggende leg-regler - Konkrete, visuelle regler for hvordan man leger sammen - Øvelse i at spørge før man \"hjælper\" - \"Pause\" signaler han kan bruge når leg bliver for intens **Andet trin:** Faciliteret social leg - Voksne faciliterer leg så det ikke eskalerer - Strukturerede lege med klare roller og turer - Positive feedback når han følger sociale regler **Tredje trin:** Selvstændig social leg - Gradvis reduktion af voksen-støtte - Hjælp ham til at læse sociale signale"
+  },
+  {
+    "id": "BS3",
+    "title": "Emma 5 år – perfekt opførsel og skjult social angst",
+    "age": 5,
+    "diagnoses": [],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Social angst, pligtopfyldelse, autenticitet",
+    "problem": "Emma er altid \"sød og artig\" men deltager aldrig spontant i leg. Hun følger alle regler perfekt, men virker anspændt og bliver opløst af små fejl. Hun leger kun når voksne organiserer det og initierer aldrig selv sociale kontakter.",
+    "childVoice": "Emma 5 år – perfekt opførsel og skjult social angst",
+    "mistakes": "",
+    "solution": "**Tillids-opbygning og autenticitets-træning:** - \"Fejl-fest\" hvor børnene lavede sjove fejl med vilje - Små valg i leg hvor Emma måtte beslutte - \"Lege-eksperimenter\" hvor der ikke var rigtige/forkerte måder - En-til-en tid med trygge voksne hvor hun kunne \"være sig selv\" - Gradvis introduktion af mindre strukturerede aktiviteter - Positive reaktioner når hun viste autentiske følelser",
+    "tools": "**Første trin:** Skab tryghed for autenticitet - Vis at fejl er OK og normale - Giv muligheder for valg uden \"rigtige\" svar - Ros forsøg og deltagelse frem for perfektion **Andet trin:** Gradvis spontanitet - Små, sikre muligheder for at tage initiativ - Leg uden regler hvor hun kan eksperimentere - En-til-en situationer hvor hun kan øve at være sig selv **Tredje trin:** Social autenticitet - Hjælp hende til at udtrykke præferencer og ønsker - Faciliter venskaber baseret på hendes ægte interesse"
+  },
+  {
+    "id": "BS4",
+    "title": "Liam 6 år – social manipulation og dominans",
+    "age": 6,
+    "diagnoses": [],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Manipulation, empati-mangel, magtstrukturer",
+    "problem": "Liam er karismatisk og dygtig til at få andre børn til at gøre hvad han vil. Han bruger trusler, ekskludering og belønninger til at kontrollere leg og venskaber. Andre børn er både tiltrukket af og bange for ham.",
+    "childVoice": "Liam 6 år – social manipulation og dominans",
+    "mistakes": "",
+    "solution": "**Empati-udvikling og pro-social lederskab:** - Direkte konfrontation af manipulativ adfærd med konsekvenser - Empati-træning: \"Hvordan tror du Marcus har det nu?\" - Omdirigering af lederskabs-evner til positive formål - Strukturerede situationer hvor han måtte samarbejde som lige - \"Hjælper-roller\" hvor han brugte sine evner til at støtte andre - Klare grænser for acceptabel adfærd i gruppen",
+    "tools": "**Første trin:** Stop manipulation og beskyt andre - Øjeblikkeligt indgriben når manipulation observeres - Klare konsekvenser for trusler og ekskludering - Beskyt sårbare børn fra hans påvirkning **Andet trin:** Lær empati og gensidighed - Konkrete øvelser i at se andres perspektiv - Strukturerede situationer hvor han må samarbejde - Positive anvendelse af hans lederskabs-evner **Tredje trin:** Vurdér og planlæg - Evaluér om der er tegn på antisociale tendenser - Kommunikér bekymringer med foræl"
+  },
+  {
+    "id": "BS5",
+    "title": "Nora 4 år – selektiv mutisme og social tilbagetrækning",
+    "age": 4,
+    "diagnoses": [],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Kommunikation, angst, social deltagelse",
+    "problem": "Nora taler normalt hjemme men er helt tavs i børnehaven. Hun deltager ikke i aktiviteter, gemmer sig bag voksne og bliver panisk hvis hun skal svare på spørgsmål. Andre børn prøver at inkludere hende, men hun trækker sig væk.",
+    "childVoice": "Nora 4 år – selektiv mutisme og social tilbagetrækning",
+    "mistakes": "",
+    "solution": "**Graduel ekspositon og pres-reducering:** - Fjernelse af alle krav om verbal kommunikation - Acceptér nonverbal kommunikation (nik, peg, tegning) - \"Hviske-ven\" strategi hvor hun hviskede til en ven som talte for hende - Aktiviteter hvor hun kunne \"bidrage\" uden tale (tegne, pege, vise) - Små grupper og en-til-en situationer med gradvis øgning - Tæt koordination med forældre om samme approach",
+    "tools": "**Første trin:** Reducer pres og byg tryghed - Fjern alle forventninger om verbal kommunikation - Skab sikre rum hvor hun kan være afslappet - Anerkend hendes nonverbale bidrag **Andet trin:** Gradvis kommunikations-støtte - Start med hviske, derefter lav tale - Brug aktiviteter hvor tale er naturligt (sang, rolleleg) - Små skridt med meget ros og anerkendelse **Tredje trin:** Social integration - Hjælp andre børn til at forstå og inkludere hende - Faciliter leg hvor verbal kommunikation ikke er"
+  },
+  {
+    "id": "TO1",
+    "title": "Oliver 3 år – morgen-sammenbrud og separationsangst",
+    "age": 3,
+    "diagnoses": [
+      "Mulig angst",
+      "sensitivitet overfor forandring"
+    ],
+    "contexts": [
+      "Hjem"
+    ],
+    "theme": "Separationsangst, morgen-rutiner, tryghed",
+    "problem": "Oliver har ekstreme sammenbrud hver morgen når han skal afleveres i børnehave. Han græder, skriger, klynger sig til mor og kaster sig på gulvet. Det tager 30-45 minutter at få ham afleveret, og han er opløst i timevis bagefter.",
+    "childVoice": "Oliver 3 år – morgen-sammenbrud og separationsangst",
+    "mistakes": "",
+    "solution": "**Gradueret separations-træning med trygheds-ritualer:** - Kortere ophold (1-2 timer) bygget gradvist op - Fast afskeds-ritual der altid var det samme - \"Mor-genstand\" (trøjens lugt, familiefoto) han kunne have med - Samme pædagog mødte ham hver dag med samme velkomst - Visuel plan over dagen så han vidste hvornår mor kom - Telefon-ritual: pædagog ringede til mor efter 1 time så Oliver kunne høre ",
+    "tools": "**Første trin:** Byg grundlæggende tryghed - Start med meget korte besøg (30 min) med mor tilstede - Etablér fast rutine og kendt pædagog - Lav forudsigelig afskeds-ritual **Andet trin:** Graduel forlængelse - Øg opholdstid med 30 min ad gangen - Bevar alle tryghed-elementer - Fejr små fremskridt dagligt **Tredje trin:** Selvstændig tryghed - Hjælp Oliver til at trøste sig selv - Reducer gradvist \"tryghed-genstande\" - Byg hans selvtillid til at klare separationer"
+  },
+  {
+    "id": "TO2",
+    "title": "Emma 4 år – aktivitetsskift og rutine-sammenbrud",
+    "age": 4,
+    "diagnoses": [
+      "Mulig autisme",
+      "behov for forudsigelighed"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Rutiner, overgange, fleksibilitet",
+    "problem": "Emma får totale sammenbrud når aktiviteter skifter eller planer ændres i børnehave. Hun kan ikke stoppe en aktivitet for at starte en ny, bliver rasende ved uforudsete ændringer og har brug for 20+ minutter til at justere mellem aktiviteter.",
+    "childVoice": "Emma 4 år – aktivitetsskift og rutine-sammenbrud",
+    "mistakes": "",
+    "solution": "**Struktur med graduel fleksibilitets-træning:** - Visuel dagsoverblik med billeder af alle aktiviteter - \"5-3-1 minut\" advarsler før aktivitetsskift - \"Afslutnings-ritualer\" for hver aktivitet før skift - \"Ændrings-kort\" med billeder når planer skulle ændres - \"Fleksibilitets-øvelser\": små, planlagte ændringer hun kunne mestre - Konsistent struktur 80% af tiden, planlagte ændringer 20%",
+    "tools": "**Første trin:** Maksimal forudsigelighed - Etablér meget konsistente daglige rutiner - Visuel støtte til alle overgange - Advarsler og forberedelse før alle skift **Andet trin:** Micro-fleksibilitet - Små, planlagte ændringer hun kan mestre - Positive oplevelser med \"anderledes\" dage - Gradvis øgning af uforudsigelige elementer **Tredje trin:** Selvstændig tilpasning - Lær hende at bruge visuelle hjælpemidler selv - Udvikle \"plan B\" tænkning - Byg selvtillid til at håndtere ændringer"
+  },
+  {
+    "id": "TO3",
+    "title": "Marcus 6 år – skolestart og struktur-chok",
+    "age": 6,
+    "diagnoses": [
+      "ADHD",
+      "vanskeligheder med struktur og opmærksomhed"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "Strukturelle ændringer, akademiske krav, selvregulering",
+    "problem": "Marcus var i top-form i børnehaven men er totalt overvældet af skole-strukturen. Han kan ikke sidde stille i 45 minutter, glemmer alle instruktioner og får daglige sammenbrud over lektier og skole-regler.",
+    "childVoice": "Marcus 6 år – skolestart og struktur-chok",
+    "mistakes": "",
+    "solution": "**Graduel skole-tilpasning med børnehave-bro elementer:** - Første måned: halvdage med tidlig afhentning - Bevægelsespauser hver 15 minutter indtil han vændede sig til det - \"Børnehave-elementer\" i skolen: leg-baseret læring, bevægelse - Visuel støtte til alle skole-rutiner og regler - Tæt kommunikation mellem skole og hjem om samme strategier - Bevarelse af børnehave-venskaber i fritiden for kont",
+    "tools": "**Første trin:** Graduel struktur-introduktion - Start med kortere skoledag og færre krav - Bevar positive elementer fra børnehave - Øg struktur-kravene gradvist **Andet trin:** Skole-færdigheder opbygning - Lær specifikke skole-færdigheder (sidde stille, lytte, følge instruktioner) - Øv hjemme i korte perioder - Positive forstærkninger for små fremskridt **Tredje trin:** Selvstændig skole-mestring - Marcus lærer at bruge hjælpemidler selv - Udvikler egne strategier til at håndtere skole-krav - "
+  },
+  {
+    "id": "TO4",
+    "title": "Sofie 5 år – social overgang og venskabs-tab",
+    "age": 5,
+    "diagnoses": [
+      "Social sårbarhed",
+      "tilknytningsvanskeligheder"
+    ],
+    "contexts": [
+      "Venner"
+    ],
+    "theme": "Sociale overgange, venskabs-kontinuitet, tilpasning",
+    "problem": "Sofie har endelig fundet sin plads i børnehave-gruppen og er bange for at miste sine venner når de starter i forskellige skoler. Hun bliver ekstremt ked af det ved tanken om sociale ændringer og klynger sig til kendte relationer.",
+    "childVoice": "Sofie 5 år – social overgang og venskabs-tab",
+    "mistakes": "",
+    "solution": "**Venskabs-kontinuitet og nye sociale muligheder:** - Planlægning af private legeaftaler med børnehave-venner - \"Skole-besøg\" hvor Sofie mødte nye klassekammerater før start - \"Venskabs-bog\" med billeder og kontakt-info fra børnehave-venner - Sociale historier om hvordan man får nye venner - \"Bro-aktiviteter\" hvor børnehave- og skole-venner kunne mødes - Støtte fra pædagoger til at identificere po",
+    "tools": "**Første trin:** Anerkend og normaliser bekymringer - Valider hendes følelser omkring sociale forandringer - Hjælp hende til at forstå at det er normalt at være nervøs - Plan for hvordan hun kan bevare vigtige venskaber **Andet trin:** Byg sociale selvtillid - Øv sociale færdigheder i nye situationer - Hjælp hende til at identificere sine sociale styrker - Gradvis eksponering for nye sociale grupper **Tredje trin:** Facilitér nye relationer - Støt hende i at engagere sig med nye klassekammerater"
+  },
+  {
+    "id": "TO5",
+    "title": "Liam 6 år – morgen-rutiner og tidspres-sammenbrud",
+    "age": 6,
+    "diagnoses": [
+      "ADHD",
+      "vanskeligheder med tidsforståelse og planlægning"
+    ],
+    "contexts": [
+      "Hjem"
+    ],
+    "theme": "Executive function, rutiner, familiedynamik",
+    "problem": "Liam kan ikke håndtere skole-morgenens tidspres og struktur-krav. Han \"forsvinder\" mentalt midt i påklædning, glemmer hvad han skulle gøre og får sammenbrud når familien stresser. Morgenerne bliver til daglige kampe.",
+    "childVoice": "Liam 6 år – morgen-rutiner og tidspres-sammenbrud",
+    "mistakes": "",
+    "solution": "**Ekstern struktur og visual støtte til executive function:** - Morgen-rutine nedbrudt i micro-steps med billeder - Timer og visuelle tidsmarkører: \"Når den lille viser på 7...\" - \"Morgen-kasse\" med alt klart aftenen før - Én opgave ad gangen med check-off system - Familie starter 30 minutter tidligere for at fjerne tidspres - \"Morgen-musik\" der hjalp ham gennem rutinen",
+    "tools": "**Første trin:** Eliminér chaos og skab struktur - Simplificér morgenrutinen til kerneaktiviteter - Forbered alt muligt aftenen før - Fjern tidspres ved at starte tidligere **Andet trin:** Ekstern støtte til intern planlægning - Visuelle hjælpemidler han kan følge selv - Timere og struktureret progression - Positive forstærkninger for små fremskridt **Tredje trin:** Selvstændig rutine-mestring - Gradvis øgning af ansvar - Liam lærer at bruge hjælpemidler selv - Udvikler interne strategier til pl"
+  },
+  {
+    "id": "BH3",
+    "title": "Lucas, 5 år – Impulsiv Aggression og Grænseproblemer",
+    "age": 5,
+    "diagnoses": [
+      "ADHD"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "BH3 - professionel case",
+    "problem": "Lucas reagerer fysisk på både drenge og piger: han kradser, skubber og slår uden varsel. Især pigerne bliver ofre for voldsom adfærd ved afvisning, mens drengekonflikter ofte handler om dominans og afbrydelser i leg. Personalet oplever, at Lucas \"eksploderer\" hurtigt – og har svært ved at fornemme hvornår det sker.",
+    "childVoice": "eksploderer",
+    "mistakes": "Han går direkte efter pigerne – vi ved ikke, hvornår han eksploderer. Det virker uforudsigeligt.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "AA2",
+    "title": "Oliver, 9 år – Sociale Regler og Impulsiv Kommunikation",
+    "age": 9,
+    "diagnoses": [
+      "ADHD",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "AA2 - professionel case",
+    "problem": "Oliver har svært ved sociale signaler. Han afbryder andre, griner ved forkerte tidspunkter og reagerer fysisk, især når han føler sig uretfærdigt behandlet – han har flere gange slået piger eller kradset drenge. Han mangler sociale grænser og reagerer stærkt på strukturbrud.",
+    "childVoice": "Jeg forstår ikke, hvorfor de bliver sure. Jeg prøvede bare at sige noget.",
+    "mistakes": "Han gør det igen – han slog en pige midt i gruppearbejdet. Det kom ud af det blå.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "IN1",
+    "title": "Jonas, 7 år – Fysisk mod drenge, frygt for piger",
+    "age": 7,
+    "diagnoses": [
+      "ODD",
+      "Angst"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "IN1 - professionel case",
+    "problem": "Jonas slår eller skubber drengekammerater, især i konkurrencesituationer. Han undgår kontakt med piger og bliver urolig, når han skal arbejde i blandede grupper. Han reagerer stærkt på krav om samarbejde og virker usikker i frikvarterer.",
+    "childVoice": "Jeg ville bare have bolden. De sagde, jeg ikke måtte være med.",
+    "mistakes": "Han går i affekt lynhurtigt og tør ikke engang være i samme gruppe som pigerne. Det er svært at vide, hvad han reagerer på.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "BS5",
+    "title": "Nora, 4 år – Mutisme og Klæbning i Børnehaven",
+    "age": 4,
+    "diagnoses": [
+      "Angst",
+      "Selektiv mutisme"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "BS5 - professionel case",
+    "problem": "Nora siger ikke noget i institutionen. Hun klynger sig til én voksen og bliver stiv i kroppen ved nye aktiviteter eller sociale krav. Hun siger ja med hovedet, men svarer ikke verbalt, heller ikke i små grupper. Forældrene beskriver hende som snakkende og fantasifuld hjemme.",
+    "childVoice": "Jeg tør ikke sige noget. Hvis jeg siger noget, kigger de på mig.",
+    "mistakes": "Hun er sød – men det er som om hun forsvinder. Vi ved ikke, hvordan vi kan nå hende.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "SV2",
+    "title": "Elias, 10 år – Mavepine og Skjult Undgåelse",
+    "age": 10,
+    "diagnoses": [
+      "Angst"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "SV2 - professionel case",
+    "problem": "Elias melder sig ofte syg, især om morgenen. Når han er i skole, sidder han passivt og skriver lidt, men deltager ikke i fællesaktiviteter. Han får ondt i maven op til præsentationer eller skift. Forældrene beskriver ham som glad og energisk i weekenden.",
+    "childVoice": "Jeg får ondt i maven i skolen. Jeg vil hellere være derhjemme.",
+    "mistakes": "Han virker sød og stille – men han glider ud. Han har ondt i maven hver tirsdag.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "TE1",
+    "title": "Sofia, 14 år – Masking og Udmattelse",
+    "age": 14,
+    "diagnoses": [
+      "Angst",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "TE1 - professionel case",
+    "problem": "Sofia klarer sig fagligt, men virker konstant træt. Hun tilpasser sig, smiler og deltager – men bryder sammen hjemme. Hun får hovedpine, sover meget og siger sjældent noget i timerne. Hun reagerer med gråd eller sammenbrud på små fejl.",
+    "childVoice": "Jeg gør alt for at virke normal. Men det koster. Jeg kan ikke mere, når jeg kommer hjem.",
+    "mistakes": "Hun er så sød og dygtig – vi forstår ikke, hvorfor hun melder sig syg eller trækker sig.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "GS1",
+    "title": "Emma, 6 år – Tavshed og Perfektionisme",
+    "age": 6,
+    "diagnoses": [
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "GS1 - professionel case",
+    "problem": "Emma er stille og flittig. Hun udviser perfektionisme: visker ud gentagne gange, nægter at vise arbejde, hvis det ikke er “helt færdigt”. Hun taler lavt og siger aldrig noget i rundkredse. Bliver ofte bleg og trækker sig, når der opstår uro.",
+    "childVoice": "Jeg tør ikke vise det. Det er forkert.",
+    "mistakes": "Hun er så sød – men vi ved slet ikke, hvordan hun har det.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "GS2",
+    "title": "Ida, 10 år – Social Skiftetræthed og Funktionel Isolation",
+    "age": 10,
+    "diagnoses": [
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "GS2 - professionel case",
+    "problem": "Ida trækker sig. Hun sætter sig alene, spiser ikke frokost og undgår gruppearbejde. Der er ingen tydelig konflikt – men hun udstråler træthed. Ved lærerskift virker hun “blank” og får hovedpine. Forældrene beskriver en glad pige i weekenden.",
+    "childVoice": "Jeg gider ikke hele tiden skulle finde ud af det. Jeg vil bare være i fred.",
+    "mistakes": "Hun virker stille og mut – men hun siger ikke, at noget er galt.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "GS3",
+    "title": "Selma, 13 år – Social Kompensation og Sammenbrud",
+    "age": 13,
+    "diagnoses": [
+      "Angst",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "GS3 - professionel case",
+    "problem": "Selma er vellidt og “klarer sig fint”. Hun har mange venner – men ingen tætte. Hun svarer hurtigt, laver sine ting, men melder sig ofte syg. Forældrene fortæller om gråd, søvnproblemer og udmattelse. Hun afviser støtte i skolen.",
+    "childVoice": "Det hele er for meget. Jeg spiller en rolle hele dagen.",
+    "mistakes": "Hun er med på det hele – men virker mere og mere væk. Vi forstår det ikke.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "TE3",
+    "title": "Mads, 15 år – Affekt og Voksenmodstand",
+    "age": 15,
+    "diagnoses": [
+      "ODD",
+      "ADHD"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "TE3 - professionel case",
+    "problem": "Mads har gentagne affektsammenbrud i undervisningen. Han nægter opgaver, går ofte ud, kalder lærere navne og skaber uro. Men han har også timer, hvor han arbejder fokuseret. Lærerne oplever uforudsigelighed og kontrolkamp.",
+    "childVoice": "De bestemmer alting. Jeg får aldrig vælge. Hvis jeg ikke siger fra, bliver jeg sur.",
+    "mistakes": "Han går fra 0 til 100. Vi kan ikke sige noget uden, at han eksploderer.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "TE4",
+    "title": "Amina, 14 år – Funktionsfald og Selvisolation",
+    "age": 14,
+    "diagnoses": [
+      "Uafklaret"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "TE4 - professionel case",
+    "problem": "Amina er holdt op med at møde. Først enkelte dage – nu flere uger. Hun er ikke udadreagerende, men lukker ned. Lærerne beskriver en stille pige. Hjemme isolerer hun sig, undgår venner, er uinteresseret i mad og søvnrytme er forstyrret.",
+    "childVoice": "Der er ikke nogen, der savner mig. Jeg kan ikke klare det alligevel.",
+    "mistakes": "Vi ser hende næsten ikke. Hun virker trist, men nægter hjælp.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "TE5",
+    "title": "Emil, 16 år – Selvskade og Indre Kaos",
+    "age": 16,
+    "diagnoses": [
+      "Angst",
+      "Depression"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "TE5 - professionel case",
+    "problem": "",
+    "childVoice": "",
+    "mistakes": "",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "SP1",
+    "title": "Victor, 5 år – Sensorisk Overreaktion",
+    "age": 5,
+    "diagnoses": [
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "SP1 - professionel case",
+    "problem": "",
+    "childVoice": "",
+    "mistakes": "",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "SP2",
+    "title": "Noah, 7 år – Søgende og Motorisk Sanseprofil",
+    "age": 7,
+    "diagnoses": [
+      "ADHD",
+      "DCD"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "SP2 - professionel case",
+    "problem": "",
+    "childVoice": "",
+    "mistakes": "",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "SP3",
+    "title": "Freja, 10 år – Sansemæssig Nedlukning",
+    "age": 10,
+    "diagnoses": [
+      "Angst",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "SP3 - professionel case",
+    "problem": "",
+    "childVoice": "",
+    "mistakes": "",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "SH1",
+    "title": "Elias, 8 år – Jalouxi og Eksplosioner mod Søster",
+    "age": 8,
+    "diagnoses": [
+      "ADHD"
+    ],
+    "contexts": [
+      "Hjem"
+    ],
+    "theme": "SH1 - professionel case",
+    "problem": "Elias mister besindelsen, når hans lillesøster får ros eller opmærksomhed. Han skubber, håner eller nægter at være i samme rum. Forældrene føler sig magtesløse og pendler mellem trøst og vrede. Elias kan være kærlig, men skifter pludseligt.",
+    "childVoice": "Hvad kan jeg gøre i stedet?",
+    "mistakes": "Han eksploderer, bare vi nævner hendes navn. Vi tør ikke sige noget positivt om hende.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "SH2",
+    "title": "Clara, 6 år – Skyld og Tilbagetrækning fra Søskendekonflikter",
+    "age": 6,
+    "diagnoses": [
+      "Autisme"
+    ],
+    "contexts": [
+      "Hjem"
+    ],
+    "theme": "SH2 - professionel case",
+    "problem": "Clara bliver stille og trækker sig, når hendes storebror får raserianfald. Hun tager ofte ansvar, rydder op og trøster mor. Hun nægter nogle gange at være hjemme, og siger hun vil “gemme sig” ved lyde.",
+    "childVoice": "Han bliver sur. Jeg prøver at være god, så mor ikke bliver ked af det.",
+    "mistakes": "Hun er så nem. Men vi er bekymrede – hun virker trist.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "SH3",
+    "title": "Jonathan, 12 år – Udbrud og Familiesammenbrud",
+    "age": 12,
+    "diagnoses": [
+      "ODD",
+      "Angst"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "SH3 - professionel case",
+    "problem": "Jonathan råber, skubber og smækker døre i konflikter med sine to yngre søskende. Forældrene forsøger at mægle, men han nægter regler og siger de andre børn provokerer ham med vilje. Han har kastet med ting og truet med at stikke af.",
+    "childVoice": "De irriterer mig med vilje. Jeg har sagt, de skal lade mig være. Men ingen lytter.",
+    "mistakes": "Vi er bange for, hvornår det eksploderer. Vi går på æggeskaller.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "AN1",
+    "title": "Liva, 5 år – Separationsangst og mavepine",
+    "age": 5,
+    "diagnoses": [
+      "Angst"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "AN1 - professionel case",
+    "problem": "Liva græder dagligt ved aflevering. Hun holder fast i forælder, siger hun har ondt i maven, og nægter ofte aktiviteter. Hun følger pædagoger som “skygge” og bryder sammen ved skift af voksen.",
+    "childVoice": "Jeg vil ikke være alene. Jeg ved ikke, hvad der skal ske.",
+    "mistakes": "Hun er sød og kærlig – men hun tør ikke noget selv.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "AN2",
+    "title": "Emilie, 9 år – Præstationsangst og undgåelse",
+    "age": 9,
+    "diagnoses": [
+      "Angst"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "AN2 - professionel case",
+    "problem": "Emilie bliver bleg, stille og forsøger at undgå præstation. Hun siger hun “glemmer det” eller “kan ikke”. Ved krav lukker hun ned, sidder passivt eller bliver fysisk dårlig. Hun har svært ved gruppearbejde og nye faglige opgaver.",
+    "childVoice": "Hvis jeg fejler, ser de det. Jeg kan ikke lade være med at tænke på det.",
+    "mistakes": "Hun virker så stille – men vi ser hun kæmper.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "AN3",
+    "title": "Mathias, 13 år – Panik og Overkontrol",
+    "age": 13,
+    "diagnoses": [
+      "Angst",
+      "DCD"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "AN3 - professionel case",
+    "problem": "Mathias får åndenød, sveder, bliver bleg og nægter at gå i skole ved ændringer. Han kræver plan, gennemgår dagen i detaljer og reagerer med vrede, hvis noget afviger. Han siger “jeg får ondt i brystet” og “det hele går galt”.",
+    "childVoice": "Hvis jeg ikke ved det hele, går det galt. Så kan jeg ikke trække vejret.",
+    "mistakes": "Han virker intelligent – men alt handler om kontrol.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "DCD1",
+    "title": "Kasper, 7 år – Motorisk Uro og Lav Selvtillid",
+    "age": 7,
+    "diagnoses": [
+      "DCD"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "DCD1 - professionel case",
+    "problem": "Kasper vælter ofte ting, skriver meget langsomt, og nægter opgaver der kræver finmotorik. Han siger: “jeg kan ikke” og vil ofte sidde alene. Han er sød, men virker udenfor i pauser, og reagerer med vrede ved drilleri.",
+    "childVoice": "De andre kan det hele. Jeg gider ikke, for jeg laver det forkert.",
+    "mistakes": "Han virker opgivende og undvigende – men han er ikke uinteresseret.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "DCD2",
+    "title": "Asger, 10 år – Udadagerende ved Fysisk Udfordring",
+    "age": 10,
+    "diagnoses": [
+      "ADHD",
+      "DCD"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "DCD2 - professionel case",
+    "problem": "Asger bliver vred og råber, når han skal deltage i fysiske aktiviteter. Han siger “det er åndssvagt” og går ofte ud. Lærere oplever, at han søger dominans – men han fejler ofte i fysiske opgaver og griner selvnedladende.",
+    "childVoice": "Jeg hader, når de ser, jeg ikke kan. Så går jeg bare først.",
+    "mistakes": "Det ligner modstand – men måske handler det om usikkerhed.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "DCD3",
+    "title": "Line, 13 år – Social Isolation og Opgivelse",
+    "age": 13,
+    "diagnoses": [
+      "DCD",
+      "Angst",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole"
+    ],
+    "theme": "DCD3 - professionel case",
+    "problem": "Line bliver mere og mere stille, deltager ikke i gruppearbejde og siger ofte “jeg ved ikke” eller “jeg er ligeglad”. Hun undgår praktiske fag, og sidder alene. Hun har ikke mange venner og virker træt i pauser.",
+    "childVoice": "Jeg siger ikke noget, for jeg gider ikke gøre det forkert igen.",
+    "mistakes": "Hun forsvinder. Det er som om hun opgiver, men uden drama.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "ASF1",
+    "title": "Mille, 6 år – “Perfekt pige”, indre uro",
+    "age": 6,
+    "diagnoses": [
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "ASF1 - professionel case",
+    "problem": "Mille gør alt rigtigt i skolen – stille, hjælpsom, aldrig i konflikt. Men hjemme bryder hun sammen, nægter at gå i skole, og græder over små ting. Hun siger “det skal være rigtigt” og får hovedpine efter skoledagen.",
+    "childVoice": "Hvis jeg laver fejl, så bliver det forkert – og så ved de det.",
+    "mistakes": "Hun er nem – men hjemme ser det helt anderledes ud.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "ASF2",
+    "title": "Alma, 10 år – Social udmattelse og nedlukning",
+    "age": 10,
+    "diagnoses": [
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "ASF2 - professionel case",
+    "problem": "Alma klarer sig fint fagligt, men virker udmattet. Hun siger ikke, når noget er svært, men bliver langsom, fjerner sig og “glemmer” opgaver. Hjemme isolerer hun sig og bliver irritabel ved kontakt. Hun virker usynlig i klassen.",
+    "childVoice": "Jeg bruger al min energi på ikke at lave fejl. Så har jeg ikke mere bagefter.",
+    "mistakes": "Hun virker klog – men hun er altid træt.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  },
+  {
+    "id": "ASF3",
+    "title": "Selma, 13 år – Akademisk kompensering og følelsesnedlukning",
+    "age": 13,
+    "diagnoses": [
+      "DCD",
+      "OCD",
+      "ADHD",
+      "Selektiv mutisme",
+      "Angst",
+      "Depression",
+      "Autisme"
+    ],
+    "contexts": [
+      "Skole",
+      "Hjem"
+    ],
+    "theme": "ASF3 - professionel case",
+    "problem": "Selma scorer højt fagligt, men deltager ikke i socialt samspil. Hun virker kold, kontrolleret og siger “det er ligegyldigt”. Hun reagerer ikke på feedback, og skriver noter om sig selv i stikord. Hun er rolig, men utilgængelig.",
+    "childVoice": "Jeg ved, hvad der virker – men jeg siger ikke noget, for det er for meget.",
+    "mistakes": "Hun virker lukket. Vi ved ikke, hvad der foregår.",
+    "solution": "",
+    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation"
+  }
+]
