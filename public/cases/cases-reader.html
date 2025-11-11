@@ -76,7 +76,7 @@
           const parts = match[1].split("```");
           const yamlBlock = parts[0];
           yamlData = jsyaml.load(yamlBlock);
-          markdownBody = parts.slice(1).join("```").trim();
+          markdownBody = parts.slice(1).join("```").replace(/^#+\s*CASE.*$/im, "").trim();
         }
         // --- slut YAML-udtræk ---
 
