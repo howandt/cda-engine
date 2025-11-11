@@ -70,7 +70,9 @@
           <div class="tags">${(c.diagnoses || []).map(d => `<span>${d}</span>`).join("")}</div>
           <p>${c.description}</p>
         `;
-        el.onclick = () => showDetail(c);
+        el.onclick = () => {
+  window.location.href = `cases-reader.html?id=${c.id}`;
+};
         box.appendChild(el);
       });
     }
