@@ -59,7 +59,10 @@
 
   <script>
     async function loadCase() {
-      const caseFile = "case-bh3.md"; // midlertidigt statisk – gøres dynamisk senere
+      // --- dynamisk casevalg ---
+const params = new URLSearchParams(window.location.search);
+const caseId = params.get("id") || "case-bh3"; // standard = Lucas
+const caseFile = `${caseId}.md`;
 
       try {
         const response = await fetch(`./${caseFile}`);
