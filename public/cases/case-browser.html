@@ -75,28 +75,25 @@
     }
 
     function showDetail(c) {
-      const box = document.getElementById("results");
-      const detail = document.getElementById("detail");
-      box.innerHTML = "";
-      detail.style.display = "block";
-      detail.innerHTML = `
-        <button id="backBtn">← Tilbage</button>
-        <h2>${c.title}</h2>
-        <div class="tags">${(c.diagnoses || []).map(d => `<span>${d}</span>`).join("")}</div>
-        <p><strong>Beskrivelse:</strong> ${c.description}</p>
-        <p><strong>Guiding:</strong> ${c.guiding}</p>
-        <div>
-          <h3>📚 Træning</h3>
-          <p><b>Problem:</b> ${c.training.problem}</p>
-          <p><b>Brugersvar:</b> ${c.training.userResponse}</p>
-          <p><b>Evaluering:</b> ${c.training.evaluation}</p>
-          <p>${c.training.feedback.good}</p>
-          <p>${c.training.feedback.partial}</p>
-          <p>${c.training.feedback.bad}</p>
-        </div>
-      `;
-      document.getElementById("backBtn").onclick = () => renderCases(allCases);
-    }
+  const box = document.getElementById("results");
+  const detail = document.getElementById("detail");
+  box.innerHTML = "";
+  detail.style.display = "block";
+  detail.innerHTML = `
+    <button id="backBtn">← Tilbage</button>
+    <h2>${c.title}</h2>
+    <div class="tags">${(c.diagnoses || []).map(d => `<span>${d}</span>`).join("")}</div>
+    <p><strong>Alder:</strong> ${c.age} år</p>
+    <p><strong>Kontekster:</strong> ${(c.contexts || []).join(", ")}</p>
+    <hr>
+    <p><strong>💡 Problem:</strong> ${c.problem}</p>
+    <p><strong>🗣️ Barnets stemme:</strong> ${c.childVoice}</p>
+    <p><strong>❌ Typiske fejl:</strong> ${c.mistakes}</p>
+    <p><strong>✅ Løsning:</strong> ${c.solution}</p>
+    <p><strong>🛠️ Tiltag:</strong> ${c.tools}</p>
+  `;
+  document.getElementById("backBtn").onclick = () => renderCases(allCases);
+}
 
     function applyFilters() {
       const term = document.getElementById("search").value.toLowerCase();
