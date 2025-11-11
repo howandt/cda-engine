@@ -6,37 +6,79 @@
   <style>
     body { font-family: system-ui; margin: 40px; background: #f8f9ff; color: #222; }
     h1 { color: #5a5eea; }
-    .case { background: white; padding: 20px; margin: 15px 0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    input, select { padding: 10px; margin: 5px; border-radius: 8px; border: 1px solid #ccc; }
+    .case { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; }
+    .tags span { background: #e0e3ff; padding: 5px 10px; border-radius: 10px; margin: 3px; display: inline-block; font-size: 0.9em; }
   </style>
 </head>
 <body>
   <h1>CDA Case Browser</h1>
-  <div id="caseContainer">Henter cases...</div>
+
+  <div id="filters">
+    <input type="text" id="search" placeholder="🔍 Søg i titler og beskrivelser..." />
+    <select id="filterDiagnosis">
+      <option value="">📘 Alle diagnoser</option>
+    </select>
+  </div>
+
+  <div id="results">Indlæser...</div>
 
   <script>
-    // 🔹 Hent JSON-data
-    fetch("/data/cases_index.json")
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById("caseContainer");
-        container.innerHTML = "";
+    let allCases = [];
 
-        // 🔹 Vis hver case som en boks
-        data.forEach(c => {
-          const box = document.createElement("div");
-          box.className = "case";
-          box.innerHTML = `
-            <h2>${c.title}</h2>
-            <p><strong>Diagnoser:</strong> ${c.diagnoses?.join(", ") || "-"}</p>
-            <p><strong>Kontekst:</strong> ${c.contexts?.join(", ") || "-"}</p>
-            <p><strong>Beskrivelse:</strong> ${c.description || "Ingen beskrivelse"}</p>
-          `;
-          container.appendChild(box);
-        });
-      })
-      .catch(err => {
-        document.getElementById("caseContainer").textContent = "Fejl: " + err;
+    async function loadCases() {
+      const res = await fetch("/data/cases_index.json");
+      allCases = await res.json();
+      buildDiagnosisFilter();
+      renderCases(allCases);
+    }
+
+    function buildDiagnosisFilter() {
+      const diagnoses = new Set();
+      allCases.forEach(c => c.diagnoses?.forEach(d => diagnoses.add(d)));
+      const sel = document.getElementById("filterDiagnosis");
+      diagnoses.forEach(d => {
+        const opt = document.createElement("option");
+        opt.value = d;
+        opt.textContent = d;
+        sel.appendChild(opt);
       });
+    }
+
+    function renderCases(list) {
+      const box = document.getElementById("results");
+      box.innerHTML = "";
+      if (!list.length) {
+        box.innerHTML = "<p>Ingen cases matcher dine filtre.</p>";
+        return;
+      }
+      list.forEach(c => {
+        const el = document.createElement("div");
+        el.className = "case";
+        el.innerHTML = `
+          <h2>${c.title}</h2>
+          <div class="tags">${c.diagnoses.map(d => `<span>${d}</span>`).join("")}</div>
+          <p><strong>Beskrivelse:</strong> ${c.description}</p>
+        `;
+        box.appendChild(el);
+      });
+    }
+
+    function applyFilters() {
+      const term = document.getElementById("search").value.toLowerCase();
+      const diag = document.getElementById("filterDiagnosis").value;
+      const filtered = allCases.filter(c => {
+        const matchText = c.title.toLowerCase().includes(term) || c.description.toLowerCase().includes(term);
+        const matchDiag = !diag || c.diagnoses.includes(diag);
+        return matchText && matchDiag;
+      });
+      renderCases(filtered);
+    }
+
+    document.getElementById("search").addEventListener("input", applyFilters);
+    document.getElementById("filterDiagnosis").addEventListener("change", applyFilters);
+
+    loadCases();
   </script>
 </body>
 </html>
