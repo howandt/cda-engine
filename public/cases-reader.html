@@ -214,6 +214,7 @@
             const res = await fetch("/cases/" + file.file);
             if (!res.ok) throw new Error("Kunne ikke hente " + file.file);
             const text = await res.text();
+            content.innerHTML = "<pre style='white-space: pre-wrap; line-height:1.5;'>" + text + "</pre>";
 
             // 📘 Indsæt markdown og scroll ned til indholdet
             const activeTitle = document.getElementById("activeTitle");
