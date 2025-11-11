@@ -1,4 +1,3 @@
-## 🧩 CASE BH3 – Lucas, 5 år – Impulsiv Aggression og Grænseproblemer
 ```yaml
 id: case-bh3
 alder: 5
