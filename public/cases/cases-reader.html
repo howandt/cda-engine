@@ -67,18 +67,21 @@
         const text = await response.text();
 
         // --- YAML-udtræk ---
-        const cleanText = text.replace(/\r/g, "\n");
-        const match = cleanText.split("```yaml");
-        let yamlData = {};
-        let markdownBody = cleanText;
+const cleanText = text.replace(/\r/g, "\n");
+let yamlData = {};
+let markdownBody = cleanText;
 
-        if (match.length > 1) {
-          const parts = match[1].split("```");
-          const yamlBlock = parts[0];
-          yamlData = jsyaml.load(yamlBlock);
-          markdownBody = parts.slice(1).join("```").replace(/^#+\s*CASE.*$/im, "").trim();
-        }
-        // --- slut YAML-udtræk ---
+// find hvor yaml starter og slutter
+const start = cleanText.indexOf("```yaml");
+if (start !== -1) {
+  const end = cleanText.indexOf("```", start + 7);
+  if (end !== -1) {
+    const yamlBlock = cleanText.substring(start + 7, end).trim();
+    yamlData = jsyaml.load(yamlBlock);
+    markdownBody = cleanText.substring(end + 3).trim();
+  }
+}
+// --- slut YAML-udtræk ---
 
         // Metadata
         const metaDiv = document.getElementById("metadata");
