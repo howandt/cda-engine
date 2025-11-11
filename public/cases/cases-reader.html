@@ -92,12 +92,14 @@ if (match.length > 1) {
           <p><strong>Tags:</strong> ${(yamlData.tags || []).join(', ')}</p>
         `;
 
-        // 4️⃣ Render markdown-tekst i hovedfelt
-        const htmlContent = marked.parse(markdownBody);
-        document.getElementById('content').innerHTML = htmlContent;
-      } catch (err) {
-        document.getElementById('content').innerHTML = `<p style="color:red;">Fejl: ${err.message}</p>`;
-      }
+        // --- Markdown rendering fix ---
+try {
+  const htmlContent = marked.parse(markdownBody || '⚠️ Ingen tekst fundet i casen.');
+  document.getElementById('content').innerHTML = htmlContent;
+} catch (e) {
+  document.getElementById('content').innerHTML = `<p style="color:red;">Fejl ved markdown-rendering: ${e.message}</p>`;
+}
+// --- slut fix ---
     }
 
     loadCase();
