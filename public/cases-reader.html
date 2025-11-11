@@ -201,7 +201,7 @@
 
   async function loadCases() {
     try {
-      const res = await fetch("data/cases_index.json");
+      const res = await fetch("/data/CDA_Cases_Index.json");
       if (!res.ok) throw new Error("Kunne ikke hente cases_index.json");
       const files = await res.json();
 
