@@ -6,9 +6,11 @@
   <style>
     body { font-family: system-ui; margin: 40px; background: #f8f9ff; color: #222; }
     h1 { color: #5a5eea; }
-    input, select { padding: 10px; margin: 5px; border-radius: 8px; border: 1px solid #ccc; }
-    .case { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; }
+    input, select, button { padding: 10px; margin: 5px; border-radius: 8px; border: 1px solid #ccc; }
+    .case { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; cursor: pointer; }
     .tags span { background: #e0e3ff; padding: 5px 10px; border-radius: 10px; margin: 3px; display: inline-block; font-size: 0.9em; }
+    #detail { background: #fff; padding: 25px; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 20px; }
+    #backBtn { margin-top: 10px; background: #5a5eea; color: #fff; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -22,6 +24,7 @@
   </div>
 
   <div id="results">Indlæser...</div>
+  <div id="detail" style="display:none;"></div>
 
   <script>
     let allCases = [];
@@ -47,21 +50,50 @@
 
     function renderCases(list) {
       const box = document.getElementById("results");
+      const detail = document.getElementById("detail");
       box.innerHTML = "";
+      detail.style.display = "none";
+
       if (!list.length) {
         box.innerHTML = "<p>Ingen cases matcher dine filtre.</p>";
         return;
       }
+
       list.forEach(c => {
         const el = document.createElement("div");
         el.className = "case";
         el.innerHTML = `
           <h2>${c.title}</h2>
           <div class="tags">${c.diagnoses.map(d => `<span>${d}</span>`).join("")}</div>
-          <p><strong>Beskrivelse:</strong> ${c.description}</p>
+          <p>${c.description}</p>
         `;
+        el.onclick = () => showDetail(c);
         box.appendChild(el);
       });
+    }
+
+    function showDetail(c) {
+      const box = document.getElementById("results");
+      const detail = document.getElementById("detail");
+      box.innerHTML = "";
+      detail.style.display = "block";
+      detail.innerHTML = `
+        <button id="backBtn">← Tilbage</button>
+        <h2>${c.title}</h2>
+        <div class="tags">${c.diagnoses.map(d => `<span>${d}</span>`).join("")}</div>
+        <p><strong>Beskrivelse:</strong> ${c.description}</p>
+        <p><strong>Guiding:</strong> ${c.guiding}</p>
+        <div>
+          <h3>📚 Træning</h3>
+          <p><b>Problem:</b> ${c.training.problem}</p>
+          <p><b>Brugersvar:</b> ${c.training.userResponse}</p>
+          <p><b>Evaluering:</b> ${c.training.evaluation}</p>
+          <p>${c.training.feedback.good}</p>
+          <p>${c.training.feedback.partial}</p>
+          <p>${c.training.feedback.bad}</p>
+        </div>
+      `;
+      document.getElementById("backBtn").onclick = () => renderCases(allCases);
     }
 
     function applyFilters() {
