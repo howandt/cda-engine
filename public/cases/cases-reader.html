@@ -67,10 +67,19 @@
         const response = await fetch(`./${caseFile}`);
         const text = await response.text();
 
-        // 2️⃣ Find YAML metadata-blok
-        const yamlMatch = text.match(/```(?:yaml|yml)\s*([\s\S]*?)```/i);
-        const yamlData = yamlMatch ? jsyaml.load(yamlMatch[1]) : {};
-        const markdownBody = text.replace(/```yaml[\s\S]*?```/, '').trim();
+        // --- forbedret YAML-udtræk ---
+const cleanText = text.replace(/\r/g, '\n'); // normaliser linjeskift
+const match = cleanText.split('```yaml');
+let yamlData = {};
+let markdownBody = cleanText;
+
+if (match.length > 1) {
+  const parts = match[1].split('```');
+  const yamlBlock = parts[0];
+  yamlData = jsyaml.load(yamlBlock);
+  markdownBody = parts.slice(1).join('```').trim();
+}
+// --- slut YAML-udtræk ---
 
         // 3️⃣ Vis metadata i venstre panel
         const metaDiv = document.getElementById('metadata');
