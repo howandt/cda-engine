@@ -12,7 +12,6 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
       height: 100vh;
       background: #f8f9fa;
     }
@@ -60,49 +59,48 @@
 
   <script>
     async function loadCase() {
-      // 1️⃣ Filnavn kan senere gøres dynamisk, men nu tester vi Lucas
-      const caseFile = 'case-bh3.md';
+      const caseFile = "case-bh3.md"; // midlertidigt statisk – gøres dynamisk senere
 
       try {
         const response = await fetch(`./${caseFile}`);
+        if (!response.ok) throw new Error(`Kan ikke finde filen ${caseFile}`);
         const text = await response.text();
 
-        // --- forbedret YAML-udtræk ---
-const cleanText = text.replace(/\r/g, '\n'); // normaliser linjeskift
-const match = cleanText.split('```yaml');
-let yamlData = {};
-let markdownBody = cleanText;
+        // --- YAML-udtræk ---
+        const cleanText = text.replace(/\r/g, "\n");
+        const match = cleanText.split("```yaml");
+        let yamlData = {};
+        let markdownBody = cleanText;
 
-if (match.length > 1) {
-  const parts = match[1].split('```');
-  const yamlBlock = parts[0];
-  yamlData = jsyaml.load(yamlBlock);
-  markdownBody = parts.slice(1).join('```').trim();
-}
-// --- slut YAML-udtræk ---
+        if (match.length > 1) {
+          const parts = match[1].split("```");
+          const yamlBlock = parts[0];
+          yamlData = jsyaml.load(yamlBlock);
+          markdownBody = parts.slice(1).join("```").trim();
+        }
+        // --- slut YAML-udtræk ---
 
-        // 3️⃣ Vis metadata i venstre panel
-        const metaDiv = document.getElementById('metadata');
+        // Metadata
+        const metaDiv = document.getElementById("metadata");
         metaDiv.innerHTML = `
-          <h2>${yamlData.navn || 'Ukendt'}</h2>
-          <p><strong>Alder:</strong> ${yamlData.alder || '-'}</p>
-          <p><strong>Miljø:</strong> ${yamlData.miljø || '-'}</p>
-          <p><strong>Diagnose:</strong> ${yamlData.primær_diagnose || '-'}</p>
-          <p><strong>Kompleksitet:</strong> ${yamlData.kompleksitet || '-'}</p>
-          <p><strong>Tags:</strong> ${(yamlData.tags || []).join(', ')}</p>
+          <h2>${yamlData.navn || "Ukendt"}</h2>
+          <p><strong>Alder:</strong> ${yamlData.alder || "-"}</p>
+          <p><strong>Miljø:</strong> ${yamlData.miljø || "-"}</p>
+          <p><strong>Diagnose:</strong> ${yamlData.primær_diagnose || "-"}</p>
+          <p><strong>Kompleksitet:</strong> ${yamlData.kompleksitet || "-"}</p>
+          <p><strong>Tags:</strong> ${(yamlData.tags || []).join(", ")}</p>
         `;
 
-        // --- Markdown rendering fix ---
-try {
-  const htmlContent = marked.parse(markdownBody || '⚠️ Ingen tekst fundet i casen.');
-  document.getElementById('content').innerHTML = htmlContent;
-} catch (e) {
-  document.getElementById('content').innerHTML = `<p style="color:red;">Fejl ved markdown-rendering: ${e.message}</p>`;
-}
-// --- slut fix ---
+        // Markdown-indhold
+        const htmlContent = marked.parse(markdownBody || "⚠️ Ingen tekst fundet i casen.");
+        document.getElementById("content").innerHTML = htmlContent;
+      } catch (err) {
+        document.getElementById("content").innerHTML = `<p style="color:red;">Fejl: ${err.message}</p>`;
+      }
     }
 
-    loadCase();
+    // Sørg for at funktionen faktisk kaldes, når DOM er klar
+    document.addEventListener("DOMContentLoaded", loadCase);
   </script>
 </body>
 </html>
