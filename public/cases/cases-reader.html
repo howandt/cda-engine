@@ -77,7 +77,12 @@ if (start !== -1) {
   const end = cleanText.indexOf("```", start + 7);
   if (end !== -1) {
     const yamlBlock = cleanText.substring(start + 7, end).trim();
-    yamlData = jsyaml.load(yamlBlock);
+try {
+  yamlData = jsyaml.load(yamlBlock) || {};
+} catch (e) {
+  console.warn("YAML parse error:", e);
+  yamlData = {};
+}
     markdownBody = cleanText.substring(end + 3).trim();
   }
 }
