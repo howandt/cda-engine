@@ -32,7 +32,7 @@
     let allCases = [];
 
     async function loadCases() {
-      const res = await fetch("/data/cases_index.json");
+      const res = await fetch("/data/CDA_Cases_Index.json");
       allCases = await res.json();
       buildDiagnosisFilter();
       renderCases(allCases);
