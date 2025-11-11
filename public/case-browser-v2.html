@@ -66,7 +66,7 @@
         el.className = "case";
         el.innerHTML = `
           <h2>${c.title}</h2>
-          <div class="tags">${c.diagnoses.map(d => `<span>${d}</span>`).join("")}</div>
+          <div class="tags">${(c.diagnoses || []).map(d => `<span>${d}</span>`).join("")}</div>
           <p>${c.description}</p>
         `;
         el.onclick = () => showDetail(c);
@@ -82,7 +82,7 @@
       detail.innerHTML = `
         <button id="backBtn">← Tilbage</button>
         <h2>${c.title}</h2>
-        <div class="tags">${c.diagnoses.map(d => `<span>${d}</span>`).join("")}</div>
+        <div class="tags">${(c.diagnoses || []).map(d => `<span>${d}</span>`).join("")}</div>
         <p><strong>Beskrivelse:</strong> ${c.description}</p>
         <p><strong>Guiding:</strong> ${c.guiding}</p>
         <div>
