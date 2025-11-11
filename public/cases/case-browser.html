@@ -96,15 +96,25 @@
 }
 
     function applyFilters() {
-      const term = document.getElementById("search").value.toLowerCase();
-      const diag = document.getElementById("filterDiagnosis").value;
-      const filtered = allCases.filter(c => {
-        const matchText = c.title.toLowerCase().includes(term) || c.description.toLowerCase().includes(term);
-        const matchDiag = !diag || c.diagnoses.includes(diag);
-        return matchText && matchDiag;
-      });
-      renderCases(filtered);
-    }
+  const term = document.getElementById("search").value.toLowerCase();
+  const diag = document.getElementById("filterDiagnosis").value;
+
+  const filtered = allCases.filter(c => {
+    const matchText =
+      c.title.toLowerCase().includes(term) ||
+      (c.problem && c.problem.toLowerCase().includes(term)) ||
+      (c.solution && c.solution.toLowerCase().includes(term)) ||
+      (c.childVoice && c.childVoice.toLowerCase().includes(term)) ||
+      (c.mistakes && c.mistakes.toLowerCase().includes(term)) ||
+      (c.tools && c.tools.toLowerCase().includes(term));
+
+    const matchDiag = !diag || (c.diagnoses && c.diagnoses.includes(diag));
+
+    return matchText && matchDiag;
+  });
+
+  renderCases(filtered);
+}
 
     document.getElementById("search").addEventListener("input", applyFilters);
     document.getElementById("filterDiagnosis").addEventListener("change", applyFilters);
