@@ -1,0 +1,21 @@
+[
+  {
+    "id": "CDA001",
+    "title": "Sensorisk overbelastning i klasselokalet",
+    "diagnoses": ["Autisme", "Angst"],
+    "contexts": ["Skole"],
+    "themes": ["Sansning", "Angst"],
+    "description": "En elev begynder at dække ørerne og græde, når der bliver for meget støj i klassen. Læreren beder hende sætte sig ned og ignorere lydene.",
+    "guiding": "Identificér sensoriske triggers og lav ‘stille zoner’. Brug støjdæmpning, tydelig pauseadgang og evt. visuel markering (‘lydgrænse’). Undgå irettesættelse. Anerkend behovet: ‘Jeg kan se, lydene generer dig – vil du bruge dine høretelefoner?’",
+    "training": {
+      "problem": "Læreren siger: ‘Du skal vænne dig til lydene, de går over.’",
+      "userResponse": "‘Prøv at ignorere det, så går det nok.’",
+      "evaluation": "Barnet oplever manglende forståelse og stigende angst.",
+      "feedback": {
+        "good": "✅ ‘Lydene er høje – vil du bruge dine høreværn eller tage en kort pause?’ – Giver handlemulighed og tryghed.",
+        "partial": "⚠️ ‘Hvis det bliver for meget, kan du gå ud.’ – Accepterer behov, men mangler proaktiv struktur.",
+        "bad": "❌ ‘Du må lære at holde ud.’ – Forstærker overbelastning og stressreaktion."
+      }
+    }
+  }
+]

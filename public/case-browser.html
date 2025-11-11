@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <title>CDA Case Browser</title>
+  <style>
+    body { font-family: system-ui; margin: 40px; background: #f8f9ff; color: #222; }
+    h1 { color: #5a5eea; }
+    .case { background: white; padding: 20px; margin: 15px 0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  </style>
+</head>
+<body>
+  <h1>CDA Case Browser</h1>
+  <div id="caseContainer">Henter cases...</div>
+
+  <script>
+    // 🔹 Hent JSON-data
+    fetch("/data/CDA_Cases_Index.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("caseContainer");
+        container.innerHTML = "";
+
+        // 🔹 Vis hver case som en boks
+        data.forEach(c => {
+          const box = document.createElement("div");
+          box.className = "case";
+          box.innerHTML = `
+            <h2>${c.title}</h2>
+            <p><strong>Diagnoser:</strong> ${c.diagnoses?.join(", ") || "-"}</p>
+            <p><strong>Kontekst:</strong> ${c.contexts?.join(", ") || "-"}</p>
+            <p><strong>Beskrivelse:</strong> ${c.description || "Ingen beskrivelse"}</p>
+          `;
+          container.appendChild(box);
+        });
+      })
+      .catch(err => {
+        document.getElementById("caseContainer").textContent = "Fejl: " + err;
+      });
+  </script>
+</body>
+</html>
