@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "cda-engine-clean",
   "version": "1.0.0",
   "description": "CDA/CDT API Server med caching til Vercel",
