@@ -159,3 +159,47 @@ Forberede Fase 3: .md → .json auto-konvertering
 Version: 1.1
 CDA ENGINE CLEAN ROADMAP
 © Hans / CDA AI Systems – All rights reserved
+
+📅 STATUSOPDATERING – 14. NOV 2025
+
+Udviklere: Hans & GPT-5
+Status: Stabil base + emotionel forståelse
+
+✅ Fremdrift
+
+Alle cases renset og samlet i CDA_Cases_Index_clean.json
+
+Backup af ældre filer flyttet til /public/backup/
+
+API’er fungerer og returnerer korrekt data (/api/cases, /api/diagnoser, m.fl.)
+
+Dynamisk søgning testet – finder cases på fritekst (fx “uro i børnehaven”)
+
+Ny semantisk motor: semantic_engine.json
+
+Indeholder synonymer, temaer og følelsesmæssige tilstande
+
+Systemet kan nu forbinde ord som trist, nervøs, glad med relevante diagnoser og cases
+
+⚙️ Teknisk status
+
+Ingen fejl i Vercel
+
+build-clean-index.js valideret og fungerer
+
+semantic_engine integreret korrekt i API’et
+
+🚀 Næste trin
+
+Tilføje vægtning af følelsesintensitet (fx “rasende” > “irriteret”)
+
+Udvikle semantisk søgning v2 – forstå betydning, ikke kun ord
+
+Samkør med quiz- og rollespilssystem
+
+Opdatere roadmap efter næste build
+
+💬 Kommentar
+
+Systemet er nu i stand til at forstå emotionel kontekst og reagere intelligent på naturligt sprog.
+Det markerer skiftet fra database-søgning til meningsbaseret dialog, som er kernen i CDA’s næste generation.
