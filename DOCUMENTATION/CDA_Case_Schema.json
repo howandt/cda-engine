@@ -1,15 +1,44 @@
 {
-  "id": "string",
-  "alder": "integer",
-  "diagnose": "string",
-  "miljø": "string",
-  "tema": "string[]",
-  "kompleksitet": "string",
-  "problem": "string",
-  "barnets_oplevelse": "string",
-  "typisk_fejl": "string",
-  "løsning": "string",
-  "tiltag": "string[]",
-  "refleksion": "string",
-  "resultat": "string"
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CDA Case Schema",
+  "description": "Standard schema for all CDA cases (English format)",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "age": { "type": "integer" },
+    "diagnoses": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "contexts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "theme": { "type": "string" },
+    "problem": { "type": "string" },
+    "childVoice": { "type": "string" },
+    "mistakes": { "type": "string" },
+    "solution": { "type": "string" },
+    "tools": { "type": "string" },
+    "category": { "type": "string" },
+    "shortDescription": { "type": "string" },
+    "complexity": { "type": "string" },
+    "reflection": { "type": "string" },
+    "result": { "type": "string" },
+    "source": { "type": "string" },
+    "version": { "type": "string" },
+    "lastUpdated": { "type": "string", "format": "date" }
+  },
+  "required": [
+    "id",
+    "title",
+    "age",
+    "diagnoses",
+    "contexts",
+    "theme",
+    "problem",
+    "solution",
+    "category"
+  ]
 }
