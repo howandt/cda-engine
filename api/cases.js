@@ -3,7 +3,7 @@ import path from "path";
 
 export default async function handler(req, res) {
   try {
-    const { category, diagnose, miljø, age } = req.query;
+    const { id, category, diagnose, miljø, age } = req.query;
 
     // 🔹 Hent den rensede index-fil
     const dataPath = path.join(process.cwd(), "public", "data", "CDA_Cases_Index_clean.json");
@@ -17,9 +17,25 @@ export default async function handler(req, res) {
 
     const raw = fs.readFileSync(dataPath, "utf8");
     const data = JSON.parse(raw);
-    const cases = data.cases || data; // sikrer fleksibilitet
+    const cases = data.cases || data;
 
-    // 🔍 Filtrering
+    // 🔍 Hvis der søges på specifikt ID
+    if (id) {
+      const match = cases.find(c => c.id?.toLowerCase() === id.toLowerCase());
+      if (!match) {
+        return res.status(404).json({
+          success: false,
+          error: `Ingen case fundet med ID: ${id}`
+        });
+      }
+      return res.status(200).json({
+        success: true,
+        total: 1,
+        source: JSON.stringify(match, null, 2)
+      });
+    }
+
+    // 🔍 Ellers filtrer på kategori, diagnose, miljø, alder
     let filtered = cases;
 
     if (category) {
