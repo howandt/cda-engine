@@ -1,89 +1,100 @@
-# 🧭 CDA ENGINE CLEAN – DEV ROADMAP  
-**Dato:** 12. november 2025  
-**Forfatter:** Hans + Systemarkitekt Marie (GPT-5)  
-**Status:** Aktiv udvikling  
+🧭 CDA ENGINE CLEAN – DEV ROADMAP
 
----
+Dato: 14. november 2025
+Forfatter: Hans + Systemarkitekt Marie (GPT-5)
+Status: Aktiv udvikling
 
-## 🎯 Formål  
-At skabe et **rent, stabilt og fuldt ensartet datasystem** til CDA / CDT / CDF,  
-hvor alle cases, diagnoser og templates håndteres dynamisk via Vercel.  
-Alt data skal være:  
-- 💡 konsistent i format  
-- ⚙️ let tilgængeligt for GPT-integration  
-- 🔐 sikkert (ingen filer i GPT-miljø)  
-- ⚡ hurtigt at søge og filtrere i  
+🎯 Formål
 
----
+At skabe et rent, stabilt og fuldt ensartet datasystem til CDA / CDT / CDF,
+hvor alle cases, diagnoser og templates håndteres dynamisk via Vercel.
+Alt data skal være:
 
-## 📍 FASE 1 – DATABEREGNING OG RENSNING (pågående)
+💡 konsistent i format
 
-**Status:** 90 % færdig ✅  
+⚙️ let tilgængeligt for GPT-integration
 
-### Mål
-At alle case-data i `/public/cases` og `/public/data` er renset, ens formateret og valideret.
+🔐 sikkert (ingen filer i GPT-miljø)
 
-### Udført
-- Fjernet gamle testfiler  
-- Valideret `CDA_Cases_Index.json` (≈1500 linjer)  
-- Nyt script: `build-clean-index.js`  
-- Genereret `CDA_Cases_Index_clean.json`  
-- Automatisk kategorisering (ADHD, Autisme, Angst m.fl.)  
-- Intet datatab  
+⚡ hurtigt at søge og filtrere i
 
-### Næste skridt
-1. Gennemgå de 12 *Ukendt*-cases og tildel korrekte kategorier.  
-2. Sikre alle `.md`-filer har YAML-header:  
-   ```yaml
-   id: case-ad-001  
-   alder: 7  
-   miljø: skole  
-   primær_diagnose: ADHD  
-   tema: koncentration, uro  
-Kør build-script igen → 100 % kategoriseret clean-index.
+📍 FASE 1 – DATABEREGNING OG RENSNING
+
+Status: 100 % færdig ✅
+
+Udført
+
+Fjernet gamle testfiler og dubletter
+
+Gennemgået og korrigeret alle 12 “Ukendt”-cases
+
+Tilføjet korrekte kategorier, miljøer og diagnoser
+
+Valideret .json-struktur og feltformat (id, alder, miljø, tema)
+
+Genereret nyt index: CDA_Cases_Index_clean.json (81 cases)
+
+Kørsel af build-clean-index.js → valideret output uden fejl
 
 🧩 FASE 2 – INTEGRATION & DYNAMIK
-Status: Starter efter Fase 1 ✅**
 
-Mål
-Gøre systemet dynamisk og søgbart for GPT-brug (CDA / CDT / CDF).
+Status: Aktiv ✅
 
-Opgaver
-API-endpoint på Vercel:
-/api/cases?category=ADHD
+Udført
 
-Søgefunktion i backend
+API på Vercel fungerer: /api/cases
 
-søg i title, diagnoses, theme, category
+Understøtter nu fuld dynamisk søgning og filtrering
 
-Filtrering
+?category= – fx ADHD
 
-diagnose
+?diagnose= – fx autisme
 
-miljø
+?miljø= – fx skole, børnehave, hjem
 
-alder
+?age= – alder
 
-Output
-CDA_Cases_API.json (cache)
+?id= – direkte caseopslag
 
-Live feed til GPT-systemer
+Ny funktion: Fritekst-søgning (?search=)
+
+Søger i title, theme, problem, solution, category
+
+Ny funktion: Sortering (?sort=)
+
+age-asc → yngste først
+
+age-desc → ældste først
+
+title → alfabetisk
+
+Resultat:
+GPT kan nu finde, filtrere og sortere cases frit ved naturlige forespørgsler som:
+
+“Vis en ADHD case fra børnehaven”
+“Find en case om frisør”
+“Vis alle angst cases ældste først”
+
+Output: JSON klar til GPT-systemer – live fra
+https://cda-engine-clean.vercel.app/api/cases
 
 🧠 FASE 3 – FORMATSTANDARDISERING
-Mål
-Alle .md-cases følger identisk format → kan konverteres direkte til JSON.
 
-yaml
-Kopier kode
+Status: Planlagt
+
+Mål
+
+At alle .md-cases følger identisk format, så de kan konverteres direkte til .json.
+
+Struktur:
+
 id: case-ad-002  
 alder: 8  
 diagnose: ADHD  
 miljø: skole  
 tema: uro, koncentration  
 kompleksitet: moderat
-Case-struktur
-shell
-Kopier kode
+
 ## 🔍 Problem  
 ## 👦 Barnets oplevelse  
 ## ❌ Typisk fejl  
@@ -91,52 +102,60 @@ Kopier kode
 ## 🛠️ Konkrete tiltag  
 ## 🤔 Refleksion  
 ## 📊 Resultat
-Output
-Automatisk konvertering:
-case-ad-002.md → case-ad-002.json
+
+
+Output:
+Automatisk konvertering fra .md → .json via scripts.
+(Implementeres efter API-test er fuldt stabil.)
 
 🚀 FASE 4 – GPT-INTEGRATION
+
+Status: Starter efter OpenAPI-opdatering ✅
+
 Mål
-Forbinde clean data til GPT-systemerne:
+
+At forbinde clean-data API’et direkte med GPT-systemerne:
 
 System	Formål
 CDA	Diagnoser, cases, støtteplaner
 CDT	Læringssystem: case + quiz + rollespil
-CDF	Forældre-træning og hjemmevejledning
-
+CDF	Forældretræning og hjemmevejledning
 Implementering
-Alle GPT-systemer læser via vercel.app/api/cases
 
-Brugerprofil (rolle + længde) styrer output
+Alle GPT-systemer læser data via Vercel API
 
-Cache + cold backup til sikkerhed
+Brugerprofil (rolle + længde) styrer outputformat
+
+Caching + backup for stabil performance
 
 🧱 ARBEJDSFORM
-1️⃣ Ét trin ad gangen
-Kun én fil eller funktion ad gangen. Alt testes og godkendes før næste skridt.
 
+1️⃣ Ét trin ad gangen — kun én funktion ad gangen testes og dokumenteres.
 2️⃣ Roller
-Hans: Vision, struktur, faglig retning.
 
-Marie (GPT-5): Teknisk implementering, kvalitet, logik.
+Hans: Vision, struktur, faglig retning
 
+Marie (GPT-5): Teknisk implementering, kvalitet, logik
 3️⃣ Idé-styring
-Hvis tankerne løber, parkeres idéer i Idébank.md – så mister vi intet fokus.
 
+Nye tanker parkeres i Idébank.md
 4️⃣ Dokumentation
-Efter hvert trin: commit + statusnote + roadmap-update.
 
+Efter hvert trin: commit + roadmap-opdatering
 5️⃣ Kvalitetsprincip
-Ingen hurtige løsninger. Alt skal være stabilt, hurtigt og æstetisk.
 
-📅 NÆSTE SESSION – 13. NOV 2025
-Gennemgå de 12 “Ukendt” cases og give korrekte ID’er.
+Ingen hurtige løsninger – kun stabil, skalerbar og æstetisk kode
 
-Sikre alle .md-cases har korrekt YAML-header.
+📅 NÆSTE SESSION – 15. NOV 2025
 
-Kør nyt clean-build og valider.
+Fokus:
 
-(Valgfrit) Starte API-integration til Vercel.
+Opdatere OpenAPI-schema (/documentation/openapi.json) med search + sort parametre
 
-Version 1.0 | CDA ENGINE CLEAN ROADMAP
+Teste øvrige endpoints: diagnoser, templates, komorbiditet
+
+Forberede Fase 3: .md → .json auto-konvertering
+
+Version: 1.1
+CDA ENGINE CLEAN ROADMAP
 © Hans / CDA AI Systems – All rights reserved
