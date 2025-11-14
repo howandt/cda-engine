@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { semanticSearch } from "../../scripts/semantic_matcher.js";
+import { semanticSearch } from "../scripts/semantic_matcher.js";
 
 export default async function handler(req, res) {
   try {
