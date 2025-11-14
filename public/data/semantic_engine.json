@@ -49,7 +49,6 @@
   "social": ["venner", "relationer", "samspil", "inklusion", "mobning"],
   "sensorisk": ["lyd", "berøring", "sanser", "overreaktion", "søgende adfærd"],
   "mutisme": ["tavshed", "taler ikke", "selektiv tale"],
-
   "vred": ["frustreret", "sur", "aggressiv", "impulsiv", "eksplosiv", "konflikt"],
   "lukker ned": ["isolerer sig", "trækker sig", "social tilbagetrækning", "selvisolation", "tavs"],
   "skift": ["overgang", "rutinebrud", "ændring", "fleksibilitet", "struktur"],
@@ -65,5 +64,15 @@
     "relationer": ["venskab", "konflikt", "samarbejde", "gruppetilhørighed"],
     "struktur": ["rutiner", "overgange", "forudsigelighed", "ændringer"],
     "kommunikation": ["tale", "sprog", "dialog", "forståelse"]
-  }
+  },
+
+  "emotions": {
+  "trist": ["ked af det", "modløs", "manglende energi", "føler sig forkert"],
+  "angst": ["bange", "bekymret", "spændt", "nervøs", "undgående"],
+  "vrede": ["rasende", "eksplosiv", "frustreret", "overvældet"],
+  "uro": ["rastløs", "urolig", "kan ikke slappe af", "bevæger sig konstant"],
+  "overstimulering": ["overvældet", "sansekaos", "lukker ned", "for meget støj"],
+  "skam": ["føler sig forkert", "selvkritisk", "trækker sig væk"],
+  "glæde": ["tryg", "engageret", "smilende", "rolig", "positiv"]
+}
 }
