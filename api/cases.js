@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { semanticSearch } from "@/scripts/semantic_matcher.js";
 
 export default async function handler(req, res) {
   try {
@@ -37,6 +38,18 @@ export default async function handler(req, res) {
 
     // 🔍 Ellers filtrer på kategori, diagnose, miljø, alder
     let filtered = cases;
+    // 🔹 Ny semantisk søgning
+const { q } = req.query;
+if (q) {
+  const { terms, related } = semanticSearch(q);
+  filtered = cases.filter(c => {
+    const content = JSON.stringify(c).toLowerCase();
+    return (
+      terms.some(t => content.includes(t)) ||
+      related.some(r => content.includes(r))
+    );
+  });
+}
 
     if (category) {
       filtered = filtered.filter(c =>
