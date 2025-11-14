@@ -3,81 +3,54 @@ import path from "path";
 
 export default async function handler(req, res) {
   try {
-    const { file } = req.query;
+    const { category, diagnose, miljø, age } = req.query;
 
-    // 🔹 NY sti – matcher din nye struktur
-    const dataDir = path.join(process.cwd(), "data", "cases_ORIGINAL_ARCHIVE");
+    // 🔹 Hent den rensede index-fil
+    const dataPath = path.join(process.cwd(), "public", "data", "CDA_Cases_Index_clean.json");
 
-    // Tjek at mappen eksisterer
-    if (!fs.existsSync(dataDir)) {
+    if (!fs.existsSync(dataPath)) {
       return res.status(404).json({
         success: false,
-        error: `Mappe ikke fundet: ${dataDir}`
+        error: `Datafil ikke fundet: ${dataPath}`
       });
     }
 
-    // Find alle JSON-filer i mappen
-    const files = fs.readdirSync(dataDir).filter(f => f.endsWith(".json"));
+    const raw = fs.readFileSync(dataPath, "utf8");
+    const data = JSON.parse(raw);
+    const cases = data.cases || data; // sikrer fleksibilitet
 
-    // Hjælpefunktion: indlæs og parse JSON-fil
-    const loadFile = (filename) => {
-      const filePath = path.join(dataDir, filename);
-      if (!fs.existsSync(filePath)) return null;
+    // 🔍 Filtrering
+    let filtered = cases;
 
-      try {
-        const raw = fs.readFileSync(filePath, "utf8");
-        const parsed = JSON.parse(raw);
-
-        // Hvis filen er et array → pak den som { cases: [...] }
-        if (Array.isArray(parsed)) return { cases: parsed };
-
-        // Hvis der allerede findes "cases" → brug direkte
-        if (parsed.cases) return parsed;
-
-        // Ellers returnér tom struktur
-        return { cases: [] };
-      } catch (error) {
-        console.error("❌ Parsefejl i", filename, error);
-        return { cases: [] };
-      }
-    };
-
-    // Saml alle cases på tværs af filer
-    const collectAllCases = () => {
-      let all = [];
-      for (const f of files) {
-        const content = loadFile(f);
-        if (content?.cases?.length) all = all.concat(content.cases);
-      }
-      return all;
-    };
-
-    // 🔸 Hvis ?file=all → returnér alt
-    if (file === "all") {
-      const combined = collectAllCases();
-      const result = { cases: combined, source_files: files };
-      return res.status(200).json({
-        success: true,
-        source: JSON.stringify(result)
-      });
+    if (category) {
+      filtered = filtered.filter(c =>
+        c.category?.toLowerCase().includes(category.toLowerCase())
+      );
     }
 
-    // 🔸 Hvis ?file=<specifik>
-    if (file && files.includes(file)) {
-      const content = loadFile(file);
-      return res.status(200).json({
-        success: true,
-        source: JSON.stringify(content)
-      });
+    if (diagnose) {
+      filtered = filtered.filter(c =>
+        c.diagnoses?.some(d =>
+          d.toLowerCase().includes(diagnose.toLowerCase())
+        )
+      );
     }
 
-    // 🔸 Standard: hent alt
-    const combined = collectAllCases();
-    const overview = { cases: combined, source_files: files };
+    if (miljø) {
+      filtered = filtered.filter(c =>
+        c.miljø?.toLowerCase().includes(miljø.toLowerCase())
+      );
+    }
 
+    if (age) {
+      filtered = filtered.filter(c => c.age === Number(age));
+    }
+
+    // ✅ Returnér resultatet
     return res.status(200).json({
       success: true,
-      source: JSON.stringify(overview)
+      total: filtered.length,
+      source: JSON.stringify(filtered, null, 2)
     });
 
   } catch (error) {
