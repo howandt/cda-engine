@@ -3,7 +3,7 @@ import path from "path";
 
 export default async function handler(req, res) {
   try {
-    const { id, category, diagnose, miljø, age } = req.query;
+    const { id, category, diagnose, miljø, age, search, sort } = req.query;
 
     // 🔹 Hent den rensede index-fil
     const dataPath = path.join(process.cwd(), "public", "data", "CDA_Cases_Index_clean.json");
@@ -60,6 +60,26 @@ export default async function handler(req, res) {
 
     if (age) {
       filtered = filtered.filter(c => c.age === Number(age));
+    }
+
+    // 🔎 NY: Fritekst-søgning
+    if (search) {
+      const q = search.toLowerCase();
+      filtered = filtered.filter(c =>
+        (c.title && c.title.toLowerCase().includes(q)) ||
+        (c.theme && c.theme.toLowerCase().includes(q)) ||
+        (c.problem && c.problem.toLowerCase().includes(q)) ||
+        (c.solution && c.solution.toLowerCase().includes(q)) ||
+        (c.category && c.category.toLowerCase().includes(q))
+      );
+    }
+
+    // 🧭 NY: Sortering
+    if (sort) {
+      const dir = sort.toLowerCase();
+      if (dir === "age-asc") filtered.sort((a, b) => a.age - b.age);
+      if (dir === "age-desc") filtered.sort((a, b) => b.age - a.age);
+      if (dir === "title") filtered.sort((a, b) => a.title.localeCompare(b.title));
     }
 
     // ✅ Returnér resultatet
