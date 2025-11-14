@@ -57,24 +57,20 @@
     "shortDescription": "Emma er bange for at få klippet hår og forestiller sig smerte eller fejl. Hun trækker sig og bliver utryg ved selve situationen...."
   },
   {
-    "id": "15",
-    "title": "Noah 9 år – modstand mod frisørbesøg",
-    "age": 9,
-    "diagnoses": [
-      "Adfærdsudfordringer"
-    ],
-    "contexts": [
-      "Fagfolk"
-    ],
-    "theme": "Motivation, belønning, valg",
-    "problem": "Noah nægter at tage til frisør. Han protesterer højlydt og nægter samarbejde.",
-    "childVoice": "Noah 9 år – modstand mod frisørbesøg",
-    "mistakes": "* Krav uden mening eller motivation * Manglende inddragelse i beslutning",
-    "solution": "* Gør frisørbesøg til et bytte (\"Først... så...\") * Giv valgmuligheder og belønning",
-    "tools": "* Aftale: frisør + yndlingsfilm bagefter * Barnet vælger klip og tid på dagen * Forudsigelighed og overskuelighed",
-    "category": "Ukendt",
-    "shortDescription": "Noah nægter at tage til frisør. Han protesterer højlydt og nægter samarbejde...."
-  },
+  "id": "case-au-015",
+  "title": "Noah 9 år – modstand mod frisørbesøg",
+  "age": 9,
+  "diagnoses": ["Autismespektrumforstyrrelse"],
+  "contexts": ["Fagfolk", "Forælder"],
+  "theme": "Sansning, kontrol, forudsigelighed, motivation",
+  "problem": "Noah nægter at tage til frisør. Han protesterer højlydt og nægter samarbejde, særligt når situationen føles uforudsigelig eller ukontrollerbar.",
+  "childVoice": "Jeg bliver nervøs – jeg ved ikke, hvad der sker hos frisøren. Det larmer, lugter og føles mærkeligt.",
+  "mistakes": "• Krav uden mening eller visuel støtte • Manglende forberedelse og valgmuligheder",
+  "solution": "• Brug social historie med billeder • Giv valgmuligheder (frisør, tidspunkt, hvem der følger med) • Visualiser forløbet trin for trin",
+  "tools": "• Social historie-skabelon (CDF) • Valgkort (hjem/frisør) • Belønningsplan: 'Når jeg har været hos frisør, vælger jeg film derhjemme'",
+  "category": "Autisme",
+  "shortDescription": "Noah reagerer mod frisørbesøg pga. kontrol- og sanseudfordringer. Brug struktur og valg for at skabe tryghed."
+},
   {
     "id": "16",
     "title": "Sophie 11 år – generthed hos frisøren",
@@ -104,15 +100,21 @@
     "contexts": [
       "Skole"
     ],
-    "theme": "Mobning, følelsesmæssig skade",
-    "problem": "Nora bliver kaldt øgenavne og systematisk udelukket fra lege og gruppesnak. Hun trækker sig mere og mere og mister troen på, at nogen vil hende.",
-    "childVoice": "Nora 10 år – kaldt navne og ekskluderet",
-    "mistakes": "* Undlader at handle, fordi det ikke er \"fysisk mobning\" * Beder Nora selv \"sige fra\" uden at klæde hende på",
-    "solution": "* Anerkend mobning som mønster, ikke enkelthændelse * Skab alliancer og voksne der griber ind tidligt * Tilbyd trygge fællesskaber hvor Nora kan blomstre",
-    "tools": "* Observation og dokumentation af mønstre * Social historie om at være med uden at præstere * Fast tryghedsgruppe i frikvarteret * Kontaktperson/rollemodel-elev",
-    "category": "Ukendt",
-    "shortDescription": "Nora bliver kaldt øgenavne og systematisk udelukket fra lege og gruppesnak. Hun trækker sig mere og mere og mister troen på, at nogen vil hende...."
-  },
+    {
+  "id": "case-an-016",
+  "title": "Nora 10 år – udelukkelse og følelsesmæssig skade",
+  "age": 10,
+  "diagnoses": ["Angstproblematik"],
+  "contexts": ["Lærer", "Fagfolk"],
+  "theme": "Mobning, social angst, selvværd, fællesskab",
+  "problem": "Nora bliver kaldt øgenavne og systematisk udelukket fra lege og samtaler. Hun begynder at trække sig og mister troen på, at nogen vil hende.",
+  "childVoice": "Jeg tør ikke lege længere – de siger, jeg ikke må være med. Det føles som om jeg ikke hører til nogen steder.",
+  "mistakes": "• Ignorerer følelsesmæssig mobning fordi den ikke er fysisk • Beder Nora selv 'sige fra' uden støtte og træning",
+  "solution": "• Anerkend mønsteret som social mobning • Skab tydelige vokseninterventioner og trygge relationer • Styrk Noras sociale selvværd gennem små succeser og fællesskaber",
+  "tools": "• Skabelon: Social observation og handleplan mod mobning • Følelseskort til at udtrykke utryghed • Tryghedsgruppe med udvalgt rollemodel",
+  "category": "Angst / Trivsel",
+  "shortDescription": "Nora oplever social eksklusion og følelsesmæssig skade. Støt hende gennem tryghed, voksenindsats og fællesskabsopbygning."
+},
   {
     "id": "18",
     "title": "Emil 11 år – usynlig mobning og eksklusion",
@@ -795,128 +797,122 @@
     "shortDescription": "Lea bliver dagligt mobbet verbalt og online, mens hele klassen ser på uden at gribe ind. Mange synes det er synd for hende, men ingen tør sige fra ell..."
   },
   {
-    "id": "BH1",
-    "title": "Emil 3 år – ekstrem rastløshed og impulsivitet",
-    "age": 3,
-    "diagnoses": [],
-    "contexts": [
-      "Skole"
-    ],
-    "theme": "Tidlige varselstegn, normal vs. bekymrende uro",
-    "problem": "Emil kan ikke sidde stille i mere end 30 sekunder. Han rejser sig under måltider, forlader aktiviteter konstant, klatrer på møbler og løber væk fra voksne. Andre 3-årige kan sidde og lytte til en historie - Emil kan ikke.",
-    "childVoice": "Emil 3 år – ekstrem rastløshed og impulsivitet",
-    "mistakes": "",
-    "solution": "**Bevægelses-integreret børnehave-dag:** - Korte aktiviteter (2-5 min) med bevægelsespauser - \"Bevægelses-jobs\": Emil henter ting, rydder op, hjælper - Alternative siddepladser: bold, ståpult, gulvplads - Struktureret udendørs tid flere gange dagligt - Klare, korte instruktioner med visuel støtte - \"Energi-udløb\" aktiviteter før rolige aktiviteter",
-    "tools": "**Første trin:** Observation og dokumentation - Dokumenter specifikke situationer og varighed - Sammenlign med andre børn på samme alder - Noter hvad der hjælper og hvad der forværrer **Andet trin:** Tilpasning af miljø - Skab struktur der imødekommer hans bevægelsesbehov - Test forskellige strategier og dokumenter resultater - Involver ham i at finde løsninger **Tredje trin:** Kommunikation med forældre - Del observationer objektivt uden diagnoser - Foreslå fælles strategier hjemme og i børneha",
-    "category": "Ukendt",
-    "shortDescription": "Emil kan ikke sidde stille i mere end 30 sekunder. Han rejser sig under måltider, forlader aktiviteter konstant, klatrer på møbler og løber væk fra vo..."
-  },
+  "id": "case-adhd-017",
+  "title": "Emil 3 år – ekstrem rastløshed og impulsivitet",
+  "age": 3,
+  "miljø": "børnehave",
+  "diagnoses": ["Tidlig opmærksomhedsvanskelighed (ADHD-risiko)"],
+  "contexts": ["Pædagog", "Fagfolk"],
+  "theme": "Tidlige varselstegn, motorisk uro, struktur, miljøtilpasning",
+  "problem": "Emil kan ikke sidde stille i mere end 30 sekunder. Han rejser sig under måltider, forlader aktiviteter konstant, klatrer på møbler og løber væk fra voksne. Aktiviteten overstiger, hvad der normalt forventes for alderen.",
+  "childVoice": "Jeg vil gerne, men min krop bliver ved med at ville noget andet. Det er som om, jeg skal bevæge mig hele tiden.",
+  "mistakes": "• Tolker adfærden som opdragelsesproblem i stedet for reguleringsvanskelighed • Forventer ro og selvkontrol over niveau for alderen",
+  "solution": "• Planlæg korte, bevægelsesintegrerede aktiviteter (2–5 min) • Giv 'bevægelses-jobs' og klare rammer for energiudladning • Brug alternativ siddeplads (bold, ståpult, gulv) • Forbered overgang til ro-aktiviteter gennem kropslig afspænding",
+  "tools": "• Skabelon: Observation og registrering af uro • Dagsplan med bevægelsespauser • Forældresamarbejdsark: fælles strategier mellem hjem og institution",
+  "category": "ADHD (tidlig opmærksomhedsvanskelighed)",
+  "shortDescription": "Emil udviser tydelig rastløshed og impulsivitet over normalt niveau. Kræver struktureret støtte og bevægelsesbaseret pædagogik."
+},
   {
-    "id": "BH2",
-    "title": "Maja 4 år – opmærksomhedsproblemer og dagdrømmeri",
-    "age": 4,
-    "diagnoses": [],
-    "contexts": [
-      "Venner"
-    ],
-    "theme": "Stille ADHD-tegn, opmærksomhedsvanskeligheder",
-    "problem": "Maja \"forsvinder\" mentalt midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn, og glemmer instruktioner med det samme. Andre børn færdiggør aktiviteter - Maja sidder ofte med det samme puslespil i timevis uden fremgang.",
-    "childVoice": "Maja 4 år – opmærksomhedsproblemer og dagdrømmeri",
-    "mistakes": "",
-    "solution": "**Opmærksomheds-støttende struktur:** - Øjenkontakt før alle instruktioner - Korte, enkle besked (maks 2 trin ad gangen) - Visuelle støttemidler og billeder - \"Check-in\" hver 5. minut under aktiviteter - Strukturerede aktiviteter med klar start og slut - \"Opmærksomheds-signaler\" (klap, musik) for at genforene gruppen",
-    "tools": "**Første trin:** Opmærksomheds-mapping - Identificer hvornår opmærksomheden er bedst/værst - Test forskellige måder at fange hendes opmærksomhed - Dokumenter hvad der virker og hvor længe **Andet trin:** Struktureret støtte - Implementer opmærksomheds-hjælpemidler - Byg rutiner der hjælper hende med at være tilstede - Lær hende selv at mærke når hun \"forsvinder\" **Tredje trin:** Kommunikation og opfølgning - Del observationer med forældre - Fælles strategier for hjemme og børnehave - Evaluér om ",
-    "category": "Ukendt",
-    "shortDescription": "Maja \"forsvinder\" mentalt midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn, og glemmer instruktioner med det samme. Andre børn f..."
-  },
+  "id": "case-adhd-018",
+  "title": "Maja 4 år – stille opmærksomhedsvanskelighed",
+  "age": 4,
+  "miljø": "børnehave",
+  "diagnoses": ["Tidlig opmærksomhedsvanskelighed (stille ADHD-profil)"],
+  "contexts": ["Pædagog", "Fagfolk"],
+  "theme": "Stille ADHD-tegn, opmærksomhed, struktur, sanseunderstøttelse",
+  "problem": "Maja 'forsvinder' midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn og glemmer instruktioner kort efter. Andre børn bliver færdige – Maja bliver siddende uden at komme videre.",
+  "childVoice": "Jeg prøver, men så kommer der noget andet i mit hoved, og jeg glemmer, hvad jeg skulle.",
+  "mistakes": "• Tolker passivitet som generthed eller manglende interesse • Giver lange verbale beskeder uden visuel støtte",
+  "solution": "• Giv øjenkontakt og korte, tydelige beskeder (max 2 trin) • Brug billeder og farvekoder som opmærksomhedsstøtte • Indfør faste 'check-ins' hver 5. minut under aktiviteter • Giv start-slut signaler (musik, klap, timer)",
+  "tools": "• Skabelon: Opmærksomheds-observation i børnehave • Visuelt dagskema med farvekoder • Forældresamarbejdsark om 'stille uro'",
+  "category": "ADHD (uopmærksom profil)",
+  "shortDescription": "Maja viser tidlige tegn på stille opmærksomhedsvanskelighed. Hun glider ud mentalt og har brug for visuel struktur og korte beskeder for at fastholde fokus."
+},
   {
-    "id": "BH3",
-    "title": "Lucas 5 år – impulsiv aggression og konflikter",
-    "age": 5,
-    "diagnoses": [],
-    "contexts": [
-      "Venner"
-    ],
-    "theme": "Impulsiv aggression, sociale konsekvenser",
-    "problem": "Lucas slår og skubber andre børn næsten dagligt, især når han ikke får sin vilje eller når lege ikke går som han vil. Han virker bagefter ked af det og forstår ikke hvorfor andre ikke vil lege med ham.",
-    "childVoice": "Lucas 5 år – impulsiv aggression og konflikter",
-    "mistakes": "",
-    "solution": "**Impulskontrol og konflikt-forebyggelse:** - \"Stop og tænk\" øvelser før alle aktiviteter - Visuelle kort med alternative reaktioner - Strukturerede lege med klare regler og voksen-støtte - \"Ro-hjørne\" hvor Lucas kunne gå når han mærkede vrede - Rolleleg hvor han øvede at håndtere frustrationer - Positive peer-interaktioner med guidning",
-    "tools": "**Første trin:** Sikkerhed og øjeblikkelig intervention - Stop aggressiv adfærd øjeblikkeligt - Beskyt andre børn og bevar Lucas' værdighed - Hjælp ham til at forstå konsekvenser **Andet trin:** Lær alternative strategier - Øv \"pause\" before handling impulsivt - Konkrete værktøjer til håndtering af frustration - Rolleleg med forskellige konflikt-scenarier **Tredje trin:** Social genintegration - Facilitér positive interaktioner med andre børn - Hjælp gruppens dynamik og forståelse - Byg Lucas' s",
-    "category": "Ukendt",
-    "shortDescription": "Lucas slår og skubber andre børn næsten dagligt, især når han ikke får sin vilje eller når lege ikke går som han vil. Han virker bagefter ked af det o..."
-  },
+  "id": "case-adhd-019",
+  "title": "Lucas 5 år – impulsiv aggression og konflikter",
+  "age": 5,
+  "miljø": "børnehave",
+  "diagnoses": ["ADHD (impulsiv profil)"],
+  "contexts": ["Pædagog", "Fagfolk"],
+  "theme": "Impulsiv aggression, følelsesregulering, sociale konsekvenser",
+  "problem": "Lucas slår og skubber andre børn næsten dagligt, især når han ikke får sin vilje eller legen ændrer sig. Han reagerer hurtigt og uden tanke, men bliver bagefter ked af det og forvirret over, hvorfor andre ikke vil lege med ham.",
+  "childVoice": "Jeg bliver vred lige med det samme – jeg når ikke at tænke. Så bliver de sure, og jeg ved ikke, hvordan jeg skal gøre det godt igen.",
+  "mistakes": "• Tolkning af adfærd som bevidst voldelig • For meget straf uden læring i selvregulering • Manglende voksenstøtte under leg",
+  "solution": "• Indfør 'Stop og Tænk'-rutine før aktiviteter • Brug visuelle kort med alternativer ('jeg går væk', 'jeg henter en voksen') • Træn regulering gennem rolleleg og planlagte konfliktscenarier • Skab ro-hjørne med tydelig struktur og forudsigelighed",
+  "tools": "• Skabelon: Impulskontrol-træning i børnehave • Visuelle følelseskort (vrede, stop, hjælp) • Social genintegrationsplan efter konflikter",
+  "category": "ADHD (impulsiv reguleringsvanskelighed)",
+  "shortDescription": "Lucas reagerer impulsivt med fysisk aggression ved frustration. Han fortryder bagefter og har brug for struktureret støtte i impulskontrol og følelsesregulering."
+},
   {
-    "id": "BH4",
-    "title": "Ida 6 år – overgang til skole og forværrede symptomer",
-    "age": 6,
-    "diagnoses": [],
-    "contexts": [
-      "Skole"
-    ],
-    "theme": "Stress-forværring, strukturelle ændringer",
-    "problem": "Ida klarede sig relativt godt i børnehave, men efter skolestart er hun eksploderet i hyperaktivitet og opmærksomhedsproblemer. Hun kan ikke sidde stille i klassen, glemmer alt og får daglige sammenbrud.",
-    "childVoice": "Ida 6 år – overgang til skole og forværrede symptomer",
-    "mistakes": "",
-    "solution": "**Graduel skole-tilpasning med børnehave-elementer:** - Kortere skoledag første måneder - Bevægelsespauser indbygget i undervisning - Visuel støtte til alle rutiner og regler - \"Sikker base\" person Ida kunne søge til - Tæt kommunikation mellem skole og hjem - Bevarelse af nogle børnehave-rutiner under overgangen",
-    "tools": "**Første trin:** Reducér stress og pres - Tilpas forventninger til hendes udviklingsniveau - Skab forudsigelighed og tryghed - Bevar positive elementer fra børnehave **Andet trin:** Gradvis øgning af krav - Langsom introduktion af skole-strukturer - Fejr små fremskridt frem for at fokusere på mangler - Individuel tilgang til læring og deltagelse **Tredje trin:** Langsigtet planlægning - Evaluér om skolestrukturen matcher hendes behov - Planlæg for eventuel diagnose og støtte-tiltag - Forbered sk",
-    "category": "Transition & Organisation",
-    "shortDescription": "Ida klarede sig relativt godt i børnehave, men efter skolestart er hun eksploderet i hyperaktivitet og opmærksomhedsproblemer. Hun kan ikke sidde stil..."
-  },
+  "id": "case-adhd-020",
+  "title": "Ida 6 år – overgang til skole og forværrede symptomer",
+  "age": 6,
+  "miljø": "skole",
+  "diagnoses": ["ADHD (kombineret profil)"],
+  "contexts": ["Lærer", "Fagfolk"],
+  "theme": "Overgang børnehave-skole, stress, struktur, regulering",
+  "problem": "Ida klarede sig godt i børnehaven, men efter skolestart er hendes uro og opmærksomhedsproblemer eskaleret. Hun kan ikke sidde stille, mister fokus hurtigt og bryder ofte sammen, når kravene stiger.",
+  "childVoice": "Det er for meget hele tiden – der er så mange regler og lyde. Jeg kan ikke huske, hvad jeg skal, og så bliver jeg ked af det.",
+  "mistakes": "• Forventning om, at Ida kan tilpasse sig fuldt til skole fra dag ét • Manglende brobygning mellem børnehave og skole • Ingen individuel plan for overgangen",
+  "solution": "• Indfør gradvis skolestart med elementer fra børnehaven • Planlæg bevægelsespauser og tydelige rutiner • Skab 'sikker base'-person, som Ida kan søge til • Brug visuelle støtter og konkrete mål i undervisningen • Samarbejd tæt med hjemmet og børnehaven i overgangsfasen",
+  "tools": "• Skabelon: Overgangsplan børnehave-skole • Dagsplan med visuel struktur og pauser • Kommunikationsark mellem skole og hjem",
+  "category": "ADHD (overgangsproblematik)",
+  "shortDescription": "Ida får markant flere vanskeligheder efter skolestart pga. kravstigning og stress. Gradvis tilpasning, bevægelse og visuel støtte hjælper hende med at lykkes i overgangen."
+},
   {
-    "id": "BH5",
-    "title": "Noah 4 år – sensorisk søgende adfærd og hyperaktivitet",
-    "age": 4,
-    "diagnoses": [],
-    "contexts": [
-      "Skole"
-    ],
-    "theme": "Sensorisk-søgende vs. hyperaktivitet, komorbiditet",
-    "problem": "Noah søger konstant sensorisk input: han kører rundt, råber, klatrer, putter ting i munden, og kan aldrig få nok stimulering. Andre børn bliver overvældede af hans intensitet og energi.",
-    "childVoice": "Noah 4 år – sensorisk søgende adfærd og hyperaktivitet",
-    "mistakes": "",
-    "solution": "**Struktureret sensorisk diæt kombineret med ADHD-støtte:** - Planlagte sensoriske aktiviteter flere gange dagligt - \"Tunge arbejde\" (skubbe, trække, løfte) for at mætte systemet - Alternative sensoriske input: fidget tools, tygge-lege - Klare grænser for farlig sensorisk-søgende adfærd - Sensorisk ro-område når han blev overstimuleret - Koordination med ergoterapeut for sensorisk vurdering",
-    "tools": "**Første trin:** Sensorisk kortlægning - Identificer hvilke input han søger og undgår - Observér mønstre i hans sensorisk-søgende adfærd - Test forskellige former for input og deres effekt **Andet trin:** Struktureret sensorisk støtte - Implementer daglig \"sensorisk diæt\" - Giv acceptable alternativer til farlig adfærd - Balancér stimulering og ro-tid **Tredje trin:** Faglig koordination - Samarbejd med ergoterapeut om sensorisk vurdering - Koordinér ADHD- og sensorisk støtte - Forbered på poten",
-    "category": "Ukendt",
-    "shortDescription": "Noah søger konstant sensorisk input: han kører rundt, råber, klatrer, putter ting i munden, og kan aldrig få nok stimulering. Andre børn bliver overvæ..."
-  },
+  "id": "case-adhd-021",
+  "title": "Noah 4 år – sensorisk søgende adfærd og hyperaktivitet",
+  "age": 4,
+  "miljø": "børnehave",
+  "diagnoses": ["ADHD (hyperaktiv profil)", "Sensorisk integrationsvanskelighed"],
+  "contexts": ["Pædagog", "Fagfolk"],
+  "theme": "Sensorisk søgende adfærd, hyperaktivitet, regulering, komorbiditet",
+  "problem": "Noah søger konstant sansestimuli: han løber, råber, klatrer og putter ting i munden. Han kan ikke regulere sig selv og bliver hurtigt overstimuleret. De andre børn trækker sig fra ham, fordi hans energi er for voldsom.",
+  "childVoice": "Jeg elsker, når det kilder og larmer – så føler jeg mig levende. Men nogle gange bliver alt for meget, og så skriger jeg.",
+  "mistakes": "• Behandler adfærden som ren uro uden at adressere sansesøgning • Forbyder søgeadfærd i stedet for at give acceptable alternativer • Overser behovet for faglig vurdering (ergoterapeut)",
+  "solution": "• Planlæg daglige 'sensoriske diæter' med bevægelse og dybe tryk • Giv tilladte sansestimuli (fidget, tygge-objekter, balancelege) • Etabler ro-zone med dæmpet lys og tyngdetæppe • Samarbejd med ergoterapeut for vurdering og plan • Kombinér strategier fra ADHD-støtte og sanseintegration",
+  "tools": "• Skabelon: Sensorisk kortlægning (ergoterapeutisk) • Plan: Daglig sensorisk diæt • Støtteskema: Balance mellem aktivitet og ro",
+  "category": "ADHD + Sensorisk integrationsvanskelighed",
+  "shortDescription": "Noah viser kraftig sensorisk søgeadfærd og hyperaktivitet. Han har brug for planlagte sansestimuli og kombineret støtte fra pædagog og ergoterapeut."
+},
   {
-    "id": "BS1",
-    "title": "Sofie 3 år – parallel leg og manglende social interesse",
-    "age": 3,
-    "diagnoses": [],
-    "contexts": [
-      "Venner"
-    ],
-    "theme": "Social isolation, leg-udvikling, kommunikation",
-    "problem": "Sofie leger altid alene eller parallelt med andre uden at interagere. Hun viser ingen interesse for andre børns aktiviteter, deler ikke legetøj og reagerer ikke når andre børn forsøger at inkludere hende.",
-    "childVoice": "Sofie 3 år – parallel leg og manglende social interesse",
-    "mistakes": "",
-    "solution": "**Graduel social leg-integration:** - Start med \"side-by-side\" aktiviteter uden krav om interaktion - Voksenstyret parallel leg hvor Sofie kunne observere andre - Enkle \"turn-taking\" lege med præfereret legetøj - \"Social leg-historier\" med billeder af leg og venskab - Strukturerede aktiviteter med klare roller for hvert barn - Positive forstærkning af selv små sociale bevægelser",
-    "tools": "**Første trin:** Observér og forstå hendes leg-præferencer - Identificer aktiviteter hun virkelig nyder - Observér om hun faktisk observerer andre børn - Test om hun responderer på simple sociale tilbud **Andet trin:** Byg broer til social leg - Brug hendes interesser som indgang til social leg - Faciliter simple, strukturerede interaktioner - Gradvis øgning af sociale krav **Tredje trin:** Vurdér udvikling og behov - Dokumentér fremskridt i social interesse - Kommunikér med forældre om observat",
-    "category": "Ukendt",
-    "shortDescription": "Sofie leger altid alene eller parallelt med andre uden at interagere. Hun viser ingen interesse for andre børns aktiviteter, deler ikke legetøj og rea..."
-  },
+  "id": "case-au-022",
+  "title": "Sofie 3 år – parallel leg og manglende social interesse",
+  "age": 3,
+  "miljø": "børnehave",
+  "diagnoses": ["Autismespektrumforstyrrelse (tidlig social variant)"],
+  "contexts": ["Pædagog", "Fagfolk"],
+  "theme": "Social udvikling, parallel leg, kommunikation, tidlig autisme",
+  "problem": "Sofie leger konsekvent alene og viser ingen interesse for andre børns aktiviteter. Hun deler ikke legetøj, reagerer sjældent på navneopkald og ignorerer ofte sociale invitationer.",
+  "childVoice": "Jeg vil bare lege med mine egne ting. Når de andre snakker, forstår jeg det ikke rigtigt.",
+  "mistakes": "• Tolker adfærden som generthed eller personlighed • Presser social deltagelse uden støtte og forberedelse • Manglende observation af kommunikationsmønstre",
+  "solution": "• Start med voksenstyret parallel leg og brug hendes interesser som indgang • Brug visuelle sociale historier om leg og venskab • Indfør 'tur-tagning'-lege med klar struktur og visuel støtte • Anerkend små sociale fremskridt positivt",
+  "tools": "• Skabelon: Social leg-observation (børnehave) • Visuelle sociale historier (CDF) • Skema for gradvis øgning af social interaktion",
+  "category": "Autisme (social-kommunikativ variant)",
+  "shortDescription": "Sofie viser begrænset social interesse og reagerer ikke på andre børn. Struktureret parallel leg og visuelle historier hjælper hende med gradvist at deltage i fællesskabet."
+},
   {
-    "id": "BS2",
-    "title": "Marcus 4 år – aggressiv leg og venskabsproblemer",
-    "age": 4,
-    "diagnoses": [],
-    "contexts": [
-      "Venner"
-    ],
-    "theme": "Aggressive leg-strategier, konflikthåndtering",
-    "problem": "Marcus ønsker at lege med andre, men hans leg bliver hurtigt for intens og fysisk. Han ødelægger andres byggeværker, \"overtager\" rollespil og bliver aggressiv når andre siger fra. Børnene begynder at undgå ham.",
-    "childVoice": "Marcus 4 år – aggressiv leg og venskabsproblemer",
-    "mistakes": "",
-    "solution": "**Struktureret leg med sociale regler:** - \"Leg-regler\" visualiseret med billeder og øvet dagligt - Voksenstyret leg hvor Marcus kunne øve at følge andres ideer - \"Hjælper-rolle\" hvor han assisterede i stedet for at overtage - Pause-strategier når leg blev for intens - Positive leg-oplevelser med børn der kunne matche hans energi - Social feedback: \"Se hvor glade de blev da du spurgte først!\"",
-    "tools": "**Første trin:** Lær grundlæggende leg-regler - Konkrete, visuelle regler for hvordan man leger sammen - Øvelse i at spørge før man \"hjælper\" - \"Pause\" signaler han kan bruge når leg bliver for intens **Andet trin:** Faciliteret social leg - Voksne faciliterer leg så det ikke eskalerer - Strukturerede lege med klare roller og turer - Positive feedback når han følger sociale regler **Tredje trin:** Selvstændig social leg - Gradvis reduktion af voksen-støtte - Hjælp ham til at læse sociale signale",
-    "category": "Ukendt",
-    "shortDescription": "Marcus ønsker at lege med andre, men hans leg bliver hurtigt for intens og fysisk. Han ødelægger andres byggeværker, \"overtager\" rollespil og bliver a..."
-  },
+  "id": "case-adhd-023",
+  "title": "Marcus 4 år – aggressiv leg og venskabsproblemer",
+  "age": 4,
+  "miljø": "børnehave",
+  "diagnoses": ["ADHD (impulsiv-social profil)"],
+  "contexts": ["Pædagog", "Fagfolk"],
+  "theme": "Social leg, impulskontrol, konflikthåndtering, relationstræning",
+  "problem": "Marcus vil gerne lege med andre, men hans leg bliver hurtigt for intens. Han ødelægger andres byggerier, overtager rollelege og reagerer aggressivt, når andre siger fra. Børnene begynder at undgå ham, hvilket øger hans frustration.",
+  "childVoice": "Jeg vil bare være med – men så går det for hurtigt, og de bliver sure på mig.",
+  "mistakes": "• Tolker adfærden som bevidst drilleri i stedet for social impulsivitet • Manglende struktur og voksenstøtte i legetræning • For lidt fokus på positiv social feedback",
+  "solution": "• Indfør daglige 'leg-regler' med billeder og konkret øvelse • Voksenfaciliteret leg med faste roller og pauser ved overophedning • Brug 'hjælper-rolle' og positiv feedback ('du spurgte først – flot!') • Træn genkendelse af andres signaler gennem rolleleg",
+  "tools": "• Skabelon: Leg-regler i børnehave (visuel støtte) • Følelses- og pausesignalkort • Social træningsplan for impulsiv adfærd",
+  "category": "ADHD (impulsiv-social reguleringsvanskelighed)",
+  "shortDescription": "Marcus har svært ved at regulere sin energi i social leg. Han vil gerne være med, men bliver for intens. Struktureret leg, regler og positiv feedback styrker hans sociale færdigheder."
+},
   {
     "id": "BS3",
     "title": "Emma 5 år – perfekt opførsel og skjult social angst",
     "age": 5,
+    "miljø": "børnehave",
     "diagnoses": [],
     "contexts": [
       "Venner"
@@ -931,43 +927,42 @@
     "shortDescription": "Emma er altid \"sød og artig\" men deltager aldrig spontant i leg. Hun følger alle regler perfekt, men virker anspændt og bliver opløst af små fejl. Hun..."
   },
   {
-    "id": "BS4",
-    "title": "Liam 6 år – social manipulation og dominans",
-    "age": 6,
-    "diagnoses": [],
-    "contexts": [
-      "Venner"
-    ],
-    "theme": "Manipulation, empati-mangel, magtstrukturer",
-    "problem": "Liam er karismatisk og dygtig til at få andre børn til at gøre hvad han vil. Han bruger trusler, ekskludering og belønninger til at kontrollere leg og venskaber. Andre børn er både tiltrukket af og bange for ham.",
-    "childVoice": "Liam 6 år – social manipulation og dominans",
-    "mistakes": "",
-    "solution": "**Empati-udvikling og pro-social lederskab:** - Direkte konfrontation af manipulativ adfærd med konsekvenser - Empati-træning: \"Hvordan tror du Marcus har det nu?\" - Omdirigering af lederskabs-evner til positive formål - Strukturerede situationer hvor han måtte samarbejde som lige - \"Hjælper-roller\" hvor han brugte sine evner til at støtte andre - Klare grænser for acceptabel adfærd i gruppen",
-    "tools": "**Første trin:** Stop manipulation og beskyt andre - Øjeblikkeligt indgriben når manipulation observeres - Klare konsekvenser for trusler og ekskludering - Beskyt sårbare børn fra hans påvirkning **Andet trin:** Lær empati og gensidighed - Konkrete øvelser i at se andres perspektiv - Strukturerede situationer hvor han må samarbejde - Positive anvendelse af hans lederskabs-evner **Tredje trin:** Vurdér og planlæg - Evaluér om der er tegn på antisociale tendenser - Kommunikér bekymringer med foræl",
-    "category": "Ukendt",
-    "shortDescription": "Liam er karismatisk og dygtig til at få andre børn til at gøre hvad han vil. Han bruger trusler, ekskludering og belønninger til at kontrollere leg og..."
-  },
+  "id": "case-emo-024",
+  "title": "Liam 6 år – social manipulation og dominans",
+  "age": 6,
+  "miljø": "skole",
+  "diagnoses": ["Emotionel reguleringsvanskelighed (social dominansprofil)"],
+  "contexts": ["Lærer", "Fagfolk"],
+  "theme": "Social dominans, empatiudvikling, lederskab, relationsregulering",
+  "problem": "Liam er karismatisk og formår at få andre børn til at gøre, som han vil. Han bruger trusler, ekskludering og belønning til at styre leg og venskaber. De andre børn både beundrer og frygter ham.",
+  "childVoice": "Jeg bestemmer bare, så bliver det, som jeg vil – ellers gider de jo ikke lege med mig.",
+  "mistakes": "• Ignorerer tidlige tegn på magtleg og manipulation • Giver ham ubevidst mere kontrol gennem eftergivenhed • Manglende træning i empati og fælles ansvar",
+  "solution": "• Stop manipulerende adfærd konsekvent og tydeligt • Lær Liam at bruge sine lederevner til at støtte i stedet for styre • Indfør empati-træning og rolleskift ('hvordan tror du, de føler det?') • Skab situationer, hvor han oplever succes gennem samarbejde • Indfør klare grupperegler og voksenmodel for retfærdighed",
+  "tools": "• Skabelon: Empati-øvelser i indskoling • Social rollefordelingsplan • Værktøj: Positiv lederskabs-træning (CDF)",
+  "category": "Emotionel reguleringsvanskelighed (social dominansprofil)",
+  "shortDescription": "Liam bruger sociale magtstrategier til at kontrollere lege og relationer. Han har brug for tydelige grænser, empati-træning og guidning i positivt lederskab."
+},
   {
-    "id": "BS5",
-    "title": "Nora 4 år – selektiv mutisme og social tilbagetrækning",
-    "age": 4,
-    "diagnoses": [],
-    "contexts": [
-      "Skole"
-    ],
-    "theme": "Kommunikation, angst, social deltagelse",
-    "problem": "Nora taler normalt hjemme men er helt tavs i børnehaven. Hun deltager ikke i aktiviteter, gemmer sig bag voksne og bliver panisk hvis hun skal svare på spørgsmål. Andre børn prøver at inkludere hende, men hun trækker sig væk.",
-    "childVoice": "Nora 4 år – selektiv mutisme og social tilbagetrækning",
-    "mistakes": "",
-    "solution": "**Graduel ekspositon og pres-reducering:** - Fjernelse af alle krav om verbal kommunikation - Acceptér nonverbal kommunikation (nik, peg, tegning) - \"Hviske-ven\" strategi hvor hun hviskede til en ven som talte for hende - Aktiviteter hvor hun kunne \"bidrage\" uden tale (tegne, pege, vise) - Små grupper og en-til-en situationer med gradvis øgning - Tæt koordination med forældre om samme approach",
-    "tools": "**Første trin:** Reducer pres og byg tryghed - Fjern alle forventninger om verbal kommunikation - Skab sikre rum hvor hun kan være afslappet - Anerkend hendes nonverbale bidrag **Andet trin:** Gradvis kommunikations-støtte - Start med hviske, derefter lav tale - Brug aktiviteter hvor tale er naturligt (sang, rolleleg) - Små skridt med meget ros og anerkendelse **Tredje trin:** Social integration - Hjælp andre børn til at forstå og inkludere hende - Faciliter leg hvor verbal kommunikation ikke er",
-    "category": "Ukendt",
-    "shortDescription": "Nora taler normalt hjemme men er helt tavs i børnehaven. Hun deltager ikke i aktiviteter, gemmer sig bag voksne og bliver panisk hvis hun skal svare p..."
-  },
+  "id": "case-an-025",
+  "title": "Nora 4 år – selektiv mutisme og social tilbagetrækning",
+  "age": 4,
+  "miljø": "børnehave",
+  "diagnoses": ["Selektiv mutisme (angstbaseret kommunikationsvanskelighed)"],
+  "contexts": ["Pædagog", "Fagfolk"],
+  "theme": "Kommunikation, angst, social deltagelse, tryghed",
+  "problem": "Nora taler normalt hjemme, men er helt tavs i børnehaven. Hun undgår aktiviteter, gemmer sig bag voksne og bliver panisk, hvis hun skal svare på spørgsmål. De andre børn prøver at inkludere hende, men hun trækker sig væk.",
+  "childVoice": "Jeg vil gerne sige noget, men det sidder fast indeni – det går ikke, selvom jeg prøver.",
+  "mistakes": "• Forveksler tavshed med generthed eller trods • Presser barnet til at tale før tryghed er etableret • Overser betydningen af nonverbal kommunikation som første skridt",
+  "solution": "• Fjern alle krav om tale og anerkend nonverbal kommunikation • Brug 'hviske-ven'-strategi hvor hun kan kommunikere via en ven • Skab trygge smågrupper med faste voksne og gradvis eksponering • Samarbejd med forældre om ens tilgang hjemme og i institutionen • Fejr små skridt (et nik, et smil, et ord) frem for fokus på tavshed",
+  "tools": "• Skabelon: Tryghedsplan for selektiv mutisme • Kommunikationskort (nonverbal støtte) • Skema for gradvis eksponering i børnehave",
+  "category": "Angst (selektiv mutisme)",
+  "shortDescription": "Nora taler hjemme men ikke i børnehaven pga. angst. Hun har brug for tryghed, gradvis eksponering og anerkendelse af nonverbal kommunikation."
+},
   {
     "id": "TO1",
     "title": "Oliver 3 år – morgen-sammenbrud og separationsangst",
     "age": 3,
+    "miljø": "børnehave",
     "diagnoses": [
       "Mulig angst",
       "sensitivitet overfor forandring"
@@ -988,13 +983,12 @@
     "id": "TO2",
     "title": "Emma 4 år – aktivitetsskift og rutine-sammenbrud",
     "age": 4,
+    "miljø": "børnehave",
     "diagnoses": [
       "Mulig autisme",
       "behov for forudsigelighed"
     ],
-    "contexts": [
-      "Skole"
-    ],
+    "contexts": ["Pædagog", "Fagfolk"],
     "theme": "Rutiner, overgange, fleksibilitet",
     "problem": "Emma får totale sammenbrud når aktiviteter skifter eller planer ændres i børnehave. Hun kan ikke stoppe en aktivitet for at starte en ny, bliver rasende ved uforudsete ændringer og har brug for 20+ minutter til at justere mellem aktiviteter.",
     "childVoice": "Emma 4 år – aktivitetsskift og rutine-sammenbrud",
@@ -1265,105 +1259,85 @@
     "shortDescription": "Mads har gentagne affektsammenbrud i undervisningen. Han nægter opgaver, går ofte ud, kalder lærere navne og skaber uro. Men han har også timer, hvor ..."
   },
   {
-    "id": "TE4",
-    "title": "Amina, 14 år – Funktionsfald og Selvisolation",
-    "age": 14,
-    "diagnoses": [
-      "Uafklaret"
-    ],
-    "contexts": [
-      "Skole",
-      "Hjem"
-    ],
-    "theme": "TE4 - professionel case",
-    "problem": "Amina er holdt op med at møde. Først enkelte dage – nu flere uger. Hun er ikke udadreagerende, men lukker ned. Lærerne beskriver en stille pige. Hjemme isolerer hun sig, undgår venner, er uinteresseret i mad og søvnrytme er forstyrret.",
-    "childVoice": "Der er ikke nogen, der savner mig. Jeg kan ikke klare det alligevel.",
-    "mistakes": "Vi ser hende næsten ikke. Hun virker trist, men nægter hjælp.",
-    "solution": "",
-    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
-    "category": "Ukendt",
-    "shortDescription": "Amina er holdt op med at møde. Først enkelte dage – nu flere uger. Hun er ikke udadreagerende, men lukker ned. Lærerne beskriver en stille pige. Hjemm..."
-  },
+  "id": "case-dep-026",
+  "title": "Amina 14 år – funktionsfald og social isolation",
+  "age": 14,
+  "miljø": "skole og hjem",
+  "diagnoses": ["Depressiv tilstand (ungdom)"],
+  "contexts": ["Skole", "Hjem", "Fagfolk"],
+  "theme": "Funktionsfald, skolevægring, depression, social isolation",
+  "problem": "Amina er holdt op med at møde i skole. Først enkelte dage – nu flere uger. Hun lukker ned, viser lav energi og manglende interesse. Hjemme isolerer hun sig, undgår venner, spiser dårligt og sover uregelmæssigt.",
+  "childVoice": "Der er ikke nogen, der savner mig. Jeg kan ikke klare det alligevel.",
+  "mistakes": "• Tolker fraværet som dovenskab i stedet for depressiv reaktion • Afventer for længe før der handles • Manglende koordinering mellem skole og hjem",
+  "solution": "• Etabler kontaktperson som følger op dagligt, fysisk eller digitalt • Planlæg gradvis tilbagevenden til skole i trygge trin • Indfør faste rutiner for søvn, mad og aktivitet • Støt familien i at skabe stabil struktur og inddrag PPR eller psykolog ved vedvarende funktionsfald",
+  "tools": "• Skabelon: Plan for gradvis tilbagevenden til skole • Observationsark for trivsel og energi • Samarbejdsplan skole-hjem ved fravær",
+  "category": "Depression (ungdomsvariant)",
+  "shortDescription": "Amina viser tydelige tegn på depression og social isolation. Hun har brug for koordineret støtte mellem skole og hjem samt gradvis genopbygning af trivsel og struktur."
+},
   {
-    "id": "TE5",
-    "title": "Emil, 16 år – Selvskade og Indre Kaos",
-    "age": 16,
-    "diagnoses": [
-      "Angst",
-      "Depression"
-    ],
-    "contexts": [
-      "Skole",
-      "Hjem"
-    ],
-    "theme": "TE5 - professionel case",
-    "problem": "",
-    "childVoice": "",
-    "mistakes": "",
-    "solution": "",
-    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
-    "category": "Angst",
-    "shortDescription": "..."
-  },
+  "id": "case-emo-027",
+  "title": "Emil 16 år – selvskade og indre kaos",
+  "age": 16,
+  "miljø": "skole og hjem",
+  "diagnoses": ["Angst", "Depression"],
+  "contexts": ["Skole", "Hjem", "Fagfolk"],
+  "theme": "Selvskade, følelsesregulering, angst, depression, ungdom",
+  "problem": "Emil beskriver indre kaos, selvhad og perioder med selvskade. Han klarer ikke længere krav i skolen, sover dårligt og isolerer sig. Forældrene oplever ham som afvisende og uden energi. Han skjuler ar på armene og nægter at tale om det.",
+  "childVoice": "Jeg kan ikke få det ud på andre måder. Når jeg skærer, bliver alt stille indeni – bare et øjeblik.",
+  "mistakes": "• Tænker 'han vil bare have opmærksomhed' i stedet for at se smerten bag adfærden • Undlader at spørge direkte af frygt for at gøre det værre • Behandler symptomer uden at arbejde med følelsesregulering",
+  "solution": "• Etabler rolig kontakt uden pres – fokusér på tryghed og relation • Tal direkte om selvskaden: 'jeg kan se, du har det svært – kan du fortælle, hvad der hjælper dig?' • Koordiner støtte mellem skole, forældre og evt. psykolog • Lav plan for sikkerhed og følelsesregulering: alternativer til selvskade, aftaler ved krise • Gradvis genopbygning af hverdagsstruktur og meningsfulde aktiviteter",
+  "tools": "• Skabelon: Sikkerheds- og reguleringsplan ved selvskade • Følelseskort til unge (CDF) • Samarbejdsplan skole-hjem-behandling",
+  "category": "Emotionel reguleringsvanskelighed / Selvskade",
+  "shortDescription": "Emil kæmper med angst, depression og selvskade som udtryk for indre kaos. Han har brug for tryg kontakt, koordineret støtte og plan for følelsesregulering."
+},
   {
-    "id": "SP1",
-    "title": "Victor, 5 år – Sensorisk Overreaktion",
-    "age": 5,
-    "diagnoses": [
-      "Autisme"
-    ],
-    "contexts": [
-      "Skole"
-    ],
-    "theme": "SP1 - professionel case",
-    "problem": "",
-    "childVoice": "",
-    "mistakes": "",
-    "solution": "",
-    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
-    "category": "Autisme",
-    "shortDescription": "..."
-  },
+  "id": "case-au-028",
+  "title": "Victor 5 år – sensorisk overreaktion",
+  "age": 5,
+  "miljø": "børnehave",
+  "diagnoses": ["Autismespektrumforstyrrelse (sensorisk profil)"],
+  "contexts": ["Pædagog", "Fagfolk"],
+  "theme": "Sansning, sensorisk overreaktion, autisme, miljøtilpasning",
+  "problem": "Victor reagerer voldsomt på høje lyde, pludselige bevægelser og bestemte materialer. Han holder sig for ørerne, græder ved støj og nægter at deltage i aktiviteter med mange børn. Overstimulering fører til nedsmeltninger og tilbagetrækning.",
+  "childVoice": "Det gør ondt i ørerne. Jeg kan ikke lide, når alle råber – jeg vil bare væk.",
+  "mistakes": "• Fortolker reaktionen som trods eller dårlig opdragelse • Ignorerer sensoriske triggere i miljøet • Overstimulerer barnet uden plan for regulering",
+  "solution": "• Kortlæg sensoriske triggere (lyd, lys, berøring) • Tilpas miljøet: dæmp lys, reducer støj, skab rolige zoner • Brug høreværn eller støjreducerende hovedtelefoner ved behov • Planlæg aktiviteter med gradvis eksponering i små doser • Koordinér med ergoterapeut om sensorisk profil og tilpasning",
+  "tools": "• Skabelon: Sensorisk profilkort (ergoterapeutisk) • Støtteskema: Miljøtilpasning i børnehave • Visuel guide til 'Rolig zone' opsætning",
+  "category": "Autisme (sensorisk overreaktion)",
+  "shortDescription": "Victor reagerer voldsomt på sanseindtryk som lyd og lys. Han har brug for sensorisk kortlægning, miljøtilpasning og ro-zoner for at undgå overstimulering."
+},
   {
-    "id": "SP2",
-    "title": "Noah, 7 år – Søgende og Motorisk Sanseprofil",
-    "age": 7,
-    "diagnoses": [
-      "ADHD",
-      "DCD"
-    ],
-    "contexts": [
-      "Skole"
-    ],
-    "theme": "SP2 - professionel case",
-    "problem": "",
-    "childVoice": "",
-    "mistakes": "",
-    "solution": "",
-    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
-    "category": "ADHD",
-    "shortDescription": "..."
-  },
+  "id": "case-adhd-029",
+  "title": "Noah 7 år – søgende og motorisk sanseprofil",
+  "age": 7,
+  "miljø": "skole",
+  "diagnoses": ["ADHD (hyperaktiv-proprioceptiv søgeprofil)", "DCD (motorisk koordinationsforstyrrelse)"],
+  "contexts": ["Lærer", "Fagfolk"],
+  "theme": "Sensorisk søgende adfærd, motorik, opmærksomhed, læringsmiljø",
+  "problem": "Noah har svært ved at sidde stille, balancere og koordinere bevægelser. Han rejser sig ofte, rører ved alt og søger konstant fysisk input. Han støder ind i ting, vælter materialer og mister fokus, hvis han ikke får bevægelse og sansestimulering undervejs.",
+  "childVoice": "Min krop vil bare bevæge sig hele tiden – det hjælper mig med at tænke.",
+  "mistakes": "• Tolkning af bevægelsesbehov som dårlig opdragelse • Krav om stillesiddende koncentration uden kropslig støtte • Manglende forståelse for sammenhæng mellem motorik og læring",
+  "solution": "• Integrér bevægelse i alle aktiviteter (fx 'gå og lær') • Brug proprioceptive øvelser: skub, træk, hop, bære • Tilbyd alternative siddepladser (kilepude, bold, ståpult) • Giv kortvarige motoriske mikropauser ved tab af fokus • Samarbejd med ergoterapeut om motorisk træningsplan",
+  "tools": "• Skabelon: Motorisk støtteplan i klasse • Skema: Bevægelsespauser og proprioceptive aktiviteter • Ergoterapeutisk profilkort (DCD/ADHD)",
+  "category": "ADHD + DCD (sensorisk søgende motorisk profil)",
+  "shortDescription": "Noah har behov for konstant bevægelse og sansestimulering for at kunne koncentrere sig. Struktureret bevægelse og motorisk støtte hjælper ham til læring og ro."
+},
   {
-    "id": "SP3",
-    "title": "Freja, 10 år – Sansemæssig Nedlukning",
-    "age": 10,
-    "diagnoses": [
-      "Angst",
-      "Autisme"
-    ],
-    "contexts": [
-      "Skole"
-    ],
-    "theme": "SP3 - professionel case",
-    "problem": "",
-    "childVoice": "",
-    "mistakes": "",
-    "solution": "",
-    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
-    "category": "Autisme",
-    "shortDescription": "..."
-  },
+  "id": "case-au-030",
+  "title": "Freja 10 år – sansemæssig nedlukning",
+  "age": 10,
+  "miljø": "skole",
+  "diagnoses": ["Autismespektrumforstyrrelse", "Angst"],
+  "contexts": ["Lærer", "Fagfolk"],
+  "theme": "Sansemæssig nedlukning, overstimulering, angst, regulering",
+  "problem": "Freja lukker helt ned i pressede situationer. Hun bliver tavs, undgår øjenkontakt, stivner og reagerer ikke på spørgsmål. Det sker især ved høje lyde, krav eller sociale aktiviteter. Lærerne tror ofte, hun er rolig – men hun er overbelastet.",
+  "childVoice": "Når der er for meget, føles det som om min krop fryser. Jeg kan høre alt, men jeg kan ikke bevæge mig eller tale.",
+  "mistakes": "• Tolkning af stilhed som ro i stedet for overbelastning • Pres for hurtig genkontakt under nedlukning • Manglende plan for genopstart efter sansemæssigt sammenbrud",
+  "solution": "• Identificér og reducer sansemæssige triggere (lyd, lys, krav) • Giv 'time-out'-signal som Freja kan bruge før overbelastning • Skab roligt rum med dæmpet lys og mulighed for fysisk afskærmning • Giv tid og stilhed – pres ikke på under nedlukning • Træn gradvis tolerance for stimuli i trygge rammer",
+  "tools": "• Skabelon: Sanseprofil og triggerkort • Plan: Genopstart efter sensorisk nedlukning • Visuel guide: 'Mit trygge sted' i klassen",
+  "category": "Autisme + Angst (sensorisk nedlukning)",
+  "shortDescription": "Freja lukker ned ved overstimulering. Hun har brug for et roligt rum, tydelige signaler og tid til at genfinde ro uden pres."
+},
   {
     "id": "SH1",
     "title": "Elias, 8 år – Jalouxi og Eksplosioner mod Søster",
@@ -1483,24 +1457,21 @@
     "shortDescription": "Mathias får åndenød, sveder, bliver bleg og nægter at gå i skole ved ændringer. Han kræver plan, gennemgår dagen i detaljer og reagerer med vrede, hvi..."
   },
   {
-    "id": "DCD1",
-    "title": "Kasper, 7 år – Motorisk Uro og Lav Selvtillid",
-    "age": 7,
-    "diagnoses": [
-      "DCD"
-    ],
-    "contexts": [
-      "Skole"
-    ],
-    "theme": "DCD1 - professionel case",
-    "problem": "Kasper vælter ofte ting, skriver meget langsomt, og nægter opgaver der kræver finmotorik. Han siger: “jeg kan ikke” og vil ofte sidde alene. Han er sød, men virker udenfor i pauser, og reagerer med vrede ved drilleri.",
-    "childVoice": "De andre kan det hele. Jeg gider ikke, for jeg laver det forkert.",
-    "mistakes": "Han virker opgivende og undvigende – men han er ikke uinteresseret.",
-    "solution": "",
-    "tools": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
-    "category": "Ukendt",
-    "shortDescription": "Kasper vælter ofte ting, skriver meget langsomt, og nægter opgaver der kræver finmotorik. Han siger: “jeg kan ikke” og vil ofte sidde alene. Han er sø..."
-  },
+  "id": "case-dcd-031",
+  "title": "Kasper 7 år – motorisk uro og lav selvtillid",
+  "age": 7,
+  "miljø": "skole",
+  "diagnoses": ["DCD (Developmental Coordination Disorder)"],
+  "contexts": ["Lærer", "Fagfolk"],
+  "theme": "Motorik, selvtillid, læring, sociale relationer",
+  "problem": "Kasper vælter ofte ting, skriver langsomt og undgår opgaver, der kræver finmotorik. Han siger 'jeg kan ikke' og trækker sig. I pauser virker han udenfor fællesskabet og reagerer med vrede, når han bliver drillet eller føler sig utilstrækkelig.",
+  "childVoice": "De andre kan det hele. Jeg gider ikke, for jeg laver det forkert.",
+  "mistakes": "• Tolker modstanden som dovenskab eller trods • Ignorerer motoriske vanskeligheder i læringsmiljøet • Glemmer at støtte selvværd og succesoplevelser",
+  "solution": "• Tilpas opgaver, så de matcher hans motoriske niveau • Giv mulighed for alternative metoder (fx tastatur, store redskaber, bold i stedet for blyant) • Ros indsats frem for resultat – synliggør små fremskridt • Involver ergoterapeut til vurdering og plan for fin- og grovmotorik • Arbejd med klassefællesskab om forståelse og støtte",
+  "tools": "• Skabelon: DCD-støtteplan i skole • Observationsark for motorik og selvværdsreaktioner • Ergoterapeutisk samarbejdsskema",
+  "category": "DCD (motoriske koordinationsvanskeligheder)",
+  "shortDescription": "Kasper kæmper med DCD, hvilket giver ham lav selvtillid og undgåelsesreaktioner. Støtte med tilpassede opgaver, ros for indsats og motorisk vejledning gør en stor forskel."
+},
   {
     "id": "DCD2",
     "title": "Asger, 10 år – Udadagerende ved Fysisk Udfordring",
