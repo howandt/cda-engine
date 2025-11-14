@@ -38,18 +38,26 @@
   },
 
   "synonyms": {
-    "adhd": ["opmærksomhedsforstyrrelse", "hyperaktivitet", "impulsivitet", "koncentrationsvanskeligheder"],
-    "autisme": ["aspergers", "socialt samspil", "sensorisk følsomhed", "forudsigelighed"],
-    "angst": ["bekymring", "usikkerhed", "panik", "tilbagetrækning", "nervøsitet"],
-    "dcd": ["motoriske vanskeligheder", "klodsethed", "finmotorik", "bevægelseskoordinering"],
-    "børnehave": ["daginstitution", "vuggestue", "førskole"],
-    "skole": ["folkeskole", "klasse", "lærer", "undervisning"],
-    "hjem": ["familie", "forældre", "hjemme"],
-    "uro": ["rastløshed", "bevægelsesbehov", "kan ikke sidde stille", "motorisk aktivitet"],
-    "social": ["venner", "relationer", "samspil", "inklusion", "mobning"],
-    "sensorisk": ["lyd", "berøring", "sanser", "overreaktion", "søgende adfærd"],
-    "mutisme": ["tavshed", "taler ikke", "selektiv tale"]
-  },
+  "adhd": ["opmærksomhedsforstyrrelse", "hyperaktivitet", "impulsivitet", "koncentrationsvanskeligheder"],
+  "autisme": ["aspergers", "socialt samspil", "sensorisk følsomhed", "forudsigelighed"],
+  "angst": ["bekymring", "usikkerhed", "panik", "tilbagetrækning", "nervøsitet"],
+  "dcd": ["motoriske vanskeligheder", "klodsethed", "finmotorik", "bevægelseskoordinering"],
+  "børnehave": ["daginstitution", "vuggestue", "førskole"],
+  "skole": ["folkeskole", "klasse", "lærer", "undervisning"],
+  "hjem": ["familie", "forældre", "hjemme"],
+  "uro": ["rastløshed", "bevægelsesbehov", "kan ikke sidde stille", "motorisk aktivitet"],
+  "social": ["venner", "relationer", "samspil", "inklusion", "mobning"],
+  "sensorisk": ["lyd", "berøring", "sanser", "overreaktion", "søgende adfærd"],
+  "mutisme": ["tavshed", "taler ikke", "selektiv tale"],
+
+  "vred": ["frustreret", "sur", "aggressiv", "impulsiv", "eksplosiv", "konflikt"],
+  "lukker ned": ["isolerer sig", "trækker sig", "social tilbagetrækning", "selvisolation", "tavs"],
+  "skift": ["overgang", "rutinebrud", "ændring", "fleksibilitet", "struktur"],
+  "angst": ["bekymring", "frygt", "undgåelse", "panik", "uro"],
+  "adfærd": ["impulsivitet", "regulering", "selvkontrol", "uro", "reaktioner"],
+  "børnehave": ["pædagog", "leg", "rutiner", "gruppe", "samling"],
+  "hjem": ["forældre", "familie", "morgen", "aftensituation"]
+},
 
   "themes": {
     "opmærksomhed": ["koncentration", "fokus", "let afledelig", "dagdrømmeri"],
