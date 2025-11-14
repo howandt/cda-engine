@@ -1,0 +1,15 @@
+{
+  "id": "string",
+  "alder": "integer",
+  "diagnose": "string",
+  "miljø": "string",
+  "tema": "string[]",
+  "kompleksitet": "string",
+  "problem": "string",
+  "barnets_oplevelse": "string",
+  "typisk_fejl": "string",
+  "løsning": "string",
+  "tiltag": "string[]",
+  "refleksion": "string",
+  "resultat": "string"
+}
