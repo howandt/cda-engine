@@ -1,11 +1,14 @@
 import json
 from pathlib import Path
+from datetime import datetime
 from cdt_logger import log_event
 
 EXPORT_DIR = Path("CDA/export")
+LOG_PATH = Path("CDA/logs/session_summary.jsonl")
+
 
 def load_module():
-    # hent den seneste full-fil i export
+    """Hent den seneste fulde CDT-fil fra export-mappen."""
     files = sorted(EXPORT_DIR.glob("*_cdt_full_module.json"))
     if not files:
         print("Ingen CDT-moduler fundet i export/")
@@ -16,8 +19,9 @@ def load_module():
     print(f"🔹 Åbner: {path.name}")
     return data
 
+
 def run_quiz(mod):
-    from cdt_logger import log_event  # lokal import for at undgå cirkulær afhængighed
+    """Kør en quiz-del og log resultatet."""
     print(f"\n🧩 QUIZ: {mod['prompt']}")
     for i, c in enumerate(mod["choices"], start=1):
         print(f"{i}. {c}")
@@ -33,12 +37,13 @@ def run_quiz(mod):
         print(f"✅ Korrekt!\n{mod['feedback']}")
         result = "rigtigt"
         feedback = mod["feedback"]
+        points = 10
     else:
         print(f"❌ Ikke helt. Rigtigt svar: {mod['answer']}")
         result = "forkert"
         feedback = ""
+        points = 0
 
-    # 🔹 Log hændelsen
     log_event(
         module_id=mod.get("prompt", "ukendt_modul"),
         step_type="quiz",
@@ -46,18 +51,38 @@ def run_quiz(mod):
         result=result,
         feedback=feedback
     )
+    return points
+
 
 def run_reflection(mod):
+    """Vis refleksionsspørgsmål."""
     print(f"\n💭 REFLEKSION ({mod['context']}):")
     print(mod["prompt"])
-    _ = input("Tryk Enter når du har tænkt over det...")
+    input("Tryk Enter når du har tænkt over det...")
 
-python CDA/tools/cdt_interactive_runner.py
+
+def run_roleplay(mod):
+    """Kør et roleplay-scenarie."""
+    print(f"\n🎭 ROLEPLAY – {mod['scenario']}")
+    for step in mod["steps"]:
+        print(f"\nValgmulighed: {step['choice']}")
+        cont = input("Vil du vælge dette? (j/n): ").lower()
+        if cont == "j":
+            print(f"➡️  Resultat: {step['result']}")
+            print(f"💬 Feedback: {step['feedback']}")
+            log_event(
+                module_id=mod.get("scenario", "ukendt_roleplay"),
+                step_type="roleplay",
+                user_choice=step["choice"],
+                result=step["result"],
+                feedback=step["feedback"]
+            )
+            return 5
+    return 0
+
 
 def run_module():
-    from cdt_logger import log_event
-    import json
-    from datetime import datetime
+    """Kør hele træningsforløbet: quiz → refleksion → roleplay → opsummering."""
     data = load_module()
     if not data:
         return
@@ -72,11 +97,9 @@ def run_module():
 
         if t == "quiz":
             print("\n🧩 DEL 1: QUIZ")
-            run_quiz(mod)
-            # simpelt point-estimat (kun som eksempel)
-            if 'answer' in mod:
-                score += 10
-                results.append({"type": "quiz", "points": 10})
+            pts = run_quiz(mod) or 0
+            score += pts
+            results.append({"type": "quiz", "points": pts})
 
         elif t == "reflection":
             print("\n💭 DEL 2: REFLEKSION")
@@ -85,8 +108,9 @@ def run_module():
 
         elif t == "roleplay":
             print("\n🎭 DEL 3: ROLEPLAY")
-            run_roleplay(mod)
-            results.append({"type": "roleplay", "points": 5})
+            pts = run_roleplay(mod) or 0
+            score += pts
+            results.append({"type": "roleplay", "points": pts})
 
     # afslutning
     print("\n🏁 TRÆNINGSFORLØB FÆRDIGT 🏁")
@@ -95,12 +119,11 @@ def run_module():
     print(f"📘 Modul: {data['title']}")
     print("------------------------------------")
 
-    total_points = sum(r["points"] for r in results)
-    print(f"🔹 Samlet score: {total_points} point")
+    print(f"🔹 Samlet score: {score} point")
 
-    if total_points >= 15:
+    if score >= 15:
         print("✅ Stærk indsats! Du har forstået casens kerne.")
-    elif total_points >= 5:
+    elif score >= 5:
         print("🟡 Godt på vej – overvej at genbesøge quiz eller rollespil.")
     else:
         print("❌ Prøv igen – fokusér på struktur og forudsigelighed.")
@@ -108,17 +131,18 @@ def run_module():
     print("------------------------------------")
     print("Heidi siger: “Vil du tage en ny case eller gentage denne?”")
 
-    # gem kort opsummering i log
     summary = {
         "timestamp": datetime.now().isoformat(timespec="seconds"),
         "module_title": data["title"],
-        "total_points": total_points,
+        "total_points": score,
         "details": results
     }
-    with open("CDA/logs/session_summary.jsonl", "a", encoding="utf-8") as f:
+    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(LOG_PATH, "a", encoding="utf-8") as f:
         f.write(json.dumps(summary, ensure_ascii=False) + "\n")
 
     print("📝 Session gemt i CDA/logs/session_summary.jsonl")
+
 
 if __name__ == "__main__":
     run_module()
