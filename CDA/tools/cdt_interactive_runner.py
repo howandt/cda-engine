@@ -52,15 +52,7 @@ def run_reflection(mod):
     print(mod["prompt"])
     _ = input("Tryk Enter når du har tænkt over det...")
 
-def run_roleplay(mod):
-    print(f"\n🎭 ROLEPLAY – {mod['scenario']}")
-    for step in mod["steps"]:
-        print(f"\nValgmulighed: {step['choice']}")
-        cont = input("Vil du vælge dette? (j/n): ").lower()
-        if cont == "j":
-            print(f"➡️  Resultat: {step['result']}")
-            print(f"💬 Feedback: {step['feedback']}")
-            break
+python CDA/tools/cdt_interactive_runner.py
 
 def run_module():
     data = load_module()
