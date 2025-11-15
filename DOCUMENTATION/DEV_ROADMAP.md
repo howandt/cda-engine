@@ -203,3 +203,52 @@ Opdatere roadmap efter næste build
 
 Systemet er nu i stand til at forstå emotionel kontekst og reagere intelligent på naturligt sprog.
 Det markerer skiftet fra database-søgning til meningsbaseret dialog, som er kernen i CDA’s næste generation.
+
+# 🧭 CDA Roadmap – Status & Næste Skridt  
+**Dato:** 14. november 2025  
+**Placering:** dokumentation/roadmap_2025-11-14.md  
+
+---
+
+## ✅ Status
+- Alle cases er nu konverteret til ensartet JSON-struktur.  
+- Diagnoser, temaer, kontekster og kategorier er harmoniseret.  
+- Grundidéen om **CDA som vidensnoder** er fuldt implementeret.  
+- Filstrukturmodel (CDA/ → cases / meta / visuals / docs) er klar.  
+- “Samlefilen” fungerer som arkiv; cases kan flyttes individuelt.  
+
+---
+
+## 🔧 Teknisk fundament
+- Mappestruktur kan genereres direkte (én case = én fil).  
+- Navngivningsstandard: `kategori-id-navn_alder.json`.  
+- Metadata-system (taxonomy.json) til kategorisering og søgning.  
+- Intet datatab ved overgang til noder.  
+
+---
+
+## 🚀 Næste skridt
+1. **Tre visningsniveauer i CDA**  
+   - *Overview* – kort case (hurtigt overblik)  
+   - *Solution* – problem + løsning  
+   - *Training* – quiz, rollespil, refleksion  
+
+2. **Metadata-lag til visningsstyring**  
+   - Angiver hvilke felter der vises i hvert læringslag.  
+   - Designprincip: *fuld case i databasen – filtreret visning for brugeren.*
+
+3. **Forberedelse af interaktive læringsmoduler (CDT)**  
+   - Quizformat (multiple choice + refleksion).  
+   - Rollespilsskabelon (valg- og konsekvensflow).  
+
+---
+
+## 🎯 Formål
+At skabe et **lagdelt CDA-system**, hvor  
+- fagfolk arbejder i *dybden* (analyse og refleksion)  
+- studerende træner i *bredden* (hurtig læring og simulation)  
+- alle cases forbliver søgbare, sammenlignelige og versionerbare.  
+
+---
+
+*Note:* Næste session starter med implementeringen af view-metadata og prototype på interaktiv læring (CDA-CDT integration).  

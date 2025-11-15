@@ -1,0 +1,26 @@
+{
+  "system": "CDA",
+  "version": "1.0.0",
+  "build_date": "2025-11-15",
+  "structure": {
+    "cases": "individuelle JSON-filer opdelt i kategorier",
+    "taxonomy": "fælles begrebs- og kategorisystem",
+    "views": "definerer visningsniveauer (overview, solution, training)",
+    "meta": "systemfiler og changelog",
+    "visuals": "diagrammer og dokumentationsgrafik",
+    "docs": "vejledninger og metodiske noter",
+    "tools": "interne scripts og testværktøjer"
+  },
+  "compatibility": {
+    "cdt_version_min": "1.0.0",
+    "cdt_version_target": "1.0.0"
+  },
+  "status": {
+    "stable": true,
+    "last_verified": "2025-11-15"
+  },
+  "notes": [
+    "Denne fil sikrer entydig versionskontrol mellem CDA og CDT.",
+    "Opdater kun versionsnummer ved ændringer i datastruktur, ikke ved indholdstilføjelser."
+  ]
+}

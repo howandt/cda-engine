@@ -1,0 +1,33 @@
+{
+  "id": "autisme_social_samspil_6-9",
+  "title": "Socialt samspil i frikvarteret – barn med autisme (6-9 år)",
+  "summary": "Barnet trækker sig fra leg og bliver frustreret, når de andre børn ændrer regler eller ikke følger rutinen.",
+  "diagnosis": "autisme",
+  "theme": "relationer",
+  "context": "fritid",
+  "age_group": "6-9",
+  "problem": "Barnet oplever usikkerhed i sociale situationer, især når legens regler ændres. De andre børn opfatter det som stædighed, men barnet bliver reelt forvirret og stresset.",
+  "intervention": [
+    "Fast pædagog som 'tryghedsperson' i frikvarteret",
+    "Forberedelse af barnet før pauser (kort gennemgang af forventede aktiviteter)",
+    "Brug af visuel støtte til 'hvad skal vi lege i dag'"
+  ],
+  "tools": [
+    "Sociale historiekort",
+    "Følelseskort",
+    "Overblikstavle for frikvarter"
+  ],
+  "results": "Barnet begynder at deltage kortere perioder i lege, accepterer små regelændringer og søger selv kontakt til en ven.",
+  "reflection": "Forudsigelighed og tydelig voksenstøtte skabte tryghed. Barnets sociale deltagelse øgedes, når legens rammer blev tydeliggjort visuelt.",
+  "training": {
+    "mode": "reflection",
+    "question": "Hvordan kan pædagogen støtte barnet, når reglerne ændres i legen?",
+    "options": [
+      "Sætte grænser for de andre børn",
+      "Forklare barnet reglerne på forhånd og støtte under ændringen",
+      "Lade barnet finde ud af det selv"
+    ],
+    "answer": "Forklare barnet reglerne på forhånd og støtte under ændringen",
+    "feedback": "Forudsigelighed mindsker stress. Pædagogens trygge tilstedeværelse hjælper barnet til at turde deltage og lære fleksibilitet."
+  }
+}

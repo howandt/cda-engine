@@ -1,0 +1,33 @@
+{
+  "id": "adhd_hjemme_overgange_10-12",
+  "title": "Overgange i hjemmet – barn med ADHD (10–12 år)",
+  "summary": "Morgener og overgange fra spil/leg til praktiske opgaver udløser konflikter. Forældrene oplever, at barnet 'ikke vil', men barnet mister overblik og bliver stresset.",
+  "diagnosis": "adhd",
+  "theme": "overgange",
+  "context": "hjem",
+  "age_group": "10-12",
+  "problem": "Barnet reagerer med vrede eller nægtelse ved skift i hverdagen – især om morgenen og ved lektier. Forældrene prøver at tale roligt, men det eskalerer ofte.",
+  "intervention": [
+    "Visuel morgenrutineplan med billeder og rækkefølge",
+    "Tidsangivelse på plan (fx 5 min til tøj, 10 min morgenmad)",
+    "Belønningssystem for rolig overgang (små succeser markeres)"
+  ],
+  "tools": [
+    "Hjemmerutine-skema (getTemplates)",
+    "Belønningskort",
+    "Følelseskort til samtale efter konflikt"
+  ],
+  "results": "Barnet begynder at følge planen mere selvstændigt. Konflikter falder, og forældrene oplever mere ro og struktur i morgenerne.",
+  "reflection": "Visuel støtte skaber forudsigelighed, og små belønninger motiverer uden at skabe pres. Barnet lærer gradvist at mestre skift uden konflikter.",
+  "training": {
+    "mode": "reflection",
+    "question": "Hvordan kan forældrene bedst støtte barnet ved overgange hjemme?",
+    "options": [
+      "Gentage verbalt, at barnet skal skynde sig",
+      "Ignorere modstanden for at vise, hvem der bestemmer",
+      "Brug visuel plan og giv barnet tid til at omstille sig"
+    ],
+    "answer": "Brug visuel plan og giv barnet tid til at omstille sig",
+    "feedback": "Forudsigelighed og struktur virker bedre end verbal påmindelse. Barnet lærer at mestre overgangene med støtte, ikke pres."
+  }
+}
