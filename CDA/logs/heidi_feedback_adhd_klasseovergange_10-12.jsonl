@@ -1,0 +1,19 @@
+
+---
+
+## 🧠 Teknisk tanke
+- NLP-filter opdeler Heidi-tekst i sektioner via nøgleord (“God løsning”, “men”, “du kan også…”).  
+- Klassificering via regex + simple sætningstyper.  
+- Resultatet pakkes som JSON-objekt:  
+```json
+{
+ "timestamp": "...",
+ "case_id": "...",
+ "score": 10,
+ "category": "Effektiv",
+ "feedback_parts": {
+   "praise": "...",
+   "reflection": "...",
+   "improvement": "..."
+ }
+}

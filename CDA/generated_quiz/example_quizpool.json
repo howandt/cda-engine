@@ -1,0 +1,16 @@
+{
+  "case_id": "example_case",
+  "title": "Eksempel på automatisk genereret quizpool",
+  "questions": [
+    {
+      "question": "Hvordan kan læreren bedst støtte en elev med ADHD under skift mellem aktiviteter?",
+      "options": [
+        "Give mange mundtlige instruktioner",
+        "Varsle skift og bruge visuelle signaler",
+        "Ignorere elevens uro for at undgå opmærksomhed"
+      ],
+      "answer": "Varsle skift og bruge visuelle signaler",
+      "feedback": "Forudsigelighed og visuel støtte hjælper eleven til at bevare ro og fokus."
+    }
+  ]
+}
