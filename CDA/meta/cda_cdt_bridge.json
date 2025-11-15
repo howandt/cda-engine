@@ -1,0 +1,28 @@
+{
+  "bridge_id": "CDA_CDT_bridge_v1",
+  "version": "1.0.0",
+  "purpose": "Kobling mellem CDA-case-data og CDT-træningsmoduler.",
+  "source": "CDA/cases/",
+  "mapping": {
+    "training.mode": "cdt_mode",
+    "training.question": "prompt",
+    "training.options": "choices",
+    "training.answer": "correct",
+    "training.feedback": "explanation"
+  },
+  "output": {
+    "format": "CDT-quiz",
+    "destination": "CDT/modules/import/",
+    "supported_modes": ["quiz", "roleplay", "reflection"]
+  },
+  "status": {
+    "active": true,
+    "tested": false,
+    "next_step": "Prototype eksport af én CDA-case som CDT-quiz"
+  },
+  "notes": [
+    "Broen definerer, hvordan CDA-felter konverteres til CDT-format.",
+    "Version 1 fokuserer kun på training-feltet. Senere kan problem, intervention og reflection også mappes.",
+    "Filen danner grundlag for CDT-importmodulet i næste fase."
+  ]
+}
