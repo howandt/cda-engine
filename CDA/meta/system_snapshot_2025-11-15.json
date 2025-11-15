@@ -1,0 +1,41 @@
+{
+  "snapshot_id": "CDA_2025-11-15_v1.0.0",
+  "system_version": "1.0.0",
+  "date": "2025-11-15",
+  "verified": true,
+  "summary": "Stabil basisstruktur for CDA v1.0.0 med cases, visningslag og dokumentation fuldt valideret.",
+  "structure": {
+    "cases": [
+      "born",
+      "laerer",
+      "paedagog/bornehave",
+      "paedagog/fritid",
+      "fagperson",
+      "familiesager"
+    ],
+    "taxonomy": "taxonomy.json",
+    "views": "viewSchema.json",
+    "meta": ["system_version.json", "changelog.md", "system_snapshot_2025-11-15.json"],
+    "docs": ["methodology.md", "standards.md"],
+    "tools": ["viewer_test.py"],
+    "visuals": ["structure_diagram.png"]
+  },
+  "cases_loaded": [
+    "born/adhd_overgange_10-12.json",
+    "paedagog/bornehave/autisme_garderobe_overgang_3-6.json",
+    "paedagog/fritid/autisme_social_samspil_6-9.json",
+    "laerer/adhd_klasseovergange_10-12.json",
+    "familiesager/adhd_hjemme_overgange_10-12.json"
+  ],
+  "status": {
+    "integrity": "100%",
+    "viewer_test": "passed",
+    "documentation": "complete",
+    "next_step": "CDT bridge – interaktiv læring"
+  },
+  "notes": [
+    "Snapshot markerer afslutningen på CDA fase 1 (struktur og cases).",
+    "Alle filer valideret og testet 2025-11-15.",
+    "Næste fase: visuel roadmap + CDT-integration."
+  ]
+}
