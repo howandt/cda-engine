@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from cdt_logger import log_event
 
 EXPORT_DIR = Path("CDA/export")
 
@@ -16,18 +17,35 @@ def load_module():
     return data
 
 def run_quiz(mod):
+    from cdt_logger import log_event  # lokal import for at undgå cirkulær afhængighed
     print(f"\n🧩 QUIZ: {mod['prompt']}")
     for i, c in enumerate(mod["choices"], start=1):
         print(f"{i}. {c}")
+
     choice = input("Vælg (1-3): ")
     try:
         answer = mod["choices"][int(choice) - 1]
     except Exception:
-        print("Ugyldigt valg."); return
+        print("Ugyldigt valg.")
+        return
+
     if answer == mod["answer"]:
         print(f"✅ Korrekt!\n{mod['feedback']}")
+        result = "rigtigt"
+        feedback = mod["feedback"]
     else:
         print(f"❌ Ikke helt. Rigtigt svar: {mod['answer']}")
+        result = "forkert"
+        feedback = ""
+
+    # 🔹 Log hændelsen
+    log_event(
+        module_id=mod.get("prompt", "ukendt_modul"),
+        step_type="quiz",
+        user_choice=answer,
+        result=result,
+        feedback=feedback
+    )
 
 def run_reflection(mod):
     print(f"\n💭 REFLEKSION ({mod['context']}):")
