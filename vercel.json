@@ -1,5 +1,12 @@
 {
+  "version": 2,
   "public": true,
+  "builds": [
+    {
+      "src": "public/**/*",
+      "use": "@vercel/static"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
