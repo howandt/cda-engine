@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDA Case Reader</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background: #f8f9fa;
+    }
+    header {
+      background: #004080;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+    }
+    main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+    aside {
+      width: 300px;
+      background: #e9ecef;
+      padding: 15px;
+      overflow-y: auto;
+      border-right: 2px solid #ccc;
+    }
+    section {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: white;
+    }
+    h2 {
+      color: #004080;
+      margin-top: 0;
+    }
+    pre {
+      background: #f1f3f5;
+      padding: 10px;
+      overflow-x: auto;
+    }
+    /* --- Responsiv tilpasning --- */
+@media (max-width: 800px) {
+  main {
+    flex-direction: column;
+  }
+  aside {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #ccc;
+  }
+  section {
+    padding: 15px;
+  }
+}
+  </style>
+</head>
+<body>
+  <header>📖 CDA Case Reader</header>
+  <main>
+    <aside id="metadata">Indlæser metadata...</aside>
+    <section id="content">Indlæser case...</section>
+  </main>
+
+  <script>
+    async function loadCase() {
+      // --- dynamisk casevalg ---
+const params = new URLSearchParams(window.location.search);
+const caseId = params.get("id") || "case-bh3"; // standard = Lucas
+const caseFile = `${caseId}.md`;
+
+      try {
+        const response = await fetch(`./${caseFile}`);
+        if (!response.ok) throw new Error(`Kan ikke finde filen ${caseFile}`);
+        const text = await response.text();
+
+        // --- YAML-udtræk ---
+const cleanText = text.replace(/\r/g, "\n");
+let yamlData = {};
+let markdownBody = cleanText;
+
+// find hvor yaml starter og slutter
+const start = cleanText.indexOf("```yaml");
+if (start !== -1) {
+  const end = cleanText.indexOf("```", start + 7);
+  if (end !== -1) {
+    const yamlBlock = cleanText.substring(start + 7, end).trim();
+try {
+  yamlData = jsyaml.load(yamlBlock) || {};
+} catch (e) {
+  console.warn("YAML parse error:", e);
+  yamlData = {};
+}
+    markdownBody = cleanText.substring(end + 3).trim();
+  }
+}
+// --- slut YAML-udtræk ---
+
+        // Metadata
+        const metaDiv = document.getElementById("metadata");
+        metaDiv.innerHTML = `
+          <h2>${yamlData.navn || "Ukendt"}</h2>
+          <p><strong>Alder:</strong> ${yamlData.alder || "-"}</p>
+          <p><strong>Miljø:</strong> ${yamlData.miljø || "-"}</p>
+          <p><strong>Diagnose:</strong> ${yamlData.primær_diagnose || "-"}</p>
+          <p><strong>Kompleksitet:</strong> ${yamlData.kompleksitet || "-"}</p>
+          <p><strong>Tags:</strong> ${(yamlData.tags || []).join(", ")}</p>
+        `;
+
+        // Markdown-indhold
+        const htmlContent = marked.parse(markdownBody || "⚠️ Ingen tekst fundet i casen.");
+        document.getElementById("content").innerHTML = htmlContent;
+      } catch (err) {
+        document.getElementById("content").innerHTML = `<p style="color:red;">Fejl: ${err.message}</p>`;
+      }
+    }
+
+    // Sørg for at funktionen faktisk kaldes, når DOM er klar
+    document.addEventListener("DOMContentLoaded", loadCase);
+  </script>
+</body>
+</html>
