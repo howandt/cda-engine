@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDT Quiz System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .quiz-selector {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        .quiz-list {
+            display: grid;
+            gap: 15px;
+        }
+        .quiz-option {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .quiz-option:hover {
+            border-color: #43e97b;
+            transform: translateX(5px);
+        }
+        .quiz-option h3 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .quiz-option p {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .quiz-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .meta-tag {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .meta-difficulty {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .meta-questions {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        .meta-points {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        .quiz-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+        }
+        .quiz-header {
+            text-align: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .quiz-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            flex: 1;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 15px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+            transition: width 0.3s;
+        }
+        .question-card {
+            margin-bottom: 30px;
+        }
+        .question-text {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+        .option {
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        .option:hover {
+            border-color: #43e97b;
+            background: #f8fff9;
+            transform: translateX(5px);
+        }
+        .option.selected {
+            border-color: #43e97b;
+            background: #e8f5e9;
+        }
+        .option.correct {
+            border-color: #4caf50;
+            background: #e8f5e9;
+        }
+        .option.partial {
+            border-color: #ff9800;
+            background: #fff3e0;
+        }
+        .option.wrong {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        .option-label {
+            font-weight: bold;
+            color: #666;
+            margin-right: 10px;
+        }
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        .feedback.correct {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+        }
+        .feedback.partial {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+        }
+        .feedback.wrong {
+            background: #ffebee;
+            border-left: 5px solid #f44336;
+        }
+        .feedback-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .feedback-points {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .next-btn {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s;
+            display: none;
+        }
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 233, 123, 0.4);
+        }
+        .results-card {
+            text-align: center;
+            display: none;
+        }
+        .results-score {
+            font-size: 4em;
+            font-weight: bold;
+            color: #43e97b;
+            margin: 20px 0;
+        }
+        .results-grade {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .results-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .summary-box {
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .summary-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .summary-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .correct-color { color: #4caf50; }
+        .partial-color { color: #ff9800; }
+        .wrong-color { color: #f44336; }
+        .restart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 CDT Quiz System</h1>
+            <p>Test din viden om børn med diagnoser</p>
+        </div>
+
+        <div id="quizSelector" class="quiz-selector">
+            <h2 style="margin-bottom: 20px; color: #333;">Vælg en quiz:</h2>
+            <div id="quizList" class="quiz-list">
+                <div class="loading">⏳ Indlæser quizzer...</div>
+            </div>
+        </div>
+
+        <div id="quizContainer" class="quiz-container">
+            <div class="quiz-header">
+                <h2 id="quizTitle" class="quiz-title"></h2>
+                <p id="quizDescription" style="color: #666;"></p>
+            </div>
+
+            <div class="quiz-progress">
+                <span id="progressText">Spørgsmål 1 af 5</span>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill" style="width: 20%"></div>
+                </div>
+                <span id="scoreText">Score: 0</span>
+            </div>
+
+            <div id="questionCard" class="question-card"></div>
+
+            <div id="feedback" class="feedback"></div>
+
+            <button id="nextBtn" class="next-btn" onclick="nextQuestion()">Næste Spørgsmål →</button>
+
+            <div id="results" class="results-card"></div>
+        </div>
+    </div>
+
+    <script>
+        let quizzes = [];
+        let currentQuiz = null;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let totalScore = 0;
+
+        // Load quizzes on page load
+        async function loadQuizzes() {
+            try {
+                const response = await fetch('https://cda-engine-clean.vercel.app/api/quiz', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('API Response:', data); // Debug
+                
+                if (data.quizzes && Array.isArray(data.quizzes)) {
+                    quizzes = data.quizzes;
+                    displayQuizList(quizzes);
+                } else {
+                    throw new Error('Ugyldigt data format fra API');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                document.getElementById('quizList').innerHTML = 
+                    `<div style="padding: 20px; color: red;">
+                        <p><strong>Fejl ved indlæsning:</strong> ${error.message}</p>
+                        <p style="font-size: 0.9em; margin-top: 10px;">Prøv at åbne API direkte: 
+                        <a href="https://cda-engine-clean.vercel.app/api/quiz" target="_blank">Test API</a></p>
+                    </div>`;
+            }
+        }
+
+        function displayQuizList(quizzes) {
+            const listDiv = document.getElementById('quizList');
+            
+            if (quizzes.length === 0) {
+                listDiv.innerHTML = '<p>Ingen quizzer tilgængelige</p>';
+                return;
+            }
+
+            let html = '';
+            quizzes.forEach(quiz => {
+                html += `
+                    <div class="quiz-option" onclick="selectQuiz('${quiz.quiz_id}')">
+                        <h3>${quiz.title}</h3>
+                        <p>${quiz.description}</p>
+                        <div class="quiz-meta">
+                            <span class="meta-tag meta-difficulty">📊 ${quiz.difficulty}</span>
+                            <span class="meta-tag meta-questions">❓ ${quiz.question_count} spørgsmål</span>
+                            <span class="meta-tag meta-points">⭐ ${quiz.total_possible_points} point</span>
+                        </div>
+                    </div>
+                `;
+            });
+            listDiv.innerHTML = html;
+        }
+
+        async function selectQuiz(quizId) {
+            try {
+                const response = await fetch(`https://cda-engine-clean.vercel.app/api/quiz?quiz_id=${quizId}`);
+                const data = await response.json();
+                currentQuiz = data.quiz;
+                startQuiz();
+            } catch (error) {
+                alert('Fejl ved indlæsning af quiz: ' + error.message);
+            }
+        }
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            totalScore = 0;
+
+            document.getElementById('quizSelector').style.display = 'none';
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('quizTitle').textContent = currentQuiz.title;
+            document.getElementById('quizDescription').textContent = currentQuiz.description;
+
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = currentQuiz.questions[currentQuestionIndex];
+            const questionDiv = document.getElementById('questionCard');
+            
+            document.getElementById('progressText').textContent = 
+                `Spørgsmål ${currentQuestionIndex + 1} af ${currentQuiz.questions.length}`;
+            document.getElementById('progressFill').style.width = 
+                `${((currentQuestionIndex + 1) / currentQuiz.questions.length) * 100}%`;
+            document.getElementById('scoreText').textContent = `Score: ${totalScore}`;
+
+            let html = `
+                <p class="question-text">${question.question}</p>
+                <div class="options">
+            `;
+
+            question.options.forEach((option, index) => {
+                html += `
+                    <div class="option" onclick="selectAnswer(${index})">
+                        <span class="option-label">${String.fromCharCode(65 + index)}.</span>
+                        ${option.text}
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            questionDiv.innerHTML = html;
+
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+        }
+
+        function selectAnswer(answerIndex) {
+            const question = currentQuiz.questions[currentQuestionIndex];
+            const selectedOption = question.options[answerIndex];
+            
+            userAnswers[currentQuestionIndex] = answerIndex;
+            totalScore += selectedOption.points;
+
+            // Update UI
+            const options = document.querySelectorAll('.option');
+            options.forEach((opt, idx) => {
+                opt.style.pointerEvents = 'none';
+                if (idx === answerIndex) {
+                    if (selectedOption.points === 10) opt.classList.add('correct');
+                    else if (selectedOption.points === 5) opt.classList.add('partial');
+                    else opt.classList.add('wrong');
+                }
+            });
+
+            // Show feedback
+            const feedbackDiv = document.getElementById('feedback');
+            let feedbackClass = 'wrong';
+            let feedbackEmoji = '❌';
+            if (selectedOption.points === 10) {
+                feedbackClass = 'correct';
+                feedbackEmoji = '✅';
+            } else if (selectedOption.points === 5) {
+                feedbackClass = 'partial';
+                feedbackEmoji = '🟡';
+            }
+
+            feedbackDiv.className = `feedback ${feedbackClass}`;
+            feedbackDiv.innerHTML = `
+                <div class="feedback-header">${feedbackEmoji} ${selectedOption.points === 10 ? 'Korrekt!' : selectedOption.points === 5 ? 'Delvist rigtigt!' : 'Ikke optimalt'}</div>
+                <div class="feedback-points">+${selectedOption.points} point</div>
+                <p>${selectedOption.feedback}</p>
+            `;
+            feedbackDiv.style.display = 'block';
+
+            // Show next button
+            document.getElementById('nextBtn').style.display = 'block';
+            document.getElementById('nextBtn').textContent = 
+                currentQuestionIndex < currentQuiz.questions.length - 1 ? 
+                'Næste Spørgsmål →' : 'Se Resultater 🎯';
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuiz.questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('questionCard').style.display = 'none';
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('progressText').style.display = 'none';
+            document.getElementById('progressFill').parentElement.style.display = 'none';
+
+            const percentage = Math.round((totalScore / currentQuiz.total_possible_points) * 100);
+            const passed = totalScore >= currentQuiz.passing_score;
+            
+            let grade = 'F';
+            if (percentage >= 90) grade = 'A';
+            else if (percentage >= 80) grade = 'B';
+            else if (percentage >= 70) grade = 'C';
+            else if (percentage >= 60) grade = 'D';
+            else if (percentage >= 50) grade = 'E';
+
+            const correctCount = userAnswers.filter((ans, idx) => 
+                currentQuiz.questions[idx].options[ans].points === 10).length;
+            const partialCount = userAnswers.filter((ans, idx) => 
+                currentQuiz.questions[idx].options[ans].points === 5).length;
+            const wrongCount = currentQuiz.questions.length - correctCount - partialCount;
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h2 style="color: #333; margin-bottom: 20px;">🎉 Quiz Gennemført!</h2>
+                <div class="results-score">${totalScore} / ${currentQuiz.total_possible_points}</div>
+                <div class="results-grade">Karakter: ${grade} (${percentage}%)</div>
+                <p style="font-size: 1.2em; margin-bottom: 30px;">
+                    ${passed ? '✅ Bestået!' : '❌ Ikke bestået (kræver ' + currentQuiz.passing_score + ' point)'}
+                </p>
+                
+                <div class="results-summary">
+                    <div class="summary-box">
+                        <div class="summary-number correct-color">${correctCount}</div>
+                        <div class="summary-label">Korrekte</div>
+                    </div>
+                    <div class="summary-box">
+                        <div class="summary-number partial-color">${partialCount}</div>
+                        <div class="summary-label">Delvist</div>
+                    </div>
+                    <div class="summary-box">
+                        <div class="summary-number wrong-color">${wrongCount}</div>
+                        <div class="summary-label">Forkerte</div>
+                    </div>
+                </div>
+
+                <button class="restart-btn" onclick="location.reload()">🔄 Tag en ny quiz</button>
+            `;
+            resultsDiv.style.display = 'block';
+        }
+
+        // Load quizzes on page load
+        window.onload = () => {
+            loadQuizzes();
+        };
+    </script>
+</body>
+</html>
