@@ -1,0 +1,795 @@
+{
+  "version": "2025-05-17",
+  "description": "CDA PBL Projektbank - Komplet database med intelligent matchlogik",
+  "total_projects": 29,
+  "projects": [
+    {
+      "id": "pbl_001",
+      "title": "Bike Repair Workshop",
+      "subtitle": "From Flat Tires to Smooth Rides",
+      "description": "Lær at diagnosticere og reparere almindelige cykelproblemer som punkteringer, slidte bremser og rustne kæder.",
+      "activities": [
+        "Identificer cykelkomponenter",
+        "Øv grundreparationer",
+        "Lav en vedligeholdelsesguide",
+        "Hold en cykelreparationsdag"
+      ],
+      "competencies": ["Mekaniske færdigheder", "Værktøjsbrug", "Samarbejde", "Problemløsning"],
+      "diagnosis_match": ["ADHD", "DCD"],
+      "stimuli_type": ["Taktil", "Kinæstetisk"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Junior",
+      "duration_suggestion": "2-4 uger",
+      "progression": {
+        "develops": ["Motorik", "Værktøjskendskab", "Systematisk problemløsning"],
+        "next_projects": ["pbl_002", "pbl_004"],
+        "progression_note": "Når motorik er mestret, tilføj samarbejdselement med Community Repair Café"
+      }
+    },
+    {
+      "id": "pbl_002",
+      "title": "Junior Mechanic Program",
+      "subtitle": "Building a Go-Kart: A Hands-On Mechanics Challenge",
+      "description": "Saml en simpel gokart og lær grundlæggende mekanik og ingeniørprincipper.",
+      "activities": [
+        "Design layout",
+        "Byg ramme",
+        "Installér hjul",
+        "Test og optimer"
+      ],
+      "competencies": ["Mekanik", "Design thinking", "Samarbejde", "Sikkerhedsbevidsthed"],
+      "diagnosis_match": ["ADHD", "DCD"],
+      "stimuli_type": ["Taktil", "Kinæstetisk", "Visuel"],
+      "social_exposure": "Moderat",
+      "structure_need": "Høj",
+      "level": "Intermediate",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Avanceret mekanik", "Teamwork", "Planlægning"],
+        "next_projects": ["pbl_003", "pbl_005"],
+        "progression_note": "Naturlig progression fra Bike Repair. Tilføjer design thinking og gruppedynamik"
+      }
+    },
+    {
+      "id": "pbl_003",
+      "title": "Green Energy Innovators",
+      "subtitle": "Build Your Own Wind Turbine",
+      "description": "Byg en lille vindturbine til at producere elektricitet.",
+      "activities": [
+        "Undersøg vindturbiners funktion",
+        "Design og byg",
+        "Test effektivitet",
+        "Præsenter resultater"
+      ],
+      "competencies": ["Vedvarende energi", "Ingeniørskab", "Eksperimentel tænkning"],
+      "diagnosis_match": ["ADHD", "ASF"],
+      "stimuli_type": ["Visuel", "Kognitiv"],
+      "social_exposure": "Lav",
+      "structure_need": "Høj",
+      "level": "Advanced",
+      "duration_suggestion": "3-5 uger",
+      "progression": {
+        "develops": ["Videnskabelig metode", "Bæredygtighedstænkning", "Innovation"],
+        "next_projects": ["pbl_010", "pbl_012"],
+        "progression_note": "For elever der mestrede mekanik og er klar til miljø/energi-fokus"
+      }
+    },
+    {
+      "id": "pbl_004",
+      "title": "Community Repair Café",
+      "subtitle": "Fix-It Day: Repairing Everyday Items",
+      "description": "Arranger et reparationscafé-event og træn elever i basale reparationer.",
+      "activities": [
+        "Træning i reparation",
+        "Opret stationer",
+        "Lav instruktioner",
+        "Reflektér over affaldsreduktion"
+      ],
+      "competencies": ["Praktiske færdigheder", "Miljøbevidsthed", "Arrangement"],
+      "diagnosis_match": ["ADHD", "DCD"],
+      "stimuli_type": ["Taktil", "Kinæstetisk", "Social"],
+      "social_exposure": "Gruppe",
+      "structure_need": "Moderat",
+      "level": "Intermediate",
+      "duration_suggestion": "3-4 uger",
+      "progression": {
+        "develops": ["Social interaktion", "Formidling", "Ansvar"],
+        "next_projects": ["pbl_022", "pbl_019"],
+        "progression_note": "Bruger motoriske færdigheder fra Bike Repair, men tilføjer socialt element"
+      }
+    },
+    {
+      "id": "pbl_005",
+      "title": "School Garden Infrastructure",
+      "subtitle": "Build a Drip Irrigation System for the School Garden",
+      "description": "Design og installer et drypvandingssystem.",
+      "activities": [
+        "Research",
+        "Blueprint",
+        "Saml systemet",
+        "Monitorer effekt"
+      ],
+      "competencies": ["Bæredygtig landbrug", "Projektledelse", "Samarbejde"],
+      "diagnosis_match": ["ADHD", "DCD"],
+      "stimuli_type": ["Taktil", "Visuel", "Kinæstetisk"],
+      "social_exposure": "Moderat",
+      "structure_need": "Høj",
+      "level": "Advanced",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Systemtænkning", "Langtidsplanlægning", "Vedligeholdelse"],
+        "next_projects": ["pbl_011", "pbl_012"],
+        "progression_note": "For elever klar til kompleks problemløsning med real-world impact"
+      }
+    },
+    {
+      "id": "pbl_006",
+      "title": "Creative Carpentry Workshop",
+      "subtitle": "Design and Build Custom Birdhouses",
+      "description": "Byg fuglehuse med snedkerteknikker og viden om lokale fuglearter.",
+      "activities": [
+        "Undersøg fuglebehov",
+        "Design",
+        "Byg",
+        "Mal",
+        "Opsæt og monitorer brug"
+      ],
+      "competencies": ["Tømrerarbejde", "Æstetik", "Økologisk forståelse"],
+      "diagnosis_match": ["ADHD", "DCD", "Autisme"],
+      "stimuli_type": ["Taktil", "Visuel", "Kinæstetisk"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Junior",
+      "duration_suggestion": "2-3 uger",
+      "progression": {
+        "develops": ["Håndværk", "Omsorg for natur", "Kreativitet"],
+        "next_projects": ["pbl_001", "pbl_029"],
+        "progression_note": "Starter blidt med kreativt håndværk og naturforbindelse"
+      }
+    },
+    {
+      "id": "pbl_007",
+      "title": "Sustainable Fashion Project",
+      "subtitle": "Upcycle Old Clothes into New Creations",
+      "description": "Omdan gammelt tøj til nye produkter og lær om slow fashion.",
+      "activities": [
+        "Syning",
+        "Design",
+        "Modeudstilling",
+        "Oplysning"
+      ],
+      "competencies": ["Kreativitet", "Håndværk", "Miljøtænkning", "Præsentation"],
+      "diagnosis_match": ["ASF", "Lavt selvværd", "Angst"],
+      "stimuli_type": ["Taktil", "Visuel"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Intermediate",
+      "duration_suggestion": "3-5 uger",
+      "progression": {
+        "develops": ["Selvudtryk", "Bæredygtighed", "Finstofmotorik"],
+        "next_projects": ["pbl_029", "pbl_009"],
+        "progression_note": "Bygger selvværd gennem kreativ produktion og præsentation"
+      }
+    },
+    {
+      "id": "pbl_008",
+      "title": "Mini Robotics Lab",
+      "subtitle": "Build and Program a Line-Following Robot",
+      "description": "Byg og programmér en robot med sensorstyring.",
+      "activities": [
+        "Samling",
+        "Programmering",
+        "Kalibrering",
+        "Test og konkurrence"
+      ],
+      "competencies": ["Robotik", "Kodning", "Fejlfinding", "Logisk tænkning"],
+      "diagnosis_match": ["ADHD", "ASF", "Højt begavede"],
+      "stimuli_type": ["Visuel", "Logisk", "Kinæstetisk"],
+      "social_exposure": "Lav",
+      "structure_need": "Høj",
+      "level": "Advanced",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Programmering", "Systematik", "Trial-and-error mindset"],
+        "next_projects": ["pbl_014", "pbl_003"],
+        "progression_note": "For analytiske elever klar til teknologi og logik"
+      }
+    },
+    {
+      "id": "pbl_009",
+      "title": "Social Confidence and Emotional Regulation Project",
+      "subtitle": "Speaking with Confidence: Navigating Social Situations",
+      "description": "Opbyg selvtillid, følelsesmæssig bevidsthed og sociale færdigheder.",
+      "activities": [
+        "Følelsesworkshops",
+        "Taleøvelser",
+        "Rollespil",
+        "Refleksion"
+      ],
+      "competencies": ["Emotionel regulering", "Social interaktion", "Offentlig tale", "Robusthed"],
+      "diagnosis_match": ["Angst", "ASF", "Mutisme"],
+      "stimuli_type": ["Lav auditiv", "Visuel", "Emotionel"],
+      "social_exposure": "Moderat",
+      "structure_need": "Høj",
+      "level": "Intermediate",
+      "duration_suggestion": "6-8 uger",
+      "progression": {
+        "develops": ["Selvtillid", "Følelsesforståelse", "Kommunikation"],
+        "next_projects": ["pbl_016", "pbl_018"],
+        "progression_note": "Central for elever med angst/usikkerhed. Gradvis progression i trygge rammer"
+      }
+    },
+    {
+      "id": "pbl_010",
+      "title": "Environmental Project: Climate Change Awareness Campaign",
+      "subtitle": "Raising Awareness of Climate Change",
+      "description": "Uddan andre om klimaforandringer og mulige handlinger.",
+      "activities": [
+        "Research",
+        "Kampagnematerialer",
+        "Events",
+        "Evaluering"
+      ],
+      "competencies": ["Klimaforstand", "Advocacy", "Kreativitet", "Planlægning"],
+      "diagnosis_match": ["Højt begavede", "ASF", "ADHD"],
+      "stimuli_type": ["Visuel", "Kognitiv", "Social"],
+      "social_exposure": "Gruppe",
+      "structure_need": "Moderat",
+      "level": "Advanced",
+      "duration_suggestion": "5-8 uger",
+      "progression": {
+        "develops": ["Projektledelse", "Formidling", "Engagement"],
+        "next_projects": ["pbl_022", "pbl_019"],
+        "progression_note": "For elever der mestrer research og vil skabe reel forandring"
+      }
+    },
+    {
+      "id": "pbl_011",
+      "title": "Building a Sustainable Mini-Garden",
+      "subtitle": "Create Your Own Green Space",
+      "description": "Design og plej en bæredygtig have med fokus på økologi.",
+      "activities": [
+        "Planlæg layout",
+        "Plant",
+        "Vand og plej",
+        "Høst"
+      ],
+      "competencies": ["Plantekundskab", "Tålmodighed", "Observation"],
+      "diagnosis_match": ["ADHD", "Autisme", "Angst"],
+      "stimuli_type": ["Taktil", "Visuel", "Rytmisk"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Junior",
+      "duration_suggestion": "6-12 uger (sæsonbestemt)",
+      "progression": {
+        "develops": ["Ansvar over tid", "Naturforbindelse", "Struktur"],
+        "next_projects": ["pbl_005", "pbl_015"],
+        "progression_note": "Langsomt, rytmisk projekt der giver ro og struktur"
+      }
+    },
+    {
+      "id": "pbl_012",
+      "title": "Water Conservation Awareness Project",
+      "subtitle": "Learn and Act on Water Conservation",
+      "description": "Lær om vandbesparelse og implementér konkrete handlinger.",
+      "activities": [
+        "Research",
+        "Infografik",
+        "Modelbyg",
+        "Formidling"
+      ],
+      "competencies": ["Analyse", "Miljøformidling", "Præsentation", "Problemløsning"],
+      "diagnosis_match": ["ASF", "Højt begavede"],
+      "stimuli_type": ["Visuel", "Kognitiv"],
+      "social_exposure": "Moderat",
+      "structure_need": "Høj",
+      "level": "Advanced",
+      "duration_suggestion": "3-5 uger",
+      "progression": {
+        "develops": ["Dataanalyse", "Kommunikation", "Systemforståelse"],
+        "next_projects": ["pbl_010", "pbl_003"],
+        "progression_note": "For analytiske elever interesseret i miljø og data"
+      }
+    },
+    {
+      "id": "pbl_013",
+      "title": "Digital Storyboard Studio",
+      "subtitle": "Visual Storytelling with Digital Tools",
+      "description": "Udvikle visuel historiefortælling via digitale værktøjer.",
+      "activities": [
+        "Tegn eller digitaliser sekvenser",
+        "Brug digitale værktøjer",
+        "Del i format"
+      ],
+      "competencies": ["Visuel tænkning", "Sekventering", "Kreativitet"],
+      "diagnosis_match": ["ASF", "Mutisme", "Højt begavede", "Ordblindhed"],
+      "stimuli_type": ["Visuel", "Lav verbal"],
+      "social_exposure": "Lav",
+      "structure_need": "Høj",
+      "level": "Intermediate",
+      "duration_suggestion": "3-4 uger",
+      "progression": {
+        "develops": ["Digital kompetence", "Narrativ struktur", "Selvudtryk"],
+        "next_projects": ["pbl_027", "pbl_018"],
+        "progression_note": "Perfekt for nonverbale elever der tænker i billeder"
+      }
+    },
+    {
+      "id": "pbl_014",
+      "title": "DIY AI Chatbot",
+      "subtitle": "Build Your Own Simple Chatbot",
+      "description": "Forstå hvordan samtale-AI virker ved at bygge en simpel chatbot.",
+      "activities": [
+        "Lav dialogtræ",
+        "Brug værktøj (fx Scratch)",
+        "Test og reflektér"
+      ],
+      "competencies": ["Teknologiforståelse", "Logik", "Problemløsning"],
+      "diagnosis_match": ["ASF", "ADHD", "Højt begavede"],
+      "stimuli_type": ["Visuel", "Logisk"],
+      "social_exposure": "Lav",
+      "structure_need": "Høj",
+      "level": "Advanced",
+      "duration_suggestion": "3-5 uger",
+      "progression": {
+        "develops": ["Programmering", "Dialogforståelse", "AI-literacy"],
+        "next_projects": ["pbl_008", "pbl_022"],
+        "progression_note": "For tech-interesserede elever der vil forstå AI"
+      }
+    },
+    {
+      "id": "pbl_015",
+      "title": "Sensory Nature Journal",
+      "subtitle": "Sensorisk Naturjournal",
+      "description": "Opbyg fordybelse, sanseintegration og rytme i naturmiljøer.",
+      "activities": [
+        "Gåture",
+        "Dokumentation",
+        "Digital/analog journal"
+      ],
+      "competencies": ["Sanseintegration", "Refleksion", "Rytmisk forankring"],
+      "diagnosis_match": ["Autisme", "DCD", "Angst"],
+      "stimuli_type": ["Rytmisk", "Taktil", "Visuel"],
+      "social_exposure": "Lav",
+      "structure_need": "Lav",
+      "level": "Junior",
+      "duration_suggestion": "4-8 uger",
+      "progression": {
+        "develops": ["Sanseoplevelse", "Mindfulness", "Observation"],
+        "next_projects": ["pbl_011", "pbl_006"],
+        "progression_note": "Lavstimuli projekt for overvældede elever"
+      }
+    },
+    {
+      "id": "pbl_016",
+      "title": "Conflict Pilot",
+      "subtitle": "Træn sociale dilemmaer",
+      "description": "Forstå og navigere i sociale udfordringer.",
+      "activities": [
+        "Rollespil",
+        "Tegneserier",
+        "Løsningsmodeller"
+      ],
+      "competencies": ["Emotionel regulering", "Social tænkning"],
+      "diagnosis_match": ["Angst", "Skolevægring", "ADHD", "ASF"],
+      "stimuli_type": ["Lav auditiv", "Visuel"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Intermediate",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Konflikthåndtering", "Perspektivtagning", "Empati"],
+        "next_projects": ["pbl_009", "pbl_021"],
+        "progression_note": "Tryg træning af svære situationer gennem rollespil"
+      }
+    },
+    {
+      "id": "pbl_017",
+      "title": "Sustainable Zero-Waste Cookbook",
+      "subtitle": "Zero-Waste Kogebog",
+      "description": "Lær madlavning med fokus på bæredygtighed og planlægning.",
+      "activities": [
+        "Planlæg måltider",
+        "Lav mad",
+        "Dokumentér opskrifter"
+      ],
+      "competencies": ["Planlægning", "Ansvar", "Bæredygtighed"],
+      "diagnosis_match": ["ADHD", "DCD"],
+      "stimuli_type": ["Kinæstetisk", "Visuel", "Taktil"],
+      "social_exposure": "Moderat",
+      "structure_need": "Moderat",
+      "level": "Intermediate",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Eksekutive funktioner", "Madkundskab", "Samarbejde"],
+        "next_projects": ["pbl_028", "pbl_004"],
+        "progression_note": "Træner planlægning gennem konkret aktivitet"
+      }
+    },
+    {
+      "id": "pbl_018",
+      "title": "Din Egen Podcast",
+      "subtitle": "Create Your Own Podcast Episode",
+      "description": "Skab et personligt podcast-afsnit med tema efter eget valg.",
+      "activities": [
+        "Vælg emne",
+        "Lav manus",
+        "Optag og publicér"
+      ],
+      "competencies": ["Kommunikation", "Planlægning", "Selvtillid"],
+      "diagnosis_match": ["Angst", "Mutisme", "ASF"],
+      "stimuli_type": ["Auditiv", "Kreativ"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Intermediate",
+      "duration_suggestion": "3-5 uger",
+      "progression": {
+        "develops": ["Verbal kommunikation", "Selvudtryk", "Storytelling"],
+        "next_projects": ["pbl_009", "pbl_019"],
+        "progression_note": "Bygger verbal selvtillid i tryg, kontrollerbar form"
+      }
+    },
+    {
+      "id": "pbl_019",
+      "title": "Skjulte Helte: Mikroreportage",
+      "subtitle": "Mikroreportage i lokalsamfundet",
+      "description": "Find og portrætter 'usynlige helte' i nærmiljøet.",
+      "activities": [
+        "Research",
+        "Interview",
+        "Skriv artikel",
+        "Udgiv magasin"
+      ],
+      "competencies": ["Kritisk tænkning", "Empati", "Research"],
+      "diagnosis_match": ["Højt begavede", "ASF"],
+      "stimuli_type": ["Social", "Kognitiv"],
+      "social_exposure": "Moderat",
+      "structure_need": "Moderat",
+      "level": "Advanced",
+      "duration_suggestion": "5-8 uger",
+      "progression": {
+        "develops": ["Journalistik", "Empati", "Formidling"],
+        "next_projects": ["pbl_018", "pbl_010"],
+        "progression_note": "For empatiske elever interesseret i mennesker og historier"
+      }
+    },
+    {
+      "id": "pbl_020",
+      "title": "Kroppens Ingeniører",
+      "subtitle": "Byg en prothese",
+      "description": "Forstå biomekanik gennem at designe en simpel kropsprothese.",
+      "activities": [
+        "Undersøg",
+        "Byg og test prototype"
+      ],
+      "competencies": ["Design", "Biologi", "Ingeniørtænkning"],
+      "diagnosis_match": ["ADHD", "Højt begavede"],
+      "stimuli_type": ["Kinæstetisk", "Visuel", "Kognitiv"],
+      "social_exposure": "Moderat",
+      "structure_need": "Høj",
+      "level": "Advanced",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Biomek anik", "Design thinking", "Empati"],
+        "next_projects": ["pbl_002", "pbl_008"],
+        "progression_note": "Kombinerer håndværk med videnskab og empati"
+      }
+    },
+    {
+      "id": "pbl_021",
+      "title": "Emotion Lab",
+      "subtitle": "Følelsesbarometer og Følelsesfilm",
+      "description": "Træn følelsesgenkendelse gennem visuel og filmisk skabelse.",
+      "activities": [
+        "Lav barometer",
+        "Film følelsesscener",
+        "Reflektér over krop og sind"
+      ],
+      "competencies": ["Emotionel selvforståelse", "Visuel kommunikation"],
+      "diagnosis_match": ["ASF", "Angst", "ADHD"],
+      "stimuli_type": ["Visuel", "Emotionel"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Junior",
+      "duration_suggestion": "3-4 uger",
+      "progression": {
+        "develops": ["Følelsesbevidsthed", "Kropssprog", "Selvindsigt"],
+        "next_projects": ["pbl_009", "pbl_016"],
+        "progression_note": "Fundamentalt for emotionel udvikling"
+      }
+    },
+    {
+      "id": "pbl_022",
+      "title": "Hack Din Skole",
+      "subtitle": "Forandringsprojekt",
+      "description": "Identificér noget der ikke fungerer – og forbedr det.",
+      "activities": [
+        "Undersøg",
+        "Design løsninger",
+        "Præsenter for skolen"
+      ],
+      "competencies": ["Innovation", "Brugerinvolvering", "Præsentation"],
+      "diagnosis_match": ["ADHD", "ASF", "Højt begavede"],
+      "stimuli_type": ["Varieret", "Verbal"],
+      "social_exposure": "Gruppe",
+      "structure_need": "Moderat",
+      "level": "Advanced",
+      "duration_suggestion": "6-10 uger",
+      "progression": {
+        "develops": ["Systemtænkning", "Påvirkning", "Lederskab"],
+        "next_projects": ["pbl_010", "pbl_019"],
+        "progression_note": "For elever klar til at skabe reel forandring"
+      }
+    },
+    {
+      "id": "pbl_023",
+      "title": "Symbolspillet",
+      "subtitle": "Lav dit eget brætspil uden ord",
+      "description": "Udvikle logik og historiefortælling uden brug af tekst.",
+      "activities": [
+        "Design symboler",
+        "Lav spilleplade og regler",
+        "Test og forbedr"
+      ],
+      "competencies": ["Strategisk tænkning", "Kreativitet", "Sekventering"],
+      "diagnosis_match": ["Ordblindhed", "Sprogforstyrrelse", "ASF"],
+      "stimuli_type": ["Visuel", "Lav verbal"],
+      "social_exposure": "Lav",
+      "structure_need": "Høj",
+      "level": "Intermediate",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Nonverbal kommunikation", "Logik", "Design"],
+        "next_projects": ["pbl_013", "pbl_029"],
+        "progression_note": "K-PBL projekt for ordblinde - tænkning uden tekst"
+      }
+    },
+    {
+      "id": "pbl_024",
+      "title": "Lydguide til Skolen",
+      "subtitle": "Skabe auditiv guide til skolens rum",
+      "description": "Skabe en auditiv guide til skolens rum og aktiviteter.",
+      "activities": [
+        "Optag beskrivelser",
+        "Redigér",
+        "Del via QR-koder"
+      ],
+      "competencies": ["Auditiv kommunikation", "Strukturering", "Ansvar"],
+      "diagnosis_match": ["Ordblindhed", "Angst"],
+      "stimuli_type": ["Lav auditiv", "Visuel"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Intermediate",
+      "duration_suggestion": "3-5 uger",
+      "progression": {
+        "develops": ["Verbal udtryk", "Teknologi", "Overblik"],
+        "next_projects": ["pbl_018", "pbl_013"],
+        "progression_note": "K-PBL - auditiv læring for ordblinde"
+      }
+    },
+    {
+      "id": "pbl_025",
+      "title": "Taljagt i Billeder",
+      "subtitle": "Træne talgenkendelse gennem visuel læring",
+      "description": "Træne talgenkendelse og mængdeforståelse gennem billeder og objekter.",
+      "activities": [
+        "Find antal i hverdagen",
+        "Lav visuel collage",
+        "Sammenlign mængder"
+      ],
+      "competencies": ["Mængdeforståelse", "Visuel tænkning", "Observation"],
+      "diagnosis_match": ["Talblindhed"],
+      "stimuli_type": ["Visuel", "Rytmisk"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Junior",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Tallinje", "Mængdeforståelse", "Visuel matematik"],
+        "next_projects": ["pbl_026", "pbl_028"],
+        "progression_note": "K-PBL - starter tallæring visuelt"
+      }
+    },
+    {
+      "id": "pbl_026",
+      "title": "Regn i Minecraft",
+      "subtitle": "Matematik gennem byggespil",
+      "description": "Forstå addition og geometri via byggespil.",
+      "activities": [
+        "Byg med blokke",
+        "Skab regneudtryk visuelt",
+        "Farvekod"
+      ],
+      "competencies": ["Rumforståelse", "Logik", "Kreativ problemløsning"],
+      "diagnosis_match": ["Talblindhed", "ADHD"],
+      "stimuli_type": ["Kinæstetisk", "Visuel"],
+      "social_exposure": "Lav",
+      "structure_need": "Høj",
+      "level": "Intermediate",
+      "duration_suggestion": "5-8 uger",
+      "progression": {
+        "develops": ["Rumlig matematik", "Addition", "Problemløsning"],
+        "next_projects": ["pbl_028", "pbl_008"],
+        "progression_note": "K-PBL - gamification af matematik"
+      }
+    },
+    {
+      "id": "pbl_027",
+      "title": "Følelsesfilm uden Ord",
+      "subtitle": "Nonverbal følelseskommunikation",
+      "description": "Udtryk følelser gennem mimik og billeder – uden sprog.",
+      "activities": [
+        "Film sekvenser",
+        "Brug emojis og farver",
+        "Del og gæt følelser"
+      ],
+      "competencies": ["Emotionel bevidsthed", "Nonverbal kommunikation"],
+      "diagnosis_match": ["Ordblindhed", "Mutisme", "ASF"],
+      "stimuli_type": ["Visuel", "Emotionel"],
+      "social_exposure": "Lav",
+      "structure_need": "Moderat",
+      "level": "Junior",
+      "duration_suggestion": "3-4 uger",
+      "progression": {
+        "develops": ["Følelsesforståelse", "Visuel kommunikation", "Kreativitet"],
+        "next_projects": ["pbl_021", "pbl_013"],
+        "progression_note": "K-PBL - emotionel træning uden tekst"
+      }
+    },
+    {
+      "id": "pbl_028",
+      "title": "Hverdagsmatematik - Lav din egen butik",
+      "subtitle": "Økonomilæring gennem leg",
+      "description": "Lære om penge og mængder uden brug af skriftlige opgaver.",
+      "activities": [
+        "Design butik med symboler",
+        "Farvekod priser",
+        "Spil køb/salg"
+      ],
+      "competencies": ["Økonomiforståelse", "Handel", "Social interaktion"],
+      "diagnosis_match": ["Talblindhed", "DCD"],
+      "stimuli_type": ["Taktil", "Visuel", "Kinæstetisk"],
+      "social_exposure": "Gruppe",
+      "structure_need": "Høj",
+      "level": "Intermediate",
+      "duration_suggestion": "4-6 uger",
+      "progression": {
+        "develops": ["Pengeforståelse", "Addition/subtraktion", "Samarbejde"],
+        "next_projects": ["pbl_026", "pbl_017"],
+        "progression_note": "K-PBL - konkret matematik gennem leg"
+      }
+    },
+    {
+      "id": "pbl_029",
+      "title": "Textiles & Self-Expression Studio",
+      "subtitle": "Sekvensspil med Billedkort",
+      "description": "Forstå rækkefølger og planlægning uden tekst.",
+      "activities": [
+        "Brug billedkort",
+        "Lav egne sekvenser",
+        "Lav et spil"
+      ],
+      "competencies": ["Sekventering", "Planlægning", "Visuel ræsonnering"],
+      "diagnosis_match": ["Ordblindhed", "Kognitiv uorganisering"],
+      "stimuli_type": ["Visuel", "Rytmisk"],
+      "social_exposure": "Lav",
+      "structure_need": "Høj",
+      "level": "Junior",
+      "duration_suggestion": "3-5 uger",
+      "progression": {
+        "develops": ["Organisering", "Tidsmæssig forståelse", "Logik"],
+        "next_projects": ["pbl_023", "pbl_013"],
+        "progression_note": "K-PBL - eksekutiv funktion gennem billeder"
+      }
+    }
+  ],
+  "filter_categories": {
+    "diagnosis_match": [
+      "ADHD",
+      "ASF",
+      "Angst",
+      "DCD",
+      "Højt begavede",
+      "Ordblindhed",
+      "Talblindhed",
+      "Mutisme",
+      "Sprogforstyrrelse",
+      "Kognitiv uorganisering",
+      "Skolevægring",
+      "Lavt selvværd"
+    ],
+    "stimuli_type": [
+      "Taktil",
+      "Visuel",
+      "Lav auditiv",
+      "Auditiv",
+      "Kinæstetisk",
+      "Rytmisk",
+      "Kognitiv",
+      "Logisk",
+      "Emotionel",
+      "Social",
+      "Kreativ",
+      "Lav verbal",
+      "Verbal",
+      "Varieret"
+    ],
+    "social_exposure": ["Lav", "Moderat", "Gruppe"],
+    "structure_need": ["Lav", "Moderat", "Høj"],
+    "level": ["Junior", "Intermediate", "Advanced", "Expert"]
+  },
+  "teacher_templates": {
+    "opstartsplan": {
+      "title": "PBL Opstartsplan",
+      "fields": [
+        "Elevprofil (diagnose, niveau, interesser)",
+        "Valgt projekt + begrundelse",
+        "Mål (kompetencer at udvikle)",
+        "Varighed og milepæle",
+        "Succeskriterier"
+      ]
+    },
+    "logbog": {
+      "title": "PBL Logbog (daglig/ugentlig)",
+      "fields": [
+        "Dato",
+        "Aktivitet i dag",
+        "Elevens reaktion/engagement",
+        "Udfordringer",
+        "Justeringer til næste gang"
+      ]
+    },
+    "progressionsskema": {
+      "title": "PBL Progressionsskema",
+      "fields": [
+        "Kompetencer før projekt",
+        "Kompetencer under projekt",
+        "Kompetencer efter projekt",
+        "Næste anbefalede projekt"
+      ]
+    },
+    "evalueringsrapport": {
+      "title": "PBL Evalueringsrapport",
+      "fields": [
+        "Hvad fungerede godt?",
+        "Hvad skal justeres?",
+        "Elevens egen evaluering",
+        "Forældresamtale-noter",
+        "Anbefalinger til næste lærer"
+      ]
+    },
+    "foraeldre_kommunikation": {
+      "title": "PBL Forældre-kommunikation",
+      "fields": [
+        "Kort beskrivelse af projekt",
+        "Hvad lærer barnet?",
+        "Hvordan kan forældre støtte hjemme?",
+        "Opdateringer undervejs"
+      ]
+    }
+  },
+  "rollespil_motor": {
+    "enabled": true,
+    "activation_keyword": "rollespil_start",
+    "scenarios": [
+      "Lærer ↔ Barn (konflikt, opgaveforklaring, ros/kritik)",
+      "Forælder ↔ Barn (grænsesætning, aftaler, støtte)",
+      "Fagperson ↔ Forælder (udredning, handleplan, uenighed)",
+      "Barn ↔ Voksen (behov for ro, forståelse)",
+      "Reverseret: Barns reaktion på voksens sprog"
+    ]
+  },
+  "matching_algorithm": {
+    "description": "Intelligent PBL matching baseret på elevprofil",
+    "parameters": [
+      "diagnosis_match (primary filter)",
+      "stimuli_type (preferred learning style)",
+      "social_exposure (current capacity)",
+      "structure_need (support level)",
+      "level (skill level)",
+      "progression_history (what was mastered)"
+    ],
+    "recommendation_logic": "Match diagnosis + stimuli → Filter by social/structure capacity → Suggest next project based on progression.develops"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-11-15",
+  "views": {
+    "overview": {
+      "description": "Kort resumé – hurtig orientering for studerende eller ved søgning.",
+      "fields": [
+        "id",
+        "title",
+        "summary",
+        "diagnosis",
+        "theme",
+        "context"
+      ]
+    },
+    "solution": {
+      "description": "Problem + løsning – det praktiske niveau for fagpersoner og undervisere.",
+      "fields": [
+        "id",
+        "title",
+        "summary",
+        "diagnosis",
+        "theme",
+        "context",
+        "problem",
+        "intervention",
+        "tools",
+        "results",
+        "reflection"
+      ]
+    },
+    "training": {
+      "description": "Læringsniveau – bruges i CDT-moduler til quiz, rollespil og refleksion.",
+      "fields": [
+        "id",
+        "title",
+        "diagnosis",
+        "theme",
+        "context",
+        "training.mode",
+        "training.question",
+        "training.options",
+        "training.answer",
+        "training.feedback"
+      ]
+    }
+  }
+}

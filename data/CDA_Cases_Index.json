@@ -1,0 +1,22 @@
+[
+  {
+    "id": "case-bh3",
+    "title": "Lucas, 5 år – impulsivitet og grænseproblemer",
+    "age": 5,
+    "diagnoses": ["Mistanke om ADHD"],
+    "contexts": ["Børnehave"],
+    "theme": "Affekt, impulskontrol, fysisk kontakt",
+    "description": "Lucas reagerer fysisk på afvisning og har svært ved at fornemme sine grænser.",
+    "file": "cases/case-bh3.md"
+  },
+  {
+    "id": "case-gs1",
+    "title": "Emma, 6 år – perfektionisme og kontrol",
+    "age": 6,
+    "diagnoses": ["Perfektionisme", "Autisme (formodet)"],
+    "contexts": ["Skole"],
+    "theme": "Kontrol, angst, udmattelse",
+    "description": "Emma bliver meget ked af det ved små fejl og udmatter sig selv i ønsket om perfektion.",
+    "file": "cases/case-gs1.md"
+  }
+]

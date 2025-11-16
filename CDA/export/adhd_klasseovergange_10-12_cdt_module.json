@@ -1,0 +1,14 @@
+{
+  "id": "adhd_klasseovergange_10-12",
+  "title": "Klasseovergange og fokus – elev med ADHD (10–12 år)",
+  "mode": "quiz",
+  "prompt": "Hvordan kan læreren bedst støtte eleven under fag- og lokale-skift?",
+  "choices": [
+    "Gentage instruktionen højere, så eleven hører det",
+    "Give verbal irettesættelse, hvis eleven ikke reagerer",
+    "Varsle skift og bruge visuel plan som støtte"
+  ],
+  "correct": "Varsle skift og bruge visuel plan som støtte",
+  "explanation": "Elever med ADHD reagerer bedre på visuelle signaler end på verbal pres. Struktur fører til ro og forudsigelighed.",
+  "source_case": "CDA\\cases\\laerer\\adhd_klasseovergange_10-12.json"
+}

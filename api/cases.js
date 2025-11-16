@@ -1,48 +1,112 @@
-export const config = { runtime: "nodejs" };
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter"; // <– Parser YAML-metadata i .md
+import { semanticSearch } from "../scripts/semantic_matcher.js";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   try {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    const { id, category, diagnose, miljø, age, search, sort } = req.query;
 
-    // Find .md-filen med cases
-    const filePath = path.join(process.cwd(), "data", "CDA_CaseBank.md");
-    const fileContent = fs.readFileSync(filePath, "utf8");
+    // 🔹 Hent den rensede index-fil
+    const dataPath = path.join(process.cwd(), "public", "data", "CDA_Cases_Index_clean.json");
 
-    // Split filen op – hver case starter fx med "### 🧩 CASE "
-    const rawCases = fileContent.split("### 🧩 CASE ").slice(1);
+    if (!fs.existsSync(dataPath)) {
+      return res.status(404).json({
+        success: false,
+        error: `Datafil ikke fundet: ${dataPath}`
+      });
+    }
 
-    // Parser alle cases
-    const cases = rawCases.map((block, index) => {
-      const parsed = matter("### 🧩 CASE " + block);
-      const meta = parsed.data || {};
-      return {
-        id: meta.id || `case-${index + 1}`,
-        title: meta.title || meta.navn || `Ukendt Case ${index + 1}`,
-        alder: meta.alder || null,
-        diagnose: meta.diagnose || meta.primær_diagnose || null,
-        specialist: meta.specialist || null,
-        tags: meta.tags || [],
-        markdown: parsed.content.trim()
-      };
-    });
+    const raw = fs.readFileSync(dataPath, "utf8");
+    const data = JSON.parse(raw);
+    const cases = data.cases || data;
 
-    // Keyword-søgning
-    const keyword = req.query.keyword?.toLowerCase();
+    // 🔍 Hvis der søges på specifikt ID
+    if (id) {
+      const match = cases.find(c => c.id?.toLowerCase() === id.toLowerCase());
+      if (!match) {
+        return res.status(404).json({
+          success: false,
+          error: `Ingen case fundet med ID: ${id}`
+        });
+      }
+      return res.status(200).json({
+        success: true,
+        total: 1,
+        source: JSON.stringify(match, null, 2)
+      });
+    }
+
+    // 🔍 Ellers filtrer på kategori, diagnose, miljø, alder
     let filtered = cases;
-    if (keyword) {
-      filtered = cases.filter(c =>
-        JSON.stringify(c).toLowerCase().includes(keyword)
+    // 🔹 Ny semantisk søgning
+const { q } = req.query;
+if (q) {
+  const { terms, related } = semanticSearch(q);
+  filtered = cases.filter(c => {
+    const content = JSON.stringify(c).toLowerCase();
+    return (
+      terms.some(t => content.includes(t)) ||
+      related.some(r => content.includes(r))
+    );
+  });
+}
+
+    if (category) {
+      filtered = filtered.filter(c =>
+        c.category?.toLowerCase().includes(category.toLowerCase())
       );
     }
 
-    // Returnér som JSON
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).send(JSON.stringify(filtered.slice(0, 10), null, 2));
+    if (diagnose) {
+      filtered = filtered.filter(c =>
+        c.diagnoses?.some(d =>
+          d.toLowerCase().includes(diagnose.toLowerCase())
+        )
+      );
+    }
+
+    if (miljø) {
+      filtered = filtered.filter(c =>
+        c.miljø?.toLowerCase().includes(miljø.toLowerCase())
+      );
+    }
+
+    if (age) {
+      filtered = filtered.filter(c => c.age === Number(age));
+    }
+
+    // 🔎 NY: Fritekst-søgning
+    if (search) {
+      const q = search.toLowerCase();
+      filtered = filtered.filter(c =>
+        (c.title && c.title.toLowerCase().includes(q)) ||
+        (c.theme && c.theme.toLowerCase().includes(q)) ||
+        (c.problem && c.problem.toLowerCase().includes(q)) ||
+        (c.solution && c.solution.toLowerCase().includes(q)) ||
+        (c.category && c.category.toLowerCase().includes(q))
+      );
+    }
+
+    // 🧭 NY: Sortering
+    if (sort) {
+      const dir = sort.toLowerCase();
+      if (dir === "age-asc") filtered.sort((a, b) => a.age - b.age);
+      if (dir === "age-desc") filtered.sort((a, b) => b.age - a.age);
+      if (dir === "title") filtered.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    // ✅ Returnér resultatet
+    return res.status(200).json({
+      success: true,
+      total: filtered.length,
+      source: JSON.stringify(filtered, null, 2)
+    });
+
   } catch (error) {
-    console.error("FEJL I CASES API:", error);
-    res.status(500).json({ error: "Der opstod en fejl i Case API'et." });
+    console.error("❌ FEJL i /api/cases:", error);
+    return res.status(500).json({
+      success: false,
+      error: error.message
+    });
   }
 }

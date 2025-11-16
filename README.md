@@ -1,82 +1,42 @@
-# CDA Engine – Specialist Panel
+# CDA Engine – Dataserver (v2025.11)
 
-Dette repository indeholder **CDA Specialist Panel**, som anvendes af *CDA-GPT* i rådgivnings- og evalueringssystemet *Children Diagnosis Adviser (CDA)*.  
-Panelet består af AI-baserede specialister, som kan simulere faglige råd, samarbejde i evalueringer og give differentieret feedback til lærere, forældre og fagpersoner.
+Dette repository udgør **den officielle dataserver for CDA-GPT** – en del af *Children Diagnosis AI Systems*.  
+Repoet stiller validerede data til rådighed for AI-baseret rådgivning, analyse og pædagogisk støtte.
 
 ---
 
 ## 🎯 Formål
 
-Formålet med dette projekt er at gøre specialistpanelet tilgængeligt som en **dynamisk og valideret JSON-fil**, som CDA-systemet kan hente direkte via et offentligt API-endpoint (Vercel).
+At levere **rene, vedligeholdelsesvenlige og dynamiske JSON- og markdown-datasæt** til brug i:
 
-Systemet gør det muligt at:
-- aktivere op til **3 AI-specialister** per case
-- indhente flere faglige perspektiver
-- generere en **samlet AI-evaluering**
-- sikre ensartet tone, etik og struktur i al rådgivning
+- CDA-GPT (Children Diagnosis Adviser)
+- CDT-GPT (Testvejleder)
+- CDF-GPT (Familierådgiver)
 
----
-
-## 📁 Indhold
-
-| Fil | Beskrivelse |
-|------|--------------|
-| `CDA_SpecialistPanel.json` | Komplet datasæt med alle AI-specialister (id, kategori, tone, keywords, eksempler) |
-| `vercel.json` | Konfigurationsfil der gør panelet til et offentligt endpoint på Vercel |
-| `README.md` | Denne beskrivelse af systemets funktion og brug |
+Dataserveren er **frontend-uafhængig** og hostes via GitHub + Vercel som statisk API.
 
 ---
 
-## ⚙️ Teknisk opsætning
+## 📁 Struktur og indhold
 
-Projektet kan køres som statisk JSON-API via [Vercel](https://vercel.com):
-
-1. Opret et projekt i Vercel og forbind det til dette repo  
-2. Deploy → vent til bygningen er færdig  
-3. JSON-filen vil være tilgængelig herfra:  
-https://cda-engine.vercel.app/CDA_SpecialistPanel.json
-
-yaml
-Kopier kode
-
----
-
-## 🧠 Anvendelse i CDA-GPT
-
-- *Heidi* (systemets primære AI-guide) anvender panelet i baggrunden til at hente rådgivning.  
-- Brugere kan spørge direkte:  
-> “Hvad siger AI-Psychologist Sara Holm om dette barn?”  
-- Panelet returnerer specialisters stemme og synspunkt ud fra toneprofiler og keywords.  
-- Alle specialister kan **kun rådgive**, ikke diagnosticere eller ordinere medicin.
+| Mappe / fil | Indhold |
+|-------------|---------|
+| `/public/cases/` | Reelle kliniske cases i `.md`-format med YAML metadata |
+| `/public/data/CDA_Cases_Index.json` | Master-index over alle cases |
+| `/public/data/CDA_Cases_Index_CLEAN.json` | Let version til hurtig brug i GPT |
+| `/scripts/clean-index.js` | Script til at generere clean-index fra master |
+| `/templates/` | Skabeloner til intervention, støtte og struktur |
+| `/pbl/` | Projektbaserede læringsforløb (8–12 uger) |
+| `/quiz/` | Vidensquizzer til test og træning |
+| `/specialister/CDA_SpecialistPanel.json` | Specialistpanelets profiler og tone |
+| `/diagnoser/` | Markdown-filer for hver diagnose (ADHD, ASF, angst...) |
+| `CDA_Diagnoser.json` | Metadata for diagnoser og relationer |
+| `vercel.json` | Konfiguration til Vercel API-hosting |
 
 ---
 
-## 🧩 Versionering
+## ⚙️ Teknisk brug
 
-| Version | Dato | Kommentar |
-|----------|------|-----------|
-| **v2025.4** | 2025-10-25 | Valideret JSON-struktur, kategorisering, toneprofiler og keywords |
-| **v2025.5** | (kommende) | Integrationstest og automatisk synkronisering med CDA-GPT |
-
-Versionsstyring sker via Git-tags, fx:
-git tag -a v2025.4 -m "CDA Specialist Panel – validated version"
-git push origin main --tags
-
-yaml
-Kopier kode
-
----
-
-## 👤 Udviklet af
-
-**Hans-Ole Wandt**  
-Psykoterapeut, specialist i børne- og diagnosearbejde  
-Udvikler af CDA, CDT og Ann – *Children Diagnosis AI Systems*  
-📍 Danmark  
-🔗 https://cdaisystems.com  
-
----
-
-© 2025 CDA Systems – *All rights reserved*
-
-# Auto-deploy test – 26. oktober 2025
+1. Klon repo:
+   ```bash
+   git clone https://github.com/[bruger]/cda-engine-clean.git

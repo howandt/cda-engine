@@ -1,0 +1,33 @@
+{
+  "id": "adhd_overgange_10-12",
+  "title": "Overgange i skoledagen – dreng med ADHD (10-12 år)",
+  "summary": "Eleven mister fokus og bliver urolig ved overgange mellem fag. Læreren oplever konflikter ved skift.",
+  "diagnosis": "adhd",
+  "theme": "overgange",
+  "context": "skole",
+  "age_group": "10-12",
+  "problem": "Gentagne konflikter opstår ved fag- og lokale-skift. Eleven reagerer med modstand eller forlader klassen.",
+  "intervention": [
+    "Visuel dagsplan med farvekoder for skift",
+    "5-minutters varsling før overgang",
+    "Fysisk støttepunkt ved klasselokalet (’ankersted’)"
+  ],
+  "tools": [
+    "Pausekort",
+    "Overgangsskema (fra getTemplates)",
+    "Mini-mål for overgange (ugeplan)"
+  ],
+  "results": "Efter tre uger reduceres konflikter, eleven tager selv initiativ til overgang.",
+  "reflection": "Struktur og varsling mindsker utryghed. Læreren oplever, at små forudsigelige signaler virker bedre end verbal instruktion.",
+  "training": {
+    "mode": "quiz",
+    "question": "Hvad er den mest effektive støtte ved overgange for denne elev?",
+    "options": [
+      "Giv ekstra verbal forklaring under overgangen",
+      "Visuel plan og varsling før skift",
+      "Ignorer små urohandlinger for ikke at skabe konflikt"
+    ],
+    "answer": "Visuel plan og varsling før skift",
+    "feedback": "Elever med ADHD har behov for tydelige, forudsigelige signaler – visuel støtte og varsling skaber tryghed."
+  }
+}

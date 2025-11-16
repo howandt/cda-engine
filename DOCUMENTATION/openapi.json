@@ -1,0 +1,9 @@
+"parameters": [
+  { "name": "search", "in": "query", "schema": { "type": "string" } },
+  { "name": "sort", "in": "query", "schema": { "type": "string", "enum": ["age-asc","age-desc","title"] } },
+  { "name": "category", "in": "query", "schema": { "type": "string" } },
+  { "name": "diagnose", "in": "query", "schema": { "type": "string" } },
+  { "name": "miljø", "in": "query", "schema": { "type": "string" } },
+  { "name": "age", "in": "query", "schema": { "type": "integer" } },
+  { "name": "id", "in": "query", "schema": { "type": "string" } }
+]

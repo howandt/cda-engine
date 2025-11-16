@@ -1,0 +1,41 @@
+
+[
+  {
+    "id": "frikvarter_1",
+    "titel": "Dreng driller piger i skolegården",
+    "sted": "Skolegård",
+    "tid": "Formiddagspause",
+    "roller": [
+      { "id": "dreng", "rolle": "Barn", "følelse": "usikker", "mål": "få opmærksomhed" },
+      { "id": "pige1", "rolle": "Barn", "følelse": "fornærmet", "mål": "beskytte veninde" },
+      { "id": "gårdvagt", "rolle": "Voksen", "følelse": "irriteret", "mål": "stoppe konflikten" },
+      { "id": "lærer", "rolle": "Voksen", "følelse": "frustreret", "mål": "forstå hvorfor drengen reagerer" }
+    ],
+    "dialog": [
+      { "taler": "dreng", "tekst": "Haha, kan I ikke engang fange bolden?" },
+      { "taler": "pige1", "tekst": "Hold op, du ødelægger legen!" },
+      { "taler": "gårdvagt", "tekst": "Hey, stop så den drilleri!" },
+      { "taler": "lærer", "tekst": "Hvorfor skal det altid blive sådan med dig?" }
+    ],
+    "reverse": [
+      { "fra": "gårdvagt", "til": "dreng", "oplevelse": "Han føler sig udstillet foran de andre og skammer sig." },
+      { "fra": "dreng", "til": "pige1", "oplevelse": "Hun mærker frygt og vrede, men forstår ikke hans hensigt." },
+      { "fra": "lærer", "til": "dreng", "oplevelse": "Han oplever det som skældud, ikke støtte." }
+    ],
+    "refleksion": [
+      "Hvordan kunne gårdvagten have talt anderledes?",
+      "Hvad prøvede drengen egentlig at opnå?",
+      "Hvordan kunne læreren støtte drengen uden at skælde ud?"
+    ],
+    "specialist_råd": [
+      {
+        "rolle": "AI Social Worker Rune Laursen",
+        "råd": "Når en dreng driller, prøver han ofte at få kontrol over en situation, hvor han føler sig usikker. Brug et neutralt sprog: 'Jeg kan se, du vil være med – lad os finde en måde, hvor alle har det sjovt.'"
+      },
+      {
+        "rolle": "AI Autism Specialist Liv Andersen",
+        "råd": "Hvis drengen har autistiske træk, kan hans tone være et forsøg på at forstå sociale regler. Hjælp ham med at læse situationen frem for at irettesætte."
+      }
+    ]
+  }
+]

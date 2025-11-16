@@ -1,0 +1,33 @@
+{
+  "id": "autisme_garderobe_overgang_3-6",
+  "title": "Overgange i garderoben – barn med autisme (3-6 år)",
+  "summary": "Barnet reagerer med modstand og frustration, når det skal klædes på til udetid. Overgangen fra leg til struktur opleves som kaotisk.",
+  "diagnosis": "autisme",
+  "theme": "overgange",
+  "context": "børnehave",
+  "age_group": "3-6",
+  "problem": "Barnet nægter at tage tøj på, gemmer sig eller græder ved overgangen fra fri leg til garderoben. Personalet oplever det som trods, men barnet bliver reelt overvældet af kravskiftet.",
+  "intervention": [
+    "Visuel rækkefølgeplan for garderoben (billeder af tøjet i rækkefølge)",
+    "Forberedende signal fem minutter før garderobetid",
+    "Tildeling af fast voksenstøtte under skiftet"
+  ],
+  "tools": [
+    "Piktogramkort til garderobe",
+    "Mini-timer (nedtælling)",
+    "Rolig overgangssang som auditivt signal"
+  ],
+  "results": "Barnet accepterer nu garderobetid med minimal protest, følger planen og begynder selv at tage tøj på i rækkefølge.",
+  "reflection": "Visuel og auditiv støtte gav barnet kontrol over situationen. Pædagogernes forudsigelige struktur reducerede stress og modstand.",
+  "training": {
+    "mode": "roleplay",
+    "question": "Hvordan kan pædagogen bedst støtte barnet under garderobetid?",
+    "options": [
+      "Give verbal kommando med fastere tone",
+      "Starte garderobetid pludseligt for at 'få det overstået'",
+      "Varsle og støtte barnet med visuel rækkefølgeplan"
+    ],
+    "answer": "Varsle og støtte barnet med visuel rækkefølgeplan",
+    "feedback": "Barnet lærer overgangskompetence gennem struktur, ikke pres. Forudsigelighed og visuel støtte skaber ro og mestring."
+  }
+}

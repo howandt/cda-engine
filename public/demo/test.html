@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDA – Se Systemet i Aktion</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .test-btn {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .test-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Se Systemet i Aktion</h1>
+        <p>Vælg, hvilken del af CDA du vil teste:</p>
+
+        <div class="button-grid">
+            <a href="/demo/test_cases.html" class="test-btn">🧠 Cases Browser</a>
+            <a href="/demo/templates.html" class="test-btn">🎨 Templates</a>
+            <a href="/demo/diagnoser-test.html" class="test-btn">📋 Diagnoser</a>
+            <a href="/demo/emotion-engine-test.html" class="test-btn">💚 Emotion Engine</a>
+            <a href="/demo/pbl-matcher-test.html" class="test-btn">💙 PBL Matcher</a>
+            <a href="/demo/quiz-system-test.html" class="test-btn">💜 Quiz System</a>
+        </div>
+
+        <footer>© CDA System 2025 — Children Diagnosis Adviser</footer>
+    </div>
+</body>
+</html>

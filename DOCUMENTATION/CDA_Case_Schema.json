@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CDA Case Schema (Dansk version)",
+  "description": "Standard for CDA cases – dansk format",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "titel": { "type": "string" },
+    "alder": { "type": "integer" },
+    "diagnoser": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "miljø": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Fagfolk", "Skole", "Børnehave", "Hjem", "Andet"]
+      }
+    },
+    "tema": { "type": "string" },
+    "problem": { "type": "string" },
+    "barnets_oplevelse": { "type": "string" },
+    "typisk_fejl": { "type": "string" },
+    "løsning": { "type": "string" },
+    "tiltag": { "type": "string" },
+    "kategori": { "type": "string" },
+    "kort_beskrivelse": { "type": "string" },
+    "kompleksitet": { "type": "string" },
+    "refleksion": { "type": "string" },
+    "resultat": { "type": "string" },
+    "kilde": { "type": "string" },
+    "version": { "type": "string" },
+    "sidst_opdateret": { "type": "string", "format": "date" }
+  },
+  "required": [
+    "id",
+    "titel",
+    "alder",
+    "diagnoser",
+    "miljø",
+    "tema",
+    "problem",
+    "løsning",
+    "kategori"
+  ]
+}

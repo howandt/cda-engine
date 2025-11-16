@@ -1,0 +1,44 @@
+{
+  "id": "adhd_klasseovergange_10-12",
+  "title": "Klasseovergange og fokus – elev med ADHD (10–12 år)",
+  "modules": [
+    {
+      "type": "quiz",
+      "prompt": "Hvordan kan læreren bedst støtte eleven under fag- og lokale-skift?",
+      "choices": [
+        "Gentage instruktionen højere, så eleven hører det",
+        "Give verbal irettesættelse, hvis eleven ikke reagerer",
+        "Varsle skift og bruge visuel plan som støtte"
+      ],
+      "answer": "Varsle skift og bruge visuel plan som støtte",
+      "feedback": "Elever med ADHD reagerer bedre på visuelle signaler end på verbal pres. Struktur fører til ro og forudsigelighed."
+    },
+    {
+      "type": "reflection",
+      "prompt": "Visuelle og fysiske signaler virkede bedre end verbal påmindelse. Overgangene blev forudsigelige, og eleven fik bedre kontrol over energi og fokus.",
+      "context": "overgange",
+      "age_group": "10-12"
+    },
+    {
+      "type": "roleplay",
+      "scenario": "Ved fag- og lokale-skift bliver eleven forvirret og urolig. Læreren oplever, at verbal guidning ikke virker, og eleven ender ofte i konflikt med klassekammerater eller læreren.",
+      "steps": [
+        {
+          "choice": "Gentage instruktionen højere, så eleven hører det",
+          "result": "forkert valg",
+          "feedback": "Det valg giver mere modstand hos barnet – prøv en mere støttende tilgang."
+        },
+        {
+          "choice": "Give verbal irettesættelse, hvis eleven ikke reagerer",
+          "result": "forkert valg",
+          "feedback": "Det valg giver mere modstand hos barnet – prøv en mere støttende tilgang."
+        },
+        {
+          "choice": "Varsle skift og bruge visuel plan som støtte",
+          "result": "rigtigt valg",
+          "feedback": "Elever med ADHD reagerer bedre på visuelle signaler end på verbal pres. Struktur fører til ro og forudsigelighed."
+        }
+      ]
+    }
+  ]
+}

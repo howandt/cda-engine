@@ -1,0 +1,78 @@
+{
+  "version": "1.0.0",
+  "description": "Semantisk motor til CDA – forbinder naturlige forespørgsler med datafelter i CDA_Cases_Index_clean.json",
+
+  "intents": {
+    "find_case": {
+      "examples": [
+        "find en case om [diagnose]",
+        "vis mig en case om [tema]",
+        "har du en case fra [miljø]",
+        "jeg søger en case med et barn der [adfærd]"
+      ],
+      "maps_to": "/api/cases"
+    },
+    "find_quiz": {
+      "examples": [
+        "lav en quiz om [diagnose]",
+        "find en quiz til [tema]",
+        "jeg vil teste viden om [kategori]"
+      ],
+      "maps_to": "/api/quiz"
+    },
+    "find_template": {
+      "examples": [
+        "lav en støtteplan for [diagnose]",
+        "vis en handleplan til [tema]",
+        "jeg skal bruge en skabelon til [miljø]"
+      ],
+      "maps_to": "/api/templates"
+    },
+    "find_rollespil": {
+      "examples": [
+        "lav et rollespil om [tema]",
+        "vis en dialog mellem lærer og barn med [diagnose]"
+      ],
+      "maps_to": "/api/rollespil"
+    }
+  },
+
+  "synonyms": {
+  "adhd": ["opmærksomhedsforstyrrelse", "hyperaktivitet", "impulsivitet", "koncentrationsvanskeligheder"],
+  "autisme": ["aspergers", "socialt samspil", "sensorisk følsomhed", "forudsigelighed"],
+  "angst": ["bekymring", "usikkerhed", "panik", "tilbagetrækning", "nervøsitet"],
+  "dcd": ["motoriske vanskeligheder", "klodsethed", "finmotorik", "bevægelseskoordinering"],
+  "børnehave": ["daginstitution", "vuggestue", "førskole"],
+  "skole": ["folkeskole", "klasse", "lærer", "undervisning"],
+  "hjem": ["familie", "forældre", "hjemme"],
+  "uro": ["rastløshed", "bevægelsesbehov", "kan ikke sidde stille", "motorisk aktivitet"],
+  "social": ["venner", "relationer", "samspil", "inklusion", "mobning"],
+  "sensorisk": ["lyd", "berøring", "sanser", "overreaktion", "søgende adfærd"],
+  "mutisme": ["tavshed", "taler ikke", "selektiv tale"],
+  "vred": ["frustreret", "sur", "aggressiv", "impulsiv", "eksplosiv", "konflikt"],
+  "lukker ned": ["isolerer sig", "trækker sig", "social tilbagetrækning", "selvisolation", "tavs"],
+  "skift": ["overgang", "rutinebrud", "ændring", "fleksibilitet", "struktur"],
+  "angst": ["bekymring", "frygt", "undgåelse", "panik", "uro"],
+  "adfærd": ["impulsivitet", "regulering", "selvkontrol", "uro", "reaktioner"],
+  "børnehave": ["pædagog", "leg", "rutiner", "gruppe", "samling"],
+  "hjem": ["forældre", "familie", "morgen", "aftensituation"]
+},
+
+  "themes": {
+    "opmærksomhed": ["koncentration", "fokus", "let afledelig", "dagdrømmeri"],
+    "følelser": ["trist", "vrede", "glæde", "angst", "overvældet"],
+    "relationer": ["venskab", "konflikt", "samarbejde", "gruppetilhørighed"],
+    "struktur": ["rutiner", "overgange", "forudsigelighed", "ændringer"],
+    "kommunikation": ["tale", "sprog", "dialog", "forståelse"]
+  },
+
+  "emotions": {
+  "trist": ["ked af det", "modløs", "manglende energi", "føler sig forkert"],
+  "angst": ["bange", "bekymret", "spændt", "nervøs", "undgående"],
+  "vrede": ["rasende", "eksplosiv", "frustreret", "overvældet"],
+  "uro": ["rastløs", "urolig", "kan ikke slappe af", "bevæger sig konstant"],
+  "overstimulering": ["overvældet", "sansekaos", "lukker ned", "for meget støj"],
+  "skam": ["føler sig forkert", "selvkritisk", "trækker sig væk"],
+  "glæde": ["tryg", "engageret", "smilende", "rolig", "positiv"]
+}
+}

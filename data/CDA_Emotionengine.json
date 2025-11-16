@@ -1,0 +1,316 @@
+{
+  "version": "2025-10-31",
+  "description": "Emotion Engine - Analyserer voksnes sprog når de kommunikerer med børn",
+  "purpose": "Hjælper lærere og forældre med at bruge støttende kommunikation",
+  "word_categories": {
+    "positive": {
+      "description": "Ord der skaber tryghed og støtte",
+      "words": [
+        "roligt", "hjælpe", "tak", "godt", "kan se", "pause", "forstå",
+        "prøve", "sammen", "fint", "ok", "tid", "vent", "stille og roligt",
+        "fantastisk", "flot", "dygtig", "tillid", "trygt", "sikkert",
+        "omsorg", "lytte", "høre", "mærke", "føle", "behov", "plads",
+        "respekt", "anerkende", "værdsætte", "acceptere", "rumme"
+      ],
+      "score_value": 1
+    },
+    "negative": {
+      "description": "Ord der skaber pres og stress",
+      "words": [
+        "skal", "nu", "stop", "hold op", "aldrig", "dum", "sur", "hvorfor",
+        "altid", "må ikke", "forkert", "dårlig", "straf", "konsekvens",
+        "skam", "pinlig", "mærkelig", "forkælet", "sært", "unormal",
+        "problem", "svært", "vanskelig", "umulig", "værst", "fejl",
+        "gal", "tosset", "barnlig", "uansvarlig", "egoistisk"
+      ],
+      "score_value": -1
+    },
+    "empathy": {
+      "description": "Empatiske fraser der viser forståelse",
+      "phrases": [
+        "jeg forstår", "jeg kan se", "det må være svært", "jeg hører dig",
+        "det giver mening", "jeg mærker", "det er ok at føle",
+        "du har ret i", "det lyder hårdt", "jeg er her",
+        "vi finder ud af det", "jeg støtter dig", "du er vigtig",
+        "dine følelser er vigtige", "det er forståeligt",
+        "jeg accepterer", "det må være hårdt", "jeg respekterer"
+      ],
+      "score_value": 2
+    },
+    "commands": {
+      "description": "Kommandoer og krav der kan opleves som pres",
+      "phrases": [
+        "du skal", "gør det nu", "skynd dig", "hold op med",
+        "stop det", "lad være", "det må du ikke", "det kan du ikke",
+        "koncentrer dig", "tag dig sammen", "slap af", "ro på",
+        "vær ikke sådan", "du må lære", "det er sådan det er",
+        "fordi jeg siger det", "gør som jeg siger"
+      ],
+      "score_value": -2
+    },
+    "validating": {
+      "description": "Validerende udsagn der anerkender barnets oplevelse",
+      "phrases": [
+        "det er ok", "det er forståeligt", "det giver god mening",
+        "alle føler sådan", "det er normalt", "du har lov til",
+        "dine følelser er rigtige", "jeg tror på dig",
+        "du bestemmer", "du ved bedst", "din mening tæller",
+        "jeg stoler på dig", "du kan", "jeg tror du klarer det"
+      ],
+      "score_value": 2
+    }
+  },
+  "mood_levels": {
+    "støttende": {
+      "score_range": "3 eller højere",
+      "description": "Varm, empatisk og støttende kommunikation",
+      "emoji": "💚",
+      "effect_on_child": "Barnet føler sig set, hørt og tryg",
+      "characteristics": [
+        "Bruger empatiske fraser",
+        "Anerkender følelser",
+        "Giver tid og rum",
+        "Viser tillid og respekt"
+      ]
+    },
+    "rolig": {
+      "score_range": "1 til 2",
+      "description": "Neutral positiv kommunikation",
+      "emoji": "💛",
+      "effect_on_child": "Barnet føler sig ok, ingen fare",
+      "characteristics": [
+        "Rolig tone",
+        "Ingen krav",
+        "Åben kommunikation",
+        "Neutral og sikker"
+      ]
+    },
+    "neutral": {
+      "score_range": "0",
+      "description": "Hverken særlig støttende eller presset",
+      "emoji": "⚪",
+      "effect_on_child": "Barnet er neutral, afventende",
+      "characteristics": [
+        "Faktuel kommunikation",
+        "Ingen følelsesmæssig ladning",
+        "Kan forbedres med empati"
+      ]
+    },
+    "spændt": {
+      "score_range": "-1 til -1",
+      "description": "Let anspændt eller kravfyldt",
+      "emoji": "🟠",
+      "effect_on_child": "Barnet mærker pres, begynder at være på vagt",
+      "characteristics": [
+        "Indeholder krav eller skal-udsagn",
+        "Mangler empati",
+        "Kan føles som kritik"
+      ]
+    },
+    "pres": {
+      "score_range": "-2 eller lavere",
+      "description": "Høj grad af krav, kritik eller kommandoer",
+      "emoji": "🔴",
+      "effect_on_child": "Barnet føler sig presset, kan gå i forsvar eller lukke ned",
+      "characteristics": [
+        "Kommandoer og krav",
+        "Kritik eller negative ord",
+        "Ingen anerkendelse",
+        "Kan skabe konflikt eller tilbagetrækning"
+      ]
+    }
+  },
+  "examples": [
+    {
+      "situation": "Barnet vil ikke lave lektier",
+      "bad_communication": "Du skal lave dine lektier nu! Hvorfor gør du aldrig hvad jeg siger?",
+      "analysis_bad": {
+        "score": -4,
+        "mood": "pres",
+        "problems": [
+          "Kommando: 'Du skal'",
+          "Tidspres: 'nu'",
+          "Generalisering: 'aldrig'",
+          "Kritik: 'hvorfor gør du aldrig'"
+        ]
+      },
+      "good_communication": "Jeg kan se du har brug for en pause. Skal vi sammen kigge på lektierne om lidt?",
+      "analysis_good": {
+        "score": 4,
+        "mood": "støttende",
+        "strengths": [
+          "Empati: 'Jeg kan se'",
+          "Anerkendelse: 'brug for pause'",
+          "Samarbejde: 'sammen'",
+          "Tid: 'om lidt'"
+        ]
+      }
+    },
+    {
+      "situation": "Barnet laver støj i klassen",
+      "bad_communication": "Hold op med det nu! Du forstyrrer hele tiden!",
+      "analysis_bad": {
+        "score": -3,
+        "mood": "pres",
+        "problems": [
+          "Kommando: 'Hold op'",
+          "Tidspres: 'nu'",
+          "Generalisering: 'hele tiden'",
+          "Ingen forståelse for behov"
+        ]
+      },
+      "good_communication": "Jeg kan høre du har brug for at bevæge dig. Skal vi tage en kort pause sammen?",
+      "analysis_good": {
+        "score": 4,
+        "mood": "støttende",
+        "strengths": [
+          "Empati: 'Jeg kan høre'",
+          "Anerkendelse af behov: 'brug for at bevæge dig'",
+          "Løsning: 'pause'",
+          "Samarbejde: 'sammen'"
+        ]
+      }
+    },
+    {
+      "situation": "Barnet er ked af det",
+      "bad_communication": "Stop med at være sur. Der er ikke noget at græde over.",
+      "analysis_bad": {
+        "score": -3,
+        "mood": "pres",
+        "problems": [
+          "Afvisning: 'Stop'",
+          "Invalidering: 'ikke noget at græde over'",
+          "Manglende empati",
+          "Kritik af følelse"
+        ]
+      },
+      "good_communication": "Jeg kan se du er ked af det. Det må være svært. Vil du fortælle mig om det?",
+      "analysis_good": {
+        "score": 5,
+        "mood": "støttende",
+        "strengths": [
+          "Anerkendelse: 'Jeg kan se du er ked af det'",
+          "Empati: 'Det må være svært'",
+          "Åbenhed: 'Vil du fortælle'",
+          "Invitation til dialog"
+        ]
+      }
+    },
+    {
+      "situation": "Barnet nægter at deltage",
+      "bad_communication": "Du skal bare gøre det. Alle andre kan jo!",
+      "analysis_bad": {
+        "score": -3,
+        "mood": "pres",
+        "problems": [
+          "Krav: 'skal'",
+          "Bagatellisering: 'bare'",
+          "Sammenligning: 'alle andre kan'",
+          "Ingen forståelse"
+        ]
+      },
+      "good_communication": "Det er ok hvis det føles svært. Hvad ville gøre det nemmere for dig?",
+      "analysis_good": {
+        "score": 4,
+        "mood": "støttende",
+        "strengths": [
+          "Validering: 'Det er ok'",
+          "Anerkendelse: 'føles svært'",
+          "Empowerment: 'Hvad ville gøre det nemmere'",
+          "Barnets perspektiv"
+        ]
+      }
+    },
+    {
+      "situation": "Barnet har lavet en fejl",
+      "bad_communication": "Hvorfor gjorde du det? Det var virkelig dumt!",
+      "analysis_bad": {
+        "score": -3,
+        "mood": "pres",
+        "problems": [
+          "Kritik: 'Hvorfor gjorde du det'",
+          "Negativ etikettering: 'dumt'",
+          "Skam",
+          "Ingen læring"
+        ]
+      },
+      "good_communication": "Ok, det skete. Hvad kan vi lære af det? Hvordan gør vi næste gang?",
+      "analysis_good": {
+        "score": 3,
+        "mood": "støttende",
+        "strengths": [
+          "Accept: 'Ok, det skete'",
+          "Læring: 'Hvad kan vi lære'",
+          "Fremadrettet: 'næste gang'",
+          "Samarbejde: 'vi'"
+        ]
+      }
+    }
+  ],
+  "improvement_suggestions": {
+    "replace_skal": {
+      "avoid": "Du skal...",
+      "use_instead": [
+        "Hvad hvis vi...",
+        "Kunne du...",
+        "Vil du prøve...",
+        "Lad os sammen..."
+      ]
+    },
+    "replace_stop": {
+      "avoid": "Stop med det!",
+      "use_instead": [
+        "Jeg kan se du har brug for...",
+        "Hvad har du brug for lige nu?",
+        "Lad os pause et øjeblik",
+        "Kan jeg hjælpe dig med noget?"
+      ]
+    },
+    "replace_hvorfor": {
+      "avoid": "Hvorfor gør du altid...",
+      "use_instead": [
+        "Hvad tænker du?",
+        "Hvad har du brug for?",
+        "Fortæl mig...",
+        "Jeg vil gerne forstå..."
+      ]
+    },
+    "replace_criticism": {
+      "avoid": "Det var dumt/forkert",
+      "use_instead": [
+        "Det var en udfordring",
+        "Hvad kan vi lære?",
+        "Næste gang kan vi...",
+        "Det var et forsøg"
+      ]
+    }
+  },
+  "communication_tips": [
+    {
+      "tip": "Brug 'jeg-budskaber'",
+      "example": "'Jeg kan se du...' i stedet for 'Du er altid...'"
+    },
+    {
+      "tip": "Anerkend følelser før handling",
+      "example": "'Det må være svært' før 'men du skal...'"
+    },
+    {
+      "tip": "Giv tid og rum",
+      "example": "'Om lidt' eller 'når du er klar' i stedet for 'nu'"
+    },
+    {
+      "tip": "Samarbejd frem for kommando",
+      "example": "'Lad os sammen' i stedet for 'Du skal'"
+    },
+    {
+      "tip": "Fokuser på læring, ikke fejl",
+      "example": "'Hvad lærte vi?' i stedet for 'Hvorfor gjorde du det?'"
+    }
+  ],
+  "for_use_by": [
+    "CDA - Lærere i aktiv brug",
+    "CDT - Lærerstuderende træning",
+    "Ann - AI-ven til børn (analyse af voksnes sprog)",
+    "Forældrevejledning"
+  ]
+}

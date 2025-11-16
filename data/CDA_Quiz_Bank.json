@@ -1,0 +1,568 @@
+{
+  "version": "2025-10-31-v2",
+  "description": "CDT Quiz Bank - Multiple choice quizzer med 5 svarmuligheder",
+  "quiz_system": {
+    "question_count": 5,
+    "adjustable": true,
+    "options_per_question": 5,
+    "point_system": {
+      "correct": 10,
+      "partial": 5,
+      "wrong": -5
+    },
+    "types": [
+      "case_based",
+      "keyword_based",
+      "diagnosis_based",
+      "strategy_based"
+    ]
+  },
+  "quizzes": [
+    {
+      "quiz_id": "quiz_001",
+      "title": "Emil's ADHD - Klasserumsstrategier",
+      "description": "Test din forståelse af ADHD-strategier baseret på Emil's case",
+      "type": "case_based",
+      "source_case": "emil_adhd",
+      "keywords": ["ADHD", "struktur", "pauser", "motorik"],
+      "difficulty": "let",
+      "created_date": "2025-10-31",
+      "created_by": "system",
+      "public": true,
+      "usage_count": 0,
+      "questions": [
+        {
+          "question_id": "q001_1",
+          "question": "Hvad er den vigtigste strategi for at hjælpe Emil med at bevare koncentrationen i klassen?",
+          "options": [
+            {
+              "text": "Struktur med tydelige pauser og bevægelse",
+              "points": 10,
+              "feedback": "Korrekt! Emil har brug for struktur og motoriske pauser for at regulere sin opmærksomhed."
+            },
+            {
+              "text": "Længere lektier og mere stillesiddende arbejde",
+              "points": -5,
+              "feedback": "Det modsatte vil faktisk forværre situationen. ADHD kræver bevægelse og pauser."
+            },
+            {
+              "text": "Flere gruppeprojekter uden struktur",
+              "points": 5,
+              "feedback": "Delvist rigtigt - social læring kan hjælpe, men struktur er essentiel."
+            },
+            {
+              "text": "Fjerne alle pauser og maksimere arbejdstid",
+              "points": -5,
+              "feedback": "Dette ville være kontraproduktivt. ADHD-børn har brug for hyppige pauser."
+            },
+            {
+              "text": "Lade Emil selv bestemme hvornår han vil arbejde",
+              "points": 5,
+              "feedback": "Autonomi er godt, men Emil har brug for ekstern struktur til at regulere."
+            }
+          ]
+        },
+        {
+          "question_id": "q001_2",
+          "question": "Hvordan bør læreren reagere når Emil bliver urolig i timen?",
+          "options": [
+            {
+              "text": "Ignorere det og fortsætte undervisningen",
+              "points": -5,
+              "feedback": "Det hjælper ikke Emil og kan eskalere uroen."
+            },
+            {
+              "text": "Tilbyde en kort pause eller en fidget-genstand",
+              "points": 10,
+              "feedback": "Korrekt! Proaktiv regulering hjælper Emil med at genvinde fokus."
+            },
+            {
+              "text": "Irettesætte Emil foran klassen",
+              "points": -5,
+              "feedback": "Dette kan skabe skam og forværre selvværdet uden at løse problemet."
+            },
+            {
+              "text": "Sende Emil ud af klassen",
+              "points": -5,
+              "feedback": "Dette løser ikke problemet og kan skabe eksklusion."
+            },
+            {
+              "text": "Give Emil en mere udfordrende opgave",
+              "points": 5,
+              "feedback": "Kan virke hvis uroen skyldes kedsomhed, men adresserer ikke det motoriske behov."
+            }
+          ]
+        },
+        {
+          "question_id": "q001_3",
+          "question": "Hvilken komorbiditet skal man være særligt opmærksom på hos børn med ADHD?",
+          "options": [
+            {
+              "text": "Angst og lavt selvværd",
+              "points": 10,
+              "feedback": "Korrekt! Mange børn med ADHD udvikler angst pga. gentagne nederlag."
+            },
+            {
+              "text": "Ekstrem intelligens",
+              "points": 5,
+              "feedback": "ADHD kan forekomme hos højt begavede, men det er ikke den primære komorbiditet."
+            },
+            {
+              "text": "Fysiske handicaps",
+              "points": -5,
+              "feedback": "ADHD er neurologisk, ikke fysisk - selv om DCD kan forekomme."
+            },
+            {
+              "text": "Perfektionisme",
+              "points": 5,
+              "feedback": "Kan forekomme, især ved overcompensation, men angst er mere almindelig."
+            },
+            {
+              "text": "Social overlegenhed",
+              "points": -5,
+              "feedback": "ADHD medfører typisk sociale udfordringer, ikke overlegenhed."
+            }
+          ]
+        },
+        {
+          "question_id": "q001_4",
+          "question": "Hvordan kan man bedst støtte Emil's eksekutive funktioner?",
+          "options": [
+            {
+              "text": "Fjerne al struktur så han lærer at klare sig selv",
+              "points": -5,
+              "feedback": "Dette vil overbelaste ham. ADHD kræver ekstern struktur."
+            },
+            {
+              "text": "Visuelle hjælpemidler og tjeklister",
+              "points": 10,
+              "feedback": "Korrekt! Ekstern struktur kompenserer for svage eksekutive funktioner."
+            },
+            {
+              "text": "Kun verbal instruktion",
+              "points": 5,
+              "feedback": "Verbal instruktion alene er ofte ikke nok - visuel støtte er vigtig."
+            },
+            {
+              "text": "Straffe ham når han glemmer ting",
+              "points": -5,
+              "feedback": "Straf forværrer selvværd uden at forbedre eksekutive funktioner."
+            },
+            {
+              "text": "Lade ham bruge smartphone til alt",
+              "points": 5,
+              "feedback": "Teknologi kan hjælpe, men skal introduceres gradvist med støtte."
+            }
+          ]
+        },
+        {
+          "question_id": "q001_5",
+          "question": "Hvilket PBL projekt ville passe godt til Emil?",
+          "options": [
+            {
+              "text": "Bike Repair Workshop - hands-on og struktureret",
+              "points": 10,
+              "feedback": "Perfekt! Motorisk aktivitet med klar struktur matcher Emil's profil."
+            },
+            {
+              "text": "Stille læseprojekt uden bevægelse",
+              "points": -5,
+              "feedback": "Dette ville være svært for Emil der har brug for bevægelse."
+            },
+            {
+              "text": "Frit kreativt projekt uden ramme",
+              "points": 5,
+              "feedback": "Kreativitet er godt, men Emil har brug for mere struktur."
+            },
+            {
+              "text": "Langt skriftligt projekt alene",
+              "points": -5,
+              "feedback": "Langvarig skrivning uden bevægelse passer ikke til Emil's behov."
+            },
+            {
+              "text": "Computerspil udvikling",
+              "points": 5,
+              "feedback": "Kan engagere hvis der er struktur, men mangler motorisk element."
+            }
+          ]
+        }
+      ],
+      "total_possible_points": 50,
+      "passing_score": 30,
+      "tags": ["ADHD", "klasserum", "strategi", "beginner"]
+    },
+    {
+      "quiz_id": "quiz_002",
+      "title": "Autisme & Rutinebrud",
+      "description": "Forstå hvordan man støtter børn med autisme gennem uventede ændringer",
+      "type": "diagnosis_based",
+      "source_case": null,
+      "keywords": ["autisme", "rutine", "forudsigelighed", "struktur"],
+      "difficulty": "mellem",
+      "created_date": "2025-10-31",
+      "created_by": "system",
+      "public": true,
+      "usage_count": 0,
+      "questions": [
+        {
+          "question_id": "q002_1",
+          "question": "En elev med autisme opdager at vikaren er kommet i stedet for deres faste lærer. Hvad gør du?",
+          "options": [
+            {
+              "text": "Forklare tydeligt, bruge visuelle kort og tilbyde tryghed",
+              "points": 10,
+              "feedback": "Korrekt! Tydelig kommunikation og visuel støtte giver forudsigelighed."
+            },
+            {
+              "text": "Sige 'bare kom ind' uden forklaring",
+              "points": -5,
+              "feedback": "Uventede ændringer uden forklaring opleves som kaos for autistiske børn."
+            },
+            {
+              "text": "Distrahere barnet med noget andet",
+              "points": 5,
+              "feedback": "Kan virke kortvarigt, men adresserer ikke behovet for forudsigelighed."
+            },
+            {
+              "text": "Lade barnet gå hjem hvis de er kede af det",
+              "points": -5,
+              "feedback": "Dette lærer ikke coping-strategier og skaber undgåelse."
+            },
+            {
+              "text": "Ignorere barnets bekymring",
+              "points": -5,
+              "feedback": "Bekymringen er reel og skal anerkendes, ikke ignoreres."
+            }
+          ]
+        },
+        {
+          "question_id": "q002_2",
+          "question": "Hvordan kan man bedst forberede et autistisk barn på ændringer?",
+          "options": [
+            {
+              "text": "Fortælle det samme dag det sker",
+              "points": 5,
+              "feedback": "Bedre end intet, men for kort varsel for mange autistiske børn."
+            },
+            {
+              "text": "Visuel kalender med forberedelse i god tid",
+              "points": 10,
+              "feedback": "Perfekt! Forudsigelighed gennem visuel støtte giver tryghed."
+            },
+            {
+              "text": "Lade det være en overraskelse",
+              "points": -5,
+              "feedback": "Overraskelser kan være overvældende og skabe angst."
+            },
+            {
+              "text": "Kun fortælle mundtligt uden visuel støtte",
+              "points": 5,
+              "feedback": "Verbal kommunikation hjælper, men visuel støtte er vigtigere."
+            },
+            {
+              "text": "Vente til barnet selv opdager det",
+              "points": -5,
+              "feedback": "Dette kan føre til krise når barnet opdager ændringen."
+            }
+          ]
+        },
+        {
+          "question_id": "q002_3",
+          "question": "Et barn med autisme vil ikke skifte aktivitet før de er 'helt færdige'. Hvad er den bedste tilgang?",
+          "options": [
+            {
+              "text": "Bruge timer og visuelle overgange med forberedelse",
+              "points": 10,
+              "feedback": "Rigtigt! Visuel støtte og forudsigelighed hjælper overgange."
+            },
+            {
+              "text": "Skifte hurtigt og bede barnet tage sig sammen",
+              "points": -5,
+              "feedback": "Dette skaber kontroltab og kan føre til krise."
+            },
+            {
+              "text": "Lade barnet bestemme alle overgange selv",
+              "points": 5,
+              "feedback": "Fleksibilitet er godt, men barnet har også brug for støtte til struktur."
+            },
+            {
+              "text": "True med konsekvenser hvis de ikke skifter",
+              "points": -5,
+              "feedback": "Trusler skaber angst uden at hjælpe med overgangen."
+            },
+            {
+              "text": "Fysisk flytte barnet til næste aktivitet",
+              "points": -5,
+              "feedback": "Kan opleves som overgreb og skabe større modstand."
+            }
+          ]
+        },
+        {
+          "question_id": "q002_4",
+          "question": "Hvorfor er samtaleskift svært for mange autistiske børn?",
+          "options": [
+            {
+              "text": "De er egoistiske og vil kun tale om sig selv",
+              "points": -5,
+              "feedback": "Forkert forståelse. Det handler om neurologiske forskelle, ikke egoisme."
+            },
+            {
+              "text": "De har svært ved at aflæse sociale signaler og behov",
+              "points": 10,
+              "feedback": "Korrekt! Autisme påvirker social kommunikation og perspektivtagning."
+            },
+            {
+              "text": "De keder sig hurtigt",
+              "points": 5,
+              "feedback": "Delvist - interesse kan være intens, men det handler mere om social forståelse."
+            },
+            {
+              "text": "De vil dominere samtalen",
+              "points": -5,
+              "feedback": "Det er ikke et ønske om dominans, men vanskelighed med social timing."
+            },
+            {
+              "text": "De mangler intelligens",
+              "points": -5,
+              "feedback": "Intelligens er ikke problemet - det er social kommunikation."
+            }
+          ]
+        },
+        {
+          "question_id": "q002_5",
+          "question": "Hvilket PBL projekt passer godt til et autistisk barn med behov for struktur?",
+          "options": [
+            {
+              "text": "Sensory Nature Journal - lav stimuli og struktur",
+              "points": 10,
+              "feedback": "Perfekt! Lavt stimuli-niveau og forudsigelig aktivitet."
+            },
+            {
+              "text": "Spontan gruppeimprovisation uden plan",
+              "points": -5,
+              "feedback": "Høj social eksponering og ingen struktur ville være overvældende."
+            },
+            {
+              "text": "Symbolspillet - visuel og struktureret",
+              "points": 10,
+              "feedback": "Også godt! Visuel læring med klar struktur."
+            },
+            {
+              "text": "Kaotisk kunstprojekt uden retning",
+              "points": -5,
+              "feedback": "Mangel på struktur kan være stressende."
+            },
+            {
+              "text": "Store gruppepræsentationer",
+              "points": -5,
+              "feedback": "For høj social eksponering for de fleste autistiske børn."
+            }
+          ]
+        }
+      ],
+      "total_possible_points": 50,
+      "passing_score": 30,
+      "tags": ["autisme", "rutine", "struktur", "intermediate"]
+    },
+    {
+      "quiz_id": "quiz_003",
+      "title": "Angst & Gruppearbejde",
+      "description": "Strategier til at støtte børn med angst i sociale læringssituationer",
+      "type": "keyword_based",
+      "source_case": null,
+      "keywords": ["angst", "gruppearbejde", "social", "tryghed"],
+      "difficulty": "let",
+      "created_date": "2025-10-31",
+      "created_by": "system",
+      "public": true,
+      "usage_count": 0,
+      "questions": [
+        {
+          "question_id": "q003_1",
+          "question": "Et barn med angst nægter at deltage i gruppearbejde. Hvad er den bedste tilgang?",
+          "options": [
+            {
+              "text": "Tilbyde en lille, tryg rolle og arbejde gradvist",
+              "points": 10,
+              "feedback": "Korrekt! Gradvis eksponering med lav krav bygger tryghed."
+            },
+            {
+              "text": "Insistere på fuld deltagelse med det samme",
+              "points": -5,
+              "feedback": "Dette kan eskalere angsten og skabe undgåelsesadfærd."
+            },
+            {
+              "text": "Lade barnet sidde alene udenfor gruppen",
+              "points": -5,
+              "feedback": "Dette forstærker isolation og angst på lang sigt."
+            },
+            {
+              "text": "Tvinge barnet til at være leder af gruppen",
+              "points": -5,
+              "feedback": "For stor eksponering kan være traumatiserende."
+            },
+            {
+              "text": "Give barnet en skriftlig opgave i stedet",
+              "points": 5,
+              "feedback": "Kan være første skridt, men målet er gradvis social deltagelse."
+            }
+          ]
+        },
+        {
+          "question_id": "q003_2",
+          "question": "Hvordan kan man nedbryde en opgave for et barn med præstationsangst?",
+          "options": [
+            {
+              "text": "Små, håndterbare trin med hyppig positiv feedback",
+              "points": 10,
+              "feedback": "Perfekt! Dette reducerer overbelastning og bygger selvtillid."
+            },
+            {
+              "text": "Præsentere hele opgaven på én gang",
+              "points": -5,
+              "feedback": "Det kan være overvældende og forværre angsten."
+            },
+            {
+              "text": "Sige 'du kan godt' uden konkret hjælp",
+              "points": 5,
+              "feedback": "Opmuntring er godt, men barnet har brug for konkret støttestruktur."
+            },
+            {
+              "text": "Sammenligne med andre børn der kan det",
+              "points": -5,
+              "feedback": "Sammenligning øger præstationsangst."
+            },
+            {
+              "text": "Sætte en stram deadline",
+              "points": -5,
+              "feedback": "Tidspres forværrer angst."
+            }
+          ]
+        },
+        {
+          "question_id": "q003_3",
+          "question": "Hvad er tegn på at et barn oplever social angst?",
+          "options": [
+            {
+              "text": "Undgåelse, fysiske symptomer (mavepine), stilhed",
+              "points": 10,
+              "feedback": "Rigtigt! Angst viser sig både adfærdsmæssigt og fysisk."
+            },
+            {
+              "text": "Høj energi og konstant tale",
+              "points": 5,
+              "feedback": "Dette kan være ADHD eller masking, men typisk ikke primær angst."
+            },
+            {
+              "text": "Aggressiv adfærd mod andre",
+              "points": -5,
+              "feedback": "Angst viser sig typisk som undgåelse, ikke aggression (selvom det kan ske)."
+            },
+            {
+              "text": "Perfekt adfærd hele tiden",
+              "points": 5,
+              "feedback": "Kan være masking af angst, men ikke det eneste tegn."
+            },
+            {
+              "text": "Manglende interesse for alt",
+              "points": 5,
+              "feedback": "Kan være tegn, men er ikke specifikt for social angst."
+            }
+          ]
+        },
+        {
+          "question_id": "q003_4",
+          "question": "Hvordan kan man skabe tryg deltagelse i gruppearbejde?",
+          "options": [
+            {
+              "text": "Tildele klare roller og skabe forudsigelighed",
+              "points": 10,
+              "feedback": "Korrekt! Struktur og klarhed reducerer usikkerhed."
+            },
+            {
+              "text": "Lade gruppen selv finde ud af alt",
+              "points": -5,
+              "feedback": "For åbent for et barn med angst - de har brug for ramme."
+            },
+            {
+              "text": "Presse barnet til at tage ansvar",
+              "points": -5,
+              "feedback": "Pres forværrer angst - gradvis progression er nøglen."
+            },
+            {
+              "text": "Lave grupper tilfældigt",
+              "points": -5,
+              "feedback": "Strategisk gruppeinddeling med trygge kammerater er bedre."
+            },
+            {
+              "text": "Skifte grupper konstant",
+              "points": -5,
+              "feedback": "Stabilitet og tryghed er vigtigere for angste børn."
+            }
+          ]
+        },
+        {
+          "question_id": "q003_5",
+          "question": "Hvilket PBL projekt kunne passe til et barn der er begyndt at arbejde med angst?",
+          "options": [
+            {
+              "text": "Social Confidence Project - målrettet støtte",
+              "points": 10,
+              "feedback": "Perfekt! Direkte fokus på at bygge selvtillid og sociale færdigheder."
+            },
+            {
+              "text": "Stor offentlig præsentation uden forberedelse",
+              "points": -5,
+              "feedback": "Alt for høj eksponering for et barn der arbejder med angst."
+            },
+            {
+              "text": "Emotion Lab - starte med følelsesforståelse",
+              "points": 10,
+              "feedback": "Også godt! At forstå følelser er fundamentalt for at håndtere angst."
+            },
+            {
+              "text": "Konkurrence med andre klasser",
+              "points": -5,
+              "feedback": "Præstationspres ville forværre angsten."
+            },
+            {
+              "text": "Individuelt projekt helt alene",
+              "points": 5,
+              "feedback": "Sikkert, men målet er gradvis at bygge social kapacitet."
+            }
+          ]
+        }
+      ],
+      "total_possible_points": 50,
+      "passing_score": 30,
+      "tags": ["angst", "social", "gruppearbejde", "beginner"]
+    }
+  ],
+  "metadata": {
+    "total_quizzes": 3,
+    "difficulty_levels": ["let", "mellem", "avanceret"],
+    "quiz_types": [
+      "case_based",
+      "diagnosis_based", 
+      "keyword_based",
+      "strategy_based"
+    ],
+    "future_features": {
+      "ai_generation": "Heidi kan generere quizzer live fra cases eller keywords",
+      "save_quiz": "Brugere kan gemme AI-genererede quizzer til deling",
+      "competition": "Lærere kan konkurrere med samme quiz",
+      "leaderboard": "Global rangering på tværs af lande",
+      "custom_quizzes": "Brugere kan oprette egne quizzer"
+    }
+  },
+  "api_filters": {
+    "available_filters": [
+      "difficulty (let, mellem, avanceret)",
+      "type (case_based, diagnosis_based, keyword_based, strategy_based)",
+      "keywords (array of tags)",
+      "source_case (specific case id)",
+      "quiz_id (specific quiz)",
+      "public (true/false)"
+    ]
+  }
+}

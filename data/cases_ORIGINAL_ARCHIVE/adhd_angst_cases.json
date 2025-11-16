@@ -1,0 +1,638 @@
+[
+  {
+    "id": "case_001",
+    "titel": "Morgenkaos og skolevægring",
+    "tema": ["hjem", "morgenrutine", "regulering"],
+    "relevante_diagnoser": ["ADHD", "Angst"],
+    "beskrivelse": "En dreng på 9 år med ADHD får hver morgen ondt i maven, når familien skal ud ad døren. Han bliver urolig, glemmer tøj og tasker og ender tit med at nægte at tage afsted. Forældrene føler sig magtesløse.",
+    "cda_guiding": "Start med at skabe en fast, forudsigelig struktur: brug piktogrammer, forbered tøj og tasker aftenen før, og indfør et roligt signal fem minutter før afgang. Vær neutral i stemmen – undgå irettesættelser i stressede øjeblikke. Inddrag barnet i planlægningen: 'Hvad ville hjælpe dig i morgen tidlig?'",
+    "cdt_træning": {
+      "problem": "Forælderen hæver stemmen, da barnet nægter at tage sko på.",
+      "brugersvar": "‘Skynd dig nu – vi kommer for sent igen!’",
+      "evaluering": "Kommunikationen låser. Barnet oplever pres og angst frem for støtte.",
+      "feedback": {
+        "effektiv": "‘Jeg kan se, det er svært nu. Skal vi tage et minut og prøve igen sammen?’ – Skaber tryghed og samarbejde.",
+        "delvis": "‘Jeg hjælper dig lige med skoene, så går det hurtigere.’ – Virker, men barnet mister selvstændighed.",
+        "problematisk": "‘Hvis du ikke tager sko på nu, går vi uden dig!’ – Forstærker angst og nederlag."
+      }
+    }
+  },
+  {
+    "id": "case_002",
+    "titel": "Konflikt i frikvarteret",
+    "tema": ["skole", "socialt", "impulskontrol"],
+    "relevante_diagnoser": ["ADHD"],
+    "beskrivelse": "En elev med ADHD slår en klassekammerat under en fodboldkamp. Læreren ser hændelsen og beder ham straks sige undskyld, men eleven løber væk.",
+    "cda_guiding": "Fokuser på regulering før dialog. Læreren skal først sikre ro: ‘Jeg kan se, du er vred – kom med mig et øjeblik.’ Når eleven er faldet ned, kan der arbejdes med forståelse og genopretning. Brug visualisering af følelser (f.eks. trafiklyskort).",
+    "cdt_træning": {
+      "problem": "Læreren kalder eleven tilbage foran hele gruppen.",
+      "brugersvar": "‘Kom herhen og sig undskyld med det samme!’",
+      "evaluering": "Barnet oplever skam og tab af kontrol. Konflikten genaktiveres.",
+      "feedback": {
+        "effektiv": "‘Jeg ser, du blev vred. Kom, vi snakker kort sammen.’ – Fokus på regulering frem for straf.",
+        "delvis": "‘Du skal sige undskyld, når du er klar.’ – Accepterer følelsen, men mangler støtte til at finde ro.",
+        "problematisk": "‘Du må ikke slå, så du får ingen pause i morgen!’ – Skaber afstand og forstærker uro."
+      }
+    }
+  },
+  {
+    "id": "case_003",
+    "titel": "Skift af aktivitet",
+    "tema": ["skole", "struktur", "autisme"],
+    "relevante_diagnoser": ["Autisme", "ADHD"],
+    "beskrivelse": "En elev har svært ved at stoppe en yndlingsaktivitet, når timen slutter. Han reagerer med vrede, smider blyanten og siger, at læreren er uretfærdig.",
+    "cda_guiding": "Brug visuel nedtælling (f.eks. timer eller piktogram) 5 minutter før skift. Anerkend frustration: ‘Jeg ved, det er svært at stoppe, når du er i gang.’ Hjælp barnet med en fast overgangsstrategi, f.eks. at skrive ‘jeg vil gerne fortsætte senere’.",
+    "cdt_træning": {
+      "problem": "Læreren slukker pludseligt lyset for at signalere timens slutning.",
+      "brugersvar": "‘Pak sammen nu, vi skal videre!’",
+      "evaluering": "Barnet oplever tab af kontrol og reagerer med modstand.",
+      "feedback": {
+        "effektiv": "‘Om 5 minutter stopper vi – vil du selv afslutte eller have hjælp?’ – Giver forudsigelighed og ejerskab.",
+        "delvis": "‘Vi stopper nu, men du kan gøre det færdigt senere.’ – Dæmper konflikten, men uden tydelig struktur.",
+        "problematisk": "‘Nu må du altså lære at stoppe som de andre!’ – Forstærker utryghed og nederlagsfølelse."
+      }
+    }
+  },
+  {
+    "id": "case_004",
+    "titel": "Sensorisk overbelastning i klasselokalet",
+    "tema": ["skole", "sansning", "angst"],
+    "relevante_diagnoser": ["Autisme", "Angst"],
+    "beskrivelse": "En elev begynder at dække ørerne og græde, når der bliver for meget støj i klassen. Læreren beder hende sætte sig ned og ignorere lydene.",
+    "cda_guiding": "Identificér sensoriske triggers og lav ‘stille zoner’. Brug støjdæmpning, tydelig pauseadgang og evt. visuel markering (‘lydgrænse’). Undgå irettesættelse. Anerkend behovet: ‘Jeg kan se, lydene generer dig – vil du bruge dine høretelefoner?’",
+    "cdt_træning": {
+      "problem": "Læreren siger: ‘Du skal vænne dig til lydene, de går over.’",
+      "brugersvar": "‘Prøv at ignorere det, så går det nok.’",
+      "evaluering": "Barnet oplever manglende forståelse og stigende angst.",
+      "feedback": {
+        "effektiv": "‘Lydene er høje – vil du bruge dine høreværn eller tage en kort pause?’ – Giver handlemulighed og tryghed.",
+        "delvis": "‘Hvis det bliver for meget, kan du gå ud.’ – Accepterer behov, men mangler proaktiv struktur.",
+        "problematisk": "‘Du må lære at holde ud.’ – Forstærker overbelastning og stressreaktion."
+      }
+    }
+  },
+  {
+    "id": "case_005",
+    "titel": "Gruppearbejde og social uro",
+    "tema": ["skole", "relationer", "kommunikation"],
+    "relevante_diagnoser": ["ADHD", "Lavt selvværd"],
+    "beskrivelse": "En elev bliver stille og trækker sig, når gruppen skal samarbejde. Han lader de andre tage styringen og siger bagefter, at han ‘ikke er god til noget’.",
+    "cda_guiding": "Tildel tydelige roller i gruppen, så barnet får en konkret funktion. Giv feedback på indsats, ikke resultat. Styrk sociale pauser og lav ‘samarbejdsstartere’ – fx korte spil eller fælles mål. Undgå at presse til deltagelse foran andre.",
+    "cdt_træning": {
+      "problem": "Læreren spørger foran klassen: ‘Hvorfor siger du ikke noget?’",
+      "brugersvar": "‘Du skal altså også bidrage lidt mere.’",
+      "evaluering": "Barnet oplever skam og lavt selvværd.",
+      "feedback": {
+        "effektiv": "‘Jeg vil gerne høre din idé – du kan sige det til mig først.’ – Giver tryghed og stemme.",
+        "delvis": "‘Vil du skrive det ned i stedet?’ – Alternativt udtryk, men stadig undgående.",
+        "problematisk": "‘Du skal altså tale højt som de andre!’ – Øger pres og forstærker lavt selvværd."
+      }
+    }
+  },
+  {
+    "id": "case_006",
+    "titel": "Når alt ændrer sig – planændring i sidste øjeblik",
+    "tema": ["autisme", "forudsigelighed", "struktur"],
+    "relevante_diagnoser": ["Autisme", "ADHD"],
+    "beskrivelse": "Klassen skulle i gymnastiksalen, men planerne ændres, fordi hallen er optaget. En elev med autisme bliver vred, nægter at forlade klassen og siger: 'Det er snyd!'",
+    "cda_guiding": "Informer tidligt om ændringer. Giv eleven mulighed for at stille spørgsmål og have en visuel backup-plan ('Hvis X sker, gør vi Y'). Brug anerkendelse: 'Jeg forstår, det føles forkert. Vi ændrer ikke for at snyde dig, men fordi hallen er lukket.'",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Det er bare sådan, det er – kom nu!'",
+      "brugersvar": "‘Du skal ikke blive sur over alt!’",
+      "evaluering": "Barnet oplever manglende kontrol og mister tillid til læreren.",
+      "feedback": {
+        "effektiv": "‘Det ændrede sig, og det er svært. Skal vi se sammen, hvad vi kan gøre i stedet?’",
+        "delvis": "‘Jeg ved, det ikke var planen, men vi må gøre det bedste ud af det.’",
+        "problematisk": "‘Du overreagerer igen.’ – Forstærker frustration og modstand."
+      }
+    }
+  },
+  {
+    "id": "case_007",
+    "titel": "Sproglig impulsivitet i timerne",
+    "tema": ["adhd", "impulskontrol", "klassemiljø"],
+    "relevante_diagnoser": ["ADHD", "Tourette’s"],
+    "beskrivelse": "En elev afbryder konstant og råber svar, før læreren har stillet spørgsmålet færdigt. Klassen griner, læreren bliver irriteret, og eleven siger: 'Jeg prøvede bare at hjælpe!'",
+    "cda_guiding": "Sæt visuel struktur på taletid. Giv eleven en fysisk markør (fx en bold eller et kort), der viser, hvornår det er hans tur. Anerkend intentionen bag: 'Jeg kan se, du vil gerne deltage – lad os finde en måde, så du får ro til at vente.'",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Nu holder du altså mund!'",
+      "brugersvar": "‘Du skal ikke altid afbryde!’",
+      "evaluering": "Barnet oplever skam og misforståelse, selvom intentionen var positiv.",
+      "feedback": {
+        "effektiv": "‘Jeg ved, du ved meget – vil du række hånden op, så jeg kan høre alt det, du vil sige?’",
+        "delvis": "‘Vent lige lidt, så tager vi dig bagefter.’",
+        "problematisk": "‘Hvis du afbryder igen, ryger du ud!’ – Skaber nederlag og trods."
+      }
+    }
+  },
+  {
+    "id": "case_008",
+    "titel": "Social angst ved gruppearbejde",
+    "tema": ["angst", "relationer", "socialt"],
+    "relevante_diagnoser": ["Angst", "Autisme"],
+    "beskrivelse": "En pige på 12 år får hjertebanken og svedige hænder, når hun skal arbejde i grupper. Hun siger, at de andre griner af hende, og hun trækker sig fysisk væk fra bordet.",
+    "cda_guiding": "Skab tryghed ved forudsigelighed og gradvis eksponering. Lad eleven vælge en kendt makker først. Giv klare roller, så hun ved, hvad hun skal. Brug små succeser som ‘jeg sagde ét ord i dag’.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du skal være med, ellers lærer du det aldrig!'",
+      "brugersvar": "‘Alle skal deltage, det er fælles regler.’",
+      "evaluering": "Barnet oplever tvang og nederlag, angst forværres.",
+      "feedback": {
+        "effektiv": "‘Jeg ved, det kan være svært. Du kan starte sammen med mig, så tager vi det roligt.’",
+        "delvis": "‘Du kan være observatør i dag, hvis du vil.’ – Mindsker pres, men kan fastholde undgåelse.",
+        "problematisk": "‘Du må tage dig sammen.’ – Forstærker angst og tab af tillid."
+      }
+    }
+  },
+  {
+    "id": "case_009",
+    "titel": "Motorisk uro og koncentration",
+    "tema": ["adhd", "motorik", "fokus"],
+    "relevante_diagnoser": ["ADHD"],
+    "beskrivelse": "En dreng vipper på stolen, trommer i bordet og rejser sig midt i timen. Læreren beder ham flere gange om at sidde stille, men det gentager sig.",
+    "cda_guiding": "Inkorporer bevægelsespauser og alternative siddestillinger. Brug ‘bevægelseskort’ så eleven selv kan regulere. Skab accept af fysisk aktivitet som strategi, ikke som forstyrrelse.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du forstyrrer hele tiden!'",
+      "brugersvar": "‘Sæt dig ned, ellers får du eftersidning.’",
+      "evaluering": "Barnet oplever skam, men mangler redskaber til regulering.",
+      "feedback": {
+        "effektiv": "‘Du har brug for at bevæge dig lidt. Skal vi lave en kort pause sammen?’",
+        "delvis": "‘Rejs dig lige og stræk benene – men kom hurtigt tilbage.’",
+        "problematisk": "‘Hvis du ikke kan sidde stille, kan du ikke være her.’ – Forværrer uro og eksklusion."
+      }
+    }
+  },
+  {
+    "id": "case_010",
+    "titel": "Ufrivillige tics i klassen",
+    "tema": ["tourette", "forståelse", "social inklusion"],
+    "relevante_diagnoser": ["Tourette’s", "ADHD"],
+    "beskrivelse": "En elev får ufrivillige tics (lyde og bevægelser), som nogle klassekammerater griner af. Læreren bliver i tvivl om, hvordan hun skal håndtere situationen.",
+    "cda_guiding": "Skab viden i klassen gennem kort og respektfuld dialog. Forklar, at tics ikke er med vilje. Beskyt eleven mod udhængning, men giv plads til åbenhed. Undgå at påtale tics direkte under undervisningen.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Nu må du altså stoppe med de lyde.'",
+      "brugersvar": "‘Det forstyrrer de andre.’",
+      "evaluering": "Barnet oplever skam og stress, hvilket øger tics.",
+      "feedback": {
+        "effektiv": "‘Jeg ved, du ikke kan styre det. Vil du have en kort pause, eller skal jeg forklare klassen det kort?’",
+        "delvis": "‘Prøv at holde det nede, hvis du kan.’ – Anerkender lidt, men presser stadig.",
+        "problematisk": "‘Du skal stoppe, ellers må du gå udenfor.’ – Øger stress og eksklusion."
+      }
+    }
+  },
+  {
+    "id": "case_011",
+    "titel": "Aftentræthed og sengetidskonflikt",
+    "tema": ["hjem", "søvn", "struktur"],
+    "relevante_diagnoser": ["ADHD", "Autisme"],
+    "beskrivelse": "Et barn på 8 år nægter at gå i seng, bliver urolig og græder, når det er sengetid. Forældrene bliver frustrerede og forsøger at true med at slukke lyset.",
+    "cda_guiding": "Skab faste søvnrutiner med visuel plan. Undgå konfrontation – fokuser på rolig overgang. Indfør sensorisk nedtrapning (dæmpet lys, tyngdedyne, rolig lyd). Giv barnet valg: 'Vil du børste tænder først eller tage nattøj på først?'",
+    "cdt_træning": {
+      "problem": "Forælder siger: 'Nu skal du bare sove, ellers bliver jeg sur!'",
+      "brugersvar": "‘Du er altid så besværlig ved sengetid.’",
+      "evaluering": "Barnet oplever stress og øget modstand. Søvnen forværres.",
+      "feedback": {
+        "effektiv": "‘Jeg kan se, du er urolig. Skal vi læse én side mere og så slukke sammen?’",
+        "delvis": "‘Hvis du ligger stille, kan du høre lidt musik.’",
+        "problematisk": "‘Jeg gider ikke høre mere – godnat!’ – Skaber utryghed og modstand."
+      }
+    }
+  },
+  {
+    "id": "case_012",
+    "titel": "Søskendekonflikt og jalousi",
+    "tema": ["familie", "relationer", "konflikt"],
+    "relevante_diagnoser": ["ADHD", "Angst"],
+    "beskrivelse": "Et barn føler sig overset, fordi søskenden ofte får mere opmærksomhed på grund af sin diagnose. Reagerer med vrede og sårende kommentarer.",
+    "cda_guiding": "Anerkend følelsen frem for at korrigere den. Giv barnet særskilt tid og rolle (‘min hjælper’). Forklar forskelle uden at skabe skyld: 'Din bror har brug for lidt mere hjælp, men du er vigtig på din måde.'",
+    "cdt_træning": {
+      "problem": "Forælder siger: 'Du burde skamme dig – han kan jo ikke gøre for det!'",
+      "brugersvar": "‘Du er ond ved din lillebror!’",
+      "evaluering": "Barnet oplever skam og endnu større afstand til søskenden.",
+      "feedback": {
+        "effektiv": "‘Jeg forstår, du bliver træt af, at jeg bruger tid på ham. Skal vi finde noget, der kun er dit og mit?’",
+        "delvis": "‘Jeg ved, det er svært. Vi snakker om det senere.’ – Anerkendelse, men uden handling.",
+        "problematisk": "‘Du skal bare acceptere det!’ – Skaber yderligere modstand."
+      }
+    }
+  },
+  {
+    "id": "case_013",
+    "titel": "Følelsesudbrud i supermarkedet",
+    "tema": ["hjem", "offentligt", "regulering"],
+    "relevante_diagnoser": ["Autisme", "ADHD", "Sensorisk sensitivitet"],
+    "beskrivelse": "Et barn begynder at skrige og smide varer på gulvet, fordi der er mange mennesker og lyde. Forælderen bliver flov og hæver stemmen.",
+    "cda_guiding": "Forbered barnet før indgangen: fortæl hvor længe I skal være der, og hvad der skal ske. Giv sensorisk strategi (høretelefoner, rolig zone, lille pause). Undgå skældud – fokusér på rolig afledning og hurtig exit, hvis muligt.",
+    "cdt_træning": {
+      "problem": "Forælder siger: 'Stop det der, alle kigger!'",
+      "brugersvar": "‘Nu opfører du dig pinligt igen!’",
+      "evaluering": "Barnet oplever skam og tab af kontrol, hvilket øger meltdown.",
+      "feedback": {
+        "effektiv": "‘Jeg kan se, det blev for meget. Vi går lige udenfor og puster ud.’",
+        "delvis": "‘Tag et par dybe vejrtrækninger, så går vi hurtigt videre.’",
+        "problematisk": "‘Hvis du ikke stopper, får du ingenting!’ – Forstærker panik og stress."
+      }
+    }
+  },
+  {
+    "id": "case_014",
+    "titel": "Manglende opfølgning fra skole",
+    "tema": ["skole-hjem", "kommunikation", "forældre"],
+    "relevante_diagnoser": ["ADHD", "Autisme"],
+    "beskrivelse": "Forældre oplever, at skolens aftaler ikke bliver fulgt. Barnet bliver stresset, og forældrene føler sig ikke taget alvorligt.",
+    "cda_guiding": "Etabler fælles logbog (fx CDA-kommunikationsskema). Undgå at pege fingre – søg løsninger. Brug sætninger som: ‘Hvad kan vi gøre sammen for at skabe mere stabilitet?’ Dokumentér og lav opfølgning efter 14 dage.",
+    "cdt_træning": {
+      "problem": "Forælder skriver vred mail: 'I overholder aldrig aftalerne!'",
+      "brugersvar": "‘Jeg er træt af jeres manglende professionalisme.’",
+      "evaluering": "Skolen oplever angreb og går i forsvar. Dialogen låser.",
+      "feedback": {
+        "effektiv": "‘Jeg oplever, at aftalerne er svære at holde. Kan vi finde en fælles måde at følge op på?’",
+        "delvis": "‘Vi er frustrerede og håber, det kan blive bedre.’ – Rimelig tone, men uklart formål.",
+        "problematisk": "‘I gør jeres arbejde dårligt.’ – Nedbryder samarbejdet."
+      }
+    }
+  },
+  {
+    "id": "case_015",
+    "titel": "Barnet tager ikke imod ros",
+    "tema": ["selvværd", "motivation", "relation"],
+    "relevante_diagnoser": ["ADHD", "Angst", "Lavt selvværd"],
+    "beskrivelse": "Et barn reagerer negativt på ros og siger: 'Du siger bare det der, fordi du skal.' Læreren bliver usikker på, hvordan hun kan styrke barnets selvbillede.",
+    "cda_guiding": "Brug specifik og observerbar ros: ‘Jeg lagde mærke til, at du prøvede igen – det krævede mod.’ Undgå overdreven ros. Giv ros for proces og indsats, ikke resultat.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du skal altså tage imod ros, når jeg giver dig det.'",
+      "brugersvar": "‘Det er ikke pænt at sige sådan.’",
+      "evaluering": "Barnet oplever mistillid og føler sig gennemskuet.",
+      "feedback": {
+        "effektiv": "‘Det er helt okay, hvis det føles mærkeligt at blive rost. Jeg mente det bare ærligt.’",
+        "delvis": "‘Jeg prøver bare at sige noget pænt til dig.’ – Venligt, men usikkert.",
+        "problematisk": "‘Du burde være glad for ros.’ – Skaber modstand og afstand."
+      }
+    }
+  },
+  {
+    "id": "case_016",
+    "titel": "Når tre voksne vil det samme – men på hver sin måde",
+    "tema": ["samarbejde", "kommunikation", "tværfagligt"],
+    "relevante_diagnoser": ["ADHD", "Autisme"],
+    "beskrivelse": "En lærer, en støttepædagog og en forælder har hver deres strategi for at hjælpe barnet. Læreren fokuserer på struktur, pædagogen på relation, og forælderen på frihed. Barnet bliver forvirret og reagerer med modstand.",
+    "cda_guiding": "CDA samler indsatsen gennem fælles plan: 'Hvad er barnets mål i dag?' Brug ugentlig afstemning i CDA-skabelon 'Fælles Fokus'. Undgå at diskutere metoder foran barnet – vis én samlet voksenfront.",
+    "cdt_træning": {
+      "problem": "Mødet udvikler sig til diskussion om, hvem der har ret.",
+      "brugersvar": "‘Jeg synes ikke, du forstår mit barn!’",
+      "evaluering": "Barnet mærker uenighed og mister tillid til de voksne.",
+      "feedback": {
+        "effektiv": "‘Vi har alle det samme mål – at støtte barnet. Lad os afklare, hvad der virker bedst i praksis.’",
+        "delvis": "‘Vi kan prøve begge tilgange i en uge.’ – Pragmatisk men uden klar fælles retning.",
+        "problematisk": "‘Det er din skyld, at barnet reagerer sådan.’ – Skaber splid og mistillid."
+      }
+    }
+  },
+  {
+    "id": "case_017",
+    "titel": "Specialistens anbefaling mod skolens realitet",
+    "tema": ["inklusion", "ressourcer", "tværfaglig"],
+    "relevante_diagnoser": ["Tourette’s", "ADHD"],
+    "beskrivelse": "En ergoterapeut anbefaler daglige sensoriske pauser, men skolen siger, at der ikke er tid i skemaet. Barnet bliver mere uroligt og får flere tics.",
+    "cda_guiding": "Dokumentér specialistens anbefaling i CDA og tilpas til praksis: ‘Kan pausen kobles til en naturlig overgang?’ Brug små realistiske skridt fremfor alt eller intet. Inviter specialisten til kort CDA-møde online.",
+    "cdt_træning": {
+      "problem": "Skolen siger: 'Vi kan ikke ændre hele skemaet for én elev.'",
+      "brugersvar": "‘Det må han bare lære at leve med.’",
+      "evaluering": "Barnets behov ignoreres, og relationen forværres.",
+      "feedback": {
+        "effektiv": "‘Hvordan kan vi indarbejde pauser uden at det forstyrrer resten af klassen?’",
+        "delvis": "‘Vi prøver, men kun et par gange om ugen.’",
+        "problematisk": "‘Det går ikke her.’ – Skaber afmagt og mistillid mellem skole og forældre."
+      }
+    }
+  },
+  {
+    "id": "case_018",
+    "titel": "Barnet med tre diagnoser – hvem tager ledelsen?",
+    "tema": ["kompleksitet", "koordination", "ledelse"],
+    "relevante_diagnoser": ["ADHD", "Autisme", "Angst"],
+    "beskrivelse": "Et barn med flere diagnoser har kontakt til både PPR, psykiatri og skole. Hver part sender anbefalinger, men der mangler en plan. Forældrene føler sig overvældede.",
+    "cda_guiding": "Aktivér CDA’s 'Koordinationsoversigt'. Udpeg én tovholder (lærer eller PPR-repræsentant). Brug enkel visualisering af mål og ansvar: ‘Hvem gør hvad, hvornår, og hvordan ved vi, at det virker?’",
+    "cdt_træning": {
+      "problem": "Mødet drukner i detaljer og forskellige meninger.",
+      "brugersvar": "‘Vi gør allerede alt, hvad vi kan.’",
+      "evaluering": "Ingen tager styring – forældrene mister troen på samarbejdet.",
+      "feedback": {
+        "effektiv": "‘Lad os vælge ét konkret mål for næste uge, som alle følger op på.’",
+        "delvis": "‘Vi tager det punkt for punkt.’ – Bedre struktur, men stadig uden samlet retning.",
+        "problematisk": "‘Det må kommunen finde ud af.’ – Skubber ansvaret væk."
+      }
+    }
+  },
+  {
+    "id": "case_019",
+    "titel": "Når støttepersonen er syg – og alt vælter",
+    "tema": ["struktur", "afhængighed", "resiliens"],
+    "relevante_diagnoser": ["Autisme", "ADHD"],
+    "beskrivelse": "Barnet reagerer voldsomt, da støttepersonen ikke møder ind. Læreren forsøger at trøste, men barnet nægter at deltage i undervisningen.",
+    "cda_guiding": "CDA kan forberede backup-planer gennem 'Støttefravær-protokol'. Gør planen visuel: Hvem træder til, hvad kan barnet gøre selv? Træn fleksibilitet i CDT: små øvelser i at håndtere ændringer.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Det er ikke så slemt – hun kommer i morgen.'",
+      "brugersvar": "‘Nu må du tage dig sammen.’",
+      "evaluering": "Barnet mister tryghed, dagen ødelægges.",
+      "feedback": {
+        "effektiv": "‘Jeg ved, du savner hende. Skal vi sammen finde ud af, hvem du kan være med i dag?’",
+        "delvis": "‘Hun er væk i dag, men jeg hjælper dig i pauserne.’ – Dækker, men ikke tryghedsskabende.",
+        "problematisk": "‘Du må lære at klare dig uden hende.’ – Øger stress og afmagt."
+      }
+    }
+  },
+  {
+    "id": "case_020",
+    "titel": "Kommunale krav kontra barnets behov",
+    "tema": ["system", "etik", "beslutning"],
+    "relevante_diagnoser": ["ADHD", "Angst"],
+    "beskrivelse": "Kommunen kræver dokumentation for ekstra støtte, men skolen oplever, at de allerede er overbelastede. Barnet havner midt i systemets kamp om ressourcer.",
+    "cda_guiding": "Brug CDA’s dokumentationsmodul til at vise effekt af tiltag. Hold fokus på barnets trivsel, ikke systemets proces. Inviter forældre med til at dokumentere hjemmeobservationer for et samlet billede.",
+    "cdt_træning": {
+      "problem": "Skolen siger: 'Vi må vente, til kommunen godkender flere timer.'",
+      "brugersvar": "‘Vi kan ikke gøre mere lige nu.’",
+      "evaluering": "Barnets støtte reduceres – trivsel falder.",
+      "feedback": {
+        "effektiv": "‘Vi fortsætter med det, der virker, mens vi afventer svar – og dokumenterer alt i CDA.’",
+        "delvis": "‘Vi prøver at holde det kørende indtil videre.’ – For passivt, men realistisk.",
+        "problematisk": "‘Der er ikke noget at gøre.’ – Signalerer opgivenhed og brud på tillid."
+      }
+    }
+  },
+  {
+    "id": "case_021",
+    "titel": "Første dag i skolen – for meget på én gang",
+    "tema": ["overgang", "skolestart", "tryghed"],
+    "relevante_diagnoser": ["Autisme", "ADHD"],
+    "beskrivelse": "Barnet starter i 0. klasse og bliver overvældet af mange nye indtryk. Forældrene oplever gråd og modstand hver morgen.",
+    "cda_guiding": "Planlæg blød skolestart. Giv barnet visuel dagsplan, fast velkomstperson og kort skoledag i starten. Brug CDA’s 'Tryg start'-skabelon, så alle voksne kender proceduren.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Alle børn er nervøse – det går over.'",
+      "brugersvar": "‘Du må være lidt modig.’",
+      "evaluering": "Barnets uro undervurderes. Utryghed vokser.",
+      "feedback": {
+        "effektiv": "‘Der er mange nye ting i dag – vil du have, jeg viser dig din plads først?’",
+        "delvis": "‘Jeg skal nok hjælpe dig lidt senere.’ – Venligt, men for vagt.",
+        "problematisk": "‘Du skal ikke græde, du er jo stor nu.’ – Øger skam og angst."
+      }
+    }
+  },
+  {
+    "id": "case_022",
+    "titel": "Overgang fra børnehave til skole – manglende videregivelse",
+    "tema": ["overgang", "kommunikation", "koordinering"],
+    "relevante_diagnoser": ["ADHD", "Autisme"],
+    "beskrivelse": "Skolen modtager et barn uden overleveringsmøde. Pædagogernes erfaringer om struktur og pauser går tabt, og eleven får en hård start.",
+    "cda_guiding": "CDA’s 'Overgangslog' bruges til at samle observationer fra børnehaven: sociale mønstre, triggers og styrker. Afhold overgangsmøde senest 14 dage før skolestart.",
+    "cdt_træning": {
+      "problem": "Skolen siger: 'Vi vil hellere selv danne os et billede.'",
+      "brugersvar": "‘Vi starter på en frisk.’",
+      "evaluering": "Barnets behov gentages, fejl gentages – læring tabes.",
+      "feedback": {
+        "effektiv": "‘Kan I dele børnehavens erfaringer, så vi fortsætter det, der virker?’",
+        "delvis": "‘Vi kan tage et kort møde, når barnet er startet.’ – For sent.",
+        "problematisk": "‘Det er gamle historier.’ – Skaber risiko for tilbagefald."
+      }
+    }
+  },
+  {
+    "id": "case_023",
+    "titel": "Sommerferie og tab af struktur",
+    "tema": ["ferie", "rutiner", "regulering"],
+    "relevante_diagnoser": ["ADHD", "Angst"],
+    "beskrivelse": "Barnet mister daglig struktur i ferien og får svært ved at sove og koncentrere sig, når skolen starter igen.",
+    "cda_guiding": "Send før-ferieplan via CDA med forberedende aktiviteter: ‘Min sommerplan’. Forældre kan bruge små dagsskemaer. Efter ferien gentages kendte rutiner trin for trin.",
+    "cdt_træning": {
+      "problem": "Forælder siger: 'Det er jo ferie, så der er ingen regler.'",
+      "brugersvar": "‘Han skal bare nyde det.’",
+      "evaluering": "Barnet mister stabilitet og regulering. Svær genstart.",
+      "feedback": {
+        "effektiv": "‘Vi holder ferie, men vi beholder nogle af dine faste ting – fx morgenrutine og sengetid.’",
+        "delvis": "‘Vi kan prøve at stå op lidt tidligere i morgen.’",
+        "problematisk": "‘Nu må du tage dig sammen, ferien er slut.’ – For hård overgang."
+      }
+    }
+  },
+  {
+    "id": "case_024",
+    "titel": "Overgang til ny lærer – tilliden skal genopbygges",
+    "tema": ["relation", "ændring", "tryghed"],
+    "relevante_diagnoser": ["Angst", "Autisme"],
+    "beskrivelse": "Efter sommerferien får klassen ny klasselærer. Et barn med autisme nægter at tale i timerne og siger, at den nye lærer ikke forstår ham.",
+    "cda_guiding": "Brug CDA’s relationskort: registrér barnets tryghedspunkter og kommunikationspræferencer. Lad ny lærer møde barnet i roligt rum før skolestart. Skab kontinuitet gennem små kendte ritualer.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Jeg kender dig ikke endnu, men vi skal nok finde ud af det.'",
+      "brugersvar": "‘Du skal bare give mig en chance.’",
+      "evaluering": "Barnet føler sig usikker og lukker af.",
+      "feedback": {
+        "effektiv": "‘Jeg har talt lidt med din gamle lærer – vil du vise mig, hvordan I plejede at starte?’",
+        "delvis": "‘Vi skal lige lære hinanden at kende.’ – For neutralt.",
+        "problematisk": "‘Du må vænne dig til mig.’ – Forstærker mistillid."
+      }
+    }
+  },
+  {
+    "id": "case_025",
+    "titel": "Fra skole til ungdomsuddannelse – nyt miljø, gamle udfordringer",
+    "tema": ["overgang", "ungdom", "selvstændighed"],
+    "relevante_diagnoser": ["ADHD", "Angst", "Autisme"],
+    "beskrivelse": "En elev, der tidligere fik støtte, starter på ungdomsuddannelse uden plan for overlevering. Eleven glemmer lektier, misser aftaler og overvejer at droppe ud.",
+    "cda_guiding": "Brug CDA’s 'Overgang til videre uddannelse'-skabelon. Planlæg møde mellem afgivende skole og modtagende uddannelse. Giv eleven værktøj til selvmonitorering og mentorstøtte de første 3 måneder.",
+    "cdt_træning": {
+      "problem": "Uddannelsesvejleder siger: 'Nu er du jo voksen, du må tage ansvar.'",
+      "brugersvar": "‘Det er ikke folkeskolen mere.’",
+      "evaluering": "Eleven mister støtte for tidligt og føler sig overladt til sig selv.",
+      "feedback": {
+        "effektiv": "‘Vi kan se, du har haft støtte før – vil du sammen med mig lægge en plan for, hvordan du klarer hverdagen her?’",
+        "delvis": "‘Vi tager det hen ad vejen.’ – For lidt struktur.",
+        "problematisk": "‘Du må bare følge reglerne her.’ – Urealistisk og demotiverende."
+      }
+    }
+  },
+  {
+    "id": "case_026",
+    "titel": "ADHD og angst – frygten for at fejle",
+    "tema": ["skole", "angst", "præstation"],
+    "relevante_diagnoser": ["ADHD", "Angst"],
+    "beskrivelse": "En elev med ADHD reagerer voldsomt på fejl og undgår opgaver, han tidligere kunne lide. Læreren tror, han er doven, men eleven har udviklet præstationsangst.",
+    "cda_guiding": "Systemet identificerer mulig komorbiditet: ADHD + Angst (57% overlap). Fokus på tryghed og forventningsstyring. Fjern fokus fra resultat – ros indsats og proces. Brug CDA’s 'Angstindikator' til lærere.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du plejer jo at kunne det her – du gider bare ikke i dag.'",
+      "brugersvar": "‘Du må tage dig sammen.’",
+      "evaluering": "Barnet oplever skam og frygt for nederlag. Undgår opgaver yderligere.",
+      "feedback": {
+        "effektiv": "‘Jeg kan se, det er svært i dag – skal vi tage ét lille skridt sammen?’",
+        "delvis": "‘Prøv bare, jeg hjælper dig bagefter.’ – Venligt men uden plan.",
+        "problematisk": "‘Du kunne i går, så du kan også i dag.’ – Forstærker angst."
+      }
+    }
+  },
+  {
+    "id": "case_027",
+    "titel": "Tourette og ADHD – uro og ufrivillige reaktioner",
+    "tema": ["klassemiljø", "forståelse", "socialt"],
+    "relevante_diagnoser": ["Tourette’s", "ADHD"],
+    "beskrivelse": "Barnet afbryder konstant og laver lyde i timerne. Klassen griner, og læreren beder ham tie stille. Barnet bliver ked af det og råber tilbage.",
+    "cda_guiding": "Mulig komorbiditet Tourette’s + ADHD (30–60% overlap). Informér klassen på diagnosefølsom måde. Brug CDA’s 'Social forståelse'-skabelon og planlæg pauser for aflad. Ros for indsats, ikke kontrol.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Nu larmer du igen – ud!'",
+      "brugersvar": "‘Du forstyrrer altid.’",
+      "evaluering": "Barnet oplever afvisning, selvom handlingen er ufrivillig.",
+      "feedback": {
+        "effektiv": "‘Jeg kan høre, det er svært lige nu. Vil du tage en pause sammen med mig udenfor?’",
+        "delvis": "‘Jeg ved godt, du ikke gør det med vilje, men du skal prøve at dæmpe dig.’",
+        "problematisk": "‘Du må kontrollere dig selv.’ – Skaber skyld og skam."
+      }
+    }
+  },
+  {
+    "id": "case_028",
+    "titel": "Autisme og depression – barnet, der lukker sig inde",
+    "tema": ["følelser", "relationer", "trivsel"],
+    "relevante_diagnoser": ["Autisme", "Depression"],
+    "beskrivelse": "En elev, tidligere glad for rutiner, begynder at isolere sig og nægter at deltage i fællesaktiviteter. Skolen tror, det er autistisk adfærd, men der ses tegn på depression.",
+    "cda_guiding": "Systemet foreslår vurdering for komorbid depression (20–40% overlap ved ASF). Brug 'Trivselsindikator' i CDA og observer søvnmønster, appetit, social tilbagetrækning. Inddrag psykolog tidligt.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Han vil bare være i fred – sådan er autister jo.'",
+      "brugersvar": "‘Han skal nok komme ud igen af sig selv.’",
+      "evaluering": "Risiko for overset depression.",
+      "feedback": {
+        "effektiv": "‘Jeg har lagt mærke til, at du virker mere træt. Er der noget, du gerne vil slippe for i dag?’",
+        "delvis": "‘Han virker stille, men det går nok over.’ – Manglende handling.",
+        "problematisk": "‘Det er jo bare hans diagnose.’ – Farlig fejltolkning."
+      }
+    }
+  },
+  {
+    "id": "case_029",
+    "titel": "ADHD og oppositionel adfærd – vrede som kommunikation",
+    "tema": ["adfærd", "relation", "regulering"],
+    "relevante_diagnoser": ["ADHD", "ODD (oppositionel adfærdsforstyrrelse)"],
+    "beskrivelse": "Barnet svarer igen, smækker med døren og nægter at følge instruktioner. Forældre beskriver barnet som 'umuligt'. Skolen oplever daglige konflikter.",
+    "cda_guiding": "Systemet kobler ADHD + ODD (30–50% overlap). Fokus på relation før regel. Brug CDA’s 'Konflikttrappe' og rolig kommunikation: ‘Jeg kan se, du er vred – lad os finde ud af hvorfor.’",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du gør det bare for at provokere.'",
+      "brugersvar": "‘Stop med at svare igen!’",
+      "evaluering": "Barnet reagerer endnu kraftigere. Konflikten eskalerer.",
+      "feedback": {
+        "effektiv": "‘Det er okay, du er vred. Vi tager en pause og taler om det bagefter.’",
+        "delvis": "‘Du må gerne være sur, men du skal tale pænt.’",
+        "problematisk": "‘Hvis du ikke stopper, får du ingen pause.’ – Forværrer konflikten."
+      }
+    }
+  },
+  {
+    "id": "case_030",
+    "titel": "Angst og OCD – tvangshandlinger i klasselokalet",
+    "tema": ["angst", "kontrol", "læring"],
+    "relevante_diagnoser": ["Angst", "OCD"],
+    "beskrivelse": "En elev vasker hænder flere gange i timen og nægter at røre ved fællesmaterialer. Læreren tror først, det er sansefølsomhed, men det er tvang.",
+    "cda_guiding": "Systemet registrerer komorbid Angst + OCD (15–30% overlap). Fokuser på rolig tilpasning: aftal tydelige rammer, men undgå at bekræfte tvangen. Tilbyd trygge alternativer. Inddrag psykolog, hvis mønsteret forværres.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du må altså ikke gå ud og vaske hænder hele tiden.'",
+      "brugersvar": "‘Så må du sidde stille i stedet.’",
+      "evaluering": "Barnet mister tryghed og oplever panik.",
+      "feedback": {
+        "effektiv": "‘Jeg kan se, det er svært for dig. Skal vi aftale et tidspunkt, hvor du kan vaske hænder, så du ved, hvornår det sker?’",
+        "delvis": "‘Vi tager det roligt, men prøv at vente lidt.’ – For passivt.",
+        "problematisk": "‘Stop med det der, det er forstyrrende.’ – Øger angst og tvang."
+      }
+    }
+  },
+  {
+    "id": "case_031",
+    "titel": "Psykologens blik på barnets angst – når kroppen taler først",
+    "tema": ["angst", "psykologi", "kropsreaktioner"],
+    "relevante_diagnoser": ["Angst", "Autisme"],
+    "specialist": "AI-Psykolog Sara Holm",
+    "beskrivelse": "Barnet nægter at deltage i gruppearbejde og klager ofte over mavepine. Læreren tror, barnet manipulerer, men psykologen vurderer, at det er kropslig angstreaktion.",
+    "cda_guiding": "CDA foreslår at aktivere specialist Sara Holm. Hendes note: ‘Kroppen reagerer før tanken. Hjælp barnet til at mærke tryghed gennem forudsigelighed og pauser – ikke pres.’",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du bruger maven som undskyldning.'",
+      "brugersvar": "‘Du må godt tage dig sammen og blive siddende.’",
+      "evaluering": "Barnet mister tillid – angst forstærkes.",
+      "feedback": {
+        "effektiv": "‘Jeg kan se, du har ondt. Lad os lige trække vejret sammen, så ser vi bagefter, om du er klar.’",
+        "delvis": "‘Vi kan tale om det i pausen.’ – Venligt, men udsætter problemet.",
+        "problematisk": "‘Det er bare nerver.’ – Bagatelliserer barnets oplevelse."
+      }
+    }
+  },
+  {
+    "id": "case_032",
+    "titel": "Ergoterapeutens tilgang til sansekaos",
+    "tema": ["sensorisk", "ergoterapi", "miljø"],
+    "relevante_diagnoser": ["Autisme", "ADHD"],
+    "specialist": "AI-Ergoterapeut Maja Lindgren",
+    "beskrivelse": "Barnet bliver overvældet af lys og lyde i klasseværelset. Læreren tolker det som dårlig opførsel, men ergoterapeuten vurderer sensorisk overbelastning.",
+    "cda_guiding": "CDA foreslår at hente Maja Lindgrens råd: dæmp belysning, giv barnet støjdæmpende hovedtelefoner og mulighed for 'stille hjørne'. Dokumentér ændringer i CDA for evaluering efter 14 dage.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du kan ikke bare sidde med hovedtelefoner – det er uretfærdigt for de andre.'",
+      "brugersvar": "‘Du må lære at være her som alle andre.’",
+      "evaluering": "Barnets sanser overbelastes – konflikt eskalerer.",
+      "feedback": {
+        "effektiv": "‘Lydene kan være mange. Skal vi finde et roligt sted, hvor du kan starte, og så prøver vi igen?’",
+        "delvis": "‘Du må gerne bruge dem lidt, men ikke hele tiden.’ – Hjælper kortvarigt.",
+        "problematisk": "‘Du må tage dem af nu.’ – Trigger sensorisk kollaps."
+      }
+    }
+  },
+  {
+    "id": "case_033",
+    "titel": "Socialrådgiverens dilemma – når lov og trivsel kolliderer",
+    "tema": ["system", "etik", "samarbejde"],
+    "relevante_diagnoser": ["ADHD", "Angst"],
+    "specialist": "AI-Socialrådgiver Camilla Kragh",
+    "beskrivelse": "Kommunen afviser støtte pga. formelle krav. Socialrådgiveren ved, at barnet reelt har behov, men reglerne spænder ben.",
+    "cda_guiding": "Camilla Kragh: ‘Lovgivning kan være rigid, men dokumentation er nøglen.’ CDA genererer automatisk en støttejournal baseret på observationer og skoledata – så sagen styrkes uden ekstra papirarbejde.",
+    "cdt_træning": {
+      "problem": "Skolen siger: 'Vi kan ikke gøre mere, før kommunen godkender.'",
+      "brugersvar": "‘Så må vi vente.’",
+      "evaluering": "Barnet mister momentum og støtte forsvinder.",
+      "feedback": {
+        "effektiv": "‘Vi dokumenterer alt i CDA, så kommunen hurtigt kan se behovet.’",
+        "delvis": "‘Vi skriver lidt noter i næste uge.’ – For passivt.",
+        "problematisk": "‘Det må kommunen klare.’ – Fjerner ansvar og skaber afmagt."
+      }
+    }
+  },
+  {
+    "id": "case_034",
+    "titel": "Talepædagogens refleksion – når ord bliver modstand",
+    "tema": ["kommunikation", "sprog", "relation"],
+    "relevante_diagnoser": ["Kommunikationsforstyrrelse", "Autisme"],
+    "specialist": "AI-Talepædagog Line Dahl",
+    "beskrivelse": "Barnet svarer ikke, når læreren stiller spørgsmål. Læreren tror, barnet er uforskammet, men talepædagogen forklarer, at barnet bruger stilhed som selvbeskyttelse.",
+    "cda_guiding": "Line Dahl foreslår brug af visuelle kort og faste svarmuligheder (‘ja’, ‘nej’, ‘pause’). CDA noterer kommunikative præferencer og viser dem til alle fagpersoner.",
+    "cdt_træning": {
+      "problem": "Læreren siger: 'Du skal svare, når jeg spørger dig.'",
+      "brugersvar": "‘Det er uhøfligt at tie.’",
+      "evaluering": "Barnet fryser og mister tryghed.",
+      "feedback": {
+        "effektiv": "‘Jeg venter, til du er klar. Du kan også vise med kortet.’",
+        "delvis": "‘Du kan svare senere.’ – Ok, men giver ikke alternativ.",
+        "problematisk": "‘Hvis du ikke svarer, får du minus.’ – Skaber stress."
+      }
+    }
+  },
+  {
+    "id": "case_035",
+    "titel": "Psykiaterens vurdering – når adfærd skjuler depression",
+    "tema": ["diagnose", "komorbiditet", "psykisk helbred"],
+    "relevante_diagnoser": ["ADHD", "Depression"],
+    "specialist": "AI-Børnepsykiater Jonas Bech",
+    "beskrivelse": "En dreng med ADHD virker pludselig apatisk og trækker sig fra venner. Forældrene tror, medicinen virker for stærkt, men psykiateren ser tegn på depression.",
+    "cda_guiding": "Jonas Bech: ‘Overvåg stemningsskift og søvnmønster via CDA-trivselslog. Vedvarende tristhed > 14 dage kræver vurdering.’ Systemet markerer automatisk risiko for komorbiditet.",
+    "cdt_træning": {
+      "problem": "Forælder siger: 'Han er bare træt af skolen.'",
+      "brugersvar": "‘Han vokser fra det.’",
+      "evaluering": "Alvorlige tegn overses.",
+      "feedback": {
+        "effektiv": "‘Lad os notere ændringerne i CDA og følge op med psykiateren.’",
+        "delvis": "‘Vi ser tiden an.’ – For passivt.",
+        "problematisk": "‘Det går nok over.’ – Risiko for forværring."
+      }
+    }
+  }
+]
+
