@@ -14,6 +14,16 @@ function normalize(text) {
   return String(text || "").toLowerCase().trim();
 }
 
+function normalizeArray(value) {
+  if (Array.isArray(value)) {
+    return value.map((v) => normalize(v)).filter(Boolean);
+  }
+  if (typeof value === "string") {
+    return [normalize(value)].filter(Boolean);
+  }
+  return [];
+}
+
 function buildSearchTerms(searchText, semantic) {
   const base = normalize(searchText);
   const terms = new Set([base]);
@@ -24,7 +34,7 @@ function buildSearchTerms(searchText, semantic) {
     const keyLower = normalize(key);
     const valueList = Array.isArray(values) ? values : [];
 
-    if (base.includes(keyLower)) {
+    if (base === keyLower || base.includes(keyLower)) {
       terms.add(keyLower);
       valueList.forEach((v) => terms.add(normalize(v)));
       continue;
@@ -32,7 +42,7 @@ function buildSearchTerms(searchText, semantic) {
 
     for (const value of valueList) {
       const valueLower = normalize(value);
-      if (valueLower && base.includes(valueLower)) {
+      if (valueLower && (base === valueLower || base.includes(valueLower))) {
         terms.add(keyLower);
         valueList.forEach((v) => terms.add(normalize(v)));
       }
@@ -45,42 +55,58 @@ function buildSearchTerms(searchText, semantic) {
 function scoreCase(c, searchTerms) {
   const id = normalize(c.id);
   const titel = normalize(c.titel);
-  const tema = normalize(c.tema);
+  const temaList = normalizeArray(c.tema);
+  const diagnoserList = normalizeArray(c.relevante_diagnoser);
   const beskrivelse = normalize(c.beskrivelse);
   const guiding = normalize(c.cda_guiding);
   const traening = normalize(c.cdt_træning);
-  const diagnoser = Array.isArray(c.relevante_diagnoser)
-    ? c.relevante_diagnoser.map((d) => normalize(d)).join(" ")
-    : "";
 
   let score = 0;
+  let strongMatch = false;
 
   for (const term of searchTerms) {
     if (!term) continue;
 
-    if (id === term) score += 100;
-    else if (id.includes(term)) score += 40;
+    if (id === term) {
+      score += 120;
+      strongMatch = true;
+    } else if (id.includes(term)) {
+      score += 40;
+    }
 
-    if (titel === term) score += 80;
-    else if (titel.includes(term)) score += 30;
+    if (titel === term) {
+      score += 100;
+      strongMatch = true;
+    } else if (titel.includes(term)) {
+      score += 45;
+    }
 
-    if (tema === term) score += 50;
-    else if (tema.includes(term)) score += 20;
+    if (diagnoserList.includes(term)) {
+      score += 90;
+      strongMatch = true;
+    } else if (diagnoserList.some((d) => d.includes(term))) {
+      score += 35;
+    }
 
-    if (diagnoser.includes(term)) score += 25;
-    if (beskrivelse.includes(term)) score += 15;
-    if (guiding.includes(term)) score += 10;
-    if (traening.includes(term)) score += 10;
+    if (temaList.includes(term)) {
+      score += 25;
+    } else if (temaList.some((t) => t.includes(term))) {
+      score += 10;
+    }
+
+    if (beskrivelse.includes(term)) score += 8;
+    if (guiding.includes(term)) score += 4;
+    if (traening.includes(term)) score += 4;
   }
 
-  return score;
+  return { score, strongMatch };
 }
 
 function toSearchResult(c, score) {
   return {
     id: c.id || null,
     titel: c.titel || null,
-    tema: c.tema || null,
+    tema: Array.isArray(c.tema) ? c.tema : c.tema ? [c.tema] : [],
     relevante_diagnoser: Array.isArray(c.relevante_diagnoser)
       ? c.relevante_diagnoser
       : [],
@@ -140,14 +166,19 @@ export default async function handler(req, res) {
 
     const searchTerms = buildSearchTerms(searchText, semantic);
 
-    const matchedCases = cases
+    const scoredCases = cases
       .map((c) => {
-        const score = scoreCase(c, searchTerms);
-        return { caseItem: c, score };
+        const result = scoreCase(c, searchTerms);
+        return { caseItem: c, score: result.score, strongMatch: result.strongMatch };
       })
-      .filter((item) => item.score > 0)
+      .filter((item) => item.score > 0);
+
+    const strongMatches = scoredCases.filter((item) => item.strongMatch);
+    const pool = strongMatches.length > 0 ? strongMatches : scoredCases;
+
+    const matchedCases = pool
       .sort((a, b) => b.score - a.score)
-      .slice(0, 20)
+      .slice(0, 10)
       .map((item) => toSearchResult(item.caseItem, item.score));
 
     return res.status(200).json({
