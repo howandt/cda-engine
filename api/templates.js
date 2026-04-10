@@ -30,31 +30,26 @@ export default async function handler(req, res) {
   try {
     const { type } = req.query;
 
-    if (type === "index") {
-      const indexPath = path.join(
-        process.cwd(),
-        "data",
-        "CDA_Templates",
-        "cda_templates_index.json"
-      );
-
-      const data = readJsonFile(indexPath);
-
-      return res.status(200).json({
-        success: true,
-        source: "local",
-        data,
-      });
-    }
-
     const templatesPath = path.join(process.cwd(), "data", "CDA_Templates.json");
     const data = readJsonFile(templatesPath);
 
-    const templates = Array.isArray(data.template_database?.templates)
-      ? data.template_database.templates
+    const templateDatabase = data.template_database || data;
+    const templates = Array.isArray(templateDatabase.templates)
+      ? templateDatabase.templates
       : [];
+    const metadata = templateDatabase.metadata || {};
+    const searchIndex =
+      templateDatabase.search_index ||
+      data.search_index ||
+      {};
 
-    const metadata = data.template_database?.metadata || {};
+    if (type === "index") {
+      return res.status(200).json({
+        success: true,
+        source: "local",
+        data: searchIndex,
+      });
+    }
 
     return res.status(200).json({
       success: true,
