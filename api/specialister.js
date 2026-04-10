@@ -1,65 +1,48 @@
-// Vercel Serverless Function - Specialister API med caching
-const fetch = require('node-fetch');
+import fs from "fs";
+import path from "path";
 
-// In-memory cache
-let cache = {
-  data: null,
-  timestamp: 0
-};
-
-const CACHE_DURATION = 1000 * 60 * 60; // 1 time
-const GITHUB_URL = 'https://raw.githubusercontent.com/howandt/cda-engine-clean/main/data/CDA_SpecialistPanel.json';
-
-function isCacheValid() {
-  if (!cache.data) return false;
-  const age = Date.now() - cache.timestamp;
-  return age < CACHE_DURATION;
-}
-
-async function fetchFromGitHub() {
-  const response = await fetch(GITHUB_URL);
-  if (!response.ok) {
-    throw new Error(`GitHub fetch failed: ${response.status}`);
+function readJsonFile(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Datafil ikke fundet: ${filePath}`);
   }
-  return await response.json();
+
+  const raw = fs.readFileSync(filePath, "utf8");
+  return JSON.parse(raw);
 }
 
-module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
-  if (req.method === 'OPTIONS') {
+export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  try {
-    if (isCacheValid()) {
-      console.log('[CACHE HIT] SpecialistPanel');
-      return res.status(200).json({
-        source: 'cache',
-        data: cache.data,
-        cached_at: new Date(cache.timestamp).toISOString()
-      });
-    }
-
-    console.log('[CACHE MISS] SpecialistPanel - fetching from GitHub');
-    const data = await fetchFromGitHub();
-
-    cache.data = data;
-    cache.timestamp = Date.now();
-
-    return res.status(200).json({
-      source: 'github',
-      data: data,
-      fetched_at: new Date().toISOString()
-    });
-
-  } catch (error) {
-    console.error('SpecialistPanel API error:', error);
-    return res.status(500).json({
-      error: 'Failed to fetch specialist panel data',
-      message: error.message
+  if (req.method !== "GET") {
+    return res.status(405).json({
+      success: false,
+      error: "Method not allowed",
+      allowed_methods: ["GET"],
     });
   }
-};
+
+  try {
+    const dataPath = path.join(process.cwd(), "data", "CDA_SpecialistPanel.json");
+    const data = readJsonFile(dataPath);
+
+    return res.status(200).json({
+      success: true,
+      source: "local",
+      data,
+    });
+  } catch (error) {
+    console.error("SpecialistPanel API error:", error);
+
+    return res.status(500).json({
+      success: false,
+      error: "Failed to load specialist panel data",
+      message: error.message,
+    });
+  }
+}
