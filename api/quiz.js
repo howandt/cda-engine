@@ -1,220 +1,235 @@
-// api/quiz.js
-// CDA Quiz Motor API with caching
+import fs from "fs";
+import path from "path";
+
+function readJsonFile(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Datafil ikke fundet: ${filePath}`);
+  }
+
+  const raw = fs.readFileSync(filePath, "utf8");
+  return JSON.parse(raw);
+}
+
+function getGrade(percentage) {
+  if (percentage >= 90) return "A - Fremragende";
+  if (percentage >= 80) return "B - Meget godt";
+  if (percentage >= 70) return "C - Godt";
+  if (percentage >= 60) return "D - Tilstrækkeligt";
+  if (percentage >= 50) return "E - Bestået";
+  return "F - Ikke bestået";
+}
 
 export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  if (req.method !== 'GET' && req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "GET" && req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    // Fetch quiz bank from GitHub
-    const response = await fetch(
-      'https://raw.githubusercontent.com/howandt/cda-engine-clean/refs/heads/main/data/CDA_Quiz_Bank.json',
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Cache-Control': 'public, max-age=3600' // Cache 1 hour
-        }
-      }
-    );
+    const dataPath = path.join(process.cwd(), "data", "CDA_Quiz_Bank.json");
+    const data = readJsonFile(dataPath);
+    const quizzes = Array.isArray(data.quizzes) ? data.quizzes : [];
 
-    if (!response.ok) {
-      throw new Error(`GitHub fetch failed: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // GET: Retrieve quizzes with filtering
-    if (req.method === 'GET') {
+    if (req.method === "GET") {
       const {
         quiz_id,
         difficulty,
         type,
         keywords,
         source_case,
-        public_only
+        public_only,
       } = req.query;
 
-      let quizzes = data.quizzes;
+      let filteredQuizzes = [...quizzes];
 
-      // Filter by quiz_id
       if (quiz_id) {
-        const quiz = quizzes.find(q => q.quiz_id === quiz_id);
+        const quiz = filteredQuizzes.find((q) => q.quiz_id === quiz_id);
+
         if (!quiz) {
-          return res.status(404).json({ error: 'Quiz not found' });
+          return res.status(404).json({ error: "Quiz not found" });
         }
+
         return res.status(200).json({
-          version: data.version,
-          quiz
+          version: data.version || null,
+          quiz,
         });
       }
 
-      // Filter by difficulty
       if (difficulty) {
-        quizzes = quizzes.filter(q => 
-          q.difficulty.toLowerCase() === difficulty.toLowerCase()
+        filteredQuizzes = filteredQuizzes.filter(
+          (q) =>
+            String(q.difficulty || "").toLowerCase() ===
+            String(difficulty).toLowerCase()
         );
       }
 
-      // Filter by type
       if (type) {
-        quizzes = quizzes.filter(q => 
-          q.type.toLowerCase() === type.toLowerCase()
+        filteredQuizzes = filteredQuizzes.filter(
+          (q) =>
+            String(q.type || "").toLowerCase() === String(type).toLowerCase()
         );
       }
 
-      // Filter by keywords
       if (keywords) {
-        const keywordArray = keywords.split(',').map(k => k.trim().toLowerCase());
-        quizzes = quizzes.filter(q => 
-          keywordArray.some(keyword => 
-            q.keywords.some(qk => qk.toLowerCase().includes(keyword))
+        const keywordArray = String(keywords)
+          .split(",")
+          .map((k) => k.trim().toLowerCase())
+          .filter(Boolean);
+
+        filteredQuizzes = filteredQuizzes.filter((q) =>
+          keywordArray.some((keyword) =>
+            Array.isArray(q.keywords) &&
+            q.keywords.some((qk) =>
+              String(qk).toLowerCase().includes(keyword)
+            )
           )
         );
       }
 
-      // Filter by source_case
       if (source_case) {
-        quizzes = quizzes.filter(q => q.source_case === source_case);
+        filteredQuizzes = filteredQuizzes.filter(
+          (q) => String(q.source_case || "") === String(source_case)
+        );
       }
 
-      // Filter by public
-      if (public_only === 'true') {
-        quizzes = quizzes.filter(q => q.public === true);
+      if (public_only === "true") {
+        filteredQuizzes = filteredQuizzes.filter((q) => q.public === true);
       }
 
-      // Return list of quizzes (without full questions for overview)
-      const quizOverview = quizzes.map(q => ({
-        quiz_id: q.quiz_id,
-        title: q.title,
-        description: q.description,
-        type: q.type,
-        source_case: q.source_case,
-        keywords: q.keywords,
-        difficulty: q.difficulty,
-        total_possible_points: q.total_possible_points,
-        passing_score: q.passing_score,
-        question_count: q.questions.length,
-        tags: q.tags,
-        usage_count: q.usage_count
+      const quizOverview = filteredQuizzes.map((q) => ({
+        quiz_id: q.quiz_id || null,
+        title: q.title || null,
+        description: q.description || null,
+        type: q.type || null,
+        source_case: q.source_case || null,
+        keywords: Array.isArray(q.keywords) ? q.keywords : [],
+        difficulty: q.difficulty || null,
+        total_possible_points: q.total_possible_points || 0,
+        passing_score: q.passing_score || 0,
+        question_count: Array.isArray(q.questions) ? q.questions.length : 0,
+        tags: Array.isArray(q.tags) ? q.tags : [],
+        usage_count: q.usage_count || 0,
       }));
 
       return res.status(200).json({
-        version: data.version,
-        quiz_system: data.quiz_system,
-        total_quizzes: data.metadata.total_quizzes,
+        version: data.version || null,
+        quiz_system: data.quiz_system || null,
+        total_quizzes: data.metadata?.total_quizzes || quizzes.length,
         filtered_count: quizOverview.length,
         filters_applied: {
           difficulty: difficulty || null,
           type: type || null,
           keywords: keywords || null,
           source_case: source_case || null,
-          public_only: public_only || null
+          public_only: public_only || null,
         },
         quizzes: quizOverview,
-        api_filters: data.api_filters
+        api_filters: data.api_filters || null,
       });
     }
 
-    // POST: Submit quiz answers and calculate score
-    if (req.method === 'POST') {
-      const { quiz_id, answers } = req.body;
+    if (req.method === "POST") {
+      const { quiz_id, answers } = req.body || {};
 
       if (!quiz_id || !answers) {
-        return res.status(400).json({ 
-          error: 'Missing required fields',
-          required: ['quiz_id', 'answers']
+        return res.status(400).json({
+          error: "Missing required fields",
+          required: ["quiz_id", "answers"],
         });
       }
 
-      // Find the quiz
-      const quiz = data.quizzes.find(q => q.quiz_id === quiz_id);
+      const quiz = quizzes.find((q) => q.quiz_id === quiz_id);
+
       if (!quiz) {
-        return res.status(404).json({ error: 'Quiz not found' });
+        return res.status(404).json({ error: "Quiz not found" });
       }
 
-      // Calculate score
       let totalScore = 0;
       const results = [];
 
-      quiz.questions.forEach((question, index) => {
+      const questions = Array.isArray(quiz.questions) ? quiz.questions : [];
+
+      questions.forEach((question, index) => {
         const userAnswer = answers[index];
-        
+
         if (userAnswer !== undefined && userAnswer !== null) {
-          const selectedOption = question.options[userAnswer];
-          
+          const selectedOption =
+            Array.isArray(question.options) ? question.options[userAnswer] : null;
+
           if (selectedOption) {
-            totalScore += selectedOption.points;
-            
+            totalScore += Number(selectedOption.points || 0);
+
             results.push({
-              question_id: question.question_id,
-              question: question.question,
+              question_id: question.question_id || null,
+              question: question.question || null,
               user_answer_index: userAnswer,
-              user_answer_text: selectedOption.text,
-              points_earned: selectedOption.points,
-              feedback: selectedOption.feedback,
-              correct: selectedOption.points === 10
+              user_answer_text: selectedOption.text || null,
+              points_earned: Number(selectedOption.points || 0),
+              feedback: selectedOption.feedback || null,
+              correct: Number(selectedOption.points || 0) === 10,
+            });
+          } else {
+            results.push({
+              question_id: question.question_id || null,
+              question: question.question || null,
+              user_answer_index: userAnswer,
+              user_answer_text: "Invalid answer index",
+              points_earned: 0,
+              feedback: "Answer index not found",
+              correct: false,
             });
           }
         } else {
           results.push({
-            question_id: question.question_id,
-            question: question.question,
+            question_id: question.question_id || null,
+            question: question.question || null,
             user_answer_index: null,
-            user_answer_text: 'No answer',
+            user_answer_text: "No answer",
             points_earned: 0,
-            feedback: 'No answer provided',
-            correct: false
+            feedback: "No answer provided",
+            correct: false,
           });
         }
       });
 
-      const passed = totalScore >= quiz.passing_score;
-      const percentage = Math.round((totalScore / quiz.total_possible_points) * 100);
+      const possiblePoints = Number(quiz.total_possible_points || 0);
+      const passingScore = Number(quiz.passing_score || 0);
+      const percentage =
+        possiblePoints > 0 ? Math.round((totalScore / possiblePoints) * 100) : 0;
 
       return res.status(200).json({
-        quiz_id: quiz.quiz_id,
-        quiz_title: quiz.title,
+        quiz_id: quiz.quiz_id || null,
+        quiz_title: quiz.title || null,
         total_score: totalScore,
-        possible_points: quiz.total_possible_points,
-        passing_score: quiz.passing_score,
-        percentage: percentage,
-        passed: passed,
+        possible_points: possiblePoints,
+        passing_score: passingScore,
+        percentage,
+        passed: totalScore >= passingScore,
         grade: getGrade(percentage),
-        results: results,
+        results,
         summary: {
-          correct_answers: results.filter(r => r.correct).length,
-          partial_answers: results.filter(r => r.points_earned === 5).length,
-          wrong_answers: results.filter(r => r.points_earned < 0 || r.points_earned === 0).length,
-          total_questions: quiz.questions.length
-        }
+          correct_answers: results.filter((r) => r.correct).length,
+          partial_answers: results.filter((r) => r.points_earned === 5).length,
+          wrong_answers: results.filter(
+            (r) => r.points_earned < 0 || r.points_earned === 0
+          ).length,
+          total_questions: questions.length,
+        },
       });
     }
-
   } catch (error) {
-    console.error('Quiz API Error:', error);
-    res.status(500).json({ 
-      error: 'Failed to process quiz request',
-      details: error.message 
+    console.error("Quiz API Error:", error);
+
+    return res.status(500).json({
+      error: "Failed to process quiz request",
+      details: error.message,
     });
   }
-}
-
-// Helper function to calculate grade
-function getGrade(percentage) {
-  if (percentage >= 90) return 'A - Fremragende';
-  if (percentage >= 80) return 'B - Meget godt';
-  if (percentage >= 70) return 'C - Godt';
-  if (percentage >= 60) return 'D - Tilstrækkeligt';
-  if (percentage >= 50) return 'E - Bestået';
-  return 'F - Ikke bestået';
 }
