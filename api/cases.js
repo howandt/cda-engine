@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     const { id, category, diagnose, miljø, age, search, sort } = req.query;
 
     // 🔹 Hent den rensede index-fil
-    const dataPath = path.join(process.cwd(), "public", "data", "CDA_Cases_Index_clean.json");
+    const dataPath = path.join(process.cwd(), "data", "cases_ORIGINAL_ARCHIVE", "adhd_angst_cases.json");
 
     if (!fs.existsSync(dataPath)) {
       return res.status(404).json({
