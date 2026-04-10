@@ -1,130 +1,137 @@
-// api/pbl-projects.js
-// CDA PBL Projects API with caching
+import fs from "fs";
+import path from "path";
+
+function readJsonFile(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Datafil ikke fundet: ${filePath}`);
+  }
+
+  const raw = fs.readFileSync(filePath, "utf8");
+  return JSON.parse(raw);
+}
 
 export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "GET") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    // Fetch from GitHub raw URL
-    const response = await fetch(
-      'https://raw.githubusercontent.com/howandt/cda-engine-clean/refs/heads/main/data/CDA_PBL_Projects.json',
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Cache-Control': 'public, max-age=3600' // Cache 1 hour
-        }
-      }
-    );
+    const dataPath = path.join(process.cwd(), "data", "CDA_PBL_Projects.json");
+    const data = readJsonFile(dataPath);
 
-    if (!response.ok) {
-      throw new Error(`GitHub fetch failed: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // Query parameters for filtering
     const {
       diagnosis,
       level,
       social,
       structure,
       stimuli,
-      id
+      id,
     } = req.query;
 
-    let projects = data.projects;
+    let projects = Array.isArray(data.projects) ? [...data.projects] : [];
 
-    // Filter by ID if requested
     if (id) {
-      const project = projects.find(p => p.id === id);
+      const project = projects.find((p) => String(p.id || "") === String(id));
+
       if (!project) {
-        return res.status(404).json({ error: 'Project not found' });
+        return res.status(404).json({ error: "Project not found" });
       }
+
       return res.status(200).json({
-        version: data.version,
-        project
+        version: data.version || null,
+        project,
       });
     }
 
-    // Filter by diagnosis
     if (diagnosis) {
-      const diagnosisArray = diagnosis.split(',').map(d => d.trim());
-      projects = projects.filter(p => 
-        diagnosisArray.some(d => 
-          p.diagnosis_match.some(dm => 
-            dm.toLowerCase().includes(d.toLowerCase())
+      const diagnosisArray = String(diagnosis)
+        .split(",")
+        .map((d) => d.trim())
+        .filter(Boolean);
+
+      projects = projects.filter(
+        (p) =>
+          diagnosisArray.some(
+            (d) =>
+              Array.isArray(p.diagnosis_match) &&
+              p.diagnosis_match.some((dm) =>
+                String(dm).toLowerCase().includes(d.toLowerCase())
+              )
           )
-        )
       );
     }
 
-    // Filter by level
     if (level) {
-      projects = projects.filter(p => 
-        p.level.toLowerCase() === level.toLowerCase()
+      projects = projects.filter(
+        (p) =>
+          String(p.level || "").toLowerCase() === String(level).toLowerCase()
       );
     }
 
-    // Filter by social exposure
     if (social) {
-      projects = projects.filter(p => 
-        p.social_exposure.toLowerCase() === social.toLowerCase()
+      projects = projects.filter(
+        (p) =>
+          String(p.social_exposure || "").toLowerCase() ===
+          String(social).toLowerCase()
       );
     }
 
-    // Filter by structure need
     if (structure) {
-      projects = projects.filter(p => 
-        p.structure_need.toLowerCase() === structure.toLowerCase()
+      projects = projects.filter(
+        (p) =>
+          String(p.structure_need || "").toLowerCase() ===
+          String(structure).toLowerCase()
       );
     }
 
-    // Filter by stimuli type
     if (stimuli) {
-      const stimuliArray = stimuli.split(',').map(s => s.trim());
-      projects = projects.filter(p => 
-        stimuliArray.some(s => 
-          p.stimuli_type.some(st => 
-            st.toLowerCase().includes(s.toLowerCase())
+      const stimuliArray = String(stimuli)
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+
+      projects = projects.filter(
+        (p) =>
+          stimuliArray.some(
+            (s) =>
+              Array.isArray(p.stimuli_type) &&
+              p.stimuli_type.some((st) =>
+                String(st).toLowerCase().includes(s.toLowerCase())
+              )
           )
-        )
       );
     }
 
-    // Return filtered results
-    res.status(200).json({
-      version: data.version,
-      total_projects: data.total_projects,
+    return res.status(200).json({
+      version: data.version || null,
+      total_projects: data.total_projects || projects.length,
       filtered_count: projects.length,
       filters_applied: {
         diagnosis: diagnosis || null,
         level: level || null,
         social: social || null,
         structure: structure || null,
-        stimuli: stimuli || null
+        stimuli: stimuli || null,
       },
       projects,
-      filter_categories: data.filter_categories,
-      teacher_templates: data.teacher_templates,
-      matching_algorithm: data.matching_algorithm
+      filter_categories: data.filter_categories || null,
+      teacher_templates: data.teacher_templates || null,
+      matching_algorithm: data.matching_algorithm || null,
     });
-
   } catch (error) {
-    console.error('PBL API Error:', error);
-    res.status(500).json({ 
-      error: 'Failed to fetch PBL projects',
-      details: error.message 
+    console.error("PBL API Error:", error);
+
+    return res.status(500).json({
+      error: "Failed to load PBL projects",
+      details: error.message,
     });
   }
 }
