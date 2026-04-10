@@ -1,6 +1,17 @@
 import fs from "fs";
 import path from "path";
 
+function toSearchResult(d) {
+  return {
+    id: d.id || null,
+    navn: d.navn || null,
+    fuld_navn: d.fuld_navn || null,
+    kategori: d.kategori || null,
+    praevalens: d.praevalens || null,
+    sidst_opdateret: d.sidst_opdateret || null,
+  };
+}
+
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
@@ -128,7 +139,7 @@ export default async function handler(req, res) {
         search: search || null,
         komorbiditet: komorbiditet || null,
       },
-      diagnoser: filteredDiagnoser,
+      diagnoser: filteredDiagnoser.map(toSearchResult),
     });
   } catch (error) {
     console.error("API Error:", error);
