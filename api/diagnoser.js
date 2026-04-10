@@ -1,154 +1,146 @@
-// Diagnoser API - Alle 15 diagnoser med fuld dokumentation
-// Hans' 9000+ timers arbejde samlet i ét API
+import fs from "fs";
+import path from "path";
 
 export default async function handler(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
-  // Handle OPTIONS request
-  if (req.method === 'OPTIONS') {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  // Only allow GET requests
-  if (req.method !== 'GET') {
-    return res.status(405).json({ 
-      error: 'Method not allowed',
-      allowed_methods: ['GET']
+  if (req.method !== "GET") {
+    return res.status(405).json({
+      error: "Method not allowed",
+      allowed_methods: ["GET"],
     });
   }
 
   try {
-    // Hent query parameters
-    const { 
-      id,           // Specifik diagnose ID (f.eks. "adhd")
-      kategori,     // Filter efter kategori
-      search,       // Søg i navn, symptomer, nøgleord
-      komorbiditet  // Find diagnoser med specifik komorbiditet
-    } = req.query;
+    const { id, kategori, search, komorbiditet } = req.query;
 
-    // Fetch data fra GitHub
-    const dataUrl = 'https://raw.githubusercontent.com/howandt/cda-engine-clean/refs/heads/main/data/CDA_Diagnoser.json';
-    
-    const response = await fetch(dataUrl, {
-      headers: {
-        'Cache-Control': 'max-age=3600' // 1 times cache
-      }
-    });
+    const dataPath = path.join(process.cwd(), "data", "CDA_Diagnoser.json");
 
-    if (!response.ok) {
-      throw new Error(`GitHub fetch failed: ${response.status}`);
+    if (!fs.existsSync(dataPath)) {
+      return res.status(404).json({
+        error: "Datafil ikke fundet",
+        path: dataPath,
+      });
     }
 
-    const data = await response.json();
+    const raw = fs.readFileSync(dataPath, "utf8");
+    const data = JSON.parse(raw);
 
-    // Hvis specifik ID er angivet
+    const diagnoser = Array.isArray(data.diagnoser) ? data.diagnoser : [];
+
     if (id) {
-      const diagnose = data.diagnoser.find(d => 
-        d.id.toLowerCase() === id.toLowerCase()
+      const diagnose = diagnoser.find(
+        (d) => String(d.id || "").toLowerCase() === String(id).toLowerCase()
       );
-      
+
       if (!diagnose) {
         return res.status(404).json({
-          error: 'Diagnose ikke fundet',
+          error: "Diagnose ikke fundet",
           requested_id: id,
-          available_ids: data.diagnoser.map(d => d.id)
+          available_ids: diagnoser.map((d) => d.id),
         });
       }
-      
+
       return res.status(200).json({
-        version: data.version,
-        diagnose: diagnose
+        version: data.version || null,
+        diagnose,
       });
     }
 
-    // Start med alle diagnoser
-    let filteredDiagnoser = [...data.diagnoser];
+    let filteredDiagnoser = [...diagnoser];
 
-    // Filter efter kategori
     if (kategori) {
-      filteredDiagnoser = filteredDiagnoser.filter(d => 
-        d.kategori.toLowerCase().includes(kategori.toLowerCase())
+      filteredDiagnoser = filteredDiagnoser.filter((d) =>
+        String(d.kategori || "")
+          .toLowerCase()
+          .includes(String(kategori).toLowerCase())
       );
     }
 
-    // Filter efter komorbiditet
     if (komorbiditet) {
-      filteredDiagnoser = filteredDiagnoser.filter(d => {
-        if (!d.komorbiditet_links || d.komorbiditet_links.length === 0) {
+      filteredDiagnoser = filteredDiagnoser.filter((d) => {
+        if (
+          !Array.isArray(d.komorbiditet_links) ||
+          d.komorbiditet_links.length === 0
+        ) {
           return false;
         }
-        
-        // Tjek om nogen af komorbiditet links indeholder søgningen
-        return d.komorbiditet_links.some(link => {
-          if (typeof link === 'string') {
-            return link.toLowerCase().includes(komorbiditet.toLowerCase());
-          }
-          return false;
-        });
+
+        return d.komorbiditet_links.some((link) =>
+          String(link).toLowerCase().includes(String(komorbiditet).toLowerCase())
+        );
       });
     }
 
-    // Søgning i navn, symptomer, nøgleord og indhold
     if (search) {
-      const searchLower = search.toLowerCase();
-      
-      filteredDiagnoser = filteredDiagnoser.filter(d => {
-        // Søg i navn
-        if (d.navn.toLowerCase().includes(searchLower) ||
-            d.fuld_navn.toLowerCase().includes(searchLower)) {
+      const q = String(search).toLowerCase();
+
+      filteredDiagnoser = filteredDiagnoser.filter((d) => {
+        if (String(d.id || "").toLowerCase().includes(q)) return true;
+        if (String(d.navn || "").toLowerCase().includes(q)) return true;
+        if (String(d.fuld_navn || "").toLowerCase().includes(q)) return true;
+        if (String(d.kategori || "").toLowerCase().includes(q)) return true;
+
+        if (
+          Array.isArray(d.hovedsymptomer) &&
+          d.hovedsymptomer.some((s) =>
+            String(s).toLowerCase().includes(q)
+          )
+        ) {
           return true;
         }
-        
-        // Søg i symptomer
-        if (d.hovedsymptomer && Array.isArray(d.hovedsymptomer)) {
-          if (d.hovedsymptomer.some(s => 
-            s.toLowerCase().includes(searchLower)
-          )) {
-            return true;
-          }
+
+        if (
+          Array.isArray(d.noegleord) &&
+          d.noegleord.some((n) =>
+            String(n).toLowerCase().includes(q)
+          )
+        ) {
+          return true;
         }
-        
-        // Søg i nøgleord
-        if (d.noegleord && Array.isArray(d.noegleord)) {
-          if (d.noegleord.some(n => 
-            n.toLowerCase().includes(searchLower)
-          )) {
-            return true;
-          }
+
+        if (String(d.indhold_markdown || "").toLowerCase().includes(q)) {
+          return true;
         }
-        
-        // Søg i markdown indhold
-        if (d.indhold_markdown) {
-          return d.indhold_markdown.toLowerCase().includes(searchLower);
+
+        if (
+          Array.isArray(d.komorbiditet_links) &&
+          d.komorbiditet_links.some((k) =>
+            String(k).toLowerCase().includes(q)
+          )
+        ) {
+          return true;
         }
-        
+
         return false;
       });
     }
 
-    // Return filtered results
     return res.status(200).json({
-      version: data.version,
-      description: data.description,
-      total_diagnoser: data.total_diagnoser,
+      version: data.version || null,
+      description: data.description || null,
+      total_diagnoser: diagnoser.length,
       filtered_count: filteredDiagnoser.length,
       filters_applied: {
         id: id || null,
         kategori: kategori || null,
         search: search || null,
-        komorbiditet: komorbiditet || null
+        komorbiditet: komorbiditet || null,
       },
-      diagnoser: filteredDiagnoser
+      diagnoser: filteredDiagnoser,
     });
-
   } catch (error) {
-    console.error('API Error:', error);
-    return res.status(500).json({ 
-      error: 'Internal server error',
-      message: error.message 
+    console.error("API Error:", error);
+
+    return res.status(500).json({
+      error: "Internal server error",
+      message: error.message,
     });
   }
 }
