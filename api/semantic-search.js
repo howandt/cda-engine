@@ -51,77 +51,37 @@ function buildSearchTerms(searchText, semantic) {
   return Array.from(terms).filter(Boolean);
 }
 
-function scoreCase(c, searchTerms, primaryTerm) {
+function scoreTextMatch(c, searchTerms) {
   const id = normalize(c.id);
   const titel = normalize(c.titel);
   const temaList = normalizeArray(c.tema);
-  const diagnoserList = normalizeArray(c.relevante_diagnoser);
   const beskrivelse = normalize(c.beskrivelse);
   const guiding = normalize(c.cda_guiding);
   const traening = normalize(c.cdt_træning);
 
   let score = 0;
-  let strongMatch = false;
-  let exactDiagnosisMatch = false;
 
   for (const term of searchTerms) {
     if (!term) continue;
 
-    // ID
-    if (id === term) {
-      score += 150;
-      strongMatch = true;
-    } else if (id.includes(term)) {
-      score += 40;
-    }
+    if (id === term) score += 100;
+    else if (id.includes(term)) score += 30;
 
-    // Titel
-    if (titel === term) {
-      score += 120;
-      strongMatch = true;
-    } else if (titel.includes(term)) {
-      score += 50;
-    }
+    if (titel === term) score += 80;
+    else if (titel.includes(term)) score += 35;
 
-    // Diagnoser - tungeste felt
-    if (diagnoserList.includes(term)) {
-      score += 220;
-      strongMatch = true;
-      if (term === primaryTerm) {
-        exactDiagnosisMatch = true;
-      }
-    } else if (diagnoserList.some((d) => d.includes(term))) {
-      score += 80;
-      strongMatch = true;
-    }
+    if (temaList.includes(term)) score += 20;
+    else if (temaList.some((t) => t.includes(term))) score += 8;
 
-    // Tema
-    if (temaList.includes(term)) {
-      score += 30;
-    } else if (temaList.some((t) => t.includes(term))) {
-      score += 12;
-    }
-
-    // Svag støtte fra tekst
     if (beskrivelse.includes(term)) score += 6;
-    if (guiding.includes(term)) score += 2;
+    if (guiding.includes(term)) score += 3;
     if (traening.includes(term)) score += 2;
   }
 
-  // Bonus hvis primær søgning findes direkte i titel
-  if (primaryTerm && titel.includes(primaryTerm)) {
-    score += 35;
-  }
-
-  // Kraftig bonus for eksakt diagnosematch
-  if (exactDiagnosisMatch) {
-    score += 300;
-  }
-
-  return { score, strongMatch, exactDiagnosisMatch };
+  return score;
 }
 
-function toSearchResult(c, score) {
+function toSearchResult(c, score, matchType) {
   return {
     id: c.id || null,
     titel: c.titel || null,
@@ -131,6 +91,7 @@ function toSearchResult(c, score) {
       : [],
     beskrivelse: c.beskrivelse || null,
     score,
+    match_type: matchType,
   };
 }
 
@@ -186,39 +147,62 @@ export default async function handler(req, res) {
     const primaryTerm = normalize(searchText);
     const searchTerms = buildSearchTerms(searchText, semantic);
 
-    const scoredCases = cases
-      .map((c) => {
-        const result = scoreCase(c, searchTerms, primaryTerm);
-        return {
-          caseItem: c,
-          score: result.score,
-          strongMatch: result.strongMatch,
-          exactDiagnosisMatch: result.exactDiagnosisMatch,
-        };
-      })
-      .filter((item) => item.score > 0);
+    const primaryMatches = [];
+    const comorbidMatches = [];
+    const textMatches = [];
 
-    const exactDiagnosisMatches = scoredCases.filter((item) => item.exactDiagnosisMatch);
-    const strongMatches = scoredCases.filter((item) => item.strongMatch);
+    for (const c of cases) {
+      const diagnoser = normalizeArray(c.relevante_diagnoser);
+      const textScore = scoreTextMatch(c, searchTerms);
 
-    let pool = scoredCases;
-    if (exactDiagnosisMatches.length > 0) {
-      pool = exactDiagnosisMatches;
-    } else if (strongMatches.length > 0) {
-      pool = strongMatches;
+      const primaryDiagnosis = diagnoser[0] || "";
+      const hasPrimaryDiagnosis = primaryDiagnosis === primaryTerm;
+      const hasComorbidDiagnosis =
+        !hasPrimaryDiagnosis && diagnoser.slice(1).includes(primaryTerm);
+
+      if (hasPrimaryDiagnosis) {
+        primaryMatches.push(
+          toSearchResult(c, 500 + textScore, "primary_diagnosis")
+        );
+        continue;
+      }
+
+      if (hasComorbidDiagnosis) {
+        comorbidMatches.push(
+          toSearchResult(c, 250 + textScore, "comorbid_diagnosis")
+        );
+        continue;
+      }
+
+      if (textScore > 0) {
+        textMatches.push(
+          toSearchResult(c, textScore, "text_match")
+        );
+      }
     }
 
-    const matchedCases = pool
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 10)
-      .map((item) => toSearchResult(item.caseItem, item.score));
+    primaryMatches.sort((a, b) => b.score - a.score);
+    comorbidMatches.sort((a, b) => b.score - a.score);
+    textMatches.sort((a, b) => b.score - a.score);
+
+    const limitedPrimary = primaryMatches.slice(0, 10);
+    const limitedComorbid = comorbidMatches.slice(0, 10);
+    const limitedText = textMatches.slice(0, 10);
 
     return res.status(200).json({
       success: true,
       query: searchText,
-      matches: matchedCases.length,
-      results: matchedCases,
       terms_used: searchTerms,
+      summary: {
+        primary_matches: limitedPrimary.length,
+        comorbid_matches: limitedComorbid.length,
+        text_matches: limitedText.length,
+        total_returned:
+          limitedPrimary.length + limitedComorbid.length + limitedText.length,
+      },
+      primary_matches: limitedPrimary,
+      comorbid_matches: limitedComorbid,
+      text_matches: limitedText,
     });
   } catch (error) {
     console.error("❌ FEJL i /api/semantic-search:", error);
