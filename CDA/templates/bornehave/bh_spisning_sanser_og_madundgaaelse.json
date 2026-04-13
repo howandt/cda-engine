@@ -1,0 +1,88 @@
+{
+"id": "bh_spisning_sanser_og_madundgaaelse",
+"title": "Børnehave – Spisning, sanser og madundgåelse",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"spisning",
+"madundgåelse",
+"sanser",
+"måltider",
+"arfid",
+"sensorik",
+"pædagog"
+],
+"age_range": [3, 6],
+"diagnoses": [
+"ingen diagnose",
+"autisme",
+"angst",
+"sensoriske vanskeligheder",
+"ARFID-lignende spor",
+"traume/belastning"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "moderate",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn med spisevanskeligheder, sensorisk følsomhed og madundgåelse i børnehaven.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der spiser meget lidt, meget snævert, reagerer stærkt på konsistens, lugt, farve eller temperatur, eller bliver utrygge ved måltider. Fokus er på ro, observation og støtte – ikke kamp omkring mad.",
+"principles": [
+"Spisevanskeligheder er ikke bare kræsenhed",
+"Måltider skal være så trygge som muligt",
+"Pres skaber ofte mere modstand, ikke mere spisning",
+"Det er vigtigt at observere både hvad barnet undgår og hvorfor",
+"Vi skal skelne mellem smag, sansning, angst, kontrol og belastning"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der kun spiser få sikre madvarer",
+"Barn der reagerer på lugt, konsistens eller udseende af mad",
+"Barn der bliver utrygt eller går i modstand ved måltider",
+"Barn der spiser meget lidt og mister energi eller deltagelse",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"spisning børnehave",
+"madundgåelse barn",
+"barn vil ikke spise",
+"sensorisk spisning",
+"ARFID spor barn",
+"måltider børnehave",
+"barn reagerer på mad"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Spisning sanser og madundgåelse",
+"Barn vil ikke spise",
+"Barn reagerer på mad",
+"Måltider er svære"
+],
+"variables": {
+"required": ["child_name", "child_age", "institution_name"],
+"optional": [
+"group_name",
+"safe_foods",
+"food_triggers",
+"meal_situations",
+"current_concern"
+]
+},
+"template_markdown": "# 🍽️ Spisning, sanser og madundgåelse – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{safe_foods ? **Kendte trygge madvarer:** {safe_foods} : }\n{food_triggers ? **Kendte mad-triggere:** {food_triggers} : }\n{meal_situations ? **Situationer hvor det især ses:** {meal_situations} : }\n\n---\n\n## 1. Det vi ser\n- Barnet spiser meget lidt eller meget ensidigt: ___________________\n- Reagerer på konsistens, lugt, farve eller temperatur: ____________\n- Bliver utrygt, vredt eller lukker ned ved måltider: ______________\n- Vil kun have få sikre madvarer: __________________________________\n\n## 2. Hvad skal observeres nærmere\n- Hvad barnet faktisk spiser og ikke spiser: _______________________\n- Om det handler om smag, lugt, konsistens, udseende eller kontrol: ________________________________________________________________\n- Om barnet bliver kvalmt, bange eller panisk: _____________________\n- Om det gælder alle steder eller kun i bestemte rammer: __________\n- Om spisningen påvirker energi, trivsel eller deltagelse: _________\n\n## 3. Hvad kan gøres med det samme\n- Sænk presset omkring maden\n- Skab ro og forudsigelighed ved måltidet\n- Accepter små trygge skridt\n- Lad barnet være tæt på mad uden tvang til at spise\n- Brug kendte og trygge madvalg som base\n- Observer uden kamp\n\n**Det vi vil prøve nu:** ___________________________________________\n\n## 4. Barnets mulige oplevelse\n- Maden kan føles forkert, voldsom eller ulækker: _________________\n- Kroppen kan sige nej før barnet kan forklare hvorfor: ____________\n- Måltidet kan være forbundet med pres og utryghed: ________________\n- Barnet prøver at beskytte sig selv, ikke at være besværligt: _____\n\n## 5. Hvad det kan pege på\n- ☐ Sensoriske vanskeligheder\n- ☐ Angst eller kontrolbehov omkring mad\n- ☐ ARFID-lignende spor\n- ☐ Autistiske træk\n- ☐ Belastning eller utryghed\n- ☐ Behov for tættere observation og evt. faglig vurdering\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Tal roligt og uden pres\n- Undgå forhandling og magtkamp\n- Brug trygge, enkle ord\n- Anerkend barnets oplevelse uden at gøre undgåelsen forkert\n- Invitér, men kræv ikke\n\n**Sætninger der kan bruges:** _____________________________________\n\n## 7. Hvad man skal undgå\n- Pres for at smage\n- Skam, belønning eller trusler omkring mad\n- 'Du skal bare'\n- At gøre barnet til problem ved bordet\n- At overse hvis spisningen påvirker trivsel og udvikling\n\n## 8. Hvornår det skal løftes videre\n- Hvis barnet spiser meget snævert over tid\n- Hvis måltider giver stærk stress eller panik\n- Hvis energi, vækst, deltagelse eller trivsel påvirkes\n- Hvis barnet undgår mere og mere\n- Hvis støtte i hverdagen ikke ændrer mønstret\n\n**Næste faglige skridt hvis relevant:** _____________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Ved spisevanskeligheder er opgaven først at forstå, hvad barnets krop og nervesystem reagerer på. Målet er ikke at vinde over barnet ved bordet, men at skabe nok tryghed til, at små skridt bliver mulige."
+}

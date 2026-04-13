@@ -1,0 +1,95 @@
+{
+"id": "bh_overgange_og_skift",
+"title": "Børnehave – Overgange og skift",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"overgange",
+"skift",
+"rutiner",
+"forudsigelighed",
+"angst",
+"autisme",
+"adhd"
+],
+"age_range": [
+3,
+6
+],
+"diagnoses": [
+"ingen diagnose",
+"autisme",
+"adhd",
+"angst",
+"traume/belastning",
+"sensoriske vanskeligheder"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "moderate",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn der reagerer stærkt på overgange, aktivitetsskift og ændringer i hverdagen.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der bryder sammen, går i modstand eller mister regulering ved aflevering, samling, oprydning, aktivitetsskift eller ændringer i plan og rytme. Fokus er på forudsigelighed, støtte og omstilling.",
+"principles": [
+"Overgange er ikke små ting for alle børn",
+"Barnet skal hjælpes gennem skift – ikke presses over dem",
+"Varsling og rytme er ofte vigtigere end forklaring og argumenter",
+"Forudsigelighed skaber regulering",
+"Vi observerer hvor og hvornår skift bliver svære, ikke kun at de bliver svære"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der bryder sammen ved aktivitetsskift",
+"Barn der har store vanskeligheder ved aflevering eller oprydning",
+"Barn der reagerer voldsomt på ændringer i plan eller voksne",
+"Barn der har brug for meget lang tid til at omstille sig",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"overgange børnehave",
+"barn reagerer ved skift",
+"aktivitetsskift svært",
+"bryder sammen ved ændringer",
+"aflevering problemer",
+"forudsigelighed barn",
+"rutineskift børnehave"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Overgange og skift",
+"Barn reagerer ved skift",
+"Svært ved overgange",
+"Ændringer i rutine barn"
+],
+"variables": {
+"required": [
+"child_name",
+"child_age",
+"institution_name"
+],
+"optional": [
+"group_name",
+"specific_transitions",
+"known_triggers",
+"things_that_help",
+"current_concern"
+]
+},
+"template_markdown": "# 🔄 Overgange og skift – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{specific_transitions ? **Særligt svære overgange:** {specific_transitions} : }\n{known_triggers ? **Kendte triggere:** {known_triggers} : }\n{things_that_help ? **Det der allerede hjælper:** {things_that_help} : }\n\n---\n\n## 1. Det vi ser\n- Barnet reagerer stærkt ved skift: ________________________________\n- Har svært ved at stoppe en aktivitet: ____________________________\n- Bryder sammen, går i modstand eller fryser fast: ________________\n- Har svært ved aflevering, samling, oprydning eller aktivitetsskift: ____________________________________________________________\n\n## 2. Hvad skal observeres nærmere\n- Hvilke overgange er sværest: ____________________________________\n- Reagerer barnet før, under eller efter skiftet: __________________\n- Hjælper varsling eller visuel støtte: ____________________________\n- Handler det om bestemte voksne, rum eller krav: _________________\n- Hvor lang tid tager det barnet at omstille sig: __________________\n\n## 3. Hvad kan gøres med det samme\n- Tydelig varsling før skift\n- Faste ritualer ved overgange\n- Visuel støtte\n- Én voksen hjælper barnet gennem skiftet\n- Korte og rolige beskeder\n- Tid til at afslutte og forstå næste trin\n\n**Det vi vil prøve nu:** ___________________________________________\n\n## 4. Barnets mulige oplevelse\n- Skift opleves som tab af kontrol: ________________________________\n- Barnet når ikke mentalt med: ____________________________________\n- Uforudsigelighed skaber uro eller alarm: _________________________\n- Barnet bliver presset hurtigere end det kan regulere: ____________\n\n## 5. Hvad det kan pege på\n- ☐ Autistiske træk\n- ☐ Angst og tryghedsbehov\n- ☐ ADHD / reguleringsvanskeligheder\n- ☐ Belastning og alarmberedskab\n- ☐ Behov for mere struktur og forudsigelighed\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Sig hvad der sker nu og bagefter\n- Brug få ord\n- Vær rolig og forudsigelig\n- Anerkend at skift kan være svært\n- Guid barnet frem i små trin\n\n**Sætninger der kan bruges:** _____________________________________\n\n## 7. Hvad man skal undgå\n- Pludselige skift uden forberedelse\n- Pres og hast\n- Skældud fordi barnet ikke skifter hurtigt nok\n- Lange forklaringer midt i sammenbrud\n- At tage modstand personligt\n\n## 8. Hvornår det skal løftes videre\n- Hvis barnet ofte bryder sammen ved almindelige skift\n- Hvis overgange styrer hele dagen negativt\n- Hvis barnet ikke kan deltage uden massiv voksenstøtte\n- Hvis mønstret er vedvarende på tværs af situationer\n- Hvis trivsel eller udvikling påvirkes tydeligt\n\n**Næste faglige skridt hvis relevant:** _____________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Et barn der kæmper med overgange, har ofte brug for mere forudsigelighed og støtte – ikke mere fart. Opgaven er at bygge broer mellem aktiviteterne, så barnet kan følge med uden at miste regulering."
+}

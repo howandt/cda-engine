@@ -1,0 +1,88 @@
+{
+"id": "bh_uro_og_impulsivitet",
+"title": "Børnehave – Uro og impulsivitet",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"uro",
+"impulsivitet",
+"adhd",
+"regulering",
+"bevægelse",
+"overbelastning",
+"pædagog"
+],
+"age_range": [3, 6],
+"diagnoses": [
+"ingen diagnose",
+"adhd",
+"autisme",
+"angst",
+"sensoriske vanskeligheder",
+"traume/belastning"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "moderate",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn med vedvarende uro, impulsivitet og svært ved at holde regulering i børnehavehverdagen.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der er konstant i bevægelse, handler hurtigt, afbryder, mister fokus eller kommer i problemer omkring ventetid, krav og overgange. Fokus er på mønstre, regulering og støtte – ikke skældud.",
+"principles": [
+"Uro og impulsivitet er et signal, ikke en moralsk fejl",
+"Barnet skal hjælpes før det koger over",
+"Korte, tydelige og forudsigelige voksengreb virker bedre end mange ord",
+"Miljø og krav spiller ofte lige så stor rolle som barnet selv",
+"Vi observerer funktion og belastning – ikke bare aktivitet"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der aldrig virker i ro og konstant skifter aktivitet",
+"Barn der handler før det tænker og kommer i konflikter",
+"Barn der ikke kan vente, stå i kø eller sidde i samling",
+"Barn der bliver tydeligt dårligere ved støj, krav eller lange beskeder",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"uro børnehave",
+"impulsivitet barn",
+"barn kan ikke sidde stille",
+"hyperaktivitet børnehave",
+"barn afbryder hele tiden",
+"regulering uro",
+"adhd spor børnehave"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Uro og impulsivitet",
+"Barn kan ikke sidde stille",
+"Barn er konstant i bevægelse",
+"Impulsivt barn børnehave"
+],
+"variables": {
+"required": ["child_name", "child_age", "institution_name"],
+"optional": [
+"group_name",
+"specific_situations",
+"known_triggers",
+"things_that_help",
+"current_concern"
+]
+},
+"template_markdown": "# ⚡ Uro og impulsivitet – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{specific_situations ? **Typiske situationer:** {specific_situations} : }\n{known_triggers ? **Kendte triggere:** {known_triggers} : }\n{things_that_help ? **Det der allerede hjælper:** {things_that_help} : }\n\n---\n\n## 1. Det vi ser\n- Barnet er konstant i bevægelse: _________________________________\n- Handler hurtigt uden at nå at stoppe op: ________________________\n- Har svært ved at vente, lytte eller blive i samme aktivitet: _____\n- Skifter hurtigt spor eller afbryder: _____________________________\n\n## 2. Hvad skal observeres nærmere\n- Sker det hele dagen eller i bestemte situationer: _______________\n- Bliver det værre ved krav, støj, ventetid eller overgange: _______\n- Kan barnet samle sig i noget det selv vælger: ____________________\n- Er der forskel ude og inde: _____________________________________\n- Hvordan reagerer barnet bagefter: ________________________________\n\n## 3. Hvad kan gøres med det samme\n- Giv korte beskeder\n- Én ting ad gangen\n- Byg bevægelse ind i dagen\n- Brug tydelige overgange og varsling\n- Hjælp barnet før det mister regulering\n- Skab faste pladser, rytmer og visuel støtte\n\n**Det vi vil prøve nu:** ___________________________________________\n\n## 4. Barnets mulige oplevelse\n- Kroppen kører for stærkt: _______________________________________\n- Barnet kan have svært ved at holde igen: _________________________\n- Krav kan føles for store eller for lange: ________________________\n- Barnet mislykkes før det når at forstå hvorfor: __________________\n\n## 5. Hvad det kan pege på\n- ☐ ADHD-lignende spor\n- ☐ Reguleringsvanskeligheder\n- ☐ Sensorisk overbelastning\n- ☐ Uro ved utryghed eller belastning\n- ☐ Umoden impulskontrol\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Brug korte sætninger\n- Giv én besked ad gangen\n- Tal roligt og konkret\n- Hjælp mere end du irettesætter\n\n**Sætninger der kan bruges:** _____________________________________\n\n## 7. Hvad man skal undgå\n- Lange forklaringer midt i uro\n- Gentagne irettesættelser\n- 'Sid stille' uden alternativ\n- Skam og sammenligning med rolige børn\n- At vente for længe med støtte\n\n## 8. Hvornår det skal løftes videre\n- Hvis uroen er vedvarende og tydeligt over jævnaldrende\n- Hvis barnet eller andre kommer i fare\n- Hvis trivsel, leg og udvikling påvirkes\n- Hvis samme mønster ses flere steder\n- Hvis støttegreb kun hjælper kortvarigt\n\n**Næste faglige skridt hvis relevant:** _____________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Uro og impulsivitet skal forstås, før det kan hjælpes. Opgaven er ikke at presse barnet ind i ro, men at finde de mønstre, krav og miljøforhold der gør regulering mulig."
+}

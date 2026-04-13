@@ -1,0 +1,97 @@
+{
+"id": "bh_overlevering_til_skole",
+"title": "Børnehave – Overlevering til skole",
+"category": "bornehave",
+"subcategory": "overlevering",
+"tags": [
+"børnehave",
+"skolestart",
+"overlevering",
+"0. klasse",
+"brobygning",
+"pædagog",
+"lærer",
+"overgang"
+],
+"age_range": [
+5,
+6
+],
+"diagnoses": [
+"ingen diagnose",
+"adhd",
+"autisme",
+"angst",
+"traume/belastning",
+"sensoriske vanskeligheder",
+"sprogvanskeligheder"
+],
+"complexity": "intermediate",
+"usage_frequency": "transition",
+"urgency": "planned",
+"target_group": "Pædagoger, børnehaveledere, kommende lærere, skolepersonale",
+"content": {
+"purpose": "Sikrer at vigtig viden om barnet følger med fra børnehave til skole, så barnet ikke skal starte forfra ved skolestart.",
+"description": "Et sagligt overleveringsværktøj til børnehavesporet, hvor det vigtigste om barnets styrker, triggere, støttebehov og trygge måder at møde barnet på samles til næste voksne. Fokus er på praksis, ikke etiketter.",
+"principles": [
+"Barnet skal bæres videre – ikke starte forfra",
+"Vi beskriver det, der er set og virker i praksis",
+"Systemet diagnosticerer ikke",
+"Observationer og kendt faglig information skal holdes adskilt",
+"Overleveringen skal gøre skolestarten roligere og mere præcis"
+],
+"sections": [
+"Barnets styrker",
+"Det der virker i praksis",
+"Kendte triggere og belastninger",
+"Sociale forhold og trygge relationer",
+"Kommunikation der virker",
+"Overgange og strukturbehov",
+"Observationer af betydning for skolestart",
+"Kendt faglig info / udredt eller ej",
+"Hvad skolen bør være opmærksom på fra dag 1"
+],
+"use_cases": [
+"Barn med tydelige støttebehov ved overgang til 0. klasse",
+"Barn med røde flag, hvor skolen skal være forberedt fra første dag",
+"Barn der trives i børnehaven, men kun under bestemte rammer som bør videreføres",
+"Tværfagligt overgangsmøde mellem børnehave og skole",
+"Forældresamarbejde omkring skolestart"
+]
+},
+"search_keywords": [
+"overlevering til skole",
+"børnehave til skole",
+"skolestart observation",
+"0 klasse overgang",
+"hvad skolen bør vide",
+"brobygning barn",
+"overgangsdokument barn"
+],
+"related_templates": [
+"bh_observation_lobende"
+],
+"command_triggers": [
+"Overlevering til skole",
+"Børnehave til skole",
+"Skolestart overlevering",
+"Hvad skolen bør vide"
+],
+"variables": {
+"required": [
+"child_name",
+"child_age",
+"institution_name",
+"school_name",
+"transfer_date"
+],
+"optional": [
+"group_name",
+"primary_contact",
+"parent_contact",
+"known_support_needs",
+"known_professional_info"
+]
+},
+"template_markdown": "# 🎒 Overlevering til skole – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Fra institution:** {institution_name}  \n**Til skole:** {school_name}  \n**Stue/gruppe:** {group_name}  \n**Primær kontakt:** {primary_contact}  \n**Forældre kontakt:** {parent_contact}  \n**Planlagt overgangsdato:** {transfer_date}\n\n{known_support_needs ? **Kendte støttebehov:** {known_support_needs} : }\n{known_professional_info ? **Kendt faglig info:** {known_professional_info} : }\n\n---\n\n## 1. Barnets styrker\n- Hvad barnet er god til: _________________________________________\n- Hvad barnet søger mod: __________________________________________\n- Situationer hvor barnet trives: __________________________________\n\n## 2. Det der virker i praksis\n- Voksengreb der hjælper: ________________________________________\n- Struktur eller rammer der virker: ________________________________\n- Konkrete støtteformer der bør videreføres: _______________________\n\n## 3. Kendte triggere og belastninger\n- Hvad udløser uro, modstand eller tilbagetrækning: ________________\n- Belastende miljøer eller krav: __________________________________\n- Ting der bør forebygges fra start: _______________________________\n\n## 4. Sociale forhold og trygge relationer\n- Børn barnet fungerer godt med: __________________________________\n- Voksentyper eller relationer der skaber tryghed: _________________\n- Sociale sårbarheder der bør kendes: ______________________________\n\n## 5. Kommunikation der virker\n- Hvordan barnet bedst mødes sprogligt: ____________________________\n- Hvad barnet reagerer godt på: ___________________________________\n- Hvad der skaber pres eller misforståelser: _______________________\n\n## 6. Overgange og strukturbehov\n- Hvordan barnet håndterer skift: __________________________________\n- Behov for varsling, rytme eller faste ritualer: __________________\n- Hvad der letter nye situationer: _________________________________\n\n## 7. Observationer af betydning for skolestart\n- Mønstre der er vigtige at kende fra dag 1: _______________________\n- Tegn på trivsel / mistrivsel der bør følges: _____________________\n- Observationer der bør gives videre uden tolkning: ________________\n\n## 8. Kendt faglig info / udredt eller ej\n- ☐ Ingen kendt udredning\n- ☐ Observationer / bekymringsspor\n- ☐ Kendt faglig oplysning\n\n**Note:** Systemet diagnosticerer ikke. Kendt faglig information angives kun, hvis den allerede foreligger fra relevante fagpersoner.\n\n## 9. Hvad skolen bør være opmærksom på fra dag 1\n- Hvad skolen med fordel kan gøre med det samme: ___________________\n- Hvad skolen bør undgå i opstarten: _______________________________\n- Hvad barnet ikke skal starte forfra med: _________________________\n\n---\n\n💡 **Arbejdsprincip:** Overleveringen skal gøre barnet mere forstået fra første dag. Fokus er ikke etiketter, men hvad barnet har brug for, hvad der virker, og hvordan næste voksne kan tage trygt imod barnet."
+}

@@ -1,0 +1,150 @@
+{
+"module": "CDA_Bornehavespor",
+"version": "1.0",
+"description": "Index over børnehavesporets skabeloner i CDA. Bruges til opslag, routing og senere kobling til motoren.",
+"base_path": "CDA/templates/bornehave/",
+"templates": [
+{
+"id": "bh_observation_lobende",
+"title": "Børnehave – Løbende observation",
+"type": "core",
+"category": "observation",
+"age_range": [3, 6],
+"priority": 1,
+"file": "bh_observation_lobende.json",
+"purpose": "Løbende saglig observation i børnehaven",
+"tags": ["observation", "triggere", "styrker", "løbende dokumentation"]
+},
+{
+"id": "bh_overlevering_til_skole",
+"title": "Børnehave – Overlevering til skole",
+"type": "core",
+"category": "overlevering",
+"age_range": [5, 6],
+"priority": 1,
+"file": "bh_overlevering_til_skole.json",
+"purpose": "Brobygning fra børnehave til skole",
+"tags": ["overlevering", "skolestart", "0. klasse", "brobygning"]
+},
+{
+"id": "bh_social_tilbagetraekning",
+"title": "Børnehave – Social tilbagetrækning",
+"type": "adfaerdsspor",
+"category": "social",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_social_tilbagetraekning.json",
+"purpose": "Støtte ved social tilbagetrækning og aleneleg",
+"tags": ["social", "tilbagetrækning", "fællesskab", "aleneleg"]
+},
+{
+"id": "bh_uro_og_impulsivitet",
+"title": "Børnehave – Uro og impulsivitet",
+"type": "adfaerdsspor",
+"category": "regulering",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_uro_og_impulsivitet.json",
+"purpose": "Støtte ved uro, impulsivitet og lav regulering",
+"tags": ["uro", "impulsivitet", "adhd-spor", "regulering"]
+},
+{
+"id": "bh_overgange_og_skift",
+"title": "Børnehave – Overgange og skift",
+"type": "adfaerdsspor",
+"category": "overgange",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_overgange_og_skift.json",
+"purpose": "Støtte ved aktivitetsskift, aflevering og rutineændringer",
+"tags": ["overgange", "skift", "aflevering", "forudsigelighed"]
+},
+{
+"id": "bh_sprog_tavshed_og_kontakt",
+"title": "Børnehave – Sprog, tavshed og kontakt",
+"type": "adfaerdsspor",
+"category": "kommunikation",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_sprog_tavshed_og_kontakt.json",
+"purpose": "Støtte ved tavshed, lav verbal kontakt og kommunikative vanskeligheder",
+"tags": ["sprog", "tavshed", "kontakt", "selektiv mutisme-spor"]
+},
+{
+"id": "bh_spisning_sanser_og_madundgaaelse",
+"title": "Børnehave – Spisning, sanser og madundgåelse",
+"type": "adfaerdsspor",
+"category": "spisning",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_spisning_sanser_og_madundgaaelse.json",
+"purpose": "Støtte ved spisevanskeligheder, sensoriske reaktioner og madundgåelse",
+"tags": ["spisning", "madundgåelse", "arfid-spor", "måltider"]
+},
+{
+"id": "bh_sensoriske_reaktioner_og_regulering",
+"title": "Børnehave – Sensoriske reaktioner og regulering",
+"type": "adfaerdsspor",
+"category": "sensorik",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_sensoriske_reaktioner_og_regulering.json",
+"purpose": "Støtte ved sanseoverbelastning, sansesøgning og regulering",
+"tags": ["sensorik", "sanseoverbelastning", "sansesøgning", "regulering"]
+},
+{
+"id": "bh_aggression_alarm_og_voldsomme_reaktioner",
+"title": "Børnehave – Aggression, alarm og voldsomme reaktioner",
+"type": "adfaerdsspor",
+"category": "alarm",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_aggression_alarm_og_voldsomme_reaktioner.json",
+"purpose": "Støtte ved udbrud, alarm og voldsomme reaktioner",
+"tags": ["aggression", "alarm", "udbrud", "sikkerhed"]
+},
+{
+"id": "bh_tryghed_angst_og_separationsvanskeligheder",
+"title": "Børnehave – Tryghed, angst og separationsvanskeligheder",
+"type": "adfaerdsspor",
+"category": "tryghed",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_tryghed_angst_og_separationsvanskeligheder.json",
+"purpose": "Støtte ved utryghed, angstspor og svære afleveringer",
+"tags": ["tryghed", "angst", "separation", "aflevering"]
+},
+{
+"id": "bh_leg_fleksibilitet_og_samspil",
+"title": "Børnehave – Leg, fleksibilitet og samspil",
+"type": "adfaerdsspor",
+"category": "leg",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_leg_fleksibilitet_og_samspil.json",
+"purpose": "Støtte ved legesvigt, rigiditet og samspilsvanskeligheder",
+"tags": ["leg", "fleksibilitet", "samspil", "sociale færdigheder"]
+},
+{
+"id": "bh_belastning_traume_og_utryghed",
+"title": "Børnehave – Belastning, traume og utryghed",
+"type": "adfaerdsspor",
+"category": "belastning",
+"age_range": [3, 6],
+"priority": 2,
+"file": "bh_belastning_traume_og_utryghed.json",
+"purpose": "Støtte ved vedvarende alarm, belastning og utryghed",
+"tags": ["belastning", "traume-spor", "utryghed", "alarmberedskab"]
+}
+],
+"routing_logic": {
+"default_entry": "bh_observation_lobende",
+"transition_entry": "bh_overlevering_til_skole",
+"mode": "behavior_first",
+"notes": [
+"Systemet starter i observation og ikke i diagnose",
+"Adfærdsspor vælges ud fra barnets beskrivelse og mønstre",
+"Overlevering til skole aktiveres ved skolestart eller relevant rødt flag"
+]
+}
+}

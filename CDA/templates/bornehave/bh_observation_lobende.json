@@ -1,0 +1,97 @@
+{
+"id": "bh_observation_lobende",
+"title": "Børnehave – Løbende observation",
+"category": "bornehave",
+"subcategory": "observation",
+"tags": [
+"børnehave",
+"3-6 år",
+"observation",
+"triggere",
+"styrker",
+"tidlige tegn",
+"overlevering",
+"pædagog"
+],
+"age_range": [3, 6],
+"diagnoses": [
+"ingen diagnose",
+"adhd",
+"autisme",
+"angst",
+"traume/belastning",
+"sensoriske vanskeligheder",
+"sprogvanskeligheder"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "routine",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Skaber en saglig, løbende observation af barnet i børnehaven med fokus på mønstre, triggere, styrker, støttebehov og brugbar videreføring til skole.",
+"description": "Et observationsværktøj til børnehavesporet, hvor personalet dokumenterer det, de ser i hverdagen, uden at diagnosticere. Fokus er på konkret adfærd, barnets mulige oplevelse, hvad der virker, og hvad næste voksne skal vide.",
+"principles": [
+"Vi observerer og støtter – vi diagnosticerer ikke",
+"Barnets trivsel og perspektiv er centrum",
+"Mønstre er vigtigere end enkelthændelser",
+"Styrker og det der virker skal dokumenteres lige så tydeligt som vanskeligheder",
+"Materialet skal kunne bruges både nu og ved senere overlevering til skole"
+],
+"sections": [
+"Grundoplysninger",
+"Det vi ser",
+"Mønstre og triggere",
+"Barnets mulige oplevelse",
+"Hvad der virker",
+"Hvad der ikke virker",
+"Styrker og ressourcer",
+"Sociale forhold",
+"Kommunikation",
+"Vurderingsspor",
+"Aftaler og næste observation"
+],
+"use_cases": [
+"Barn der trækker sig fra fællesskabet og leger alene",
+"Barn med uro, impulsivitet eller voldsomme reaktioner ved skift",
+"Barn med spisevanskeligheder, sanseudfordringer eller stærkt tryghedsbehov",
+"Løbende dokumentation før forældresamtale eller tværfaglig drøftelse",
+"Grundlag for overlevering til skole"
+]
+},
+"search_keywords": [
+"børnehave observation",
+"løbende observation",
+"tidlige tegn",
+"pædagog observation",
+"triggere barn",
+"hvad virker for barnet",
+"styrker og ressourcer",
+"rødt flag børnehave",
+"overlevering skole"
+],
+"related_templates": [
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Børnehave observation",
+"Løbende observation børnehave",
+"Observationsskema børnehave",
+"Observation barn 3-6"
+],
+"variables": {
+"required": [
+"child_name",
+"child_age",
+"institution_name",
+"observation_period"
+],
+"optional": [
+"group_name",
+"primary_observer",
+"specific_concern",
+"known_support_needs",
+"known_professional_info"
+]
+},
+"template_markdown": "# 🧸 Løbende observation – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Gruppe/stue:** {group_name}  \n**Observatør:** {primary_observer}  \n**Periode:** {observation_period}\n\n{specific_concern ? **Aktuel bekymring / fokus:** {specific_concern} : }\n{known_support_needs ? **Kendte støttebehov:** {known_support_needs} : }\n{known_professional_info ? **Kendt faglig info:** {known_professional_info} : }\n\n---\n\n## 1. Grundoplysninger\n- Alder og udviklingsmæssig placering: ______________________________\n- Hverdagsmiljøer barnet indgår i: _________________________________\n- Kendte overgange der fylder: ____________________________________\n\n## 2. Det vi ser\n- Konkret adfærd: ________________________________________________\n- Situationer hvor det sker: ______________________________________\n- Hyppighed og intensitet: ________________________________________\n\n## 3. Mønstre og triggere\n- Hvad sker lige før: _____________________________________________\n- Hvem / hvor / hvornår: _________________________________________\n- Hvad ser ud til at forværre: ____________________________________\n\n## 4. Barnets mulige oplevelse\n- Hvordan kan det opleves indefra for barnet? ______________________\n- Tegn på uro, usikkerhed, overload eller tilbagetrækning: _________\n\n## 5. Hvad der virker\n- Voksengreb der hjælper: ________________________________________\n- Rammer / struktur / relationer der virker: ______________________\n- Hvad barnet falder til ro i: ____________________________________\n\n## 6. Hvad der ikke virker\n- Krav eller situationer der øger belastning: ______________________\n- Reaktioner fra voksne der forværrer: _____________________________\n\n## 7. Styrker og ressourcer\n- Hvad barnet er god til: _________________________________________\n- Hvad barnet søger mod: __________________________________________\n- Hvor barnet trives bedst: _______________________________________\n\n## 8. Sociale forhold\n- Relationer til børn: ____________________________________________\n- Relationer til voksne: __________________________________________\n- Trygge personer / utrygge personer: ______________________________\n\n## 9. Kommunikation\n- Hvordan barnet bedst mødes: ____________________________________\n- Hvad barnet reagerer godt på sprogligt: __________________________\n- Tegn på tavshed, misforståelser eller pres: ______________________\n\n## 10. Vurderingsspor\n- ☐ Observation\n- ☐ Bekymring / rødt flag\n- ☐ Kendt faglig oplysning\n\n**Note:** Systemet diagnosticerer ikke. Ved behov henvises videre til relevant fagperson.\n\n## 11. Aftaler og næste observation\n- Hvad prøver vi nu: ______________________________________________\n- Hvad skal vi følge særligt: _____________________________________\n- Hvornår følger vi op: ___________________________________________\n\n---\n\n💡 **Arbejdsprincip:** Beskriv konkret det, I ser. Ikke hvad I tror barnet fejler. Fokus er at forstå barnet bedre og støtte rigtigt nu – og samtidig skabe et brugbart grundlag for senere overlevering."
+}

@@ -1,0 +1,95 @@
+{
+"id": "bh_leg_fleksibilitet_og_samspil",
+"title": "Børnehave – Leg, fleksibilitet og samspil",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"leg",
+"fleksibilitet",
+"samspil",
+"sociale færdigheder",
+"autisme",
+"social sårbarhed",
+"pædagog"
+],
+"age_range": [
+3,
+6
+],
+"diagnoses": [
+"ingen diagnose",
+"autisme",
+"adhd",
+"angst",
+"social sårbarhed",
+"traume/belastning"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "moderate",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn, der har svært ved leg, fleksibilitet og samspil med andre børn.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der enten styrer legen hårdt, trækker sig fra den, bryder sammen ved ændringer eller har svært ved at dele idéer, tur og rolle med andre. Fokus er på trygge indgange til leg og guidet samspil.",
+"principles": [
+"Leg er ikke bare leg – den viser meget om barnets regulering, sociale forståelse og tryghed",
+"Barnet skal hjælpes ind i samspil, ikke skubbes ind i kaotiske fællesskaber",
+"Fleksibilitet kan være et udviklingsområde, ikke en viljeshandling",
+"Små, overskuelige legefællesskaber virker ofte bedre end store grupper",
+"Vi observerer både barnets initiativ, modstand og sammenbrud i leg"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der vil bestemme alt i legen",
+"Barn der bryder sammen når legen ændrer sig",
+"Barn der ikke kommer ind i fælles fantasileg",
+"Barn der leger fastlåst eller meget ensformigt",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"leg og samspil børnehave",
+"barn vil bestemme alt i legen",
+"barn kan ikke dele leg",
+"fleksibilitet barn",
+"social leg børnehave",
+"fantasileg svært",
+"samspil vanskeligheder barn"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Leg fleksibilitet og samspil",
+"Barn vil bestemme legen",
+"Svært ved samspil",
+"Leg bryder sammen"
+],
+"variables": {
+"required": [
+"child_name",
+"child_age",
+"institution_name"
+],
+"optional": [
+"group_name",
+"specific_play_situations",
+"known_safe_children",
+"known_triggers",
+"current_concern"
+]
+},
+"template_markdown": "# 🧩 Leg, fleksibilitet og samspil – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{specific_play_situations ? **Typiske legesituationer:** {specific_play_situations} : }\n{known_safe_children ? **Børn barnet fungerer bedst med:** {known_safe_children} : }\n{known_triggers ? **Kendte triggere i leg/samspil:** {known_triggers} : }\n\n---\n\n## 1. Det vi ser\n- Barnet leger fastlåst eller ensformigt: __________________________\n- Har svært ved at dele leg, tur eller idéer: ______________________\n- Vil bestemme alt eller trækker sig helt: _________________________\n- Bryder sammen når legen ændrer sig: _____________________________\n- Har svært ved fælles fantasileg eller sociale spilleregler: ______\n\n## 2. Hvad skal observeres nærmere\n- Leger barnet alene, parallelt eller sammen med andre: ____________\n- Kan barnet tåle ændringer i legens retning: _______________________\n- Går det især galt ved regler, turtagning eller rollefordeling: ___\n- Forstår barnet de andres signaler og intentioner: ________________\n- Fungerer legen bedre med bestemte børn eller voksne: _____________\n\n## 3. Hvad kan gøres med det samme\n- Skab små, overskuelige legefællesskaber\n- Brug voksenstøttet leg med tydelig ramme\n- Giv barnet en enkel rolle i legen\n- Forbered ændringer og hjælp med turtagning\n- Vælg lege med forudsigelig struktur først\n- Hjælp barnet ind i samspil uden at presse\n\n**Det vi vil prøve nu:** ___________________________________________\n\n## 4. Barnets mulige oplevelse\n- Leg med andre kan føles uforudsigelig og svær at læse: ___________\n- Ændringer kan opleves som tab af kontrol: ________________________\n- Barnet vil måske gerne være med, men ved ikke hvordan: ___________\n- Barnet kan bruge styring eller tilbagetrækning som beskyttelse: ___\n\n## 5. Hvad det kan pege på\n- ☐ Autistiske træk\n- ☐ Social sårbarhed\n- ☐ Reguleringsvanskeligheder\n- ☐ Angst i sociale situationer\n- ☐ Behov for mere guidet leg og relationel støtte\n- ☐ Umoden fleksibilitet i samspil\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Tal kort og konkret\n- Hjælp barnet med næste lille sociale trin\n- Sig hvad barnet kan gøre, ikke kun hvad det ikke må\n- Anerkend når samspil er svært\n- Støt uden at overtage hele legen\n\n**Sætninger der kan bruges:** _____________________________________\n\n## 7. Hvad man skal undgå\n- At tvinge barnet ind i fri gruppelog uden støtte\n- At skælde ud over rigiditet eller styringsbehov\n- At forvente fleksibilitet uden forberedelse\n- At lade barnet stå alene med nederlag i legen\n- At tolke vanskeligheder som manglende vilje alene\n\n## 8. Hvornår det skal løftes videre\n- Hvis barnet over tid ikke kan indgå i leg og samspil\n- Hvis konflikter eller tilbagetrækning præger hverdagen\n- Hvis barnet mistrives socialt\n- Hvis støtte i små rammer kun hjælper lidt\n- Hvis mønstret er vedvarende på tværs af situationer\n\n**Næste faglige skridt hvis relevant:** _____________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Når leg og samspil er svært, er opgaven ikke at kræve mere social fleksibilitet af barnet end det kan bære. Opgaven er at bygge trygge, guidede broer ind i legen, så barnet kan lykkes i små skridt."
+}

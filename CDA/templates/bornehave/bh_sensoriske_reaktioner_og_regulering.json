@@ -1,0 +1,95 @@
+{
+"id": "bh_sensoriske_reaktioner_og_regulering",
+"title": "Børnehave – Sensoriske reaktioner og regulering",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"sensorik",
+"regulering",
+"sanseoverbelastning",
+"sensoriske reaktioner",
+"autisme",
+"adhd",
+"pædagog"
+],
+"age_range": [
+3,
+6
+],
+"diagnoses": [
+"ingen diagnose",
+"autisme",
+"adhd",
+"sensoriske vanskeligheder",
+"angst",
+"traume/belastning"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "moderate",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn med stærke sensoriske reaktioner og vanskeligheder med regulering i hverdagen.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der reagerer voldsomt på lyd, lys, berøring, lugt, bevægelse eller andre sanseindtryk – eller som søger sansning så meget, at det påvirker regulering, trivsel og deltagelse. Fokus er på mønstre, miljø og støtte.",
+"principles": [
+"Sensoriske reaktioner er ofte kropslige, ikke viljestyrede",
+"Barnet skal hjælpes til regulering før krav øges",
+"Miljø og sansetryk er en aktiv del af problemet og løsningen",
+"Nogle børn undgår sansning, andre søger den kraftigt – begge dele skal forstås",
+"Vi observerer hvad der udløser overload og hvad der genskaber balance"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der reagerer stærkt på støj, lys eller berøring",
+"Barn der søger vild bevægelse, tryk eller konstant sansning",
+"Barn der mister regulering i bestemte rum eller situationer",
+"Barn der lukker ned eller eksploderer ved sanseoverbelastning",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"sensorik børnehave",
+"sensoriske reaktioner barn",
+"sanseoverbelastning barn",
+"barn reagerer på lyd",
+"barn reagerer på berøring",
+"regulering børnehave",
+"sensorisk uro"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Sensoriske reaktioner og regulering",
+"Barn reagerer på lyd",
+"Sanseoverbelastning",
+"Sensorik børnehave"
+],
+"variables": {
+"required": [
+"child_name",
+"child_age",
+"institution_name"
+],
+"optional": [
+"group_name",
+"sensory_triggers",
+"sensory_seeking",
+"things_that_help",
+"current_concern"
+]
+},
+"template_markdown": "# 🎧 Sensoriske reaktioner og regulering – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{sensory_triggers ? **Kendte sanse-triggere:** {sensory_triggers} : }\n{sensory_seeking ? **Tegn på sansesøgning:** {sensory_seeking} : }\n{things_that_help ? **Det der allerede hjælper:** {things_that_help} : }\n\n---\n\n## 1. Det vi ser\n- Barnet reagerer stærkt på lyd, lys, berøring, lugt eller bevægelse: ________________________________________________________________\n- Barnet søger konstant sansestimuli eller undgår dem voldsomt: _____\n- Barnet bliver hurtigt overvældet, uroligt eller lukker ned: _______\n- Barnet virker ude af balance i bestemte rum eller situationer: ____\n\n## 2. Hvad skal observeres nærmere\n- Hvilke sanseindtryk udløser reaktionen: ___________________________\n- Søger eller undgår barnet bestemte input: ________________________\n- Sker det ude, inde eller begge steder: ___________________________\n- Regulerer barnet sig bedre med bestemte voksne, rum eller aktiviteter: __________________________________________________________\n- Hvad sker lige før barnet mister reguleringen: ____________________\n\n## 3. Hvad kan gøres med det samme\n- Skab roligere omgivelser\n- Sænk lyd, tempo og krav\n- Giv barnet mulighed for pause eller afstand\n- Brug kendte reguleringsgreb\n- Tilbyd trygge sansestimuli, ikke tilfældige løsninger\n- Hjælp barnet før overload bliver sammenbrud\n\n**Det vi vil prøve nu:** ___________________________________________\n\n## 4. Barnets mulige oplevelse\n- Verden bliver for meget: ________________________________________\n- Kroppen kan ikke sortere input: _________________________________\n- Barnet prøver at beskytte sig selv eller få nok sansning: ________\n- Reaktionen er regulering, ikke dårlig vilje: ____________________\n\n## 5. Hvad det kan pege på\n- ☐ Sensoriske bearbejdningsvanskeligheder\n- ☐ Autistiske træk\n- ☐ ADHD / reguleringsvanskeligheder\n- ☐ Angst eller belastning\n- ☐ Behov for mere tilpasset miljø og støtte\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Tal roligt og enkelt\n- Sig hvad du gør for at hjælpe\n- Undgå mange ord midt i overload\n- Tilbyd valg der er enkle og trygge\n- Vis at barnet ikke gør noget forkert\n\n**Sætninger der kan bruges:** _____________________________________\n\n## 7. Hvad man skal undgå\n- At presse barnet gennem overload\n- At tolke reaktionen som trods\n- Tilfældig berøring eller hurtige krav\n- At lade barnet blive i et miljø der allerede er for meget\n- At fjerne al støtte for tidligt\n\n## 8. Hvornår det skal løftes videre\n- Hvis sanseproblemerne er vedvarende og tydelige\n- Hvis de styrer barnets deltagelse i hverdagen\n- Hvis barnet ofte mister reguleringen\n- Hvis almindelige tilpasninger kun hjælper lidt\n- Hvis trivsel og udvikling påvirkes\n\n**Næste faglige skridt hvis relevant:** _____________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Når et barn reagerer sensorisk, er det kroppen der forsøger at klare noget for meget eller for lidt. Opgaven er at læse mønstret og justere miljøet, før barnet mister regulering."
+}

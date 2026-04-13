@@ -1,0 +1,87 @@
+{
+"id": "bh_social_tilbagetraekning",
+"title": "Børnehave – Social tilbagetrækning",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"social tilbagetrækning",
+"leger alene",
+"fællesskab",
+"social sårbarhed",
+"autisme",
+"angst",
+"pædagog"
+],
+"age_range": [3, 6],
+"diagnoses": [
+"ingen diagnose",
+"autisme",
+"angst",
+"traume/belastning",
+"social sårbarhed",
+"sprogvanskeligheder"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "moderate",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn, der trækker sig socialt i børnehaven.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der ofte leger alene, går væk fra fællesskabet eller har svært ved at komme ind i samspil. Fokus er på observation, støtte og forståelse – ikke på at presse barnet ind i sociale krav.",
+"principles": [
+"Social tilbagetrækning er et signal, ikke en konklusion",
+"Barnet skal mødes med nysgerrighed og støtte, ikke pres",
+"Relation og tryghed går foran sociale krav",
+"Små, trygge fællesskaber er ofte bedre end store grupper",
+"Vi observerer mønstre og funktion – ikke etiketter"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der altid leger alene",
+"Barn der går væk fra fællesskabet ude eller inde",
+"Barn der gerne vil være tæt på andre, men ikke kommer ind i legen",
+"Barn der virker overvældet i grupper",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"social tilbagetrækning børnehave",
+"leger alene barn",
+"går væk fra fællesskab",
+"barn søger ikke andre børn",
+"social sårbarhed børnehave",
+"barn trækker sig"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Social tilbagetrækning",
+"Barn leger alene",
+"Barn går fra de andre",
+"Social sårbarhed børnehave"
+],
+"variables": {
+"required": ["child_name", "child_age", "institution_name"],
+"optional": [
+"group_name",
+"specific_situations",
+"known_safe_adults",
+"known_safe_children",
+"current_concern"
+]
+},
+"template_markdown": "# 👥 Social tilbagetrækning – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{specific_situations ? **Typiske situationer:** {specific_situations} : }\n{known_safe_adults ? **Trygge voksne:** {known_safe_adults} : }\n{known_safe_children ? **Trygge børn:** {known_safe_children} : }\n\n---\n\n## 1. Det vi ser\n- Barnet trækker sig fra fællesskabet: _____________________________\n- Leger alene / går væk fra andre: ________________________________\n- Søger ikke de andre børn aktivt: ________________________________\n\n## 2. Hvad skal observeres nærmere\n- Sker det ude, inde eller begge steder: __________________________\n- Gælder det bestemte børn eller voksne: __________________________\n- Er det et nyt eller fast mønster: _______________________________\n- Søger barnet kontakt på andre måder: ____________________________\n\n## 3. Hvad kan gøres med det samme\n- Skab små trygge fællesskaber\n- Hjælp barnet ind i leg med voksenstøtte\n- Brug få børn og tydelig ramme\n- Pres ikke barnet ind i stor gruppe\n\n**Det vi vil prøve nu:** ___________________________________________\n\n## 4. Barnets mulige oplevelse\n- Mulig overvældelse: ____________________________________________\n- Mulig usikkerhed / utryghed: ____________________________________\n- Mulig mangel på forståelse af legen: ____________________________\n- Behov for ro og kontrol: _______________________________________\n\n## 5. Hvad det kan pege på\n- ☐ Social sårbarhed\n- ☐ Angst / utryghed\n- ☐ Autistiske træk\n- ☐ Belastning / alarmberedskab\n- ☐ Behov for mere relationel støtte\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Brug roligt sprog\n- Invitér uden at kræve\n- Hold sætninger korte\n- Vis at barnet gerne må være tæt på i eget tempo\n\n**Sætninger der kan bruges:** _____________________________________\n\n## 7. Hvad man skal undgå\n- At presse barnet ind i grupper\n- At kalde barnet genert eller asocialt foran andre\n- At gøre tilbagetrækningen til et problem i fællesskabet\n- At belønne kun 'normal' social adfærd\n\n## 8. Hvornår det skal løftes videre\n- Hvis mønstret er vedvarende\n- Hvis barnet mistrives\n- Hvis det påvirker deltagelse og udvikling\n- Hvis det går igen på tværs af miljøer\n\n**Næste faglige skridt hvis relevant:** _____________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Et barn der trækker sig, siger ofte noget vigtigt uden ord. Opgaven er først at forstå, hvad barnet beskytter sig imod eller ikke kan overskue – og derefter skabe trygge indgange til fællesskabet."
+}

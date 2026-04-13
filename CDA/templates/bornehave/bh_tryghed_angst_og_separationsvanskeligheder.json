@@ -1,0 +1,86 @@
+{
+"id": "bh_tryghed_angst_og_separationsvanskeligheder",
+"title": "Børnehave – Tryghed, angst og separationsvanskeligheder",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"tryghed",
+"angst",
+"separation",
+"aflevering",
+"utryghed",
+"forudsigelighed",
+"pædagog"
+],
+"age_range": [3, 6],
+"diagnoses": [
+"ingen diagnose",
+"angst",
+"autisme",
+"traume/belastning",
+"sensoriske vanskeligheder"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "moderate",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn med stærkt tryghedsbehov, angstspor og separationsvanskeligheder i børnehaven.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der klamrer sig, bliver stærkt utrygge ved aflevering, undgår situationer eller hele tiden søger forsikring. Fokus er på tryghed, forudsigelighed og støtte – ikke pres gennem utrygheden.",
+"principles": [
+"Utryghed er ikke pjank eller stædighed",
+"Tryghed skal bygges før krav øges",
+"Korte, rolige og forudsigelige ritualer virker ofte bedre end mange ord",
+"Barnet skal hjælpes ind i dagen, ikke skubbes væk fra sin angst",
+"Vi observerer hvor, hvornår og med hvem utrygheden opstår"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der har voldsomme afleveringer",
+"Barn der søger konstant forsikring eller klamrer sig til voksen",
+"Barn der undgår steder, aktiviteter eller mennesker pga. utryghed",
+"Barn der virker anspændt og på vagt store dele af dagen",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"angst børnehave",
+"separationsvanskeligheder barn",
+"barn klamrer sig",
+"svær aflevering børnehave",
+"utrygt barn institution",
+"tryghedsbehov barn"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Tryghed angst og separationsvanskeligheder",
+"Barn er utrygt ved aflevering",
+"Barn klamrer sig",
+"Angstspor børnehave"
+],
+"variables": {
+"required": ["child_name", "child_age", "institution_name"],
+"optional": [
+"group_name",
+"specific_situations",
+"known_safe_adults",
+"known_triggers",
+"current_concern"
+]
+},
+"template_markdown": "# 🛡️ Tryghed, angst og separationsvanskeligheder – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{specific_situations ? **Typiske situationer:** {specific_situations} : }\n{known_safe_adults ? **Trygge voksne:** {known_safe_adults} : }\n{known_triggers ? **Kendte triggere:** {known_triggers} : }\n\n---\n\n## 1. Det vi ser\n- Barnet klamrer sig til en voksen: __________________________________\n- Bliver stærkt utrygt ved aflevering eller adskillelse: ____________\n- Søger konstant forsikring eller undgår bestemte situationer: _______\n- Virker bange, anspændt eller på vagt: _____________________________\n\n## 2. Hvad skal observeres nærmere\n- Hvornår utrygheden opstår: _______________________________________\n- Om det især gælder aflevering, skift, nye voksne eller bestemte rum: ________________________________________________________________\n- Hvor længe reaktionen varer: ______________________________________\n- Om barnet falder til ro med støtte: _______________________________\n- Om utrygheden også ses hjemme eller andre steder: _________________\n\n## 3. Hvad kan gøres med det samme\n- Skab forudsigelighed og faste rutiner\n- Brug kendte voksne og trygge overgange\n- Lav korte, rolige afleveringsritualer\n- Giv barnet tydelig information om hvad der skal ske\n- Hjælp barnet ind i dagen uden pres\n- Hold tempo og krav nede, til barnet er reguleret\n\n**Det vi vil prøve nu:** ____________________________________________\n\n## 4. Barnets mulige oplevelse\n- Verden kan føles usikker: ________________________________________\n- Barnet kan være bange for at miste trygheden: _____________________\n- Kroppen kan gå i alarm ved adskillelse eller usikkerhed: __________\n- Selv små skift kan opleves som store trusler: _____________________\n\n## 5. Hvad det kan pege på\n- ☐ Angstspor\n- ☐ Separationsvanskeligheder\n- ☐ Stærkt tryghedsbehov\n- ☐ Belastning eller alarmberedskab\n- ☐ Autistiske træk med behov for forudsigelighed\n- ☐ Tidligere utrygge erfaringer\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Tal roligt og enkelt\n- Sig hvad der sker nu, og hvad der sker bagefter\n- Brug trygge, gentagne formuleringer\n- Anerkend barnets følelse uden at forstærke panik\n- Vær varm, men tydelig\n\n**Sætninger der kan bruges:** ______________________________________\n\n## 7. Hvad man skal undgå\n- At snige sig væk uden farvel\n- At presse barnet hårdt gennem utrygheden\n- At sige 'der er ikke noget at være bange for'\n- Lange forklaringer midt i angst\n- At gøre barnet forkert eller pylret\n- Skiftende voksne og uforudsigelige afleveringer, hvis det kan undgås\n\n## 8. Hvornår det skal løftes videre\n- Hvis utrygheden er vedvarende og stærk\n- Hvis barnet ikke kan deltage i hverdagen uden massiv støtte\n- Hvis afleveringer eller skift præger hele dagen\n- Hvis barnet får tydelige stressreaktioner\n- Hvis mønstret ses bredt og ikke aftager over tid\n\n**Næste faglige skridt hvis relevant:** ______________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Et barn med stærkt tryghedsbehov skal ikke presses til at virke robust. Opgaven er at skabe så meget forudsigelighed og relationel sikkerhed, at barnet gradvist kan være i dagen uden konstant alarm."
+}

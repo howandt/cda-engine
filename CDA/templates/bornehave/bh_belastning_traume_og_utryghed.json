@@ -1,0 +1,95 @@
+{
+"id": "bh_belastning_traume_og_utryghed",
+"title": "Børnehave – Belastning, traume og utryghed",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"belastning",
+"traume",
+"utryghed",
+"alarmberedskab",
+"stress",
+"omsorgssvigt",
+"pædagog"
+],
+"age_range": [
+3,
+6
+],
+"diagnoses": [
+"ingen diagnose",
+"traume/belastning",
+"angst",
+"autisme",
+"adhd",
+"sensoriske vanskeligheder"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "high",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn, der bærer tydelige tegn på belastning, utryghed eller traumeprægede reaktioner i hverdagen.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der virker konstant på vagt, reagerer voldsomt på små ting, skifter hurtigt mellem uro, frys, tilbagetrækning eller udbrud, eller virker præget af dyb utryghed. Fokus er på tryghed, stabilitet og korrekt løft videre, ikke på fejltolkning af barnet som trodsigt eller besværligt.",
+"principles": [
+"Et barn i belastning kan ligne mange andre spor",
+"Adfærd kan være beskyttelse og overlevelse, ikke viljestyret modstand",
+"Tryghed skal komme før krav, forklaringer og korrektioner",
+"Voksne skal være stabile, forudsigelige og ikke-konfronterende",
+"Mistanke om alvorlig belastning eller omsorgssvigt skal løftes korrekt og hurtigt"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der konstant virker på vagt eller anspændt",
+"Barn der reagerer voldsomt på små hændelser",
+"Barn der skifter mellem uro, frys, tavshed og udbrud",
+"Barn der virker tomt, træt, overansvarligt eller svært at nå",
+"Forberedelse til tværfaglig drøftelse eller bekymringsløft"
+]
+},
+"search_keywords": [
+"belastning barn børnehave",
+"traume spor barn",
+"utrygt barn institution",
+"alarmberedskab barn",
+"barn reagerer voldsomt på små ting",
+"omsorgssvigt tegn børnehave",
+"barn på vagt"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Belastning traume og utryghed",
+"Barn virker på vagt",
+"Barn er meget utrygt",
+"Mistanke om belastning"
+],
+"variables": {
+"required": [
+"child_name",
+"child_age",
+"institution_name"
+],
+"optional": [
+"group_name",
+"specific_patterns",
+"known_triggers",
+"recovery_pattern",
+"current_concern"
+]
+},
+"template_markdown": "# 🧠 Belastning, traume og utryghed – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{specific_patterns ? **Mønstre der bekymrer:** {specific_patterns} : }\n{known_triggers ? **Kendte triggere:** {known_triggers} : }\n{recovery_pattern ? **Hvordan barnet falder til ro igen:** {recovery_pattern} : }\n\n---\n\n## 1. Det vi ser\n- Barnet virker konstant på vagt: __________________________________\n- Reagerer voldsomt på små ting: ___________________________________\n- Skifter hurtigt mellem uro, frys, tilbagetrækning eller udbrud: ___\n- Virker træt, tomt, ukontaktbar eller overansvarlig: ______________\n- Har svært ved tryg kontakt og stabil regulering: _________________\n\n## 2. Hvad skal observeres nærmere\n- Om barnet ofte er i alarm eller beredskab: ________________________\n- Om bestemte lyde, voksne, stemninger eller situationer udløser stærke reaktioner: _____________________________________________\n- Om barnet har svært ved at falde til ro igen: _____________________\n- Om der er store skift mellem dage eller situationer: _____________\n- Om adfærden ligner beskyttelse mere end vilje: ____________________\n\n## 3. Hvad kan gøres med det samme\n- Skab tryghed før krav\n- Hold struktur, tone og voksne så stabile som muligt\n- Sænk tempo og pres\n- Brug få ord og rolig tilstedeværelse\n- Hjælp barnet med regulering uden at presse på forklaring\n- Vær en forudsigelig voksen, ikke en vurderende voksen\n\n**Det vi vil gøre nu:** ____________________________________________\n\n## 4. Barnets mulige oplevelse\n- Kroppen kan være klar til fare, også når andre ikke ser noget farligt: _____________________________________________________________\n- Barnet prøver måske at beskytte sig selv: ________________________\n- Små belastninger kan føles enorme: _______________________________\n- Tillid kan være svær, fordi verden ikke føles sikker: ____________\n- Adfærden kan være overlevelse, ikke modstand: ____________________\n\n## 5. Hvad det kan pege på\n- ☐ Belastningsreaktioner\n- ☐ Traumespor\n- ☐ Vedvarende utryghed\n- ☐ Alarmberedskab\n- ☐ Angstspor\n- ☐ Reguleringsvanskeligheder forstærket af barnets livsvilkår\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Tal roligt, lavt og enkelt\n- Pres ikke barnet til at forklare sig midt i belastning\n- Sig at barnet er trygt lige nu\n- Vær tydelig og varm\n- Hold dig til nuet og det konkrete\n\n**Sætninger der kan bruges:** ______________________________________\n\n## 7. Hvad man skal undgå\n- Konfronterende tone\n- Skældud og moralsk forklaring midt i alarm\n- At kalde barnet trodsigt, manipulerende eller opmærksomhedssøgende\n- Pludselige skift og uforudsigelighed hvis det kan undgås\n- At presse barnet til hurtig tillid eller åbenhed\n- At overse at hjemmeliv og belastning kan ligge bag\n\n## 8. Hvornår det skal løftes videre\n- Hvis barnet tydeligt lever i vedvarende alarm eller utryghed\n- Hvis trivsel, udvikling og relationer påvirkes markant\n- Hvis adfærden er meget voldsom, svingende eller fastlåst\n- Hvis der er mistanke om omsorgssvigt, vold, traume eller alvorlig belastning\n- Hvis institutionen ikke kan bære det alene\n\n**Næste faglige skridt hvis relevant:** ______________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Når et barn virker præget af belastning eller utryghed, er opgaven ikke at få barnet til at fungere normalt hurtigt. Opgaven er først at skabe nok tryghed og stabilitet til, at barnet ikke hele tiden behøver beskytte sig."
+}

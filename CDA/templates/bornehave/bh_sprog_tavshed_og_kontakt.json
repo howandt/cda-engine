@@ -1,0 +1,94 @@
+{
+"id": "bh_sprog_tavshed_og_kontakt",
+"title": "Børnehave – Sprog, tavshed og kontakt",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"sprog",
+"tavshed",
+"kontakt",
+"selektiv mutisme",
+"sprogvanskeligheder",
+"angst",
+"autisme"
+],
+"age_range": [
+3,
+6
+],
+"diagnoses": [
+"ingen diagnose",
+"selektiv mutisme",
+"angst",
+"autisme",
+"sprogvanskeligheder",
+"traume/belastning"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "moderate",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn, der er tavse, svarer lidt, undgår kontakt eller virker svære at nå sprogligt og relationelt.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der ikke svarer, taler meget lidt, kun taler i bestemte situationer eller har svært ved at bruge kontakt og sprog i hverdagen. Fokus er på tryghed, relation og kommunikativ støtte – ikke på pres.",
+"principles": [
+"Tavshed er ofte beskyttelse, ikke modstand",
+"Relation går foran krav om verbal respons",
+"Det er vigtigt at skelne mellem ikke ville, ikke turde og ikke kunne",
+"Små trygge kontaktøjeblikke er vigtigere end store krav om samtale",
+"Vi observerer både verbal og nonverbal kommunikation"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der ikke svarer i børnehaven men taler hjemme",
+"Barn der undgår øjenkontakt og virker svært at få kontakt med",
+"Barn der bruger pegning, mimik eller krop mere end ord",
+"Barn der bliver fastlåst ved direkte spørgsmål",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"tavshed børnehave",
+"barn svarer ikke",
+"selektiv mutisme børnehave",
+"sprog og kontakt barn",
+"barn taler ikke i institution",
+"kontaktvanskeligheder barn"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Sprog tavshed og kontakt",
+"Barn svarer ikke",
+"Barn taler ikke i børnehave",
+"Selektiv mutisme spor"
+],
+"variables": {
+"required": [
+"child_name",
+"child_age",
+"institution_name"
+],
+"optional": [
+"group_name",
+"specific_situations",
+"known_safe_adults",
+"known_safe_children",
+"current_concern"
+]
+},
+"template_markdown": "# 🗣️ Sprog, tavshed og kontakt – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{specific_situations ? **Typiske situationer:** {specific_situations} : }\n{known_safe_adults ? **Trygge voksne:** {known_safe_adults} : }\n{known_safe_children ? **Trygge børn:** {known_safe_children} : }\n\n---\n\n## 1. Det vi ser\n- Barnet svarer ikke eller meget lidt: _____________________________\n- Taler kun i bestemte situationer eller med bestemte personer: _____\n- Undgår øjenkontakt eller virker svært at få kontakt med: _________\n- Bruger måske mere pegning, mimik eller krop end ord: _____________\n\n## 2. Hvad skal observeres nærmere\n- Taler barnet hjemme men ikke i børnehaven: _______________________\n- Gælder tavsheden alle eller kun bestemte voksne/børn: ____________\n- Forstår barnet beskeder men svarer ikke: _________________________\n- Bliver kontakten bedre i små, trygge rammer: _____________________\n- Hvordan kommunikerer barnet nonverbalt: __________________________\n\n## 3. Hvad kan gøres med det samme\n- Sænk krav om at svare verbalt\n- Giv tid og ro\n- Accepter pegning, nik, mimik og andre udtryk\n- Brug korte, tydelige sætninger\n- Skab små trygge kontaktøjeblikke en-til-en\n- Lad relation gå foran krav\n\n**Det vi vil prøve nu:** ___________________________________________\n\n## 4. Barnets mulige oplevelse\n- Ordene kan låse: _______________________________________________\n- Kontakt kan føles krævende eller utryg: __________________________\n- Barnet kan blive presset af forventning: _________________________\n- Stilhed kan være beskyttelse, ikke modstand: _____________________\n\n## 5. Hvad det kan pege på\n- ☐ Selektiv mutisme\n- ☐ Angst og utryghed\n- ☐ Autistiske træk\n- ☐ Sproglig usikkerhed eller sprogforstyrrelse\n- ☐ Belastning eller alarmberedskab\n- ☐ Behov for mere relationel og kommunikativ støtte\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Tal roligt og uden pres\n- Sig lidt og vent mere\n- Stil ikke for mange direkte spørgsmål\n- Giv valgmuligheder barnet kan pege på\n- Anerkend kontaktforsøg, også når de ikke er verbale\n\n**Sætninger der kan bruges:** _____________________________________\n\n## 7. Hvad man skal undgå\n- At presse barnet til at tale\n- At gøre tavsheden til et problem foran andre\n- At tolke stilhed som trods eller ligegyldighed\n- At fylde stilheden med for mange ord\n- At rose verbal tale så voldsomt, at barnet føler nyt pres\n\n## 8. Hvornår det skal løftes videre\n- Hvis barnet vedvarende ikke kan bruge sprog i hverdagen\n- Hvis tavsheden påvirker trivsel, leg og deltagelse\n- Hvis barnet virker angst eller fastlåst\n- Hvis mønstret går igen på tværs af situationer\n- Hvis der er tvivl om sprog, kontakt eller udvikling\n\n**Næste faglige skridt hvis relevant:** _____________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Når et barn bliver stille, er opgaven ikke at få ord frem for enhver pris. Opgaven er først at skabe nok tryghed til, at kontakt kan blive mulig – på barnets måde og i barnets tempo."
+}

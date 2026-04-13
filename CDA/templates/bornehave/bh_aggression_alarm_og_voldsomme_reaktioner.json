@@ -1,0 +1,89 @@
+{
+"id": "bh_aggression_alarm_og_voldsomme_reaktioner",
+"title": "Børnehave – Aggression, alarm og voldsomme reaktioner",
+"category": "bornehave",
+"subcategory": "adfaerdsspor",
+"tags": [
+"børnehave",
+"aggression",
+"alarm",
+"voldsomme reaktioner",
+"udbrud",
+"regulering",
+"traume",
+"adhd"
+],
+"age_range": [3, 6],
+"diagnoses": [
+"ingen diagnose",
+"adhd",
+"autisme",
+"angst",
+"traume/belastning",
+"sensoriske vanskeligheder"
+],
+"complexity": "intermediate",
+"usage_frequency": "ongoing",
+"urgency": "high",
+"target_group": "Pædagoger, medhjælpere, børnehavepersonale",
+"content": {
+"purpose": "Hjælper personalet med at forstå, observere og støtte børn, der går i alarm, udbrud eller voldsomme reaktioner i børnehavehverdagen.",
+"description": "Et adfærdsspor i børnehavesporet til børn, der slår, skubber, sparker, kaster, råber eller på anden måde mister regulering kraftigt. Fokus er på sikkerhed, mønstre, belastning og regulering – ikke moraliserende forklaringer.",
+"principles": [
+"Aggression er ofte et alarmsignal, ikke ond vilje",
+"Sikkerhed kommer først",
+"Barnet skal reguleres før det kan forstås og guides",
+"Voksnes tone, tempo og krav kan enten dæmpe eller eskalere",
+"Vi observerer hvad der sker før, under og efter udbruddet"
+],
+"sections": [
+"Det vi ser",
+"Hvad skal observeres nærmere",
+"Hvad kan gøres med det samme",
+"Barnets mulige oplevelse",
+"Hvad det kan pege på",
+"Hvordan du kan tale med barnet",
+"Hvad man skal undgå",
+"Hvornår det skal løftes videre",
+"Valgfrie støttelag"
+],
+"use_cases": [
+"Barn der slår eller sparker ved frustration",
+"Barn der går hurtigt fra uro til voldsomt udbrud",
+"Barn der virker ude af kontakt under reaktionen",
+"Barn der eksploderer ved lyd, krav, skift eller socialt pres",
+"Forberedelse til forældresamtale eller videre observation"
+]
+},
+"search_keywords": [
+"aggression børnehave",
+"barn slår",
+"barn sparker",
+"voldsomme reaktioner barn",
+"alarmberedskab barn",
+"udbrud børnehave",
+"barn mister kontrol"
+],
+"related_templates": [
+"bh_observation_lobende",
+"bh_overlevering_til_skole"
+],
+"command_triggers": [
+"Aggression alarm og voldsomme reaktioner",
+"Barn slår i børnehaven",
+"Barn mister kontrol",
+"Voldsomme udbrud barn"
+],
+"variables": {
+"required": ["child_name", "child_age", "institution_name"],
+"optional": [
+"group_name",
+"specific_incidents",
+"known_triggers",
+"recovery_pattern",
+"current_concern"
+]
+},
+"template_markdown": "# 🚨 Aggression, alarm og voldsomme reaktioner – {child_name}\n\n**Barn:** {child_name}, {child_age} år  \n**Institution:** {institution_name}  \n**Stue/gruppe:** {group_name}\n\n{current_concern ? **Aktuel bekymring:** {current_concern} : }\n{specific_incidents ? **Typiske episoder:** {specific_incidents} : }\n{known_triggers ? **Kendte triggere:** {known_triggers} : }\n{recovery_pattern ? **Hvordan barnet falder ned igen:** {recovery_pattern} : }\n\n---\n\n## 1. Det vi ser\n- Barnet slår, skubber, sparker, kaster eller råber voldsomt: _______\n- Barnet går hurtigt fra uro til udbrud: ___________________________\n- Barnet virker ude af kontakt under reaktionen: ___________________\n- Reaktionen kommer pludseligt eller ved bestemte belastninger: ____\n\n## 2. Hvad skal observeres nærmere\n- Hvad sker lige før udbruddet: ____________________________________\n- Er der bestemte voksne, børn, rum eller krav der udløser det: ____\n- Kommer det ved skift, frustration, lyd, berøring eller socialt pres: ________________________________________________________________\n- Hvor hurtigt går barnet fra belastning til udbrud: _______________\n- Hvordan ser barnet ud bagefter: __________________________________\n\n## 3. Hvad kan gøres med det samme\n- Skab sikkerhed først\n- Sænk krav, stemme og tempo\n- Fjern publikum og unødigt pres\n- Brug få ord og rolig tilstedeværelse\n- Hjælp barnet ud af situationen uden kamp\n- Reguler før du taler om adfærd\n\n**Det vi vil gøre nu:** ____________________________________________\n\n## 4. Barnets mulige oplevelse\n- Kroppen går i alarm: ____________________________________________\n- Barnet mister kontrol, ikke vilje: ______________________________\n- Barnet føler sig presset, truet eller overvældet: ________________\n- Handlingen kan være beskyttelse, ikke ond vilje: ________________\n\n## 5. Hvad det kan pege på\n- ☐ Reguleringsvanskeligheder\n- ☐ ADHD med lav impulskontrol\n- ☐ Autistisk overload\n- ☐ Angst eller alarmberedskab\n- ☐ Traume / belastning\n- ☐ Stærk frustration ved manglende forståelse eller krav\n\n**Note:** Dette er observationsspor, ikke diagnose.\n\n## 6. Hvordan du kan tale med barnet\n- Tal kort, roligt og tydeligt\n- 'Jeg hjælper dig'\n- 'Vi går lige væk herfra'\n- Ingen moral midt i alarm\n- Når barnet er faldet ned: enkelt og trygt sprog\n\n**Sætninger der kan bruges:** _____________________________________\n\n## 7. Hvad man skal undgå\n- Skældud midt i udbrud\n- Magtkamp\n- Mange ord og forklaringer\n- Straf som første reaktion\n- At ydmyge barnet foran andre\n- At tolke alarm som bevidst ond opførsel\n\n## 8. Hvornår det skal løftes videre\n- Hvis det sker gentagne gange\n- Hvis barnet eller andre er i fare\n- Hvis udbruddene bliver kraftigere eller hyppigere\n- Hvis barnet ikke kan deltage uden massiv støtte\n- Hvis der er tydelig mistrivsel eller belastning bag\n\n**Næste faglige skridt hvis relevant:** _____________________________\n\n## 9. Valgfrie støttelag\n- Lignende cases fra andre børnehaver\n- Rollespil / spejling af voksens ord\n- Specialistdrøftelse\n\n---\n\n💡 **Arbejdsprincip:** Når et barn går i voldsom reaktion, er opgaven først at skabe sikkerhed og regulering. Først bagefter giver det mening at forstå, lære og justere. Midt i alarm har barnet brug for en rolig voksen – ikke en dommer."
+}
+
