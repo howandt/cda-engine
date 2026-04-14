@@ -1552,18 +1552,20 @@
   "opstartsplan": {
   "title": "PBL Opstartsplan",
   "fields": [
+    "Projektnavn",
+    "Periode",
     "Elevprofil (alder, diagnose, funktionsniveau, interesser, styrker)",
-    "Hvorfor dette projekt er valgt til netop dette barn",
-    "Hvad projektet skal hjælpe med (fx ro, fokus, deltagelse, motivation)",
-    "Hvad barnet skal lære undervejs (fx dansk, sprog, regning, rækkefølge, ansvar)",
-    "Startniveau: hvordan ser barnet ud før opstart?",
-    "Valgt projekt + kort begrundelse",
-    "Varighed og ugeopdeling",
+    "Kort begrundelse for hvorfor dette projekt er valgt",
+    "Mål for fokus, ro, deltagelse og trivsel",
+    "Mål for læring (fx dansk, sprog, regning, rækkefølge, ansvar)",
+    "Barnets startniveau",
+    "Ugeopdeling / forløbsstruktur",
     "Hvad læreren skal observere undervejs",
+    "Støttebehov ved opstart (lav / middel / høj)",
     "Hvad forældre kan støtte med hjemme",
     "Tegn på at forløbet virker",
     "Tegn på at forløbet skal justeres eller stoppes",
-    "Muligt næste skridt efter forløbet"
+    "Foreløbig plan for næste skridt efter forløbet"
   ]
 },
   "logbog": {
