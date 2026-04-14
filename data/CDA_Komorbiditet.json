@@ -276,18 +276,129 @@
           "id": "angst_depression",
           "suspected_comorbidity": "Depression",
           "title": "Angst + Depression",
-          "trigger_tegn": [],
-          "praevalens": "",
-          "kort_forklaring": "",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [],
-          "hvad_boer_observeres": [],
-          "typiske_tegn_i_skole": [],
-          "typiske_tegn_i_hjem": [],
-          "mistankeindikatorer": [],
-          "differentiale_faldgruber": [],
-          "hvad_kan_formidles_videre": [],
-          "anbefalet_videre_spor": [],
+          "trigger_tegn": [
+            "trist",
+            "opgivende",
+            "lav energi",
+            "tilbagetrukket",
+            "mister lyst",
+            "håbløshed",
+            "social tilbagetrækning",
+            "følelsesmæssigt tung",
+            "stille",
+            "passiv"
+          ],
+          "praevalens": "25–50 %",
+          "kort_forklaring": "Når depression optræder sammen med angst, fremstår barnet eller den unge ofte mere tung, mere opgivende og mindre mobiliserbar, end angst alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun bekymret eller undgående, men også tydeligt mere trist, tungt eller opgivende",
+            "Der ses fald i energi, lyst eller deltagelse, som ikke passer med angst alene",
+            "Barnet trækker sig mere fra aktiviteter og relationer end det forventes ved almindelig angst"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har tydeligt energifald eller tab af initiativ",
+            "Om barnet virker mere trist, håbløst eller følelsesmæssigt tungt over tid",
+            "Om tilbagetrækning handler om mere end frygt og også om manglende lyst",
+            "Om der er fald i deltagelse, kontakt og funktionsniveau"
+          ],
+          "typiske_tegn_i_skole": [
+            "Virker mere stille, passiv eller opgivende end ved angst alene",
+            "Deltager mindre i undervisning og sociale aktiviteter",
+            "Har svært ved at mobilisere sig, selv når krav er tilpasset",
+            "Bekymring ledsages af tydelig tristhed eller energifald"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Mister lyst til aktiviteter, som tidligere betød noget",
+            "Virker mere træt, tung eller følelsesmæssigt flad",
+            "Trækker sig mere fra familien eller daglige rutiner",
+            "Virker mere opgivende og mindre mobiliserbar end tidligere"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere trist eller opgivende end typisk ved angst",
+            "Barnet har tydeligt energifald eller tab af interesse",
+            "Undgåelse ledsages af følelsesmæssig tyngde og social tilbagetrækning",
+            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Depression kan ligne angst, fordi barnet også kan trække sig og fungere dårligere socialt",
+            "Angst kan ligne depression, hvis barnet bliver meget undgående og stille",
+            "Det afgørende er, om der også ses vedvarende tristhed, energifald, tab af lyst eller håbløshed"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med angst, men der ses også tegn på tristhed, energifald og tilbagetrækning, som ikke forklares tilstrækkeligt af angsten alene",
+            "Vi observerer fald i deltagelse, initiativ og følelsesmæssigt overskud, både fagligt og socialt",
+            "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte angstprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af energi, deltagelse og social tilbagetrækning",
+            "Beskrivelse af ændringer i barnets stemning, lyst og funktionsniveau over tid",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
           "see_also": "depression"
+        },
+        {
+          "id": "angst_adhd",
+          "suspected_comorbidity": "ADHD",
+          "title": "Angst + ADHD",
+          "trigger_tegn": [
+            "uro",
+            "ukoncentreret",
+            "impulsiv",
+            "glemmer",
+            "rastløs",
+            "skifter hurtigt",
+            "kan ikke fastholde opmærksomhed",
+            "uorganiseret",
+            "ureguleret",
+            "svinger mellem angst og uro"
+          ],
+          "praevalens": "20–30 %",
+          "kort_forklaring": "Når ADHD optræder sammen med angst, fremstår barnet ofte mere uroligt, mere ujævnt reguleret og mere hverdagsbelastet, end angst alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun bekymret eller undgående, men også tydeligt uopmærksomt, impulsivt eller motorisk uroligt",
+            "Der ses reguleringsvanskeligheder og hverdagskaos, som ikke passer med angst alene",
+            "Barnets profil svinger mellem ængstelse og mangelfuld selvstyring på en måde, der peger ud over ren angst"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
+            "Om barnet virker impulsivt eller motorisk uroligt ud over bekymringsmønsteret",
+            "Om barnet har svært ved organisering, overblik og opgavefastholdelse",
+            "Om vanskelighederne også ses i trygge situationer, hvor angsten er mindre fremtrædende"
+          ],
+          "typiske_tegn_i_skole": [
+            "Har svært ved at fastholde opmærksomhed, selv når opgaven er overskuelig",
+            "Virker rastløs eller impulsiv ud over det angstprægede",
+            "Glemmer beskeder, materialer eller aftaler",
+            "Skifter hurtigt spor og har svært ved at holde struktur"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Har svært ved at gennemføre daglige rutiner og beskeder",
+            "Virker uorganiseret og let afledelig",
+            "Skifter hurtigt mellem bekymring, uro og impulsive reaktioner",
+            "Har svært ved at holde retning, selv i kendte og trygge rammer"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere uroligt og impulsivt end typisk ved angst",
+            "Barnet har tydelige opmærksomheds- og organiseringsvanskeligheder",
+            "Vanskelighederne kan ikke forklares af bekymring og undgåelse alene",
+            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "ADHD kan ligne angst, fordi barnet også kan være uroligt, overbelastet og have koncentrationsbesvær",
+            "Angst kan ligne ADHD, hvis barnet bliver meget forstyrret af bekymring og derfor virker ukoncentreret",
+            "Det afgørende er, om der også ses bredere og vedvarende regulerings- og opmærksomhedsvanskeligheder"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med angst, men der ses også tegn på vedvarende opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af angsten alene",
+            "Vi observerer uro, impulsivitet og manglende fastholdelse, også i situationer hvor bekymring ikke alene synes at drive vanskelighederne",
+            "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte angstprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af opmærksomhed, impulsivitet og organisering på tværs af miljøer",
+            "Beskrivelse af forskellen mellem angstudløste og mere generelle reguleringsvanskeligheder",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "adhd"
         }
       ]
     }
