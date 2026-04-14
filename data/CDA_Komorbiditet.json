@@ -133,6 +133,70 @@
             "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "autisme"
+        },
+        {
+          "id": "adhd_depression",
+          "suspected_comorbidity": "Depression",
+          "title": "ADHD + Depression",
+          "trigger_tegn": [
+            "trist",
+            "tilbagetrukket",
+            "opgivende",
+            "lav energi",
+            "irritabel",
+            "mister lyst",
+            "social tilbagetrækning",
+            "lav selvværdi",
+            "håbløshed",
+            "fald i deltagelse"
+          ],
+          "praevalens": "15–20 %",
+          "kort_forklaring": "Når depression optræder sammen med ADHD, fremstår barnet eller den unge ofte mere tilbagetrukket, mere trist eller mere opgivende, end ADHD alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun uopmærksomt eller impulsivt, men også tydeligt mere trist, tungt eller opgivende",
+            "Der ses fald i lyst, energi eller deltagelse, som ikke passer med ADHD alene",
+            "Barnet trækker sig socialt eller virker håbløst på en måde, der peger ud over almindelige ADHD-vanskeligheder"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har tydeligt fald i energi, initiativ eller deltagelse",
+            "Om barnet trækker sig mere fra venner, aktiviteter eller skolefællesskab",
+            "Om irritabilitet ledsages af tristhed, selvkritik eller opgivenhed",
+            "Om der er et tydeligt fald fra tidligere funktionsniveau"
+          ],
+          "typiske_tegn_i_skole": [
+            "Virker mere passiv, stille eller opgivende end normalt",
+            "Deltager mindre i undervisning og sociale aktiviteter",
+            "Har svært ved at komme i gang, selv med støtte",
+            "Reagerer med irritabilitet, lav frustrationstærskel eller tydelig opgivenhed"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Mister lyst til aktiviteter, som tidligere betød noget",
+            "Virker mere træt, tung eller tilbagetrukket",
+            "Har mere negativt syn på sig selv eller sine muligheder",
+            "Bliver lettere vred, ked af det eller opgivende i hverdagen"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere tilbagetrukket end typisk ved ADHD",
+            "Barnet har tydeligt energifald eller tab af interesse",
+            "Barnet virker mere følelsesmæssigt tungt eller opgivende end forventet",
+            "ADHD-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Depression kan ligne ADHD, fordi barnet også kan have koncentrationsbesvær og lav motivation",
+            "ADHD kan ligne depression, hvis barnet er præget af mange nederlag og derfor virker opgivende",
+            "Det afgørende er, om der også ses vedvarende tristhed, energifald, tab af lyst eller social tilbagetrækning"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med ADHD, men der ses også tegn på tristhed, energifald og tilbagetrækning, som ikke forklares tilstrækkeligt af ADHD alene",
+            "Vi observerer fald i deltagelse, initiativ og følelsesmæssigt overskud, både fagligt og socialt",
+            "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte ADHD-profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af energi, deltagelse og social tilbagetrækning",
+            "Beskrivelse af ændringer i barnets stemning, lyst og funktionsniveau over tid",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "depression"
         }
       ]
     }
