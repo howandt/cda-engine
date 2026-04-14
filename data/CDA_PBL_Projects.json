@@ -1625,15 +1625,17 @@
   "title": "PBL Forældre-kommunikation",
   "fields": [
     "Projektnavn",
+    "Periode",
     "Kort beskrivelse af hvorfor dette forløb er valgt",
     "Hvad barnet arbejder med i praksis",
     "Hvad barnet forventes at lære undervejs",
-    "Hvordan forløbet kan støtte ro, fokus og trivsel",
-    "Hvad forældre kan støtte med hjemme",
+    "Hvordan forløbet støtter fokus, ro og trivsel",
     "Hvad skolen holder øje med undervejs",
-    "Hvordan og hvornår der følges op med forældre",
-    "Tegn på at forløbet virker godt",
-    "Tegn på at forløbet skal justeres"
+    "Hvad forældre kan støtte med hjemme",
+    "Hvornår og hvordan der følges op",
+    "Tegn på at forløbet virker",
+    "Tegn på at forløbet skal justeres",
+    "Kontaktperson i skolen"
   ]
 },
   "rollespil_motor": {
