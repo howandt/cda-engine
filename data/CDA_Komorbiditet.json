@@ -1039,6 +1039,136 @@
           "see_also": "selvskade"
         }
       ]
+    },
+    {
+      "id": "tilpasningsforstyrrelse",
+      "primary_diagnosis": "Tilpasningsforstyrrelse",
+      "overview": {
+        "kort_beskrivelse": "Tilpasningsforstyrrelse forklarer ofte noget af billedet, men ikke altid det hele. Når elevens samlede profil bliver bredere, tungere eller mere fastlåst end den aktuelle belastning alene forklarer, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved tilpasningsforstyrrelse er det ofte komorbiditeten, der forklarer, hvorfor eleven ikke bare reagerer på en belastning, men udvikler et mere vedvarende, komplekst eller usædvanligt belastningsmønster."
+      },
+      "comorbidities": [
+        {
+          "id": "tilpasning_angst",
+          "suspected_comorbidity": "Angst",
+          "title": "Tilpasningsforstyrrelse + Angst",
+          "kort_forklaring": "Når angst optræder sammen med tilpasningsforstyrrelse, virker eleven ofte mere bredt bekymret, mere undgående og mere alarmpræget, end den aktuelle belastning alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven reagerer ikke kun på en konkret belastning, men virker også tydeligt mere frygtpræget og bekymret generelt",
+            "Undgåelsen breder sig til flere situationer end dem, der direkte hænger sammen med den aktuelle belastning",
+            "Belastningen virker mere præget af alarm, sikkerhedsadfærd og kravfølsomhed end af en almindelig belastningsreaktion"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven virker bredt bekymret og ikke kun belastet af én konkret situation",
+            "Om eleven undgår flere krav, relationer eller situationer af frygt",
+            "Om eleven søger meget tryghed, forsikring eller kontrol fra voksne",
+            "Om alarm og undgåelse fylder også uden for det kendte belastningstema",
+            "Om eleven virker både presset og generelt ængstelig"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både belastet og bredt bekymret",
+            "Undgår krav, relationer eller situationer af frygt",
+            "Har stort behov for tryghed, forsikring og overblik",
+            "Belastningen breder sig ud over den oprindelige udløsende situation"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er præget af en belastningsreaktion, men der ses også tegn på bredere bekymring, undgåelse og alarm, som ikke forklares tilstrækkeligt af den aktuelle belastning alene",
+            "Vi observerer, at uroen ikke kun er knyttet til den kendte belastning, men også til mere generel frygt og usikkerhed",
+            "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte tilpasningsreaktion"
+          ],
+          "see_also": "angst"
+        },
+        {
+          "id": "tilpasning_depression",
+          "suspected_comorbidity": "Depression",
+          "title": "Tilpasningsforstyrrelse + Depression",
+          "kort_forklaring": "Når depression optræder sammen med tilpasningsforstyrrelse, virker eleven ofte mere tung, mere opgivende og mere følelsesmæssigt nedadgående, end den aktuelle belastning alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven reagerer ikke kun på en belastning, men virker også tydeligt mere trist, tung eller opgivende over tid",
+            "Der ses energifald, tab af lyst eller social tilbagetrækning, som går ud over den aktuelle belastningsreaktion",
+            "Belastningen virker mere vedvarende nedadgående end situationsbundet"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har tydeligt energifald eller tab af initiativ",
+            "Om eleven virker mere trist, håbløs eller følelsesmæssigt tung over tid",
+            "Om eleven trækker sig fra undervisning, fællesskab eller aktiviteter",
+            "Om eleven virker mere lukket end tidligere",
+            "Om belastningen ledsages af tydeligt funktionsfald"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både belastet og følelsesmæssigt tung",
+            "Deltager mindre i undervisning og sociale aktiviteter",
+            "Har lav energi og svært ved at mobilisere sig",
+            "Belastningsreaktionen ledsages af tydelig tristhed eller opgivenhed"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er præget af en belastningsreaktion, men der ses også tegn på tristhed, energifald og tilbagetrækning, som ikke forklares tilstrækkeligt af den aktuelle belastning alene",
+            "Vi observerer et mere vedvarende følelsesmæssigt fald og lavere deltagelse i hverdagen",
+            "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte tilpasningsreaktion"
+          ],
+          "see_also": "depression"
+        },
+        {
+          "id": "tilpasning_ptsd",
+          "suspected_comorbidity": "PTSD",
+          "title": "Tilpasningsforstyrrelse + PTSD",
+          "kort_forklaring": "Når PTSD optræder sammen med tilpasningsforstyrrelse, virker eleven ofte mere trigget, mere vagtsom og mere traumebelastet, end en almindelig belastningsreaktion alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven reagerer ikke kun på en aktuel belastning, men virker også tydeligt mere trigget, vagtsom eller traumebelastet",
+            "Reaktionerne er stærkt knyttet til bestemte triggere, kropslig alarm eller overlevelsesreaktioner",
+            "Belastningen virker mere traumestyret og mindre som en almindelig tilpasningsreaktion"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven reagerer meget stærkt på bestemte triggere eller relationelle situationer",
+            "Om eleven virker konstant vagtsom, mistroisk eller hurtigt i alarm",
+            "Om reaktionerne skifter hurtigt og virker større end situationen tilsiger",
+            "Om belastningen hænger sammen med oplevet fare, kontroltab eller tidligere voldsomme oplevelser",
+            "Om eleven virker både presset og traumestyret"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Reagerer meget stærkt på bestemte voksne, krav eller relationelle situationer",
+            "Virker hurtigt i alarm og svært at berolige igen",
+            "Belastningen er mere trigget og uforudsigelig end ved almindelig tilpasningsforstyrrelse",
+            "Har svært ved tillid, ro og stabil deltagelse"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er præget af en belastningsreaktion, men der ses også tegn på triggerprægede reaktioner, alarmberedskab og traumebelastning, som ikke forklares tilstrækkeligt af den aktuelle belastning alene",
+            "Vi observerer, at reaktionerne ofte aktiveres i bestemte relationelle eller belastende situationer og bærer præg af stærk vagtsomhed",
+            "Det kan være relevant at få belyst, om der også er en PTSD-problematik til stede ud over den kendte tilpasningsreaktion"
+          ],
+          "see_also": "ptsd"
+        },
+        {
+          "id": "tilpasning_selvskade",
+          "suspected_comorbidity": "Selvskade",
+          "title": "Tilpasningsforstyrrelse + Selvskade",
+          "kort_forklaring": "Når selvskade optræder sammen med tilpasningsforstyrrelse, virker eleven ofte mere overvældet, mere følelsesmæssigt presset og mere risikobelastet, end den aktuelle belastning alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven reagerer ikke kun med belastningssymptomer, men også med tegn på selvskade eller stærk indre spænding",
+            "Belastningen virker mere akut og mere risikofyldt end ved en almindelig tilpasningsreaktion",
+            "Reaktionerne virker mere selvdestruktive eller følelsesmæssigt desperate end forventet"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven viser tegn på selvskade, skjuler arme eller virker fysisk undvigende",
+            "Om eleven virker præget af stærk indre spænding, skam eller selvbebrejdelser",
+            "Om belastningsreaktioner ledsages af følelsesmæssig desperation eller sammenbrud",
+            "Om eleven isolerer sig mere end vanligt eller virker akut belastet",
+            "Om der er tegn på, at eleven skader sig selv for at dæmpe uro eller pres"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både belastet og følelsesmæssigt meget presset",
+            "Trækker sig, skjuler sig eller undgår omklædning og nær kontakt",
+            "Har stærke sammenbrud eller tydelige tegn på indre overbelastning",
+            "Belastningsreaktionen ledsages af bekymring for elevens sikkerhed og trivsel"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er præget af en belastningsreaktion, men der ses også tegn på selvskade eller alvorlig følelsesmæssig belastning, som ikke forklares tilstrækkeligt af den aktuelle belastning alene",
+            "Vi observerer, at eleven virker stærkt presset, og at belastningen muligvis også kommer til udtryk gennem selvskadende adfærd eller risiko herfor",
+            "Det bør tages alvorligt og kan være relevant at få belyst hurtigt, om der også er en selvskadeproblematik til stede ud over den kendte tilpasningsreaktion"
+          ],
+          "see_also": "selvskade"
+        }
+      ]
     }
   ]
 }
