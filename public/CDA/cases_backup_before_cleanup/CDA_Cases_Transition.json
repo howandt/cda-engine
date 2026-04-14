@@ -27,7 +27,9 @@
       "resultat": "Ida kan nu deltage i klassen i længere perioder og bruger pauserne aktivt til selvregulering.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Ida fungerede fint i børnehaven, men efter skolestart eksploderede hendes uro og koncentrationsvanskeligheder. Hun kan ikke sidde stille, glemmer inst..."
     },
     {
       "id": "case-to-004",
@@ -56,7 +58,9 @@
       "resultat": "Sofie glæder sig nu til skolen og føler sig tryg i mødet med nye klassekammerater.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofie har endelig fundet tryghed i sin børnehavegruppe, men bliver ulykkelig ved tanken om at miste sine venner, når de spredes ud på forskellige skol..."
     }
   ]
 }

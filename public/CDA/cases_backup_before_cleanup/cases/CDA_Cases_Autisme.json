@@ -25,7 +25,9 @@
       "resultat": "Mia gennemførte klipning uden gråd ved at bruge pauser og kendte redskaber.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mia oplever stærkt ubehag ved frisørbesøg, især pga. lyde, berøring og materialer som klippekappe...."
     },
     {
       "id": "case-au-019",
@@ -53,7 +55,9 @@
       "resultat": "Marcus deltager nu i e-sportsklubben og samarbejder i mindre grupper i skolen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus har trukket sig helt tilbage fra sociale situationer på gymnasiet. Han spiser frokost alene, deltager ikke i gruppeprojekter og bruger al sin f..."
     },
     {
       "id": "case-au-022",
@@ -80,7 +84,9 @@
       "resultat": "Sofia deltager nu i måltider med struktur og medbestemmelse og viser øget tillid til familien.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia har udviklet ekstrem kontrol omkring mad, hvilket skaber store konflikter i familien. Hendes autisme gør, at hun har behov for faste rutiner, me..."
     },
     {
       "id": "case-au-032",
@@ -106,7 +112,9 @@
       "resultat": "Marcus møder nu i skole hver dag og bruger pausekort og base-lokale aktivt som del af sin reguleringsstrategi.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus nægter at gå i skole efter sommerferien. Den nye skole er større, mere støjende og uforudsigelig. Han får meltdowns blot ved tanken om skolegår..."
     },
     {
       "id": "case-as-041",
@@ -133,7 +141,9 @@
       "resultat": "Emma forstår nu forskellen mellem sjov og alvor og kan selv spørge, når noget virker forvirrende.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma forstår sproget meget bogstaveligt og har svært ved at afkode ironi, tonefald og kropssprog. Når klassekammerater siger 'Det var da smart!' sarka..."
     },
     {
       "id": "case-as-042",
@@ -159,7 +169,9 @@
       "resultat": "Marcus har nu to tætte venner fra togklubben og kan deltage i samtaler, hvor han både deler og lytter.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus taler uafbrudt om tog og lokomotiver, ofte uden at bemærke, om andre er interesserede. De andre børn trækker sig og begynder at undgå ham. Marc..."
     },
     {
       "id": "case-as-043",
@@ -186,7 +198,9 @@
       "resultat": "Sofia har nu en lille, stabil vennegruppe og kan være sig selv uden konstant selvkontrol.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia har i flere år forsøgt at skjule sin autisme ved at kopiere andre pigers adfærd. Hun overvåger konstant sig selv og er bange for at sige noget f..."
     },
     {
       "id": "case-as-044",
@@ -213,7 +227,9 @@
       "resultat": "Oliver genkendte manipulation og sagde fra første gang, nogen bad ham gøre noget forkert. Han har nu to faste, trygge venner.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver stoler blindt på andre og har svært ved at vurdere, når nogen udnytter ham. Klassekammerater får ham til at give sine ting væk, lave deres opga..."
     },
     {
       "id": "case-as-045",
@@ -239,7 +255,9 @@
       "resultat": "Lea deltager nu i spontane samtaler uden panik og har fået to nære venner, hvor hun tør vise sin personlighed.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lea har gennem årene lært at bruge sociale 'scripts' for at klare samtaler. Hun klarer sig godt i forudsigelige situationer, men går i panik, når noge..."
     },
     {
       "id": "case-mc-046",
@@ -265,7 +283,9 @@
       "resultat": "Emma blev gradvist inkluderet i fælles aktiviteter og fik to faste legeaftaler om ugen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma bliver systematisk holdt ude af lege og fælles aktiviteter. Hun får ofte kommentarer som 'Du kan ikke være med' eller 'Du er mærkelig'. Når hun p..."
     },
     {
       "id": "case-mc-050",
@@ -291,7 +311,9 @@
       "resultat": "Lea oplever nu støtte fra jævnaldrende, og klassen har indført faste fællesskabsregler for at sikre tryghed for alle.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lea bliver dagligt mobbet verbalt og online, mens hele klassen ser på uden at gribe ind. De fleste elever føler sympati, men tør ikke sige fra af fryg..."
     },
     {
       "id": "case-bs-001",
@@ -318,7 +340,9 @@
       "resultat": "Sofie deltager nu kortvarigt i fælles lege og viser begyndende interesse for andre børn.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofie leger altid alene eller parallelt med andre børn uden egentlig kontakt. Hun viser ingen interesse for andres aktiviteter, deler ikke legetøj og ..."
     },
     {
       "id": "case-to-002",
@@ -346,7 +370,9 @@
       "resultat": "Emma kan nu skifte mellem aktiviteter med støtte og reagerer mindre voldsomt ved ændringer.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma reagerer voldsomt, når aktiviteter ændres eller afsluttes. Hun kan ikke stoppe midt i en leg for at starte noget nyt og får ofte raserianfald, nå..."
     },
     {
       "id": "case-te-001",
@@ -375,7 +401,9 @@
       "resultat": "Sofia har nu reduceret sygefravær, sover bedre og deltager mere autentisk i timerne. Hun har lært at sige, når hun er overvældet – før sammenbruddet kommer.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia klarer sig fagligt og fremstår som en velfungerende elev. Hun smiler, deltager og gør sig umage, men oplever markant udmattelse efter skoledagen..."
     },
     {
       "id": "case-gs-001",
@@ -403,7 +431,9 @@
       "resultat": "Emma tør nu vise sine opgaver uden at viske ud. Hun siger enkelte sætninger i små grupper og deltager aktivt i kreative aktiviteter uden sammenbrud.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma er stille, pligtopfyldende og præcis i alt, hvad hun gør. Hun visker ud gentagne gange, nægter at vise sit arbejde, hvis det ikke er 'helt perfek..."
     },
     {
       "id": "case-gs-002",
@@ -431,7 +461,9 @@
       "resultat": "Ida deltager nu stabilt i små grupper og spiser sammen med to klassekammerater. Hun går selv til 'rolig zone', før hun bliver overvældet.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Ida virker stille og fredelig, men trækker sig mere og mere. Hun sidder alene, spiser ikke frokost og deltager ikke i gruppearbejde. Der er ingen åben..."
     },
     {
       "id": "case-gs-003",
@@ -460,7 +492,9 @@
       "resultat": "Selma deltager nu stabilt i skole, sover bedre og siger selv, når hun er træt. Hun har fået én tæt veninde og oplever mindre angst ved sociale krav.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Selma fremstår som en vellidt og velfungerende pige. Hun smiler, deltager og har mange bekendtskaber, men ingen tætte relationer. Hun siger sjældent n..."
     },
     {
       "id": "case-sp-001",
@@ -489,7 +523,9 @@
       "resultat": "Victor deltager nu i samling med hovedtelefoner og kan blive i rummet uden sammenbrud. Han bruger selv ‘pausekortet’ og vender tilbage til aktiviteter efter korte reguleringspauser.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Victor reagerer voldsomt på høje lyde, pludselige berøringer og store grupper af mennesker. Han dækker ørerne, skriger eller flygter, når der opstår u..."
     },
     {
       "id": "case-sp-003",
@@ -518,7 +554,9 @@
       "resultat": "Freja kan nu blive i klassen med visuel støtte og planlagte pauser. Hun har reduceret antal nedlukninger fra flere gange dagligt til enkelte episoder om ugen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Freja lukker helt ned, når der er mange sanseindtryk, støj eller pludselige ændringer i planerne. Hun reagerer ikke på tiltale, stirrer ud i luften og..."
     },
     {
       "id": "case-sh-002",
@@ -545,7 +583,9 @@
       "resultat": "Clara tør nu sige, når hun bliver bange, og trækker sig kortvarigt i stedet for helt at undgå hjemmet. Hun deltager igen i fælles aktiviteter uden skyldfølelse.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Clara reagerer på storebrorens raserianfald ved at trække sig og tage ansvar. Hun forsøger at skabe ro, trøster mor og rydder op efter konflikter. Hun..."
     },
     {
       "id": "case-dcd-003",
@@ -574,7 +614,9 @@
       "resultat": "Line deltager nu i udvalgte fag og korte sociale aktiviteter. Hun bruger hjælpemidler ved skrivning og har genvundet lysten til at prøve. Angst og fravær er faldet markant.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Line trækker sig gradvist fra både undervisning og sociale fællesskaber. Hun undgår praktiske fag og deltager sjældent i gruppearbejde. Hun sidder ale..."
     },
     {
       "id": "case-asf-001",
@@ -601,7 +643,9 @@
       "resultat": "Mille kan nu udtrykke træthed og sige, når hun har brug for pause. Skolefravær er faldet, og hun viser mere naturlig glæde i samspil med både voksne og børn.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mille fremstår som en stille, hjælpsom og vellidt elev. Hun følger alle regler, gør sig umage og søger konstant voksenaccept. Hun deltager, men viser ..."
     },
     {
       "id": "case-asf-002",
@@ -628,7 +672,9 @@
       "resultat": "Alma deltager nu stabilt, bruger pausesignal ved behov og udviser mindre irritabilitet hjemme. Hendes koncentration og humør er forbedret, og energiniveauet mere balanceret.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Alma klarer sig fagligt, men fremstår træt, langsom og tilbagetrukket. Hun taler kun, når hun bliver spurgt direkte, og undgår fællesaktiviteter. Når ..."
     },
     {
       "id": "case-asf-003",
@@ -661,7 +707,9 @@
       "resultat": "Selma udviser nu begyndende følelsesmæssig kontakt og kan udtrykke behov skriftligt. Stresssymptomer og fravær er reduceret, og hun arbejder fortsat fagligt stabilt men med lavere indre pres.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Selma klarer sig fagligt langt over gennemsnittet og leverer præcise, gennemarbejdede opgaver. Men hun deltager ikke i socialt samspil og udviser næst..."
     },
     {
       "id": "case-asf-004",
@@ -691,7 +739,9 @@
       "resultat": "Frida har genvundet en begyndende oplevelse af selvstændighed og ægthed. Hun deltager i udvalgte aktiviteter efter eget valg og udviser lavere stressniveau. Maskeringen er reduceret, og relationel kontakt er genetableret.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Frida fremstår velfungerende udadtil – god karakter, hjælpsom og rolig. Hun tilpasser sig alle miljøer og efterligner sociale koder, men beskriver en ..."
     }
   ]
 }

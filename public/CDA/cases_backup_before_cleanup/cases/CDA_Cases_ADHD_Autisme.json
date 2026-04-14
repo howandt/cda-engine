@@ -26,7 +26,9 @@
       "resultat": "Mia følger nu daglige rutiner med succes, fordi de er fleksible og kropsligt inkluderende.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mia har behov for faste rutiner på grund af sin autisme, men hendes ADHD gør det svært at sidde stille og følge dem. Hun bliver frustreret, når rutine..."
     },
     {
       "id": "case-aa-037",
@@ -53,7 +55,9 @@
       "resultat": "Oliver afbryder sjældnere, forstår andres reaktioner bedre og deltager stabilt i sociale aktiviteter.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver forstår sociale regler intellektuelt på grund af sin autisme, men hans ADHD gør det svært for ham at bremse impulserne. Han afbryder konstant, ..."
     },
     {
       "id": "case-aa-038",
@@ -80,7 +84,9 @@
       "resultat": "Emma arbejder nu fokuseret i korte intervaller, tager sensoriske pauser og kan deltage stabilt i undervisningen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma har svært ved at koncentrere sig, når der er selv små lyde eller bevægelser omkring hende. Hendes autisme gør hende ekstremt lydfølsom, mens ADHD..."
     },
     {
       "id": "case-aa-039",
@@ -107,7 +113,9 @@
       "resultat": "Lucas har genetableret et realistisk energiniveau, er mere autentisk i sociale sammenhænge og deltager stabilt i skolen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lucas har i årevis skjult sine autistiske træk ved at kopiere andres adfærd for at passe ind. Hans ADHD gør det ekstremt energikrævende at opretholde ..."
     },
     {
       "id": "case-aa-040",
@@ -133,7 +141,9 @@
       "resultat": "Noah kan nu håndtere forandringer med mindre frustration og bruge 'Plan B' uden sammenbrud.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah har meget faste ideer om, hvordan ting skal gøres på grund af sin autisme, men hans ADHD gør, at han handler impulsivt, når noget ikke går som pl..."
     },
     {
       "id": "case-mc-047",
@@ -160,7 +170,9 @@
       "resultat": "Marcus kan nu genkende sine tegn på overbelastning, trække sig i tide og føler sig igen tryg i skolen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus bliver provokeret af ældre drenge, der ved, at han reagerer voldsomt, når han bliver overstimuleret. De skubber, griner og filmer hans meltdown..."
     },
     {
       "id": "case-aa-002",
@@ -188,7 +200,9 @@
       "resultat": "Olivers fysiske reaktioner faldt markant. Han deltager nu aktivt i gruppeaktiviteter og har begyndende stabile venskaber.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver har store vanskeligheder med at forstå og navigere i sociale regler. Han afbryder konstant, griner på upassende tidspunkter og reagerer fysisk,..."
     }
   ]
 }

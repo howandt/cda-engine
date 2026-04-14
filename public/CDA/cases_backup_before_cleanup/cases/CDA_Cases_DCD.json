@@ -29,7 +29,9 @@
       "resultat": "Noah deltager nu stabilt i undervisningen, bruger vippepude og har faste pauser. Han arbejder længere tid ad gangen og har færre konflikter med klassekammerater.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah har svært ved at sidde stille og søger konstant fysisk input. Han rører ved alt omkring sig, trommer på bordet, falder af stolen og støder ofte i..."
     },
     {
       "id": "case-dcd-001",
@@ -56,7 +58,9 @@
       "resultat": "Kasper kan nu skrive korte tekster på tablet, deltage i gruppearbejde og viser stolthed over små fremskridt. Han falder sjældnere i selvkritik, og klassen driller ham ikke længere.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Kasper vælter ofte ting, mister greb om redskaber og skriver langsomt. Han undgår opgaver med klipning, limning og skrivning, og siger 'jeg kan ikke' ..."
     },
     {
       "id": "case-dcd-002",
@@ -83,7 +87,9 @@
       "resultat": "Asger deltager nu i udvalgte idrætsaktiviteter, har færre vredesudbrud og viser stolthed, når han klarer fysiske opgaver. Lærerne beskriver ham som markant mere rolig og samarbejdende.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Asger reagerer med vrede, når han skal deltage i fysiske aktiviteter som idræt, boldspil eller samarbejdslege. Han råber, går ud af hallen og afviser ..."
     },
     {
       "id": "case-dcd-003",
@@ -112,7 +118,9 @@
       "resultat": "Line deltager nu i udvalgte fag og korte sociale aktiviteter. Hun bruger hjælpemidler ved skrivning og har genvundet lysten til at prøve. Angst og fravær er faldet markant.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Line trækker sig gradvist fra både undervisning og sociale fællesskaber. Hun undgår praktiske fag og deltager sjældent i gruppearbejde. Hun sidder ale..."
     }
   ]
 }

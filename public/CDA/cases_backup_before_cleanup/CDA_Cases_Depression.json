@@ -29,7 +29,9 @@
       "resultat": "Emil møder nu tre dage om ugen, har påbegyndt samtaleforløb hos psykolog og anvender aftalte copingstrategier i stedet for selvskade. Søvnen og strukturen er gradvist forbedret.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emil oplever konstant indre uro, søvnløshed og gentagne tanker om ikke at kunne holde ud at være i sig selv. Han beskriver selvskaden som en måde at f..."
     },
     {
       "id": "case-asf-004",
@@ -59,7 +61,9 @@
       "resultat": "Frida har genvundet en begyndende oplevelse af selvstændighed og ægthed. Hun deltager i udvalgte aktiviteter efter eget valg og udviser lavere stressniveau. Maskeringen er reduceret, og relationel kontakt er genetableret.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Frida fremstår velfungerende udadtil – god karakter, hjælpsom og rolig. Hun tilpasser sig alle miljøer og efterligner sociale koder, men beskriver en ..."
     }
   ]
 }

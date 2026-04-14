@@ -25,7 +25,9 @@
       "resultat": "Emma gennemførte klipningen efter demonstration og positiv forstærkning.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma er bange for at få klippet hår og forestiller sig smerte eller fejl. Hun trækker sig og bliver utryg ved selve situationen...."
     },
     {
       "id": "case-an-016",
@@ -50,7 +52,9 @@
       "resultat": "Sophie kunne udtrykke sine ønsker via kort og pegning, og oplevede succes og ro under frisørbesøget.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sophie bliver genert og usikker hos frisøren. Hun føler sig iagttaget og undgår at sige sin mening...."
     },
     {
       "id": "case-an-017",
@@ -77,7 +81,9 @@
       "resultat": "Nora deltager nu i frikvarterer sammen med en tryg gruppe og viser stigende selvtillid.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora bliver systematisk udelukket fra lege og gruppesnak. Hun bliver kaldt øgenavne og mister gradvist troen på, at nogen vil hende. Hun trækker sig m..."
     },
     {
       "id": "case-asf-018",
@@ -103,7 +109,9 @@
       "resultat": "Emil deltager nu aktivt i gruppearbejde og bliver oftere inkluderet i samtaler og aktiviteter.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emil bliver systematisk ignoreret. Når han rækker hånden op, overses han. Han bliver ikke nævnt i legeaftaler, og bag hans ryg griner nogle elever, nå..."
     },
     {
       "id": "case-an-031",
@@ -129,7 +137,9 @@
       "resultat": "Anna møder nu i skole fire dage om ugen med støtte fra kontaktperson og forudsigelig struktur.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Anna kan ikke forlade hjemmet om morgenen uden at få panikangst. Hun græder, kaster op og klamrer sig til sin mor. Efter seks uger hjemme bliver situa..."
     },
     {
       "id": "case-an-033",
@@ -156,7 +166,9 @@
       "resultat": "Emma deltager nu i enkelte fag fysisk med støtte og oplever markant mindre angst i kontakt med jævnaldrende.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma blev udsat for vedvarende mobning i 7.-8. klasse og udviklede så alvorlig social angst, at hun ikke længere kan opholde sig i samme rum som jævna..."
     },
     {
       "id": "case-an-035",
@@ -183,7 +195,9 @@
       "resultat": "Sofia afleverer nu opgaver til tiden, sover bedre og oplever, at hendes præstationer stadig er gode – uden udmattelse.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia har altid været den 'dygtige elev', men begyndte pludselig at blive hjemme, fordi hun ikke kunne leve op til sine egne standarder. Hun arbejdede..."
     },
     {
       "id": "case-bs-003",
@@ -210,7 +224,9 @@
       "resultat": "Emma deltager nu i fri leg uden voksenstyring og udtrykker sine ønsker tydeligere.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma fremstår som en drømmeelev – rolig, hjælpsom og pligtopfyldende. Men hun deltager aldrig spontant i leg, tager ingen initiativer og bliver ulykke..."
     },
     {
       "id": "case-bs-005",
@@ -238,7 +254,9 @@
       "resultat": "Nora deltager nu i leg og taler spontant i små grupper, når hun føler sig tryg.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora taler frit derhjemme, men er helt tavs i børnehaven. Hun undgår aktiviteter, svarer ikke på spørgsmål og gemmer sig bag voksne. Hvis fokus rettes..."
     },
     {
       "id": "case-to-001",
@@ -266,7 +284,9 @@
       "resultat": "Oliver går nu ind i børnehaven uden sammenbrud og har genvundet glæden ved at være der.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver får daglige sammenbrud ved aflevering i børnehave. Han skriger, klynger sig til sin mor og bliver utrøstelig i op til 30-45 minutter. Efterfølg..."
     },
     {
       "id": "case-bs-005",
@@ -295,7 +315,9 @@
       "resultat": "Nora kan nu svare stille i små grupper og deltager i fællesaktiviteter uden at stivne. Hendes tryghedszone udvides gradvist.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora taler ikke i børnehaven, selvom hun er sprogligt velfungerende hjemme. Hun klynger sig til én voksen og stivner i kroppen ved sociale krav eller ..."
     },
     {
       "id": "case-sv-002",
@@ -323,7 +345,9 @@
       "resultat": "Elias møder nu stabilt i skole og deltager delvist i fællesaktiviteter. Han bruger selvreguleringsteknikker ved begyndende ubehag.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Elias melder sig ofte syg, især om morgenen. Han får ondt i maven og virker træt og stille, men har ingen fysiske fund. I skolen deltager han kun delv..."
     },
     {
       "id": "case-te-004",
@@ -352,7 +376,9 @@
       "resultat": "Amina møder nu to dage om ugen og deltager i korte undervisningssekvenser. Søvnen er stabiliseret, og hun begynder at genoprette kontakt til en tidligere veninde.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Amina har gradvist trukket sig fra skole og sociale fællesskaber. Først enkelte sygedage, derefter længere fraværsperioder. Hun virker stille og uprob..."
     },
     {
       "id": "case-an-001",
@@ -379,7 +405,9 @@
       "resultat": "Liva deltager nu i aktiviteter uden konstant voksenstøtte. Hun bruger billeder og ritualer som støtte, og mavepinen er sjælden. Forældre og personale oplever ro og forudsigelighed i afleveringen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Liva græder hver morgen ved aflevering. Hun holder fast i forælderen, siger hun har ondt i maven og nægter at deltage i aktiviteter. Hun følger udvalg..."
     },
     {
       "id": "case-an-002",
@@ -406,7 +434,9 @@
       "resultat": "Emilie deltager nu i udvalgte fællesaktiviteter. Hun bruger åndedrætsøvelser før krav og kan bede om forberedelsestid i stedet for at undgå opgaven. Hendes fysiske symptomer er reduceret markant.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emilie bliver bleg og stille, når hun skal præstere. Hun undgår faglige opgaver ved at sige, at hun har glemt det, ikke forstår det eller føler sig då..."
     },
     {
       "id": "case-an-003",
@@ -434,7 +464,9 @@
       "resultat": "Mathias møder nu stabilt i skole, kan håndtere uforudsete ændringer med støtte og bruger vejrtrækningskortet aktivt. Forældre og lærere rapporterer markant reduktion i panikreaktioner og konflikter.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mathias får åndenød, sveder og bliver bleg ved selv små ændringer. Han kræver detaljerede planer, gennemgår dagen trin for trin og reagerer med vrede ..."
     }
   ]
 }

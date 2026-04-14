@@ -27,7 +27,9 @@
       "resultat": "Nora deltager nu i frikvarterer sammen med en tryg gruppe og viser stigende selvtillid.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora bliver systematisk udelukket fra lege og gruppesnak. Hun bliver kaldt øgenavne og mister gradvist troen på, at nogen vil hende. Hun trækker sig m..."
     },
     {
       "id": "case-bs-004",
@@ -55,7 +57,9 @@
       "resultat": "Liam viser nu evne til at samarbejde og tage andres perspektiv, mens hans lederevner bruges konstruktivt i gruppen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Liam er karismatisk og dygtig til at få andre børn til at gøre, hvad han vil. Han bruger belønning, trusler og ekskludering som kontrolstrategier i le..."
     },
     {
       "id": "case-bs-005",
@@ -83,7 +87,9 @@
       "resultat": "Nora deltager nu i leg og taler spontant i små grupper, når hun føler sig tryg.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora taler frit derhjemme, men er helt tavs i børnehaven. Hun undgår aktiviteter, svarer ikke på spørgsmål og gemmer sig bag voksne. Hvis fokus rettes..."
     },
     {
       "id": "case-to-004",
@@ -112,7 +118,9 @@
       "resultat": "Sofie glæder sig nu til skolen og føler sig tryg i mødet med nye klassekammerater.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofie har endelig fundet tryghed i sin børnehavegruppe, men bliver ulykkelig ved tanken om at miste sine venner, når de spredes ud på forskellige skol..."
     },
     {
       "id": "case-in-001",
@@ -140,7 +148,9 @@
       "resultat": "Jonas kan nu indgå i grupper uden udbrud. Han har begyndt at tale med pigerne og deltager i fælles lege med støtte fra voksne.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Jonas reagerer fysisk overfor drengekammerater, især i konkurrence- og statuslege. Han slår, skubber eller tager ting, når han oplever uretfærdighed e..."
     },
     {
       "id": "case-bs-005",
@@ -169,7 +179,9 @@
       "resultat": "Nora kan nu svare stille i små grupper og deltager i fællesaktiviteter uden at stivne. Hendes tryghedszone udvides gradvist.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora taler ikke i børnehaven, selvom hun er sprogligt velfungerende hjemme. Hun klynger sig til én voksen og stivner i kroppen ved sociale krav eller ..."
     }
   ]
 }

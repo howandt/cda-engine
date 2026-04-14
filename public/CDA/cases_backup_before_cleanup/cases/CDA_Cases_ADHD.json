@@ -25,7 +25,9 @@
       "resultat": "Alex gennemførte klipning i tre korte intervaller uden konflikt.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Alex har svært ved at sidde stille under hårklip og mister hurtigt fokus. Det gør frisørbesøget stressende for både ham og de voksne...."
     },
     {
       "id": "case-adhd-015",
@@ -51,7 +53,9 @@
       "resultat": "Noah gennemførte frisørbesøget uden modstand ved brug af valg og tydelig belønning.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Noah nægter at tage til frisør. Han protesterer højlydt, gemmer sig og nægter samarbejde, især når han ikke føler sig inddraget i beslutningen. Situat..."
     },
     {
       "id": "case-adhd-020",
@@ -78,7 +82,9 @@
       "resultat": "Lea har nu færre sammenbrud, bruger pauser aktivt og deltager igen i timerne med støtte fra tryghedsperson.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Lea er startet på ungdomsskole og oplever daglige sammenbrud. Kombinationen af nye omgivelser, mere støj, skiftende lærere og social kompleksitet send..."
     },
     {
       "id": "case-adhd-021",
@@ -106,7 +112,9 @@
       "resultat": "Oliver gennemførte eksamen uden panikanfald og oplevede øget selvtillid gennem realistiske mål og forberedelse.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Oliver er fanget i en ond cirkel, hvor hans ADHD gør det svært at koncentrere sig, hans OCD kræver at alt skal være perfekt, og hans angst eskalerer, ..."
     },
     {
       "id": "case-adhd-023",
@@ -133,7 +141,9 @@
       "resultat": "Ethan kan nu trække sig fra situationer, før han mister kontrollen, og bruger fysisk aktivitet som aflad i stedet for vold.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Ethan reagerer med fysisk aggression, når han bliver frustreret eller provokeret. Hans ADHD gør, at han handler før han tænker, og adfærdsforstyrrelse..."
     },
     {
       "id": "case-adhd-024",
@@ -161,7 +171,9 @@
       "resultat": "Maya bruger nu alternative mestringsstrategier og opsøger voksne i stedet for selvskade ved følelsesmæssig overbelastning.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Maya bruger selvskade til at regulere intense følelser. Hendes ADHD forstærker følelsesmæssige udsving, og borderline-træk gør hendes relationer ustab..."
     },
     {
       "id": "case-adhd-025",
@@ -187,7 +199,9 @@
       "resultat": "Mia læser nu korte tekster højt uden gråd og oplever glæde ved små succeser.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Mia får angst, når hun skal læse højt, og mister helt fokus. Hun fidler med pennen, kigger ud af vinduet og begynder at græde, når det er hendes tur...."
     },
     {
       "id": "case-adhd-026",
@@ -213,7 +227,9 @@
       "resultat": "Oliver bruger nu 'pause-knappen', har fået to tætte venner og deltager stabilt i sociale aktiviteter.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Oliver vil gerne være med, men når han bliver nervøs, siger han impulsivt ting, der støder andre fra sig. Jo mere de trækker sig, jo mere desperat og ..."
     },
     {
       "id": "case-adhd-027",
@@ -239,7 +255,9 @@
       "resultat": "Emma gennemførte eksamen med støtte og oplevede ro under prøven for første gang.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Emma får panikangst ved eksamen og prøver, hvilket gør hendes svære ADHD endnu værre. Hun mister fokus, får fysiske symptomer og overvejer at droppe u..."
     },
     {
       "id": "case-adhd-028",
@@ -266,7 +284,9 @@
       "resultat": "Marcus sover bedre, deltager mere i undervisningen og bruger bevægelse som strategi mod angst.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Marcus er konstant i bevægelse og konstant bekymret. Hans angst gør ham mere rastløs, og hans hyperaktivitet forstærker angsten. Han sover dårligt og ..."
     },
     {
       "id": "case-adhd-029",
@@ -292,7 +312,9 @@
       "resultat": "Sofia afleverer nu opgaver til tiden og oplever mindre angst ved at fokusere på fremskridt frem for perfektion.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Sofia udsætter skolearbejde, fordi hun er bange for ikke at være god nok. Hendes ADHD gør det svært at komme i gang, og angsten gør det endnu sværere...."
     },
     {
       "id": "case-adhd-030",
@@ -319,7 +341,9 @@
       "resultat": "Jonathan fungerer nu bedre i skolen, sover roligt og oplever mindre angst under medicinsk behandling.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Jonathans ADHD-medicin hjælper på koncentrationen, men forværrer hans angst. Angstmedicin dæmper angsten, men forstærker ADHD-symptomerne. Familie og ..."
     },
     {
       "id": "case-adhd-034",
@@ -346,7 +370,9 @@
       "resultat": "Oliver deltager nu aktivt i undervisningen, bruger digitale hjælpemidler og går i skole uden modstand.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Oliver nægter at gå i skole, fordi han føler sig dum og ude af stand til at følge med. Hans ADHD gør det svært at koncentrere sig, og hans læse- og sk..."
     },
     {
       "id": "case-aa-036",
@@ -372,7 +398,9 @@
       "resultat": "Mia følger nu daglige rutiner med succes, fordi de er fleksible og kropsligt inkluderende.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mia har behov for faste rutiner på grund af sin autisme, men hendes ADHD gør det svært at sidde stille og følge dem. Hun bliver frustreret, når rutine..."
     },
     {
       "id": "case-aa-037",
@@ -399,7 +427,9 @@
       "resultat": "Oliver afbryder sjældnere, forstår andres reaktioner bedre og deltager stabilt i sociale aktiviteter.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver forstår sociale regler intellektuelt på grund af sin autisme, men hans ADHD gør det svært for ham at bremse impulserne. Han afbryder konstant, ..."
     },
     {
       "id": "case-aa-038",
@@ -426,7 +456,9 @@
       "resultat": "Emma arbejder nu fokuseret i korte intervaller, tager sensoriske pauser og kan deltage stabilt i undervisningen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma har svært ved at koncentrere sig, når der er selv små lyde eller bevægelser omkring hende. Hendes autisme gør hende ekstremt lydfølsom, mens ADHD..."
     },
     {
       "id": "case-aa-039",
@@ -453,7 +485,9 @@
       "resultat": "Lucas har genetableret et realistisk energiniveau, er mere autentisk i sociale sammenhænge og deltager stabilt i skolen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lucas har i årevis skjult sine autistiske træk ved at kopiere andres adfærd for at passe ind. Hans ADHD gør det ekstremt energikrævende at opretholde ..."
     },
     {
       "id": "case-aa-040",
@@ -479,7 +513,9 @@
       "resultat": "Noah kan nu håndtere forandringer med mindre frustration og bruge 'Plan B' uden sammenbrud.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah har meget faste ideer om, hvordan ting skal gøres på grund af sin autisme, men hans ADHD gør, at han handler impulsivt, når noget ikke går som pl..."
     },
     {
       "id": "case-mc-047",
@@ -506,7 +542,9 @@
       "resultat": "Marcus kan nu genkende sine tegn på overbelastning, trække sig i tide og føler sig igen tryg i skolen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus bliver provokeret af ældre drenge, der ved, at han reagerer voldsomt, når han bliver overstimuleret. De skubber, griner og filmer hans meltdown..."
     },
     {
       "id": "case-mc-048",
@@ -532,7 +570,9 @@
       "resultat": "Sofia fik en ny vennegruppe, bruger nu 'pause og tænk' aktivt, og deltager igen i sociale sammenhænge med større tryghed.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia udsættes for relationel mobning gennem rygter, social eksklusion og digital chikane. En gruppe piger bruger hendes impulsivitet mod hende ved at..."
     },
     {
       "id": "case-mc-049",
@@ -558,7 +598,9 @@
       "resultat": "Oliver begyndte at bruge sin energi i hjælperroller og blev en ressource for yngre elever i stedet for en trussel.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver har tidligere været udsat for mobning gennem flere år. Nu forsøger han at genvinde kontrol ved selv at mobbe svagere børn. Han siger 'Nu er det..."
     },
     {
       "id": "case-bh-001",
@@ -585,7 +627,9 @@
       "resultat": "Emil kan nu deltage i kortere stillesiddende aktiviteter og bruge bevægelsespauser selvregulerende.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emil kan ikke sidde stille mere end 30 sekunder. Han forlader aktiviteter, klatrer på møbler og løber væk fra voksne. Hvor jævnaldrende kan sidde og l..."
     },
     {
       "id": "case-bh-002",
@@ -612,7 +656,9 @@
       "resultat": "Maja fastholder nu fokus i længere tid og deltager i gruppelege med mindre støtte.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Maja 'forsvinder' midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn og glemmer straks instruktioner. Andre børn bliver færdige, m..."
     },
     {
       "id": "case-bh-003",
@@ -639,7 +685,9 @@
       "resultat": "Lucas håndterer nu konflikter med verbal støtte og har genopbygget relationer til jævnaldrende.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lucas reagerer fysisk, når han bliver frustreret – han skubber, slår eller råber, især hvis en leg ikke går, som han vil. Efterfølgende bliver han ked..."
     },
     {
       "id": "case-bh-005",
@@ -667,7 +715,9 @@
       "resultat": "Noah kan nu deltage i aktiviteter uden at overbelaste sig selv og viser tydelig forbedring i selvregulering.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah søger konstant sansestimuli – han kører rundt, råber, klatrer, tygger på ting og kan sjældent sidde stille. Han bliver hurtigt overstimuleret, me..."
     },
     {
       "id": "case-bs-002",
@@ -694,7 +744,9 @@
       "resultat": "Marcus kan nu deltage i leg uden at eskalere og viser forståelse for andres signaler.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus vil gerne lege med andre børn, men hans leg bliver hurtigt for intens og fysisk. Han vælter byggeværker, overtager lege og bliver vred, når and..."
     },
     {
       "id": "case-to-003",
@@ -722,7 +774,9 @@
       "resultat": "Marcus deltager nu aktivt i timerne og bruger bevægelsespauser og visuel planlægning til at holde fokus.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus fungerede godt i børnehaven, men skolestarten udløste totale sammenbrud. Han kan ikke sidde stille i længere tid, mister hurtigt fokus og blive..."
     },
     {
       "id": "case-to-005",
@@ -750,7 +804,9 @@
       "resultat": "Liam klarer nu morgenerne med støtte fra struktur og faste rytmer, og hele familien oplever en roligere start på dagen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Liam bliver fuldstændig overvældet af skolens morgenrutiner. Han mister fokus midt i påklædning, glemmer hvad han er i gang med og reagerer med gråd e..."
     },
     {
       "id": "case-bh-003",
@@ -777,7 +833,9 @@
       "resultat": "Lucas kan nu sige stop og søge hjælp i stedet for at slå. Relationerne til både drenge og piger er mere stabile.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lucas reagerer pludseligt og voldsomt i sociale situationer. Han kradser, skubber og slår både drenge og piger, men reagerer særligt kraftigt på piger..."
     },
     {
       "id": "case-aa-002",
@@ -805,7 +863,9 @@
       "resultat": "Olivers fysiske reaktioner faldt markant. Han deltager nu aktivt i gruppeaktiviteter og har begyndende stabile venskaber.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver har store vanskeligheder med at forstå og navigere i sociale regler. Han afbryder konstant, griner på upassende tidspunkter og reagerer fysisk,..."
     },
     {
       "id": "case-te-003",
@@ -834,7 +894,9 @@
       "resultat": "Mads har færre konflikter og kan nu genoptage undervisning efter pauser. Han deltager i elevsamtaler om egne strategier og oplever mere kontrol over skoledagen.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mads får gentagne affektsammenbrud i undervisningen. Han nægter opgaver, forlader klassen uden tilladelse, og reagerer aggressivt på irettesættelser. ..."
     },
     {
       "id": "case-sp-002",
@@ -863,7 +925,9 @@
       "resultat": "Noah deltager nu stabilt i undervisningen, bruger vippepude og har faste pauser. Han arbejder længere tid ad gangen og har færre konflikter med klassekammerater.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah har svært ved at sidde stille og søger konstant fysisk input. Han rører ved alt omkring sig, trommer på bordet, falder af stolen og støder ofte i..."
     },
     {
       "id": "case-sh-001",
@@ -890,7 +954,9 @@
       "resultat": "Elias kan nu acceptere, at søsteren får ros uden voldsom reaktion. Han bruger pauseteknikker og søger fysisk afstand, før konflikter opstår. Familien oplever færre sammenbrud og mere ro i hjemmet.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Elias mister besindelsen, når hans lillesøster får ros, opmærksomhed eller får lov til noget, han selv ikke må. Han råber, håner, skubber eller nægter..."
     },
     {
       "id": "case-dcd-002",
@@ -917,7 +983,9 @@
       "resultat": "Asger deltager nu i udvalgte idrætsaktiviteter, har færre vredesudbrud og viser stolthed, når han klarer fysiske opgaver. Lærerne beskriver ham som markant mere rolig og samarbejdende.",
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
-      "sidst_opdateret": "2025-11-14"
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Asger reagerer med vrede, når han skal deltage i fysiske aktiviteter som idræt, boldspil eller samarbejdslege. Han råber, går ud af hallen og afviser ..."
     }
   ]
 }
