@@ -1605,17 +1605,19 @@
   "title": "PBL Evalueringsrapport",
   "fields": [
     "Projektnavn",
+    "Periode",
     "Kort beskrivelse af forløbet",
+    "Mål med forløbet",
     "Hvad fungerede godt for barnet?",
     "Hvad styrkede fokus, ro og deltagelse?",
     "Hvad lærte barnet undervejs?",
     "Hvad var svært eller hæmmede udviklingen?",
-    "Hvornår havde barnet mest brug for støtte?",
-    "Tegn på trivsel eller mistrivsel under forløbet",
+    "Støttebehov under forløbet (lav / middel / høj)",
+    "Trivsel under forløbet (lav / middel / høj)",
     "Barnets egen oplevelse af forløbet",
     "Forældresamtale-noter",
-    "Skal forløbet fortsætte, justeres eller afsluttes?",
-    "Anbefalet næste skridt for barnet",
+    "Samlet vurdering: fortsætte, justere eller afslutte",
+    "Anbefalet næste skridt",
     "Anbefalinger til næste lærer eller fagperson"
   ]
 },
