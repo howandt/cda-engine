@@ -12,61 +12,29 @@
           "id": "adhd_angst",
           "suspected_comorbidity": "Angst",
           "title": "ADHD + Angst",
-          "trigger_tegn": [
-            "bekymring",
-            "undgåelse",
-            "kravfølsomhed",
-            "social usikkerhed",
-            "frygt for fejl",
-            "stort behov for forberedelse",
-            "søger meget forsikring",
-            "bliver fastlåst i pressede situationer"
-          ],
-          "praevalens": "25–35 %",
-          "kort_forklaring": "Når angst optræder sammen med ADHD, fremstår barnet ofte mere undgående, mere kravfølsomt og mere belastet, end ADHD alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når angst optræder sammen med ADHD, virker barnet ofte mere undgående, mere kravfølsomt og mere belastet, end ADHD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun uroligt eller uopmærksomt, men også tydeligt bekymret eller ængsteligt",
             "Barnet undgår krav, situationer eller relationer på en måde, der ikke passer med ADHD alene",
             "Reaktionerne virker mere styret af frygt, usikkerhed eller overkontrol end af impulsivitet alene"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet trækker sig fra bestemte krav eller situationer",
             "Om uro ledsages af bekymring, usikkerhed eller katastrofetanker",
             "Om barnet søger meget forsikring, kontrol eller forudsigelighed",
-            "Om belastningen stiger tydeligt ved sociale krav, fejl eller skift"
+            "Om belastningen stiger tydeligt ved sociale krav, fejl eller skift",
+            "Om barnet bliver fastlåst i pressede situationer"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Undgår opgaver eller situationer med risiko for fejl",
             "Bliver let overbelastet ved krav, skift eller sociale situationer",
             "Virker ængstelig, fastlåst eller meget afhængig af voksenstøtte",
             "Uro eller modstand opstår især i pressede eller uforudsigelige situationer"
           ],
-          "typiske_tegn_i_hjem": [
-            "Stort behov for forberedelse og tryghed omkring hverdagens krav",
-            "Bekymringer fylder meget før skole, aftaler eller nye situationer",
-            "Barnet undgår aktiviteter, som tidligere var mulige",
-            "Reaktioner præges af usikkerhed, kontrolbehov eller frygt for at fejle"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere undgående end typisk ved ADHD",
-            "Barnet er markant mere kravfølsomt end forventet",
-            "Barnet reagerer med bekymring frem for kun impulsivitet",
-            "ADHD-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Angst kan ligne ADHD, fordi barnet virker uroligt, ukoncentreret eller overbelastet",
-            "ADHD kan ligne angst, hvis barnet ofte fejler og derfor bliver usikkert",
-            "Det afgørende er, om vanskelighederne primært drives af reguleringsproblemer eller af frygt og bekymring"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med ADHD, men der ses også tegn på bekymring, undgåelse og kravfølsomhed, som ikke forklares tilstrækkeligt af ADHD alene",
             "Vi observerer, at belastningen især øges i situationer med krav, usikkerhed, fejlrisiko eller sociale forventninger",
             "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte ADHD-profil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer på tværs af skole og hjem",
-            "Beskrivelse af hvilke situationer der udløser undgåelse eller bekymring",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "angst"
         },
@@ -74,63 +42,29 @@
           "id": "adhd_asf",
           "suspected_comorbidity": "Autisme",
           "title": "ADHD + Autisme",
-          "trigger_tegn": [
-            "socialt anderledes",
-            "social usikkerhed",
-            "rigid",
-            "stærkt behov for rutiner",
-            "vanskelig ved skift",
-            "sensorisk følsom",
-            "misforstår sociale koder",
-            "bliver let overbelastet",
-            "fastlåst adfærd",
-            "meget sort-hvid tænkning"
-          ],
-          "praevalens": "20–50 %",
-          "kort_forklaring": "Når autisme optræder sammen med ADHD, fremstår barnet ofte mere rigidt, mere socialt misafstemt og mere sensorisk belastet, end ADHD alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når autisme optræder sammen med ADHD, virker barnet ofte mere rigidt, mere socialt misafstemt og mere belastet af skift og sanseindtryk, end ADHD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun uroligt eller uopmærksomt, men også markant mere rigidt og socialt anderledes",
-            "Barnet har vanskeligheder med gensidighed, sociale koder eller fleksibilitet, som ikke passer med ADHD alene",
-            "Reaktionerne virker ofte præget af fastlåsthed, overbelastning eller behov for forudsigelighed frem for kun impulsivitet"
+            "Barnet har vanskeligheder med sociale koder, gensidighed eller fleksibilitet, som ikke passer med ADHD alene",
+            "Reaktionerne virker præget af fastlåsthed, overbelastning eller behov for forudsigelighed frem for kun impulsivitet"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet har vedvarende vanskeligheder med social gensidighed og sociale koder",
             "Om barnet reagerer stærkt på skift, uforudsigelighed eller brud på rutiner",
-            "Om barnet virker sensorisk belastet af lyd, lys, berøring eller uro omkring sig",
-            "Om konflikter opstår på grund af rigiditet, misforståelser eller fastlåst tænkning"
+            "Om barnet virker belastet af lyd, lys, berøring eller uro omkring sig",
+            "Om konflikter opstår på grund af rigiditet, misforståelser eller fastlåst tænkning",
+            "Om barnet har stort behov for kendte rammer og forberedelse"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Har svært ved gruppearbejde, sociale spilleregler eller fælles aktiviteter",
             "Bliver fastlåst ved ændringer i planer, regler eller forventninger",
             "Virker mere socialt misafstemt end typisk ved ADHD",
             "Bliver hurtigt overbelastet i støjende, uforudsigelige eller sociale miljøer"
           ],
-          "typiske_tegn_i_hjem": [
-            "Stærkt behov for rutiner og kendte rammer",
-            "Reagerer kraftigt ved ændringer i planer eller hverdagsmønstre",
-            "Har særlige sensoriske reaktioner på mad, tøj, lyd eller berøring",
-            "Misforstår let sociale intentioner eller bliver fastlåst i konflikter"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere rigidt end typisk ved ADHD",
-            "Barnet er tydeligt mere socialt misafstemt end forventet",
-            "Barnet bliver overbelastet af skift, sansning eller sociale krav",
-            "ADHD-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Autisme kan ligne ADHD, fordi barnet også kan virke uroligt, umodent eller reguleringsvanskeligt",
-            "ADHD kan ligne autisme, hvis barnet ofte afbryder, misser signaler eller virker socialt klodset",
-            "Det afgørende er, om der også ses vedvarende vanskeligheder med social gensidighed, fleksibilitet og sensorisk tilpasning"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med ADHD, men der ses også tegn på rigiditet, social misafstemning og belastning ved skift eller sansning, som ikke forklares tilstrækkeligt af ADHD alene",
             "Vi observerer, at barnet har vanskeligheder i sociale sammenhænge og reagerer markant på uforudsigelighed, ændringer og belastende miljøer",
             "Det kan være relevant at få belyst, om der også er en autismespektrumproblematik til stede ud over den kendte ADHD-profil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af socialt samspil, fleksibilitet og belastningsmønstre",
-            "Beskrivelse af barnets reaktioner på skift, krav og sensoriske forhold",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "autisme"
         },
@@ -138,63 +72,29 @@
           "id": "adhd_depression",
           "suspected_comorbidity": "Depression",
           "title": "ADHD + Depression",
-          "trigger_tegn": [
-            "trist",
-            "tilbagetrukket",
-            "opgivende",
-            "lav energi",
-            "irritabel",
-            "mister lyst",
-            "social tilbagetrækning",
-            "lav selvværdi",
-            "håbløshed",
-            "fald i deltagelse"
-          ],
-          "praevalens": "15–20 %",
-          "kort_forklaring": "Når depression optræder sammen med ADHD, fremstår barnet eller den unge ofte mere tilbagetrukket, mere trist eller mere opgivende, end ADHD alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når depression optræder sammen med ADHD, virker barnet ofte mere tilbagetrukket, mere trist og mere opgivende, end ADHD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun uopmærksomt eller impulsivt, men også tydeligt mere trist, tungt eller opgivende",
             "Der ses fald i lyst, energi eller deltagelse, som ikke passer med ADHD alene",
             "Barnet trækker sig socialt eller virker håbløst på en måde, der peger ud over almindelige ADHD-vanskeligheder"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet har tydeligt fald i energi, initiativ eller deltagelse",
-            "Om barnet trækker sig mere fra venner, aktiviteter eller skolefællesskab",
+            "Om barnet trækker sig mere fra venner, aktiviteter eller klassefællesskab",
             "Om irritabilitet ledsages af tristhed, selvkritik eller opgivenhed",
-            "Om der er et tydeligt fald fra tidligere funktionsniveau"
+            "Om der er et tydeligt fald fra tidligere funktionsniveau",
+            "Om barnet virker mere passivt end vanligt"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Virker mere passiv, stille eller opgivende end normalt",
             "Deltager mindre i undervisning og sociale aktiviteter",
             "Har svært ved at komme i gang, selv med støtte",
-            "Reagerer med irritabilitet, lav frustrationstærskel eller tydelig opgivenhed"
+            "Reagerer med irritabilitet eller tydelig opgivenhed"
           ],
-          "typiske_tegn_i_hjem": [
-            "Mister lyst til aktiviteter, som tidligere betød noget",
-            "Virker mere træt, tung eller tilbagetrukket",
-            "Har mere negativt syn på sig selv eller sine muligheder",
-            "Bliver lettere vred, ked af det eller opgivende i hverdagen"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere tilbagetrukket end typisk ved ADHD",
-            "Barnet har tydeligt energifald eller tab af interesse",
-            "Barnet virker mere følelsesmæssigt tungt eller opgivende end forventet",
-            "ADHD-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Depression kan ligne ADHD, fordi barnet også kan have koncentrationsbesvær og lav motivation",
-            "ADHD kan ligne depression, hvis barnet er præget af mange nederlag og derfor virker opgivende",
-            "Det afgørende er, om der også ses vedvarende tristhed, energifald, tab af lyst eller social tilbagetrækning"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med ADHD, men der ses også tegn på tristhed, energifald og tilbagetrækning, som ikke forklares tilstrækkeligt af ADHD alene",
             "Vi observerer fald i deltagelse, initiativ og følelsesmæssigt overskud, både fagligt og socialt",
             "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte ADHD-profil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af energi, deltagelse og social tilbagetrækning",
-            "Beskrivelse af ændringer i barnets stemning, lyst og funktionsniveau over tid",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "depression"
         },
@@ -202,63 +102,29 @@
           "id": "adhd_odd",
           "suspected_comorbidity": "Adfærdsforstyrrelse",
           "title": "ADHD + Adfærdsforstyrrelse",
-          "trigger_tegn": [
-            "trods",
-            "konflikter",
-            "udadreagerende",
-            "vrede",
-            "regelbrud",
-            "lav frustrationstærskel",
-            "vil bestemme alt",
-            "provokerer andre",
-            "modstand mod voksne",
-            "aggressiv"
-          ],
-          "praevalens": "40–60 %",
-          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med ADHD, fremstår barnet ofte mere oppositionelt, mere konfliktdrevet og mere udadrettet, end ADHD alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med ADHD, virker barnet ofte mere oppositionelt, mere konfliktsøgende og mere udadreagerende, end ADHD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun impulsivt eller uroligt, men også vedvarende mere trodsigt og konfliktsøgende",
             "Der ses mere regelbrud, vrede eller modstand mod voksne, end ADHD alene forklarer",
             "Konflikter virker mere mønsterprægede og mindre situationsbundne end almindelig ADHD-uro"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet ofte går i magtkamp med voksne eller andre børn",
             "Om barnet reagerer med vrede eller trods ved almindelige krav og grænsesætning",
             "Om konflikter er vedvarende og ikke kun opstår ved overstimulering eller træthed",
-            "Om barnet provokerer, bryder regler eller søger konflikt på en måde, der går ud over impulsivitet alene"
+            "Om barnet provokerer, bryder regler eller søger konflikt på en måde, der går ud over impulsivitet alene",
+            "Om modstanden bliver et fast mønster i hverdagen"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Hyppige konflikter med lærere eller andre elever",
             "Modstand mod beskeder, regler og fælles rammer",
             "Vredesudbrud eller provokerende adfærd ved krav",
             "Vedvarende problemer med at holde sig inden for sociale og institutionelle grænser"
           ],
-          "typiske_tegn_i_hjem": [
-            "Gentagne magtkampe om små og store krav",
-            "Lav frustrationstærskel og hurtig vrede",
-            "Modstand mod voksne og svært ved at acceptere nej",
-            "Konflikter præger hverdagen mere end forventet ved ADHD alene"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere oppositionelt end typisk ved ADHD",
-            "Barnet havner igen og igen i konflikter, som ikke kun skyldes impulsivitet",
-            "Barnet reagerer med vedvarende trods eller vrede ved almindelige krav",
-            "ADHD-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "ADHD kan ligne adfærdsforstyrrelse, fordi impulsivitet også kan give konflikter og grænseoverskridelser",
-            "Adfærdsforstyrrelse kan overses, hvis al modstand forklares som uro eller reguleringsvanskeligheder",
-            "Det afgørende er, om der også ses et mere vedvarende mønster af trods, regelbrud og konfliktadfærd"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med ADHD, men der ses også vedvarende trods, konflikter og modstand mod krav, som ikke forklares tilstrækkeligt af ADHD alene",
             "Vi observerer et mønster med hyppige magtkampe, vrede og regelbrud i både relationelle og kravfyldte situationer",
             "Det kan være relevant at få belyst, om der også er en adfærdsmæssig problematik til stede ud over den kendte ADHD-profil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af konflikter, kravsituationer og reaktioner på grænsesætning",
-            "Beskrivelse af hvor ofte og i hvilke mønstre modstand, vrede og regelbrud opstår",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "adfaerdsforstyrrelse"
         }
@@ -276,63 +142,29 @@
           "id": "angst_depression",
           "suspected_comorbidity": "Depression",
           "title": "Angst + Depression",
-          "trigger_tegn": [
-            "trist",
-            "opgivende",
-            "lav energi",
-            "tilbagetrukket",
-            "mister lyst",
-            "håbløshed",
-            "social tilbagetrækning",
-            "følelsesmæssigt tung",
-            "stille",
-            "passiv"
-          ],
-          "praevalens": "25–50 %",
-          "kort_forklaring": "Når depression optræder sammen med angst, fremstår barnet eller den unge ofte mere tung, mere opgivende og mindre mobiliserbar, end angst alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når depression optræder sammen med angst, virker barnet ofte mere tungt, mere opgivende og mindre mobiliserbart, end angst alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun bekymret eller undgående, men også tydeligt mere trist, tungt eller opgivende",
             "Der ses fald i energi, lyst eller deltagelse, som ikke passer med angst alene",
             "Barnet trækker sig mere fra aktiviteter og relationer end det forventes ved almindelig angst"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet har tydeligt energifald eller tab af initiativ",
             "Om barnet virker mere trist, håbløst eller følelsesmæssigt tungt over tid",
             "Om tilbagetrækning handler om mere end frygt og også om manglende lyst",
-            "Om der er fald i deltagelse, kontakt og funktionsniveau"
+            "Om der er fald i deltagelse, kontakt og funktionsniveau",
+            "Om barnet virker mere passivt end vanligt"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Virker mere stille, passiv eller opgivende end ved angst alene",
             "Deltager mindre i undervisning og sociale aktiviteter",
             "Har svært ved at mobilisere sig, selv når krav er tilpasset",
             "Bekymring ledsages af tydelig tristhed eller energifald"
           ],
-          "typiske_tegn_i_hjem": [
-            "Mister lyst til aktiviteter, som tidligere betød noget",
-            "Virker mere træt, tung eller følelsesmæssigt flad",
-            "Trækker sig mere fra familien eller daglige rutiner",
-            "Virker mere opgivende og mindre mobiliserbar end tidligere"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere trist eller opgivende end typisk ved angst",
-            "Barnet har tydeligt energifald eller tab af interesse",
-            "Undgåelse ledsages af følelsesmæssig tyngde og social tilbagetrækning",
-            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Depression kan ligne angst, fordi barnet også kan trække sig og fungere dårligere socialt",
-            "Angst kan ligne depression, hvis barnet bliver meget undgående og stille",
-            "Det afgørende er, om der også ses vedvarende tristhed, energifald, tab af lyst eller håbløshed"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med angst, men der ses også tegn på tristhed, energifald og tilbagetrækning, som ikke forklares tilstrækkeligt af angsten alene",
             "Vi observerer fald i deltagelse, initiativ og følelsesmæssigt overskud, både fagligt og socialt",
             "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte angstprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af energi, deltagelse og social tilbagetrækning",
-            "Beskrivelse af ændringer i barnets stemning, lyst og funktionsniveau over tid",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "depression"
         },
@@ -340,63 +172,29 @@
           "id": "angst_adhd",
           "suspected_comorbidity": "ADHD",
           "title": "Angst + ADHD",
-          "trigger_tegn": [
-            "uro",
-            "ukoncentreret",
-            "impulsiv",
-            "glemmer",
-            "rastløs",
-            "skifter hurtigt",
-            "kan ikke fastholde opmærksomhed",
-            "uorganiseret",
-            "ureguleret",
-            "svinger mellem angst og uro"
-          ],
-          "praevalens": "20–30 %",
-          "kort_forklaring": "Når ADHD optræder sammen med angst, fremstår barnet ofte mere uroligt, mere ujævnt reguleret og mere hverdagsbelastet, end angst alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når ADHD optræder sammen med angst, virker barnet ofte mere uroligt, mere ujævnt reguleret og mere hverdagsbelastet, end angst alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun bekymret eller undgående, men også tydeligt uopmærksomt, impulsivt eller motorisk uroligt",
             "Der ses reguleringsvanskeligheder og hverdagskaos, som ikke passer med angst alene",
             "Barnets profil svinger mellem ængstelse og mangelfuld selvstyring på en måde, der peger ud over ren angst"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
             "Om barnet virker impulsivt eller motorisk uroligt ud over bekymringsmønsteret",
             "Om barnet har svært ved organisering, overblik og opgavefastholdelse",
-            "Om vanskelighederne også ses i trygge situationer, hvor angsten er mindre fremtrædende"
+            "Om vanskelighederne også ses i trygge situationer, hvor angsten er mindre fremtrædende",
+            "Om barnet hurtigt skifter spor og mister struktur"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Har svært ved at fastholde opmærksomhed, selv når opgaven er overskuelig",
             "Virker rastløs eller impulsiv ud over det angstprægede",
             "Glemmer beskeder, materialer eller aftaler",
             "Skifter hurtigt spor og har svært ved at holde struktur"
           ],
-          "typiske_tegn_i_hjem": [
-            "Har svært ved at gennemføre daglige rutiner og beskeder",
-            "Virker uorganiseret og let afledelig",
-            "Skifter hurtigt mellem bekymring, uro og impulsive reaktioner",
-            "Har svært ved at holde retning, selv i kendte og trygge rammer"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere uroligt og impulsivt end typisk ved angst",
-            "Barnet har tydelige opmærksomheds- og organiseringsvanskeligheder",
-            "Vanskelighederne kan ikke forklares af bekymring og undgåelse alene",
-            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "ADHD kan ligne angst, fordi barnet også kan være uroligt, overbelastet og have koncentrationsbesvær",
-            "Angst kan ligne ADHD, hvis barnet bliver meget forstyrret af bekymring og derfor virker ukoncentreret",
-            "Det afgørende er, om der også ses bredere og vedvarende regulerings- og opmærksomhedsvanskeligheder"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med angst, men der ses også tegn på vedvarende opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af angsten alene",
             "Vi observerer uro, impulsivitet og manglende fastholdelse, også i situationer hvor bekymring ikke alene synes at drive vanskelighederne",
             "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte angstprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af opmærksomhed, impulsivitet og organisering på tværs af miljøer",
-            "Beskrivelse af forskellen mellem angstudløste og mere generelle reguleringsvanskeligheder",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "adhd"
         },
@@ -404,63 +202,29 @@
           "id": "angst_asf",
           "suspected_comorbidity": "Autisme",
           "title": "Angst + Autisme",
-          "trigger_tegn": [
-            "rigid",
-            "social usikkerhed",
-            "stort behov for kontrol",
-            "urolig ved skift",
-            "sensorisk følsom",
-            "behov for forberedelse",
-            "bliver overbelastet",
-            "fastlåst ved ændringer",
-            "misforstår sociale situationer",
-            "undgår uforudsigelighed"
-          ],
-          "praevalens": "10–40 %",
-          "kort_forklaring": "Når autisme optræder sammen med angst, bliver angstbilledet ofte mere rigidt, mere situationsbundet og mere præget af overbelastning ved forandring, sociale krav eller sansning.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når autisme optræder sammen med angst, virker barnet ofte mere rigidt, mere situationsbundet og mere belastet af forandring, sociale krav eller sanseindtryk, end angst alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun bekymret eller undgående, men også markant mere rigidt og socialt anderledes",
             "Undgåelsen handler ikke kun om frygt, men også om uforudsigelighed, sociale koder eller sensorisk belastning",
             "Reaktionerne virker ofte præget af fastlåsthed, stort kontrolbehov og vanskeligheder med fleksibilitet"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet har vedvarende vanskeligheder med social gensidighed og sociale koder",
             "Om barnet reagerer stærkt på skift, forandringer eller brud på kendte rutiner",
-            "Om barnet virker sensorisk belastet af lyd, lys, berøring eller mange indtryk",
-            "Om undgåelse også hænger sammen med rigiditet og behov for forudsigelighed"
+            "Om barnet virker belastet af lyd, lys, berøring eller mange indtryk",
+            "Om undgåelse også hænger sammen med rigiditet og behov for forudsigelighed",
+            "Om barnet virker mere fastlåst end typisk ved angst alene"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Undgår ikke kun krav, men også sociale og uforudsigelige situationer",
             "Bliver fastlåst ved ændringer i planer, regler eller forventninger",
             "Virker mere socialt usikker eller misafstemt end typisk ved angst alene",
             "Bliver hurtigt overbelastet i støjende, sociale eller sansetunge miljøer"
           ],
-          "typiske_tegn_i_hjem": [
-            "Stærkt behov for kendte rutiner og forberedelse",
-            "Reagerer kraftigt ved ændringer i planer eller hverdagsmønstre",
-            "Har særlige sensoriske reaktioner på mad, tøj, lyd eller berøring",
-            "Undgår situationer, der opleves uforudsigelige, sociale eller overstimulerende"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere rigidt end typisk ved angst",
-            "Barnet er tydeligt mere socialt misafstemt eller belastet af sociale koder end forventet",
-            "Barnet bliver overbelastet af skift, sansning eller uforudsigelighed",
-            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Autisme kan ligne angst, fordi barnet også kan undgå, blive fastlåst og virke socialt usikkert",
-            "Angst kan ligne autisme, hvis barnet bliver meget undgående og rigidt i pressede situationer",
-            "Det afgørende er, om der også ses vedvarende vanskeligheder med social gensidighed, fleksibilitet og sensorisk tilpasning"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med angst, men der ses også tegn på rigiditet, social misafstemning og belastning ved skift eller sansning, som ikke forklares tilstrækkeligt af angsten alene",
             "Vi observerer, at barnet reagerer markant på uforudsigelighed, sociale krav og sensoriske belastninger",
             "Det kan være relevant at få belyst, om der også er en autismespektrumproblematik til stede ud over den kendte angstprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af socialt samspil, fleksibilitet og belastningsmønstre",
-            "Beskrivelse af barnets reaktioner på skift, sociale krav og sensoriske forhold",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "autisme"
         },
@@ -468,63 +232,29 @@
           "id": "angst_ocd",
           "suspected_comorbidity": "OCD",
           "title": "Angst + OCD",
-          "trigger_tegn": [
-            "ritualer",
-            "tvangstanker",
-            "gentager",
-            "kontrollerer",
-            "skal gøre ting på bestemt måde",
-            "påtrængende tanker",
-            "beroliger sig med handlinger",
-            "overdreven tvivl",
-            "mental gennemgang",
-            "kan ikke slippe tanken"
-          ],
-          "praevalens": "10–30 %",
-          "kort_forklaring": "Når OCD optræder sammen med angst, bliver angstbilledet ofte mere ritualiseret, mere tvangspræget og mindre forståeligt ud fra almindelig bekymringsangst alene.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når OCD optræder sammen med angst, virker barnet ofte mere ritualiseret, mere tvangspræget og mere fastlåst, end almindelig angst alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun bekymret eller undgående, men også fanget i ritualer, kontroller eller gentagelser",
             "Bekymringen er ikke kun bred og situationsbundet, men knyttet til bestemte tanker, forestillinger eller handlinger",
             "Barnet forsøger at dæmpe ubehag gennem bestemte handlinger eller mentale strategier"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet har gentagne ritualer, kontroller eller faste handlinger for at dæmpe angst",
+          "det_skal_laereren_kigge_efter": [
+            "Om barnet har gentagne ritualer, kontroller eller faste handlinger for at dæmpe uro",
             "Om barnet plages af påtrængende tanker, som er svære at slippe",
             "Om barnet bruger lang tid på at sikre sig, at noget er gjort rigtigt eller sikkert",
-            "Om uroen stiger markant, hvis ritualer afbrydes eller ikke kan gennemføres"
+            "Om uroen stiger markant, hvis ritualer afbrydes eller ikke kan gennemføres",
+            "Om barnet bliver fastlåst i tvivl eller gentagelser"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Bruger uforholdsmæssig lang tid på opgaver, tjek eller gentagelser",
             "Virker fastlåst i bestemte rutiner eller kontroller",
             "Har svært ved at komme videre, hvis noget ikke føles helt rigtigt",
             "Bekymring ledsages af ritualiseret adfærd eller mentale gentagelser"
           ],
-          "typiske_tegn_i_hjem": [
-            "Skal tjekke, spørge eller gentage ting mange gange",
-            "Bliver meget urolig, hvis bestemte ritualer ikke kan gennemføres",
-            "Bruger meget energi på at sikre sig mod noget frygtet",
-            "Har påtrængende tanker, som forsøges neutraliseret med handlinger eller mentale ritualer"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere ritualiseret end typisk ved angst",
-            "Barnet virker fastlåst i tvangstanker eller kontroller",
-            "Bekymringen er knyttet til gentagelser, neutralisering eller bestemte regler",
-            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "OCD kan ligne almindelig angst, fordi barnet også virker bekymret og undgående",
-            "Angst kan ligne OCD, hvis barnet søger meget forsikring og kontrol",
-            "Det afgørende er, om der også ses påtrængende tanker, ritualer og behov for neutralisering"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med angst, men der ses også tegn på ritualer, kontroller og påtrængende tanker, som ikke forklares tilstrækkeligt af angsten alene",
             "Vi observerer, at barnet bruger handlinger eller mentale strategier for at dæmpe uro og forhindre noget frygtet",
             "Det kan være relevant at få belyst, om der også er en OCD-problematik til stede ud over den kendte angstprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af ritualer, tvivl og neutraliserende handlinger",
-            "Beskrivelse af hvilke tanker eller situationer der udløser kontroller og gentagelser",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "ocd"
         },
@@ -532,63 +262,29 @@
           "id": "angst_odd",
           "suspected_comorbidity": "Adfærdsforstyrrelse",
           "title": "Angst + Adfærdsforstyrrelse",
-          "trigger_tegn": [
-            "vrede",
-            "konflikter",
-            "udadreagerende",
-            "modstand",
-            "lav frustrationstærskel",
-            "oppositionel",
-            "bliver eksplosiv ved krav",
-            "afviser voksne",
-            "provokerer",
-            "stærke reaktioner ved pres"
-          ],
-          "praevalens": "20–40 %",
-          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med angst, fremstår barnet ofte mere irritabelt, mere konfliktdrevet og mere udadreagerende, end man normalt forventer ved angst alene.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med angst, virker barnet ofte mere irritabelt, mere konfliktsøgende og mere udadreagerende, end man normalt forventer ved angst alene.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun bekymret eller undgående, men også vedvarende mere vredt, oppositionelt eller konfliktsøgende",
             "Der ses modstand, trods eller udadreagerende adfærd, som ikke passer med angst alene",
             "Reaktionerne virker ikke kun styret af frygt, men også af vedvarende konfliktmønstre og lav frustrationstærskel"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet reagerer med vrede eller modstand ved krav, pres eller usikkerhed",
             "Om konflikter er vedvarende og ikke kun opstår i enkelte angstfyldte situationer",
             "Om barnet går i magtkamp med voksne eller andre børn",
-            "Om udadreagerende adfærd ledsager belastning, utryghed eller oplevet kontroltab"
+            "Om udadreagerende adfærd ledsager belastning, utryghed eller oplevet kontroltab",
+            "Om modstanden bliver et fast mønster i hverdagen"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Reagerer med modstand, vrede eller konflikter ved krav og grænsesætning",
             "Virker mere udadreagerende end typisk ved angst alene",
             "Havner ofte i magtkampe med voksne eller andre elever",
             "Angst og usikkerhed ledsages af oppositionel eller eksplosiv adfærd"
           ],
-          "typiske_tegn_i_hjem": [
-            "Gentagne konflikter omkring hverdagens krav",
-            "Bliver hurtigt vred eller afvisende, når noget føles svært eller utrygt",
-            "Har lav frustrationstærskel og reagerer voldsomt ved pres",
-            "Modstand præger hverdagen mere end forventet ved angst alene"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere irritabelt og konfliktsøgende end typisk ved angst",
-            "Barnet reagerer med vedvarende modstand frem for kun undgåelse",
-            "Angst ledsages af trods, vrede eller udadreagerende adfærd",
-            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Adfærdsforstyrrelse kan overses, hvis al modstand tolkes som angstreaktion",
-            "Angst kan ligge bag vrede og modstand, især når barnet bliver presset eller utrygt",
-            "Det afgørende er, om der også ses et mere vedvarende mønster af opposition, konflikt og udadreagerende adfærd"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med angst, men der ses også vedvarende modstand, konflikter og udadreagerende reaktioner, som ikke forklares tilstrækkeligt af angsten alene",
             "Vi observerer et mønster, hvor krav, pres og usikkerhed ofte ledsages af vrede, trods eller eksplosive reaktioner",
             "Det kan være relevant at få belyst, om der også er en adfærdsmæssig problematik til stede ud over den kendte angstprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af konflikter, kravsituationer og reaktioner på grænsesætning",
-            "Beskrivelse af hvor ofte og i hvilke mønstre modstand, vrede og udadreagerende adfærd opstår",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "adfaerdsforstyrrelse"
         },
@@ -604,63 +300,29 @@
           "id": "autisme_adhd",
           "suspected_comorbidity": "ADHD",
           "title": "Autisme + ADHD",
-          "trigger_tegn": [
-            "urolig",
-            "impulsiv",
-            "kan ikke fastholde opmærksomhed",
-            "uorganiseret",
-            "rastløs",
-            "glemmer",
-            "skifter hurtigt spor",
-            "svært ved at gennemføre",
-            "ureguleret",
-            "kaotisk hverdag"
-          ],
-          "praevalens": "30–50 %",
-          "kort_forklaring": "Når ADHD optræder sammen med autisme, fremstår barnet ofte mere uroligt, mere impulsivt og mere ujævnt reguleret, end autisme alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når ADHD optræder sammen med autisme, virker barnet ofte mere uroligt, mere impulsivt og mere ujævnt reguleret, end autisme alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun rigidt eller socialt udfordret, men også tydeligt mere impulsivt og uopmærksomt",
             "Der ses større problemer med fastholdelse, organisering og hæmning, end autisme alene forklarer",
             "Hverdagen bliver mere kaotisk og mindre styret af den struktur, man ofte ser ved autisme alene"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
             "Om barnet virker impulsivt eller motorisk uroligt ud over belastningsreaktioner",
             "Om barnet har svært ved at organisere, afslutte og holde retning i opgaver",
-            "Om vanskelighederne også ses i trygge, kendte rammer og ikke kun ved overbelastning"
+            "Om vanskelighederne også ses i trygge, kendte rammer og ikke kun ved overbelastning",
+            "Om barnet både virker fastlåst og kaotisk på samme tid"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Har svært ved at fastholde opmærksomhed og gennemføre opgaver",
             "Virker mere rastløs eller impulsiv end typisk ved autisme alene",
             "Skifter hurtigt spor og mister overblik i hverdagen",
             "Har svært ved både krav, struktur og selvregulering"
           ],
-          "typiske_tegn_i_hjem": [
-            "Har svært ved at holde retning i daglige rutiner",
-            "Virker uorganiseret og let afledelig",
-            "Skifter hurtigt mellem interesser eller aktiviteter uden at afslutte",
-            "Reagerer både med fastlåsthed og impulsivitet i hverdagen"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere impulsivt og uroligt end typisk ved autisme",
-            "Barnet har tydelige opmærksomheds- og organiseringsvanskeligheder",
-            "Funktionsprofilen virker både rigid og kaotisk på samme tid",
-            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "ADHD kan ligne autisme, fordi barnet også kan virke socialt umodent og reguleringsvanskeligt",
-            "Autisme kan ligne ADHD, hvis barnet mister overblik, reagerer stærkt og virker uroligt under belastning",
-            "Det afgørende er, om der også ses bredere og vedvarende opmærksomheds- og impulsivitetsvanskeligheder"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med autisme, men der ses også tydelige tegn på opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af autisme alene",
             "Vi observerer uro, impulsivitet og manglende fastholdelse, som går ud over det forventede autismebillede",
             "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte autismeprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af opmærksomhed, impulsivitet og organisering på tværs af miljøer",
-            "Beskrivelse af forskellen mellem autistisk fastlåsthed og bredere reguleringsvanskeligheder",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "adhd"
         },
@@ -668,63 +330,29 @@
           "id": "autisme_angst",
           "suspected_comorbidity": "Angst",
           "title": "Autisme + Angst",
-          "trigger_tegn": [
-            "bekymring",
-            "undgåelse",
-            "alarmberedskab",
-            "søger forsikring",
-            "katastrofetanker",
-            "social frygt",
-            "stærk kravfølsomhed",
-            "bliver fastlåst af frygt",
-            "søger meget kontrol",
-            "undgår bestemte situationer"
-          ],
-          "praevalens": "40–60 %",
-          "kort_forklaring": "Når angst optræder sammen med autisme, fremstår barnet ofte mere undgående, mere alarmpræget og mere belastet af krav, forandringer eller sociale situationer, end autisme alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når angst optræder sammen med autisme, virker barnet ofte mere undgående, mere alarmpræget og mere belastet af krav, forandringer eller sociale situationer, end autisme alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun rigidt eller socialt usikkert, men også tydeligt mere frygtpræget og bekymret",
-            "Undgåelsen handler ikke kun om autistisk behov for forudsigelighed, men også om frygt, alarm og katastrofetænkning",
+            "Undgåelsen handler ikke kun om behov for forudsigelighed, men også om frygt, alarm og katastrofetænkning",
             "Reaktionerne bliver mere præget af sikkerhedsadfærd, forsikringsbehov og kravundgåelse"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet viser tydelig bekymring, katastrofetanker eller frygt i bestemte situationer",
             "Om barnet søger meget forsikring, kontrol eller tæt voksenstøtte",
             "Om undgåelse hænger sammen med alarm og ikke kun med rigiditet eller sensorisk belastning",
-            "Om belastningen stiger markant ved krav, sociale forventninger eller usikkerhed"
+            "Om belastningen stiger markant ved krav, sociale forventninger eller usikkerhed",
+            "Om barnet virker mere frygtstyret end vanligt"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Undgår bestemte krav, situationer eller relationer af frygt",
             "Virker mere alarmpræget eller ængstelig end typisk ved autisme alene",
             "Har stort behov for forsikring og forberedelse",
             "Sociale og faglige krav ledsages af tydelig uro, bekymring eller fastlåsning"
           ],
-          "typiske_tegn_i_hjem": [
-            "Bekymringer fylder meget før skole, aftaler eller nye situationer",
-            "Har stort behov for kontrol og tryghed omkring hverdagskrav",
-            "Undgår aktiviteter eller situationer, der opleves truende eller uforudsigelige",
-            "Reaktioner præges af både rigiditet og frygt"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere frygtpræget og undgående end typisk ved autisme",
-            "Barnet søger meget forsikring og viser tydelig kravfølsomhed",
-            "Undgåelse og alarm kan ikke forklares af autisme alene",
-            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Angst kan ligne autisme, fordi barnet også kan undgå, blive fastlåst og virke socialt usikkert",
-            "Autisme kan ligne angst, hvis barnet reagerer stærkt på skift, krav og sociale situationer",
-            "Det afgørende er, om der også ses tydelig frygt, bekymring og sikkerhedsadfærd"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med autisme, men der ses også tegn på bekymring, alarm og undgåelse, som ikke forklares tilstrækkeligt af autisme alene",
             "Vi observerer, at belastningen især øges i situationer med krav, usikkerhed, sociale forventninger eller oplevet fare",
             "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte autismeprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer på tværs af skole og hjem",
-            "Beskrivelse af hvilke situationer der udløser frygt, undgåelse eller sikkerhedsadfærd",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "angst"
         },
@@ -732,265 +360,71 @@
           "id": "autisme_depression",
           "suspected_comorbidity": "Depression",
           "title": "Autisme + Depression",
-          "trigger_tegn": [
-            "trist",
-            "mere tilbagetrukket",
-            "lav energi",
-            "fald i deltagelse",
-            "opgivende",
-            "mister lyst",
-            "irritabel",
-            "mere isoleret",
-            "følelsesmæssigt tung",
-            "tydeligt funktionsfald"
-          ],
-          "praevalens": "20–30 %",
-          "kort_forklaring": "Når depression optræder sammen med autisme, fremstår barnet eller den unge ofte mere tilbagetrukket, mere følelsesmæssigt tung og mere funktionsfaldet, end autisme alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+          "kort_forklaring": "Når depression optræder sammen med autisme, virker barnet ofte mere tilbagetrukket, mere følelsesmæssigt tungt og mere funktionsfaldet, end autisme alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
             "Barnet virker ikke kun socialt tilbagetrukket eller rigidt, men også tydeligt mere trist, tungt eller opgivende",
             "Der ses fald i energi, lyst eller deltagelse, som ligger ud over den kendte autismeprofil",
             "Barnet har et tydeligt fald fra tidligere funktionsniveau"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om barnet har tydeligt energifald, mindre initiativ eller mindre kontakt end tidligere",
             "Om barnet virker mere trist, irritabelt eller håbløst over tid",
             "Om deltagelse i skole, interesser eller relationer falder markant",
-            "Om ændringen er ny eller tydelig i forhold til barnets vante profil"
+            "Om ændringen er ny eller tydelig i forhold til barnets vante profil",
+            "Om barnet virker mere lukket end vanligt"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Deltager mindre end tidligere i undervisning eller fællesskab",
             "Virker mere passiv, tung eller opgivende",
             "Har mindre energi til krav, selv i kendte rammer",
             "Autismeprofilen ledsages af tydeligt funktionsfald"
           ],
-          "typiske_tegn_i_hjem": [
-            "Mister lyst til interesser eller rutiner, som tidligere gav ro eller mening",
-            "Virker mere isoleret, træt eller følelsesmæssigt flad",
-            "Har mindre overskud til hverdagsaktiviteter",
-            "Reagerer med mere opgivenhed eller irritabilitet end tidligere"
-          ],
-          "mistankeindikatorer": [
-            "Barnet har tydeligt funktionsfald i forhold til sin vante autismeprofil",
-            "Barnet virker mere trist, tungt eller opgivende end forventet",
-            "Tilbagetrækningen er større end det, autisme alene forklarer",
-            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Depression kan overses, hvis tilbagetrækning og lav energi tolkes som en del af autismeprofilen",
-            "Autisme kan fejlfortolkes som depression, hvis barnet generelt er stille og socialt tilbagetrukket",
-            "Det afgørende er, om der er tale om et tydeligt fald fra tidligere funktionsniveau"
-          ],
-          "hvad_kan_formidles_videre": [
+          "det_kan_formidles_videre": [
             "Barnet er kendt med autisme, men der ses også tegn på tristhed, energifald og tydeligt funktionsfald, som ikke forklares tilstrækkeligt af autisme alene",
             "Vi observerer fald i deltagelse, initiativ og følelsesmæssigt overskud i både skole og hjem",
             "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte autismeprofil"
           ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af energi, deltagelse og ændringer i funktionsniveau",
-            "Beskrivelse af hvornår faldet er opstået, og hvordan det viser sig på tværs af miljøer",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
-          ],
           "see_also": "depression"
-        },
-        {
-          "id": "autisme_if",
-          "suspected_comorbidity": "Intellektuel funktionsnedsættelse",
-          "title": "Autisme + Intellektuel funktionsnedsættelse",
-          "trigger_tegn": [
-            "tydeligt forsinket",
-            "lavt abstraktionsniveau",
-            "behov for meget konkret støtte",
-            "langsom læring",
-            "bred udviklingspåvirkning",
-            "forstår mindre end forventet",
-            "har svært ved generalisering",
-            "behov for omfattende hjælp",
-            "stor afhængighed af voksne",
-            "begrænset problemløsning"
-          ],
-          "praevalens": "30–40 %",
-          "kort_forklaring": "Når intellektuel funktionsnedsættelse optræder sammen med autisme, bliver den samlede profil ofte mere gennemgribende påvirket, og støttebehovet bliver bredere og mere omfattende, end autisme alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun socialt og fleksibilitetsmæssigt udfordret, men også bredt kognitivt mere påvirket",
-            "Der ses større vanskeligheder med læring, abstraktion og generalisering, end autisme alene forklarer",
-            "Støttebehovet er mere grundlæggende og omfattende end ved autisme alene"
-          ],
-          "hvad_boer_observeres": [
-            "Om barnet har tydeligt begrænset abstraktionsniveau og læringstempo",
-            "Om barnet har brug for meget konkret, gentaget og enkel støtte i mange sammenhænge",
-            "Om vanskelighederne er brede og ikke kun handler om social forståelse og fleksibilitet",
-            "Om barnet har svært ved generalisering, problemløsning og selvstændighed"
-          ],
-          "typiske_tegn_i_skole": [
-            "Har svært ved at følge almindelige læringskrav, selv med støtte",
-            "Behøver meget konkret og trinvis undervisning",
-            "Har begrænset overførsel fra én situation til en anden",
-            "Fremstår mere globalt udviklingspåvirket end typisk ved autisme alene"
-          ],
-          "typiske_tegn_i_hjem": [
-            "Har brug for omfattende hjælp i daglige rutiner",
-            "Har svært ved at forstå nye beskeder eller ændringer uden meget støtte",
-            "Virker mere afhængig af voksne end forventet for alder",
-            "Har vanskeligt ved at generalisere læring til nye situationer"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er bredere kognitivt påvirket end typisk ved autisme",
-            "Barnet har meget omfattende behov for konkret støtte",
-            "Læring og selvstændighed er mere begrænset end forventet",
-            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Intellektuel funktionsnedsættelse kan blandes sammen med autisme, fordi begge kan påvirke kommunikation og funktion",
-            "Autisme kan overvurderes, hvis brede kognitive vanskeligheder ikke adskilles fra den autistiske profil",
-            "Det afgørende er, om der også ses en mere generel og gennemgribende kognitiv påvirkning"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med autisme, men der ses også tegn på bredere kognitiv påvirkning og mere omfattende støttebehov, som ikke forklares tilstrækkeligt af autisme alene",
-            "Vi observerer store vanskeligheder med abstraktion, generalisering og selvstændig problemløsning på tværs af situationer",
-            "Det kan være relevant at få belyst, om der også er en intellektuel funktionsnedsættelse til stede ud over den kendte autismeprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af læring, generalisering og behov for konkret støtte",
-            "Beskrivelse af barnets udviklingsniveau og grad af selvstændighed på tværs af miljøer",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
-          ],
-          "see_also": "intellektuel_funktionsnedsaettelse"
-        },
-        {
-          "id": "autisme_soevn",
-          "suspected_comorbidity": "Søvnforstyrrelse",
-          "title": "Autisme + Søvnforstyrrelse",
-          "trigger_tegn": [
-            "svært ved at falde i søvn",
-            "vågner om natten",
-            "ustabil døgnrytme",
-            "meget træt om dagen",
-            "mere irritabel efter dårlig søvn",
-            "søvn påvirker funktion tydeligt",
-            "morgenopstart er svær",
-            "sover uroligt",
-            "forværres ved dårlig søvn",
-            "træt og ureguleret"
-          ],
-          "praevalens": "50–80 %",
-          "kort_forklaring": "Når søvnforstyrrelse optræder sammen med autisme, fremstår barnet ofte mere sårbart, mere irritabelt og mere reguleringsudfordret, end autisme alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun autistisk belastet, men også tydeligt påvirket af mangelfuld eller ustabil søvn",
-            "Der ses større irritabilitet, lavere belastningstolerance og mere ujævn funktion efter dårlig søvn",
-            "Døgnrytme og søvnkvalitet påvirker barnets profil markant"
-          ],
-          "hvad_boer_observeres": [
-            "Om barnet har vedvarende indsovningsvanskeligheder eller natlige opvågninger",
-            "Om dårlig søvn tydeligt forværrer regulering, fleksibilitet og adfærd dagen efter",
-            "Om morgenopstart og dagsform hænger tæt sammen med søvnkvalitet",
-            "Om søvnproblemerne er mere end almindelig uro omkring sengetid"
-          ],
-          "typiske_tegn_i_skole": [
-            "Virker mere træt, irritabel eller ureguleret efter dårlig søvn",
-            "Har lavere tolerance for krav, skift og sociale situationer",
-            "Fremstår mere sårbar i de første timer af dagen",
-            "Funktionsniveauet svinger tydeligt med søvnkvaliteten"
-          ],
-          "typiske_tegn_i_hjem": [
-            "Har svært ved at falde til ro eller sove stabilt",
-            "Vågner ofte og kommer ikke ordentligt ned i søvn",
-            "Er markant mere belastet i hverdagen efter dårlig søvn",
-            "Søvnproblemer præger hele familiens rytme og barnets regulering"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere sårbart og irritabelt end typisk ved autisme alene",
-            "Funktionsniveauet svinger tydeligt med søvnkvalitet",
-            "Dårlig søvn forværrer kendte vanskeligheder markant",
-            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Søvnforstyrrelser kan overses, hvis øget uro og irritabilitet bare tolkes som autisme",
-            "Autisme kan i sig selv give sengetidsvanskeligheder, men ikke nødvendigvis en bred søvnforstyrrelse",
-            "Det afgørende er, om søvnen er vedvarende forstyrret og tydeligt påvirker dagsfunktionen"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med autisme, men der ses også tegn på vedvarende søvnproblemer, som ikke forklares tilstrækkeligt af autisme alene",
-            "Vi observerer, at dårlig søvn tydeligt påvirker regulering, belastningstolerance og dagsfunktion",
-            "Det kan være relevant at få belyst, om der også er en søvnproblematik til stede ud over den kendte autismeprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af søvnmønster, opvågninger og dagsfunktion",
-            "Beskrivelse af sammenhængen mellem søvnkvalitet og barnets regulering i skole og hjem",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
-          ],
-          "see_also": "soevnforstyrrelse"
         }
       ]
-    },
+    }
+  ]
+},
     {
       "id": "depression",
       "primary_diagnosis": "Depression",
       "overview": {
-        "kort_beskrivelse": "Depression forklarer ofte meget, men ikke altid helheden. Når barnets eller den unges samlede profil afviger tydeligt fra det forventede depressive billede, bør komorbiditet overvejes.",
-        "klinisk_pointe": "Ved depression er det ofte komorbiditeten, der forklarer, hvorfor barnet eller den unge fremstår mere komplekst, mere belastet eller mindre typisk, end grunddiagnosen alene tilsiger."
+        "kort_beskrivelse": "Depression forklarer ofte noget af billedet, men ikke altid det hele. Når elevens samlede profil afviger tydeligt fra det forventede depressive billede, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved depression er det ofte komorbiditeten, der forklarer, hvorfor eleven fremstår mere kompleks, mere belastet eller mindre typisk, end depression alene tilsiger."
       },
       "comorbidities": [
         {
           "id": "depression_angst",
           "suspected_comorbidity": "Angst",
           "title": "Depression + Angst",
-          "trigger_tegn": [
-            "bekymring",
-            "undgåelse",
-            "katastrofetanker",
-            "kravfølsomhed",
-            "social usikkerhed",
-            "søger forsikring",
-            "alarmberedskab",
-            "sover dårligt",
-            "grubler",
-            "bliver let overvældet"
-          ],
-          "praevalens": "30–75 %",
-          "kort_forklaring": "Når angst optræder sammen med depression, fremstår barnet eller den unge ofte mere bekymret, mere undgående og mere alarmpræget, end depression alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun trist eller opgivende, men også tydeligt mere bekymret og frygtpræget",
+          "kort_forklaring": "Når angst optræder sammen med depression, virker eleven ofte mere bekymret, mere undgående og mere alarmpræget, end depression alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trist eller opgivende, men også tydeligt mere bekymret og frygtpræget",
             "Der ses undgåelse og alarm, som ikke passer med depression alene",
             "Reaktionerne virker præget af både følelsesmæssig tyngde og aktiv frygt for situationer, krav eller relationer"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet viser tydelig bekymring, katastrofetanker eller sikkerhedsadfærd",
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven viser tydelig bekymring, katastrofetanker eller sikkerhedsadfærd",
             "Om undgåelse handler om mere end energifald og også om frygt eller usikkerhed",
             "Om krav, sociale situationer eller fejl udløser alarm og tilbagetrækning",
-            "Om barnet søger meget forsikring eller kontrol"
+            "Om eleven søger meget forsikring eller kontrol",
+            "Om eleven virker både tung og ængstelig på samme tid"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Undgår situationer med præstation, sociale krav eller usikkerhed",
             "Virker både tung og alarmpræget",
             "Har svært ved at deltage, fordi bekymring og frygt fylder meget",
             "Deltagelse falder på grund af både energifald og angstpræget undgåelse"
           ],
-          "typiske_tegn_i_hjem": [
-            "Bekymringer fylder meget i hverdagen",
-            "Trækker sig fra aktiviteter på grund af både manglende lyst og frygt",
-            "Har stort behov for tryghed og forsikring",
-            "Virker både trist og ængstelig over tid"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere bekymret og undgående end typisk ved depression",
-            "Tilbagetrækning ledsages af frygt og alarmberedskab",
-            "Barnet virker både tungt belastet og ængsteligt",
-            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Angst kan ligne depression, fordi barnet også kan trække sig, sove dårligt og fungere dårligere",
-            "Depression kan ligne angst, hvis barnet virker meget belastet og usikkert",
-            "Det afgørende er, om der også ses tydelig frygt, alarm og undgåelse ud over nedtrykthed og energifald"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med depression, men der ses også tegn på bekymring, undgåelse og alarm, som ikke forklares tilstrækkeligt af depressionen alene",
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med depression, men der ses også tegn på bekymring, undgåelse og alarm, som ikke forklares tilstrækkeligt af depressionen alene",
             "Vi observerer, at belastningen også har et tydeligt angstpræg med frygt, usikkerhed og kravundgåelse",
             "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte depressive profil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af bekymring, undgåelse og sikkerhedsadfærd",
-            "Beskrivelse af hvilke situationer der udløser frygt, alarm eller tilbagetrækning",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "angst"
         },
@@ -998,63 +432,29 @@
           "id": "depression_adhd",
           "suspected_comorbidity": "ADHD",
           "title": "Depression + ADHD",
-          "trigger_tegn": [
-            "uopmærksom",
-            "impulsiv",
-            "rastløs",
-            "glemmer",
-            "uorganiseret",
-            "kan ikke fastholde opmærksomhed",
-            "ureguleret",
-            "skifter hurtigt",
-            "svært ved at gennemføre",
-            "kaotisk hverdag"
-          ],
-          "praevalens": "20–30 %",
-          "kort_forklaring": "Når ADHD optræder sammen med depression, fremstår depressionen ofte mere ujævnt reguleret, mere irritabel og mere funktionspræget i hverdagen, end depression alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun trist eller energiforladt, men også tydeligt uopmærksomt, impulsivt eller motorisk uroligt",
+          "kort_forklaring": "Når ADHD optræder sammen med depression, virker eleven ofte mere uopmærksom, mere ureguleret og mere kaotisk i hverdagen, end depression alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trist eller energiforladt, men også tydeligt uopmærksom, impulsiv eller motorisk urolig",
             "Der ses større problemer med organisering og fastholdelse, end depression alene forklarer",
             "Profilen svinger mellem følelsesmæssig tyngde og bredere selvreguleringsvanskeligheder"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
-            "Om barnet virker impulsivt eller rastløst ud over depressiv uro eller irritabilitet",
-            "Om barnet har svært ved at organisere, starte og afslutte opgaver",
-            "Om vanskelighederne også ses i mere trygge og rolige perioder"
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
+            "Om eleven virker impulsiv eller rastløs ud over depressiv uro eller irritabilitet",
+            "Om eleven har svært ved at organisere, starte og afslutte opgaver",
+            "Om vanskelighederne også ses i mere trygge og rolige perioder",
+            "Om profilen virker både tung og kaotisk"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Har svært ved at fastholde opmærksomhed og struktur",
             "Virker både tung og ureguleret i hverdagen",
             "Glemmer beskeder, materialer eller aftaler",
             "Har svært ved at komme i gang og svært ved at holde retning"
           ],
-          "typiske_tegn_i_hjem": [
-            "Har svært ved daglige rutiner og opgavegennemførelse",
-            "Virker uorganiseret og let afledelig",
-            "Skifter mellem passivitet, irritabilitet og impulsive reaktioner",
-            "Har svært ved at holde struktur, også i kendte rammer"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere uopmærksomt og impulsivt end typisk ved depression",
-            "Barnet har tydelige organiserings- og reguleringsvanskeligheder",
-            "Funktionsprofilen virker både tung og kaotisk",
-            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "ADHD kan ligne depression, fordi barnet også kan virke lavt fungerende og frustreret",
-            "Depression kan ligne ADHD, hvis barnet bliver ukoncentreret, irritabelt og svært at mobilisere",
-            "Det afgørende er, om der også ses bredere og vedvarende opmærksomheds- og impulsivitetsvanskeligheder"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med depression, men der ses også vedvarende opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af depressionen alene",
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med depression, men der ses også vedvarende opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af depressionen alene",
             "Vi observerer uro, impulsivitet eller organiseringsproblemer ud over det forventede depressive billede",
             "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte depressive profil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af opmærksomhed, impulsivitet og organisering på tværs af miljøer",
-            "Beskrivelse af forskellen mellem depressivt energifald og bredere reguleringsvanskeligheder",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "adhd"
         },
@@ -1062,63 +462,29 @@
           "id": "depression_autisme",
           "suspected_comorbidity": "Autisme",
           "title": "Depression + Autisme",
-          "trigger_tegn": [
-            "rigid",
-            "socialt anderledes",
-            "fastlåst",
-            "bliver overbelastet",
-            "social usikkerhed",
-            "stort behov for rutiner",
-            "sensorisk følsom",
-            "misforstår sociale situationer",
-            "trækker sig mere ved krav",
-            "ændringer vælter barnet"
-          ],
-          "praevalens": "Forekommer hyppigt, når depression optræder hos børn og unge med autisme",
-          "kort_forklaring": "Når autisme optræder sammen med depression, bliver depressionen ofte mindre klassisk i sit udtryk og mere præget af tilbagetrækning, rigiditet, overbelastning og fald i funktion.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun trist eller opgivende, men også markant mere rigidt, socialt misafstemt eller belastet af forandringer",
+          "kort_forklaring": "Når autisme optræder sammen med depression, virker eleven ofte mere rigid, mere belastet af forandringer og mere funktionsfaldet, end depression alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trist eller opgivende, men også markant mere rigid, socialt anderledes eller belastet af forandringer",
             "Depressionen viser sig ikke kun som nedtrykthed, men også som øget fastlåsthed og overbelastning",
             "Funktionsfaldet hænger sammen med både følelsesmæssig tyngde og en mere grundlæggende autismeprofil"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet har vedvarende vanskeligheder med social gensidighed og fleksibilitet",
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har vedvarende vanskeligheder med social gensidighed og fleksibilitet",
             "Om overbelastning, tilbagetrækning og funktionsfald stiger ved forandringer og sociale krav",
-            "Om barnet virker sensorisk belastet og mere sårbart end tidligere",
-            "Om depressionen viser sig mere som lukning, udmattelse og rigiditet end klassisk tristhed"
+            "Om eleven virker sensorisk belastet og mere sårbar end tidligere",
+            "Om depressionen viser sig mere som lukning, udmattelse og rigiditet end klassisk tristhed",
+            "Om eleven bliver markant mere fastlåst end før"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Trækker sig markant fra fællesskab og krav",
             "Virker mere fastlåst og mindre fleksibel end typisk ved depression alene",
             "Overbelastes hurtigt af sociale eller uforudsigelige situationer",
             "Funktionsniveauet falder både fagligt og socialt"
           ],
-          "typiske_tegn_i_hjem": [
-            "Har stærkt behov for rutiner og reagerer kraftigt på ændringer",
-            "Virker mere udmattet, isoleret eller låst end tidligere",
-            "Har særlige sensoriske belastninger, som fylder meget i hverdagen",
-            "Depressiv tilstand viser sig gennem tilbagetrækning, rigiditet og nedsat overskud"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere rigidt og socialt anderledes end typisk ved depression",
-            "Funktionsfaldet ledsages af tydelig overbelastning ved skift, sansning eller sociale krav",
-            "Depressionen virker mindre klassisk og mere præget af autistiske træk",
-            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Autisme kan ligne depression, fordi barnet kan være stille, trække sig og virke energiforladt",
-            "Depression kan overses, hvis fald i energi og deltagelse tolkes som en del af autismeprofilen",
-            "Det afgørende er, om der også ses en mere grundlæggende profil med socialkommunikative vanskeligheder og rigiditet"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med depression, men der ses også tegn på rigiditet, social misafstemning og belastning ved forandringer eller sansning, som ikke forklares tilstrækkeligt af depressionen alene",
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med depression, men der ses også tegn på rigiditet, social misafstemning og belastning ved forandringer eller sansning, som ikke forklares tilstrækkeligt af depressionen alene",
             "Vi observerer, at funktionsfaldet også hænger sammen med socialt samspil, fleksibilitet og overbelastning",
             "Det kan være relevant at få belyst, om der også er en autismeproblematik til stede ud over den kendte depressive profil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af socialt samspil, fleksibilitet og belastningsmønstre",
-            "Beskrivelse af barnets reaktioner på skift, sociale krav og sensoriske forhold",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "autisme"
         },
@@ -1126,129 +492,31 @@
           "id": "depression_odd",
           "suspected_comorbidity": "Adfærdsforstyrrelse",
           "title": "Depression + Adfærdsforstyrrelse",
-          "trigger_tegn": [
-            "vrede",
-            "konflikter",
-            "udadreagerende",
-            "oppositionel",
-            "lav frustrationstærskel",
-            "modstand",
-            "regelbrud",
-            "irritabel",
-            "afviser voksne",
-            "eksplosiv ved krav"
-          ],
-          "praevalens": "15–30 %",
-          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med depression, fremstår depressionen ofte mere irritabel, mere konfliktsøgende og mere udadreagerende, end man typisk forventer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun trist eller opgivende, men også vedvarende mere vredt, oppositionelt eller konfliktsøgende",
+          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med depression, virker eleven ofte mere irritabel, mere konfliktsøgende og mere udadreagerende, end man typisk forventer ved depression alene.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trist eller opgivende, men også vedvarende mere vred, oppositionel eller konfliktsøgende",
             "Der ses mere modstand, udadreagerende adfærd eller regelbrud, end depression alene forklarer",
             "Depressionen skjules bag irritation, trods eller konfliktmønstre"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet reagerer med vrede eller modstand ved krav, grænsesætning eller nederlag",
-            "Om konflikter er vedvarende og ikke kun udtryk for enkelte dårlige perioder",
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven reagerer med vrede eller modstand ved krav, grænsesætning eller nederlag",
+            "Om konflikter er vedvarende og ikke kun enkelte dårlige dage",
             "Om irritabilitet ledsages af energifald, tristhed eller opgivenhed",
-            "Om udadreagerende adfærd dækker over tydeligt følelsesmæssigt fald"
+            "Om udadreagerende adfærd dækker over tydeligt følelsesmæssigt fald",
+            "Om eleven virker både tung og konfliktsøgende"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Havner ofte i konflikter med lærere eller andre elever",
             "Virker mere irritabel og udadreagerende end typisk ved depression alene",
             "Modstand mod krav ledsages af tydelig opgivenhed eller lavt overskud",
             "Depressiv belastning kommer ud som vrede eller konflikt"
           ],
-          "typiske_tegn_i_hjem": [
-            "Gentagne konflikter omkring hverdagens krav",
-            "Virker både følelsesmæssigt tung og hurtigt vred",
-            "Reagerer med modstand, irritation eller eksplosive udbrud",
-            "Hverdagen præges af både opgivenhed og konfliktmønstre"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere konfliktsøgende og irritabelt end typisk ved depression",
-            "Depressiv tilstand ledsages af trods eller udadreagerende adfærd",
-            "Modstand og vrede virker vedvarende og mønsterprægede",
-            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Depression kan overses, hvis barnet primært viser irritabilitet og modstand",
-            "Adfærdsforstyrrelse kan overvurderes, hvis følelsesmæssigt fald ikke opdages bag adfærden",
-            "Det afgørende er, om konflikter ledsages af tydeligt fald i stemning, lyst, energi eller selvværdi"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med depression, men der ses også vedvarende modstand, konflikter og udadreagerende reaktioner, som ikke forklares tilstrækkeligt af depressionen alene",
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med depression, men der ses også vedvarende modstand, konflikter og udadreagerende reaktioner, som ikke forklares tilstrækkeligt af depressionen alene",
             "Vi observerer et mønster, hvor depressiv belastning ofte ledsages af vrede, trods eller konfliktadfærd",
             "Det kan være relevant at få belyst, om der også er en adfærdsmæssig problematik til stede ud over den kendte depressive profil"
           ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af konflikter, kravsituationer og reaktioner på grænsesætning",
-            "Beskrivelse af hvordan irritabilitet, opgivenhed og udadreagerende adfærd hænger sammen over tid",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
-          ],
           "see_also": "adfaerdsforstyrrelse"
-        },
-        {
-          "id": "depression_spiseforstyrrelse",
-          "suspected_comorbidity": "Spiseforstyrrelse",
-          "title": "Depression + Spiseforstyrrelse",
-          "trigger_tegn": [
-            "ændret spiseadfærd",
-            "vægtfokus",
-            "kropsutilfredshed",
-            "kontrol omkring mad",
-            "skam",
-            "selvkritik",
-            "springer måltider over",
-            "meget optaget af krop",
-            "spiser skjult eller meget lidt",
-            "mad fylder mentalt"
-          ],
-          "praevalens": "10–20 %, især hos unge",
-          "kort_forklaring": "Når spiseforstyrrelse optræder sammen med depression, bliver depressionen ofte mere kropsbundet, mere selvkritisk og mere præget af kontrol, skam og belastet selvvurdering.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet eller den unge virker ikke kun trist eller opgivende, men også stærkt optaget af krop, vægt eller mad",
-            "Der ses kontrolprægede mønstre omkring spisning, som ikke passer med depression alene",
-            "Selvkritikken bliver mere kropsbundet og præget af skam"
-          ],
-          "hvad_boer_observeres": [
-            "Om barnet ændrer spiseadfærd, undgår måltider eller bliver meget optaget af mad og vægt",
-            "Om barnet viser stærk kropsutilfredshed eller behov for kontrol",
-            "Om tristhed og selvkritik er tæt knyttet til krop, mad eller udseende",
-            "Om der er skjulte mønstre, ritualer eller markant skam omkring spisning"
-          ],
-          "typiske_tegn_i_skole": [
-            "Springer måltider over eller spiser meget lidt",
-            "Virker stærkt optaget af krop, vægt eller kontrol",
-            "Deltagelse påvirkes af lav energi, selvkritik og spiseproblemer",
-            "Depressiv belastning ledsages af tydelig kropsrelateret sårbarhed"
-          ],
-          "typiske_tegn_i_hjem": [
-            "Måltider bliver konfliktfyldte eller stærkt kontrollerede",
-            "Barnet eller den unge er meget selvkritisk omkring krop og mad",
-            "Skam, hemmeligholdelse eller kontrol fylder omkring spisning",
-            "Depressiv tilstand forstærkes af kropsutilfredshed og spiseproblematik"
-          ],
-          "mistankeindikatorer": [
-            "Depressionen er mere kropsbundet og kontrolpræget end forventet",
-            "Barnet eller den unge viser tydeligt ændret spiseadfærd",
-            "Selvkritik og skam knytter sig markant til krop og vægt",
-            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Spiseforstyrrelser kan overses, hvis vægttab eller madundgåelse bare tolkes som appetitændring ved depression",
-            "Depression kan undervurderes, hvis fokus kun lægges på spiseadfærden",
-            "Det afgørende er, om der også ses vedvarende kontrol, skam og kropsrelateret selvvurdering"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet eller den unge er kendt med depression, men der ses også tegn på ændret spiseadfærd, kropsutilfredshed og kontrol, som ikke forklares tilstrækkeligt af depressionen alene",
-            "Vi observerer, at selvkritik, skam og belastning også knytter sig tydeligt til krop, vægt og mad",
-            "Det kan være relevant at få belyst, om der også er en spiseforstyrrelsesproblematik til stede ud over den kendte depressive profil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af spiseadfærd, måltidsmønstre og kropsrelateret belastning",
-            "Beskrivelse af hvordan mad, vægt, kontrol og selvkritik fylder i hverdagen",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
-          ],
-          "see_also": "spiseforstyrrelse"
         }
       ]
     },
@@ -1256,71 +524,37 @@
       "id": "adfaerdsforstyrrelse",
       "primary_diagnosis": "Adfærdsforstyrrelse",
       "overview": {
-        "kort_beskrivelse": "Adfærdsforstyrrelse forklarer ofte meget, men ikke altid helheden. Når barnets eller den unges samlede profil afviger tydeligt fra det forventede adfærdsbillede, bør komorbiditet overvejes.",
-        "klinisk_pointe": "Ved adfærdsforstyrrelse er det ofte komorbiditeten, der forklarer, hvorfor barnet eller den unge fremstår mere komplekst, mere belastet eller mindre typisk, end grunddiagnosen alene tilsiger."
+        "kort_beskrivelse": "Adfærdsforstyrrelse forklarer ofte noget af billedet, men ikke altid det hele. Når elevens samlede profil afviger tydeligt fra det forventede adfærdsbillede, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved adfærdsforstyrrelse er det ofte komorbiditeten, der forklarer, hvorfor eleven fremstår mere kompleks, mere belastet eller mindre typisk, end adfærdsforstyrrelsen alene tilsiger."
       },
       "comorbidities": [
         {
           "id": "adfaerdsforstyrrelse_adhd",
           "suspected_comorbidity": "ADHD",
           "title": "Adfærdsforstyrrelse + ADHD",
-          "trigger_tegn": [
-            "impulsiv",
-            "urolig",
-            "rastløs",
-            "kan ikke vente",
-            "afbryder",
-            "ureguleret",
-            "glemmer",
-            "skifter hurtigt",
-            "svært ved struktur",
-            "handler før der tænkes"
-          ],
-          "praevalens": "30–50 %",
-          "kort_forklaring": "Når ADHD optræder sammen med adfærdsforstyrrelse, fremstår barnet eller den unge ofte mere impulsiv, mere motorisk urolig og mere vedvarende vanskeligt regulerbar, end adfærdsforstyrrelsen alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun trodsigt eller konfliktsøgende, men også tydeligt mere impulsivt og uopmærksomt",
+          "kort_forklaring": "Når ADHD optræder sammen med adfærdsforstyrrelse, virker eleven ofte mere impulsiv, mere urolig og mere vedvarende svær at regulere, end adfærdsforstyrrelse alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trodsig eller konfliktsøgende, men også tydeligt mere impulsiv og uopmærksom",
             "Der ses større problemer med hæmning, fastholdelse og organisering, end adfærdsforstyrrelse alene forklarer",
             "Konflikterne virker i høj grad drevet af reguleringssvigt og manglende bremsning"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
-            "Om barnet virker impulsivt eller motorisk uroligt ud over konfliktsituationer",
-            "Om barnet har svært ved at organisere og fastholde opgaver og krav",
-            "Om grænseoverskridelser ofte sker hurtigt og uden forudgående overvejelse"
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
+            "Om eleven virker impulsiv eller motorisk urolig ud over konfliktsituationer",
+            "Om eleven har svært ved at organisere og fastholde opgaver og krav",
+            "Om grænseoverskridelser ofte sker hurtigt og uden forudgående overvejelse",
+            "Om eleven virker mere kaotisk end planlagt trodsig"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Afbryder, reagerer hurtigt og handler før der tænkes",
             "Har svært ved at holde fokus og følge struktur",
             "Konflikter opstår både ved trods og impulsivitet",
             "Virker mere rastløs og ureguleret end typisk ved adfærdsforstyrrelse alene"
           ],
-          "typiske_tegn_i_hjem": [
-            "Har svært ved at vente, lytte og holde retning i daglige krav",
-            "Reagerer hurtigt og uden tydelig bremsning",
-            "Hverdagen bliver præget af både konflikter og kaotisk regulering",
-            "Har svært ved at gennemføre rutiner og beskeder"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere impulsivt og uroligt end typisk ved adfærdsforstyrrelse",
-            "Barnet har tydelige opmærksomheds- og organiseringsvanskeligheder",
-            "Konflikter virker ofte drevet af reguleringssvigt frem for kun opposition",
-            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "ADHD kan ligne adfærdsforstyrrelse, fordi impulsivitet også kan give konflikter og grænseoverskridelser",
-            "Adfærdsforstyrrelse kan overvurderes, hvis reguleringssvigt og opmærksomhedsproblemer ikke opdages",
-            "Det afgørende er, om der også ses bredere og vedvarende opmærksomheds- og impulsivitetsvanskeligheder"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tydelige tegn på opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med adfærdsforstyrrelse, men der ses også tydelige tegn på opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
             "Vi observerer impulsivitet, uro og manglende fastholdelse ud over det forventede adfærdsbillede",
             "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte adfærdsprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af opmærksomhed, impulsivitet og organisering på tværs af miljøer",
-            "Beskrivelse af forskellen mellem oppositionel adfærd og bredere reguleringsvanskeligheder",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "adhd"
         },
@@ -1328,63 +562,29 @@
           "id": "adfaerdsforstyrrelse_angst",
           "suspected_comorbidity": "Angst",
           "title": "Adfærdsforstyrrelse + Angst",
-          "trigger_tegn": [
-            "bekymring",
-            "undgåelse",
-            "kravfølsomhed",
-            "bliver vred når barnet er utrygt",
-            "social usikkerhed",
-            "alarmberedskab",
-            "søger kontrol",
-            "modstand ved pres",
-            "stærke reaktioner ved usikkerhed",
-            "frygt bag vrede"
-          ],
-          "praevalens": "20–30 %",
-          "kort_forklaring": "Når angst optræder sammen med adfærdsforstyrrelse, bliver adfærdsbilledet ofte mere sårbart, mere alarmpræget og mere situationsbundet, end man forventer ved ren adfærdsforstyrrelse.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun trodsigt eller grænsesøgende, men også tydeligt mere utrygt og bekymret",
+          "kort_forklaring": "Når angst optræder sammen med adfærdsforstyrrelse, virker eleven ofte mere sårbar, mere alarmpræget og mere situationsbundet, end adfærdsforstyrrelse alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trodsig eller grænsesøgende, men også tydeligt mere utryg og bekymret",
             "Modstand og vrede opstår især ved usikkerhed, sociale krav eller oplevet pres",
             "Reaktionerne virker præget af frygt og alarm, ikke kun opposition"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet reagerer med vrede eller modstand i situationer præget af usikkerhed eller krav",
-            "Om barnet også viser undgåelse, bekymring eller behov for forsikring",
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven reagerer med vrede eller modstand i situationer præget af usikkerhed eller krav",
+            "Om eleven også viser undgåelse, bekymring eller behov for forsikring",
             "Om konflikter er tæt knyttet til utryghed, præstationspres eller sociale situationer",
-            "Om barnet virker mere alarmpræget end typisk ved adfærdsforstyrrelse alene"
+            "Om eleven virker mere alarmpræget end typisk ved adfærdsforstyrrelse alene",
+            "Om frygt ser ud til at ligge bag noget af vreden"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Konflikter opstår især ved krav, præstation eller sociale udfordringer",
-            "Barnet virker både vredt og utrygt",
+            "Eleven virker både vred og utryg",
             "Modstand ledsages af tydelig undgåelse eller alarm",
             "Reagerer stærkt på situationer med usikkerhed eller oplevet nederlag"
           ],
-          "typiske_tegn_i_hjem": [
-            "Bliver hurtigt vred eller afvisende, når noget føles svært eller utrygt",
-            "Har stort behov for kontrol eller tryghed i hverdagen",
-            "Undgår bestemte situationer og reagerer med modstand ved pres",
-            "Konflikter hænger ofte sammen med utryghed og bekymring"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere bekymret og kravfølsomt end typisk ved adfærdsforstyrrelse",
-            "Konflikter ledsages af tydelig undgåelse eller alarm",
-            "Adfærden virker stærkt situationsbundet til utryghed eller frygt",
-            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Angst kan skjules bag vrede og modstand, især når barnet bliver presset eller utrygt",
-            "Adfærdsforstyrrelse kan overvurderes, hvis frygt og alarm ikke opdages bag konflikterne",
-            "Det afgørende er, om der også ses tydelig bekymring, undgåelse og alarmberedskab"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tegn på bekymring, utryghed og undgåelse, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med adfærdsforstyrrelse, men der ses også tegn på bekymring, utryghed og undgåelse, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
             "Vi observerer, at konflikter og modstand ofte hænger tæt sammen med krav, usikkerhed og oplevet pres",
             "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte adfærdsprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af bekymring, undgåelse og reaktioner på pres",
-            "Beskrivelse af hvilke situationer der udløser vrede, modstand og alarm",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "angst"
         },
@@ -1392,63 +592,29 @@
           "id": "adfaerdsforstyrrelse_depression",
           "suspected_comorbidity": "Depression",
           "title": "Adfærdsforstyrrelse + Depression",
-          "trigger_tegn": [
-            "trist",
-            "opgivende",
-            "lav energi",
-            "mere tilbagetrukket",
-            "irritabel",
-            "håbløshed",
-            "mister lyst",
-            "følelsesmæssigt tung",
-            "social tilbagetrækning",
-            "tydeligt funktionsfald"
-          ],
-          "praevalens": "15–30 %",
-          "kort_forklaring": "Når depression optræder sammen med adfærdsforstyrrelse, fremstår barnet eller den unge ofte mere irritabel, mere opgivende og mere følelsesmæssigt tung, end adfærdsforstyrrelsen alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun vredt eller trodsigt, men også tydeligt mere trist, tungt eller opgivende",
+          "kort_forklaring": "Når depression optræder sammen med adfærdsforstyrrelse, virker eleven ofte mere irritabel, mere opgivende og mere følelsesmæssigt tung, end adfærdsforstyrrelse alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun vred eller trodsig, men også tydeligt mere trist, tung eller opgivende",
             "Der ses energifald, tab af lyst eller social tilbagetrækning, som ikke passer med adfærdsforstyrrelse alene",
             "Konflikterne ledsages af følelsesmæssigt fald og nedsat fremdrift"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet har tydeligt energifald eller mindre initiativ end tidligere",
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har tydeligt energifald eller mindre initiativ end tidligere",
             "Om irritabilitet ledsages af tristhed, håbløshed eller opgivenhed",
-            "Om barnet trækker sig mere fra relationer, skole eller aktiviteter",
-            "Om der er et tydeligt fald fra tidligere funktionsniveau"
+            "Om eleven trækker sig mere fra relationer, skole eller aktiviteter",
+            "Om der er et tydeligt fald fra tidligere funktionsniveau",
+            "Om eleven virker både vred og tung"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Virker både irritabel og følelsesmæssigt tung",
             "Deltager mindre og virker mere opgivende end tidligere",
             "Konflikter ledsages af tydelig træthed eller lavt overskud",
             "Har svært ved at mobilisere sig, selv når pres reduceres"
           ],
-          "typiske_tegn_i_hjem": [
-            "Virker mere træt, tung eller tilbagetrukket",
-            "Har mindre lyst til aktiviteter eller relationer",
-            "Reagerer både med vrede og opgivenhed",
-            "Hverdagen præges af både konflikt og følelsesmæssigt fald"
-          ],
-          "mistankeindikatorer": [
-            "Barnet er mere opgivende og trist end typisk ved adfærdsforstyrrelse",
-            "Irritabilitet ledsages af tydeligt energifald eller tab af interesse",
-            "Konflikter dækker over et bredere følelsesmæssigt fald",
-            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Depression kan overses, hvis barnet primært viser irritabilitet og konfliktadfærd",
-            "Adfærdsforstyrrelse kan overvurderes, hvis følelsesmæssigt fald ikke opdages bag adfærden",
-            "Det afgørende er, om der også ses vedvarende tristhed, energifald, tab af lyst eller social tilbagetrækning"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tegn på tristhed, energifald og opgivenhed, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med adfærdsforstyrrelse, men der ses også tegn på tristhed, energifald og opgivenhed, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
             "Vi observerer, at konflikter og irritabilitet også ledsages af tydeligt følelsesmæssigt fald og lavere deltagelse",
             "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte adfærdsprofil"
-          ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af energi, deltagelse og følelsesmæssigt funktionsniveau",
-            "Beskrivelse af hvordan irritabilitet, opgivenhed og tilbagetrækning hænger sammen over tid",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "depression"
         },
@@ -1456,129 +622,161 @@
           "id": "adfaerdsforstyrrelse_indlaering",
           "suspected_comorbidity": "Indlæringsvanskeligheder",
           "title": "Adfærdsforstyrrelse + Indlæringsvanskeligheder",
-          "trigger_tegn": [
-            "læsevanskeligheder",
-            "skrivevanskeligheder",
-            "regnevanskeligheder",
-            "giver op ved skolekrav",
-            "bliver vred i undervisning",
-            "undgår opgaver",
-            "mange nederlag",
-            "svært ved faglige krav",
-            "lavt fagligt selvværd",
-            "skolemodstand"
-          ],
-          "praevalens": "20–25 %",
-          "kort_forklaring": "Når indlæringsvanskeligheder optræder sammen med adfærdsforstyrrelse, bliver adfærdsproblemerne ofte tættere koblet til skolekrav, nederlag og vedvarende frustration, end adfærdsforstyrrelsen alene forklarer.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun trodsigt eller konfliktsøgende, men også tydeligt mere belastet af bestemte skolefaglige krav",
-            "Modstand og vrede opstår især i læringssituationer, hvor barnet kommer til kort",
+          "kort_forklaring": "Når indlæringsvanskeligheder optræder sammen med adfærdsforstyrrelse, bliver modstand og konflikter ofte tæt koblet til skolekrav, nederlag og vedvarende frustration.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trodsig eller konfliktsøgende, men også tydeligt mere belastet af bestemte skolefaglige krav",
+            "Modstand og vrede opstår især i læringssituationer, hvor eleven kommer til kort",
             "Adfærden hænger tæt sammen med faglige nederlag og lav mestring"
           ],
-          "hvad_boer_observeres": [
+          "det_skal_laereren_kigge_efter": [
             "Om konflikter og modstand især opstår ved læsning, skrivning eller matematik",
-            "Om barnet reagerer kraftigt på opgaver, der overstiger det faglige niveau",
-            "Om barnet undgår bestemte skoleaktiviteter på grund af gentagne nederlag",
-            "Om skolemodstand hænger sammen med specifikke faglige vanskeligheder"
+            "Om eleven reagerer kraftigt på opgaver, der overstiger det faglige niveau",
+            "Om eleven undgår bestemte skoleaktiviteter på grund af gentagne nederlag",
+            "Om skolemodstand hænger sammen med specifikke faglige vanskeligheder",
+            "Om eleven virker mere nederlagspræget end trodsig i bestemte fag"
           ],
-          "typiske_tegn_i_skole": [
+          "saadan_ses_det_typisk_i_skole": [
             "Reagerer med modstand eller vrede i bestemte undervisningssituationer",
-            "Undgår opgaver, hvor barnet oplever sig fagligt utilstrækkeligt",
+            "Undgår opgaver, hvor eleven oplever sig fagligt utilstrækkelig",
             "Har tydelige nederlagsreaktioner i skolearbejdet",
             "Adfærdsproblemerne tiltager ved faglige krav"
           ],
-          "typiske_tegn_i_hjem": [
-            "Konflikter omkring lektier og skoleopgaver",
-            "Barnet giver hurtigt op ved faglige krav",
-            "Virker præget af lavt fagligt selvværd og modstand mod skolearbejde",
-            "Reagerer med vrede eller undgåelse, når noget bliver for svært"
-          ],
-          "mistankeindikatorer": [
-            "Adfærdsproblemerne er tydeligt koblet til skolekrav og faglige nederlag",
-            "Barnet undgår bestemte opgavetyper eller fagområder",
-            "Konflikter og modstand virker drevet af lav mestring frem for kun opposition",
-            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
-          ],
-          "differentiale_faldgruber": [
-            "Indlæringsvanskeligheder kan overses, hvis al modstand tolkes som trods eller adfærdsproblem",
-            "Adfærdsforstyrrelse kan overvurderes, hvis skolekrav og nederlag er den skjulte motor bag adfærden",
-            "Det afgørende er, om barnet også har specifikke og vedvarende faglige vanskeligheder"
-          ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tegn på faglige vanskeligheder og nederlagsprægede reaktioner, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med adfærdsforstyrrelse, men der ses også tegn på faglige vanskeligheder og nederlagsprægede reaktioner, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
             "Vi observerer, at modstand og konflikter især opstår i situationer med bestemte skolekrav og lav oplevet mestring",
             "Det kan være relevant at få belyst, om der også er indlæringsvanskeligheder til stede ud over den kendte adfærdsprofil"
           ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af hvilke faglige krav der udløser modstand og konflikt",
-            "Beskrivelse af barnets mestring, nederlagsmønstre og undgåelse i skolearbejdet",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
-          ],
           "see_also": "indlaeringsvanskeligheder"
+        }
+      ]
+    },
+    {
+      "id": "ocd",
+      "primary_diagnosis": "OCD",
+      "overview": {
+        "kort_beskrivelse": "OCD forklarer ofte noget af billedet, men ikke altid det hele. Når elevens samlede profil afviger tydeligt fra det forventede OCD-billede, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved OCD er det ofte komorbiditeten, der forklarer, hvorfor eleven fremstår mere kompleks, mere belastet eller mindre typisk, end OCD alene tilsiger."
+      },
+      "comorbidities": [
+        {
+          "id": "ocd_angst",
+          "suspected_comorbidity": "Angst",
+          "title": "OCD + Angst",
+          "kort_forklaring": "Når angst optræder sammen med OCD, virker eleven ofte mere bredt bekymret, mere undgående og mere alarmpræget, end OCD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun fastlåst i tvangstanker eller ritualer, men også tydeligt mere generelt bekymret og ængstelig",
+            "Uroen handler ikke kun om bestemte tvangstemaer, men også om bredere frygt, usikkerhed eller kravfølsomhed",
+            "Undgåelsen virker mere omfattende end ved OCD alene"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven virker bredt bekymret og ikke kun låst i bestemte ritualer",
+            "Om eleven undgår situationer på grund af frygt, usikkerhed eller præstationspres",
+            "Om eleven søger meget forsikring eller tryghed fra voksne",
+            "Om alarm og undgåelse fylder også uden for de kendte tvangsmønstre",
+            "Om eleven virker både ritualiseret og generelt ængstelig"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både fastlåst i ritualer og bredt bekymret",
+            "Undgår opgaver, situationer eller relationer af frygt",
+            "Har stort behov for tryghed, forsikring og kontrol",
+            "Belastningen breder sig ud over de konkrete OCD-mønstre"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med OCD, men der ses også tegn på bredere bekymring, undgåelse og alarm, som ikke forklares tilstrækkeligt af OCD alene",
+            "Vi observerer, at uroen ikke kun er knyttet til ritualer eller tvangstanker, men også til mere generel frygt og usikkerhed",
+            "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte OCD-profil"
+          ],
+          "see_also": "angst"
         },
         {
-          "id": "adfaerdsforstyrrelse_traume",
-          "suspected_comorbidity": "Traumerelaterede tilstande",
-          "title": "Adfærdsforstyrrelse + Traumerelaterede tilstande",
-          "trigger_tegn": [
-            "hyperarousal",
-            "mistillid",
-            "stærke triggere",
-            "alarmberedskab",
-            "uventede følelsesskift",
-            "overlevelsesreaktioner",
-            "eksplosiv ved bestemte situationer",
-            "vagtsom",
-            "udfordret i relationer",
-            "reaktioner virker større end situationen"
+          "id": "ocd_depression",
+          "suspected_comorbidity": "Depression",
+          "title": "OCD + Depression",
+          "kort_forklaring": "Når depression optræder sammen med OCD, virker eleven ofte mere tung, mere opgivende og mindre mobiliserbar, end OCD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun fastlåst eller plaget af tvang, men også tydeligt mere trist, tung eller opgivende",
+            "Der ses fald i energi, lyst eller deltagelse, som ikke passer med OCD alene",
+            "Eleven virker mere følelsesmæssigt belastet og mindre mobiliserbar end forventet"
           ],
-          "praevalens": "20–30 %",
-          "kort_forklaring": "Når traumerelaterede tilstande optræder sammen med adfærdsforstyrrelse, bliver adfærdsbilledet ofte mere uforudsigeligt, mere alarmstyret og mere præget af overlevelsesreaktioner, end man forventer ved adfærdsforstyrrelse alene.",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [
-            "Barnet virker ikke kun trodsigt eller aggressivt, men også tydeligt mere vagtsomt, mistroisk eller alarmpræget",
-            "Reaktionerne er ofte stærkt trigget af bestemte situationer, relationer eller oplevelser",
-            "Adfærden virker mere styret af overlevelse og alarm end af vedvarende opposition alene"
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har tydeligt energifald eller tab af initiativ",
+            "Om eleven virker mere trist, håbløs eller følelsesmæssigt tung over tid",
+            "Om deltagelse i skole, fællesskab eller interesser falder markant",
+            "Om eleven virker mere opgivende end tidligere",
+            "Om OCD-belastningen ledsages af tydeligt funktionsfald"
           ],
-          "hvad_boer_observeres": [
-            "Om barnet reagerer voldsomt på bestemte triggere eller relationelle situationer",
-            "Om barnet virker konstant vagtsomt, mistroisk eller hurtigt i alarm",
-            "Om reaktionerne skifter hurtigt og virker større end situationen tilsiger",
-            "Om konflikter hænger sammen med oplevet fare, kontroltab eller tidligere belastning"
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både fastlåst og følelsesmæssigt tung",
+            "Deltager mindre i undervisning og sociale aktiviteter",
+            "Har svært ved at mobilisere sig, selv når krav reduceres",
+            "OCD-profilen ledsages af tydelig tristhed eller opgivenhed"
           ],
-          "typiske_tegn_i_skole": [
-            "Reagerer meget stærkt på bestemte voksne, krav eller relationelle situationer",
-            "Virker hurtigt i alarm og svært at berolige igen",
-            "Adfærden er mere uforudsigelig og trigget end typisk ved adfærdsforstyrrelse alene",
-            "Har svært ved tillid, ro og stabil deltagelse"
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med OCD, men der ses også tegn på tristhed, energifald og opgivenhed, som ikke forklares tilstrækkeligt af OCD alene",
+            "Vi observerer fald i deltagelse, initiativ og følelsesmæssigt overskud ud over de kendte tvangsmønstre",
+            "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte OCD-profil"
           ],
-          "typiske_tegn_i_hjem": [
-            "Reagerer eksplosivt på bestemte situationer eller temaer",
-            "Virker mistroisk, vagtsom eller stærkt styret af kontrolbehov",
-            "Følelsesniveau skifter hurtigt og voldsomt",
-            "Adfærden præges af alarm, overlevelsesreaktioner og lav tryghed"
+          "see_also": "depression"
+        },
+        {
+          "id": "ocd_autisme",
+          "suspected_comorbidity": "Autisme",
+          "title": "OCD + Autisme",
+          "kort_forklaring": "Når autisme optræder sammen med OCD, virker eleven ofte mere rigid, mere socialt anderledes og mere fastlåst, end OCD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun præget af tvang og ritualer, men også markant mere rigid og socialt misafstemt",
+            "Fastlåstheden handler ikke kun om tvangstemaer, men også om fleksibilitet, sociale koder og forudsigelighed",
+            "Reaktionerne virker præget af både ritualer og en mere grundlæggende autismeprofil"
           ],
-          "mistankeindikatorer": [
-            "Barnet er mere alarmpræget og trigget end typisk ved adfærdsforstyrrelse",
-            "Adfærden virker tæt knyttet til bestemte relationer eller belastninger",
-            "Konflikter og aggression har et tydeligt overlevelsespræg",
-            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har vedvarende vanskeligheder med social gensidighed og sociale koder",
+            "Om eleven reagerer stærkt på skift, uforudsigelighed eller brud på rutiner",
+            "Om fastlåsthed også ses uden for de konkrete OCD-ritualer",
+            "Om eleven virker belastet af lyd, lys, berøring eller mange indtryk",
+            "Om der er både tvangspræg og bred rigiditet"
           ],
-          "differentiale_faldgruber": [
-            "Traumereaktioner kan fejlfortolkes som ren adfærdsforstyrrelse",
-            "Adfærdsforstyrrelse kan overvurderes, hvis alarmberedskab og triggere ikke opdages",
-            "Det afgørende er, om adfærden også er præget af hyperarousal, mistillid og overlevelsesmønstre"
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både ritualiseret og rigid i bredere forstand",
+            "Bliver fastlåst ved ændringer i planer, regler eller forventninger",
+            "Har svært ved sociale spilleregler eller gruppearbejde",
+            "Belastningen handler ikke kun om OCD, men også om fleksibilitet og socialt samspil"
           ],
-          "hvad_kan_formidles_videre": [
-            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tegn på alarmberedskab, triggere og overlevelsesprægede reaktioner, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
-            "Vi observerer, at adfærden ofte aktiveres i bestemte relationelle eller belastende situationer og bærer præg af stærk vagtsomhed og mistillid",
-            "Det kan være relevant at få belyst, om der også er en traumerelateret problematik til stede ud over den kendte adfærdsprofil"
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med OCD, men der ses også tegn på rigiditet, social misafstemning og bredere fastlåsthed, som ikke forklares tilstrækkeligt af OCD alene",
+            "Vi observerer, at vanskelighederne også handler om socialt samspil, fleksibilitet og reaktioner på uforudsigelighed",
+            "Det kan være relevant at få belyst, om der også er en autismeproblematik til stede ud over den kendte OCD-profil"
           ],
-          "anbefalet_videre_spor": [
-            "Systematiske observationer af triggere, relationelle belastninger og alarmreaktioner",
-            "Beskrivelse af hvilke situationer der udløser stærke følelsesskift, mistillid eller overlevelsesreaktioner",
-            "Videre faglig drøftelse med PPR eller relevant specialist"
+          "see_also": "autisme"
+        },
+        {
+          "id": "ocd_selvskade",
+          "suspected_comorbidity": "Selvskade",
+          "title": "OCD + Selvskade",
+          "kort_forklaring": "Når selvskade optræder sammen med OCD, virker eleven ofte mere følelsesmæssigt presset, mere overvældet og mere risikobelastet, end OCD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun fastlåst i tvang og ritualer, men også tydeligt mere følelsesmæssigt overvældet",
+            "Der ses tegn på selvskadende handlinger eller stærk indre spænding, som ikke passer med OCD alene",
+            "Belastningen virker mere akut og mere risikofyldt end ved OCD alene"
           ],
-          "see_also": "traumerelaterede_tilstande"
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven viser tegn på selvskade, skjuler arme eller virker fysisk undvigende",
+            "Om eleven virker præget af stærk indre spænding, skam eller selvbebrejdelser",
+            "Om ritualer og tvang ledsages af følelsesmæssig desperation eller sammenbrud",
+            "Om eleven isolerer sig mere end vanligt eller virker akut belastet",
+            "Om der er tegn på, at eleven skader sig selv for at dæmpe uro eller pres"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både ritualiseret og følelsesmæssigt meget presset",
+            "Trækker sig, skjuler sig eller undgår omklædning og nær kontakt",
+            "Har stærke sammenbrud eller tydelige tegn på indre overbelastning",
+            "OCD-belastningen ledsages af bekymring for elevens sikkerhed og trivsel"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med OCD, men der ses også tegn på selvskade eller alvorlig følelsesmæssig belastning, som ikke forklares tilstrækkeligt af OCD alene",
+            "Vi observerer, at eleven virker stærkt presset, og at belastningen muligvis også kommer til udtryk gennem selvskadende adfærd eller risikoherfor",
+            "Det bør tages alvorligt og kan være relevant at få belyst hurtigt, om der også er en selvskadeproblematik til stede ud over den kendte OCD-profil"
+          ],
+          "see_also": "selvskade"
         }
       ]
     }
