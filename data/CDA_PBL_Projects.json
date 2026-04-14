@@ -1,7 +1,7 @@
 {
   "version": "2025-05-17",
   "description": "CDA PBL Projektbank - Komplet database med intelligent matchlogik",
-  "total_projects": 29,
+  "total_projects": 61,
   "projects": [
     {
       "id": "pbl_001",
@@ -21,6 +21,7 @@
       "structure_need": "Moderat",
       "level": "Junior",
       "duration_suggestion": "2-4 uger",
+      "career_alignment": ["Mekaniker", "Cykeltekniker"],
       "progression": {
         "develops": ["Motorik", "Værktøjskendskab", "Systematisk problemløsning"],
         "next_projects": ["pbl_002", "pbl_004"],
@@ -45,6 +46,7 @@
       "structure_need": "Høj",
       "level": "Intermediate",
       "duration_suggestion": "4-6 uger",
+      "career_alignment": ["Mekaniker", "Teknisk håndværk"],
       "progression": {
         "develops": ["Avanceret mekanik", "Teamwork", "Planlægning"],
         "next_projects": ["pbl_003", "pbl_005"],
@@ -69,6 +71,7 @@
       "structure_need": "Høj",
       "level": "Advanced",
       "duration_suggestion": "3-5 uger",
+      "career_alignment": ["Grøn energi", "Installationsteknik", "Teknisk installation"],
       "progression": {
         "develops": ["Videnskabelig metode", "Bæredygtighedstænkning", "Innovation"],
         "next_projects": ["pbl_010", "pbl_012"],
@@ -117,6 +120,7 @@
       "structure_need": "Høj",
       "level": "Advanced",
       "duration_suggestion": "4-6 uger",
+      "career_alignment": ["Landbrugsteknik", "Installationsteknik"],
       "progression": {
         "develops": ["Systemtænkning", "Langtidsplanlægning", "Vedligeholdelse"],
         "next_projects": ["pbl_011", "pbl_012"],
@@ -142,6 +146,7 @@
       "structure_need": "Moderat",
       "level": "Junior",
       "duration_suggestion": "2-3 uger",
+      "career_alignment": ["Tømrer", "Bygningshåndværk"],
       "progression": {
         "develops": ["Håndværk", "Omsorg for natur", "Kreativitet"],
         "next_projects": ["pbl_001", "pbl_029"],
@@ -190,6 +195,7 @@
       "structure_need": "Høj",
       "level": "Advanced",
       "duration_suggestion": "4-6 uger",
+      "career_alignment": ["Automation", "Robot-teknik"],
       "progression": {
         "develops": ["Programmering", "Systematik", "Trial-and-error mindset"],
         "next_projects": ["pbl_014", "pbl_003"],
@@ -262,6 +268,7 @@
       "structure_need": "Moderat",
       "level": "Junior",
       "duration_suggestion": "6-12 uger (sæsonbestemt)",
+      "career_alignment": ["Gartner"],
       "progression": {
         "develops": ["Ansvar over tid", "Naturforbindelse", "Struktur"],
         "next_projects": ["pbl_005", "pbl_015"],
@@ -309,6 +316,7 @@
       "structure_need": "Høj",
       "level": "Intermediate",
       "duration_suggestion": "3-4 uger",
+      "career_alignment": ["Digitale medier", "Grafisk design"],
       "progression": {
         "develops": ["Digital kompetence", "Narrativ struktur", "Selvudtryk"],
         "next_projects": ["pbl_027", "pbl_018"],
@@ -332,6 +340,7 @@
       "structure_need": "Høj",
       "level": "Advanced",
       "duration_suggestion": "3-5 uger",
+      "career_alignment": ["IT", "Programmering", "Digital support"],
       "progression": {
         "develops": ["Programmering", "Dialogforståelse", "AI-literacy"],
         "next_projects": ["pbl_008", "pbl_022"],
@@ -401,6 +410,7 @@
       "structure_need": "Moderat",
       "level": "Intermediate",
       "duration_suggestion": "4-6 uger",
+      "career_alignment": ["Køkken", "Madproduktion"],
       "progression": {
         "develops": ["Eksekutive funktioner", "Madkundskab", "Samarbejde"],
         "next_projects": ["pbl_028", "pbl_004"],
@@ -424,6 +434,7 @@
       "structure_need": "Moderat",
       "level": "Intermediate",
       "duration_suggestion": "3-5 uger",
+      "career_alignment": ["Medieproduktion", "Lydproduktion"],
       "progression": {
         "develops": ["Verbal kommunikation", "Selvudtryk", "Storytelling"],
         "next_projects": ["pbl_009", "pbl_019"],
@@ -448,6 +459,7 @@
       "structure_need": "Moderat",
       "level": "Advanced",
       "duration_suggestion": "5-8 uger",
+      "career_alignment": ["Journalistik", "Medieproduktion"],
       "progression": {
         "develops": ["Journalistik", "Empati", "Formidling"],
         "next_projects": ["pbl_018", "pbl_010"],
@@ -470,6 +482,7 @@
       "structure_need": "Høj",
       "level": "Advanced",
       "duration_suggestion": "4-6 uger",
+      "career_alignment": ["Produktdesign", "Prototypeteknik"],
       "progression": {
         "develops": ["Biomek anik", "Design thinking", "Empati"],
         "next_projects": ["pbl_002", "pbl_008"],
@@ -562,6 +575,7 @@
       "structure_need": "Moderat",
       "level": "Intermediate",
       "duration_suggestion": "3-5 uger",
+      "career_alignment": ["Lydproduktion", "Digital medier"],
       "progression": {
         "develops": ["Verbal udtryk", "Teknologi", "Overblik"],
         "next_projects": ["pbl_018", "pbl_013"],
@@ -682,7 +696,806 @@
         "next_projects": ["pbl_023", "pbl_013"],
         "progression_note": "K-PBL - eksekutiv funktion gennem billeder"
       }
-    }
+    },
+    {
+  "id": "pbl_030",
+  "title": "App Maker",
+  "subtitle": "Byg en digital hjælper til din hverdag",
+  "description": "Design og byg en simpel app eller interaktiv løsning, der hjælper med at huske, forstå eller handle i hverdagen. Eleven vælger selv formål – fx 'hvad kan jeg gøre når jeg bliver stresset?' eller 'min dag i billeder'.",
+  "activities": [
+    "Vælg problem og målgruppe (dig selv, en ven, hele klassen)",
+    "Skitsér app'ens funktioner (papir eller digitalt)",
+    "Byg app’en i fx GlideApps, Scratch eller PowerPoint med links",
+    "Test og præsentér"
+  ],
+  "competencies": ["Problemløsning", "Planlægning", "Digital tænkning", "Empati"],
+  "diagnosis_match": ["ASF", "ADHD", "Angst", "Højt begavede"],
+  "stimuli_type": ["Visuel", "Logisk", "Emotionel"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "4-6 uger",
+  "career_alignment": ["IT", "UX-design", "Digital udvikling"],
+  "progression": {
+    "develops": ["Brugerfokus", "Systematisk tænkning", "Selvstændighed"],
+    "next_projects": ["pbl_014", "pbl_022"],
+    "progression_note": "Godt for elever, der vil bygge noget meningsfuldt og lære basal UX"
+  }
+},
+{
+  "id": "pbl_031",
+  "title": "Spilværksted",
+  "subtitle": "Byg Dit Eget Scratch-Spil",
+  "description": "Lav dit eget spil fra bunden i Scratch. Du vælger tema, karakterer og mål – og lærer at bruge logiske blokke, variabler og loops. Projektet styrker både tekniske færdigheder og kreativ historiefortælling.",
+  "activities": [
+    "Lav spil-idé og skitser med papir eller digitalt storyboard",
+    "Byg karakterer og baggrunde i Scratch",
+    "Kod regler, point og game over",
+    "Test med makker og præsenter spillet"
+  ],
+  "competencies": ["Logik", "Programmering", "Kreativitet", "Feedback"],
+  "diagnosis_match": ["ADHD", "ASF", "Højt begavede", "Ordblindhed"],
+  "stimuli_type": ["Visuel", "Kinæstetisk", "Logisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "4-6 uger",
+  "career_alignment": ["Game design", "Programmering"],
+  "progression": {
+    "develops": ["Sekventiel tænkning", "Historieopbygning", "Fejltolerance"],
+    "next_projects": ["pbl_008", "pbl_014"],
+    "progression_note": "Bygger videre på teknologiinteresse og tillader høj grad af selvudtryk"
+  }
+},
+{
+  "id": "pbl_032",
+  "title": "Mini Tømrerbasis",
+  "subtitle": "Byg en Lille Arbejdsstation i Træ",
+  "description": "Eleven lærer grundlæggende tømrerfærdigheder ved at bygge en simpel arbejdsstation i træ med måling, savning og samling.",
+  "activities": [
+    "Lær om måleværktøjer",
+    "Sav og slib trædele",
+    "Saml arbejdsstationen med skruer",
+    "Afslut med olie eller maling"
+  ],
+  "competencies": ["Tømrerarbejde", "Finmotorik", "Måling", "Værktøjsbrug"],
+  "diagnosis_match": ["ADHD", "DCD", "Autisme"],
+  "stimuli_type": ["Taktil", "Kinæstetisk", "Visuel"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Junior",
+  "duration_suggestion": "2-4 uger",
+  "career_alignment": ["Tømrer", "Bygningshåndværk"],
+  "progression": {
+    "develops": ["Præcision", "Håndværksrutiner", "Materialeforståelse"],
+    "next_projects": ["pbl_006", "pbl_033"],
+    "progression_note": "God intro til træarbejde – progression mod større konstruktioner"
+  }
+},{
+  "id": "pbl_033",
+  "title": "Landmandsstarter: Stald & Mark Rutiner",
+  "subtitle": "Lær de Daglige Opgaver på en Gård",
+  "description": "Eleven træner realistiske landbrugsrutiner som fodring, observation, markplanlægning og daglige sikkerhedstjek.",
+  "activities": [
+    "Lav morgen-tjekliste for stald",
+    "Simulér fodring med vægte og målinger",
+    "Planlæg mini-mark i kasser (såning og vandning)",
+    "Lær maskin-ikoner: traktor, fræser, halmpresser"
+  ],
+  "competencies": ["Ansvar", "Landbrugsforståelse", "Rutinearbejde", "Observation"],
+  "diagnosis_match": ["ADHD", "Autisme", "DCD"],
+  "stimuli_type": ["Kinæstetisk", "Taktil", "Visuel"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Junior",
+  "duration_suggestion": "3-6 uger",
+  "career_alignment": ["Landmand", "Husdyrpleje"],
+  "progression": {
+    "develops": ["Ansvarsfølelse", "Rutineforståelse", "Sekventering"],
+    "next_projects": ["pbl_011", "pbl_034"],
+    "progression_note": "Alle landbrugsfag bygger på daglige rutiner og planlægning"
+  }
+},
+{
+  "id": "pbl_034",
+  "title": "Mini Murerprojekt",
+  "subtitle": "Byg en Lille Væg af Øveklodser",
+  "description": "Eleven lærer grundlæggende murerteknik ved at bygge en mindre væg i øveklodser med fokus på fuger, lige linjer og stabilitet.",
+  "activities": [
+    "Lær om klodsernes mønster",
+    "Læg 'mørtel' (ler eller sandblanding)",
+    "Byg en væg på 8-12 klodser",
+    "Ret op med vaterpas"
+  ],
+  "competencies": ["Murerteknik", "Finmotorik", "Strukturel forståelse"],
+  "diagnosis_match": ["ADHD", "Autisme", "DCD"],
+  "stimuli_type": ["Taktil", "Kinæstetisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Moderat",
+  "level": "Intermediate",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["Murer", "Bygningshåndværk"],
+  "progression": {
+    "develops": ["Stabilitet", "Fugning", "Rumlig forståelse"],
+    "next_projects": ["pbl_006", "pbl_035"],
+    "progression_note": "Næste trin kan være større konstruktion eller samarbejde"
+  }
+},
+{
+  "id": "pbl_035",
+  "title": "Lager & Logistik Basic",
+  "subtitle": "Organisering, Sortering og Flow",
+  "description": "Eleven lærer de mest basale principper i lagerarbejde: zoner, sortering, scanning og simple plukruter.",
+  "activities": [
+    "Opdel et område i zoner",
+    "Sortér varer efter kategori og farvekoder",
+    "Lav simple plukruter",
+    "Simulér scanning og registrering"
+  ],
+  "competencies": ["Systematik", "Organisering", "Logistikforståelse"],
+  "diagnosis_match": ["Autisme", "ADHD", "Kognitiv uorganisering"],
+  "stimuli_type": ["Visuel", "Kinæstetisk", "Logisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "2-4 uger",
+  "career_alignment": ["Lager", "Logistik"],
+  "progression": {
+    "develops": ["Overblik", "Arbejdsvaner", "Systemforståelse"],
+    "next_projects": ["pbl_028", "pbl_036"],
+    "progression_note": "God overgang til mere selvstændigt logistisk arbejde"
+  }
+},
+{
+  "id": "pbl_036",
+  "title": "VVS Intro: Vand & Rør",
+  "subtitle": "Forstå Vandflow og Rørforbindelser",
+  "description": "Eleven bygger simple rørforbindelser i plast/øvefittings og lærer grundprincipper som vandtryk, tætning og sikkerhed.",
+  "activities": [
+    "Lær typer af fittings",
+    "Lav tæt samling (klik/skrue-øvefittings)",
+    "Test vandflow i lille model",
+    "Find lækager og udbedr"
+  ],
+  "competencies": ["Installationsteknik", "Problemløsning", "Præcision"],
+  "diagnosis_match": ["ADHD", "DCD", "Autisme"],
+  "stimuli_type": ["Taktil", "Kinæstetisk", "Logisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["VVS", "Installationsteknik"],
+  "progression": {
+    "develops": ["Teknisk forståelse", "Præcision", "Vedligehold"],
+    "next_projects": ["pbl_005", "pbl_034"],
+    "progression_note": "God overgang til både byggeri og teknisk installation"
+  }
+},
+{
+  "id": "pbl_037",
+  "title": "Elektriker Intro: Lys & Kredsløb",
+  "subtitle": "Byg Simple og Sikre Lysinstallationer",
+  "description": "Eleven lærer grunde til elektricitet ved at bygge simple lyskredsløb med batteri, switch og LED. Fokus på sikkerhed og systematik.",
+  "activities": [
+    "Lær om elektriske symboler",
+    "Byg et simpelt kredsløb",
+    "Tilføj kontakt og ekstra lys",
+    "Lav en lille lampeinstallation"
+  ],
+  "competencies": ["El-forståelse", "Sikkerhed", "Systematik", "Problemløsning"],
+  "diagnosis_match": ["ASF", "ADHD", "Højt begavede"],
+    "stimuli_type": ["Visuel", "Logisk", "Kinæstetisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Junior",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["Elektriker", "Installationsteknik"],
+  "progression": {
+    "develops": ["Kredsløbsforståelse", "Præcision", "Teknisk sikkerhed"],
+    "next_projects": ["pbl_014", "pbl_036"],
+    "progression_note": "God intro før mere avanceret installation og reparation"
+  }
+},
+{
+  "id": "pbl_038",
+  "title": "Smed for Begyndere",
+  "subtitle": "Form, Buk og Saml Metal",
+  "description": "Eleven arbejder med koldmetal: bukning, nitter, simple samlinger og design af en lille metalgenstand.",
+  "activities": [
+    "Lær om metaller og styrke",
+    "Buk metal med skruestik",
+    "Brug nitter eller bolte til samling",
+    "Design en lille metalfigur eller holder"
+  ],
+  "competencies": ["Metalarbejde", "Præcision", "Design", "Håndværksforståelse"],
+  "diagnosis_match": ["ADHD", "DCD", "Autisme"],
+  "stimuli_type": ["Taktil", "Kinæstetisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Moderat",
+  "level": "Intermediate",
+  "duration_suggestion": "3-6 uger",
+  "career_alignment": ["Smed", "Maskinteknik"],
+  "progression": {
+    "develops": ["Materialeforståelse", "Styrke", "Præcision"],
+    "next_projects": ["pbl_006", "pbl_034"],
+    "progression_note": "Stærk overgang til bygge- og metalfag"
+  }
+},
+{
+  "id": "pbl_039",
+  "title": "Bygningsservice: Reparation & Vedligehold",
+  "subtitle": "Lær Små Reparationer i Skolemiljøet",
+  "description": "Eleven lærer grundlæggende facility management: tjeklister, reparationer, pære-skift, små fikseropgaver og orden på værktøj.",
+  "activities": [
+    "Lav en uge-tjekliste for skolens rum",
+    "Skift pærer i sikre mockups",
+    "Reparer simple ting: løse skruer, dørhåndtag",
+    "Organisér værktøjsvogn"
+  ],
+  "competencies": ["Vedligehold", "Ansvar", "Systematik", "Problemløsning"],
+  "diagnosis_match": ["ADHD", "Autisme", "Kognitiv uorganisering"],
+  "stimuli_type": ["Kinæstetisk", "Taktil", "Visuel"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["Bygningsservice", "Ejendomsfunktionær"],
+  "progression": {
+    "develops": ["Arbejdsvaner", "Selvstændighed", "Overblik"],
+    "next_projects": ["pbl_005", "pbl_036"],
+    "progression_note": "Perfekt før praktik i teknisk service"
+  }
+},
+{
+  "id": "pbl_040",
+  "title": "Dyrepasser Mini",
+  "subtitle": "Lær Grundlæggende Dyrepleje og Rutiner",
+  "description": "Eleven lærer dyrepleje gennem realistiske simulationsopgaver: foderplaner, observation, renhold og trivselstegn.",
+  "activities": [
+    "Lav foderplan til smådyr",
+    "Observer adfærd og noter trivsel",
+    "Rengør bur eller habitat (simulation)",
+    "Lav 'dyrepas' med behov og rutiner"
+  ],
+  "competencies": ["Omsorg", "Observation", "Ansvar", "Rutiner"],
+  "diagnosis_match": ["ADHD", "Autisme", "Angst"],
+  "stimuli_type": ["Taktil", "Kinæstetisk", "Rytmisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Moderat",
+  "level": "Junior",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["Dyrepasser", "Landmand", "Service i dyreanlæg"],
+  "progression": {
+    "develops": ["Rutineforståelse", "Omsorg", "Stabilitet"],
+    "next_projects": ["pbl_033", "pbl_011"],
+    "progression_note": "God intro før landbrugs- og naturforløb"
+  }
+},
+{
+  "id": "pbl_041",
+  "title": "Storkøkken Basic",
+  "subtitle": "Arbejdsgange, Hygiejne og Produktion",
+  "description": "Eleven lærer de vigtigste rutiner i et storkøkken: planlægning, hygiejne, temperaturer og simple produktionsopgaver.",
+  "activities": [
+    "Lav plan for dagens menu",
+    "Træn hygiejneregler (handsker, rengøring, opdeling)",
+    "Forbered simple råvarer",
+    "Lav en lille produktion: snack, salat eller brød"
+  ],
+  "competencies": ["Planlægning", "Hygiejne", "Arbejdsgange", "Teamforståelse"],
+  "diagnosis_match": ["ADHD", "DCD", "Autisme"],
+  "stimuli_type": ["Taktil", "Kinæstetisk", "Visuel"],
+  "social_exposure": "Moderat",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "4-6 uger",
+  "career_alignment": ["Køkken", "Madproduktion", "Catering"],
+  "progression": {
+    "develops": ["Eksekutive funktioner", "Hygiejnekendskab", "Produktionsflow"],
+    "next_projects": ["pbl_017", "pbl_035"],
+    "progression_note": "Perfekt før større køkkenopgaver og praktik"
+  }
+},
+{
+  "id": "pbl_042",
+  "title": "Malerbasis",
+  "subtitle": "Farver, Teknik & Overflader",
+  "description": "Eleven lærer grundlæggende malerteknik: afdækning, farvevalg, penselteknik og finish på små træ- eller gipsplader.",
+  "activities": [
+    "Træn afdækning med tape og plast",
+    "Test farver og kontraster på prøver",
+    "Mal med to forskellige penseltyper",
+    "Lav en færdig overflade i valgfri farve"
+  ],
+  "competencies": ["Præcision", "Farveforståelse", "Håndværksteknik"],
+  "diagnosis_match": ["ADHD", "Autisme", "DCD"],
+  "stimuli_type": ["Visuel", "Taktil", "Kinæstetisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Moderat",
+  "level": "Junior",
+  "duration_suggestion": "2-4 uger",
+  "career_alignment": ["Maler", "Bygningshåndværk"],
+  "progression": {
+    "develops": ["Præcision", "Fokus", "Overfladearbejde"],
+    "next_projects": ["pbl_006", "pbl_043"],
+    "progression_note": "God intro før større overfladeprojekter"
+  }
+},
+{
+  "id": "pbl_043",
+  "title": "Tømrer Avanceret",
+  "subtitle": "Byg et Lille Møbel",
+  "description": "Eleven bygger et lille møbel (skammel, kasse eller hylde) og lærer konstruktion, samlinger og styrkeprincipper.",
+  "activities": [
+    "Vælg design og lav skitse",
+    "Mål og skær trædele",
+    "Saml møblet med stærke samlinger",
+    "Behandl overfladen med olie eller maling"
+  ],
+  "competencies": ["Konstruktion", "Måling", "Samlingsteknik", "Design"],
+  "diagnosis_match": ["ADHD", "DCD", "Autisme"],
+  "stimuli_type": ["Taktil", "Kinæstetisk", "Visuel"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-6 uger",
+  "career_alignment": ["Tømrer", "Snedker"],
+  "progression": {
+    "develops": ["Styrke", "Planlægning", "Materialeforståelse"],
+    "next_projects": ["pbl_032", "pbl_034"],
+    "progression_note": "Perfekt progression før egentlig værkstedspraktik"
+  }
+},
+{
+  "id": "pbl_044",
+  "title": "Butik & Kundeservice Basic",
+  "subtitle": "Vareopfyldning, Priser og Kundekontakt",
+  "description": "Eleven lærer de vigtigste rutiner i en butik: opfyldning, vareplacering, pristjek og enkel kundeservice.",
+  "activities": [
+    "Opstil varer efter kategori",
+    "Lav en prisplan og skilte",
+    "Simulér kundedialog med korte scripts",
+    "Lav en mini-kasseopstilling"
+  ],
+  "competencies": ["Service", "Kommunikation", "Ordenssans", "Planlægning"],
+  "diagnosis_match": ["Autisme", "Angst", "ADHD"],
+  "stimuli_type": ["Visuel", "Social", "Verbal"],
+  "social_exposure": "Moderat",
+  "structure_need": "Moderat",
+  "level": "Junior",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["Butiksassistent", "Detailhandel"],
+  "progression": {
+    "develops": ["Kundeservice", "Produktforståelse", "Social tryghed"],
+    "next_projects": ["pbl_028", "pbl_035"],
+    "progression_note": "God intro før praktik i detailhandel"
+  }
+},
+{
+  "id": "pbl_045",
+  "title": "Grøn Vedligehold",
+  "subtitle": "Redskaber, Ruter og Rutiner",
+  "description": "Eleven lærer at planlægge og udføre grøn vedligehold som klipning, opsamling, simpel redskabsbrug og sikkerhed.",
+  "activities": [
+    "Lav ruteplan for udeområdet",
+    "Øv brug af håndredskaber (rive, kost, saks)",
+    "Samle haveaffald og sortér det",
+    "Lav minirapport: hvad blev gjort i dag?"
+  ],
+  "competencies": ["Naturpleje", "Rutiner", "Systematik", "Arbejdsvaner"],
+  "diagnosis_match": ["ADHD", "Autisme", "Angst"],
+  "stimuli_type": ["Kinæstetisk", "Taktil", "Rytmisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Junior",
+  "duration_suggestion": "2-5 uger",
+  "career_alignment": ["Grøn vedligehold", "Ejendomsservice"],
+  "progression": {
+    "develops": ["Overblik", "Sikkerhed", "Regelmæssighed"],
+    "next_projects": ["pbl_039", "pbl_033"],
+    "progression_note": "God intro før teknisk service eller landbrug"
+  }
+},
+{
+  "id": "pbl_046",
+  "title": "Maskinstation Mini",
+  "subtitle": "Lær Traktorens Redskaber og Funktioner",
+  "description": "Eleven får introduktion til maskinstationsarbejde: redskaber, sikkerhed, ikoner, markopgaver og maskinroller.",
+  "activities": [
+    "Lær maskin-ikoner og hvad de bruges til",
+    "Planlæg en markopgave (pløjning, harvning, såning)",
+    "Match redskab med opgave",
+    "Lav en mini-model af traktor + redskab"
+  ],
+  "competencies": ["Landbrugsmaskiner", "Planlægning", "Teknisk forståelse"],
+  "diagnosis_match": ["ADHD", "Autisme", "DCD"],
+  "stimuli_type": ["Visuel", "Kinæstetisk", "Kognitiv"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-6 uger",
+  "career_alignment": ["Maskinstation", "Landbrug"],
+  "progression": {
+    "develops": ["Teknisk overblik", "Ansvar", "Rolleforståelse"],
+    "next_projects": ["pbl_033", "pbl_040"],
+    "progression_note": "Perfekt før større landbrugs- eller maskinopgaver"
+  }
+},
+{
+  "id": "pbl_047",
+  "title": "AI Intro Lab",
+  "subtitle": "Lær Hvordan en Model Tænker",
+  "description": "Et roligt og struktureret introduktionsprojekt, hvor eleven lærer hvordan AI genkender billeder og mønstre gennem simple træningsopgaver.",
+  "activities": [
+    "Sortér billeder i kategorier (træningsdata)",
+    "Træn en simpel model i et børnevenligt AI-værktøj",
+    "Test: hvor ofte gætter modellen rigtigt?",
+    "Reflektér: hvad sker der hvis man ændrer data?"
+  ],
+  "competencies": ["Datastruktur", "Mønstergenkendelse", "Systemforståelse"],
+  "diagnosis_match": ["ASF", "Højt begavede", "ADHD"],
+  "stimuli_type": ["Visuel", "Logisk", "Kognitiv"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["AI-teknologi", "Dataarbejde"],
+  "progression": {
+    "develops": ["Forståelse for træningsdata", "Testkultur", "Systematisk tænkning"],
+    "next_projects": ["pbl_014", "pbl_048"],
+    "progression_note": "Perfekt for elever der elsker systemer og logik"
+  }
+},
+{
+  "id": "pbl_048",
+  "title": "Coding Basic: Python",
+  "subtitle": "Lær Kodning med Små Logiske Opgaver",
+  "description": "Eleven lærer begyndende kodning gennem meget simple Python-øvelser: variabler, loops, input/output og små spilletests.",
+  "activities": [
+    "Print tekst og tal",
+    "Løs små logiske puzzles",
+    "Lav et miniprogram der reagerer på input",
+    "Byg et simpelt gæt-et-tal-spil"
+  ],
+  "competencies": ["Logik", "Programmeringsforståelse", "Systematik"],
+  "diagnosis_match": ["ASF", "ADHD", "Højt begavede"],
+  "stimuli_type": ["Logisk", "Visuel", "Kognitiv"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "4-6 uger",
+  "career_alignment": ["Programmering", "IT-udvikling"],
+  "progression": {
+    "develops": ["Sekventiel tænkning", "Fejlfinding", "Kodeforståelse"],
+    "next_projects": ["pbl_031", "pbl_049"],
+    "progression_note": "Intro til rigtige kodesprog – meget egnet til systemstærke ASF-elever"
+  }
+},
+{
+  "id": "pbl_049",
+  "title": "IT Support Basic",
+  "subtitle": "Fejlsøgning & Systemforståelse",
+  "description": "Et praksisnært projekt hvor eleven lærer at arbejde som IT-supporter: tjeklister, fejlfinding, simple fixes og logisk diagnose.",
+  "activities": [
+    "Lav en IT-tjekliste (kabler, netværk, strøm)",
+    "Simulér 5 typiske fejl – find løsningen",
+    "Lav en mini-supportmanual",
+    "Roller: elev = tekniker, lærer = bruger"
+  ],
+  "competencies": ["Fejlfinding", "Systematik", "Teknisk forståelse", "Kommunikation"],
+  "diagnosis_match": ["ASF", "ADHD", "Angst"],
+  "stimuli_type": ["Logisk", "Visuel", "Kinæstetisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["IT-support", "Teknisk service"],
+  "progression": {
+    "develops": ["Diagnosefærdigheder", "Trinvise procedurer", "Overblik"],
+    "next_projects": ["pbl_030", "pbl_050"],
+    "progression_note": "Meget realistisk jobforberedelse – perfekt for strukturelle ASF-elever"
+  }
+},
+{
+  "id": "pbl_050",
+  "title": "Cybersecurity Junior",
+  "subtitle": "Datasikkerhed, Koder & Digitale Spor",
+  "description": "Eleven lærer grundlæggende cybersikkerhed gennem simple aktiviteter: stærke adgangskoder, phishing-genkendelse og sikker adfærd.",
+  "activities": [
+    "Lav stærke adgangskoder",
+    "Løs phishing-puslespil",
+    "Lav din egen 'Sikker Online'-plakat",
+    "Simulér kode-lås systemer på papir"
+  ],
+  "competencies": ["Sikkerhedsbidrag", "Logik", "Risikoforståelse"],
+  "diagnosis_match": ["ASF", "Højt begavede", "ADHD"],
+  "stimuli_type": ["Logisk", "Visuel"],
+  "social_exposure": "Lav",
+  "structure_need": "Moderat",
+  "level": "Junior",
+  "duration_suggestion": "2-4 uger",
+  "career_alignment": ["Cybersikkerhed", "IT-support"],
+  "progression": {
+    "develops": ["Sikkerhedsbevidsthed", "Systemtænkning", "Etik"],
+    "next_projects": ["pbl_049", "pbl_051"],
+    "progression_note": "God intro til etisk IT – vigtigt for fremtidige talenter"
+  }
+},
+{
+  "id": "pbl_051",
+  "title": "Datadetektiv",
+  "subtitle": "Lav din egen Mini-Database",
+  "description": "Et systemorienteret projekt hvor eleven opbygger en lille database med kategorier, tags og søgninger – helt uden svær kode.",
+  "activities": [
+    "Vælg et tema (fx dyr, spil, værktøj)",
+    "Læg data ind som felter og etiketter",
+    "Lav søgninger og filtreringer",
+    "Præsenter dit system: hvad kan det?"
+  ],
+  "competencies": ["Systemdesign", "Kategorisering", "Logik", "Overblik"],
+  "diagnosis_match": ["ASF", "ADHD", "Højt begavede"],
+  "stimuli_type": ["Visuel", "Logisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-6 uger",
+  "career_alignment": ["Dataarbejde", "Databaseudvikling"],
+  "progression": {
+    "develops": ["Datastruktur", "Taksonomi", "Digital orden"],
+    "next_projects": ["pbl_047", "pbl_048"],
+    "progression_note": "Kernekompetence for fremtidens data- og AI-arbejde"
+  }
+},
+{
+  "id": "pbl_052",
+  "title": "Game Engine Lite",
+  "subtitle": "Byg en Mini-Spilscene",
+  "description": "Eleven lærer at skabe en simpel spilverden i en let game engine. Fokus er på sceneopbygning, fysik og figurbevægelse.",
+  "activities": [
+    "Importer en figur og byg en lille scene",
+    "Tilføj fysik: hop, fald, kollision",
+    "Lav en simpel opgave: saml tre objekter",
+    "Test og justér spillogik"
+  ],
+  "competencies": ["Digital design", "Logik", "Systemtænkning"],
+  "diagnosis_match": ["ASF", "Højt begavede", "ADHD"],
+  "stimuli_type": ["Visuel", "Logisk", "Kognitiv"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "4-6 uger",
+  "career_alignment": ["Game design", "Digital udvikling"],
+  "progression": {
+    "develops": ["Spillogik", "Rumlig forståelse", "Sekvensforståelse"],
+    "next_projects": ["pbl_031", "pbl_048"],
+    "progression_note": "Ideel for elever med specialinteresse i computerspil"
+  }
+},
+{
+  "id": "pbl_053",
+  "title": "Automation & IoT Basic",
+  "subtitle": "Sensorer og Feedback",
+  "description": "Et begyndervenligt automationsprojekt, hvor eleven arbejder med simple sensorer og triggers: lys, lyd, afstand eller bevægelse.",
+  "activities": [
+    "Forstå hvad en sensor gør",
+    "Tilslut en simpel sensor-model (simulation)",
+    "Lav regler: hvis X → så Y",
+    "Test en mini-automationssekvens"
+  ],
+  "competencies": ["Automation", "Logik", "Problemløsning"],
+  "diagnosis_match": ["ASF", "ADHD", "DCD"],
+  "stimuli_type": ["Logisk", "Visuel", "Kinæstetisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-6 uger",
+  "career_alignment": ["Automation", "Robot-teknik"],
+  "progression": {
+    "develops": ["Forståelse for feedbackloops", "Digital logik", "Testkultur"],
+    "next_projects": ["pbl_008", "pbl_047"],
+    "progression_note": "Perfekt bro mellem robotik og AI-træning"
+  }
+},
+{
+  "id": "pbl_054",
+  "title": "AI Coding Partner",
+  "subtitle": "Kod Med Hjælp fra en AI",
+  "description": "Eleven lærer at samarbejde med en AI for at skrive kode, løse fejl og forbedre små programmer. Fokus på præcise prompts og problemløsning.",
+  "activities": [
+    "Skriv en prompt der beskriver et program",
+    "Få AI’en til at foreslå kodeblokke",
+    "Test programmet og find fejl",
+    "Få AI’en til at forbedre koden"
+  ],
+  "competencies": ["Programmering", "Prompting", "Problemløsning"],
+  "diagnosis_match": ["ASF", "Højt begavede", "ADHD"],
+  "stimuli_type": ["Logisk", "Kognitiv", "Visuel"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Advanced",
+  "duration_suggestion": "4-6 uger",
+  "career_alignment": ["Programmering", "AI-teknologi"],
+  "progression": {
+    "develops": ["Promptteknik", "Kodedebugging", "Iteration"],
+    "next_projects": ["pbl_048", "pbl_052"],
+    "progression_note": "Fremtidens kompetence – AI som arbejdsredskab"
+  }
+},
+{
+  "id": "pbl_055",
+  "title": "3D Modelling Basic",
+  "subtitle": "Design til 3D Print",
+  "description": "Eleven lærer at designe simple 3D-modeller og forberede dem til 3D-print i et brugervenligt CAD-program.",
+  "activities": [
+    "Lær om 3D-objekter og akser",
+    "Design en lille model: skilt, figur eller holder",
+    "Eksportér til slicer",
+    "Simulér printet (uden rigtig maskine)"
+  ],
+  "competencies": ["Rumlig forståelse", "Design", "Digital konstruktion"],
+  "diagnosis_match": ["ASF", "ADHD", "DCD"],
+  "stimuli_type": ["Visuel", "Taktil", "Logisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Moderat",
+  "level": "Intermediate",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["3D-design", "Produktudvikling"],
+  "progression": {
+    "develops": ["Formforståelse", "Digital konstruktion", "Præcision"],
+    "next_projects": ["pbl_006", "pbl_052"],
+    "progression_note": "Vigtigt skridt mod tekniske og kreative produktionsjob"
+  }
+},
+{
+  "id": "pbl_056",
+  "title": "SystemTegneren",
+  "subtitle": "Lav Digitale Diagrammer",
+  "description": "Et projekt for elever der elsker struktur. Eleven laver enkle systemdiagrammer (flows, processer, beslutningstræer) over virkelige eller digitale systemer.",
+  "activities": [
+    "Lær symbolsprog til flows og processer",
+    "Kortlæg et simpelt system: fx 'fra idé til produkt'",
+    "Byg et beslutningstræ med konsekvenser",
+    "Præsenter dit systemdiagram"
+  ],
+  "competencies": ["Systemtænkning", "Kategorisering", "Overblik"],
+  "diagnosis_match": ["ASF", "Højt begavede", "ADHD"],
+  "stimuli_type": ["Visuel", "Logisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "2-4 uger",
+  "career_alignment": ["Systemdesign", "Analysearbejde"],
+  "progression": {
+    "develops": ["Procesforståelse", "Sekventiel tænkning", "Dokumentation"],
+    "next_projects": ["pbl_051", "pbl_054"],
+    "progression_note": "Kernehåndværk for analyse- og it-baserede job"
+  }
+},
+{
+  "id": "pbl_057",
+  "title": "Landbrug Basic: Stald & Mark Rutiner 2.0",
+  "subtitle": "Daglige Opgaver som Landmand",
+  "description": "Eleven lærer realistiske landbrugsrutiner: staldtjek, foderskovl, strøelse, vand, værktøj og mini-markarbejde.",
+  "activities": [
+    "Lav daglig morgen-tjekliste",
+    "Vej foder og lav simpel foderblanding",
+    "Rens en mock-up boks (sand/halm/støvfri)",
+    "Plant og mål vækst i mini-mark"
+  ],
+  "competencies": ["Ansvar", "Rutiner", "Observation", "Motorik"],
+  "diagnosis_match": ["ADHD", "Autisme", "DCD"],
+  "stimuli_type": ["Kinæstetisk", "Taktil", "Rytmisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Junior",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["Landmand", "Husdyrpleje"],
+  "progression": {
+    "develops": ["Daglige rutiner", "Staldforståelse", "Sekventering"],
+    "next_projects": ["pbl_033", "pbl_058"],
+    "progression_note": "Når rutiner mestrer, kan næste skridt være digitale opgaver i landbruget."
+  }
+},
+{
+  "id": "pbl_058",
+  "title": "Digital Landbrugstræning",
+  "subtitle": "Foder & Markberegninger på Computer",
+  "description": "Eleven lærer at arbejde med digitale værktøjer, som bruges i moderne landbrug: foderudregning, markkort og simple gødningsberegninger.",
+  "activities": [
+    "Indtast data i et simpelt foder-skema",
+    "Lav markkort: opdel mark i zoner",
+    "Beregn gødning pr. m² ud fra model",
+    "Evaluer: 'Hvad sker der hvis vi ændrer tallene?'"
+  ],
+  "competencies": ["Digital forståelse", "Matematisk tænkning", "Datahåndtering"],
+  "diagnosis_match": ["ASF", "ADHD", "Talmæssige vanskeligheder"],
+  "stimuli_type": ["Visuel", "Logisk", "Digital"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Intermediate",
+  "duration_suggestion": "3-6 uger",
+  "career_alignment": ["Landbrug", "Driftsplanlægning"],
+  "progression": {
+    "develops": ["Dataindsamling", "Simple beregninger", "Digital landbrugsforståelse"],
+    "next_projects": ["pbl_059", "pbl_053"],
+    "progression_note": "Næste niveau: reel planlægning af foder og gødning."
+  }
+},
+{
+  "id": "pbl_059",
+  "title": "Foderplan & Dyrevelfærd Basic",
+  "subtitle": "Beregn Foder og Følg Trivsel",
+  "description": "Eleven lærer at lave en simpel foderplan og følge dyrets trivsel gennem observation og logbog.",
+  "activities": [
+    "Lav foderplan ud fra vægt og behov",
+    "Lav trivselsskema: energi, adfærd, pels, aktivitet",
+    "Simulér 1 uges foderjournal",
+    "Juster foderplanen efter observationer"
+  ],
+  "competencies": ["Omsorg", "Planlægning", "Observation", "Dataforståelse"],
+  "diagnosis_match": ["Autisme", "ADHD", "Angst"],
+  "stimuli_type": ["Visuel", "Taktil", "Logisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Moderat",
+  "level": "Intermediate",
+  "duration_suggestion": "3-5 uger",
+  "career_alignment": ["Husdyrpleje", "Landbrug"],
+  "progression": {
+    "develops": ["Foderforståelse", "Responsanalyse", "Stabilitet"],
+    "next_projects": ["pbl_040", "pbl_060"],
+    "progression_note": "Næste niveau: driftssimulation som landmand."
+  }
+},
+{
+  "id": "pbl_060",
+  "title": "Mini Driftsleder",
+  "subtitle": "Mark- & Gødningsplan",
+  "description": "Eleven arbejder med en mini-version af en driftsplan: markens størrelse, såtid, gødning, maskiner og forventet udbytte.",
+  "activities": [
+    "Mål marken (model) og lav plan",
+    "Beregn gødning efter behovstabeller",
+    "Vælg passende maskine til opgaven",
+    "Lav en samlet driftsplan i digital skabelon"
+  ],
+  "competencies": ["Planlægning", "Analysearbejde", "Teknisk forståelse"],
+  "diagnosis_match": ["ASF", "ADHD", "Højt begavede"],
+  "stimuli_type": ["Logisk", "Digital", "Visuel"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Advanced",
+  "duration_suggestion": "4-6 uger",
+  "career_alignment": ["Landmand", "Maskinstation", "Driftsplanlægning"],
+  "progression": {
+    "develops": ["Systemforståelse", "Dataanalyse", "Driftslogik"],
+    "next_projects": ["pbl_046", "pbl_061"],
+    "progression_note": "Næste step: fuldt driftsspil med egne valg og konsekvenser."
+  }
+},
+{
+  "id": "pbl_061",
+  "title": "Minigård Simulation",
+  "subtitle": "Styr Din Egen Digitale Gård",
+  "description": "Eleven styrer en lille digital 'minigård': vælger afgrøder, laver foderplan, bruger maskiner og følger trivsel over tid.",
+  "activities": [
+    "Vælg hvilke dyr og afgrøder du vil drive",
+    "Fordel foder, gødning og maskiner",
+    "Følg trivsel og udbytte uge for uge",
+    "Præsenter resultater og hvad du ville gøre anderledes"
+  ],
+  "competencies": ["Systemtænkning", "Ansvar", "Dataanalyse", "Planlægning"],
+  "diagnosis_match": ["ASF", "ADHD", "Autisme"],
+  "stimuli_type": ["Digital", "Visuel", "Logisk"],
+  "social_exposure": "Lav",
+  "structure_need": "Høj",
+  "level": "Advanced",
+  "duration_suggestion": "5-7 uger",
+  "career_alignment": ["Landmand", "Drift", "Maskinstation"],
+  "progression": {
+    "develops": ["Helhedsforståelse", "Strategi", "Langsigtet planlægning"],
+    "next_projects": [],
+    "progression_note": "Dette er 'toppen' af landbrugssporet – klar til STU/EUD-praktik."
+  }
+}
   ],
   "filter_categories": {
     "diagnosis_match": [

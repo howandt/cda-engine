@@ -1,0 +1,364 @@
+﻿Folder PATH listing for volume Windows
+Volume serial number is 4A3C-FFD8
+C:.
+|   .gitignore
+|   CDA_HeidiPrompt.md
+|   package-lock.json
+|   package.json
+|   README.md
+|   struktur.txt
+|   vercel.json
+|   
++---.vscode
+|       settings.json
+|       
++---api
+|       cases.js
+|       diagnoser.js
+|       emotion-engine.js
+|       komorbiditet.js
+|       pbl-projects.js
+|       quiz.js
+|       rollespil.js
+|       semantic-search.js
+|       specialister.js
+|       templates.js
+|       
++---CDA
+|   +---cases
+|   |   +---born
+|   |   |       adhd_overgange_10-12.json
+|   |   |       
+|   |   +---familiesager
+|   |   |       adhd_hjemme_overgange_10-12.json
+|   |   |       
+|   |   +---laerer
+|   |   |       adhd_klasseovergange_10-12.json
+|   |   |       
+|   |   \---paedagoger
+|   |       +---bornehave
+|   |       |       autisme_garderobe_overgang_3-6.json
+|   |       |       
+|   |       \---fritid
+|   |               autisme_social_samspil_6-9.json
+|   |               
+|   +---dev_notes
+|   |   |   ideas.md
+|   |   |   
+|   |   \---concepts
+|   |           dynamic_quiz_engine.md
+|   |           heidi_feedback_engine.md
+|   |           heidi_feedback_parser.md
+|   |           template_concept.md
+|   |           
+|   +---docs
+|   |       methodology.md
+|   |       standards.md
+|   |       
+|   +---export
+|   |       adhd_klasseovergange_10-12_cdt_full_module.json
+|   |       adhd_klasseovergange_10-12_cdt_module.json
+|   |       
+|   +---generated_quiz
+|   |       example_quizpool.json
+|   |       
+|   +---logs
+|   |       heidi_feedback_adhd_klasseovergange_10-12.jsonl
+|   |       Hvordan_kan_l_reren_bedst_st_tte_eleven_under_fag-_og_lokale-skift__sessionlog.jsonl
+|   |       session_summary.jsonl
+|   |       Ved_fag-_og_lokale-skift_bliver_eleven_forvirret_og_urolig__L_reren_oplever__at_verbal_guidning_ikke_virker__og_eleven_ender_ofte_i_konflikt_med_klassekammerater_eller_l_reren__sessionlog.jsonl
+|   |       
+|   +---meta
+|   |       cda_cdt_bridge.json
+|   |       changelog.md
+|   |       system_snapshot_2025-11-15.json
+|   |       system_version.json
+|   |       
+|   +---taxonomy
+|   |       taxonomy.json
+|   |       
+|   +---tools
+|   |   |   cda_to_cdt_export.py
+|   |   |   cdt_interactive_runner.py
+|   |   |   cdt_logger.py
+|   |   |   cdt_module_builder.py
+|   |   |   viewer_test.py
+|   |   |   
+|   |   \---__pycache__
+|   |           cdt_logger.cpython-312.pyc
+|   |           
+|   +---views
+|   |       viewSchema.json
+|   |       
+|   \---visuals
+|       \---roadmap
+|               system_flow.md
+|               
++---data
+|   |   CDA_Cases_Index.json
+|   |   CDA_Diagnoser.json
+|   |   CDA_Emotionengine.json
+|   |   CDA_Komorbiditet.json
+|   |   CDA_PBL_Projects.json
+|   |   CDA_Quiz_Bank.json
+|   |   CDA_SpecialistPanel.json
+|   |   CDA_Templates.json
+|   |   rollespil_scenarier.json
+|   |   
+|   \---cases_ORIGINAL_ARCHIVE
+|           adhd_angst_cases.json
+|           
++---DOCUMENTATION
+|       CDA_Case_Schema.json
+|       DEV_ROADMAP.md
+|       openapi.json
+|       Professor_Personal_Endorsement.md
+|       SYSTEM_FIL_PLACERING.md
+|       
++---lib
+|       emotionEngine.js
+|       
++---node_modules
+|   |   .package-lock.json
+|   |   
+|   +---.bin
+|   |       esparse
+|   |       esparse.cmd
+|   |       esparse.ps1
+|   |       esvalidate
+|   |       esvalidate.cmd
+|   |       esvalidate.ps1
+|   |       js-yaml
+|   |       js-yaml.cmd
+|   |       js-yaml.ps1
+|   |       
+|   +---argparse
+|   |   |   CHANGELOG.md
+|   |   |   index.js
+|   |   |   LICENSE
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   
+|   |   \---lib
+|   |       |   action.js
+|   |       |   action_container.js
+|   |       |   argparse.js
+|   |       |   argument_parser.js
+|   |       |   const.js
+|   |       |   namespace.js
+|   |       |   utils.js
+|   |       |   
+|   |       +---action
+|   |       |   |   append.js
+|   |       |   |   count.js
+|   |       |   |   help.js
+|   |       |   |   store.js
+|   |       |   |   subparsers.js
+|   |       |   |   version.js
+|   |       |   |   
+|   |       |   +---append
+|   |       |   |       constant.js
+|   |       |   |       
+|   |       |   \---store
+|   |       |           constant.js
+|   |       |           false.js
+|   |       |           true.js
+|   |       |           
+|   |       +---argument
+|   |       |       error.js
+|   |       |       exclusive.js
+|   |       |       group.js
+|   |       |       
+|   |       \---help
+|   |               added_formatters.js
+|   |               formatter.js
+|   |               
+|   +---esprima
+|   |   |   ChangeLog
+|   |   |   LICENSE.BSD
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   
+|   |   +---bin
+|   |   |       esparse.js
+|   |   |       esvalidate.js
+|   |   |       
+|   |   \---dist
+|   |           esprima.js
+|   |           
+|   +---extend-shallow
+|   |       index.js
+|   |       LICENSE
+|   |       package.json
+|   |       README.md
+|   |       
+|   +---gray-matter
+|   |   |   CHANGELOG.md
+|   |   |   gray-matter.d.ts
+|   |   |   index.js
+|   |   |   LICENSE
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   
+|   |   \---lib
+|   |           defaults.js
+|   |           engine.js
+|   |           engines.js
+|   |           excerpt.js
+|   |           parse.js
+|   |           stringify.js
+|   |           to-file.js
+|   |           utils.js
+|   |           
+|   +---is-extendable
+|   |       index.js
+|   |       LICENSE
+|   |       package.json
+|   |       README.md
+|   |       
+|   +---js-yaml
+|   |   |   CHANGELOG.md
+|   |   |   index.js
+|   |   |   LICENSE
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   
+|   |   +---bin
+|   |   |       js-yaml.js
+|   |   |       
+|   |   +---dist
+|   |   |       js-yaml.js
+|   |   |       js-yaml.min.js
+|   |   |       
+|   |   \---lib
+|   |       |   js-yaml.js
+|   |       |   
+|   |       \---js-yaml
+|   |           |   common.js
+|   |           |   dumper.js
+|   |           |   exception.js
+|   |           |   loader.js
+|   |           |   mark.js
+|   |           |   schema.js
+|   |           |   type.js
+|   |           |   
+|   |           +---schema
+|   |           |       core.js
+|   |           |       default_full.js
+|   |           |       default_safe.js
+|   |           |       failsafe.js
+|   |           |       json.js
+|   |           |       
+|   |           \---type
+|   |               |   binary.js
+|   |               |   bool.js
+|   |               |   float.js
+|   |               |   int.js
+|   |               |   map.js
+|   |               |   merge.js
+|   |               |   null.js
+|   |               |   omap.js
+|   |               |   pairs.js
+|   |               |   seq.js
+|   |               |   set.js
+|   |               |   str.js
+|   |               |   timestamp.js
+|   |               |   
+|   |               \---js
+|   |                       function.js
+|   |                       regexp.js
+|   |                       undefined.js
+|   |                       
+|   +---kind-of
+|   |       CHANGELOG.md
+|   |       index.js
+|   |       LICENSE
+|   |       package.json
+|   |       README.md
+|   |       
+|   +---section-matter
+|   |       index.js
+|   |       LICENSE
+|   |       package.json
+|   |       README.md
+|   |       
+|   +---sprintf-js
+|   |   |   .npmignore
+|   |   |   bower.json
+|   |   |   gruntfile.js
+|   |   |   LICENSE
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   
+|   |   +---demo
+|   |   |       angular.html
+|   |   |       
+|   |   +---dist
+|   |   |       angular-sprintf.min.js
+|   |   |       angular-sprintf.min.js.map
+|   |   |       angular-sprintf.min.map
+|   |   |       sprintf.min.js
+|   |   |       sprintf.min.js.map
+|   |   |       sprintf.min.map
+|   |   |       
+|   |   +---src
+|   |   |       angular-sprintf.js
+|   |   |       sprintf.js
+|   |   |       
+|   |   \---test
+|   |           test.js
+|   |           
+|   \---strip-bom-string
+|           index.js
+|           LICENSE
+|           package.json
+|           README.md
+|           
++---public
+|   |   diagnoser-test.html
+|   |   emotion-engine-test.html
+|   |   index.html
+|   |   pbl-matcher-test.html
+|   |   quiz-system-test.html
+|   |   test.html
+|   |   test_cases.html
+|   |   
+|   +---backup
+|   |       CDA_Cases_Index.json
+|   |       
+|   +---cases
+|   |   |   case-bh3.md
+|   |   |   case-browser.html
+|   |   |   case-gs1.md
+|   |   |   cases-reader.html
+|   |   |   CDA_BÏRNEHAVE_KOMPLET.md
+|   |   |   CDA_Cases_ADHD.md
+|   |   |   CDA_Cases_ADHD_Autisme.md
+|   |   |   CDA_Cases_Angst.md
+|   |   |   CDA_Cases_Autisme.md
+|   |   |   CDA_Cases_OBSERVATION.md
+|   |   |   CDA_Cases_Social.md
+|   |   |   
+|   |   \---navigation
+|   |           CDA_Cases_INDEKS.md
+|   |           CDA_Cases_OVERSIGT.md
+|   |           README_CASEBANK.md
+|   |           
+|   +---data
+|   |       CDA_Cases_Index.json
+|   |       semantic_engine.json
+|   |       
+|   \---demo
+|           diagnoser-test.html
+|           emotion-engine-test.html
+|           index.html
+|           pbl-matcher-test.html
+|           quiz-system-test.html
+|           templates.html
+|           test.html
+|           test_cases.html
+|           
+\---scripts
+        build-clean-index.js
+        semantic_matcher.js
+        
