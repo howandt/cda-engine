@@ -1566,18 +1566,19 @@
     "Muligt næste skridt efter forløbet"
   ]
 },
-    "logbog": {
+   "logbog": {
   "title": "PBL Logbog (daglig/ugentlig)",
   "fields": [
     "Dato",
-    "Hvad lavede barnet i dag?",
-    "Hvordan gik det med fokus og koncentration?",
-    "Hvordan gik det med trivsel og ro?",
-    "Hvad lærte barnet i dag? (fx dansk, sprog, regning, rækkefølge, ansvar)",
-    "Hvad lykkedes godt?",
-    "Hvad var svært eller skabte uro?",
-    "Hvor meget støtte havde barnet brug for?",
-    "Skal noget justeres til næste gang?",
+    "Aktivitet/projektopgave",
+    "Deltagelse (lav / middel / høj)",
+    "Fokus og koncentration (lav / middel / høj)",
+    "Trivsel og ro (lav / middel / høj)",
+    "Hvad barnet arbejdede med fagligt eller praktisk",
+    "Hvad barnet lykkedes med",
+    "Hvad der var svært eller skabte uro",
+    "Støttebehov (lav / middel / høj)",
+    "Justering til næste gang",
     "Kort note til forældre eller næste lærer"
   ]
 },
