@@ -12,16 +12,52 @@
           "id": "adhd_angst",
           "suspected_comorbidity": "Angst",
           "title": "ADHD + Angst",
-          "praevalens": "",
-          "kort_forklaring": "",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [],
-          "hvad_boer_observeres": [],
-          "typiske_tegn_i_skole": [],
-          "typiske_tegn_i_hjem": [],
-          "mistankeindikatorer": [],
-          "differentiale_faldgruber": [],
-          "hvad_kan_formidles_videre": [],
-          "anbefalet_videre_spor": [],
+          "praevalens": "25–35 %",
+          "kort_forklaring": "Når angst optræder sammen med ADHD, fremstår barnet ofte mere undgående, mere kravfølsomt og mere belastet, end ADHD alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun uroligt eller uopmærksomt, men også tydeligt bekymret eller ængsteligt",
+            "Barnet undgår krav, situationer eller relationer på en måde, der ikke passer med ADHD alene",
+            "Reaktionerne virker mere styret af frygt, usikkerhed eller overkontrol end af impulsivitet alene"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet trækker sig fra bestemte krav eller situationer",
+            "Om uro ledsages af bekymring, usikkerhed eller katastrofetanker",
+            "Om barnet søger meget forsikring, kontrol eller forudsigelighed",
+            "Om belastningen stiger tydeligt ved sociale krav, fejl eller skift"
+          ],
+          "typiske_tegn_i_skole": [
+            "Undgår opgaver eller situationer med risiko for fejl",
+            "Bliver let overbelastet ved krav, skift eller sociale situationer",
+            "Virker ængstelig, fastlåst eller meget afhængig af voksenstøtte",
+            "Uro eller modstand opstår især i pressede eller uforudsigelige situationer"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Stort behov for forberedelse og tryghed omkring hverdagens krav",
+            "Bekymringer fylder meget før skole, aftaler eller nye situationer",
+            "Barnet undgår aktiviteter, som tidligere var mulige",
+            "Reaktioner præges af usikkerhed, kontrolbehov eller frygt for at fejle"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere undgående end typisk ved ADHD",
+            "Barnet er markant mere kravfølsomt end forventet",
+            "Barnet reagerer med bekymring frem for kun impulsivitet",
+            "ADHD-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Angst kan ligne ADHD, fordi barnet virker uroligt, ukoncentreret eller overbelastet",
+            "ADHD kan ligne angst, hvis barnet ofte fejler og derfor bliver usikkert",
+            "Det afgørende er, om vanskelighederne primært drives af reguleringsproblemer eller af frygt og bekymring"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med ADHD, men der ses også tegn på bekymring, undgåelse og kravfølsomhed, som ikke forklares tilstrækkeligt af ADHD alene",
+            "Vi observerer, at belastningen især øges i situationer med krav, usikkerhed, fejlrisiko eller sociale forventninger",
+            "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte ADHD-profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer på tværs af skole og hjem",
+            "Beskrivelse af hvilke situationer der udløser undgåelse eller bekymring",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
           "see_also": "angst"
         }
       ]
