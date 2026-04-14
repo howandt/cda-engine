@@ -1251,6 +1251,336 @@
           "see_also": "spiseforstyrrelse"
         }
       ]
+    },
+    {
+      "id": "adfaerdsforstyrrelse",
+      "primary_diagnosis": "Adfærdsforstyrrelse",
+      "overview": {
+        "kort_beskrivelse": "Adfærdsforstyrrelse forklarer ofte meget, men ikke altid helheden. Når barnets eller den unges samlede profil afviger tydeligt fra det forventede adfærdsbillede, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved adfærdsforstyrrelse er det ofte komorbiditeten, der forklarer, hvorfor barnet eller den unge fremstår mere komplekst, mere belastet eller mindre typisk, end grunddiagnosen alene tilsiger."
+      },
+      "comorbidities": [
+        {
+          "id": "adfaerdsforstyrrelse_adhd",
+          "suspected_comorbidity": "ADHD",
+          "title": "Adfærdsforstyrrelse + ADHD",
+          "trigger_tegn": [
+            "impulsiv",
+            "urolig",
+            "rastløs",
+            "kan ikke vente",
+            "afbryder",
+            "ureguleret",
+            "glemmer",
+            "skifter hurtigt",
+            "svært ved struktur",
+            "handler før der tænkes"
+          ],
+          "praevalens": "30–50 %",
+          "kort_forklaring": "Når ADHD optræder sammen med adfærdsforstyrrelse, fremstår barnet eller den unge ofte mere impulsiv, mere motorisk urolig og mere vedvarende vanskeligt regulerbar, end adfærdsforstyrrelsen alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun trodsigt eller konfliktsøgende, men også tydeligt mere impulsivt og uopmærksomt",
+            "Der ses større problemer med hæmning, fastholdelse og organisering, end adfærdsforstyrrelse alene forklarer",
+            "Konflikterne virker i høj grad drevet af reguleringssvigt og manglende bremsning"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
+            "Om barnet virker impulsivt eller motorisk uroligt ud over konfliktsituationer",
+            "Om barnet har svært ved at organisere og fastholde opgaver og krav",
+            "Om grænseoverskridelser ofte sker hurtigt og uden forudgående overvejelse"
+          ],
+          "typiske_tegn_i_skole": [
+            "Afbryder, reagerer hurtigt og handler før der tænkes",
+            "Har svært ved at holde fokus og følge struktur",
+            "Konflikter opstår både ved trods og impulsivitet",
+            "Virker mere rastløs og ureguleret end typisk ved adfærdsforstyrrelse alene"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Har svært ved at vente, lytte og holde retning i daglige krav",
+            "Reagerer hurtigt og uden tydelig bremsning",
+            "Hverdagen bliver præget af både konflikter og kaotisk regulering",
+            "Har svært ved at gennemføre rutiner og beskeder"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere impulsivt og uroligt end typisk ved adfærdsforstyrrelse",
+            "Barnet har tydelige opmærksomheds- og organiseringsvanskeligheder",
+            "Konflikter virker ofte drevet af reguleringssvigt frem for kun opposition",
+            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "ADHD kan ligne adfærdsforstyrrelse, fordi impulsivitet også kan give konflikter og grænseoverskridelser",
+            "Adfærdsforstyrrelse kan overvurderes, hvis reguleringssvigt og opmærksomhedsproblemer ikke opdages",
+            "Det afgørende er, om der også ses bredere og vedvarende opmærksomheds- og impulsivitetsvanskeligheder"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tydelige tegn på opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+            "Vi observerer impulsivitet, uro og manglende fastholdelse ud over det forventede adfærdsbillede",
+            "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte adfærdsprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af opmærksomhed, impulsivitet og organisering på tværs af miljøer",
+            "Beskrivelse af forskellen mellem oppositionel adfærd og bredere reguleringsvanskeligheder",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "adhd"
+        },
+        {
+          "id": "adfaerdsforstyrrelse_angst",
+          "suspected_comorbidity": "Angst",
+          "title": "Adfærdsforstyrrelse + Angst",
+          "trigger_tegn": [
+            "bekymring",
+            "undgåelse",
+            "kravfølsomhed",
+            "bliver vred når barnet er utrygt",
+            "social usikkerhed",
+            "alarmberedskab",
+            "søger kontrol",
+            "modstand ved pres",
+            "stærke reaktioner ved usikkerhed",
+            "frygt bag vrede"
+          ],
+          "praevalens": "20–30 %",
+          "kort_forklaring": "Når angst optræder sammen med adfærdsforstyrrelse, bliver adfærdsbilledet ofte mere sårbart, mere alarmpræget og mere situationsbundet, end man forventer ved ren adfærdsforstyrrelse.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun trodsigt eller grænsesøgende, men også tydeligt mere utrygt og bekymret",
+            "Modstand og vrede opstår især ved usikkerhed, sociale krav eller oplevet pres",
+            "Reaktionerne virker præget af frygt og alarm, ikke kun opposition"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet reagerer med vrede eller modstand i situationer præget af usikkerhed eller krav",
+            "Om barnet også viser undgåelse, bekymring eller behov for forsikring",
+            "Om konflikter er tæt knyttet til utryghed, præstationspres eller sociale situationer",
+            "Om barnet virker mere alarmpræget end typisk ved adfærdsforstyrrelse alene"
+          ],
+          "typiske_tegn_i_skole": [
+            "Konflikter opstår især ved krav, præstation eller sociale udfordringer",
+            "Barnet virker både vredt og utrygt",
+            "Modstand ledsages af tydelig undgåelse eller alarm",
+            "Reagerer stærkt på situationer med usikkerhed eller oplevet nederlag"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Bliver hurtigt vred eller afvisende, når noget føles svært eller utrygt",
+            "Har stort behov for kontrol eller tryghed i hverdagen",
+            "Undgår bestemte situationer og reagerer med modstand ved pres",
+            "Konflikter hænger ofte sammen med utryghed og bekymring"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere bekymret og kravfølsomt end typisk ved adfærdsforstyrrelse",
+            "Konflikter ledsages af tydelig undgåelse eller alarm",
+            "Adfærden virker stærkt situationsbundet til utryghed eller frygt",
+            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Angst kan skjules bag vrede og modstand, især når barnet bliver presset eller utrygt",
+            "Adfærdsforstyrrelse kan overvurderes, hvis frygt og alarm ikke opdages bag konflikterne",
+            "Det afgørende er, om der også ses tydelig bekymring, undgåelse og alarmberedskab"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tegn på bekymring, utryghed og undgåelse, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+            "Vi observerer, at konflikter og modstand ofte hænger tæt sammen med krav, usikkerhed og oplevet pres",
+            "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte adfærdsprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af bekymring, undgåelse og reaktioner på pres",
+            "Beskrivelse af hvilke situationer der udløser vrede, modstand og alarm",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "angst"
+        },
+        {
+          "id": "adfaerdsforstyrrelse_depression",
+          "suspected_comorbidity": "Depression",
+          "title": "Adfærdsforstyrrelse + Depression",
+          "trigger_tegn": [
+            "trist",
+            "opgivende",
+            "lav energi",
+            "mere tilbagetrukket",
+            "irritabel",
+            "håbløshed",
+            "mister lyst",
+            "følelsesmæssigt tung",
+            "social tilbagetrækning",
+            "tydeligt funktionsfald"
+          ],
+          "praevalens": "15–30 %",
+          "kort_forklaring": "Når depression optræder sammen med adfærdsforstyrrelse, fremstår barnet eller den unge ofte mere irritabel, mere opgivende og mere følelsesmæssigt tung, end adfærdsforstyrrelsen alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun vredt eller trodsigt, men også tydeligt mere trist, tungt eller opgivende",
+            "Der ses energifald, tab af lyst eller social tilbagetrækning, som ikke passer med adfærdsforstyrrelse alene",
+            "Konflikterne ledsages af følelsesmæssigt fald og nedsat fremdrift"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har tydeligt energifald eller mindre initiativ end tidligere",
+            "Om irritabilitet ledsages af tristhed, håbløshed eller opgivenhed",
+            "Om barnet trækker sig mere fra relationer, skole eller aktiviteter",
+            "Om der er et tydeligt fald fra tidligere funktionsniveau"
+          ],
+          "typiske_tegn_i_skole": [
+            "Virker både irritabel og følelsesmæssigt tung",
+            "Deltager mindre og virker mere opgivende end tidligere",
+            "Konflikter ledsages af tydelig træthed eller lavt overskud",
+            "Har svært ved at mobilisere sig, selv når pres reduceres"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Virker mere træt, tung eller tilbagetrukket",
+            "Har mindre lyst til aktiviteter eller relationer",
+            "Reagerer både med vrede og opgivenhed",
+            "Hverdagen præges af både konflikt og følelsesmæssigt fald"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere opgivende og trist end typisk ved adfærdsforstyrrelse",
+            "Irritabilitet ledsages af tydeligt energifald eller tab af interesse",
+            "Konflikter dækker over et bredere følelsesmæssigt fald",
+            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Depression kan overses, hvis barnet primært viser irritabilitet og konfliktadfærd",
+            "Adfærdsforstyrrelse kan overvurderes, hvis følelsesmæssigt fald ikke opdages bag adfærden",
+            "Det afgørende er, om der også ses vedvarende tristhed, energifald, tab af lyst eller social tilbagetrækning"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tegn på tristhed, energifald og opgivenhed, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+            "Vi observerer, at konflikter og irritabilitet også ledsages af tydeligt følelsesmæssigt fald og lavere deltagelse",
+            "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte adfærdsprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af energi, deltagelse og følelsesmæssigt funktionsniveau",
+            "Beskrivelse af hvordan irritabilitet, opgivenhed og tilbagetrækning hænger sammen over tid",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "depression"
+        },
+        {
+          "id": "adfaerdsforstyrrelse_indlaering",
+          "suspected_comorbidity": "Indlæringsvanskeligheder",
+          "title": "Adfærdsforstyrrelse + Indlæringsvanskeligheder",
+          "trigger_tegn": [
+            "læsevanskeligheder",
+            "skrivevanskeligheder",
+            "regnevanskeligheder",
+            "giver op ved skolekrav",
+            "bliver vred i undervisning",
+            "undgår opgaver",
+            "mange nederlag",
+            "svært ved faglige krav",
+            "lavt fagligt selvværd",
+            "skolemodstand"
+          ],
+          "praevalens": "20–25 %",
+          "kort_forklaring": "Når indlæringsvanskeligheder optræder sammen med adfærdsforstyrrelse, bliver adfærdsproblemerne ofte tættere koblet til skolekrav, nederlag og vedvarende frustration, end adfærdsforstyrrelsen alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun trodsigt eller konfliktsøgende, men også tydeligt mere belastet af bestemte skolefaglige krav",
+            "Modstand og vrede opstår især i læringssituationer, hvor barnet kommer til kort",
+            "Adfærden hænger tæt sammen med faglige nederlag og lav mestring"
+          ],
+          "hvad_boer_observeres": [
+            "Om konflikter og modstand især opstår ved læsning, skrivning eller matematik",
+            "Om barnet reagerer kraftigt på opgaver, der overstiger det faglige niveau",
+            "Om barnet undgår bestemte skoleaktiviteter på grund af gentagne nederlag",
+            "Om skolemodstand hænger sammen med specifikke faglige vanskeligheder"
+          ],
+          "typiske_tegn_i_skole": [
+            "Reagerer med modstand eller vrede i bestemte undervisningssituationer",
+            "Undgår opgaver, hvor barnet oplever sig fagligt utilstrækkeligt",
+            "Har tydelige nederlagsreaktioner i skolearbejdet",
+            "Adfærdsproblemerne tiltager ved faglige krav"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Konflikter omkring lektier og skoleopgaver",
+            "Barnet giver hurtigt op ved faglige krav",
+            "Virker præget af lavt fagligt selvværd og modstand mod skolearbejde",
+            "Reagerer med vrede eller undgåelse, når noget bliver for svært"
+          ],
+          "mistankeindikatorer": [
+            "Adfærdsproblemerne er tydeligt koblet til skolekrav og faglige nederlag",
+            "Barnet undgår bestemte opgavetyper eller fagområder",
+            "Konflikter og modstand virker drevet af lav mestring frem for kun opposition",
+            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Indlæringsvanskeligheder kan overses, hvis al modstand tolkes som trods eller adfærdsproblem",
+            "Adfærdsforstyrrelse kan overvurderes, hvis skolekrav og nederlag er den skjulte motor bag adfærden",
+            "Det afgørende er, om barnet også har specifikke og vedvarende faglige vanskeligheder"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tegn på faglige vanskeligheder og nederlagsprægede reaktioner, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+            "Vi observerer, at modstand og konflikter især opstår i situationer med bestemte skolekrav og lav oplevet mestring",
+            "Det kan være relevant at få belyst, om der også er indlæringsvanskeligheder til stede ud over den kendte adfærdsprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af hvilke faglige krav der udløser modstand og konflikt",
+            "Beskrivelse af barnets mestring, nederlagsmønstre og undgåelse i skolearbejdet",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "indlaeringsvanskeligheder"
+        },
+        {
+          "id": "adfaerdsforstyrrelse_traume",
+          "suspected_comorbidity": "Traumerelaterede tilstande",
+          "title": "Adfærdsforstyrrelse + Traumerelaterede tilstande",
+          "trigger_tegn": [
+            "hyperarousal",
+            "mistillid",
+            "stærke triggere",
+            "alarmberedskab",
+            "uventede følelsesskift",
+            "overlevelsesreaktioner",
+            "eksplosiv ved bestemte situationer",
+            "vagtsom",
+            "udfordret i relationer",
+            "reaktioner virker større end situationen"
+          ],
+          "praevalens": "20–30 %",
+          "kort_forklaring": "Når traumerelaterede tilstande optræder sammen med adfærdsforstyrrelse, bliver adfærdsbilledet ofte mere uforudsigeligt, mere alarmstyret og mere præget af overlevelsesreaktioner, end man forventer ved adfærdsforstyrrelse alene.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun trodsigt eller aggressivt, men også tydeligt mere vagtsomt, mistroisk eller alarmpræget",
+            "Reaktionerne er ofte stærkt trigget af bestemte situationer, relationer eller oplevelser",
+            "Adfærden virker mere styret af overlevelse og alarm end af vedvarende opposition alene"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet reagerer voldsomt på bestemte triggere eller relationelle situationer",
+            "Om barnet virker konstant vagtsomt, mistroisk eller hurtigt i alarm",
+            "Om reaktionerne skifter hurtigt og virker større end situationen tilsiger",
+            "Om konflikter hænger sammen med oplevet fare, kontroltab eller tidligere belastning"
+          ],
+          "typiske_tegn_i_skole": [
+            "Reagerer meget stærkt på bestemte voksne, krav eller relationelle situationer",
+            "Virker hurtigt i alarm og svært at berolige igen",
+            "Adfærden er mere uforudsigelig og trigget end typisk ved adfærdsforstyrrelse alene",
+            "Har svært ved tillid, ro og stabil deltagelse"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Reagerer eksplosivt på bestemte situationer eller temaer",
+            "Virker mistroisk, vagtsom eller stærkt styret af kontrolbehov",
+            "Følelsesniveau skifter hurtigt og voldsomt",
+            "Adfærden præges af alarm, overlevelsesreaktioner og lav tryghed"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere alarmpræget og trigget end typisk ved adfærdsforstyrrelse",
+            "Adfærden virker tæt knyttet til bestemte relationer eller belastninger",
+            "Konflikter og aggression har et tydeligt overlevelsespræg",
+            "Adfærdsrettede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Traumereaktioner kan fejlfortolkes som ren adfærdsforstyrrelse",
+            "Adfærdsforstyrrelse kan overvurderes, hvis alarmberedskab og triggere ikke opdages",
+            "Det afgørende er, om adfærden også er præget af hyperarousal, mistillid og overlevelsesmønstre"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med adfærdsforstyrrelse, men der ses også tegn på alarmberedskab, triggere og overlevelsesprægede reaktioner, som ikke forklares tilstrækkeligt af adfærdsforstyrrelsen alene",
+            "Vi observerer, at adfærden ofte aktiveres i bestemte relationelle eller belastende situationer og bærer præg af stærk vagtsomhed og mistillid",
+            "Det kan være relevant at få belyst, om der også er en traumerelateret problematik til stede ud over den kendte adfærdsprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af triggere, relationelle belastninger og alarmreaktioner",
+            "Beskrivelse af hvilke situationer der udløser stærke følelsesskift, mistillid eller overlevelsesreaktioner",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "traumerelaterede_tilstande"
+        }
+      ]
     }
   ]
 }
