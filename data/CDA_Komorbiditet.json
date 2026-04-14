@@ -921,6 +921,336 @@
           "see_also": "soevnforstyrrelse"
         }
       ]
+    },
+    {
+      "id": "depression",
+      "primary_diagnosis": "Depression",
+      "overview": {
+        "kort_beskrivelse": "Depression forklarer ofte meget, men ikke altid helheden. Når barnets eller den unges samlede profil afviger tydeligt fra det forventede depressive billede, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved depression er det ofte komorbiditeten, der forklarer, hvorfor barnet eller den unge fremstår mere komplekst, mere belastet eller mindre typisk, end grunddiagnosen alene tilsiger."
+      },
+      "comorbidities": [
+        {
+          "id": "depression_angst",
+          "suspected_comorbidity": "Angst",
+          "title": "Depression + Angst",
+          "trigger_tegn": [
+            "bekymring",
+            "undgåelse",
+            "katastrofetanker",
+            "kravfølsomhed",
+            "social usikkerhed",
+            "søger forsikring",
+            "alarmberedskab",
+            "sover dårligt",
+            "grubler",
+            "bliver let overvældet"
+          ],
+          "praevalens": "30–75 %",
+          "kort_forklaring": "Når angst optræder sammen med depression, fremstår barnet eller den unge ofte mere bekymret, mere undgående og mere alarmpræget, end depression alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun trist eller opgivende, men også tydeligt mere bekymret og frygtpræget",
+            "Der ses undgåelse og alarm, som ikke passer med depression alene",
+            "Reaktionerne virker præget af både følelsesmæssig tyngde og aktiv frygt for situationer, krav eller relationer"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet viser tydelig bekymring, katastrofetanker eller sikkerhedsadfærd",
+            "Om undgåelse handler om mere end energifald og også om frygt eller usikkerhed",
+            "Om krav, sociale situationer eller fejl udløser alarm og tilbagetrækning",
+            "Om barnet søger meget forsikring eller kontrol"
+          ],
+          "typiske_tegn_i_skole": [
+            "Undgår situationer med præstation, sociale krav eller usikkerhed",
+            "Virker både tung og alarmpræget",
+            "Har svært ved at deltage, fordi bekymring og frygt fylder meget",
+            "Deltagelse falder på grund af både energifald og angstpræget undgåelse"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Bekymringer fylder meget i hverdagen",
+            "Trækker sig fra aktiviteter på grund af både manglende lyst og frygt",
+            "Har stort behov for tryghed og forsikring",
+            "Virker både trist og ængstelig over tid"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere bekymret og undgående end typisk ved depression",
+            "Tilbagetrækning ledsages af frygt og alarmberedskab",
+            "Barnet virker både tungt belastet og ængsteligt",
+            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Angst kan ligne depression, fordi barnet også kan trække sig, sove dårligt og fungere dårligere",
+            "Depression kan ligne angst, hvis barnet virker meget belastet og usikkert",
+            "Det afgørende er, om der også ses tydelig frygt, alarm og undgåelse ud over nedtrykthed og energifald"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med depression, men der ses også tegn på bekymring, undgåelse og alarm, som ikke forklares tilstrækkeligt af depressionen alene",
+            "Vi observerer, at belastningen også har et tydeligt angstpræg med frygt, usikkerhed og kravundgåelse",
+            "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte depressive profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af bekymring, undgåelse og sikkerhedsadfærd",
+            "Beskrivelse af hvilke situationer der udløser frygt, alarm eller tilbagetrækning",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "angst"
+        },
+        {
+          "id": "depression_adhd",
+          "suspected_comorbidity": "ADHD",
+          "title": "Depression + ADHD",
+          "trigger_tegn": [
+            "uopmærksom",
+            "impulsiv",
+            "rastløs",
+            "glemmer",
+            "uorganiseret",
+            "kan ikke fastholde opmærksomhed",
+            "ureguleret",
+            "skifter hurtigt",
+            "svært ved at gennemføre",
+            "kaotisk hverdag"
+          ],
+          "praevalens": "20–30 %",
+          "kort_forklaring": "Når ADHD optræder sammen med depression, fremstår depressionen ofte mere ujævnt reguleret, mere irritabel og mere funktionspræget i hverdagen, end depression alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun trist eller energiforladt, men også tydeligt uopmærksomt, impulsivt eller motorisk uroligt",
+            "Der ses større problemer med organisering og fastholdelse, end depression alene forklarer",
+            "Profilen svinger mellem følelsesmæssig tyngde og bredere selvreguleringsvanskeligheder"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
+            "Om barnet virker impulsivt eller rastløst ud over depressiv uro eller irritabilitet",
+            "Om barnet har svært ved at organisere, starte og afslutte opgaver",
+            "Om vanskelighederne også ses i mere trygge og rolige perioder"
+          ],
+          "typiske_tegn_i_skole": [
+            "Har svært ved at fastholde opmærksomhed og struktur",
+            "Virker både tung og ureguleret i hverdagen",
+            "Glemmer beskeder, materialer eller aftaler",
+            "Har svært ved at komme i gang og svært ved at holde retning"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Har svært ved daglige rutiner og opgavegennemførelse",
+            "Virker uorganiseret og let afledelig",
+            "Skifter mellem passivitet, irritabilitet og impulsive reaktioner",
+            "Har svært ved at holde struktur, også i kendte rammer"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere uopmærksomt og impulsivt end typisk ved depression",
+            "Barnet har tydelige organiserings- og reguleringsvanskeligheder",
+            "Funktionsprofilen virker både tung og kaotisk",
+            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "ADHD kan ligne depression, fordi barnet også kan virke lavt fungerende og frustreret",
+            "Depression kan ligne ADHD, hvis barnet bliver ukoncentreret, irritabelt og svært at mobilisere",
+            "Det afgørende er, om der også ses bredere og vedvarende opmærksomheds- og impulsivitetsvanskeligheder"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med depression, men der ses også vedvarende opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af depressionen alene",
+            "Vi observerer uro, impulsivitet eller organiseringsproblemer ud over det forventede depressive billede",
+            "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte depressive profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af opmærksomhed, impulsivitet og organisering på tværs af miljøer",
+            "Beskrivelse af forskellen mellem depressivt energifald og bredere reguleringsvanskeligheder",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "adhd"
+        },
+        {
+          "id": "depression_autisme",
+          "suspected_comorbidity": "Autisme",
+          "title": "Depression + Autisme",
+          "trigger_tegn": [
+            "rigid",
+            "socialt anderledes",
+            "fastlåst",
+            "bliver overbelastet",
+            "social usikkerhed",
+            "stort behov for rutiner",
+            "sensorisk følsom",
+            "misforstår sociale situationer",
+            "trækker sig mere ved krav",
+            "ændringer vælter barnet"
+          ],
+          "praevalens": "Forekommer hyppigt, når depression optræder hos børn og unge med autisme",
+          "kort_forklaring": "Når autisme optræder sammen med depression, bliver depressionen ofte mindre klassisk i sit udtryk og mere præget af tilbagetrækning, rigiditet, overbelastning og fald i funktion.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun trist eller opgivende, men også markant mere rigidt, socialt misafstemt eller belastet af forandringer",
+            "Depressionen viser sig ikke kun som nedtrykthed, men også som øget fastlåsthed og overbelastning",
+            "Funktionsfaldet hænger sammen med både følelsesmæssig tyngde og en mere grundlæggende autismeprofil"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har vedvarende vanskeligheder med social gensidighed og fleksibilitet",
+            "Om overbelastning, tilbagetrækning og funktionsfald stiger ved forandringer og sociale krav",
+            "Om barnet virker sensorisk belastet og mere sårbart end tidligere",
+            "Om depressionen viser sig mere som lukning, udmattelse og rigiditet end klassisk tristhed"
+          ],
+          "typiske_tegn_i_skole": [
+            "Trækker sig markant fra fællesskab og krav",
+            "Virker mere fastlåst og mindre fleksibel end typisk ved depression alene",
+            "Overbelastes hurtigt af sociale eller uforudsigelige situationer",
+            "Funktionsniveauet falder både fagligt og socialt"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Har stærkt behov for rutiner og reagerer kraftigt på ændringer",
+            "Virker mere udmattet, isoleret eller låst end tidligere",
+            "Har særlige sensoriske belastninger, som fylder meget i hverdagen",
+            "Depressiv tilstand viser sig gennem tilbagetrækning, rigiditet og nedsat overskud"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere rigidt og socialt anderledes end typisk ved depression",
+            "Funktionsfaldet ledsages af tydelig overbelastning ved skift, sansning eller sociale krav",
+            "Depressionen virker mindre klassisk og mere præget af autistiske træk",
+            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Autisme kan ligne depression, fordi barnet kan være stille, trække sig og virke energiforladt",
+            "Depression kan overses, hvis fald i energi og deltagelse tolkes som en del af autismeprofilen",
+            "Det afgørende er, om der også ses en mere grundlæggende profil med socialkommunikative vanskeligheder og rigiditet"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med depression, men der ses også tegn på rigiditet, social misafstemning og belastning ved forandringer eller sansning, som ikke forklares tilstrækkeligt af depressionen alene",
+            "Vi observerer, at funktionsfaldet også hænger sammen med socialt samspil, fleksibilitet og overbelastning",
+            "Det kan være relevant at få belyst, om der også er en autismeproblematik til stede ud over den kendte depressive profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af socialt samspil, fleksibilitet og belastningsmønstre",
+            "Beskrivelse af barnets reaktioner på skift, sociale krav og sensoriske forhold",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "autisme"
+        },
+        {
+          "id": "depression_odd",
+          "suspected_comorbidity": "Adfærdsforstyrrelse",
+          "title": "Depression + Adfærdsforstyrrelse",
+          "trigger_tegn": [
+            "vrede",
+            "konflikter",
+            "udadreagerende",
+            "oppositionel",
+            "lav frustrationstærskel",
+            "modstand",
+            "regelbrud",
+            "irritabel",
+            "afviser voksne",
+            "eksplosiv ved krav"
+          ],
+          "praevalens": "15–30 %",
+          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med depression, fremstår depressionen ofte mere irritabel, mere konfliktsøgende og mere udadreagerende, end man typisk forventer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun trist eller opgivende, men også vedvarende mere vredt, oppositionelt eller konfliktsøgende",
+            "Der ses mere modstand, udadreagerende adfærd eller regelbrud, end depression alene forklarer",
+            "Depressionen skjules bag irritation, trods eller konfliktmønstre"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet reagerer med vrede eller modstand ved krav, grænsesætning eller nederlag",
+            "Om konflikter er vedvarende og ikke kun udtryk for enkelte dårlige perioder",
+            "Om irritabilitet ledsages af energifald, tristhed eller opgivenhed",
+            "Om udadreagerende adfærd dækker over tydeligt følelsesmæssigt fald"
+          ],
+          "typiske_tegn_i_skole": [
+            "Havner ofte i konflikter med lærere eller andre elever",
+            "Virker mere irritabel og udadreagerende end typisk ved depression alene",
+            "Modstand mod krav ledsages af tydelig opgivenhed eller lavt overskud",
+            "Depressiv belastning kommer ud som vrede eller konflikt"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Gentagne konflikter omkring hverdagens krav",
+            "Virker både følelsesmæssigt tung og hurtigt vred",
+            "Reagerer med modstand, irritation eller eksplosive udbrud",
+            "Hverdagen præges af både opgivenhed og konfliktmønstre"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere konfliktsøgende og irritabelt end typisk ved depression",
+            "Depressiv tilstand ledsages af trods eller udadreagerende adfærd",
+            "Modstand og vrede virker vedvarende og mønsterprægede",
+            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Depression kan overses, hvis barnet primært viser irritabilitet og modstand",
+            "Adfærdsforstyrrelse kan overvurderes, hvis følelsesmæssigt fald ikke opdages bag adfærden",
+            "Det afgørende er, om konflikter ledsages af tydeligt fald i stemning, lyst, energi eller selvværdi"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med depression, men der ses også vedvarende modstand, konflikter og udadreagerende reaktioner, som ikke forklares tilstrækkeligt af depressionen alene",
+            "Vi observerer et mønster, hvor depressiv belastning ofte ledsages af vrede, trods eller konfliktadfærd",
+            "Det kan være relevant at få belyst, om der også er en adfærdsmæssig problematik til stede ud over den kendte depressive profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af konflikter, kravsituationer og reaktioner på grænsesætning",
+            "Beskrivelse af hvordan irritabilitet, opgivenhed og udadreagerende adfærd hænger sammen over tid",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "adfaerdsforstyrrelse"
+        },
+        {
+          "id": "depression_spiseforstyrrelse",
+          "suspected_comorbidity": "Spiseforstyrrelse",
+          "title": "Depression + Spiseforstyrrelse",
+          "trigger_tegn": [
+            "ændret spiseadfærd",
+            "vægtfokus",
+            "kropsutilfredshed",
+            "kontrol omkring mad",
+            "skam",
+            "selvkritik",
+            "springer måltider over",
+            "meget optaget af krop",
+            "spiser skjult eller meget lidt",
+            "mad fylder mentalt"
+          ],
+          "praevalens": "10–20 %, især hos unge",
+          "kort_forklaring": "Når spiseforstyrrelse optræder sammen med depression, bliver depressionen ofte mere kropsbundet, mere selvkritisk og mere præget af kontrol, skam og belastet selvvurdering.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet eller den unge virker ikke kun trist eller opgivende, men også stærkt optaget af krop, vægt eller mad",
+            "Der ses kontrolprægede mønstre omkring spisning, som ikke passer med depression alene",
+            "Selvkritikken bliver mere kropsbundet og præget af skam"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet ændrer spiseadfærd, undgår måltider eller bliver meget optaget af mad og vægt",
+            "Om barnet viser stærk kropsutilfredshed eller behov for kontrol",
+            "Om tristhed og selvkritik er tæt knyttet til krop, mad eller udseende",
+            "Om der er skjulte mønstre, ritualer eller markant skam omkring spisning"
+          ],
+          "typiske_tegn_i_skole": [
+            "Springer måltider over eller spiser meget lidt",
+            "Virker stærkt optaget af krop, vægt eller kontrol",
+            "Deltagelse påvirkes af lav energi, selvkritik og spiseproblemer",
+            "Depressiv belastning ledsages af tydelig kropsrelateret sårbarhed"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Måltider bliver konfliktfyldte eller stærkt kontrollerede",
+            "Barnet eller den unge er meget selvkritisk omkring krop og mad",
+            "Skam, hemmeligholdelse eller kontrol fylder omkring spisning",
+            "Depressiv tilstand forstærkes af kropsutilfredshed og spiseproblematik"
+          ],
+          "mistankeindikatorer": [
+            "Depressionen er mere kropsbundet og kontrolpræget end forventet",
+            "Barnet eller den unge viser tydeligt ændret spiseadfærd",
+            "Selvkritik og skam knytter sig markant til krop og vægt",
+            "Depressionsindsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Spiseforstyrrelser kan overses, hvis vægttab eller madundgåelse bare tolkes som appetitændring ved depression",
+            "Depression kan undervurderes, hvis fokus kun lægges på spiseadfærden",
+            "Det afgørende er, om der også ses vedvarende kontrol, skam og kropsrelateret selvvurdering"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet eller den unge er kendt med depression, men der ses også tegn på ændret spiseadfærd, kropsutilfredshed og kontrol, som ikke forklares tilstrækkeligt af depressionen alene",
+            "Vi observerer, at selvkritik, skam og belastning også knytter sig tydeligt til krop, vægt og mad",
+            "Det kan være relevant at få belyst, om der også er en spiseforstyrrelsesproblematik til stede ud over den kendte depressive profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af spiseadfærd, måltidsmønstre og kropsrelateret belastning",
+            "Beskrivelse af hvordan mad, vægt, kontrol og selvkritik fylder i hverdagen",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "spiseforstyrrelse"
+        }
+      ]
     }
   ]
 }
