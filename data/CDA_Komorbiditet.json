@@ -263,6 +263,33 @@
           "see_also": "adfaerdsforstyrrelse"
         }
       ]
+    },
+    {
+      "id": "angst",
+      "primary_diagnosis": "Angst",
+      "overview": {
+        "kort_beskrivelse": "Angst forklarer ofte meget, men ikke altid helheden. Når barnets samlede profil afviger tydeligt fra det forventede angstbillede, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved angst er det ofte komorbiditeten, der forklarer, hvorfor barnet fremstår mere komplekst, mere fastlåst eller mindre typisk, end grunddiagnosen alene tilsiger."
+      },
+      "comorbidities": [
+        {
+          "id": "angst_depression",
+          "suspected_comorbidity": "Depression",
+          "title": "Angst + Depression",
+          "trigger_tegn": [],
+          "praevalens": "",
+          "kort_forklaring": "",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [],
+          "hvad_boer_observeres": [],
+          "typiske_tegn_i_skole": [],
+          "typiske_tegn_i_hjem": [],
+          "mistankeindikatorer": [],
+          "differentiale_faldgruber": [],
+          "hvad_kan_formidles_videre": [],
+          "anbefalet_videre_spor": [],
+          "see_also": "depression"
+        }
+      ]
     }
   ]
 }
