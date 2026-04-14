@@ -197,6 +197,70 @@
             "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "depression"
+        },
+        {
+          "id": "adhd_odd",
+          "suspected_comorbidity": "Adfærdsforstyrrelse",
+          "title": "ADHD + Adfærdsforstyrrelse",
+          "trigger_tegn": [
+            "trods",
+            "konflikter",
+            "udadreagerende",
+            "vrede",
+            "regelbrud",
+            "lav frustrationstærskel",
+            "vil bestemme alt",
+            "provokerer andre",
+            "modstand mod voksne",
+            "aggressiv"
+          ],
+          "praevalens": "40–60 %",
+          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med ADHD, fremstår barnet ofte mere oppositionelt, mere konfliktdrevet og mere udadrettet, end ADHD alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun impulsivt eller uroligt, men også vedvarende mere trodsigt og konfliktsøgende",
+            "Der ses mere regelbrud, vrede eller modstand mod voksne, end ADHD alene forklarer",
+            "Konflikter virker mere mønsterprægede og mindre situationsbundne end almindelig ADHD-uro"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet ofte går i magtkamp med voksne eller andre børn",
+            "Om barnet reagerer med vrede eller trods ved almindelige krav og grænsesætning",
+            "Om konflikter er vedvarende og ikke kun opstår ved overstimulering eller træthed",
+            "Om barnet provokerer, bryder regler eller søger konflikt på en måde, der går ud over impulsivitet alene"
+          ],
+          "typiske_tegn_i_skole": [
+            "Hyppige konflikter med lærere eller andre elever",
+            "Modstand mod beskeder, regler og fælles rammer",
+            "Vredesudbrud eller provokerende adfærd ved krav",
+            "Vedvarende problemer med at holde sig inden for sociale og institutionelle grænser"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Gentagne magtkampe om små og store krav",
+            "Lav frustrationstærskel og hurtig vrede",
+            "Modstand mod voksne og svært ved at acceptere nej",
+            "Konflikter præger hverdagen mere end forventet ved ADHD alene"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere oppositionelt end typisk ved ADHD",
+            "Barnet havner igen og igen i konflikter, som ikke kun skyldes impulsivitet",
+            "Barnet reagerer med vedvarende trods eller vrede ved almindelige krav",
+            "ADHD-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "ADHD kan ligne adfærdsforstyrrelse, fordi impulsivitet også kan give konflikter og grænseoverskridelser",
+            "Adfærdsforstyrrelse kan overses, hvis al modstand forklares som uro eller reguleringsvanskeligheder",
+            "Det afgørende er, om der også ses et mere vedvarende mønster af trods, regelbrud og konfliktadfærd"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med ADHD, men der ses også vedvarende trods, konflikter og modstand mod krav, som ikke forklares tilstrækkeligt af ADHD alene",
+            "Vi observerer et mønster med hyppige magtkampe, vrede og regelbrud i både relationelle og kravfyldte situationer",
+            "Det kan være relevant at få belyst, om der også er en adfærdsmæssig problematik til stede ud over den kendte ADHD-profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af konflikter, kravsituationer og reaktioner på grænsesætning",
+            "Beskrivelse af hvor ofte og i hvilke mønstre modstand, vrede og regelbrud opstår",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "adfaerdsforstyrrelse"
         }
       ]
     }
