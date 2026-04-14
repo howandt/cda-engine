@@ -779,6 +779,266 @@
           "see_also": "selvskade"
         }
       ]
+    },
+    {
+      "id": "selvskade",
+      "primary_diagnosis": "Selvskade",
+      "overview": {
+        "kort_beskrivelse": "Selvskade forklarer ofte noget af billedet, men ikke altid det hele. Når elevens samlede profil viser mere end den synlige selvskade, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved selvskade er det ofte den underliggende komorbiditet, der forklarer, hvorfor eleven fremstår så belastet, fastlåst eller svingende, som eleven gør."
+      },
+      "comorbidities": [
+        {
+          "id": "selvskade_depression",
+          "suspected_comorbidity": "Depression",
+          "title": "Selvskade + Depression",
+          "kort_forklaring": "Når depression optræder sammen med selvskade, virker eleven ofte mere tung, mere opgivende og mere følelsesmæssigt belastet, end selvskaden alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun præget af selvskade, men også tydeligt mere trist, tung eller opgivende",
+            "Der ses energifald, tab af lyst eller social tilbagetrækning, som går ud over den synlige selvskade",
+            "Belastningen virker mere vedvarende og mindre situationsbunden end selvskade alene"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven virker tydeligt trist, opgivende eller følelsesmæssigt tung over tid",
+            "Om eleven trækker sig fra undervisning, fællesskab eller aktiviteter",
+            "Om der er tydeligt energifald, passivitet eller manglende initiativ",
+            "Om selvskaden ledsages af håbløshed eller lav selvværdi",
+            "Om eleven virker mere lukket end tidligere"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både sårbar og følelsesmæssigt tung",
+            "Deltager mindre i undervisning og sociale aktiviteter",
+            "Har lav energi og svært ved at mobilisere sig",
+            "Selvskaden ledsages af tydelig tristhed eller opgivenhed"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven viser tegn på selvskade, men der ses også tydelig tristhed, energifald og tilbagetrækning, som ikke forklares tilstrækkeligt af selvskaden alene",
+            "Vi observerer et mere vedvarende følelsesmæssigt fald og lavere deltagelse i hverdagen",
+            "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte selvskade"
+          ],
+          "see_also": "depression"
+        },
+        {
+          "id": "selvskade_angst",
+          "suspected_comorbidity": "Angst",
+          "title": "Selvskade + Angst",
+          "kort_forklaring": "Når angst optræder sammen med selvskade, virker eleven ofte mere alarmpræget, mere undgående og mere indre presset, end selvskaden alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun følelsesmæssigt belastet, men også tydeligt mere bekymret, frygtpræget eller alarmstyret",
+            "Der ses undgåelse, uro eller kontrolbehov, som ikke forklares af selvskaden alene",
+            "Selvskaden ser ud til også at hænge sammen med stærk angst eller indre spænding"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven virker bredt bekymret, alarmpræget eller meget kravfølsom",
+            "Om eleven undgår bestemte situationer, relationer eller præstationer af frygt",
+            "Om eleven søger meget tryghed, forsikring eller kontrol",
+            "Om selvskaden ser ud til at opstå i forbindelse med stærk indre spænding eller panik",
+            "Om eleven virker både sårbar og frygtstyret"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både følelsesmæssigt presset og ængstelig",
+            "Undgår krav, situationer eller relationer af frygt",
+            "Har tydelig uro, alarm eller sammenbrud i pressede situationer",
+            "Selvskaden ledsages af stærk indre spænding og undgåelse"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven viser tegn på selvskade, men der ses også bekymring, undgåelse og alarm, som ikke forklares tilstrækkeligt af selvskaden alene",
+            "Vi observerer, at belastningen også har et tydeligt angstpræg med frygt, usikkerhed og høj indre spænding",
+            "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte selvskade"
+          ],
+          "see_also": "angst"
+        },
+        {
+          "id": "selvskade_ocd",
+          "suspected_comorbidity": "OCD",
+          "title": "Selvskade + OCD",
+          "kort_forklaring": "Når OCD optræder sammen med selvskade, virker eleven ofte mere fastlåst, mere ritualiseret og mere plaget af indre tvang eller desperation, end selvskaden alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun følelsesmæssigt belastet, men også fanget i ritualer, kontroller eller påtrængende tanker",
+            "Selvskaden ser ud til at hænge sammen med tvang, skam eller forsøg på at dæmpe ubærlig indre spænding",
+            "Belastningen virker mere fastlåst og mindre situationsbunden end ved selvskade alene"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har ritualer, kontroller eller gentagelser, som fylder meget",
+            "Om eleven plages af påtrængende tanker eller stærk tvivl",
+            "Om selvskaden ser ud til at hænge sammen med tvang, neutralisering eller skam",
+            "Om eleven virker meget fastlåst og har svært ved at slippe bestemte tanker eller handlinger",
+            "Om belastningen virker både ritualiseret og følelsesmæssigt desperat"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både ritualiseret og følelsesmæssigt meget presset",
+            "Bruger meget tid på kontroller, gentagelser eller fastlåste mønstre",
+            "Har sammenbrud eller tydelig indre overbelastning",
+            "Selvskaden ledsages af tvangspræg eller stærk indre spænding"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven viser tegn på selvskade, men der ses også ritualer, kontroller eller påtrængende tanker, som ikke forklares tilstrækkeligt af selvskaden alene",
+            "Vi observerer, at belastningen muligvis også er knyttet til tvang, fastlåsthed og forsøg på at dæmpe indre spænding",
+            "Det kan være relevant at få belyst, om der også er en OCD-problematik til stede ud over den kendte selvskade"
+          ],
+          "see_also": "ocd"
+        },
+        {
+          "id": "selvskade_tilpasning",
+          "suspected_comorbidity": "Tilpasningsforstyrrelse",
+          "title": "Selvskade + Tilpasningsforstyrrelse",
+          "kort_forklaring": "Når tilpasningsforstyrrelse optræder sammen med selvskade, virker elevens belastning ofte tæt knyttet til en aktuel livsændring, konflikt eller belastende situation, som selvskaden alene ikke forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Selvskaden ser ud til at være tæt koblet til en nylig ændring, belastning eller krise",
+            "Elevens reaktioner virker mere situationsbundne og knyttet til noget aktuelt i livet",
+            "Belastningen virker stærkt forbundet til relationer, skoleforhold eller ændringer i hverdagen"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om der for nylig er sket en tydelig belastning, konflikt eller ændring i elevens liv",
+            "Om selvskaden tiltager i forbindelse med bestemte hændelser eller perioder",
+            "Om eleven virker overvældet af noget aktuelt frem for mere bredt psykisk belastet",
+            "Om reaktionerne hænger tæt sammen med skoleforhold, relationer eller skift i hverdagen",
+            "Om eleven virker presset af noget konkret, der kan sættes ord på"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Belastningen stiger tydeligt efter en konkret hændelse eller ændring",
+            "Selvskaden virker tæt knyttet til konflikter, nederlag eller sociale belastninger",
+            "Eleven virker overvældet og svingende i bestemte perioder",
+            "Reaktionerne er tydeligt koblet til noget aktuelt i elevens liv"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven viser tegn på selvskade, og belastningen ser også ud til at være tæt knyttet til en aktuel livsændring, konflikt eller belastende situation",
+            "Vi observerer, at reaktionerne virker stærkt situationsbundne og hænger sammen med konkrete forhold i elevens hverdag",
+            "Det kan være relevant at få belyst, om der også er en tilpasningsforstyrrelse eller anden belastningsreaktion til stede ud over den kendte selvskade"
+          ],
+          "see_also": "tilpasningsforstyrrelse"
+        }
+      ]
+    },
+    {
+      "id": "ptsd",
+      "primary_diagnosis": "PTSD",
+      "overview": {
+        "kort_beskrivelse": "PTSD forklarer ofte noget af billedet, men ikke altid det hele. Når elevens samlede profil viser mere end de kendte traumereaktioner, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved PTSD er det ofte komorbiditeten, der forklarer, hvorfor eleven fremstår mere kompleks, mere fastlåst eller mere svingende, end PTSD alene tilsiger."
+      },
+      "comorbidities": [
+        {
+          "id": "ptsd_angst",
+          "suspected_comorbidity": "Angst",
+          "title": "PTSD + Angst",
+          "kort_forklaring": "Når angst optræder sammen med PTSD, virker eleven ofte mere bredt bekymret, mere undgående og mere alarmpræget, end PTSD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trigget eller traumebelastet, men også tydeligt mere generelt bekymret og frygtpræget",
+            "Undgåelsen handler ikke kun om traumerelaterede triggere, men også om bredere usikkerhed og kravfølsomhed",
+            "Belastningen virker mere vedvarende og mindre bundet til konkrete triggere end ved PTSD alene"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven virker bredt bekymret og ikke kun reagerer på bestemte triggere",
+            "Om eleven undgår mange situationer på grund af frygt eller usikkerhed",
+            "Om eleven søger meget tryghed, kontrol eller forsikring fra voksne",
+            "Om alarm og undgåelse fylder også uden for de kendte traumesituationer",
+            "Om eleven virker både traumebelastet og generelt ængstelig"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både vagtsom og bredt bekymret",
+            "Undgår krav, relationer eller situationer af frygt",
+            "Har stort behov for tryghed, forsikring og overblik",
+            "Belastningen breder sig ud over de konkrete triggere"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med PTSD, men der ses også tegn på bredere bekymring, undgåelse og alarm, som ikke forklares tilstrækkeligt af PTSD alene",
+            "Vi observerer, at uroen ikke kun er knyttet til konkrete triggere, men også til mere generel frygt og usikkerhed",
+            "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte PTSD-profil"
+          ],
+          "see_also": "angst"
+        },
+        {
+          "id": "ptsd_depression",
+          "suspected_comorbidity": "Depression",
+          "title": "PTSD + Depression",
+          "kort_forklaring": "Når depression optræder sammen med PTSD, virker eleven ofte mere tung, mere opgivende og mere følelsesmæssigt nedlukket, end PTSD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun trigget eller vagtsom, men også tydeligt mere trist, tung eller opgivende",
+            "Der ses energifald, tab af lyst eller social tilbagetrækning, som går ud over traumereaktionerne alene",
+            "Belastningen virker mere vedvarende nedadgående end ved PTSD alene"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har tydeligt energifald eller tab af initiativ",
+            "Om eleven virker mere trist, håbløs eller følelsesmæssigt tung over tid",
+            "Om eleven trækker sig fra undervisning, fællesskab eller aktiviteter",
+            "Om eleven virker mere lukket end tidligere",
+            "Om PTSD-belastningen ledsages af tydeligt funktionsfald"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både vagtsom og følelsesmæssigt tung",
+            "Deltager mindre i undervisning og sociale aktiviteter",
+            "Har lav energi og svært ved at mobilisere sig",
+            "Traumebelastningen ledsages af tydelig tristhed eller opgivenhed"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med PTSD, men der ses også tegn på tristhed, energifald og tilbagetrækning, som ikke forklares tilstrækkeligt af PTSD alene",
+            "Vi observerer et mere vedvarende følelsesmæssigt fald og lavere deltagelse i hverdagen",
+            "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte PTSD-profil"
+          ],
+          "see_also": "depression"
+        },
+        {
+          "id": "ptsd_adhd",
+          "suspected_comorbidity": "ADHD",
+          "title": "PTSD + ADHD",
+          "kort_forklaring": "Når ADHD optræder sammen med PTSD, virker eleven ofte mere urolig, mere impulsiv og mere bredt reguleringsudfordret, end PTSD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun alarmpræget eller trigget, men også tydeligt mere impulsiv og uopmærksom",
+            "Der ses større problemer med fastholdelse, organisering og hæmning, end PTSD alene forklarer",
+            "Vanskelighederne virker ikke kun trigget, men mere gennemgående i hverdagen"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
+            "Om eleven virker impulsiv eller motorisk urolig også uden tydelige triggere",
+            "Om eleven har svært ved at organisere, afslutte og holde retning i opgaver",
+            "Om hverdagen virker bredt kaotisk og ikke kun styret af traumereaktioner",
+            "Om eleven både virker vagtsom og ureguleret"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Har svært ved at fastholde opmærksomhed og gennemføre opgaver",
+            "Virker mere rastløs eller impulsiv end typisk ved PTSD alene",
+            "Skifter hurtigt spor og mister overblik",
+            "Har svært ved både krav, struktur og selvregulering"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med PTSD, men der ses også tydelige tegn på opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af PTSD alene",
+            "Vi observerer uro, impulsivitet og manglende fastholdelse ud over det forventede traumebillede",
+            "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte PTSD-profil"
+          ],
+          "see_also": "adhd"
+        },
+        {
+          "id": "ptsd_selvskade",
+          "suspected_comorbidity": "Selvskade",
+          "title": "PTSD + Selvskade",
+          "kort_forklaring": "Når selvskade optræder sammen med PTSD, virker eleven ofte mere overvældet, mere følelsesmæssigt presset og mere risikobelastet, end PTSD alene forklarer.",
+          "naar_grunddiagnosen_ikke_forklarer_det_hele": [
+            "Eleven virker ikke kun traumebelastet, men også tydeligt mere følelsesmæssigt desperat eller selvdestruktiv",
+            "Der ses tegn på selvskadende handlinger eller stærk indre spænding, som ikke passer med PTSD alene",
+            "Belastningen virker mere akut og mere risikofyldt end ved PTSD alene"
+          ],
+          "det_skal_laereren_kigge_efter": [
+            "Om eleven viser tegn på selvskade, skjuler arme eller virker fysisk undvigende",
+            "Om eleven virker præget af stærk indre spænding, skam eller selvbebrejdelser",
+            "Om PTSD-reaktioner ledsages af følelsesmæssig desperation eller sammenbrud",
+            "Om eleven isolerer sig mere end vanligt eller virker akut belastet",
+            "Om der er tegn på, at eleven skader sig selv for at dæmpe uro eller pres"
+          ],
+          "saadan_ses_det_typisk_i_skole": [
+            "Virker både traumebelastet og følelsesmæssigt meget presset",
+            "Trækker sig, skjuler sig eller undgår omklædning og nær kontakt",
+            "Har stærke sammenbrud eller tydelige tegn på indre overbelastning",
+            "PTSD-belastningen ledsages af bekymring for elevens sikkerhed og trivsel"
+          ],
+          "det_kan_formidles_videre": [
+            "Eleven er kendt med PTSD, men der ses også tegn på selvskade eller alvorlig følelsesmæssig belastning, som ikke forklares tilstrækkeligt af PTSD alene",
+            "Vi observerer, at eleven virker stærkt presset, og at belastningen muligvis også kommer til udtryk gennem selvskadende adfærd eller risiko herfor",
+            "Det bør tages alvorligt og kan være relevant at få belyst hurtigt, om der også er en selvskadeproblematik til stede ud over den kendte PTSD-profil"
+          ],
+          "see_also": "selvskade"
+        }
+      ]
     }
   ]
 }
