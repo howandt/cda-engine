@@ -74,17 +74,64 @@
           "id": "adhd_asf",
           "suspected_comorbidity": "Autisme",
           "title": "ADHD + Autisme",
-          "trigger_tegn": [],
-          "praevalens": "",
-          "kort_forklaring": "",
-          "hvad_passer_ikke_med_grunddiagnosen_alene": [],
-          "hvad_boer_observeres": [],
-          "typiske_tegn_i_skole": [],
-          "typiske_tegn_i_hjem": [],
-          "mistankeindikatorer": [],
-          "differentiale_faldgruber": [],
-          "hvad_kan_formidles_videre": [],
-          "anbefalet_videre_spor": [],
+          "trigger_tegn": [
+            "socialt anderledes",
+            "social usikkerhed",
+            "rigid",
+            "stærkt behov for rutiner",
+            "vanskelig ved skift",
+            "sensorisk følsom",
+            "misforstår sociale koder",
+            "bliver let overbelastet",
+            "fastlåst adfærd",
+            "meget sort-hvid tænkning"
+          ],
+          "praevalens": "20–50 %",
+          "kort_forklaring": "Når autisme optræder sammen med ADHD, fremstår barnet ofte mere rigidt, mere socialt misafstemt og mere sensorisk belastet, end ADHD alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun uroligt eller uopmærksomt, men også markant mere rigidt og socialt anderledes",
+            "Barnet har vanskeligheder med gensidighed, sociale koder eller fleksibilitet, som ikke passer med ADHD alene",
+            "Reaktionerne virker ofte præget af fastlåsthed, overbelastning eller behov for forudsigelighed frem for kun impulsivitet"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har vedvarende vanskeligheder med social gensidighed og sociale koder",
+            "Om barnet reagerer stærkt på skift, uforudsigelighed eller brud på rutiner",
+            "Om barnet virker sensorisk belastet af lyd, lys, berøring eller uro omkring sig",
+            "Om konflikter opstår på grund af rigiditet, misforståelser eller fastlåst tænkning"
+          ],
+          "typiske_tegn_i_skole": [
+            "Har svært ved gruppearbejde, sociale spilleregler eller fælles aktiviteter",
+            "Bliver fastlåst ved ændringer i planer, regler eller forventninger",
+            "Virker mere socialt misafstemt end typisk ved ADHD",
+            "Bliver hurtigt overbelastet i støjende, uforudsigelige eller sociale miljøer"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Stærkt behov for rutiner og kendte rammer",
+            "Reagerer kraftigt ved ændringer i planer eller hverdagsmønstre",
+            "Har særlige sensoriske reaktioner på mad, tøj, lyd eller berøring",
+            "Misforstår let sociale intentioner eller bliver fastlåst i konflikter"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere rigidt end typisk ved ADHD",
+            "Barnet er tydeligt mere socialt misafstemt end forventet",
+            "Barnet bliver overbelastet af skift, sansning eller sociale krav",
+            "ADHD-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Autisme kan ligne ADHD, fordi barnet også kan virke uroligt, umodent eller reguleringsvanskeligt",
+            "ADHD kan ligne autisme, hvis barnet ofte afbryder, misser signaler eller virker socialt klodset",
+            "Det afgørende er, om der også ses vedvarende vanskeligheder med social gensidighed, fleksibilitet og sensorisk tilpasning"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med ADHD, men der ses også tegn på rigiditet, social misafstemning og belastning ved skift eller sansning, som ikke forklares tilstrækkeligt af ADHD alene",
+            "Vi observerer, at barnet har vanskeligheder i sociale sammenhænge og reagerer markant på uforudsigelighed, ændringer og belastende miljøer",
+            "Det kan være relevant at få belyst, om der også er en autismespektrumproblematik til stede ud over den kendte ADHD-profil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af socialt samspil, fleksibilitet og belastningsmønstre",
+            "Beskrivelse af barnets reaktioner på skift, krav og sensoriske forhold",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
           "see_also": "autisme"
         }
       ]
