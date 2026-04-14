@@ -69,6 +69,23 @@
             "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "angst"
+        },
+        {
+          "id": "adhd_asf",
+          "suspected_comorbidity": "Autisme",
+          "title": "ADHD + Autisme",
+          "trigger_tegn": [],
+          "praevalens": "",
+          "kort_forklaring": "",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [],
+          "hvad_boer_observeres": [],
+          "typiske_tegn_i_skole": [],
+          "typiske_tegn_i_hjem": [],
+          "mistankeindikatorer": [],
+          "differentiale_faldgruber": [],
+          "hvad_kan_formidles_videre": [],
+          "anbefalet_videre_spor": [],
+          "see_also": "autisme"
         }
       ]
     }
