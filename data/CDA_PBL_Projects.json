@@ -1599,15 +1599,23 @@
   ]
 },
     "evalueringsrapport": {
-      "title": "PBL Evalueringsrapport",
-      "fields": [
-        "Hvad fungerede godt?",
-        "Hvad skal justeres?",
-        "Elevens egen evaluering",
-        "Forældresamtale-noter",
-        "Anbefalinger til næste lærer"
-      ]
-    },
+  "title": "PBL Evalueringsrapport",
+  "fields": [
+    "Projektnavn",
+    "Kort beskrivelse af forløbet",
+    "Hvad fungerede godt for barnet?",
+    "Hvad styrkede fokus, ro og deltagelse?",
+    "Hvad lærte barnet undervejs?",
+    "Hvad var svært eller hæmmede udviklingen?",
+    "Hvornår havde barnet mest brug for støtte?",
+    "Tegn på trivsel eller mistrivsel under forløbet",
+    "Barnets egen oplevelse af forløbet",
+    "Forældresamtale-noter",
+    "Skal forløbet fortsætte, justeres eller afsluttes?",
+    "Anbefalet næste skridt for barnet",
+    "Anbefalinger til næste lærer eller fagperson"
+  ]
+},
     "foraeldre_kommunikation": {
       "title": "PBL Forældre-kommunikation",
       "fields": [
