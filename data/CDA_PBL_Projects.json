@@ -1582,14 +1582,22 @@
   ]
 },
     "progressionsskema": {
-      "title": "PBL Progressionsskema",
-      "fields": [
-        "Kompetencer før projekt",
-        "Kompetencer under projekt",
-        "Kompetencer efter projekt",
-        "Næste anbefalede projekt"
-      ]
-    },
+  "title": "PBL Progressionsskema",
+  "fields": [
+    "Projektnavn",
+    "Barnets startniveau",
+    "Hvad barnet kunne ved opstart",
+    "Hvad barnet begyndte at mestre undervejs",
+    "Hvad barnet kan ved afslutning",
+    "Udvikling i fokus, ro og deltagelse",
+    "Udvikling i læring (fx dansk, sprog, regning, ansvar)",
+    "Hvilken støtte var nødvendig i starten?",
+    "Hvilken støtte var nødvendig til sidst?",
+    "Tegn på øget selvstændighed",
+    "Er barnet klar til næste niveau eller nyt spor?",
+    "Anbefalet næste projekt"
+  ]
+},
     "evalueringsrapport": {
       "title": "PBL Evalueringsrapport",
       "fields": [
