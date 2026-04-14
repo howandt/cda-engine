@@ -1,0 +1,66 @@
+{
+  "category": "Transition",
+  "total_cases": 2,
+  "cases": [
+    {
+      "id": "case-bh-004",
+      "titel": "Ida 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "Mistanke om ADHD (stressforstærket reguleringsvanskelighed)"
+      ],
+      "miljø": [
+        "Skole",
+        "Overgang fra børnehave"
+      ],
+      "tema": "Stress-forværring, strukturelle ændringer, overgangsstøtte",
+      "problem": "Ida fungerede fint i børnehaven, men efter skolestart eksploderede hendes uro og koncentrationsvanskeligheder. Hun kan ikke sidde stille, glemmer instruktioner og bryder sammen flere gange dagligt. Forældrene oplever et helt andet barn end før.",
+      "barnets_oplevelse": "Jeg prøver, men det er så svært at sidde stille hele tiden. Alt går for hurtigt.",
+      "typisk_fejl": "Tager reaktionen som 'dårlig opførsel' i stedet for stress-overbelastning. Forventer for hurtig tilpasning til skolens struktur. Mister de trygge rutiner fra børnehaven.",
+      "løsning": "Lav en gradvis overgang med elementer fra børnehaven bevaret. Skab ro, forudsigelighed og faste pauser. Sørg for tydelig voksenstøtte og tæt samarbejde mellem skole og hjem.",
+      "tiltag": "Kortere skoledage i overgangsperioden. Indbyggede bevægelsespauser i undervisningen. Visuel støtte til alle rutiner og regler. Fast 'sikker base'-person hun kan søge til. Samarbejde mellem lærere, SFO og forældre om fælles struktur. Fejr små succeser frem for at presse på tempo.",
+      "værktøjer": "Trin 1: Reducér pres og genskab tryghed med genkendelige rutiner. Trin 2: Øg krav gradvist med fokus på mestring frem for præstation. Trin 3: Langsigtet plan for støtte og evt. udredning, hvis vanskelighederne vedvarer. Evaluer jævnligt og justér strukturen efter behov.",
+      "kategori": "Transition & Organisation",
+      "kort_beskrivelse": "Efter skolestart reagerer Ida med hyperaktivitet og stress. Gradvis overgang, visuel støtte og bevægelsespauser hjælper hende til ro og mestring.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da lærerne implementerede korte skoledage og tydelige rutiner, faldt Idas stressreaktioner markant, og hun begyndte at trives igen.",
+      "resultat": "Ida kan nu deltage i klassen i længere perioder og bruger pauserne aktivt til selvregulering.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Ida fungerede fint i børnehaven, men efter skolestart eksploderede hendes uro og koncentrationsvanskeligheder. Hun kan ikke sidde stille, glemmer inst..."
+    },
+    {
+      "id": "case-to-004",
+      "titel": "Sofie 5 år",
+      "alder": 5,
+      "diagnoser": [
+        "Social sårbarhed",
+        "Tilknytningsvanskeligheder"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Venner",
+        "Hjem"
+      ],
+      "tema": "Sociale overgange, venskaber, tilknytning",
+      "problem": "Sofie har endelig fundet tryghed i sin børnehavegruppe, men bliver ulykkelig ved tanken om at miste sine venner, når de spredes ud på forskellige skoler. Hun græder ofte ved afskeder, klamrer sig til kendte børn og afviser nye sociale kontakter af frygt for at miste dem igen.",
+      "barnets_oplevelse": "Jeg vil ikke have nye venner, for så bliver jeg bare ked af det, når de også skal væk.",
+      "typisk_fejl": "Ignorerer betydningen af sociale overgange. Fokuserer kun på skolestartens praktiske del. Undervurderer barnets sorg over venskabstab. Manglende brobygning mellem miljøer.",
+      "løsning": "Styrk venskabs-kontinuitet og skab trygge broer mellem gamle og nye relationer. Hjælp barnet til gradvist at forstå og håndtere sociale forandringer, mens du opbygger selvtillid i nye fællesskaber.",
+      "tiltag": "Planlæg legeaftaler med gamle venner. Lav en 'venskabsbog' med billeder og kontaktoplysninger. Gennemfør skolebesøg hvor Sofie møder nye klassekammerater før start. Brug sociale historier om venskaber og forandring. Organisér fælles aktiviteter mellem børnehave og skole. Pædagoger hjælper Sofie med at finde potentielle nye venner baseret på fælles interesser.",
+      "værktøjer": "Trin 1: Anerkendelse – Tal åbent om sorg og savn, normaliser følelsen af at miste. Trin 2: Social selvtillid – Øv sociale færdigheder i trygge rammer og fremhæv hendes styrker. Trin 3: Nye relationer – Planlagt eksponering for nye børn, med voksenstøtte og fælles aktiviteter der fremmer samarbejde.",
+      "kategori": "Transition & Organisation (sociale relationer og tilknytning)",
+      "kort_beskrivelse": "Sofie frygter at miste sine børnehavevenner før skolestart. Med trygge broer mellem gamle og nye relationer lærer hun at bevare tilknytning og danne nye venskaber.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Sofie fik lov at bevare kontakt til sine gamle venner og møde de nye i trygge rammer, faldt hendes angst for forandring markant.",
+      "resultat": "Sofie glæder sig nu til skolen og føler sig tryg i mødet med nye klassekammerater.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofie har endelig fundet tryghed i sin børnehavegruppe, men bliver ulykkelig ved tanken om at miste sine venner, når de spredes ud på forskellige skol..."
+    }
+  ]
+}

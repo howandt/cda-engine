@@ -1,0 +1,67 @@
+{
+  "category": "ODD",
+  "total_cases": 2,
+  "cases": [
+    {
+      "id": "case-in-001",
+      "titel": "Jonas 7 år",
+      "alder": 7,
+      "diagnoser": [
+        "ODD (oppositionel adfærdsforstyrrelse)",
+        "Angst (social komponent)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk"
+      ],
+      "tema": "Kønsspecifik adfærd, affektregulering, social usikkerhed",
+      "problem": "Jonas reagerer fysisk overfor drengekammerater, især i konkurrence- og statuslege. Han slår, skubber eller tager ting, når han oplever uretfærdighed eller nederlag. Samtidig undgår han piger og bliver synligt utryg, når han skal samarbejde i blandede grupper. Han bliver tavs, rastløs og undgår øjenkontakt. Personalet oplever en dreng, der både udagerer og undviger – afhængigt af hvem han er sammen med.",
+      "barnets_oplevelse": "Jeg ville bare have bolden. De sagde, jeg ikke måtte være med.",
+      "typisk_fejl": "At se aggressionen som ren trods. At overse, at Jonas’ vrede dækker over social angst og usikkerhed. At bruge straf i stedet for følelsesmæssig afkodning og tryghed.",
+      "løsning": "Arbejd med affektgenkendelse og kønsrelateret tryghed i sociale sammenhænge. Giv Jonas strukturerede, forudsigelige aktiviteter med klare roller og fysisk udløb. Skab relationel tryghed med voksne, der kan støtte ham i at forstå og regulere sine følelser. Undgå straf – brug guidning og spejling.",
+      "tiltag": "Konkrete sociale regler visualiseret i leg og gruppearbejde. 'Ro-zoner' med mulighed for pause før konflikter eskalerer. Træning i at aflæse sociale signaler hos både drenge og piger. Trygge samarbejdsaktiviteter med små, blandede grupper. Anerkendelse af vrede som signal på utryghed, ikke trods. Positiv rollemodel-træning med voksenledt leg.",
+      "værktøjer": "Trin 1: Observation – kortlæg hvornår og med hvem adfærden opstår. Trin 2: Regulering – implementér pause- og afledningsstrategier før affektstigning. Trin 3: Tryghed og tillid – introducér gradvist samarbejde med piger i sikre rammer. Trin 4: Affektlæring – hjælp Jonas med at sætte ord på følelser og identificere kropssignaler.",
+      "kategori": "ODD & Angst (affekt og social regulering)",
+      "kort_beskrivelse": "Jonas reagerer fysisk overfor drenge og undgår piger af frygt og usikkerhed. Med struktur, affektregulering og tryg social træning kan han lære at indgå i relationer uden aggression eller undvigelse.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da teamet begyndte at se Jonas’ vrede som angstreaktion, ændrede tilgangen sig. De brugte guidning frem for skældud – og Jonas begyndte gradvist at acceptere blandede aktiviteter.",
+      "resultat": "Jonas kan nu indgå i grupper uden udbrud. Han har begyndt at tale med pigerne og deltager i fælles lege med støtte fra voksne.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Jonas reagerer fysisk overfor drengekammerater, især i konkurrence- og statuslege. Han slår, skubber eller tager ting, når han oplever uretfærdighed e..."
+    },
+    {
+      "id": "case-sh-003",
+      "titel": "Jonathan 12 år",
+      "alder": 12,
+      "diagnoser": [
+        "ODD",
+        "Angst"
+      ],
+      "miljø": [
+        "Hjem",
+        "Skole",
+        "Familie"
+      ],
+      "tema": "Affektudbrud, kontroltab, familiedynamik",
+      "problem": "Jonathan reagerer voldsomt ved konflikter med sine to yngre søskende. Han råber, skubber, smækker døre og har kastet med ting. Han oplever søskendene som provokerende og føler sig uretfærdigt behandlet. Forældrene forsøger at mægle, men ender ofte i skænderier med ham eller opgiver. Stemningen i hjemmet er præget af frygt for nye udbrud, og forældrene beskriver, at de 'går på æggeskaller'.",
+      "barnets_oplevelse": "De irriterer mig med vilje. Jeg har sagt, de skal lade mig være. Men ingen lytter.",
+      "typisk_fejl": "At reagere med diskussion eller moralprædiken midt i affekt. At bruge straf eller råb, hvilket eskalerer kontrolkampen. At fokusere på søskendens adfærd i stedet for Jonathans reguleringsbehov. At forsøge at mægle under sammenbrud i stedet for at genoprette struktur og ro.",
+      "løsning": "Etabler en tydelig struktur for konflikthåndtering, hvor voksne tager styringen. Skab faste regler for pauser og afstand i stedet for debat midt i affekt. Arbejd med forudsigelige rutiner og lav risiko for overstimulering (fx lyd, skift, træthed). Giv Jonathan tryg forudsigelighed og kontrol gennem valg inden for rammer. Introducér affekttræning i rolig kontekst, ikke i kampzonen. Indfør faste voksenroller: én styrer konflikten, den anden støtter søskende.",
+      "tiltag": "Udarbejd familiekort med klare roller ved udbrud: hvem gør hvad, hvornår. Implementér visuel 'pauseplan', som bruges konsekvent ved første tegn på affekt. Giv Jonathan aftalte måder at trække sig på uden at 'tabe ansigt'. Aftal faste, korte samtaler efter udbrud (maks 10 min) – fokus på løsninger, ikke skyld. Etabler ugentlig familiecheck med rolig dialog om, hvad der fungerer. Involver evt. familiebehandler ved gentagne episoder.",
+      "værktøjer": "Trin 1: Kortlæg triggere (uretfærdighed, søskendekonflikter, lyd, træthed). Trin 2: Lav klar affekttrappe med konkrete signaler. Trin 3: Indfør pauseplan med visuel støtte og 'afslutningsritual'. Trin 4: Byg struktur for forældrekoordination – ingen dobbeltbeskeder. Trin 5: Evaluer ugentligt med kort 'familiesamtale' for at fastholde læring og ro.",
+      "kategori": "ODD & Angst (familiedynamik og affektregulering)",
+      "kort_beskrivelse": "Jonathan reagerer eksplosivt ved søskendekonflikter. En fast struktur, tydelige voksenroller og affekttræning uden straf reducerer udbrud og genskaber tryghed i familien.",
+      "kompleksitet": "høj",
+      "refleksion": "Da forældrene begyndte at bruge en fast pauseplan og stoppede med at diskutere midt i affekt, faldt konflikterne markant. Jonathan begyndte selv at signalere, når han havde brug for at trække sig.",
+      "resultat": "Familien rapporterer færre udbrud og kortere varighed. Jonathan bruger nu aftalt pausekort i stedet for fysiske reaktioner. Søskende og forældre oplever øget tryghed og forudsigelighed i hjemmet.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Jonathan reagerer voldsomt ved konflikter med sine to yngre søskende. Han råber, skubber, smækker døre og har kastet med ting. Han oplever søskendene ..."
+    }
+  ]
+}

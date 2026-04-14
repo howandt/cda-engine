@@ -1,0 +1,208 @@
+{
+  "category": "ADHD_Autisme",
+  "total_cases": 7,
+  "cases": [
+    {
+      "id": "case-aa-036",
+      "titel": "Mia 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "ADHD (hyperaktiv type)",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Rutiner vs. impulsivitet, struktur vs. bevægelse",
+      "problem": "Mia har behov for faste rutiner på grund af sin autisme, men hendes ADHD gør det svært at sidde stille og følge dem. Hun bliver frustreret, når rutiner brydes – også selvom det ofte er hende selv, der bryder dem ved at rejse sig og bevæge sig rundt.",
+      "barnets_oplevelse": "Jeg prøver at følge med, men kroppen vil bare ikke sidde stille – og så bliver jeg sur, når alt bliver forkert.",
+      "typisk_fejl": "Forventer ro og struktur uden at integrere bevægelse. Ser uroen som trods i stedet for som behov. Skifter mellem stram kontrol og frihed uden klar rytme.",
+      "løsning": "Skab bevægelsesintegrerede rutiner, hvor fysisk aktivitet er en del af strukturen. Indfør faste bevægelsespauser, visuelle rutiner og fleksible siddepladser. Gør det muligt for Mia at bevæge sig uden at miste overblik.",
+      "tiltag": "Rutiner med indbygget bevægelse hver 10. minut. Visuelle rutiner hun kunne følge, mens hun bevægede sig. Alternative siddepladser som balancebold, ståpult og gulvplads. Rutinekort hun kunne tage med sig, når hun bevægede sig rundt. Samme rækkefølge – men fleksible udførselsformer.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Mia har både behov for faste rutiner og behov for bevægelse. Ved at integrere bevægelse i strukturen kan hun lykkes i hverdagen.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da bevægelse blev en del af strukturen i stedet for en forstyrrelse, faldt frustrationen markant.",
+      "resultat": "Mia følger nu daglige rutiner med succes, fordi de er fleksible og kropsligt inkluderende.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mia har behov for faste rutiner på grund af sin autisme, men hendes ADHD gør det svært at sidde stille og følge dem. Hun bliver frustreret, når rutine..."
+    },
+    {
+      "id": "case-aa-037",
+      "titel": "Oliver 9 år",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD",
+        "Autisme (mild)"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Social kommunikation, impulsivitet, regler",
+      "problem": "Oliver forstår sociale regler intellektuelt på grund af sin autisme, men hans ADHD gør det svært for ham at bremse impulserne. Han afbryder konstant, siger upassende ting og forstår ikke, hvorfor andre børn bliver irriterede eller trækker sig.",
+      "barnets_oplevelse": "Jeg prøver at lade være med at sige det – men ordene hopper bare ud, før jeg når at tænke.",
+      "typisk_fejl": "Tror at forståelse af regler automatisk fører til overholdelse. Skælder ud for impulser i stedet for at lære strategier. Overser behovet for visuel og kropslig støtte til selvkontrol.",
+      "løsning": "Brug konkrete, synlige og kropslige strategier for social kontrol. Indfør 'pause-knap'-strategi, sociale scripts og visuelle regler. Giv trygge øvezoner og en social buddy, der hjælper i pressede situationer.",
+      "tiltag": "Pause-knap-strategi: fysisk berøring af arm før han talte. Korte, konkrete sociale scripts til brug under pres. Visuelle kort med sociale regler på bordet under samtaler. 'Tanke-timer' hvor han frit kunne sige alt uden regler. Rollespil i trygge omgivelser. Social buddy, der guidede ham diskret.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Oliver forstår sociale regler, men hans impulsivitet gør det svært at følge dem. Konkrete strategier og visuel støtte hjælper ham med at lykkes.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Oliver fik kropslige og visuelle værktøjer, blev hans impulser håndterbare, og relationerne forbedredes.",
+      "resultat": "Oliver afbryder sjældnere, forstår andres reaktioner bedre og deltager stabilt i sociale aktiviteter.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver forstår sociale regler intellektuelt på grund af sin autisme, men hans ADHD gør det svært for ham at bremse impulserne. Han afbryder konstant, ..."
+    },
+    {
+      "id": "case-aa-038",
+      "titel": "Emma 12 år",
+      "alder": 12,
+      "diagnoser": [
+        "ADHD (inattentiv type)",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Sanser, opmærksomhed, overstimulering",
+      "problem": "Emma har svært ved at koncentrere sig, når der er selv små lyde eller bevægelser omkring hende. Hendes autisme gør hende ekstremt lydfølsom, mens ADHD får hende til at søge nye stimuli konstant. Hun er fanget mellem behovet for ro og trang til distraktion.",
+      "barnets_oplevelse": "Jeg vil gerne høre efter, men alt larmer – og så begynder jeg bare at tænke på noget andet.",
+      "typisk_fejl": "Forsøger at fjerne al stimuli, hvilket gør hende understimuleret. Overkompenserer med belønninger i stedet for miljøtilpasning. Ignorerer behovet for struktur i pauserne.",
+      "løsning": "Skab et balanceret sensorisk miljø. Giv kontrollerede stimuli, korte fokuserede perioder og visuelle strukturer. Brug 'stimuli-menu' så Emma kan vælge passende sanseinput, og planlæg ro-zoner og aktivitetszoner.",
+      "tiltag": "Noise-cancelling høretelefoner med lav baggrundslyd (white noise). Fidget-redskaber uden lyd. 10-15 minutters arbejdsintervaller med sensoriske pauser. Stimuli-menu med valgmuligheder til energi-regulering. Separate områder til ro og aktivitet. Koordineret medicin-timing mellem skole og hjem.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Emma kæmper med sensorisk overstimulering og koncentrationsproblemer. Et balanceret miljø med kontrolleret stimuli giver hende fokus og ro.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Emmas omgivelser blev justeret i stedet for hendes adfærd, faldt stress og koncentrationen steg markant.",
+      "resultat": "Emma arbejder nu fokuseret i korte intervaller, tager sensoriske pauser og kan deltage stabilt i undervisningen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma har svært ved at koncentrere sig, når der er selv små lyde eller bevægelser omkring hende. Hendes autisme gør hende ekstremt lydfølsom, mens ADHD..."
+    },
+    {
+      "id": "case-aa-039",
+      "titel": "Lucas 15 år",
+      "alder": 15,
+      "diagnoser": [
+        "ADHD",
+        "Autisme (sent diagnosticeret)"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Masking, udbrændthed, autenticitet",
+      "problem": "Lucas har i årevis skjult sine autistiske træk ved at kopiere andres adfærd for at passe ind. Hans ADHD gør det ekstremt energikrævende at opretholde facaden, og han er nu udbrændt, forvirret over sin identitet og socialt udmattet.",
+      "barnets_oplevelse": "Jeg ved ikke, hvem jeg er længere – jeg prøver bare at være som de andre hele tiden.",
+      "typisk_fejl": "Ros for tilpasning frem for autenticitet. Ignorerer de psykiske omkostninger ved masking. Fokuserer på præstation i stedet for trivsel og energi.",
+      "løsning": "Understøt gradvis autenticitet og energi-forvaltning. Giv psykologisk støtte til at forstå masking og dens konsekvenser. Indfør autenticitetsøvelser i trygge rammer. Lav energibudget, så Lucas kan planlægge hvornår han maskerer. Tilpas skolekrav og sociale forventninger til hans reelle kapacitet.",
+      "tiltag": "Terapi med fokus på selvforståelse og masking. Autenticitetsøvelser hvor Lucas kunne være sig selv i trygge rum. Energi-budget med prioritering af aktiviteter. ADHD-strategier tilpasset autistiske behov. Åben kommunikation med nære venner om hans diagnoser. Skoleaftaler om pauser og reduceret social belastning.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Lucas er udbrændt efter år med social masking. Gennem autenticitet, energi-budgettering og støtte genfinder han balance og selvforståelse.",
+      "kompleksitet": "høj",
+      "refleksion": "Da Lucas fik lov til at være sig selv i trygge rammer, faldt stressniveauet, og hans motivation steg markant.",
+      "resultat": "Lucas har genetableret et realistisk energiniveau, er mere autentisk i sociale sammenhænge og deltager stabilt i skolen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lucas har i årevis skjult sine autistiske træk ved at kopiere andres adfærd for at passe ind. Hans ADHD gør det ekstremt energikrævende at opretholde ..."
+    },
+    {
+      "id": "case-aa-040",
+      "titel": "Noah 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Kognitiv fleksibilitet, impulsivitet, frustrationstolerance",
+      "problem": "Noah har meget faste ideer om, hvordan ting skal gøres på grund af sin autisme, men hans ADHD gør, at han handler impulsivt, når noget ikke går som planlagt. Han har svært ved at tænke fleksibelt under pres og eksploderer i frustration, når planer bryder sammen.",
+      "barnets_oplevelse": "Når ting ikke går som jeg troede, føles det som om hele verden vælter, og så bliver jeg bare sur med det samme.",
+      "typisk_fejl": "Forsøger at 'tale ham til ro' midt i affekt. Forventer fleksibilitet uden forberedelse. Ignorerer behovet for visuel støtte til problemløsning.",
+      "løsning": "Brug struktureret fleksibilitet og forudsigelig frustrationshåndtering. Indfør 'Plan A, B, C'-strategier, visuelle 'hvis-så'-kort og frustrations-termometer. Træn 'pause og plan' før handling, og anvend rollespil med alternative løsninger.",
+      "tiltag": "Plan A, B, C forberedt til hverdagssituationer. Visuelle 'hvis-så'-kort til brug under pres. Frustrations-termometer, så Noah kunne mærke, når han nærmede sig overload. 'Pause og plan'-øvelser i klassen. Rollespil med fokus på problemløsning og eksperimenterende tankegang.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Noah bliver hurtigt frustreret, når hans planer bryder sammen. Med visuelle strategier og træning i fleksibilitet lærer han at stoppe op før han reagerer.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Noah fik redskaber til at forstå og regulere sine frustrationer, faldt konfliktniveauet, og hans problemløsningsevne steg.",
+      "resultat": "Noah kan nu håndtere forandringer med mindre frustration og bruge 'Plan B' uden sammenbrud.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah har meget faste ideer om, hvordan ting skal gøres på grund af sin autisme, men hans ADHD gør, at han handler impulsivt, når noget ikke går som pl..."
+    },
+    {
+      "id": "case-mc-047",
+      "titel": "Marcus 12 år",
+      "alder": 12,
+      "diagnoser": [
+        "Autisme",
+        "ADHD"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Fysisk mobning, meltdowns, sårbarhed",
+      "problem": "Marcus bliver provokeret af ældre drenge, der ved, at han reagerer voldsomt, når han bliver overstimuleret. De skubber, griner og filmer hans meltdowns, som de deler. Marcus begynder at slå først for at beskytte sig selv.",
+      "barnets_oplevelse": "De gør det med vilje, og jeg kan ikke stoppe det. Jeg bliver så vred, at jeg ikke kan tænke.",
+      "typisk_fejl": "Ser kun hans reaktion, ikke provokationen. Manglende voksenopsyn i kritiske situationer. Ingen skelnen mellem affekt og aggression.",
+      "løsning": "Kombinér forebyggelse, beskyttelse og tydelige konsekvenser. Øg voksent tilsyn i højrisikoområder. Lær personalet at genkende forskellen mellem provokation og meltdown. Skab trygge zoner og tidlige exit-strategier for Marcus.",
+      "tiltag": "Øget voksenopsyn i frikvarterer og på skoleveje. Identificering og konsekvenshåndtering af mobbere. Undervisning af personale i affektforståelse. Etablering af 'sikre zoner' Marcus kunne trække sig til. Visuelle varsler for overstimulering. Træning af Marcus i tidlige tegn og pauser før meltdown. Støttesamtaler om selvbeskyttelse uden vold.",
+      "kategori": "Autisme & ADHD",
+      "kort_beskrivelse": "Marcus blev systematisk provokeret til meltdowns. Ved at styrke beskyttelsen, genkende triggers og skabe trygge zoner kunne han undgå konflikterne.",
+      "kompleksitet": "høj",
+      "refleksion": "Da skolen begyndte at gribe ind tidligt og fokusere på affekt i stedet for straf, faldt både meltdowns og mobning.",
+      "resultat": "Marcus kan nu genkende sine tegn på overbelastning, trække sig i tide og føler sig igen tryg i skolen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus bliver provokeret af ældre drenge, der ved, at han reagerer voldsomt, når han bliver overstimuleret. De skubber, griner og filmer hans meltdown..."
+    },
+    {
+      "id": "case-aa-002",
+      "titel": "Oliver 9 år",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD",
+        "Autisme (mild)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk"
+      ],
+      "tema": "Sociale signaler, impulsivitet, grænseforståelse",
+      "problem": "Oliver har store vanskeligheder med at forstå og navigere i sociale regler. Han afbryder konstant, griner på upassende tidspunkter og reagerer fysisk, især når han oplever noget som uretfærdigt. Han har svært ved at aflæse andres grænser og reagerer kraftigt på ændringer i struktur. Hans udbrud virker pludselige, men udspringer af misforståelser og overstimulering.",
+      "barnets_oplevelse": "Jeg forstår ikke, hvorfor de bliver sure. Jeg prøvede bare at sige noget.",
+      "typisk_fejl": "At tolke Olivers handlinger som bevidst provokation. Manglende kobling mellem hans impulsivitet (ADHD) og sociale misforståelser (autisme). Manglende forberedelse på strukturændringer og følelsesregulering.",
+      "løsning": "Kombiner konkret social træning med impulskontrolstrategier. Skab visuel og verbal forudsigelighed, og lær Oliver at aflæse sociale signaler gennem tydelig guidning og modellering. Giv ham værktøjer til at 'pause' før han reagerer, og strukturer sociale situationer med klare regler.",
+      "tiltag": "Brug af 'pauseknap'-strategi (fysisk berøring af egen arm før han taler). Visuelle kort over sociale regler. Rollespil hvor han øver, hvordan man reagerer på uretfærdighed uden at handle fysisk. Social buddy der hjælper ham med at aflæse situationer. Forudsigelighed ved strukturændringer. Systematisk feedback fra voksne på, hvad der gik godt i sociale interaktioner.",
+      "værktøjer": "Trin 1: Observation og struktur – kortlæg hvilke sociale situationer udløser misforståelser. Trin 2: Forudsigelighed og modellering – brug konkrete, visuelle støtter og øv sociale scripts. Trin 3: Impulskontrol og refleksion – lær Oliver at bruge 'pauseknappen' og tale om, hvad han mærker. Trin 4: Konsistens – alle voksne anvender samme strategi og sprog for at skabe sammenhæng.",
+      "kategori": "ADHD & Autisme (social impulsivitet og kommunikationsvanskeligheder)",
+      "kort_beskrivelse": "Oliver forstår ikke sociale signaler og reagerer impulsivt, når han føler sig uretfærdigt behandlet. Med visuel støtte og social guidning lærer han at stoppe, aflæse og reagere passende.",
+      "kompleksitet": "moderat-høj",
+      "refleksion": "Efter systematisk social guidning begyndte Oliver at kunne forudse sociale konflikter. Han lærte at bruge sin 'pauseknap' og spørge voksne i stedet for at reagere fysisk.",
+      "resultat": "Olivers fysiske reaktioner faldt markant. Han deltager nu aktivt i gruppeaktiviteter og har begyndende stabile venskaber.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver har store vanskeligheder med at forstå og navigere i sociale regler. Han afbryder konstant, griner på upassende tidspunkter og reagerer fysisk,..."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "category": "Depression",
+  "total_cases": 2,
+  "cases": [
+    {
+      "id": "case-te-005",
+      "titel": "Emil 16 år",
+      "alder": 16,
+      "diagnoser": [
+        "Depression (moderat til svær)",
+        "Angst (emotionel reguleringsvanskelighed)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Selvskade, emotionel regulering, psykisk mistrivsel",
+      "problem": "Emil oplever konstant indre uro, søvnløshed og gentagne tanker om ikke at kunne holde ud at være i sig selv. Han beskriver selvskaden som en måde at få ro i hovedet på og skjuler det for både forældre og lærere. Han isolerer sig gradvist, mister motivation, og skolefremmødet bliver uregelmæssigt. Han virker udmattet, men afviser ofte hjælp, fordi han 'ikke vil være til besvær'.",
+      "barnets_oplevelse": "Jeg kan ikke få tankerne til at stoppe. Det er som om jeg skal mærke smerte for at føle mig virkelig.",
+      "typisk_fejl": "At fokusere ensidigt på selve selvskaden uden at adressere det bagvedliggende pres. At mangle en tydelig sikkerhedsplan og klar rollefordeling mellem skole og hjem. At fastholde akademiske krav, mens den følelsesmæssige regulering bryder sammen. At overse behovet for ro, relation og genskabelse af mening.",
+      "løsning": "Etabler en akut og vedvarende sikkerhedsplan i samarbejde med Emil, forældre og behandlingssystem. Udpeg én fast voksenkontakt på skolen til ugentlig samtale. Reducér krav midlertidigt for at skabe stabilitet og genskabe oplevelsen af kontrol. Arbejd tværfagligt med psykolog eller psykiater omkring behandlingsforløb, medicinsk vurdering og kriseberedskab. Indfør små, konkrete mål for daglig struktur og egenomsorg.",
+      "tiltag": "Sikkerhedsplan med aftalte handlinger ved selvskadetrang. Faste mødetidspunkter og ro-zoner i skoledagen. Delvis skema med pauser mellem fag for at undgå overbelastning. Forældreinvolvering gennem ugentlig status. Professionel supervision af lærere i håndtering af emotionel sårbarhed. Samarbejde med sundhedssektor om løbende risikovurdering.",
+      "værktøjer": "Trin 1: Etabler sikkerhedsplan og akut kontaktvej. Trin 2: Kortlæg triggers og reguleringsstrategier. Trin 3: Genskab basal struktur – søvn, mad, rutine. Trin 4: Skab trygge relationer og kontinuerlig voksenstøtte. Trin 5: Balancér krav og energi – kun realistiske mål. Trin 6: Løbende evaluering af risiko og trivsel.",
+      "kategori": "Depression & Selvskade (emotionel regulering)",
+      "kort_beskrivelse": "Emil kæmper med indre kaos og bruger selvskade til at regulere smerte. Et tværfagligt, relationelt og struktureret støtteforløb med tydelig sikkerhedsplan er afgørende for stabilisering og behandling.",
+      "kompleksitet": "kritisk",
+      "refleksion": "Da skolen begyndte at tage kontakt via den faste voksen hver morgen – uden fagligt pres – begyndte Emil at møde igen. Han beskrev det som 'rart at nogen bare var der, uden at spørge hvorfor'.",
+      "resultat": "Emil møder nu tre dage om ugen, har påbegyndt samtaleforløb hos psykolog og anvender aftalte copingstrategier i stedet for selvskade. Søvnen og strukturen er gradvist forbedret.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emil oplever konstant indre uro, søvnløshed og gentagne tanker om ikke at kunne holde ud at være i sig selv. Han beskriver selvskaden som en måde at f..."
+    },
+    {
+      "id": "case-asf-004",
+      "titel": "Frida 16 år",
+      "alder": 16,
+      "diagnoser": [
+        "Autisme",
+        "Angst",
+        "Depression"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Venner"
+      ],
+      "tema": "Maskering, identitetstab, følelsesfrakobling",
+      "problem": "Frida fremstår velfungerende udadtil – god karakter, hjælpsom og rolig. Hun tilpasser sig alle miljøer og efterligner sociale koder, men beskriver en indre tomhed. Hun siger, at hun ikke ved, hvem hun selv er, og føler sig 'falsk' i relationer. Hun deltager mindre i sociale aktiviteter, og venner beskriver hende som 'svær at nå'. Hjemme lukker hun døren og trækker sig. Søvnen er forstyrret, og hun spiser uregelmæssigt. Hun udtrykker tanker om, at 'det hele føles ligegyldigt'.",
+      "barnets_oplevelse": "Jeg ved ikke længere, hvem jeg er. Jeg gør bare, hvad der virker, men jeg føler ingenting.",
+      "typisk_fejl": "At antage at høj funktion og selvstændighed = trivsel. At overse, at følelsesmæssig frakobling er en beskyttelsesmekanisme. At fokusere på præstationer og fremtidsplaner i stedet for identitet og tilhør. At tilbyde terapi uden først at genopbygge relationel tryghed.",
+      "løsning": "Skab et miljø, hvor Frida ikke skal præstere eller forklare sig. Fokusér på at genfinde hendes oplevelse af selv og mening – ikke på symptombehandling alene. Brug narrativ og identitetsbaseret tilgang, hvor hun kan udforske, hvem hun er uden masken. Giv plads til tavshed og tvivl – ikke krav om indsigt. Indfør fast kontaktperson, som kan støtte hende kontinuerligt uden evaluering. Koordinér mellem skole, psykolog og hjem om fælles sprog for energiniveau og selvopfattelse.",
+      "tiltag": "Udarbejd 'identitets- og trivselsspor' frem for diagnosefokus. Giv mulighed for nonverbal selvudtryk (kunst, musik, skrivning). Indfør ugentlig 'menings-samtale' uden målkrav. Reducér pres for fremtidsvalg og præstation. Indfør fleksibel skoledeltagelse med fokus på relationel kontakt frem for faglighed. Integrér kropslige pauser og naturaktiviteter for genforankring i sansning og nærvær.",
+      "værktøjer": "Trin 1: Identificér følelsesmæssig frakobling og maskeringsmønstre. Trin 2: Etabler kontinuerlig relationel kontakt og tryghed. Trin 3: Introducér identitetsforankrede aktiviteter (kreativitet, sansning, natur). Trin 4: Gradvis genskabelse af emotionel kontakt og selvoplevelse. Trin 5: Samarbejd tværfagligt med psykolog og familie om langsigtet støtteplan.",
+      "kategori": "Autisme & Depression (identitetstab efter masking)",
+      "kort_beskrivelse": "Frida har tilpasset sig så meget, at hun har mistet kontakten til sig selv. Udadtil velfungerende, men indeni tom og frakoblet. Arbejdet handler nu om at genskabe identitet, mening og følelsesmæssig kontakt – ikke om præstation.",
+      "kompleksitet": "meget høj",
+      "refleksion": "Efter at læreren og psykologen skabte et fast ugentligt refleksionsrum uden præstationskrav, begyndte Frida gradvist at beskrive følelser og ønsker igen. Hendes deltagelse blev mere autentisk, og hun begyndte at tage initiativ socialt.",
+      "resultat": "Frida har genvundet en begyndende oplevelse af selvstændighed og ægthed. Hun deltager i udvalgte aktiviteter efter eget valg og udviser lavere stressniveau. Maskeringen er reduceret, og relationel kontakt er genetableret.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Frida fremstår velfungerende udadtil – god karakter, hjælpsom og rolig. Hun tilpasser sig alle miljøer og efterligner sociale koder, men beskriver en ..."
+    }
+  ]
+}

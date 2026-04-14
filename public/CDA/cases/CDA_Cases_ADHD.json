@@ -1,0 +1,991 @@
+{
+  "category": "ADHD",
+  "total_cases": 34,
+  "cases": [
+    {
+      "id": "case-ad-013",
+      "titel": "Alex 8 år",
+      "alder": 8,
+      "diagnoser": [
+        "ADHD"
+      ],
+      "miljø": [
+        "Fagfolk"
+      ],
+      "tema": "Frisør, bevægelse, opmærksomhed",
+      "problem": "Alex har svært ved at sidde stille under hårklip og mister hurtigt fokus. Det gør frisørbesøget stressende for både ham og de voksne.",
+      "barnets_oplevelse": "Jeg kan ikke sidde så stille, det kilder og jeg vil bare væk.",
+      "typisk_fejl": "Forventer stillesiddende ro i lang tid uden strategi. Overser behovet for bevægelse og pauser.",
+      "løsning": "Brug lege eller tælleopgaver som distraktion. Beløn roligt samarbejde med ros og pauser. Planlæg korte tider og tydelige mål.",
+      "tiltag": "\"Klip-tæl\"-lege undervejs. Korte klippeaftaler. Ros og belønning efter små dele er gennemført. Brug af fidget eller snack i ventetid.",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Alex har svært ved at sidde stille under hårklip og mister hurtigt fokus. Det gør frisørbesøget stressende for både ham og de voksne.",
+      "kompleksitet": "moderat",
+      "refleksion": "Korte sessioner og konkrete mål reducerede uroen markant.",
+      "resultat": "Alex gennemførte klipning i tre korte intervaller uden konflikt.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Alex har svært ved at sidde stille under hårklip og mister hurtigt fokus. Det gør frisørbesøget stressende for både ham og de voksne...."
+    },
+    {
+      "id": "case-adhd-015",
+      "titel": "Noah 9 år",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD (adfærds- og motivationsregulering)"
+      ],
+      "miljø": [
+        "Forældre",
+        "Fagfolk"
+      ],
+      "tema": "Motivation, belønning, valg",
+      "problem": "Noah nægter at tage til frisør. Han protesterer højlydt, gemmer sig og nægter samarbejde, især når han ikke føler sig inddraget i beslutningen. Situationen ender ofte i konflikt eller tvang.",
+      "barnets_oplevelse": "De bestemmer alt – jeg vil bare selv vælge, hvornår og hvordan!",
+      "typisk_fejl": "Krav uden mening eller motivation. Manglende inddragelse i beslutning. Ingen forberedelse eller visuel støtte.",
+      "løsning": "Gør frisørbesøg til et bytte ('Først frisør, så film eller is'). Giv Noah valgmuligheder – tidspunkt, frisør, hvem der følger med. Forbered med billeder af stedet for at skabe forudsigelighed. Anerkend modstanden som behov for kontrol, ikke trods.",
+      "tiltag": "Skabelon: visuel dagsplan ('køre – klip – hjem – belønning'). Aftaleskema mellem barn og voksen. Belønningskort: positiv forudsigelse. Valgkort – barnet vælger rækkefølge og belønning.",
+      "kategori": "ADHD (adfærds- og motivationsregulering)",
+      "kort_beskrivelse": "Noah reagerer med modstand på krav uden mening. Ved at give ham valg, tydelig rækkefølge og belønning kan samarbejdet genetableres.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Noah fik kontrol gennem valg og belønning, faldt konfliktniveauet markant.",
+      "resultat": "Noah gennemførte frisørbesøget uden modstand ved brug af valg og tydelig belønning.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Noah nægter at tage til frisør. Han protesterer højlydt, gemmer sig og nægter samarbejde, især når han ikke føler sig inddraget i beslutningen. Situat..."
+    },
+    {
+      "id": "case-adhd-020",
+      "titel": "Lea 13 år",
+      "alder": 13,
+      "diagnoser": [
+        "ADHD",
+        "Autisme",
+        "Angst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Ungdomsskole, overgang, sanser",
+      "problem": "Lea er startet på ungdomsskole og oplever daglige sammenbrud. Kombinationen af nye omgivelser, mere støj, skiftende lærere og social kompleksitet sender hende i konstant alarmberedskab. Hun får 'meltdowns' flere gange ugentligt.",
+      "barnets_oplevelse": "Jeg kan ikke holde ud, når alt ændrer sig hele tiden. Der er for mange mennesker og lyde.",
+      "typisk_fejl": "Behandler diagnoserne hver for sig i stedet for som et samspil. Forventer hurtig tilpasning uden graduel overgang. Misforstår meltdowns som dårlig opførsel.",
+      "løsning": "Anerkend den tredobbelte diagnose som en kompleks kombination. Skab struktur, der tager højde for alle tre udfordringer. Lav gradvis eksponering med tydelige pauser og exit-muligheder.",
+      "tiltag": "Sansekort over skolen med støjniveauer og sikre zoner. Fast base hun kan trække sig til ved overstimulering. Visuel støtte til skemaer og lokaleændringer. Tryghedsperson til støtte ved kriser. Reduceret timetal i overgangsperioden.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Lea oplever sansemæssig og social overbelastning ved skolestart. Gradvis overgang og tydelig struktur er nøglen til stabilitet.",
+      "kompleksitet": "høj",
+      "refleksion": "Ved at koordinere støtte på tværs af diagnoser og miljø blev Lea mere stabil og deltagende.",
+      "resultat": "Lea har nu færre sammenbrud, bruger pauser aktivt og deltager igen i timerne med støtte fra tryghedsperson.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Lea er startet på ungdomsskole og oplever daglige sammenbrud. Kombinationen af nye omgivelser, mere støj, skiftende lærere og social kompleksitet send..."
+    },
+    {
+      "id": "case-adhd-021",
+      "titel": "Oliver 15 år",
+      "alder": 15,
+      "diagnoser": [
+        "ADHD",
+        "OCD",
+        "Angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Eksamen, perfektionisme, stress",
+      "problem": "Oliver er fanget i en ond cirkel, hvor hans ADHD gør det svært at koncentrere sig, hans OCD kræver at alt skal være perfekt, og hans angst eskalerer, når han ikke kan leve op til sine egne standarder. Især omkring eksamen får han panikangst.",
+      "barnets_oplevelse": "Jeg får ondt i maven bare ved tanken om eksamen. Jeg bliver aldrig færdig, for jeg skal hele tiden rette alt.",
+      "typisk_fejl": "Fokuserer kun på én diagnose ad gangen. Forsøger at slukke perfektionismen i stedet for at kanalisere den. Øger presset i stedet for at reducere det.",
+      "løsning": "Anerkend at alle tre diagnoser påvirker hinanden. Brug strukturerede metoder, der imødekommer alle behov. Skab realistiske mål og fejlaccept.",
+      "tiltag": "Pomodoro-teknik tilpasset ADHD med korte intervaller. 'God nok'-standarder defineret på forhånd. Angstforebyggende rutiner før eksamen. Medicinsk opfølgning koordineret på alle tre diagnoser. Eksamenslettelser baseret på samlet vurdering.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Oliver oplever samspil mellem ADHD, OCD og angst. Struktureret støtte og realistiske mål hjælper med at bryde perfektionismens stresscirkel.",
+      "kompleksitet": "høj",
+      "refleksion": "Tværfaglig støtte og fokus på mestring frem for perfektion reducerede Olivers angst og forbedrede hans fokus.",
+      "resultat": "Oliver gennemførte eksamen uden panikanfald og oplevede øget selvtillid gennem realistiske mål og forberedelse.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Oliver er fanget i en ond cirkel, hvor hans ADHD gør det svært at koncentrere sig, hans OCD kræver at alt skal være perfekt, og hans angst eskalerer, ..."
+    },
+    {
+      "id": "case-adhd-023",
+      "titel": "Ethan 14 år",
+      "alder": 14,
+      "diagnoser": [
+        "ADHD",
+        "Adfærdsforstyrrelse"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Vold, impulsivitet, konsekvenser",
+      "problem": "Ethan reagerer med fysisk aggression, når han bliver frustreret eller provokeret. Hans ADHD gør, at han handler før han tænker, og adfærdsforstyrrelsen betyder, at han har svært ved at forstå eller acceptere konsekvenser. Skolen overvejer bortvisning.",
+      "barnets_oplevelse": "Jeg prøver at lade være, men det sker bare – jeg bliver sur, før jeg når at tænke.",
+      "typisk_fejl": "Fokuserer kun på konsekvenser uden at forstå triggers. Ignorerer de neurobiologiske årsager til impulsivitet. Ekskluderer i stedet for at skabe struktureret støtte.",
+      "løsning": "Identificér triggers og skab forebyggende strategier. Anerkend at hans hjerne reagerer hurtigere end han kan kontrollere. Kombinér klare grænser med empatisk støtte.",
+      "tiltag": "Triggerkortlægning: hvad sker der lige før volden? Alternativ adfærd som fysisk udfoldelse før frustration eskalerer. Øjeblikkelig deeskalering via trygge rum og voksne med rolig tilgang. Medicinsk opfølgning på ADHD-behandling. Genoprettende samtaler efter konflikter.",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Ethan reagerer med fysisk aggression ved frustration. Struktureret støtte, triggerkortlægning og tydelige rammer reducerer udbrud.",
+      "kompleksitet": "høj",
+      "refleksion": "Ved at skifte fokus fra straf til forståelse og forebyggelse blev konflikterne færre og mindre voldsomme.",
+      "resultat": "Ethan kan nu trække sig fra situationer, før han mister kontrollen, og bruger fysisk aktivitet som aflad i stedet for vold.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Ethan reagerer med fysisk aggression, når han bliver frustreret eller provokeret. Hans ADHD gør, at han handler før han tænker, og adfærdsforstyrrelse..."
+    },
+    {
+      "id": "case-adhd-024",
+      "titel": "Maya 16 år",
+      "alder": 16,
+      "diagnoser": [
+        "ADHD",
+        "Borderline personligheds-træk"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Venner"
+      ],
+      "tema": "Selvskade, følelser, relationer",
+      "problem": "Maya bruger selvskade til at regulere intense følelser. Hendes ADHD forstærker følelsesmæssige udsving, og borderline-træk gør hendes relationer ustabile og sårbare. Hun skifter mellem at idealisere og afvise de samme personer.",
+      "barnets_oplevelse": "Jeg kan ikke holde ud, når det hele bliver for meget – at skære gør det roligt i hovedet et øjeblik.",
+      "typisk_fejl": "Fokuserer kun på at stoppe selvskaden uden at tilbyde alternativer. Overser sammenhængen mellem ADHD og følelsesregulering. Mister tålmodigheden med hendes følelsesmæssige udsving.",
+      "løsning": "Lær alternative følelsesreguleringsstrategier. Anerkend, at hendes følelser er reelt intense og ikke overdrevne. Skab stabile relationer, der kan rumme udsvingene uden at trække sig.",
+      "tiltag": "DBT-færdigheder tilpasset ADHD: korte, konkrete teknikker. Alternativer til selvskade som is, elastik eller intens motion. Følelsesdagbog i enkel ADHD-venlig form. Stabile voksne, der kan bevare roen under følelsesudsving. Medicinsk behandling koordineret på tværs af diagnoser.",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Maya bruger selvskade som følelsesregulering. Gennem struktur, DBT-færdigheder og stabile relationer kan hun lære sundere strategier.",
+      "kompleksitet": "høj",
+      "refleksion": "Når voksne fastholder stabilitet og viser forståelse for hendes følelsesintensitet, mindskes selvskaden gradvist.",
+      "resultat": "Maya bruger nu alternative mestringsstrategier og opsøger voksne i stedet for selvskade ved følelsesmæssig overbelastning.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Maya bruger selvskade til at regulere intense følelser. Hendes ADHD forstærker følelsesmæssige udsving, og borderline-træk gør hendes relationer ustab..."
+    },
+    {
+      "id": "case-adhd-025",
+      "titel": "Mia 7 år",
+      "alder": 7,
+      "diagnoser": [
+        "ADHD (mild)",
+        "Angst (specifik – læsning)"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Læseangst, opmærksomhed, selvværd",
+      "problem": "Mia får angst, når hun skal læse højt, og mister helt fokus. Hun fidler med pennen, kigger ud af vinduet og begynder at græde, når det er hendes tur.",
+      "barnets_oplevelse": "Jeg bliver bange for at læse forkert, og så kan jeg slet ikke huske ordene.",
+      "typisk_fejl": "Tvinger hende til at læse højt 'for at vænne sig til det'. Ignorerer at angsten blokerer for ADHD-strategier. Fokuserer kun på læsefærdigheder i stedet for angst-ADHD-spiralen.",
+      "løsning": "Anerkend at angst og ADHD forstærker hinanden. Skab tryghed først – læsningen kommer derefter. Brug ADHD-venlige angststrategier.",
+      "tiltag": "Familien øvede læsning hjemme med stopur i korte intervaller, hvor Mia kunne stoppe når som helst. Læreren lod hende læse alene først, derefter for klassen. De lavede 'fejl-fest' der normaliserede fejl. Hun brugte fidget-bold under læsning for at dæmpe uro.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Mia oplever angst og koncentrationsbesvær ved læsning. Tryghed, korte intervaller og legende tilgang øger læselysten.",
+      "kompleksitet": "moderat",
+      "refleksion": "Når angsten blev mødt før læringskravet, steg hendes fokus og selvtillid markant.",
+      "resultat": "Mia læser nu korte tekster højt uden gråd og oplever glæde ved små succeser.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Mia får angst, når hun skal læse højt, og mister helt fokus. Hun fidler med pennen, kigger ud af vinduet og begynder at græde, når det er hendes tur...."
+    },
+    {
+      "id": "case-adhd-026",
+      "titel": "Oliver 11 år",
+      "alder": 11,
+      "diagnoser": [
+        "ADHD (moderat)",
+        "Social angst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Social angst, impulsivitet, venskaber",
+      "problem": "Oliver vil gerne være med, men når han bliver nervøs, siger han impulsivt ting, der støder andre fra sig. Jo mere de trækker sig, jo mere desperat og impulsiv bliver han.",
+      "barnets_oplevelse": "Jeg prøver bare at sige noget sjovt, men så griner de ikke – og så bliver det akavet.",
+      "typisk_fejl": "Beder ham 'tænke sig om' uden at give strategier. Fokuserer kun på impulsiviteten og ikke den underliggende angst. Straffer adfærden i stedet for at forstå årsagen.",
+      "løsning": "Anerkend at impulsiviteten udspringer af social angst. Giv konkrete sociale scripts og øvemuligheder. Skab små succeser i trygge grupper før større sociale situationer.",
+      "tiltag": "Øvelse af 'pause-knappen', hvor han siger 'lige et øjeblik' i stedet for at tale impulsivt. Social buddy-ordning med rolig klassekammerat. Rollespil der træner sociale situationer hjemme. Venskabsgruppe med 3 elever til fælles øvelser.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Oliver kæmper med social angst og impulsiv adfærd. Struktur, små sociale succeser og konkrete strategier styrker relationerne.",
+      "kompleksitet": "moderat",
+      "refleksion": "Ved at fokusere på angst som årsag i stedet for impulsivitet som problem, blev Oliver mere rolig og accepteret i fællesskabet.",
+      "resultat": "Oliver bruger nu 'pause-knappen', har fået to tætte venner og deltager stabilt i sociale aktiviteter.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Oliver vil gerne være med, men når han bliver nervøs, siger han impulsivt ting, der støder andre fra sig. Jo mere de trækker sig, jo mere desperat og ..."
+    },
+    {
+      "id": "case-adhd-027",
+      "titel": "Emma 14 år",
+      "alder": 14,
+      "diagnoser": [
+        "ADHD (svær)",
+        "Panikangst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Panikangst, eksamen, selvværd",
+      "problem": "Emma får panikangst ved eksamen og prøver, hvilket gør hendes svære ADHD endnu værre. Hun mister fokus, får fysiske symptomer og overvejer at droppe ud af skolen.",
+      "barnets_oplevelse": "Jeg får helt ondt i maven og kan ikke huske noget, selvom jeg faktisk godt ved det derhjemme.",
+      "typisk_fejl": "Øger presset for at 'motivere' hende. Behandler ADHD og panikangst som to adskilte problemer. Afviser hendes fysiske symptomer som 'bare nervøsitet'.",
+      "løsning": "Anerkend at panikangst kan lamme ADHD-kompensationsstrategier totalt. Arbejd med angstforebyggelse før fokus på præstation. Kombinér medicinske, pædagogiske og følelsesregulerende tilgange.",
+      "tiltag": "Emma fik lov at tage prøver i lille rum med pauser hver 20. minut. Der blev lavet 'mini-prøver' ugentligt, så hun gradvist vandt tillid til sin viden. Hun lærte korte, konkrete vejrtrækningsøvelser tilpasset ADHD. Familien brugte videooptagelser, hvor hun så, at hun faktisk kunne stoffet.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Emma oplever panikangst, der forstærker hendes ADHD og lammer fokus ved prøver. Tryghed, gradvis eksponering og realistiske strategier giver ro.",
+      "kompleksitet": "høj",
+      "refleksion": "Da angstbehandlingen blev prioriteret før præstationskrav, genvandt Emma sin selvtillid og koncentrationsevne.",
+      "resultat": "Emma gennemførte eksamen med støtte og oplevede ro under prøven for første gang.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Emma får panikangst ved eksamen og prøver, hvilket gør hendes svære ADHD endnu værre. Hun mister fokus, får fysiske symptomer og overvejer at droppe u..."
+    },
+    {
+      "id": "case-adhd-028",
+      "titel": "Marcus 9 år",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD (hyperaktiv type)",
+        "Generaliseret angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Konstant uro, bekymringer, søvn",
+      "problem": "Marcus er konstant i bevægelse og konstant bekymret. Hans angst gør ham mere rastløs, og hans hyperaktivitet forstærker angsten. Han sover dårligt og er udmattet i skolen.",
+      "barnets_oplevelse": "Jeg kan ikke stoppe med at tænke, og min krop bliver helt vild, når jeg prøver at slappe af.",
+      "typisk_fejl": "Forsøger at få ham til at 'slappe af' uden at forstå ADHD. Overser, at hyperaktivitet kan være et angstrespons. Fokuserer for ensidigt på medicin frem for adfærdsstrategier.",
+      "løsning": "Anerkend at bevægelse kan være hans måde at håndtere angst på. Find konstruktive kanaler for både uro og bekymringer. Koordiner medicin, søvn og miljøtilpasninger.",
+      "tiltag": "Marcus fik trampolin i haven og hoppede 10 minutter, når angsten blev for stor. I skolen brugte han en 'bekymringsboks' til at skrive bekymringer ned. Familien ændrede aftensrutinen til fysisk aktivitet før sengetid. Han blev bevægelsesassistent i klassen, så energien blev en styrke.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Marcus kæmper med angst og hyperaktivitet, der gensidigt forstærker hinanden. Bevægelse og struktur hjælper ham med at finde ro og fokus.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da bevægelse blev en del af løsningen, faldt både angstniveau og uro markant.",
+      "resultat": "Marcus sover bedre, deltager mere i undervisningen og bruger bevægelse som strategi mod angst.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Marcus er konstant i bevægelse og konstant bekymret. Hans angst gør ham mere rastløs, og hans hyperaktivitet forstærker angsten. Han sover dårligt og ..."
+    },
+    {
+      "id": "case-adhd-029",
+      "titel": "Sofia 16 år",
+      "alder": 16,
+      "diagnoser": [
+        "ADHD (inattentiv type)",
+        "Præstationsangst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Prokrastination, perfektionisme, fremtidsangst",
+      "problem": "Sofia udsætter skolearbejde, fordi hun er bange for ikke at være god nok. Hendes ADHD gør det svært at komme i gang, og angsten gør det endnu sværere. Hun ender i en ond cirkel af udsættelse og selvkritik.",
+      "barnets_oplevelse": "Jeg vil gerne lave det, men jeg tør ikke starte, for jeg tror, det bliver forkert alligevel.",
+      "typisk_fejl": "Kalder det dovenskab i stedet for at forstå samspillet mellem angst og ADHD. Øger deadlinepres i stedet for at støtte opstart. Fokuserer for meget på resultater frem for proces.",
+      "løsning": "Anerkend at prokrastination ofte er en kombination af angst og ADHD. Nedbryd opgaver i små, overskuelige trin. Fokuser på opstart frem for perfektion.",
+      "tiltag": "Sofia startede med at skrive ét ord for at komme i gang. Lavede 'fejl-fest', hvor hun med vilje lavede fejl for at slippe perfektionismen. Brugte 15-minutters intervaller (timer-teknik) uden krav om færdiggørelse. Arbejdede sammen med en 'study buddy', som gjorde det lettere at starte.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Sofia oplever præstationsangst og prokrastination. Ved at fokusere på proces, ikke perfektion, fik hun ro og handlekraft tilbage.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Sofia lærte, at fejl og små skridt er en del af læring, faldt angsten, og opstarten blev nemmere.",
+      "resultat": "Sofia afleverer nu opgaver til tiden og oplever mindre angst ved at fokusere på fremskridt frem for perfektion.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Sofia udsætter skolearbejde, fordi hun er bange for ikke at være god nok. Hendes ADHD gør det svært at komme i gang, og angsten gør det endnu sværere...."
+    },
+    {
+      "id": "case-adhd-030",
+      "titel": "Jonathan 12 år",
+      "alder": 12,
+      "diagnoser": [
+        "ADHD",
+        "Angst (medicin-kompliceret)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Medicin-bivirkninger, balance, symptomhåndtering",
+      "problem": "Jonathans ADHD-medicin hjælper på koncentrationen, men forværrer hans angst. Angstmedicin dæmper angsten, men forstærker ADHD-symptomerne. Familie og skole føler sig magtesløse og usikre på, hvordan de bedst støtter ham.",
+      "barnets_oplevelse": "Jeg vil gerne have det godt, men jeg ved aldrig, hvornår jeg får det dårligt af pillerne.",
+      "typisk_fejl": "Fokuserer kun på medicinjustering uden adfærdsstrategier. Behandler diagnoserne hver for sig. Opgiver medicinsk behandling i stedet for at finde balance.",
+      "løsning": "Anerkend kompleksiteten og brug en helhedsorienteret tilgang. Kombinér medicintiming med adfærdsstrategier. Involver læge, skole og familie i en fælles plan med løbende justeringer.",
+      "tiltag": "Jonathan brugte ADHD-medicin kun i skoletiden og angststrategier derhjemme. Læreren lavede medicinskema, så han kunne forudse udfordringer. Familien timede medicin til morgen og angstøvelser til eftermiddag, når virkningen aftog. Psykiateren brugte symptomdagbog til at finde optimal balance.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Jonathan oplever, at medicin for ADHD og angst modarbejder hinanden. Tværfaglig koordinering og symptomdagbog skaber balance og ro.",
+      "kompleksitet": "høj",
+      "refleksion": "Da medicin, adfærd og samarbejde blev koordineret, faldt bivirkningerne, og Jonathan fik mere stabil hverdag.",
+      "resultat": "Jonathan fungerer nu bedre i skolen, sover roligt og oplever mindre angst under medicinsk behandling.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Jonathans ADHD-medicin hjælper på koncentrationen, men forværrer hans angst. Angstmedicin dæmper angsten, men forstærker ADHD-symptomerne. Familie og ..."
+    },
+    {
+      "id": "case-adhd-034",
+      "titel": "Oliver 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "Læse- og skrivevanskeligheder"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Akademisk stress, selvværd, frustration",
+      "problem": "Oliver nægter at gå i skole, fordi han føler sig dum og ude af stand til at følge med. Hans ADHD gør det svært at koncentrere sig, og hans læse- og skrivevanskeligheder forstærker følelsen af fiasko. Han får raserianfald ved lektietid og mister motivationen.",
+      "barnets_oplevelse": "Jeg er bare dum, jeg kan ikke finde ud af det, så hvorfor skal jeg prøve?",
+      "typisk_fejl": "Giver ham standardopgaver på klassetrin uden differentiering. Fokuserer på mangler frem for styrker. Overser betydningen af succesoplevelser og selvværd i læring.",
+      "løsning": "Skab differentieret undervisning og genopbyg selvværdet. Brug Olivers styrker som udgangspunkt. Tilpas opgaver til hans niveau og arbejd med korte sekvenser og tydelige mål. Indfør daglige succesoplevelser og anvend teknologi til støtte.",
+      "tiltag": "Tilpassede opgaver, der matchede Olivers niveau. Fokus på hans styrker i mundtlig fremstilling og kreativitet. Korte arbejdsperioder med hyppige pauser. Oplæsningsprogrammer og voice-to-text i skolen. Lektiehjælp med fokus på strategier frem for indhold.",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Oliver mister motivationen på grund af ADHD og læsevanskeligheder. Med styrkebaseret tilgang og teknologi får han selvtilliden tilbage.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da fokus blev flyttet fra præstation til proces og succesoplevelser, begyndte Oliver at tro på sig selv igen.",
+      "resultat": "Oliver deltager nu aktivt i undervisningen, bruger digitale hjælpemidler og går i skole uden modstand.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "ADHD",
+      "shortDescription": "Oliver nægter at gå i skole, fordi han føler sig dum og ude af stand til at følge med. Hans ADHD gør det svært at koncentrere sig, og hans læse- og sk..."
+    },
+    {
+      "id": "case-aa-036",
+      "titel": "Mia 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "ADHD (hyperaktiv type)",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Rutiner vs. impulsivitet, struktur vs. bevægelse",
+      "problem": "Mia har behov for faste rutiner på grund af sin autisme, men hendes ADHD gør det svært at sidde stille og følge dem. Hun bliver frustreret, når rutiner brydes – også selvom det ofte er hende selv, der bryder dem ved at rejse sig og bevæge sig rundt.",
+      "barnets_oplevelse": "Jeg prøver at følge med, men kroppen vil bare ikke sidde stille – og så bliver jeg sur, når alt bliver forkert.",
+      "typisk_fejl": "Forventer ro og struktur uden at integrere bevægelse. Ser uroen som trods i stedet for som behov. Skifter mellem stram kontrol og frihed uden klar rytme.",
+      "løsning": "Skab bevægelsesintegrerede rutiner, hvor fysisk aktivitet er en del af strukturen. Indfør faste bevægelsespauser, visuelle rutiner og fleksible siddepladser. Gør det muligt for Mia at bevæge sig uden at miste overblik.",
+      "tiltag": "Rutiner med indbygget bevægelse hver 10. minut. Visuelle rutiner hun kunne følge, mens hun bevægede sig. Alternative siddepladser som balancebold, ståpult og gulvplads. Rutinekort hun kunne tage med sig, når hun bevægede sig rundt. Samme rækkefølge – men fleksible udførselsformer.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Mia har både behov for faste rutiner og behov for bevægelse. Ved at integrere bevægelse i strukturen kan hun lykkes i hverdagen.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da bevægelse blev en del af strukturen i stedet for en forstyrrelse, faldt frustrationen markant.",
+      "resultat": "Mia følger nu daglige rutiner med succes, fordi de er fleksible og kropsligt inkluderende.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mia har behov for faste rutiner på grund af sin autisme, men hendes ADHD gør det svært at sidde stille og følge dem. Hun bliver frustreret, når rutine..."
+    },
+    {
+      "id": "case-aa-037",
+      "titel": "Oliver 9 år",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD",
+        "Autisme (mild)"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Social kommunikation, impulsivitet, regler",
+      "problem": "Oliver forstår sociale regler intellektuelt på grund af sin autisme, men hans ADHD gør det svært for ham at bremse impulserne. Han afbryder konstant, siger upassende ting og forstår ikke, hvorfor andre børn bliver irriterede eller trækker sig.",
+      "barnets_oplevelse": "Jeg prøver at lade være med at sige det – men ordene hopper bare ud, før jeg når at tænke.",
+      "typisk_fejl": "Tror at forståelse af regler automatisk fører til overholdelse. Skælder ud for impulser i stedet for at lære strategier. Overser behovet for visuel og kropslig støtte til selvkontrol.",
+      "løsning": "Brug konkrete, synlige og kropslige strategier for social kontrol. Indfør 'pause-knap'-strategi, sociale scripts og visuelle regler. Giv trygge øvezoner og en social buddy, der hjælper i pressede situationer.",
+      "tiltag": "Pause-knap-strategi: fysisk berøring af arm før han talte. Korte, konkrete sociale scripts til brug under pres. Visuelle kort med sociale regler på bordet under samtaler. 'Tanke-timer' hvor han frit kunne sige alt uden regler. Rollespil i trygge omgivelser. Social buddy, der guidede ham diskret.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Oliver forstår sociale regler, men hans impulsivitet gør det svært at følge dem. Konkrete strategier og visuel støtte hjælper ham med at lykkes.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Oliver fik kropslige og visuelle værktøjer, blev hans impulser håndterbare, og relationerne forbedredes.",
+      "resultat": "Oliver afbryder sjældnere, forstår andres reaktioner bedre og deltager stabilt i sociale aktiviteter.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver forstår sociale regler intellektuelt på grund af sin autisme, men hans ADHD gør det svært for ham at bremse impulserne. Han afbryder konstant, ..."
+    },
+    {
+      "id": "case-aa-038",
+      "titel": "Emma 12 år",
+      "alder": 12,
+      "diagnoser": [
+        "ADHD (inattentiv type)",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Sanser, opmærksomhed, overstimulering",
+      "problem": "Emma har svært ved at koncentrere sig, når der er selv små lyde eller bevægelser omkring hende. Hendes autisme gør hende ekstremt lydfølsom, mens ADHD får hende til at søge nye stimuli konstant. Hun er fanget mellem behovet for ro og trang til distraktion.",
+      "barnets_oplevelse": "Jeg vil gerne høre efter, men alt larmer – og så begynder jeg bare at tænke på noget andet.",
+      "typisk_fejl": "Forsøger at fjerne al stimuli, hvilket gør hende understimuleret. Overkompenserer med belønninger i stedet for miljøtilpasning. Ignorerer behovet for struktur i pauserne.",
+      "løsning": "Skab et balanceret sensorisk miljø. Giv kontrollerede stimuli, korte fokuserede perioder og visuelle strukturer. Brug 'stimuli-menu' så Emma kan vælge passende sanseinput, og planlæg ro-zoner og aktivitetszoner.",
+      "tiltag": "Noise-cancelling høretelefoner med lav baggrundslyd (white noise). Fidget-redskaber uden lyd. 10-15 minutters arbejdsintervaller med sensoriske pauser. Stimuli-menu med valgmuligheder til energi-regulering. Separate områder til ro og aktivitet. Koordineret medicin-timing mellem skole og hjem.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Emma kæmper med sensorisk overstimulering og koncentrationsproblemer. Et balanceret miljø med kontrolleret stimuli giver hende fokus og ro.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Emmas omgivelser blev justeret i stedet for hendes adfærd, faldt stress og koncentrationen steg markant.",
+      "resultat": "Emma arbejder nu fokuseret i korte intervaller, tager sensoriske pauser og kan deltage stabilt i undervisningen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma har svært ved at koncentrere sig, når der er selv små lyde eller bevægelser omkring hende. Hendes autisme gør hende ekstremt lydfølsom, mens ADHD..."
+    },
+    {
+      "id": "case-aa-039",
+      "titel": "Lucas 15 år",
+      "alder": 15,
+      "diagnoser": [
+        "ADHD",
+        "Autisme (sent diagnosticeret)"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Masking, udbrændthed, autenticitet",
+      "problem": "Lucas har i årevis skjult sine autistiske træk ved at kopiere andres adfærd for at passe ind. Hans ADHD gør det ekstremt energikrævende at opretholde facaden, og han er nu udbrændt, forvirret over sin identitet og socialt udmattet.",
+      "barnets_oplevelse": "Jeg ved ikke, hvem jeg er længere – jeg prøver bare at være som de andre hele tiden.",
+      "typisk_fejl": "Ros for tilpasning frem for autenticitet. Ignorerer de psykiske omkostninger ved masking. Fokuserer på præstation i stedet for trivsel og energi.",
+      "løsning": "Understøt gradvis autenticitet og energi-forvaltning. Giv psykologisk støtte til at forstå masking og dens konsekvenser. Indfør autenticitetsøvelser i trygge rammer. Lav energibudget, så Lucas kan planlægge hvornår han maskerer. Tilpas skolekrav og sociale forventninger til hans reelle kapacitet.",
+      "tiltag": "Terapi med fokus på selvforståelse og masking. Autenticitetsøvelser hvor Lucas kunne være sig selv i trygge rum. Energi-budget med prioritering af aktiviteter. ADHD-strategier tilpasset autistiske behov. Åben kommunikation med nære venner om hans diagnoser. Skoleaftaler om pauser og reduceret social belastning.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Lucas er udbrændt efter år med social masking. Gennem autenticitet, energi-budgettering og støtte genfinder han balance og selvforståelse.",
+      "kompleksitet": "høj",
+      "refleksion": "Da Lucas fik lov til at være sig selv i trygge rammer, faldt stressniveauet, og hans motivation steg markant.",
+      "resultat": "Lucas har genetableret et realistisk energiniveau, er mere autentisk i sociale sammenhænge og deltager stabilt i skolen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lucas har i årevis skjult sine autistiske træk ved at kopiere andres adfærd for at passe ind. Hans ADHD gør det ekstremt energikrævende at opretholde ..."
+    },
+    {
+      "id": "case-aa-040",
+      "titel": "Noah 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Kognitiv fleksibilitet, impulsivitet, frustrationstolerance",
+      "problem": "Noah har meget faste ideer om, hvordan ting skal gøres på grund af sin autisme, men hans ADHD gør, at han handler impulsivt, når noget ikke går som planlagt. Han har svært ved at tænke fleksibelt under pres og eksploderer i frustration, når planer bryder sammen.",
+      "barnets_oplevelse": "Når ting ikke går som jeg troede, føles det som om hele verden vælter, og så bliver jeg bare sur med det samme.",
+      "typisk_fejl": "Forsøger at 'tale ham til ro' midt i affekt. Forventer fleksibilitet uden forberedelse. Ignorerer behovet for visuel støtte til problemløsning.",
+      "løsning": "Brug struktureret fleksibilitet og forudsigelig frustrationshåndtering. Indfør 'Plan A, B, C'-strategier, visuelle 'hvis-så'-kort og frustrations-termometer. Træn 'pause og plan' før handling, og anvend rollespil med alternative løsninger.",
+      "tiltag": "Plan A, B, C forberedt til hverdagssituationer. Visuelle 'hvis-så'-kort til brug under pres. Frustrations-termometer, så Noah kunne mærke, når han nærmede sig overload. 'Pause og plan'-øvelser i klassen. Rollespil med fokus på problemløsning og eksperimenterende tankegang.",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Noah bliver hurtigt frustreret, når hans planer bryder sammen. Med visuelle strategier og træning i fleksibilitet lærer han at stoppe op før han reagerer.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Noah fik redskaber til at forstå og regulere sine frustrationer, faldt konfliktniveauet, og hans problemløsningsevne steg.",
+      "resultat": "Noah kan nu håndtere forandringer med mindre frustration og bruge 'Plan B' uden sammenbrud.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah har meget faste ideer om, hvordan ting skal gøres på grund af sin autisme, men hans ADHD gør, at han handler impulsivt, når noget ikke går som pl..."
+    },
+    {
+      "id": "case-mc-047",
+      "titel": "Marcus 12 år",
+      "alder": 12,
+      "diagnoser": [
+        "Autisme",
+        "ADHD"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Fysisk mobning, meltdowns, sårbarhed",
+      "problem": "Marcus bliver provokeret af ældre drenge, der ved, at han reagerer voldsomt, når han bliver overstimuleret. De skubber, griner og filmer hans meltdowns, som de deler. Marcus begynder at slå først for at beskytte sig selv.",
+      "barnets_oplevelse": "De gør det med vilje, og jeg kan ikke stoppe det. Jeg bliver så vred, at jeg ikke kan tænke.",
+      "typisk_fejl": "Ser kun hans reaktion, ikke provokationen. Manglende voksenopsyn i kritiske situationer. Ingen skelnen mellem affekt og aggression.",
+      "løsning": "Kombinér forebyggelse, beskyttelse og tydelige konsekvenser. Øg voksent tilsyn i højrisikoområder. Lær personalet at genkende forskellen mellem provokation og meltdown. Skab trygge zoner og tidlige exit-strategier for Marcus.",
+      "tiltag": "Øget voksenopsyn i frikvarterer og på skoleveje. Identificering og konsekvenshåndtering af mobbere. Undervisning af personale i affektforståelse. Etablering af 'sikre zoner' Marcus kunne trække sig til. Visuelle varsler for overstimulering. Træning af Marcus i tidlige tegn og pauser før meltdown. Støttesamtaler om selvbeskyttelse uden vold.",
+      "kategori": "Autisme & ADHD",
+      "kort_beskrivelse": "Marcus blev systematisk provokeret til meltdowns. Ved at styrke beskyttelsen, genkende triggers og skabe trygge zoner kunne han undgå konflikterne.",
+      "kompleksitet": "høj",
+      "refleksion": "Da skolen begyndte at gribe ind tidligt og fokusere på affekt i stedet for straf, faldt både meltdowns og mobning.",
+      "resultat": "Marcus kan nu genkende sine tegn på overbelastning, trække sig i tide og føler sig igen tryg i skolen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus bliver provokeret af ældre drenge, der ved, at han reagerer voldsomt, når han bliver overstimuleret. De skubber, griner og filmer hans meltdown..."
+    },
+    {
+      "id": "case-mc-048",
+      "titel": "Sofia 14 år",
+      "alder": 14,
+      "diagnoser": [
+        "ADHD",
+        "Social angst"
+      ],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Relationel mobning, rygter, social manipulation",
+      "problem": "Sofia udsættes for relationel mobning gennem rygter, social eksklusion og digital chikane. En gruppe piger bruger hendes impulsivitet mod hende ved at lokke hende til at sige ting, som de bagefter bruger som våben i gruppen og online.",
+      "barnets_oplevelse": "Jeg prøver bare at være sjov, men de vender alt imod mig – og så tør jeg ikke sige noget længere.",
+      "typisk_fejl": "Ser det som 'pigedrama' i stedet for systematisk mobning. Fokuserer på Sofias adfærd i stedet for manipulationen. Manglende voksenindblanding i digitale rum.",
+      "løsning": "Behandl relationel mobning som et komplekst magtspil, ikke en konflikt mellem jævnaldrende. Hjælp Sofia med at forstå manipulation og digitale faldgruber. Grib ind direkte overfor ringleaders, og etabler trygge relationer uden for den destruktive gruppe.",
+      "tiltag": "Direkte konfrontation af mobberne med tydelige konsekvenser. Undervisning i digital sikkerhed og online-grænser. Træning af 'pause og tænk'-strategier før reaktion. Støtte til at genkende manipulationstaktikker. Etablering af nye, sunde venskaber. Restorative justice-samtaler faciliteret af voksne.",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Sofia blev udsat for relationel mobning og udnyttelse af hendes impulsivitet. Med støtte og tydelig voksenstyring genvandt hun kontrol og sociale grænser.",
+      "kompleksitet": "høj",
+      "refleksion": "Da voksne tog ansvar for magtdynamikken i gruppen og ikke lagde skylden på Sofia, stoppede mobningen og hendes selvværd voksede.",
+      "resultat": "Sofia fik en ny vennegruppe, bruger nu 'pause og tænk' aktivt, og deltager igen i sociale sammenhænge med større tryghed.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia udsættes for relationel mobning gennem rygter, social eksklusion og digital chikane. En gruppe piger bruger hendes impulsivitet mod hende ved at..."
+    },
+    {
+      "id": "case-mc-049",
+      "titel": "Oliver 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "Adfærdsvanskeligheder"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Offer-til-mobber-cyklus, selvforsvar vs. aggression",
+      "problem": "Oliver har tidligere været udsat for mobning gennem flere år. Nu forsøger han at genvinde kontrol ved selv at mobbe svagere børn. Han siger 'Nu er det min tur' og udviser den samme hensynsløse adfærd, som han selv blev mødt med.",
+      "barnets_oplevelse": "De gjorde det mod mig i lang tid – nu er det endelig mig, der bestemmer.",
+      "typisk_fejl": "Fokuserer kun på den aktuelle adfærd og overser traumet bag. Straffer uden at arbejde med årsagen. Ignorerer behovet for genoprettelse og empati-træning.",
+      "løsning": "Brug en traume-informeret tilgang med både ansvarliggørelse og støtte. Anerkend hans tidligere oplevelser, sæt tydelige grænser og hjælp ham med at genopbygge empati. Giv ham alternative måder at opleve kontrol og respekt på.",
+      "tiltag": "Terapi med fokus på tidligere mobningstraumer. Klare grænser og konsekvenser for aggressiv adfærd. Empati-træning og perspektivøvelser. Støtte i at bruge magt positivt gennem hjælperroller. Restorative justice-processer med dem, han har skadet. Samarbejde mellem skole og forældre om konsekvent, tryg struktur.",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Efter selv at have været mobbet udviser Oliver nu aggressiv adfærd mod andre. Med traume-informeret støtte kan han genfinde kontrol uden at skade andre.",
+      "kompleksitet": "høj",
+      "refleksion": "Da Oliver fik mulighed for at forstå sin vrede og tage ansvar gennem genoprettelse, faldt konflikterne markant.",
+      "resultat": "Oliver begyndte at bruge sin energi i hjælperroller og blev en ressource for yngre elever i stedet for en trussel.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver har tidligere været udsat for mobning gennem flere år. Nu forsøger han at genvinde kontrol ved selv at mobbe svagere børn. Han siger 'Nu er det..."
+    },
+    {
+      "id": "case-bh-001",
+      "titel": "Emil 3 år",
+      "alder": 3,
+      "diagnoser": [
+        "Tidlige reguleringsvanskeligheder (mistanke om ADHD)"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Tidlige varselstegn, normal vs. bekymrende uro",
+      "problem": "Emil kan ikke sidde stille mere end 30 sekunder. Han forlader aktiviteter, klatrer på møbler og løber væk fra voksne. Hvor jævnaldrende kan sidde og lytte kortvarigt, mister Emil straks fokus. Personalet oplever ham som konstant 'på vej videre'.",
+      "barnets_oplevelse": "Jeg keder mig, jeg skal lave noget hele tiden!",
+      "typisk_fejl": "Ser uro som trods i stedet for reguleringsvanskelighed. Forlanger stillesiddende adfærd uden bevægelsesstrategier. Overstimulerer uden struktur.",
+      "løsning": "Skab en bevægelses-integreret hverdag, hvor energi bliver kanaliseret gennem struktur og korte sekvenser. Giv Emil tydelige roller, små opgaver og hyppige pauser, så hans uro bruges konstruktivt.",
+      "tiltag": "Korte aktiviteter på 2-5 minutter med planlagte bevægelsespauser. 'Bevægelses-jobs' – fx hente materialer eller hjælpe voksne. Alternativ siddeplads: bold, ståpult eller gulv. Struktureret udendørs tid flere gange dagligt. Klare, visuelle instruktioner. 'Energi-udløb'-aktiviteter før stille samling.",
+      "værktøjer": "Observation og dokumentation af adfærd. Sammenlign med jævnaldrende og noter, hvad der virker. Tilpas miljøet til bevægelsesbehov. Del observationer med forældre neutralt og foreslå fælles strategier hjemme og i institution.",
+      "kategori": "ADHD (tidlige reguleringsvanskeligheder)",
+      "kort_beskrivelse": "Emil viser markant rastløshed og impulsivitet. Gennem bevægelsesintegrerede rutiner kan hans energi styres i stedet for at blive bremset.",
+      "kompleksitet": "moderat",
+      "refleksion": "Efter pædagogisk strukturtilpasning faldt konflikter markant, og Emil kunne deltage længere i fælles aktiviteter.",
+      "resultat": "Emil kan nu deltage i kortere stillesiddende aktiviteter og bruge bevægelsespauser selvregulerende.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emil kan ikke sidde stille mere end 30 sekunder. Han forlader aktiviteter, klatrer på møbler og løber væk fra voksne. Hvor jævnaldrende kan sidde og l..."
+    },
+    {
+      "id": "case-bh-002",
+      "titel": "Maja 4 år",
+      "alder": 4,
+      "diagnoser": [
+        "ADHD (inattentiv profil – stille type, formodning)"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Stille ADHD-tegn, opmærksomhedsvanskeligheder",
+      "problem": "Maja 'forsvinder' midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn og glemmer straks instruktioner. Andre børn bliver færdige, mens hun stadig sidder med det samme puslespil uden fremgang. Personalet oplever hende som sød, men fraværende.",
+      "barnets_oplevelse": "Jeg tænker på noget andet... jeg glemmer, hvad jeg skulle.",
+      "typisk_fejl": "Tager hendes rolige adfærd som tegn på trivsel. Overser de kognitive opmærksomhedsudfordringer. Giver lange instruktioner uden visuel støtte.",
+      "løsning": "Skab struktur og rytme, der fastholder hendes opmærksomhed. Brug korte beskeder, øjenkontakt og visuel støtte. Gør opgaver tydeligt afgrænsede, og hjælp hende tilbage, når hun 'forsvinder'.",
+      "tiltag": "Øjenkontakt før instruktioner. Korte beskeder på maks. to trin. Visuelle støtter (billeder, symboler). Check-ins hver 5. minut under aktiviteter. Klare start- og slutmarkører. Opmærksomheds-signaler (klap, lyd, sang) for at samle fokus. Rutiner for genfokus.",
+      "værktøjer": "Observation af tidspunkter for bedst og dårligst fokus. Afprøvning af visuelle og auditive signaler. Implementering af opmærksomhedshjælpemidler. Fælles strategier med forældre om rutiner og kommunikation. Evaluering efter faste intervaller.",
+      "kategori": "ADHD (inattentiv profil – stille type)",
+      "kort_beskrivelse": "Maja fremstår stille, men har store udfordringer med opmærksomhed og fastholdelse. Struktur, visuel støtte og hyppig kontakt hjælper hende med at deltage aktivt.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da pædagogerne begyndte at bruge faste visuelle signaler og korte beskeder, deltog Maja markant mere aktivt i aktiviteterne.",
+      "resultat": "Maja fastholder nu fokus i længere tid og deltager i gruppelege med mindre støtte.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Maja 'forsvinder' midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn og glemmer straks instruktioner. Andre børn bliver færdige, m..."
+    },
+    {
+      "id": "case-bh-003",
+      "titel": "Lucas 5 år",
+      "alder": 5,
+      "diagnoser": [
+        "ADHD (impulsiv-social reguleringsvanskelighed, formodning)"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Impulsiv aggression, sociale konsekvenser",
+      "problem": "Lucas reagerer fysisk, når han bliver frustreret – han skubber, slår eller råber, især hvis en leg ikke går, som han vil. Efterfølgende bliver han ked af det og forstår ikke, hvorfor de andre ikke vil lege med ham.",
+      "barnets_oplevelse": "Jeg vil bare lege – men de andre bliver sure på mig hele tiden.",
+      "typisk_fejl": "Ser aggressionen som ond vilje i stedet for impulshandling. Reagerer med skældud frem for guidning. Mangler struktur for pauser og genopretning.",
+      "løsning": "Arbejd med impulskontrol gennem konkrete, visuelle og kropslige metoder. Lær ham at genkende vrede, bruge pauser og vælge alternative reaktioner. Skab trygge relationer og positive legeoplevelser under voksenstøtte.",
+      "tiltag": "‘Stop og tænk’-træning før aktiviteter. Visuelle kort med følelser og reaktioner. Strukturerede lege med tydelige regler. Etablering af ro-hjørne til selvregulering. Rolleleg med konfliktløsning. Voksenfaciliterede lege med positiv feedback.",
+      "værktøjer": "Trin 1: Øjeblikkelig sikkerhed og konsekvent stop af voldelig adfærd. Trin 2: Indlæring af alternative reaktionsstrategier gennem leg og rollespil. Trin 3: Social reintegration med støtte i små grupper og voksenstøttet samspil. Samarbejde med forældre om ensartet tilgang hjemme og i institution.",
+      "kategori": "ADHD (impulsiv-social reguleringsvanskelighed)",
+      "kort_beskrivelse": "Lucas reagerer fysisk, når han bliver frustreret. Med tydelig struktur, ro-træning og visuel støtte kan han lære at regulere sine impulser.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da fokus blev flyttet fra straf til forståelse og øvelse, faldt antallet af konflikter markant, og Lucas begyndte selv at bede om pauser.",
+      "resultat": "Lucas håndterer nu konflikter med verbal støtte og har genopbygget relationer til jævnaldrende.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lucas reagerer fysisk, når han bliver frustreret – han skubber, slår eller råber, især hvis en leg ikke går, som han vil. Efterfølgende bliver han ked..."
+    },
+    {
+      "id": "case-bh-005",
+      "titel": "Noah 4 år",
+      "alder": 4,
+      "diagnoser": [
+        "ADHD (mistanke)",
+        "Sensorisk reguleringsvanskelighed"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Sensorisk søgende adfærd, hyperaktivitet, komorbiditet",
+      "problem": "Noah søger konstant sansestimuli – han kører rundt, råber, klatrer, tygger på ting og kan sjældent sidde stille. Han bliver hurtigt overstimuleret, men søger straks mere aktivitet igen. Andre børn bliver overvældede af hans energi.",
+      "barnets_oplevelse": "Jeg kan ikke lade være – jeg skal bare røre og bevæge mig hele tiden!",
+      "typisk_fejl": "Tolker adfærden som trods i stedet for sansesøgende behov. Mangler planlagt sansestøtte. Forbyder i stedet for at kanalisere.",
+      "løsning": "Tilbyd struktureret sensorisk stimulering og rolig regulering gennem hele dagen. Giv acceptable måder at få sansestimulering på og hjælp ham med at mærke, hvornår han er 'fyldt op'.",
+      "tiltag": "Planlagte sensoriske aktiviteter flere gange dagligt. 'Tunge arbejde'-opgaver som at skubbe, trække og løfte. Alternativer til farlig adfærd: tygge-legetøj, fidget tools. Klare grænser for, hvornår det er tid til ro. Etablering af sensorisk ro-hjørne. Samarbejde med ergoterapeut for sensorisk vurdering.",
+      "værktøjer": "Trin 1: Kortlæg hvilke sanseinput han søger og undgår. Trin 2: Indfør daglig 'sensorisk diæt' med balanceret stimulering og ro. Trin 3: Koordinér pædagogisk og ergoterapeutisk indsats. Del observationer med forældre og lav fælles plan.",
+      "kategori": "ADHD & Sensorisk reguleringsvanskelighed",
+      "kort_beskrivelse": "Noah søger konstant sanseinput og bliver hurtigt overstimuleret. En struktureret sensorisk plan og rolige pauser hjælper ham til bedre selvregulering.",
+      "kompleksitet": "moderat",
+      "refleksion": "Efter implementering af daglige sansestrukturer faldt antallet af konflikter, og Noah begyndte selv at søge ro, når han blev overstimuleret.",
+      "resultat": "Noah kan nu deltage i aktiviteter uden at overbelaste sig selv og viser tydelig forbedring i selvregulering.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah søger konstant sansestimuli – han kører rundt, råber, klatrer, tygger på ting og kan sjældent sidde stille. Han bliver hurtigt overstimuleret, me..."
+    },
+    {
+      "id": "case-bs-002",
+      "titel": "Marcus 4 år",
+      "alder": 4,
+      "diagnoser": [
+        "ADHD (mistanke – impulsiv-social reguleringsvanskelighed)"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Aggressiv leg, sociale regler, konflikthåndtering",
+      "problem": "Marcus vil gerne lege med andre børn, men hans leg bliver hurtigt for intens og fysisk. Han vælter byggeværker, overtager lege og bliver vred, når andre siger fra. De andre børn begynder at undgå ham, hvilket gør ham endnu mere frustreret.",
+      "barnets_oplevelse": "Jeg prøver bare at lege – men de gider ikke være med mig!",
+      "typisk_fejl": "Ser det som bevidst drilleri frem for impulsivitet. Mangler voksenstøtte i legesituationer. Forventer, at Marcus selv lærer sociale regler gennem erfaring.",
+      "løsning": "Indfør struktureret social leg med tydelige regler, visuel støtte og voksenfacilitering. Hjælp Marcus med at forstå og øve sociale signaler i trygge rammer.",
+      "tiltag": "Visuelle legeregler gennem billeder og korte sætninger. Voksenstyret leg hvor Marcus øver at følge andres ideer. Hjælper-roller i stedet for lederroller. Indfør 'pause'-strategier ved overstimulering. Match ham med børn med samme energiniveau. Brug positiv feedback: 'Se hvor glade de blev, da du spurgte først!'",
+      "værktøjer": "Trin 1: Lær legens grundregler gennem visuel støtte og rollespil. Trin 2: Faciliter voksenstøttede lege med tydelige roller og turtagning. Trin 3: Træn selvstændig social leg med gradvis reduktion af voksenhjælp. Evaluer fremskridt løbende og justér støtte efter behov.",
+      "kategori": "ADHD (impulsiv-social reguleringsvanskelighed)",
+      "kort_beskrivelse": "Marcus vil gerne lege, men hans impulsivitet gør legen for voldsom. Strukturerede lege og visuelle regler hjælper ham med at udvikle social kontrol.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da pædagogerne begyndte at bruge faste legeregler og voksenfacilitering, faldt konflikterne markant, og Marcus begyndte at få stabile legeaftaler.",
+      "resultat": "Marcus kan nu deltage i leg uden at eskalere og viser forståelse for andres signaler.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus vil gerne lege med andre børn, men hans leg bliver hurtigt for intens og fysisk. Han vælter byggeværker, overtager lege og bliver vred, når and..."
+    },
+    {
+      "id": "case-to-003",
+      "titel": "Marcus 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "ADHD",
+        "Opmærksomheds- og strukturvanskeligheder"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Skolestart, struktur, selvregulering",
+      "problem": "Marcus fungerede godt i børnehaven, men skolestarten udløste totale sammenbrud. Han kan ikke sidde stille i længere tid, mister hurtigt fokus og bliver frustreret, når han ikke kan følge regler eller krav. Han reagerer med vrede, gråd eller flugt, og både lærere og forældre oplever ham som udmattet og ulykkelig.",
+      "barnets_oplevelse": "Alt er for meget – de bestemmer hele tiden, og jeg må aldrig bare lege.",
+      "typisk_fejl": "Skiftet fra børnehave til skole sker for brat. Forventninger til koncentration og regler tilpasses ikke barnets modenhed. Manglende bro mellem leg og læring. Fokus på adfærd frem for regulering.",
+      "løsning": "Skab en gradvis overgang mellem børnehave og skole. Kombinér struktur med bevægelse og visuel støtte. Byg succesoplevelser gennem leg og korte, overskuelige læringssekvenser. Bevar relationer og rutiner, der giver tryghed.",
+      "tiltag": "Kortere skoledage i opstartsperioden. Bevægelsespauser hver 15. minut. Leg-baserede læringsaktiviteter. Visuelle rutiner og piktogrammer for dag og regler. Koordinering mellem skole og hjem om faste strategier. Involver tidligere børnehavepersonale i overgangen. Vedligehold børnehavevenskaber som stabil base.",
+      "værktøjer": "Trin 1: Gradvis strukturintroduktion – korte dage, leg, tryghed og forudsigelighed. Trin 2: Optræning af skolefærdigheder – sidde stille, vente på tur, følge instruktioner gennem øvelse og ros. Trin 3: Selvstændig mestring – brug af hjælpemidler, rutinekendskab og strategier for at regulere uro og frustration.",
+      "kategori": "ADHD (overgang og tilpasningsvanskeligheder)",
+      "kort_beskrivelse": "Marcus oplever et struktur-chok ved skolestart. Gradvis tilpasning, bevægelsespauser og visuelle støtter hjælper ham til at falde til og lære på egne præmisser.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da skoledagen blev kortere og mere legende i starten, kunne Marcus pludselig trives og lære at mestre struktur i sit eget tempo.",
+      "resultat": "Marcus deltager nu aktivt i timerne og bruger bevægelsespauser og visuel planlægning til at holde fokus.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus fungerede godt i børnehaven, men skolestarten udløste totale sammenbrud. Han kan ikke sidde stille i længere tid, mister hurtigt fokus og blive..."
+    },
+    {
+      "id": "case-to-005",
+      "titel": "Liam 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "ADHD",
+        "Vanskeligheder med tidsforståelse og planlægning"
+      ],
+      "miljø": [
+        "Hjem",
+        "Skoleforberedelse"
+      ],
+      "tema": "Eksekutive funktioner, rutiner, familiedynamik",
+      "problem": "Liam bliver fuldstændig overvældet af skolens morgenrutiner. Han mister fokus midt i påklædning, glemmer hvad han er i gang med og reagerer med gråd eller vrede, når forældrene skynder på ham. Hele familien starter dagen stresset, og Liam begynder at forbinde morgener med nederlag og konflikter.",
+      "barnets_oplevelse": "Jeg prøver, men alt sker så hurtigt – og så råber de.",
+      "typisk_fejl": "Forventer at barnet selv kan strukturere morgenen. Giver mange verbale instruktioner på én gang. Forældre reagerer med tidspres og skældud i stedet for at skabe forudsigelig ro.",
+      "løsning": "Brug visuelle rutiner og ekstern struktur, så barnet kan se fremgangen. Fjern tidspres og gør morgenen forudsigelig. Opdel alt i micro-trin og brug små succeser som drivkraft.",
+      "tiltag": "Morgenrutine opdelt i visuelle deltrin med billeder. Timer eller time-timer som viser tidens forløb. 'Morgenkasse' med tøj, madpakke og sko klar aftenen før. Ét trin ad gangen med check-off system. Fast 'morgenmusik' som rytmisk struktur. Familien starter 30 minutter tidligere for at undgå stress.",
+      "værktøjer": "Trin 1: Eliminér kaos – forbered alt aftenen før, fjern tidspres og etabler faste rutiner. Trin 2: Ekstern støtte – brug visuelle planer, timere og checklister, og giv ros for delmål. Trin 3: Selvstændig mestring – lad Liam gradvist overtage dele af rutinen og bruge hjælpemidler selvstændigt.",
+      "kategori": "ADHD (eksekutive funktionsvanskeligheder – planlægning og rutiner)",
+      "kort_beskrivelse": "Liam bryder sammen under tidspres i morgenrutinen. Ved at bruge visuelle planer, forberedelse og fjernet tidspres lærer familien at skabe ro og struktur.",
+      "kompleksitet": "lav-moderat",
+      "refleksion": "Da familien begyndte at bruge visuel morgenplan og fjernede tidspres, faldt konflikterne markant, og Liam begyndte selv at tage initiativ til rutinen.",
+      "resultat": "Liam klarer nu morgenerne med støtte fra struktur og faste rytmer, og hele familien oplever en roligere start på dagen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Liam bliver fuldstændig overvældet af skolens morgenrutiner. Han mister fokus midt i påklædning, glemmer hvad han er i gang med og reagerer med gråd e..."
+    },
+    {
+      "id": "case-bh-003",
+      "titel": "Lucas 5 år",
+      "alder": 5,
+      "diagnoser": [
+        "ADHD (impulsiv type)"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Impulsiv aggression, grænsesætning, kønsspecifik adfærd",
+      "problem": "Lucas reagerer pludseligt og voldsomt i sociale situationer. Han kradser, skubber og slår både drenge og piger, men reagerer særligt kraftigt på piger, når de afviser ham. Drengekonflikter handler oftere om dominans og kontrol i leg. Personalet beskriver ham som uforudsigelig og 'eksplosiv' – udbruddene kommer uden tydelige varsler.",
+      "barnets_oplevelse": "Jeg bliver sur lige pludselig – så gør jeg det bare.",
+      "typisk_fejl": "Fokus på konsekvenser i stedet for forebyggelse. Tolkning af aggression som bevidst handling. Manglende kortlægning af triggere og reguleringsstrategier. Uklare reaktionsmønstre blandt voksne.",
+      "løsning": "Skab forudsigelighed og struktureret støtte omkring Lucas. Identificér tidlige signaler på affekt-opbygning, og giv ham konkrete alternativer til fysisk udtryk. Arbejd systematisk med kropsfornemmelse, affektregulering og grænseforståelse gennem relation og struktur.",
+      "tiltag": "Daglig strukturplan med forudsigelige overgange. 'Ro-zoner' hvor Lucas kan trække sig, før impulsen overtager. Systematisk observation og registrering af triggere. Fysisk afløb (løb, bold, skub-lege) som reguleringsstrategi. Voksne modellerer rolig adfærd og anerkender følelser, før der gribes ind. Fokus på kønsforskelle i reaktioner: tryghed og respekt for afvisning trænes eksplicit.",
+      "værktøjer": "Trin 1: Observation og analyse – kortlæg tid, sted og relationer for udbrud. Trin 2: Forebyggelse – planlæg støtte i udsatte situationer og brug tydelige signaler før konflikter. Trin 3: Regulering og genopbygning – lær Lucas at genkende sine kropslige signaler og anvende alternativer til fysisk reaktion. Trin 4: Fælles faglighed – ensartet voksenrespons, så han oplever sammenhæng.",
+      "kategori": "ADHD (impulsiv-social reguleringsvanskelighed)",
+      "kort_beskrivelse": "Lucas reagerer voldsomt og uforudsigeligt på sociale stimuli. Med struktur, trigger-kortlægning og reguleringsstøtte kan han lære at stoppe impulsen før den bliver fysisk.",
+      "kompleksitet": "moderat-høj",
+      "refleksion": "Efter systematisk trigger-analyse begyndte personalet at se mønstre: udbruddene kom altid ved afvisning eller pludselige krav. Da strategierne blev ensrettet, faldt antallet af fysiske episoder markant.",
+      "resultat": "Lucas kan nu sige stop og søge hjælp i stedet for at slå. Relationerne til både drenge og piger er mere stabile.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lucas reagerer pludseligt og voldsomt i sociale situationer. Han kradser, skubber og slår både drenge og piger, men reagerer særligt kraftigt på piger..."
+    },
+    {
+      "id": "case-aa-002",
+      "titel": "Oliver 9 år",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD",
+        "Autisme (mild)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk"
+      ],
+      "tema": "Sociale signaler, impulsivitet, grænseforståelse",
+      "problem": "Oliver har store vanskeligheder med at forstå og navigere i sociale regler. Han afbryder konstant, griner på upassende tidspunkter og reagerer fysisk, især når han oplever noget som uretfærdigt. Han har svært ved at aflæse andres grænser og reagerer kraftigt på ændringer i struktur. Hans udbrud virker pludselige, men udspringer af misforståelser og overstimulering.",
+      "barnets_oplevelse": "Jeg forstår ikke, hvorfor de bliver sure. Jeg prøvede bare at sige noget.",
+      "typisk_fejl": "At tolke Olivers handlinger som bevidst provokation. Manglende kobling mellem hans impulsivitet (ADHD) og sociale misforståelser (autisme). Manglende forberedelse på strukturændringer og følelsesregulering.",
+      "løsning": "Kombiner konkret social træning med impulskontrolstrategier. Skab visuel og verbal forudsigelighed, og lær Oliver at aflæse sociale signaler gennem tydelig guidning og modellering. Giv ham værktøjer til at 'pause' før han reagerer, og strukturer sociale situationer med klare regler.",
+      "tiltag": "Brug af 'pauseknap'-strategi (fysisk berøring af egen arm før han taler). Visuelle kort over sociale regler. Rollespil hvor han øver, hvordan man reagerer på uretfærdighed uden at handle fysisk. Social buddy der hjælper ham med at aflæse situationer. Forudsigelighed ved strukturændringer. Systematisk feedback fra voksne på, hvad der gik godt i sociale interaktioner.",
+      "værktøjer": "Trin 1: Observation og struktur – kortlæg hvilke sociale situationer udløser misforståelser. Trin 2: Forudsigelighed og modellering – brug konkrete, visuelle støtter og øv sociale scripts. Trin 3: Impulskontrol og refleksion – lær Oliver at bruge 'pauseknappen' og tale om, hvad han mærker. Trin 4: Konsistens – alle voksne anvender samme strategi og sprog for at skabe sammenhæng.",
+      "kategori": "ADHD & Autisme (social impulsivitet og kommunikationsvanskeligheder)",
+      "kort_beskrivelse": "Oliver forstår ikke sociale signaler og reagerer impulsivt, når han føler sig uretfærdigt behandlet. Med visuel støtte og social guidning lærer han at stoppe, aflæse og reagere passende.",
+      "kompleksitet": "moderat-høj",
+      "refleksion": "Efter systematisk social guidning begyndte Oliver at kunne forudse sociale konflikter. Han lærte at bruge sin 'pauseknap' og spørge voksne i stedet for at reagere fysisk.",
+      "resultat": "Olivers fysiske reaktioner faldt markant. Han deltager nu aktivt i gruppeaktiviteter og har begyndende stabile venskaber.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver har store vanskeligheder med at forstå og navigere i sociale regler. Han afbryder konstant, griner på upassende tidspunkter og reagerer fysisk,..."
+    },
+    {
+      "id": "case-te-003",
+      "titel": "Mads 15 år",
+      "alder": 15,
+      "diagnoser": [
+        "ADHD",
+        "ODD (oppositionel adfærdsforstyrrelse)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Affektregulering, autonomi, relationsbrud",
+      "problem": "Mads får gentagne affektsammenbrud i undervisningen. Han nægter opgaver, forlader klassen uden tilladelse, og reagerer aggressivt på irettesættelser. I nogle timer arbejder han fokuseret og engageret, hvilket skaber forvirring blandt lærere. Han beskrives som intelligent, men med lav frustrationstærskel og stærkt kontrolbehov. Konflikter opstår typisk ved oplevelser af uretfærdighed eller tab af autonomi.",
+      "barnets_oplevelse": "De bestemmer alting. Jeg får aldrig vælge. Hvis jeg ikke siger fra, bliver jeg sur.",
+      "typisk_fejl": "At fortolke adfærden som bevidst provokation i stedet for følelsesmæssig overbelastning. At fokusere på disciplin frem for relation. At kræve ro og lydighed uden at adressere kontrolbehovet. At skifte personale uden overlevering af relationel kontinuitet.",
+      "løsning": "Flyt fokus fra kontrol til samarbejde. Skab strukturer, hvor Mads får reel indflydelse på sin egen arbejdsform og pauser. Brug tydelig forudsigelighed, faste voksne og korte, konkrete krav. Adskil personen fra adfærden – fasthold relationen også efter konflikter. Undgå magtopgør; arbejd med aftaler og valgmuligheder frem for ordrer.",
+      "tiltag": "‘Valg inden for rammer’: to acceptable opgaver at vælge mellem. Forberedelsesstrategi ved kendte triggers (fx opstart af skoledag). ‘Cool-down-zone’ hvor han kan regulere affekt uden tab af ansigt. Fast voksenrelation med daglige korte check-ins. Efter-episodisk samtale med fokus på mestring, ikke straf. Skema-tilpasning med korte arbejdsintervaller og bevægelsespauser.",
+      "værktøjer": "Trin 1: Kortlæg affekt-triggere og magtfornemmelser. Trin 2: Skab forudsigelige rammer og relationel kontinuitet. Trin 3: Indfør fleksible valgmuligheder for at reducere modstand. Trin 4: Lær Mads selv at registrere affekt – fx via ‘temperaturkort’. Trin 5: Efterkonflikt-samtaler med fokus på ansvar og reparation frem for skyld.",
+      "kategori": "ADHD & Adfærdsregulering (autonomi og affekt)",
+      "kort_beskrivelse": "Mads kæmper med affektudbrud og kontrolbehov. Med faste rammer, reelt valg og relationel stabilitet kan han genvinde samarbejde uden at miste autonomi.",
+      "kompleksitet": "høj",
+      "refleksion": "Da lærerne begyndte at give ham valg i stedet for påbud, faldt antallet af udbrud markant. Han begyndte selv at bede om pauser, før han eksploderede.",
+      "resultat": "Mads har færre konflikter og kan nu genoptage undervisning efter pauser. Han deltager i elevsamtaler om egne strategier og oplever mere kontrol over skoledagen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mads får gentagne affektsammenbrud i undervisningen. Han nægter opgaver, forlader klassen uden tilladelse, og reagerer aggressivt på irettesættelser. ..."
+    },
+    {
+      "id": "case-sp-002",
+      "titel": "Noah 7 år",
+      "alder": 7,
+      "diagnoser": [
+        "ADHD",
+        "DCD (Developmental Coordination Disorder)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk",
+        "Hjem"
+      ],
+      "tema": "Sensorisk søgende adfærd, motorisk uro, læringsmiljø",
+      "problem": "Noah har svært ved at sidde stille og søger konstant fysisk input. Han rører ved alt omkring sig, trommer på bordet, falder af stolen og støder ofte ind i andre børn. Han virker ikke trodsig, men beskriver, at han har behov for at bevæge sig for at kunne koncentrere sig. Den motoriske uro påvirker både hans læring og relationer i klassen.",
+      "barnets_oplevelse": "Jeg prøver at sidde stille, men det kilder i kroppen.",
+      "typisk_fejl": "At se bevægelsesbehovet som dårlig opførsel i stedet for som et sansebehov. At bruge straf, irettesættelse eller fjernelse fra undervisningen frem for struktureret bevægelse. At undervurdere effekten af små, planlagte bevægelsespauser. At ignorere behovet for tværfaglig støtte fra ergo- og fysioterapeut.",
+      "løsning": "Skab en struktureret bevægelsesplan, der integreres i undervisningen. Giv Noah faste bevægelsespauser cirka hver 20. minut og fysiske 'arbejdsopgaver', der giver ham sensorisk input uden at forstyrre andre. Implementér alternative siddepladser som bold, vippepude eller ståpult. Indfør sansestimulerende værktøjer (fidget, håndtryk, vægtpuder) og koordinér indsatsen med ergo- og fysioterapeut. Planlæg fysiske aktiviteter i frikvarterer, så han får udløb for motorisk energi.",
+      "tiltag": "Etabler visuel pausestruktur med timer og kort. Indfør 'bevægelses-jobs' (dele papirer, hente materialer, viske tavle). Brug sansestol eller vippepude i timerne. Planlæg fysisk krævende frikvarteraktiviteter. Koordinér dagligt mellem lærere og AKT/ergoterapeut. Evaluer effekten løbende på uro, koncentration og social interaktion.",
+      "værktøjer": "Trin 1: Sensorisk observation – identificer bevægelses- og stimuli-behov. Trin 2: Etabler bevægelsesplan og pausesystem. Trin 3: Implementér alternative arbejdspladser. Trin 4: Skab samarbejde mellem lærer, ergo- og fysioterapeut. Trin 5: Evaluer effekt og justér ud fra funktion frem for adfærd.",
+      "kategori": "ADHD & DCD (sensorisk søgende og motorisk uro)",
+      "kort_beskrivelse": "Noah søger konstant bevægelse og fysisk input. En struktureret bevægelsesplan og tilpasset læringsmiljø reducerer uro og forbedrer koncentration og trivsel.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da læreren begyndte at give Noah faste bevægelsespauser og små opgaver i klassen, faldt antallet af afbrydelser markant. Han begyndte selv at sige: 'Jeg skal lige bevæge mig, så kan jeg høre igen.'",
+      "resultat": "Noah deltager nu stabilt i undervisningen, bruger vippepude og har faste pauser. Han arbejder længere tid ad gangen og har færre konflikter med klassekammerater.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah har svært ved at sidde stille og søger konstant fysisk input. Han rører ved alt omkring sig, trommer på bordet, falder af stolen og støder ofte i..."
+    },
+    {
+      "id": "case-sh-001",
+      "titel": "Elias 8 år",
+      "alder": 8,
+      "diagnoser": [
+        "ADHD"
+      ],
+      "miljø": [
+        "Hjem",
+        "Familie"
+      ],
+      "tema": "Søskenderelationer, jalousi, emotionel regulering",
+      "problem": "Elias mister besindelsen, når hans lillesøster får ros, opmærksomhed eller får lov til noget, han selv ikke må. Han råber, håner, skubber eller nægter at være i samme rum. Forældrene beskriver voldsomme følelsesskift – fra kærlig til eksplosiv på få sekunder. Konflikterne eskalerer især, når Elias føler sig overset eller uretfærdigt behandlet.",
+      "barnets_oplevelse": "Hvad kan jeg gøre i stedet?",
+      "typisk_fejl": "At tolke reaktionerne som misundelse eller dårlig opførsel frem for emotionel overbelastning. At skifte mellem vrede og overbeskyttelse fra forældrenes side. At rose søsteren foran Elias uden at forberede ham. At overse behovet for selvstændig ros og anerkendelse af hans indsats.",
+      "løsning": "Skab forudsigelige rutiner for ros og opmærksomhed, så Elias ikke oplever uforudsigelig uretfærdighed. Brug individualiseret ros: 'Jeg kan se, du prøvede at styre dig lige før' i stedet for sammenligning med søsteren. Træn affektregulering gennem korte, konkrete teknikker (træk vejret, gå væk, brug kodeord). Giv Elias egne 'positive relationstider' med en forælder uden søsteren til stede. Indfør familieritualer, hvor begge børn får plads og anerkendelse på skift.",
+      "tiltag": "Etabler daglig 1:1-tid mellem Elias og en voksen. Indfør familierutine for 'fælles ros' uden sammenligning. Lav visuel plan for tur- og taletid i hjemmet. Øv 'pause før reaktion' med visuel støtte (kort, vejrtrækning, bevægelse). Brug konfliktsamtaler i neutral tid med fokus på følelser frem for skyld. Inddrag evt. familiebehandler ved vedvarende konflikter.",
+      "værktøjer": "Trin 1: Observer mønstre – hvornår og hvorfor opstår jalousi? Trin 2: Implementér individuel opmærksomhedsstruktur. Trin 3: Træn affektregulering gennem lege eller visualisering. Trin 4: Styrk søskenderelationen gennem fælles opgaver, hvor Elias kan få positiv rolle (hjælper, ansvarlig, støtte). Trin 5: Skab konsekvent forældresamarbejde – ingen 'skiftende linje' mellem vrede og eftergivenhed.",
+      "kategori": "ADHD (emotionel regulering og søskendynamik)",
+      "kort_beskrivelse": "Elias reagerer voldsomt, når søsteren får opmærksomhed. Gennem struktur, individuel anerkendelse og følelsesregulering kan jalousien omformes til tryghed og samarbejde.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da forældrene begyndte at give Elias fast 1:1-tid hver dag og bruge kodeord ved affekt, faldt udbruddene markant. Han begyndte selv at sige: 'Jeg går lige væk' i stedet for at eksplodere.",
+      "resultat": "Elias kan nu acceptere, at søsteren får ros uden voldsom reaktion. Han bruger pauseteknikker og søger fysisk afstand, før konflikter opstår. Familien oplever færre sammenbrud og mere ro i hjemmet.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Elias mister besindelsen, når hans lillesøster får ros, opmærksomhed eller får lov til noget, han selv ikke må. Han råber, håner, skubber eller nægter..."
+    },
+    {
+      "id": "case-dcd-002",
+      "titel": "Asger 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "DCD"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Motorisk usikkerhed, skam, udadreagerende coping",
+      "problem": "Asger reagerer med vrede, når han skal deltage i fysiske aktiviteter som idræt, boldspil eller samarbejdslege. Han råber, går ud af hallen og afviser opgaver som 'åndssvage'. Lærerne tolker det som modstand eller dominans, men han kæmper med motorisk koordination og bliver hurtigt udstillet foran andre. Han griner selvnedladende, når han fejler, og søger kontrol gennem afvisning i stedet for deltagelse.",
+      "barnets_oplevelse": "Jeg hader, når de ser, jeg ikke kan. Så går jeg bare først.",
+      "typisk_fejl": "At tolke vrede som trods fremfor skam. At stille ham til ansvar for adfærd uden at forstå motorisk usikkerhed. At forvente deltagelse i grupper uden individuel støtte. At sammenligne ham med mere koordinerede drenge.",
+      "løsning": "Skab motorisk tryghed før sociale krav. Differentier fysiske aktiviteter og fjern publikumsfaktor i starten. Giv ham små, opnåelige mål med positiv feedback på indsats. Indfør roller i idræt og bevægelse, hvor han kan bidrage uden præstationspres (hjælper, dommer, taktisk støtte). Kombinér motorisk træning med reguleringsstrategier fra ADHD-støtte. Skab en kultur, hvor fejl og klodsethed ikke udløser latter.",
+      "tiltag": "Udarbejd 'bevægelses-tryghedsplan' med realistiske mål. Start med individuelle øvelser i roligt tempo. Brug video-feedback så han ser sine fremskridt. Træn grovmotorik i trygge rammer (balance, bold, koordination) sammen med fysioterapeut. Introducér gradvis fællesaktiviteter med faste makkere. Arbejd eksplicit med skamforståelse og følelsesregulering – hjælp ham til at sige 'jeg er frustreret' i stedet for at råbe.",
+      "værktøjer": "Trin 1: Kortlæg motoriske og følelsesmæssige triggere. Trin 2: Skab trygge bevægelsesrammer uden sammenligning. Trin 3: Implementér små succeser med synlig feedback. Trin 4: Integrér følelsesregulering i bevægelse. Trin 5: Evaluer sammen med Asger – hvad gik bedre, hvad var svært? Brug video, skema eller feedbackkort.",
+      "kategori": "DCD & ADHD (motorisk usikkerhed og følelsesregulering)",
+      "kort_beskrivelse": "Asger reagerer med vrede ved fysisk udfordring. Bag modstanden ligger skam og motorisk usikkerhed. Trygge bevægelsesrammer og følelsesregulering styrker deltagelsen.",
+      "kompleksitet": "moderat-høj",
+      "refleksion": "Da læreren fjernede boldspil med publikumsfaktor og erstattede det med samarbejdsøvelser i små grupper, begyndte Asger at blive i hallen og grine med de andre – ikke af sig selv.",
+      "resultat": "Asger deltager nu i udvalgte idrætsaktiviteter, har færre vredesudbrud og viser stolthed, når han klarer fysiske opgaver. Lærerne beskriver ham som markant mere rolig og samarbejdende.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Asger reagerer med vrede, når han skal deltage i fysiske aktiviteter som idræt, boldspil eller samarbejdslege. Han råber, går ud af hallen og afviser ..."
+    }
+  ]
+}

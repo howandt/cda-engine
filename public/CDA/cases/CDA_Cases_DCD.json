@@ -1,0 +1,126 @@
+{
+  "category": "DCD",
+  "total_cases": 4,
+  "cases": [
+    {
+      "id": "case-sp-002",
+      "titel": "Noah 7 år",
+      "alder": 7,
+      "diagnoser": [
+        "ADHD",
+        "DCD (Developmental Coordination Disorder)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk",
+        "Hjem"
+      ],
+      "tema": "Sensorisk søgende adfærd, motorisk uro, læringsmiljø",
+      "problem": "Noah har svært ved at sidde stille og søger konstant fysisk input. Han rører ved alt omkring sig, trommer på bordet, falder af stolen og støder ofte ind i andre børn. Han virker ikke trodsig, men beskriver, at han har behov for at bevæge sig for at kunne koncentrere sig. Den motoriske uro påvirker både hans læring og relationer i klassen.",
+      "barnets_oplevelse": "Jeg prøver at sidde stille, men det kilder i kroppen.",
+      "typisk_fejl": "At se bevægelsesbehovet som dårlig opførsel i stedet for som et sansebehov. At bruge straf, irettesættelse eller fjernelse fra undervisningen frem for struktureret bevægelse. At undervurdere effekten af små, planlagte bevægelsespauser. At ignorere behovet for tværfaglig støtte fra ergo- og fysioterapeut.",
+      "løsning": "Skab en struktureret bevægelsesplan, der integreres i undervisningen. Giv Noah faste bevægelsespauser cirka hver 20. minut og fysiske 'arbejdsopgaver', der giver ham sensorisk input uden at forstyrre andre. Implementér alternative siddepladser som bold, vippepude eller ståpult. Indfør sansestimulerende værktøjer (fidget, håndtryk, vægtpuder) og koordinér indsatsen med ergo- og fysioterapeut. Planlæg fysiske aktiviteter i frikvarterer, så han får udløb for motorisk energi.",
+      "tiltag": "Etabler visuel pausestruktur med timer og kort. Indfør 'bevægelses-jobs' (dele papirer, hente materialer, viske tavle). Brug sansestol eller vippepude i timerne. Planlæg fysisk krævende frikvarteraktiviteter. Koordinér dagligt mellem lærere og AKT/ergoterapeut. Evaluer effekten løbende på uro, koncentration og social interaktion.",
+      "værktøjer": "Trin 1: Sensorisk observation – identificer bevægelses- og stimuli-behov. Trin 2: Etabler bevægelsesplan og pausesystem. Trin 3: Implementér alternative arbejdspladser. Trin 4: Skab samarbejde mellem lærer, ergo- og fysioterapeut. Trin 5: Evaluer effekt og justér ud fra funktion frem for adfærd.",
+      "kategori": "ADHD & DCD (sensorisk søgende og motorisk uro)",
+      "kort_beskrivelse": "Noah søger konstant bevægelse og fysisk input. En struktureret bevægelsesplan og tilpasset læringsmiljø reducerer uro og forbedrer koncentration og trivsel.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da læreren begyndte at give Noah faste bevægelsespauser og små opgaver i klassen, faldt antallet af afbrydelser markant. Han begyndte selv at sige: 'Jeg skal lige bevæge mig, så kan jeg høre igen.'",
+      "resultat": "Noah deltager nu stabilt i undervisningen, bruger vippepude og har faste pauser. Han arbejder længere tid ad gangen og har færre konflikter med klassekammerater.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Noah har svært ved at sidde stille og søger konstant fysisk input. Han rører ved alt omkring sig, trommer på bordet, falder af stolen og støder ofte i..."
+    },
+    {
+      "id": "case-dcd-001",
+      "titel": "Kasper 7 år",
+      "alder": 7,
+      "diagnoser": [
+        "DCD (Developmental Coordination Disorder)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Motorisk planlægning, selvtillid, læringsstrategier",
+      "problem": "Kasper vælter ofte ting, mister greb om redskaber og skriver langsomt. Han undgår opgaver med klipning, limning og skrivning, og siger 'jeg kan ikke' før han prøver. Han sammenligner sig med andre og bliver frustreret, når det går langsomt. Drengene driller ham for at være klodset, og han trækker sig i gruppearbejde.",
+      "barnets_oplevelse": "De andre kan det hele. Jeg gider ikke, for jeg laver det forkert.",
+      "typisk_fejl": "At overse DCD som 'manglende motivation'. At presse til hurtigere tempo fremfor at støtte motorisk planlægning. At give ham roller, der kræver præcision uden kompensation. At overse de psykiske konsekvenser af gentagne nederlag.",
+      "løsning": "Skab motorisk succes og bevægelsesglæde før finmotorisk træning. Tilpas kravene i tempo og kompleksitet. Brug større redskaber, ergonomiske hjælpemidler og alternative måder at udføre opgaver på. Indfør IT-støtte (tastatur, diktering) ved skriftligt arbejde. Samarbejd med ergo- og fysioterapeut om træningsplan, og styrk selvtilliden gennem daglig feedback på indsats fremfor præcision.",
+      "tiltag": "Udarbejd individuel 'motorisk støtteplan'. Indfør faste 'styrkeaktiviteter' som boldspil, klatring eller byggeprojekter, hvor Kasper oplever kontrol. Brug tydelige start- og slutmarkører i opgaver. Differentier opgavemængde og skrivestøtte. Skab klassekultur hvor forskellighed i tempo er normalt. Dokumentér små sejre visuelt (ugeseddel, billeder).",
+      "værktøjer": "Trin 1: Ergoobservation og kortlægning af udfordringer. Trin 2: Implementér hjælpemidler og differentieret opgavemængde. Trin 3: Styrk motorisk selvtillid gennem styrkeaktiviteter. Trin 4: Samarbejd mellem lærer, ergo og forældre. Trin 5: Evaluér funktionsfremskridt og trivsel hver 4. uge.",
+      "kategori": "DCD (motorisk planlægning og selvtillid)",
+      "kort_beskrivelse": "Kasper kæmper med koordination og mister modet hurtigt. Motorisk støtte, små sejre og tværfagligt samarbejde styrker selvtillid og deltagelse.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da læreren begyndte at give Kasper alternative redskaber og daglige 'styrkeopgaver', begyndte han at række hånden op igen og deltage i fælles aktiviteter.",
+      "resultat": "Kasper kan nu skrive korte tekster på tablet, deltage i gruppearbejde og viser stolthed over små fremskridt. Han falder sjældnere i selvkritik, og klassen driller ham ikke længere.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Kasper vælter ofte ting, mister greb om redskaber og skriver langsomt. Han undgår opgaver med klipning, limning og skrivning, og siger 'jeg kan ikke' ..."
+    },
+    {
+      "id": "case-dcd-002",
+      "titel": "Asger 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "DCD"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Motorisk usikkerhed, skam, udadreagerende coping",
+      "problem": "Asger reagerer med vrede, når han skal deltage i fysiske aktiviteter som idræt, boldspil eller samarbejdslege. Han råber, går ud af hallen og afviser opgaver som 'åndssvage'. Lærerne tolker det som modstand eller dominans, men han kæmper med motorisk koordination og bliver hurtigt udstillet foran andre. Han griner selvnedladende, når han fejler, og søger kontrol gennem afvisning i stedet for deltagelse.",
+      "barnets_oplevelse": "Jeg hader, når de ser, jeg ikke kan. Så går jeg bare først.",
+      "typisk_fejl": "At tolke vrede som trods fremfor skam. At stille ham til ansvar for adfærd uden at forstå motorisk usikkerhed. At forvente deltagelse i grupper uden individuel støtte. At sammenligne ham med mere koordinerede drenge.",
+      "løsning": "Skab motorisk tryghed før sociale krav. Differentier fysiske aktiviteter og fjern publikumsfaktor i starten. Giv ham små, opnåelige mål med positiv feedback på indsats. Indfør roller i idræt og bevægelse, hvor han kan bidrage uden præstationspres (hjælper, dommer, taktisk støtte). Kombinér motorisk træning med reguleringsstrategier fra ADHD-støtte. Skab en kultur, hvor fejl og klodsethed ikke udløser latter.",
+      "tiltag": "Udarbejd 'bevægelses-tryghedsplan' med realistiske mål. Start med individuelle øvelser i roligt tempo. Brug video-feedback så han ser sine fremskridt. Træn grovmotorik i trygge rammer (balance, bold, koordination) sammen med fysioterapeut. Introducér gradvis fællesaktiviteter med faste makkere. Arbejd eksplicit med skamforståelse og følelsesregulering – hjælp ham til at sige 'jeg er frustreret' i stedet for at råbe.",
+      "værktøjer": "Trin 1: Kortlæg motoriske og følelsesmæssige triggere. Trin 2: Skab trygge bevægelsesrammer uden sammenligning. Trin 3: Implementér små succeser med synlig feedback. Trin 4: Integrér følelsesregulering i bevægelse. Trin 5: Evaluer sammen med Asger – hvad gik bedre, hvad var svært? Brug video, skema eller feedbackkort.",
+      "kategori": "DCD & ADHD (motorisk usikkerhed og følelsesregulering)",
+      "kort_beskrivelse": "Asger reagerer med vrede ved fysisk udfordring. Bag modstanden ligger skam og motorisk usikkerhed. Trygge bevægelsesrammer og følelsesregulering styrker deltagelsen.",
+      "kompleksitet": "moderat-høj",
+      "refleksion": "Da læreren fjernede boldspil med publikumsfaktor og erstattede det med samarbejdsøvelser i små grupper, begyndte Asger at blive i hallen og grine med de andre – ikke af sig selv.",
+      "resultat": "Asger deltager nu i udvalgte idrætsaktiviteter, har færre vredesudbrud og viser stolthed, når han klarer fysiske opgaver. Lærerne beskriver ham som markant mere rolig og samarbejdende.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Asger reagerer med vrede, når han skal deltage i fysiske aktiviteter som idræt, boldspil eller samarbejdslege. Han råber, går ud af hallen og afviser ..."
+    },
+    {
+      "id": "case-dcd-003",
+      "titel": "Line 13 år",
+      "alder": 13,
+      "diagnoser": [
+        "DCD",
+        "Angst",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Motorisk nederlag, angst, social tilbagetrækning",
+      "problem": "Line trækker sig gradvist fra både undervisning og sociale fællesskaber. Hun undgår praktiske fag og deltager sjældent i gruppearbejde. Hun sidder alene i pauser, virker træt og uinteresseret, og siger ofte 'jeg ved ikke' eller 'jeg er ligeglad'. Hendes skrivehastighed er meget lav, og hun bliver overvældet af opgaver med mange deltrin. Lærerne beskriver hende som stille og høflig, men følelsesmæssigt fraværende.",
+      "barnets_oplevelse": "Jeg siger ikke noget, for jeg gider ikke gøre det forkert igen.",
+      "typisk_fejl": "At tolke stilheden som ligegyldighed i stedet for opgivenhed. At overse motorisk og sensorisk udmattelse som årsag til social isolation. At øge faglige krav for at 'motivere', hvilket i stedet øger hendes angst. At fokusere på præstation frem for relation og restitution.",
+      "løsning": "Reducér belastning og genopbyg motivation gennem succesoplevelser. Skab trygge læringsmiljøer med tydelige, overskuelige opgaver og visuel støtte. Arbejd med sansemæssig og motorisk tilpasning (hjælpemidler, pauser, rytme). Etabler fast voksenkontakt med fokus på relation og mestring. Gradvis genindslusning i sociale aktiviteter med forudsigelighed og støtte. Inddrag psykologisk støtte for at adressere lavt selvværd og angstreaktioner.",
+      "tiltag": "Udarbejd individuel plan med fokus på mestring i små trin. Brug hjælpemidler (tablet, diktering) for at reducere skrivebelastning. Planlæg pauser i sensorisk rolige zoner. Introducér 'samarbejdsaktiviteter med faste roller' for at skabe kontrol i sociale kontekster. Implementér ugentlig samtale med kontaktperson om trivsel og fremgang. Brug styrkebaseret feedback: fokus på indsats og overblik, ikke tempo.",
+      "værktøjer": "Trin 1: Kortlæg sanse- og motorisk belastning. Trin 2: Skab struktureret støtteplan med visuel oversigt. Trin 3: Genopbyg deltagelse gennem små succeser. Trin 4: Inddrag psykologisk støtte og angstregulering. Trin 5: Evaluer progression i både trivsel og deltagelse hver 4. uge.",
+      "kategori": "DCD & Autisme (motorisk nederlag og social tilbagetrækning)",
+      "kort_beskrivelse": "Line trækker sig fra fællesskabet efter gentagne nederlag. En kombineret indsats med struktur, sansepauser og relationel støtte genopbygger motivation og deltagelse.",
+      "kompleksitet": "høj",
+      "refleksion": "Da skolen fjernede krav om gruppearbejde midlertidigt og i stedet fokuserede på små individuelle sejre med visuel feedback, begyndte Line at opsøge de andre elever igen og smile, når hun blev rost for sin indsats.",
+      "resultat": "Line deltager nu i udvalgte fag og korte sociale aktiviteter. Hun bruger hjælpemidler ved skrivning og har genvundet lysten til at prøve. Angst og fravær er faldet markant.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Line trækker sig gradvist fra både undervisning og sociale fællesskaber. Hun undgår praktiske fag og deltager sjældent i gruppearbejde. Hun sidder ale..."
+    }
+  ]
+}

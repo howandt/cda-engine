@@ -1,0 +1,472 @@
+{
+  "category": "Angst",
+  "total_cases": 16,
+  "cases": [
+    {
+      "id": "case-an-014",
+      "titel": "Emma 5 år",
+      "alder": 5,
+      "diagnoser": [
+        "Angst"
+      ],
+      "miljø": [
+        "Fagfolk"
+      ],
+      "tema": "Tryghed, frisør, forklaring",
+      "problem": "Emma er bange for at få klippet hår og forestiller sig smerte eller fejl. Hun trækker sig og bliver utryg ved selve situationen.",
+      "barnets_oplevelse": "Jeg tror det gør ondt, og jeg tør ikke når saksen kommer tæt på.",
+      "typisk_fejl": "Forklarer ikke hvad der sker. Starter uden demonstration eller tryghedsskabende leg.",
+      "løsning": "Brug forklarende og legende sprog. Vis processen på en dukke først. Giv barnet kontrol og en positiv ramme.",
+      "tiltag": "Brug dukkefrisør. Forklar med analogier som 'dansende sakse'. Brug tæl-strategi og vejrtrækning. Beløn mod og samarbejde bagefter.",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Emma er bange for at få klippet hår og forestiller sig smerte eller fejl. Hun trækker sig og bliver utryg ved selve situationen.",
+      "kompleksitet": "moderat",
+      "refleksion": "Forberedelse og visualisering reducerede Emmas frygt markant.",
+      "resultat": "Emma gennemførte klipningen efter demonstration og positiv forstærkning.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma er bange for at få klippet hår og forestiller sig smerte eller fejl. Hun trækker sig og bliver utryg ved selve situationen...."
+    },
+    {
+      "id": "case-an-016",
+      "titel": "Sophie 11 år",
+      "alder": 11,
+      "diagnoser": [
+        "Social angst"
+      ],
+      "miljø": [
+        "Fagfolk"
+      ],
+      "tema": "Udtryk, kropssprog, selvværd",
+      "problem": "Sophie bliver genert og usikker hos frisøren. Hun føler sig iagttaget og undgår at sige sin mening.",
+      "barnets_oplevelse": "Jeg bliver nervøs, når de kigger på mig, og jeg tør ikke sige noget forkert.",
+      "typisk_fejl": "Tvinger barnet til at tale højt. Undlader at forberede barnets valg på forhånd.",
+      "løsning": "Giv barnet et billede at pege på i stedet for at tale. Giv valgfrihed mellem verbalt og nonverbalt svar. Forbered valgene sammen hjemmefra.",
+      "tiltag": "Vælg frisørbilleder hjemme og print dem. Lav frisørkort med sætninger som 'kortere i spidserne'. Brug nik eller peg i stedet for at tale.",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Sophie bliver genert og usikker hos frisøren. Hun føler sig iagttaget og undgår at sige sin mening.",
+      "kompleksitet": "moderat",
+      "refleksion": "Ved at give Sophie mulighed for nonverbal kommunikation, blev hun mere tryg og deltagende.",
+      "resultat": "Sophie kunne udtrykke sine ønsker via kort og pegning, og oplevede succes og ro under frisørbesøget.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sophie bliver genert og usikker hos frisøren. Hun føler sig iagttaget og undgår at sige sin mening...."
+    },
+    {
+      "id": "case-an-017",
+      "titel": "Nora 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "Social sårbarhed",
+        "Angst (social undgåelse)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk"
+      ],
+      "tema": "Mobning, følelsesmæssig skade, trygge fællesskaber",
+      "problem": "Nora bliver systematisk udelukket fra lege og gruppesnak. Hun bliver kaldt øgenavne og mister gradvist troen på, at nogen vil hende. Hun trækker sig mere og mere og fremstår stille og trist i timerne.",
+      "barnets_oplevelse": "Der er ikke nogen, der gider mig – de vil bare være sammen uden mig.",
+      "typisk_fejl": "Voksne undervurderer situationen, fordi det ikke er fysisk mobning. Man forventer, at Nora selv skal sige fra uden støtte. Manglende kontinuerlig voksenopfølgning og fællesskabsstrategi.",
+      "løsning": "Anerkend mobning som et mønster, ikke enkelthændelser. Etabler trygge voksenalliancer, der handler tidligt. Giv Nora rolle i fællesskaber, hvor hun kan blomstre. Træn social mod og mestring gennem støttende aktiviteter.",
+      "tiltag": "Tryghedsgruppe i frikvarteret. Social historie: 'At være med uden at præstere'. Voksenobservationsskema for mobbemønstre. Kontaktperson eller rollemodel-elev.",
+      "kategori": "Angst (social undgåelse og isolation)",
+      "kort_beskrivelse": "Nora oplever systematisk udelukkelse og tab af social tilknytning. Trygge fællesskaber og tydelig voksenstøtte kan genopbygge hendes trivsel.",
+      "kompleksitet": "høj",
+      "refleksion": "Tidlig indsats og tydelige voksne ændrede gruppens kultur og reducerede Noras isolation.",
+      "resultat": "Nora deltager nu i frikvarterer sammen med en tryg gruppe og viser stigende selvtillid.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora bliver systematisk udelukket fra lege og gruppesnak. Hun bliver kaldt øgenavne og mister gradvist troen på, at nogen vil hende. Hun trækker sig m..."
+    },
+    {
+      "id": "case-asf-018",
+      "titel": "Emil 11 år",
+      "alder": 11,
+      "diagnoser": [
+        "ASF",
+        "Social angst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Skjult mobning, klassekultur",
+      "problem": "Emil bliver systematisk ignoreret. Når han rækker hånden op, overses han. Han bliver ikke nævnt i legeaftaler, og bag hans ryg griner nogle elever, når han siger noget.",
+      "barnets_oplevelse": "Jeg prøver at sige noget, men ingen svarer. Det føles som om, jeg ikke findes.",
+      "typisk_fejl": "Antager at problemet handler om Emils sociale usikkerhed i stedet for andres handlinger. Ignorerer 'manglende invitation' som passiv mobning.",
+      "løsning": "Tal åbent om usynlig mobning i klassen. Aktivér voksne i gruppearbejde og klassekultur. Sæt ord på mikrohandlinger som udeladelser og blikke.",
+      "tiltag": "Klassefællesskabsdag med samarbejdsøvelser. Læreren sammensætter grupper med inkluderende fokus. Sociale kort til klasseaktiviteter: 'Spørg én, du ikke plejer'. Trivselssamtaler med anonym input fra hele klassen.",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Emil bliver systematisk ignoreret i klassen. Usynlig mobning kan være lige så skadelig som direkte drilleri – kræver tydelig voksenindsats.",
+      "kompleksitet": "høj",
+      "refleksion": "Når usynlig mobning blev synliggjort, ændrede klassekulturen sig gradvist, og Emil blev mere deltagende.",
+      "resultat": "Emil deltager nu aktivt i gruppearbejde og bliver oftere inkluderet i samtaler og aktiviteter.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emil bliver systematisk ignoreret. Når han rækker hånden op, overses han. Han bliver ikke nævnt i legeaftaler, og bag hans ryg griner nogle elever, nå..."
+    },
+    {
+      "id": "case-an-031",
+      "titel": "Anna 8 år",
+      "alder": 8,
+      "diagnoser": [
+        "Generaliseret angst",
+        "Separationsangst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Angst, separation, tryghed",
+      "problem": "Anna kan ikke forlade hjemmet om morgenen uden at få panikangst. Hun græder, kaster op og klamrer sig til sin mor. Efter seks uger hjemme bliver situationen værre for hver dag.",
+      "barnets_oplevelse": "Jeg vil gerne i skole, men jeg bliver helt bange, når jeg skal gå ud ad døren.",
+      "typisk_fejl": "Pres for hurtigt tilbage i skole uden at genopbygge tryghed. Skifter strategi mellem hjemmeundervisning og pres, hvilket øger uforudsigeligheden. Undervurderer intensiteten i separationsangsten.",
+      "løsning": "Gradvis eksponering kombineret med tryghedsstrategier. Start med korte ophold på skolen uden undervisning. Fast kontaktperson der møder Anna ved indgangen. Brug visuel dagsplan og 'mor-telefon' som overgangsredskab. Samordnet besked fra hjem og skole: 'Du er tryg'.",
+      "tiltag": "30 minutter på skolen uden undervisning de første dage. Fast voksenkontakt ved ankomst. 'Mor-telefon' tilladt hver time i to uger. Visuel plan over dagen. Samarbejde mellem skole og hjem om fast tryghedsstruktur.",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Anna oplever intens separationsangst og skolevægring. Gradvis eksponering og tæt voksenstøtte genopbygger trygheden.",
+      "kompleksitet": "høj",
+      "refleksion": "Da trygheden blev prioriteret før fagligheden, begyndte Anna gradvist at vende tilbage til skolen.",
+      "resultat": "Anna møder nu i skole fire dage om ugen med støtte fra kontaktperson og forudsigelig struktur.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Anna kan ikke forlade hjemmet om morgenen uden at få panikangst. Hun græder, kaster op og klamrer sig til sin mor. Efter seks uger hjemme bliver situa..."
+    },
+    {
+      "id": "case-an-033",
+      "titel": "Emma 14 år",
+      "alder": 14,
+      "diagnoser": [
+        "Social angst",
+        "Depression (efter mobning)"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Mobning, tillid, sociale relationer",
+      "problem": "Emma blev udsat for vedvarende mobning i 7.-8. klasse og udviklede så alvorlig social angst, at hun ikke længere kan opholde sig i samme rum som jævnaldrende. Hun har været hjemme i fire måneder og isolerer sig fuldstændigt.",
+      "barnets_oplevelse": "Jeg bliver helt stiv, bare nogen kigger på mig – jeg føler mig forkert og bange hele tiden.",
+      "typisk_fejl": "Forsøger at presse hurtig tilbagevenden til skolen. Ignorerer de traumatiske elementer i hendes oplevelse. Starter gruppetiltag for tidligt uden individuel tryghed.",
+      "løsning": "Brug en traumebevidst tilgang med fokus på tillid og tryghed. Start med online-undervisning for at bevare læringsstruktur. Kombinér individuel terapi med gradvis social eksponering. Udpeg trygge personer som første kontaktflade. Involver klassen i undervisning om mobning og inklusion uden Emma til stede.",
+      "tiltag": "Online-undervisning de første uger. Individuelle samtaler og terapi før gruppeeksponering. Mikro-eksponeringer med én person ad gangen. Undervisning i klassen om mobning og empati. Gradvis reintegration med fast støtteperson.",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Emma udviklede social angst efter mobning. En traumebevidst og gradvis tilgang hjælper hende tilbage i fællesskabet.",
+      "kompleksitet": "høj",
+      "refleksion": "Da indsatsen fokuserede på tillid og tryghed før social eksponering, genvandt Emma troen på fællesskabet.",
+      "resultat": "Emma deltager nu i enkelte fag fysisk med støtte og oplever markant mindre angst i kontakt med jævnaldrende.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma blev udsat for vedvarende mobning i 7.-8. klasse og udviklede så alvorlig social angst, at hun ikke længere kan opholde sig i samme rum som jævna..."
+    },
+    {
+      "id": "case-an-035",
+      "titel": "Sofia 16 år",
+      "alder": 16,
+      "diagnoser": [
+        "Angst",
+        "Perfektionistiske træk",
+        "Mild depression"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Perfektionisme, stress, udbrændthed",
+      "problem": "Sofia har altid været den 'dygtige elev', men begyndte pludselig at blive hjemme, fordi hun ikke kunne leve op til sine egne standarder. Hun arbejdede til langt ud på natten, blev aldrig færdig og følte sig som en fiasko.",
+      "barnets_oplevelse": "Jeg prøver at gøre alt perfekt, men lige meget hvad jeg gør, er det aldrig godt nok.",
+      "typisk_fejl": "Ros for resultater i stedet for indsats. Ignorerer stress-signaler og søvnmangel. Forventer tilbagevenden til normal præstation uden støtte til nye strategier.",
+      "løsning": "Brug gradueret eksponering og 'god nok'-standarder. Definér klare kriterier for færdighed. Begræns arbejdstid på opgaver og lær, at proces er vigtigere end perfektion. Undervis eksplicit i at fejl er konstruktive. Implementér stress- og søvnstrategier.",
+      "tiltag": "Definerede 'god nok'-kriterier for opgaver. Tidsbegrænsede arbejdsperioder med stop uanset færdighed. Opgaver afleveret for feedback selvom de var ufærdige. Samtaler om læring gennem proces. Søvnhygiejne og afspændingsrutiner. Stressmanagement med daglig planlægning og pauser.",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Sofia rammes af angst og udbrændthed pga. perfektionisme. Ved at lære 'god nok'-strategier genvinder hun ro og motivation.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Sofia lærte at acceptere fejl og begrænse arbejdstid, faldt stressen, og hun genfandt glæden ved læring.",
+      "resultat": "Sofia afleverer nu opgaver til tiden, sover bedre og oplever, at hendes præstationer stadig er gode – uden udmattelse.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia har altid været den 'dygtige elev', men begyndte pludselig at blive hjemme, fordi hun ikke kunne leve op til sine egne standarder. Hun arbejdede..."
+    },
+    {
+      "id": "case-bs-003",
+      "titel": "Emma 5 år",
+      "alder": 5,
+      "diagnoser": [
+        "Social angst (mistanke – internaliseret reguleringsmønster)"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Venner"
+      ],
+      "tema": "Social angst, kontrol, autenticitet",
+      "problem": "Emma fremstår som en drømmeelev – rolig, hjælpsom og pligtopfyldende. Men hun deltager aldrig spontant i leg, tager ingen initiativer og bliver ulykkelig, hvis noget ikke går som planlagt. Hun overpræsterer for at undgå fejl og viser tydelig indre spænding.",
+      "barnets_oplevelse": "Jeg vil ikke gøre noget forkert – så er det bedre bare at lade være.",
+      "typisk_fejl": "Tolker hendes ro som trivsel. Overser, at perfektionisme kan dække over angst. Roser hende for kontrol frem for mod.",
+      "løsning": "Skab trygge situationer, hvor Emma kan være spontan og fejle uden konsekvens. Arbejd med autenticitet, valg og leg uden facit. Forstærk ægte udtryk i stedet for korrekt adfærd.",
+      "tiltag": "Indfør 'fejl-fest', hvor børn laver sjove fejl med vilje. Giv Emma små valg i leg uden rigtigt eller forkert. Lav 'lege-eksperimenter' med kreativ frihed. Skab én-til-én tid med trygge voksne, hvor hun kan være autentisk. Indfør aktiviteter uden faste regler. Giv positiv feedback, når hun viser spontanitet eller ægte følelser.",
+      "værktøjer": "Trin 1: Skab psykologisk tryghed gennem normalisering af fejl og valg uden facit. Trin 2: Giv gradvist flere muligheder for initiativ i trygge rammer. Trin 3: Styrk autentisk udtryk ved at værdsætte ægte følelser og spontane handlinger. Følg udviklingen tæt sammen med forældre og pædagoger.",
+      "kategori": "Angst (internaliseret kontroladfærd)",
+      "kort_beskrivelse": "Emma fremstår perfekt, men hendes kontrol dækker over social angst. Ved at skabe plads til fejl og spontane valg kan hun udvikle tryghed og autenticitet.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da pædagogerne begyndte at fremhæve mod frem for perfektion, turde Emma tage små initiativer og vise mere glæde i leg.",
+      "resultat": "Emma deltager nu i fri leg uden voksenstyring og udtrykker sine ønsker tydeligere.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma fremstår som en drømmeelev – rolig, hjælpsom og pligtopfyldende. Men hun deltager aldrig spontant i leg, tager ingen initiativer og bliver ulykke..."
+    },
+    {
+      "id": "case-bs-005",
+      "titel": "Nora 4 år",
+      "alder": 4,
+      "diagnoser": [
+        "Selektiv mutisme",
+        "Social angst"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Kommunikation, angst, social deltagelse",
+      "problem": "Nora taler frit derhjemme, men er helt tavs i børnehaven. Hun undgår aktiviteter, svarer ikke på spørgsmål og gemmer sig bag voksne. Hvis fokus rettes mod hende, bliver hun panisk. Andre børn forsøger at inkludere hende, men hun trækker sig stille væk.",
+      "barnets_oplevelse": "Jeg tør ikke sige noget, for så kigger alle på mig.",
+      "typisk_fejl": "Pres for at få hende til at tale forværrer angsten. Tavshed misforstås som generthed eller trods. Fokus på barnet foran gruppen skaber yderligere blokering.",
+      "løsning": "Skab tryghed før tale. Accepter nonverbal kommunikation og fjern alle krav om at tale. Indfør gradvis eksponering med små succesoplevelser og samarbejde mellem hjem og institution.",
+      "tiltag": "Brug 'hviske-ven'-strategi og små trygge aktiviteter. Implementér rutiner, hvor Nora kan deltage uden krav om tale. Ros nonverbale bidrag. Brug billeder og kort til kommunikation. Introducér langsomt stemmebrug i trygge situationer. Sørg for ensartet tilgang mellem pædagoger og forældre.",
+      "værktøjer": "Trin 1: Tryghedsplan uden tale-krav. Trin 2: Nonverbal deltagelse gennem mimik, pegning og billeder. Trin 3: Gradvis eksponering for tale – fx hvisken til én voksen, senere små grupper. Koordiner indsatsen med forældre og evt. tale-hørekonsulent.",
+      "kategori": "Angst (selektiv mutisme og social undgåelse)",
+      "kort_beskrivelse": "Nora taler frit hjemme, men bliver tavs i børnehaven. Tryghed, nonverbal kommunikation og gradvis eksponering hjælper hende til at deltage igen.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da krav om tale blev fjernet, og fokus blev lagt på tryg deltagelse, begyndte Nora at kommunikere nonverbalt og senere verbalt med enkelte voksne.",
+      "resultat": "Nora deltager nu i leg og taler spontant i små grupper, når hun føler sig tryg.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora taler frit derhjemme, men er helt tavs i børnehaven. Hun undgår aktiviteter, svarer ikke på spørgsmål og gemmer sig bag voksne. Hvis fokus rettes..."
+    },
+    {
+      "id": "case-to-001",
+      "titel": "Oliver 3 år",
+      "alder": 3,
+      "diagnoser": [
+        "Angst (separationsangst)",
+        "Sensorisk sensitivitet for forandring"
+      ],
+      "miljø": [
+        "Hjem",
+        "Børnehave"
+      ],
+      "tema": "Separationsangst, overgang, tryghed",
+      "problem": "Oliver får daglige sammenbrud ved aflevering i børnehave. Han skriger, klynger sig til sin mor og bliver utrøstelig i op til 30-45 minutter. Efterfølgende er han udmattet og har svært ved at finde ro resten af formiddagen. Forældrene oplever skyld og magtesløshed, mens personalet ser et barn med stærk angst for adskillelse.",
+      "barnets_oplevelse": "Jeg bliver bange når mor går, for så ved jeg ikke, om hun kommer tilbage.",
+      "typisk_fejl": "Pres for hurtig aflevering eller ignorering af barnets reaktion. Skiftende voksne ved modtagelsen. Manglende ritualer eller forudsigelighed. Misforståelse af adfærden som trods.",
+      "løsning": "Skab forudsigelighed og gradvis separation med trygheds-ritualer. Giv barnet visuel struktur og genkendelige personer. Kombinér forældresamarbejde med faste rutiner og sensorisk ro omkring afskedssituationen.",
+      "tiltag": "Fast pædagog møder Oliver hver morgen. Kortere ophold i starten (1–2 timer), gradvist øget. Fast afskedsritual med gentagelse af samme ord og bevægelse. 'Mor-genstand' (trøje, foto) som tryghedssymbol. Telefon- eller videoopkald til forældre efter 1 time i overgangsperioden. Visuel plan for dagen, så Oliver kan se hvornår mor henter.",
+      "værktøjer": "Trin 1: Grundlæggende tryghed – korte besøg, forudsigelig struktur, samme modtagelsesvoksen. Trin 2: Gradvis forlængelse af ophold, med faste ritualer og små succesfejringer. Trin 3: Selvstændig tryghed – gradvis udfasning af tryghedselementer og styrkelse af selvberoligende strategier.",
+      "kategori": "Angst (tidlig separationsangst og overgangsproblematik)",
+      "kort_beskrivelse": "Oliver får voldsomme reaktioner ved aflevering i børnehave. Ved gradvis tilvænning, faste ritualer og trygge relationer genfinder han roen og tilliden til adskillelse.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da afleveringsritualet blev stabilt og kort, og samme voksen tog imod ham hver dag, faldt hans morgenreaktioner markant.",
+      "resultat": "Oliver går nu ind i børnehaven uden sammenbrud og har genvundet glæden ved at være der.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver får daglige sammenbrud ved aflevering i børnehave. Han skriger, klynger sig til sin mor og bliver utrøstelig i op til 30-45 minutter. Efterfølg..."
+    },
+    {
+      "id": "case-bs-005",
+      "titel": "Nora 4 år",
+      "alder": 4,
+      "diagnoser": [
+        "Angst (social type)",
+        "Selektiv mutisme"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Kommunikation, tryghed, social deltagelse",
+      "problem": "Nora taler ikke i børnehaven, selvom hun er sprogligt velfungerende hjemme. Hun klynger sig til én voksen og stivner i kroppen ved sociale krav eller uforudsete aktiviteter. Hun svarer kun med nik eller gestik og mister helt initiativ i fællesskaber. Hjemme beskriver forældrene en livlig, talende og kreativ pige, der elsker rolleleg og sang.",
+      "barnets_oplevelse": "Jeg tør ikke sige noget. Hvis jeg siger noget, kigger de på mig.",
+      "typisk_fejl": "At se tavsheden som generthed eller viljestyring. At presse hende til at tale foran andre. At overse at hendes tavshed er et angstbaseret frys-respons, ikke modstand.",
+      "løsning": "Fjern alle tale-krav og skab tryghed gennem nonverbal deltagelse. Arbejd med gradueret eksponering, hvor Nora først kommunikerer gennem gestik, så hvisken, og til sidst tale i trygge rammer. Etabler et fast trygt voksenbånd, og udvid derefter gradvist hendes sociale cirkel. Brug leg, sang og rollelege som naturlige kommunikationsveje.",
+      "tiltag": "Tryghedsplan med faste rutiner og kendt pædagog ved aflevering. 'Hviske-ven' strategi i små grupper. Brug af billedkort og nonverbale svarmuligheder. Ingen verbale krav i fællessituationer. Positiv forstærkning af deltagelse – ikke tale. Samarbejde med forældre for ens tilgang hjemme og i institutionen.",
+      "værktøjer": "Trin 1: Tryghedsopbygning – fjern verbale krav og styrk relationen til én voksen. Trin 2: Gradueret eksponering – plan for små, kontrollerede kommunikationsskridt. Trin 3: Social generalisering – overfør tryg kommunikation til nye voksne og børn. Trin 4: Fælles strategi – koordinér pædagog, forældre og evt. talepædagog om samme tilgang.",
+      "kategori": "Angst (selektiv mutisme og social undgåelse)",
+      "kort_beskrivelse": "Nora bliver tavs og klæbende i børnehaven, men er snakkende hjemme. Med tryghedsopbygning, nonverbal kommunikation og gradvis eksponering kan hun finde stemmen igen i sociale rum.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da institutionen stoppede med at bede hende tale, begyndte hun at kommunikere spontant gennem tegninger og mimik. Efter tre uger begyndte hun at hviske til sin primærpædagog.",
+      "resultat": "Nora kan nu svare stille i små grupper og deltager i fællesaktiviteter uden at stivne. Hendes tryghedszone udvides gradvist.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora taler ikke i børnehaven, selvom hun er sprogligt velfungerende hjemme. Hun klynger sig til én voksen og stivner i kroppen ved sociale krav eller ..."
+    },
+    {
+      "id": "case-sv-002",
+      "titel": "Elias 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "Angst (somatisk og skole-relateret)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Somatisering, skolevægring, angstforståelse",
+      "problem": "Elias melder sig ofte syg, især om morgenen. Han får ondt i maven og virker træt og stille, men har ingen fysiske fund. I skolen deltager han kun delvist, sidder ofte passivt og skriver lidt. Ved gruppearbejde og præsentationer bliver han bleg og klager over smerter. I weekender og ferier beskrives han som glad, aktiv og uden symptomer.",
+      "barnets_oplevelse": "Jeg får ondt i maven i skolen. Jeg vil hellere være derhjemme.",
+      "typisk_fejl": "At se symptomerne som 'fysisk sygdom' i stedet for angst. At give ham frihed fra skole, hvilket utilsigtet forstærker undgåelsen. At overse, at hans ro i weekenden bekræfter den angst-baserede årsag.",
+      "løsning": "Behandl mavepinen som et udtryk for angst – ikke sygdom. Skab gradvis eksponering for skolemiljøet med støtteperson og tydelig forudsigelighed. Indfør små succesoplevelser, og brug fysisk velvære (åndedræt, pauser) som del af angstreguleringen. Undgå at belønne undgåelse med hjemmetid, men byg tryghed i skolen trinvis.",
+      "tiltag": "Tryghedsperson der møder ham ved ankomst. Aftalt morgenstruktur med visuel plan. 'Mave-tryghedsplan' – aftale om kort pause og rolig zone fremfor hjemsendelse. Gradvis deltagelse i fællesaktiviteter. Samarbejde med forældre for ens kommunikation ('du er tryg – og vi hjælper dig igennem dagen'). Koordination med sundhedsplejerske ved behov for psykosomatisk støtte.",
+      "værktøjer": "Trin 1: Afkodning – observer og dokumentér mønstre for mavepine og undgåelse. Trin 2: Tryghed – lav faste morgenrutiner og velkomstperson. Trin 3: Eksponering – plan for gradvis deltagelse i skoledage. Trin 4: Vedligeholdelse – lær Elias at genkende angstsignaler og bruge selvberoligende teknikker (åndedræt, bevægelse).",
+      "kategori": "Angst (skjult skolevægring og somatisering)",
+      "kort_beskrivelse": "Elias oplever mavepine og træthed som angstudtryk. Med gradvis eksponering, tydelig struktur og tryg voksenstøtte kan han genvinde tillid til skolemiljøet.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da mavepinen blev forstået som angst, ændrede indsatsen sig fra medicinsk fokus til psykologisk støtte. Elias begyndte gradvist at klare hele dage i skolen.",
+      "resultat": "Elias møder nu stabilt i skole og deltager delvist i fællesaktiviteter. Han bruger selvreguleringsteknikker ved begyndende ubehag.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Elias melder sig ofte syg, især om morgenen. Han får ondt i maven og virker træt og stille, men har ingen fysiske fund. I skolen deltager han kun delv..."
+    },
+    {
+      "id": "case-te-004",
+      "titel": "Amina 14 år",
+      "alder": 14,
+      "diagnoser": [
+        "Depression (moderat)",
+        "Social angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Nedlukning, skolefravær, psykisk mistrivsel",
+      "problem": "Amina har gradvist trukket sig fra skole og sociale fællesskaber. Først enkelte sygedage, derefter længere fraværsperioder. Hun virker stille og uproblematisk, men er holdt helt op med at deltage. Hjemme isolerer hun sig på værelset, spiser uregelmæssigt og har forstyrret døgnrytme. Forældrene beskriver hende som opgivende og trist, men uden aggression. Lærerne siger, hun var en ‘sød og stille pige’.",
+      "barnets_oplevelse": "Der er ikke nogen, der savner mig. Jeg kan ikke klare det alligevel.",
+      "typisk_fejl": "At overse risikoen, fordi hun ikke er udadreagerende. At tro, hun ‘bare har brug for ro’. At vente på spontan bedring uden plan. At manglende struktur og kontakt forværrer isolationen. At fokusere på fagligt fravær frem for funktionelt sammenbrud.",
+      "løsning": "Etabler hurtig kontakt via én fast voksen i skolen. Opbyg relation før krav. Planlæg en gradueret tilbagevenden med små, overkommelige trin. Koordiner indsatsen mellem skole, hjem og sundhedssystem. Arbejd parallelt med søvn, døgnrytme, mad og social kontakt. Anerkend depression som energitab – ikke modvilje.",
+      "tiltag": "Kontaktperson med daglige check-ins (telefon, besked eller fysisk). Plan for delvist fremmøde, startende med korte trygge aktiviteter. Struktur for morgenrutine og stabil søvnhygiejne. Psykologisk vurdering og evt. medicinsk opfølgning. Små succeser dokumenteres og fejres. Gradvis genopbygning af social deltagelse gennem trygge relationer.",
+      "værktøjer": "Trin 1: Etabler kontakt og forudsigelig struktur. Trin 2: Kortlæg funktionstab og energiniveau. Trin 3: Planlæg realistisk fremmødeplan (delvis). Trin 4: Støt døgnrytme, mad og aktivitet. Trin 5: Indfør samarbejdsmøder mellem skole og hjem. Trin 6: Evaluer progression ugentligt og justér planen.",
+      "kategori": "Angst & Depression (funktionstab og isolation)",
+      "kort_beskrivelse": "Amina har trukket sig fuldstændigt fra skole og sociale fællesskaber. Med fast voksenstøtte, struktur og gradvis genopstart kan funktion og trivsel genopbygges.",
+      "kompleksitet": "høj",
+      "refleksion": "Da kontaktpersonen begyndte at skrive små daglige beskeder – uden faglige krav – svarede Amina igen efter fire dage. Det blev vendepunktet for genopbygningen af tillid og kontakt.",
+      "resultat": "Amina møder nu to dage om ugen og deltager i korte undervisningssekvenser. Søvnen er stabiliseret, og hun begynder at genoprette kontakt til en tidligere veninde.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Amina har gradvist trukket sig fra skole og sociale fællesskaber. Først enkelte sygedage, derefter længere fraværsperioder. Hun virker stille og uprob..."
+    },
+    {
+      "id": "case-an-001",
+      "titel": "Liva 5 år",
+      "alder": 5,
+      "diagnoser": [
+        "Angst"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Hjem"
+      ],
+      "tema": "Separationsangst, tilknytning, tryghedstræning",
+      "problem": "Liva græder hver morgen ved aflevering. Hun holder fast i forælderen, siger hun har ondt i maven og nægter at deltage i aktiviteter. Hun følger udvalgte voksne som en 'skygge' og bryder sammen, når der sker skift i personale. Hun fungerer kun, når hendes faste pædagog er tæt på.",
+      "barnets_oplevelse": "Jeg vil ikke være alene. Jeg ved ikke, hvad der skal ske.",
+      "typisk_fejl": "At trøste og blive længere ved aflevering i håb om, at det hjælper. At fokusere på 'mod' i stedet for tryghed og forudsigelighed. At lade barnet bestemme afskedens længde, hvilket fastholder angstens kontrol. At ignorere de somatiske signaler (mavepine) som reelle stressreaktioner.",
+      "løsning": "Skab en fast, forudsigelig afleveringsstruktur med tydelig voksenoverdragelse. Brug et kort, genkendeligt afskedsritual, som altid udføres på samme måde. Introducér gradvis separations-træning med mikrofaser (forælder venter i garderobe, senere udenfor). Brug en 'tryghedsgenstand' fra hjemmet og visuelle planer for dagens aktiviteter. Ros Liva for små succeser og normalisér hendes følelser. Samarbejd tæt mellem hjem og institution, så signaler og sprog er ens.",
+      "tiltag": "Udarbejd individuel tryghedsplan. Fast voksen modtager Liva hver morgen med samme rutine. Forældre instrueres i at sige farvel tydeligt og forlade institutionen hurtigt. Plan for gradvis øgning af separationens længde. Registrér mavepine-episoder for at synliggøre fremgang. Brug konkrete overgangsritualer: 'Nu hænger du din taske – så går mor, og jeg bliver her med dig.'",
+      "værktøjer": "Trin 1: Kortlæg reaktionsmønstre (tidspunkt, situation, voksen). Trin 2: Implementér fast afskedsritual og tryghedsperson. Trin 3: Gradvis separation med visuel støtte. Trin 4: Forældresamarbejde og konsistens. Trin 5: Evaluer reduktion af somatiske symptomer over tid.",
+      "kategori": "Angst (separations- og tryghedsproblematik)",
+      "kort_beskrivelse": "Liva reagerer med angst og mavepine ved adskillelse fra forældre. En fast afleveringsrutine og gradvis tryghedstræning mindsker angsten og styrker selvstændighed.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da forældrene begyndte at bruge et fast afskedsritual og overlade Liva konsekvent til samme pædagog, faldt gråden markant. Hun begyndte selv at vinke farvel efter to uger.",
+      "resultat": "Liva deltager nu i aktiviteter uden konstant voksenstøtte. Hun bruger billeder og ritualer som støtte, og mavepinen er sjælden. Forældre og personale oplever ro og forudsigelighed i afleveringen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Liva græder hver morgen ved aflevering. Hun holder fast i forælderen, siger hun har ondt i maven og nægter at deltage i aktiviteter. Hun følger udvalg..."
+    },
+    {
+      "id": "case-an-002",
+      "titel": "Emilie 9 år",
+      "alder": 9,
+      "diagnoser": [
+        "Angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Præstationsangst, undgåelse, selvkritik",
+      "problem": "Emilie bliver bleg og stille, når hun skal præstere. Hun undgår faglige opgaver ved at sige, at hun har glemt det, ikke forstår det eller føler sig dårlig. Hun fryser ved opgaver, der kræver præsentation eller gruppearbejde. Ved fejlreaktioner får hun kvalme, ondt i maven og tårer i øjnene. Hun har svært ved at modtage ros, og nye faglige krav udløser passivitet frem for modstand.",
+      "barnets_oplevelse": "Hvis jeg fejler, ser de det. Jeg kan ikke lade være med at tænke på det.",
+      "typisk_fejl": "At se Emilie som genert eller umotiveret i stedet for angst. At stille krav om deltagelse uden forudgående tryghed. At presse hende til at præstere foran andre. At give ros på en måde, der øger fokus og dermed angst ('Se hvor flot du gjorde det foran klassen!').",
+      "løsning": "Etabler tryghed før krav. Start med små, kontrollerede præstationssituationer, hvor hun oplever succes uden spotlight. Giv mulighed for at forberede sig og vælge delvist privat præsentation (optagelse, lille gruppe). Arbejd med kognitiv aflastning: normalisér fejl som en del af læring. Giv struktureret ros med fokus på indsats frem for resultat. Indfør daglig forudsigelighed omkring skift og vurderingssituationer.",
+      "tiltag": "Lav en individuel 'tryg præstationsplan' med gradvis eksponering. Aftal, hvilke aktiviteter Emilie vil øve privat før fælles. Indfør 'fejl-fredag' eller 'mod-øvelser', hvor alle deler fejl som læring. Giv hende forberedelsesark før nye krav. Brug støtteperson eller klassekammerat som 'tryg makker' ved gruppearbejde. Samarbejd tæt med hjemmet, så forældrene støtter udfordring uden overbeskyttelse.",
+      "værktøjer": "Trin 1: Identificér triggere for præstationsangst (fag, situationer, personer). Trin 2: Etabler tryghedsbase og forberedelsesstruktur. Trin 3: Gradvis eksponering med positiv feedback. Trin 4: Lær barnet om angstens fysiologi og mestringsstrategier. Trin 5: Overfør læring til nye kontekster (fremlæggelser, prøver, sociale krav).",
+      "kategori": "Angst (præstation og kontroltab)",
+      "kort_beskrivelse": "Emilie reagerer med angst og undgåelse i præstationssituationer. Tryghed, gradvis eksponering og fokus på indsats frem for resultat styrker deltagelse og selvtillid.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da læreren begyndte at give forudsigelighed og mulighed for små fremlæggelser i trygge rammer, turde Emilie for første gang tale foran to klassekammerater.",
+      "resultat": "Emilie deltager nu i udvalgte fællesaktiviteter. Hun bruger åndedrætsøvelser før krav og kan bede om forberedelsestid i stedet for at undgå opgaven. Hendes fysiske symptomer er reduceret markant.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emilie bliver bleg og stille, når hun skal præstere. Hun undgår faglige opgaver ved at sige, at hun har glemt det, ikke forstår det eller føler sig då..."
+    },
+    {
+      "id": "case-an-003",
+      "titel": "Mathias 13 år",
+      "alder": 13,
+      "diagnoser": [
+        "Angst",
+        "DCD"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Panikangst, kontrolbehov, forudsigelighed",
+      "problem": "Mathias får åndenød, sveder og bliver bleg ved selv små ændringer. Han kræver detaljerede planer, gennemgår dagen trin for trin og reagerer med vrede eller panik, hvis noget afviger. Han nægter ofte at tage i skole på dage med skift eller prøver. Han beskriver trykken for brystet og frygt for at miste kontrol. Personalet oplever ham som intelligent og reflekteret, men fastlåst i overkontrol og undgåelse.",
+      "barnets_oplevelse": "Hvis jeg ikke ved det hele, går det galt. Så kan jeg ikke trække vejret.",
+      "typisk_fejl": "At tro at detaljerede forklaringer fjerner angsten – de fodrer den. At give mere kontrol i stedet for at træne fleksibilitet. At reagere med irritation på hans 'krav'. At overse de kropslige angstsignaler og tolke dem som modstand.",
+      "løsning": "Reducer kontrolfokus og træn tolerance for usikkerhed gradvist. Skab trygge rammer med tydelig dagsstruktur, men introducér kontrollerede, små ændringer. Lær Mathias at genkende kropslige signaler på panik og anvende vejrtræknings- og jordingsøvelser. Arbejd med angstens mekanik: at kontrol føles trygt, men fastholder frygten. Giv ham mulighed for delvis forudsigelighed, men med planlagt 'fleksibilitetstræning'.",
+      "tiltag": "Udarbejd 'angst- og kontrolplan' med tydelig visualisering af dagen og markerede punkter, hvor han øver at håndtere uforudsigelighed. Brug en 'fleksibilitetstrappe' med mikroforandringer (ændret rækkefølge, ny voksen, kort tidsændring). Indfør daglig angstmonitor: hvornår mærker han uro i kroppen? Lær ham tre mestringsteknikker (vejrtrækning, tælle-øvelse, kropsbevægelse). Samarbejd med hjemmet om ensartet håndtering af undgåelsesadfærd.",
+      "værktøjer": "Trin 1: Kortlæg typiske triggere for panik og kontrol. Trin 2: Implementér tryg struktur med visuel plan. Trin 3: Introducér fleksibilitetstræning i små doser. Trin 4: Indlær kropslige mestringsstrategier (åndedræt, bevægelse). Trin 5: Evaluér sammen med Mathias – hvad gik godt, hvad kunne ændres? Brug grafisk 'angstkurve' til refleksion.",
+      "kategori": "Angst (panik og kontrolbehov)",
+      "kort_beskrivelse": "Mathias reagerer med panik og kontrolbehov ved ændringer. Gradvis fleksibilitetstræning og kropslige mestringsstrategier mindsker overkontrol og angstreaktioner.",
+      "kompleksitet": "høj",
+      "refleksion": "Da læreren begyndte at introducere små, planlagte ændringer og brugte vejrtrækningsøvelser sammen med Mathias, faldt panikanfaldene markant. Han begyndte selv at foreslå 'små ændringer' som træning.",
+      "resultat": "Mathias møder nu stabilt i skole, kan håndtere uforudsete ændringer med støtte og bruger vejrtrækningskortet aktivt. Forældre og lærere rapporterer markant reduktion i panikreaktioner og konflikter.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mathias får åndenød, sveder og bliver bleg ved selv små ændringer. Han kræver detaljerede planer, gennemgår dagen trin for trin og reagerer med vrede ..."
+    }
+  ]
+}

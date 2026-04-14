@@ -1,0 +1,187 @@
+{
+  "category": "Social",
+  "total_cases": 6,
+  "cases": [
+    {
+      "id": "case-an-017",
+      "titel": "Nora 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "Social sårbarhed",
+        "Angst (social undgåelse)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk"
+      ],
+      "tema": "Mobning, følelsesmæssig skade, trygge fællesskaber",
+      "problem": "Nora bliver systematisk udelukket fra lege og gruppesnak. Hun bliver kaldt øgenavne og mister gradvist troen på, at nogen vil hende. Hun trækker sig mere og mere og fremstår stille og trist i timerne.",
+      "barnets_oplevelse": "Der er ikke nogen, der gider mig – de vil bare være sammen uden mig.",
+      "typisk_fejl": "Voksne undervurderer situationen, fordi det ikke er fysisk mobning. Man forventer, at Nora selv skal sige fra uden støtte. Manglende kontinuerlig voksenopfølgning og fællesskabsstrategi.",
+      "løsning": "Anerkend mobning som et mønster, ikke enkelthændelser. Etabler trygge voksenalliancer, der handler tidligt. Giv Nora rolle i fællesskaber, hvor hun kan blomstre. Træn social mod og mestring gennem støttende aktiviteter.",
+      "tiltag": "Tryghedsgruppe i frikvarteret. Social historie: 'At være med uden at præstere'. Voksenobservationsskema for mobbemønstre. Kontaktperson eller rollemodel-elev.",
+      "kategori": "Angst (social undgåelse og isolation)",
+      "kort_beskrivelse": "Nora oplever systematisk udelukkelse og tab af social tilknytning. Trygge fællesskaber og tydelig voksenstøtte kan genopbygge hendes trivsel.",
+      "kompleksitet": "høj",
+      "refleksion": "Tidlig indsats og tydelige voksne ændrede gruppens kultur og reducerede Noras isolation.",
+      "resultat": "Nora deltager nu i frikvarterer sammen med en tryg gruppe og viser stigende selvtillid.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora bliver systematisk udelukket fra lege og gruppesnak. Hun bliver kaldt øgenavne og mister gradvist troen på, at nogen vil hende. Hun trækker sig m..."
+    },
+    {
+      "id": "case-bs-004",
+      "titel": "Liam 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "Emotionel reguleringsvanskelighed",
+        "Social dominansprofil"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Manipulation, empati, magtstrukturer",
+      "problem": "Liam er karismatisk og dygtig til at få andre børn til at gøre, hvad han vil. Han bruger belønning, trusler og ekskludering som kontrolstrategier i leg. De andre børn er både fascinerede af ham og bange for at sige imod. Voksne oplever, at konflikterne opstår 'usynligt', fordi Liam er verbal og socialt kompetent.",
+      "barnets_oplevelse": "De andre gør bare, hvad jeg siger – ellers gider jeg ikke lege.",
+      "typisk_fejl": "Tolker manipulation som almindelig leg. Manglende tydelig voksenstyring. Overser behovet for empati-træning og ansvarlighed i relationer.",
+      "løsning": "Etabler klare grænser for acceptabel adfærd og tydelig feedback. Træn empati, konsekvensforståelse og samarbejde i trygge rammer. Brug hans naturlige lederevner til at opbygge positive roller i gruppen.",
+      "tiltag": "Voksenstyrede gruppeaktiviteter med faste roller. 'Empatikort' hvor Liam lærer at identificere egne og andres følelser. Rollelege med fokus på samarbejde frem for kontrol. Social historie: 'At hjælpe i stedet for at bestemme'. Positive lederopgaver, hvor han øver ansvarlig indflydelse.",
+      "værktøjer": "Trin 1: Skab tydelige regler og vis konsekvens ved manipulerende adfærd. Trin 2: Introducér empatiøvelser og social refleksion. Trin 3: Brug hans lederskab konstruktivt gennem samarbejdsroller. Evaluer kontinuerligt relationelle mønstre i børnegruppen.",
+      "kategori": "Emotionelle og sociale adfærdsforstyrrelser (kontrol og empatiudvikling)",
+      "kort_beskrivelse": "Liam bruger sociale strategier til at styre andre børn. Ved tydelig grænsesætning og empati-træning kan hans lederskab udvikles i en positiv retning.",
+      "kompleksitet": "høj",
+      "refleksion": "Da pædagogerne begyndte at guide hans lederskab og give ham ansvarlige roller, faldt konflikterne, og Liam begyndte at støtte i stedet for at styre.",
+      "resultat": "Liam viser nu evne til at samarbejde og tage andres perspektiv, mens hans lederevner bruges konstruktivt i gruppen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Liam er karismatisk og dygtig til at få andre børn til at gøre, hvad han vil. Han bruger belønning, trusler og ekskludering som kontrolstrategier i le..."
+    },
+    {
+      "id": "case-bs-005",
+      "titel": "Nora 4 år",
+      "alder": 4,
+      "diagnoser": [
+        "Selektiv mutisme",
+        "Social angst"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Kommunikation, angst, social deltagelse",
+      "problem": "Nora taler frit derhjemme, men er helt tavs i børnehaven. Hun undgår aktiviteter, svarer ikke på spørgsmål og gemmer sig bag voksne. Hvis fokus rettes mod hende, bliver hun panisk. Andre børn forsøger at inkludere hende, men hun trækker sig stille væk.",
+      "barnets_oplevelse": "Jeg tør ikke sige noget, for så kigger alle på mig.",
+      "typisk_fejl": "Pres for at få hende til at tale forværrer angsten. Tavshed misforstås som generthed eller trods. Fokus på barnet foran gruppen skaber yderligere blokering.",
+      "løsning": "Skab tryghed før tale. Accepter nonverbal kommunikation og fjern alle krav om at tale. Indfør gradvis eksponering med små succesoplevelser og samarbejde mellem hjem og institution.",
+      "tiltag": "Brug 'hviske-ven'-strategi og små trygge aktiviteter. Implementér rutiner, hvor Nora kan deltage uden krav om tale. Ros nonverbale bidrag. Brug billeder og kort til kommunikation. Introducér langsomt stemmebrug i trygge situationer. Sørg for ensartet tilgang mellem pædagoger og forældre.",
+      "værktøjer": "Trin 1: Tryghedsplan uden tale-krav. Trin 2: Nonverbal deltagelse gennem mimik, pegning og billeder. Trin 3: Gradvis eksponering for tale – fx hvisken til én voksen, senere små grupper. Koordiner indsatsen med forældre og evt. tale-hørekonsulent.",
+      "kategori": "Angst (selektiv mutisme og social undgåelse)",
+      "kort_beskrivelse": "Nora taler frit hjemme, men bliver tavs i børnehaven. Tryghed, nonverbal kommunikation og gradvis eksponering hjælper hende til at deltage igen.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da krav om tale blev fjernet, og fokus blev lagt på tryg deltagelse, begyndte Nora at kommunikere nonverbalt og senere verbalt med enkelte voksne.",
+      "resultat": "Nora deltager nu i leg og taler spontant i små grupper, når hun føler sig tryg.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora taler frit derhjemme, men er helt tavs i børnehaven. Hun undgår aktiviteter, svarer ikke på spørgsmål og gemmer sig bag voksne. Hvis fokus rettes..."
+    },
+    {
+      "id": "case-to-004",
+      "titel": "Sofie 5 år",
+      "alder": 5,
+      "diagnoser": [
+        "Social sårbarhed",
+        "Tilknytningsvanskeligheder"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Venner",
+        "Hjem"
+      ],
+      "tema": "Sociale overgange, venskaber, tilknytning",
+      "problem": "Sofie har endelig fundet tryghed i sin børnehavegruppe, men bliver ulykkelig ved tanken om at miste sine venner, når de spredes ud på forskellige skoler. Hun græder ofte ved afskeder, klamrer sig til kendte børn og afviser nye sociale kontakter af frygt for at miste dem igen.",
+      "barnets_oplevelse": "Jeg vil ikke have nye venner, for så bliver jeg bare ked af det, når de også skal væk.",
+      "typisk_fejl": "Ignorerer betydningen af sociale overgange. Fokuserer kun på skolestartens praktiske del. Undervurderer barnets sorg over venskabstab. Manglende brobygning mellem miljøer.",
+      "løsning": "Styrk venskabs-kontinuitet og skab trygge broer mellem gamle og nye relationer. Hjælp barnet til gradvist at forstå og håndtere sociale forandringer, mens du opbygger selvtillid i nye fællesskaber.",
+      "tiltag": "Planlæg legeaftaler med gamle venner. Lav en 'venskabsbog' med billeder og kontaktoplysninger. Gennemfør skolebesøg hvor Sofie møder nye klassekammerater før start. Brug sociale historier om venskaber og forandring. Organisér fælles aktiviteter mellem børnehave og skole. Pædagoger hjælper Sofie med at finde potentielle nye venner baseret på fælles interesser.",
+      "værktøjer": "Trin 1: Anerkendelse – Tal åbent om sorg og savn, normaliser følelsen af at miste. Trin 2: Social selvtillid – Øv sociale færdigheder i trygge rammer og fremhæv hendes styrker. Trin 3: Nye relationer – Planlagt eksponering for nye børn, med voksenstøtte og fælles aktiviteter der fremmer samarbejde.",
+      "kategori": "Transition & Organisation (sociale relationer og tilknytning)",
+      "kort_beskrivelse": "Sofie frygter at miste sine børnehavevenner før skolestart. Med trygge broer mellem gamle og nye relationer lærer hun at bevare tilknytning og danne nye venskaber.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Sofie fik lov at bevare kontakt til sine gamle venner og møde de nye i trygge rammer, faldt hendes angst for forandring markant.",
+      "resultat": "Sofie glæder sig nu til skolen og føler sig tryg i mødet med nye klassekammerater.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofie har endelig fundet tryghed i sin børnehavegruppe, men bliver ulykkelig ved tanken om at miste sine venner, når de spredes ud på forskellige skol..."
+    },
+    {
+      "id": "case-in-001",
+      "titel": "Jonas 7 år",
+      "alder": 7,
+      "diagnoser": [
+        "ODD (oppositionel adfærdsforstyrrelse)",
+        "Angst (social komponent)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk"
+      ],
+      "tema": "Kønsspecifik adfærd, affektregulering, social usikkerhed",
+      "problem": "Jonas reagerer fysisk overfor drengekammerater, især i konkurrence- og statuslege. Han slår, skubber eller tager ting, når han oplever uretfærdighed eller nederlag. Samtidig undgår han piger og bliver synligt utryg, når han skal samarbejde i blandede grupper. Han bliver tavs, rastløs og undgår øjenkontakt. Personalet oplever en dreng, der både udagerer og undviger – afhængigt af hvem han er sammen med.",
+      "barnets_oplevelse": "Jeg ville bare have bolden. De sagde, jeg ikke måtte være med.",
+      "typisk_fejl": "At se aggressionen som ren trods. At overse, at Jonas’ vrede dækker over social angst og usikkerhed. At bruge straf i stedet for følelsesmæssig afkodning og tryghed.",
+      "løsning": "Arbejd med affektgenkendelse og kønsrelateret tryghed i sociale sammenhænge. Giv Jonas strukturerede, forudsigelige aktiviteter med klare roller og fysisk udløb. Skab relationel tryghed med voksne, der kan støtte ham i at forstå og regulere sine følelser. Undgå straf – brug guidning og spejling.",
+      "tiltag": "Konkrete sociale regler visualiseret i leg og gruppearbejde. 'Ro-zoner' med mulighed for pause før konflikter eskalerer. Træning i at aflæse sociale signaler hos både drenge og piger. Trygge samarbejdsaktiviteter med små, blandede grupper. Anerkendelse af vrede som signal på utryghed, ikke trods. Positiv rollemodel-træning med voksenledt leg.",
+      "værktøjer": "Trin 1: Observation – kortlæg hvornår og med hvem adfærden opstår. Trin 2: Regulering – implementér pause- og afledningsstrategier før affektstigning. Trin 3: Tryghed og tillid – introducér gradvist samarbejde med piger i sikre rammer. Trin 4: Affektlæring – hjælp Jonas med at sætte ord på følelser og identificere kropssignaler.",
+      "kategori": "ODD & Angst (affekt og social regulering)",
+      "kort_beskrivelse": "Jonas reagerer fysisk overfor drenge og undgår piger af frygt og usikkerhed. Med struktur, affektregulering og tryg social træning kan han lære at indgå i relationer uden aggression eller undvigelse.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da teamet begyndte at se Jonas’ vrede som angstreaktion, ændrede tilgangen sig. De brugte guidning frem for skældud – og Jonas begyndte gradvist at acceptere blandede aktiviteter.",
+      "resultat": "Jonas kan nu indgå i grupper uden udbrud. Han har begyndt at tale med pigerne og deltager i fælles lege med støtte fra voksne.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Jonas reagerer fysisk overfor drengekammerater, især i konkurrence- og statuslege. Han slår, skubber eller tager ting, når han oplever uretfærdighed e..."
+    },
+    {
+      "id": "case-bs-005",
+      "titel": "Nora 4 år",
+      "alder": 4,
+      "diagnoser": [
+        "Angst (social type)",
+        "Selektiv mutisme"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Kommunikation, tryghed, social deltagelse",
+      "problem": "Nora taler ikke i børnehaven, selvom hun er sprogligt velfungerende hjemme. Hun klynger sig til én voksen og stivner i kroppen ved sociale krav eller uforudsete aktiviteter. Hun svarer kun med nik eller gestik og mister helt initiativ i fællesskaber. Hjemme beskriver forældrene en livlig, talende og kreativ pige, der elsker rolleleg og sang.",
+      "barnets_oplevelse": "Jeg tør ikke sige noget. Hvis jeg siger noget, kigger de på mig.",
+      "typisk_fejl": "At se tavsheden som generthed eller viljestyring. At presse hende til at tale foran andre. At overse at hendes tavshed er et angstbaseret frys-respons, ikke modstand.",
+      "løsning": "Fjern alle tale-krav og skab tryghed gennem nonverbal deltagelse. Arbejd med gradueret eksponering, hvor Nora først kommunikerer gennem gestik, så hvisken, og til sidst tale i trygge rammer. Etabler et fast trygt voksenbånd, og udvid derefter gradvist hendes sociale cirkel. Brug leg, sang og rollelege som naturlige kommunikationsveje.",
+      "tiltag": "Tryghedsplan med faste rutiner og kendt pædagog ved aflevering. 'Hviske-ven' strategi i små grupper. Brug af billedkort og nonverbale svarmuligheder. Ingen verbale krav i fællessituationer. Positiv forstærkning af deltagelse – ikke tale. Samarbejde med forældre for ens tilgang hjemme og i institutionen.",
+      "værktøjer": "Trin 1: Tryghedsopbygning – fjern verbale krav og styrk relationen til én voksen. Trin 2: Gradueret eksponering – plan for små, kontrollerede kommunikationsskridt. Trin 3: Social generalisering – overfør tryg kommunikation til nye voksne og børn. Trin 4: Fælles strategi – koordinér pædagog, forældre og evt. talepædagog om samme tilgang.",
+      "kategori": "Angst (selektiv mutisme og social undgåelse)",
+      "kort_beskrivelse": "Nora bliver tavs og klæbende i børnehaven, men er snakkende hjemme. Med tryghedsopbygning, nonverbal kommunikation og gradvis eksponering kan hun finde stemmen igen i sociale rum.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da institutionen stoppede med at bede hende tale, begyndte hun at kommunikere spontant gennem tegninger og mimik. Efter tre uger begyndte hun at hviske til sin primærpædagog.",
+      "resultat": "Nora kan nu svare stille i små grupper og deltager i fællesaktiviteter uden at stivne. Hendes tryghedszone udvides gradvist.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Nora taler ikke i børnehaven, selvom hun er sprogligt velfungerende hjemme. Hun klynger sig til én voksen og stivner i kroppen ved sociale krav eller ..."
+    }
+  ]
+}

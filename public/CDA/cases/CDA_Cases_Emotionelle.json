@@ -1,0 +1,36 @@
+{
+  "category": "Emotionelle",
+  "total_cases": 1,
+  "cases": [
+    {
+      "id": "case-bs-004",
+      "titel": "Liam 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "Emotionel reguleringsvanskelighed",
+        "Social dominansprofil"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Manipulation, empati, magtstrukturer",
+      "problem": "Liam er karismatisk og dygtig til at få andre børn til at gøre, hvad han vil. Han bruger belønning, trusler og ekskludering som kontrolstrategier i leg. De andre børn er både fascinerede af ham og bange for at sige imod. Voksne oplever, at konflikterne opstår 'usynligt', fordi Liam er verbal og socialt kompetent.",
+      "barnets_oplevelse": "De andre gør bare, hvad jeg siger – ellers gider jeg ikke lege.",
+      "typisk_fejl": "Tolker manipulation som almindelig leg. Manglende tydelig voksenstyring. Overser behovet for empati-træning og ansvarlighed i relationer.",
+      "løsning": "Etabler klare grænser for acceptabel adfærd og tydelig feedback. Træn empati, konsekvensforståelse og samarbejde i trygge rammer. Brug hans naturlige lederevner til at opbygge positive roller i gruppen.",
+      "tiltag": "Voksenstyrede gruppeaktiviteter med faste roller. 'Empatikort' hvor Liam lærer at identificere egne og andres følelser. Rollelege med fokus på samarbejde frem for kontrol. Social historie: 'At hjælpe i stedet for at bestemme'. Positive lederopgaver, hvor han øver ansvarlig indflydelse.",
+      "værktøjer": "Trin 1: Skab tydelige regler og vis konsekvens ved manipulerende adfærd. Trin 2: Introducér empatiøvelser og social refleksion. Trin 3: Brug hans lederskab konstruktivt gennem samarbejdsroller. Evaluer kontinuerligt relationelle mønstre i børnegruppen.",
+      "kategori": "Emotionelle og sociale adfærdsforstyrrelser (kontrol og empatiudvikling)",
+      "kort_beskrivelse": "Liam bruger sociale strategier til at styre andre børn. Ved tydelig grænsesætning og empati-træning kan hans lederskab udvikles i en positiv retning.",
+      "kompleksitet": "høj",
+      "refleksion": "Da pædagogerne begyndte at guide hans lederskab og give ham ansvarlige roller, faldt konflikterne, og Liam begyndte at støtte i stedet for at styre.",
+      "resultat": "Liam viser nu evne til at samarbejde og tage andres perspektiv, mens hans lederevner bruges konstruktivt i gruppen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Liam er karismatisk og dygtig til at få andre børn til at gøre, hvad han vil. Han bruger belønning, trusler og ekskludering som kontrolstrategier i le..."
+    }
+  ]
+}

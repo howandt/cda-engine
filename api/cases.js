@@ -1,31 +1,52 @@
 import fs from "fs";
 import path from "path";
 
-export default async function handler(req, res) {
-  try {
-    const { id, search, tema, diagnose } = req.query;
+function safeString(value) {
+  if (value === null || value === undefined) return "";
+  if (Array.isArray(value)) return value.join(" ");
+  if (typeof value === "object") return JSON.stringify(value);
+  return String(value);
+}
 
-    const dataPath = path.join(
-      process.cwd(),
-      "data",
-      "cases_ORIGINAL_ARCHIVE",
-      "adhd_angst_cases.json"
+function loadAllCases() {
+  const casesDir = path.join(process.cwd(), "public", "CDA", "cases");
+
+  if (!fs.existsSync(casesDir)) {
+    throw new Error(`Case-mappe ikke fundet: ${casesDir}`);
+  }
+
+  const files = fs
+    .readdirSync(casesDir)
+    .filter(
+      (file) =>
+        file.toLowerCase().endsWith(".json") &&
+        !file.toLowerCase().includes("index")
     );
 
-    if (!fs.existsSync(dataPath)) {
-      return res.status(404).json({
-        success: false,
-        error: `Datafil ikke fundet: ${dataPath}`,
-      });
-    }
+  let allCases = [];
 
-    const raw = fs.readFileSync(dataPath, "utf8");
+  for (const file of files) {
+    const filePath = path.join(casesDir, file);
+    const raw = fs.readFileSync(filePath, "utf8");
     const parsed = JSON.parse(raw);
-    const cases = Array.isArray(parsed) ? parsed : parsed.cases || [];
+
+    const fileCases = Array.isArray(parsed) ? parsed : parsed.cases || [];
+
+    allCases = allCases.concat(fileCases);
+  }
+
+  return allCases;
+}
+
+export default async function handler(req, res) {
+  try {
+    const { id, search, tema, diagnose, kategori } = req.query;
+
+    const cases = loadAllCases();
 
     if (id) {
       const match = cases.find(
-        (c) => String(c.id || "").toLowerCase() === String(id).toLowerCase()
+        (c) => safeString(c.id).toLowerCase() === safeString(id).toLowerCase()
       );
 
       if (!match) {
@@ -45,34 +66,47 @@ export default async function handler(req, res) {
     let filtered = cases;
 
     if (tema) {
+      const q = safeString(tema).toLowerCase();
       filtered = filtered.filter((c) =>
-        String(c.tema || "").toLowerCase().includes(String(tema).toLowerCase())
+        safeString(c.tema).toLowerCase().includes(q)
       );
     }
 
     if (diagnose) {
+      const q = safeString(diagnose).toLowerCase();
+      filtered = filtered.filter(
+        (c) =>
+          Array.isArray(c.diagnoser) &&
+          c.diagnoser.some((d) => safeString(d).toLowerCase().includes(q))
+      );
+    }
+
+    if (kategori) {
+      const q = safeString(kategori).toLowerCase();
       filtered = filtered.filter((c) =>
-        Array.isArray(c.relevante_diagnoser) &&
-        c.relevante_diagnoser.some((d) =>
-          String(d).toLowerCase().includes(String(diagnose).toLowerCase())
-        )
+        safeString(c.kategori).toLowerCase().includes(q)
       );
     }
 
     if (search) {
-      const q = String(search).toLowerCase();
+      const q = safeString(search).toLowerCase();
 
       filtered = filtered.filter((c) =>
-        String(c.id || "").toLowerCase().includes(q) ||
-        String(c.titel || "").toLowerCase().includes(q) ||
-        String(c.tema || "").toLowerCase().includes(q) ||
-        String(c.beskrivelse || "").toLowerCase().includes(q) ||
-        String(c.cda_guiding || "").toLowerCase().includes(q) ||
-        String(c.cdt_træning || "").toLowerCase().includes(q) ||
-        (Array.isArray(c.relevante_diagnoser) &&
-          c.relevante_diagnoser.some((d) =>
-            String(d).toLowerCase().includes(q)
-          ))
+        safeString(c.id).toLowerCase().includes(q) ||
+        safeString(c.titel).toLowerCase().includes(q) ||
+        safeString(c.tema).toLowerCase().includes(q) ||
+        safeString(c.problem).toLowerCase().includes(q) ||
+        safeString(c.barnets_oplevelse).toLowerCase().includes(q) ||
+        safeString(c.typisk_fejl).toLowerCase().includes(q) ||
+        safeString(c.løsning).toLowerCase().includes(q) ||
+        safeString(c.tiltag).toLowerCase().includes(q) ||
+        safeString(c.værktøjer).toLowerCase().includes(q) ||
+        safeString(c.kategori).toLowerCase().includes(q) ||
+        safeString(c.kort_beskrivelse).toLowerCase().includes(q) ||
+        (Array.isArray(c.diagnoser) &&
+          c.diagnoser.some((d) => safeString(d).toLowerCase().includes(q))) ||
+        (Array.isArray(c.miljø) &&
+          c.miljø.some((m) => safeString(m).toLowerCase().includes(q)))
       );
     }
 

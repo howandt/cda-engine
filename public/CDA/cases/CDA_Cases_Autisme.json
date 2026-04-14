@@ -1,0 +1,747 @@
+{
+  "category": "Autisme",
+  "total_cases": 25,
+  "cases": [
+    {
+      "id": "case-au-012",
+      "titel": "Mia 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "Autisme"
+      ],
+      "miljø": [
+        "Fagfolk"
+      ],
+      "tema": "Sanser, frisør, klipning",
+      "problem": "Mia oplever stærkt ubehag ved frisørbesøg, især pga. lyde, berøring og materialer som klippekappe.",
+      "barnets_oplevelse": "Jeg bliver ked af det, når de rører mit hår og kapper strammer.",
+      "typisk_fejl": "Tvinger barnet til standard rutine uden hensyn til sensorik. Afviser behovet for pauser eller forberedelse.",
+      "løsning": "Giv mulighed for at undgå ubehagelige materialer. Brug genkendelige redskaber og visuel forberedelse. Indfør pauser og valg.",
+      "tiltag": "Klip uden kappe (evt. eget tæppe). Forberedelse med billeder hjemmefra. Brug af egen børnesaks eller spejl. Aftalte håndtegn ved pausebehov.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Mia oplever stærkt ubehag ved frisørbesøg, især pga. lyde, berøring og materialer som klippekappe.",
+      "kompleksitet": "moderat",
+      "refleksion": "Mere forberedelse og individuelle valg gav Mia ro og tillid.",
+      "resultat": "Mia gennemførte klipning uden gråd ved at bruge pauser og kendte redskaber.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mia oplever stærkt ubehag ved frisørbesøg, især pga. lyde, berøring og materialer som klippekappe...."
+    },
+    {
+      "id": "case-au-019",
+      "titel": "Marcus 16 år",
+      "alder": 16,
+      "diagnoser": [
+        "Autisme",
+        "Depression"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Venner"
+      ],
+      "tema": "Social tilbagetrækning, gymnasium",
+      "problem": "Marcus har trukket sig helt tilbage fra sociale situationer på gymnasiet. Han spiser frokost alene, deltager ikke i gruppeprojekter og bruger al sin fritid på gaming. Hans karakterer falder, og han overvejer at droppe ud.",
+      "barnets_oplevelse": "Jeg har det bedst, når jeg gamer. Der er ingen, der forventer noget af mig der.",
+      "typisk_fejl": "Fokuserer kun på gaming som problemet. Ignorerer underliggende depression og sociale udfordringer. Presser ham til deltagelse uden støtte.",
+      "løsning": "Anerkend gaming som en mestringsstrategi i en overvældende verden. Byg broer mellem hans interesser og social kontakt. Arbejd systematisk med depression og autisme i sammenhæng.",
+      "tiltag": "Find andre elever med lignende gaming-interesser. Strukturer gruppeprojekter ud fra hans faglige styrker. Psykologsamtaler der integrerer autisme og depression. Gradvis eksponering for sociale situationer med støtte. Opret gaming-klub eller e-sportsaktivitet på skolen.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Marcus har trukket sig fra sociale relationer og søger tilflugt i gaming. Forståelse og støttende struktur kan genskabe motivation og trivsel.",
+      "kompleksitet": "høj",
+      "refleksion": "Gaming blev en døråbner for social kontakt, da det blev anerkendt som interesse frem for flugt.",
+      "resultat": "Marcus deltager nu i e-sportsklubben og samarbejder i mindre grupper i skolen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus har trukket sig helt tilbage fra sociale situationer på gymnasiet. Han spiser frokost alene, deltager ikke i gruppeprojekter og bruger al sin f..."
+    },
+    {
+      "id": "case-au-022",
+      "titel": "Sofia 17 år",
+      "alder": 17,
+      "diagnoser": [
+        "Autisme",
+        "Spiseforstyrrelse"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Familie, kontrol, mad, autonomi",
+      "problem": "Sofia har udviklet ekstrem kontrol omkring mad, hvilket skaber store konflikter i familien. Hendes autisme gør, at hun har behov for faste rutiner, men spiseforstyrrelsen har overtaget disse rutiner. Familien er splittet mellem at støtte og konfrontere.",
+      "barnets_oplevelse": "Jeg bliver urolig, når nogen ændrer på min mad. Det føles som om, jeg mister kontrollen.",
+      "typisk_fejl": "Kæmper mod autisme-rutinerne i stedet for at omdirigere dem. Familien bliver splittet i 'for' og 'imod'-strategier. Overser sammenhængen mellem kontrolbehov og autisme.",
+      "løsning": "Anerkend legitime autismebehov, mens spiseforstyrrelsen adresseres. Skab familieenhed omkring behandlingsplan. Hjælp Sofia med at finde andre områder, hvor hun kan udøve kontrol.",
+      "tiltag": "Madplan der respekterer autismebehov og gradvist øger variation. Familiesamtaler med specialist i både autisme og spiseforstyrrelser. Alternative kontrolområder som musik, træning og kreativitet. Strukturerede måltidsrutiner for hele familien. Autismetilpasset kognitiv adfærdsterapi.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Sofia udviser rigid kontrol omkring mad som følge af autisme og spiseforstyrrelse. Familieenhed og struktureret støtte reducerer konflikter.",
+      "kompleksitet": "høj",
+      "refleksion": "Da familien begyndte at arbejde samlet med Sofias behov i stedet for imod dem, faldt konfliktniveauet markant.",
+      "resultat": "Sofia deltager nu i måltider med struktur og medbestemmelse og viser øget tillid til familien.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia har udviklet ekstrem kontrol omkring mad, hvilket skaber store konflikter i familien. Hendes autisme gør, at hun har behov for faste rutiner, me..."
+    },
+    {
+      "id": "case-au-032",
+      "titel": "Marcus 12 år",
+      "alder": 12,
+      "diagnoser": [
+        "Autisme",
+        "Sensoriske udfordringer"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Sanser, overstimulering, struktur",
+      "problem": "Marcus nægter at gå i skole efter sommerferien. Den nye skole er større, mere støjende og uforudsigelig. Han får meltdowns blot ved tanken om skolegården og kantinen.",
+      "barnets_oplevelse": "Der er for mange lyde, og jeg ved ikke, hvad der sker næste gang – det larmer inde i mit hoved.",
+      "typisk_fejl": "Antager at Marcus bare skal 'vænne sig til det'. Undervurderer sensoriske belastninger og fravær af faste rutiner. Fokuserer for hurtigt på fravær i stedet for årsager.",
+      "løsning": "Skab sensorisk tilpasset skolemiljø og gradvis vænning. Kortlæg triggers og lav støjfrie alternativer. Giv fast base-lokale og noise-cancelling høretelefoner. Brug visuelle planer og pausekort som reguleringsredskab.",
+      "tiltag": "Kortlægning af sensoriske triggers på skolen. Alternative ruter til og fra klasselokaler. Fast base-lokale som tryg zone. Høretelefoner i frikvarterer. Struktureret tidsplan med billeder. Pausekort til egen-regulering.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Marcus reagerer på sensorisk overload efter skolestart. Med struktur, base-lokale og visuel støtte kan han igen trives i skoledagen.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da støj og kaos blev reduceret, faldt meltdowns markant, og Marcus begyndte igen at deltage i timerne.",
+      "resultat": "Marcus møder nu i skole hver dag og bruger pausekort og base-lokale aktivt som del af sin reguleringsstrategi.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus nægter at gå i skole efter sommerferien. Den nye skole er større, mere støjende og uforudsigelig. Han får meltdowns blot ved tanken om skolegår..."
+    },
+    {
+      "id": "case-as-041",
+      "titel": "Emma 7 år",
+      "alder": 7,
+      "diagnoser": [
+        "Autisme",
+        "Kommunikationsvanskeligheder"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Sprog, ironi, sociale signaler",
+      "problem": "Emma forstår sproget meget bogstaveligt og har svært ved at afkode ironi, tonefald og kropssprog. Når klassekammerater siger 'Det var da smart!' sarkastisk, tror hun, de mener det som ros. Hun misforstår ofte intentioner og føler sig forvirret eller såret.",
+      "barnets_oplevelse": "Jeg forstår ikke, hvorfor de griner, når jeg gør noget rigtigt.",
+      "typisk_fejl": "Antager at hun forstår sociale signaler, fordi hun kan tale flydende. Forklarer ikke ironi eller mimik. Korrigerer hende i stedet for at undervise eksplicit.",
+      "løsning": "Giv Emma eksplicit undervisning i sociale signaler, ironi og tonefald. Brug billeder, konkrete eksempler og rollespil. Oversæt sociale situationer direkte og lær hende at spørge: 'Mente du det som sjov?'",
+      "tiltag": "Sociale historier med billeder af ansigtsudtryk og kropssprog. Forklaringer på sarkasme og tonefald ('Når Mia ruller med øjnene betyder det...'). Rollelege hvor Emma øver at gætte stemninger. Lærere og forældre bruger direkte og konkret sprog. Brug 'sociale detektivkort' som hjælperedskab i hverdagen.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Emma misforstår sociale signaler og ironi. Med eksplicit undervisning i tonefald og kropssprog lærer hun at forstå og reagere mere passende.",
+      "kompleksitet": "moderat",
+      "refleksion": "Når Emmas omgivelser begyndte at forklare ironi og mimik direkte, faldt hendes misforståelser, og relationerne blev bedre.",
+      "resultat": "Emma forstår nu forskellen mellem sjov og alvor og kan selv spørge, når noget virker forvirrende.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma forstår sproget meget bogstaveligt og har svært ved at afkode ironi, tonefald og kropssprog. Når klassekammerater siger 'Det var da smart!' sarka..."
+    },
+    {
+      "id": "case-as-042",
+      "titel": "Marcus 11 år",
+      "alder": 11,
+      "diagnoser": [
+        "Autisme",
+        "Social isolation"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Specialinteresser, venskaber, inklusion",
+      "problem": "Marcus taler uafbrudt om tog og lokomotiver, ofte uden at bemærke, om andre er interesserede. De andre børn trækker sig og begynder at undgå ham. Marcus forstår ikke hvorfor, og føler sig gradvist mere ensom og misforstået.",
+      "barnets_oplevelse": "Jeg vil bare fortælle om tog, men de gider ikke høre på mig – så jeg taler bare endnu mere.",
+      "typisk_fejl": "Forsøger at stoppe ham i stedet for at kanalisere interessen. Undlader at skabe bro mellem hans interesser og fællesskabet. Ignorerer ensomheden bag adfærden.",
+      "løsning": "Brug hans stærke interesse som bro til sociale kontakter. Skab aktiviteter, hvor andre børn kan deltage gennem fælles temaer som transport eller byggeri. Lær Marcus at stille spørgsmål og udveksle interesser.",
+      "tiltag": "Etablerede en 'Tog-klub' hvor Marcus kunne dele sin viden. Forbandt ham med børn, der delte lignende interesser (biler, fly). Trænede 'interesse-bytte': han fortalte om tog, de andre om deres hobbyer. Brugte tog som tema i gruppelege og byggeprojekter. Øvede samtaleregler og sociale signaler gennem rollespil.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Marcus’ intense toginteresse skabte afstand til andre børn. Gennem fælles temaer og social træning blev interessen en bro i stedet for en barriere.",
+      "kompleksitet": "moderat",
+      "refleksion": "Ved at bygge videre på hans interesse i stedet for at begrænse den, blev Marcus mere inkluderet og begyndte at forstå sociale signaler.",
+      "resultat": "Marcus har nu to tætte venner fra togklubben og kan deltage i samtaler, hvor han både deler og lytter.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Marcus taler uafbrudt om tog og lokomotiver, ofte uden at bemærke, om andre er interesserede. De andre børn trækker sig og begynder at undgå ham. Marc..."
+    },
+    {
+      "id": "case-as-043",
+      "titel": "Sofia 14 år",
+      "alder": 14,
+      "diagnoser": [
+        "Autisme",
+        "Social angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Masking, autenticitet, ungdom og social kompleksitet",
+      "problem": "Sofia har i flere år forsøgt at skjule sin autisme ved at kopiere andre pigers adfærd. Hun overvåger konstant sig selv og er bange for at sige noget forkert. Denne sociale 'maskering' udmatter hende, og hun undgår nu sociale situationer for at undgå fejl og skam.",
+      "barnets_oplevelse": "Jeg prøver bare hele tiden at gøre det rigtigt – men det føles som om jeg spiller en rolle hele dagen.",
+      "typisk_fejl": "Fortolker hendes tilpasning som trivsel. Overser den skjulte angst og udmattelse. Presser til mere social deltagelse i stedet for at reducere maskeringsbehovet.",
+      "løsning": "Arbejd med gradueret autenticitet og stressreduktion. Hjælp Sofia til at vælge, hvor hun kan være sig selv. Skab relationer og miljøer, hvor hun ikke behøver maskere. Træn energi-budgettering og åbenhed i trygge relationer.",
+      "tiltag": "Deltagelse i autisme-venlig vennegruppe baseret på fælles interesser. Autenticitetsøvelser i trygge sammenhænge. Læring i at være selektiv med, hvor hun maskerer. Energi-budgettering for sociale aktiviteter. Åben kommunikation med udvalgte venner. Alternative sociale aktiviteter med lavt pres, fx hobbyklubber.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Sofia er udmattet af social maskering og angst for at fejle. Med støtte til autenticitet og energi-styring genfinder hun balance og tryghed i sociale relationer.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Sofia fik lov at være selektiv i, hvor hun maskerer, faldt hendes stressniveau, og hendes sociale tryghed steg.",
+      "resultat": "Sofia har nu en lille, stabil vennegruppe og kan være sig selv uden konstant selvkontrol.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia har i flere år forsøgt at skjule sin autisme ved at kopiere andre pigers adfærd. Hun overvåger konstant sig selv og er bange for at sige noget f..."
+    },
+    {
+      "id": "case-as-044",
+      "titel": "Oliver 9 år",
+      "alder": 9,
+      "diagnoser": [
+        "Autisme",
+        "Social naivitet"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Manipulation, udnyttelse, social beskyttelse",
+      "problem": "Oliver stoler blindt på andre og har svært ved at vurdere, når nogen udnytter ham. Klassekammerater får ham til at give sine ting væk, lave deres opgaver eller gøre noget risikabelt under dække af, at det er 'for sjov'.",
+      "barnets_oplevelse": "De siger, det bare er for sjov – så jeg gør det, men bagefter griner de af mig.",
+      "typisk_fejl": "Antager at Oliver lærer af erfaring. Ignorerer hans manglende evne til at aflæse intentioner. Lader ham håndtere sociale situationer uden støtte.",
+      "løsning": "Beskyt Oliver gennem direkte undervisning i social dømmekraft. Lær ham forskellen mellem ægte og falske venner med konkrete eksempler. Indfør faste regler som 'tjek med en voksen', og støt ham i at opbygge tillid til pålidelige børn.",
+      "tiltag": "Direkte undervisning i forskellen på 'ægte venner' og 'falske venner'. Konkrete regler: 'Ægte venner beder dig aldrig om at bryde regler.' Sociale historier og billedkort om manipulation og grænser. Regel: 'Tjek med en voksen', før han gør noget nyt eller usædvanligt. Voksenstøtte i frikvarterer og struktureret samvær med stabile klassekammerater.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Oliver er let at manipulere, fordi han ikke forstår skjulte motiver. Med direkte undervisning i sociale regler og trygge relationer kan han beskyttes og lære social dømmekraft.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Oliver fik eksplicit undervisning i sociale grænser, faldt antallet af konflikter markant, og han begyndte at søge mere stabile venskaber.",
+      "resultat": "Oliver genkendte manipulation og sagde fra første gang, nogen bad ham gøre noget forkert. Han har nu to faste, trygge venner.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Oliver stoler blindt på andre og har svært ved at vurdere, når nogen udnytter ham. Klassekammerater får ham til at give sine ting væk, lave deres opga..."
+    },
+    {
+      "id": "case-as-045",
+      "titel": "Lea 16 år",
+      "alder": 16,
+      "diagnoser": [
+        "Autisme (højtfungerende)",
+        "Social rigiditet"
+      ],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Scripts, spontanitet, autentiske relationer",
+      "problem": "Lea har gennem årene lært at bruge sociale 'scripts' for at klare samtaler. Hun klarer sig godt i forudsigelige situationer, men går i panik, når nogen stiller uventede spørgsmål eller skifter emne. Hun virker kontrolleret, men har svært ved at skabe ægte, spontane relationer.",
+      "barnets_oplevelse": "Jeg ved altid, hvad jeg skal sige – indtil nogen siger noget, jeg ikke havde tænkt på. Så fryser jeg helt.",
+      "typisk_fejl": "Tolker Leas korrekte sociale adfærd som social trivsel. Underviser ikke i fleksibilitet. Fokuserer på at øge hendes scripts i stedet for at reducere behovet for dem.",
+      "løsning": "Træn fleksible sociale færdigheder gennem improvisation, autentisk kommunikation og gradvis afvikling af scripts. Skab trygge øvelsesrum, hvor Lea kan eksperimentere med ægte reaktioner og spontane svar.",
+      "tiltag": "Improvisationsøvelser med trygge voksne eller små grupper. Træning i 'ægte respons' – hvordan man udtrykker følelser i stedet for at afkode dem. Gradvis reduktion af faste scripts. Øvelser i at dele egne tanker og interesser uden at overanalysere. Arbejde med at acceptere forvirring som en naturlig del af samtaler.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Lea mestrer sociale scripts, men kæmper med spontanitet og ægte kontakt. Med trygge rammer kan hun lære at reagere fleksibelt og vise autenticitet.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da Leas fokus blev flyttet fra 'at gøre det rigtigt' til 'at være ægte', begyndte hun at opleve reelle, gensidige relationer.",
+      "resultat": "Lea deltager nu i spontane samtaler uden panik og har fået to nære venner, hvor hun tør vise sin personlighed.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lea har gennem årene lært at bruge sociale 'scripts' for at klare samtaler. Hun klarer sig godt i forudsigelige situationer, men går i panik, når noge..."
+    },
+    {
+      "id": "case-mc-046",
+      "titel": "Emma 8 år",
+      "alder": 8,
+      "diagnoser": [
+        "Autisme",
+        "Social sårbarhed"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Eksklusion, verbal mobning, social position",
+      "problem": "Emma bliver systematisk holdt ude af lege og fælles aktiviteter. Hun får ofte kommentarer som 'Du kan ikke være med' eller 'Du er mærkelig'. Når hun prøver at deltage, vender børnene sig væk. Hun spiser alene og græder ofte i frikvartererne.",
+      "barnets_oplevelse": "Jeg prøver bare at være med, men de går altid væk, som om jeg ikke findes.",
+      "typisk_fejl": "Ignorerer de små sociale afvisninger, fordi der ikke er fysisk mobning. Ser det som 'børnenes valg'. Undlader systematisk voksenintervention.",
+      "løsning": "Indfør struktureret inklusion og ændr klassekulturen. Skab trygge fællesskaber med voksenstøtte, hvor forskellighed bliver synliggjort som styrke. Arbejd aktivt med sociale roller og empati blandt eleverne.",
+      "tiltag": "Klassemøder om forskellighed og inklusion (uden at nævne Emma specifikt). 'Inklusions-buddy'-system, hvor børn skiftedes til at inkludere alle. Strukturerede frikvartersaktiviteter med voksendeltagelse. Fremhævelse af Emmas styrker gennem faglige bidrag. Direkte voksenintervention ved eksklusion. Samtaler med nøglebørn om empati og respekt.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Emma blev systematisk holdt ude af fællesskabet. Gennem aktiv klassekulturændring og voksenstøtte blev inklusionen styrket og hendes trivsel genskabt.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da voksne begyndte at handle på usynlig mobning og inddrog klassen i inklusionsarbejde, ændrede dynamikken sig hurtigt.",
+      "resultat": "Emma blev gradvist inkluderet i fælles aktiviteter og fik to faste legeaftaler om ugen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma bliver systematisk holdt ude af lege og fælles aktiviteter. Hun får ofte kommentarer som 'Du kan ikke være med' eller 'Du er mærkelig'. Når hun p..."
+    },
+    {
+      "id": "case-mc-050",
+      "titel": "Lea 15 år",
+      "alder": 15,
+      "diagnoser": [
+        "Autisme",
+        "Mobbeoffer (psykosocial reaktion)"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Bystander-ansvar, tilskuer-effekt, kollektiv handling",
+      "problem": "Lea bliver dagligt mobbet verbalt og online, mens hele klassen ser på uden at gribe ind. De fleste elever føler sympati, men tør ikke sige fra af frygt for selv at blive mål. Mobningen foregår diskret og overses af lærerne.",
+      "barnets_oplevelse": "De ser det godt, men ingen gør noget. Det føles som om hele klassen er imod mig.",
+      "typisk_fejl": "Ser tavsheden som ligegyldighed i stedet for frygt. Lægger alt ansvar på læreren i stedet for fællesskabet. Mangler struktur for tryg indgriben.",
+      "løsning": "Skab en kultur hvor elever forstår deres ansvar som vidner og får redskaber til at handle trygt. Gør det legitimt og sikkert at sige fra – både direkte og anonymt. Anerkend modige handlinger og gør fællesskabet til drivkraften for forandring.",
+      "tiltag": "Undervisning i bystander-ansvar og sikker indgriben. 'Upstander'-kampagne der anerkender modige elever. Anonyme rapporteringskanaler til voksne. Klassekontrakt om fælles tryghed. Rollespil og refleksionsøvelser om at handle i svære situationer. Elevlederskab og makkerordninger for sårbare elever.",
+      "kategori": "Autisme",
+      "kort_beskrivelse": "Lea blev mobbet mens hele klassen så passivt til. Ved at give eleverne viden, ansvar og trygge handlemuligheder ændrede kulturen sig.",
+      "kompleksitet": "høj",
+      "refleksion": "Da klassen fik sprog og metoder til at støtte uden frygt, begyndte flere at handle, og mobningen stoppede gradvist.",
+      "resultat": "Lea oplever nu støtte fra jævnaldrende, og klassen har indført faste fællesskabsregler for at sikre tryghed for alle.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Lea bliver dagligt mobbet verbalt og online, mens hele klassen ser på uden at gribe ind. De fleste elever føler sympati, men tør ikke sige fra af fryg..."
+    },
+    {
+      "id": "case-bs-001",
+      "titel": "Sofie 3 år",
+      "alder": 3,
+      "diagnoser": [
+        "Autisme (mistanke – social kontakt- og legudvikling)"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Social isolation, legudvikling, kommunikation",
+      "problem": "Sofie leger altid alene eller parallelt med andre børn uden egentlig kontakt. Hun viser ingen interesse for andres aktiviteter, deler ikke legetøj og reagerer ikke, når andre forsøger at inkludere hende. Pædagogerne oplever hende som stille og observerende, men uden social deltagelse.",
+      "barnets_oplevelse": "Jeg leger bare selv – de andre leger noget andet.",
+      "typisk_fejl": "Tolker hendes ro og selvstændighed som trivsel. Mangler målrettet støtte til social udvikling. Forventer spontan social leg uden struktur.",
+      "løsning": "Opbyg sociale færdigheder gradvist gennem trygge, parallelle lege og voksenstyret interaktion. Brug hendes interesser som indgang og styrk social forståelse med billeder, historier og tydelige roller.",
+      "tiltag": "Start med side-by-side aktiviteter uden krav. Voksenstyrede lege med tydelige roller. Brug præfereret legetøj i turn-taking øvelser. Introducér 'sociale leg-historier' med billeder af samarbejde. Giv positiv feedback på selv små sociale initiativer.",
+      "værktøjer": "Trin 1: Observer hendes legemønster og interesser. Trin 2: Faciliter gradvis social kontakt med struktureret støtte. Trin 3: Dokumentér udviklingen og samarbejd med forældre om fælles tiltag. Overvej pædagogisk vurdering for mulig autismeprofil, hvis udviklingen ikke skrider frem.",
+      "kategori": "Autisme (social kontakt- og legudvikling)",
+      "kort_beskrivelse": "Sofie viser meget lidt social interesse og leger mest alene. Struktureret parallelleg og visuel støtte kan hjælpe hende med at udvikle social kontakt.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da pædagogerne begyndte at bruge parallelle lege og visuelle historier, begyndte Sofie at kigge og reagere på andre børn.",
+      "resultat": "Sofie deltager nu kortvarigt i fælles lege og viser begyndende interesse for andre børn.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofie leger altid alene eller parallelt med andre børn uden egentlig kontakt. Hun viser ingen interesse for andres aktiviteter, deler ikke legetøj og ..."
+    },
+    {
+      "id": "case-to-002",
+      "titel": "Emma 4 år",
+      "alder": 4,
+      "diagnoser": [
+        "Autismespektrum (mistanke)",
+        "Behov for forudsigelighed"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk"
+      ],
+      "tema": "Rutiner, fleksibilitet, forudsigelighed",
+      "problem": "Emma reagerer voldsomt, når aktiviteter ændres eller afsluttes. Hun kan ikke stoppe midt i en leg for at starte noget nyt og får ofte raserianfald, når planerne ændres. Hun har brug for lang tid til at omstille sig og oplever kaos, hvis voksne ændrer strukturen spontant.",
+      "barnets_oplevelse": "Jeg vil bare vide, hvad der skal ske – så kan jeg være rolig.",
+      "typisk_fejl": "Forventer fleksibilitet uden forberedelse. Ændrer planer uden visuel støtte. Tænker, at barnet skal 'vænne sig' til forandring i stedet for at blive trænet gradvist.",
+      "løsning": "Skab stærk struktur og gradvis introduktion af fleksibilitet. Kombinér visuelle systemer med trygge ritualer og små planlagte ændringer. Gør fleksibilitet til en lærbar færdighed – ikke et krav.",
+      "tiltag": "Visuel dagsplan med billeder af aktiviteter. 5-3-1-minutters varsler før skift. Afslutningsritualer for hver aktivitet. Brug af 'ændringskort', når planer ændres. Fleksibilitetsøvelser, hvor små ændringer planlægges og fejres som succeser. Struktur 80 % forudsigelig – 20 % planlagt variation.",
+      "værktøjer": "Trin 1: Maksimal forudsigelighed – faste rutiner, visuelle støtteplaner og varsler før skift. Trin 2: Mikro-fleksibilitet – små planlagte ændringer med positiv feedback. Trin 3: Selvstændig tilpasning – barnet lærer selv at bruge visuelle hjælpemidler og udvikler 'plan B'-tænkning.",
+      "kategori": "Autisme (overgangs- og fleksibilitetsvanskeligheder)",
+      "kort_beskrivelse": "Emma reagerer kraftigt på ændringer i rutiner. Med struktur, visuelle støtteplaner og gradvis fleksibilitetstræning lærer hun at håndtere skift uden sammenbrud.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da pædagogerne begyndte at bruge forudsigelige varsler og små planlagte ændringer, faldt Emmas sammenbrud markant.",
+      "resultat": "Emma kan nu skifte mellem aktiviteter med støtte og reagerer mindre voldsomt ved ændringer.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma reagerer voldsomt, når aktiviteter ændres eller afsluttes. Hun kan ikke stoppe midt i en leg for at starte noget nyt og får ofte raserianfald, nå..."
+    },
+    {
+      "id": "case-te-001",
+      "titel": "Sofia 14 år",
+      "alder": 14,
+      "diagnoser": [
+        "Autisme (højtfungerende)",
+        "Angst (intern type)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Masking, udbrændthed, skjult stress",
+      "problem": "Sofia klarer sig fagligt og fremstår som en velfungerende elev. Hun smiler, deltager og gør sig umage, men oplever markant udmattelse efter skoledagen. Hjemme bryder hun sammen, græder og isolerer sig. Hun klager over hovedpine, søvnbesvær og ekstrem træthed. I skolen reagerer hun med tårer ved små fejl og undgår opmærksomhed. Personalet beskriver hende som 'pæn, men sart'.",
+      "barnets_oplevelse": "Jeg gør alt for at virke normal. Men det koster. Jeg kan ikke mere, når jeg kommer hjem.",
+      "typisk_fejl": "At se præstationen som trivsel. At overse de indre omkostninger ved masking. At fokusere på det faglige niveau frem for det følelsesmæssige slid. At tro, at 'dygtig' betyder 'robust'.",
+      "løsning": "Reducer krav til konstant social tilpasning. Skab rum for ægte autenticitet og pauser uden præstation. Anerkend hendes skjulte anstrengelse og giv eksplicit tilladelse til at være sig selv. Indfør faste restitutionspauser og tydelig struktur med forudsigelige rutiner. Etabler en tryg voksenrelation, hvor hun kan udtrykke ægte følelser uden konsekvens.",
+      "tiltag": "Energi-budget: plan for hvornår Sofia skal yde og hvornår hun skal restituere. 'Autenticitetszoner' – trygge pauserum uden sociale krav. Tilpassede skoledage med reducerede skift og sensorisk ro. Samtaler om masking og selvforståelse. Samarbejde med hjemmet for ens kommunikation og fælles aflastningsstrategi.",
+      "værktøjer": "Trin 1: Observation – kortlæg hendes energiniveau og reaktioner gennem dagen. Trin 2: Reduktion – fjern unødvendige krav og sociale forventninger. Trin 3: Autenticitet – støt hende i at vise ægte reaktioner uden skam. Trin 4: Forebyggelse – lær hende at aflæse egne stress-signaler og planlæg restitution inden udmattelse. Trin 5: Vedligeholdelse – fast ugentlig check-in om energibalance.",
+      "kategori": "Autisme & Angst (masking og følelsesmæssig udbrændthed)",
+      "kort_beskrivelse": "Sofia præsterer højt i skolen, men kollapser hjemme af social udmattelse. Med struktur, restitution og autenticitetsstøtte kan hun bevare trivsel uden masking.",
+      "kompleksitet": "moderat til høj",
+      "refleksion": "Da teamet begyndte at tale åbent om masking, blev Sofias adfærd forstået som stressreaktion i stedet for sensitivitet. Det ændrede skolens tilgang fra 'pres' til 'beskyttelse'.",
+      "resultat": "Sofia har nu reduceret sygefravær, sover bedre og deltager mere autentisk i timerne. Hun har lært at sige, når hun er overvældet – før sammenbruddet kommer.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Sofia klarer sig fagligt og fremstår som en velfungerende elev. Hun smiler, deltager og gør sig umage, men oplever markant udmattelse efter skoledagen..."
+    },
+    {
+      "id": "case-gs-001",
+      "titel": "Emma 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "Autisme (højtfungerende profil)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Perfektionisme, kontrol, angst, selvudtryk",
+      "problem": "Emma er stille, pligtopfyldende og præcis i alt, hvad hun gør. Hun visker ud gentagne gange, nægter at vise sit arbejde, hvis det ikke er 'helt perfekt', og taler lavt eller slet ikke i fællessituationer. Hun reagerer med fysisk ubehag på støj og forstyrrelser og bliver bleg, når der sker ændringer. Personalet beskriver hende som 'nem og flittig', men ingen ved, hvordan hun egentlig har det.",
+      "barnets_oplevelse": "Jeg tør ikke vise det. Det er forkert.",
+      "typisk_fejl": "At antage, at tavshed betyder trivsel. At overse den indre stress bag perfektionismen. At give mere ros for præcision i stedet for at styrke modet til fejl og spontanitet. At forveksle kontrol med ro.",
+      "løsning": "Skab trygge rum for uperfekt læring. Reducér præstationskrav og giv eksplicit tilladelse til fejl. Brug visuelle støtter og trygge kommunikationsformer (tegne, pege, skrive) som alternativ til tale. Anerkend indsats og mod – ikke resultat. Indfør pauser og forudsigelig struktur, så hun ikke bruger al energi på kontrol.",
+      "tiltag": "Fejl-fri zone: aktiviteter hvor fejl er forventede og ønskede. 'Mod-kort' hvor Emma får ros for at prøve nyt. Tryg voksenrelation hvor hun kan dele tanker uden vurdering. Visuelle sociale støtter i rundkreds: fx billeder af 'jeg vil gerne sige noget'. Fast 'stille-zone' ved uro. Koordinér støtte mellem hjem og skole, så krav og kommunikation er ensartet.",
+      "værktøjer": "Trin 1: Afkodning – observer mønstre i perfektionisme og tavshed. Trin 2: Tryghed – skab forudsigelige rammer med ro og støtteperson. Trin 3: Fejlmod – øv 'sjove fejl' i trygge situationer. Trin 4: Kommunikation – udvid gradvist fra nonverbal til verbal deltagelse. Trin 5: Vedligeholdelse – hjælp hende til at regulere stress ved forandring og uro.",
+      "kategori": "Autisme (internaliseret profil og præstationsangst)",
+      "kort_beskrivelse": "Emma fremstår stille og pligtopfyldende, men kæmper med perfektionisme og angst. Med tryghed, tydelig struktur og fokus på mod frem for fejl kan hun åbne sig gradvist.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da læreren stoppede med at rose for 'flot og pænt' og i stedet roste for 'mod og forsøg', begyndte Emma langsomt at vise uperfekte tegninger – og tale mere spontant.",
+      "resultat": "Emma tør nu vise sine opgaver uden at viske ud. Hun siger enkelte sætninger i små grupper og deltager aktivt i kreative aktiviteter uden sammenbrud.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Emma er stille, pligtopfyldende og præcis i alt, hvad hun gør. Hun visker ud gentagne gange, nægter at vise sit arbejde, hvis det ikke er 'helt perfek..."
+    },
+    {
+      "id": "case-gs-002",
+      "titel": "Ida 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "Autisme (pigeprofil – social udmattelse)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Social overstimulering, udmattelse, isolation",
+      "problem": "Ida virker stille og fredelig, men trækker sig mere og mere. Hun sidder alene, spiser ikke frokost og deltager ikke i gruppearbejde. Der er ingen åben konflikt – hun virker bare træt og 'ude af kontakt'. Ved lærerskift eller uro i klassen bliver hun bleg og får hovedpine. Forældrene beskriver en helt anden pige i weekenden: energisk, glad og initiativrig.",
+      "barnets_oplevelse": "Jeg gider ikke hele tiden skulle finde ud af det. Jeg vil bare være i fred.",
+      "typisk_fejl": "At tolke hendes stilhed som generthed eller dovenskab. At overse at tilbagetrækningen skyldes udmattelse, ikke modvilje. At øge det sociale pres i stedet for at give restitution. At fokusere på deltagelse frem for energiøkonomi.",
+      "løsning": "Skab tydelige pauser fra social interaktion uden at isolere hende helt. Indfør planlagte restitutionstider i løbet af dagen. Anerkend hendes behov for ro som regulering, ikke som afvisning. Brug faste og forudsigelige relationer, hvor hun ikke skal 'afkode' sociale signaler. Tilbyd struktureret fællesskab i små, overskuelige grupper frem for åbne sociale situationer.",
+      "tiltag": "‘Rolig zone’ i klassen hvor Ida kan trække sig uden sanktion. ‘Tryg makker’ til gruppearbejde, som ikke kræver konstant samtale. Fast plan for pauser og overgangssituationer. Sensorisk ro under spisepauser. Samarbejde med forældre om energi- og aktivitetsbalancen mellem skole og fritid.",
+      "værktøjer": "Trin 1: Observation – registrér mønstre i hendes træthed og tilbagetrækning. Trin 2: Struktur – lav tydelig plan for sociale og ikke-sociale perioder. Trin 3: Restitution – lær hende at mærke, hvornår hun skal tage pause. Trin 4: Gradvis deltagelse – små, overskuelige sociale aktiviteter. Trin 5: Vedligeholdelse – løbende tilpasning efter energiniveau og kontekst.",
+      "kategori": "Autisme (social energi og overstimulering)",
+      "kort_beskrivelse": "Ida trækker sig socialt, ikke af modvilje, men på grund af udmattelse. Med struktur, restitution og trygge relationer kan hun deltage uden at brænde ud.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da læreren begyndte at planlægge faste 'rolige pauser', kunne Ida igen deltage i korte sociale aktiviteter uden sammenbrud. Det ændrede hendes trivsel markant.",
+      "resultat": "Ida deltager nu stabilt i små grupper og spiser sammen med to klassekammerater. Hun går selv til 'rolig zone', før hun bliver overvældet.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Ida virker stille og fredelig, men trækker sig mere og mere. Hun sidder alene, spiser ikke frokost og deltager ikke i gruppearbejde. Der er ingen åben..."
+    },
+    {
+      "id": "case-gs-003",
+      "titel": "Selma 13 år",
+      "alder": 13,
+      "diagnoser": [
+        "Autisme (pigeprofil)",
+        "Angst (intern type)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Fagfolk"
+      ],
+      "tema": "Masking, social kompensation, sammenbrud",
+      "problem": "Selma fremstår som en vellidt og velfungerende pige. Hun smiler, deltager og har mange bekendtskaber, men ingen tætte relationer. Hun siger sjældent nej og gør alt for at passe ind. De seneste måneder har hun meldt sig syg oftere, sover dårligt og græder hjemme uden at kunne forklare hvorfor. I skolen afviser hun støtte og siger, hun har det 'fint'.",
+      "barnets_oplevelse": "Det hele er for meget. Jeg spiller en rolle hele dagen.",
+      "typisk_fejl": "At antage, at social deltagelse betyder trivsel. At overse, at hendes sociale kompetence bygger på konstant anstrengelse. At tilbyde mere støtte offentligt (hvor hun afviser) i stedet for trygt og afskærmet. At mistolke hendes fravær som dovenskab eller teenage-holdning.",
+      "løsning": "Reducér krav til social præstation. Skab mulighed for pauser, hvor hun ikke behøver at 'være på'. Giv støtte i skjult form – små strukturelle ændringer frem for synlig 'hjælp'. Tal med hende individuelt, uden gruppepres. Anerkend hendes indsats for at passe ind, og gør det trygt at være ærlig om træthed og uoverskuelighed. Etabler én fast voksen, der kan følge hendes trivsel tæt.",
+      "tiltag": "Diskret støtteplan: ændringer i skema, reduceret eksponering, fleksible afleveringsfrister. ‘Energi-økonomi’-model: planlæg hvornår hun skal præstere socialt og hvornår hun må trække sig. Ugentlig check-in med støtteperson. Samarbejde med hjemmet om restitution og søvnstøtte. Samtaler om masking og selvforståelse.",
+      "værktøjer": "Trin 1: Identificér kompensationsmønstre – hvor og hvornår hun 'spiller rollen'. Trin 2: Skab tryghed – privat støtte frem for offentlig. Trin 3: Balancér energi – indfør planlagte pauser uden social forpligtelse. Trin 4: Styrk autenticitet – øv at sige fra, udtrykke uenighed og vise følelser. Trin 5: Forebyg sammenbrud – overvåg signaler på overbelastning og tilpas krav rettidigt.",
+      "kategori": "Autisme & Angst (masking og social udbrændthed)",
+      "kort_beskrivelse": "Selma virker socialt velfungerende, men udmattes af konstant kompensation. Med diskret støtte, energi-økonomi og trygge relationer kan hun bevare trivsel uden sammenbrud.",
+      "kompleksitet": "høj",
+      "refleksion": "Da læreren begyndte at give støtte i skjult form – f.eks. ved at ændre opgaver uden at gøre opmærksom på det – faldt Selmas fravær markant. Hun begyndte gradvist at udtrykke egne grænser.",
+      "resultat": "Selma deltager nu stabilt i skole, sover bedre og siger selv, når hun er træt. Hun har fået én tæt veninde og oplever mindre angst ved sociale krav.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Selma fremstår som en vellidt og velfungerende pige. Hun smiler, deltager og har mange bekendtskaber, men ingen tætte relationer. Hun siger sjældent n..."
+    },
+    {
+      "id": "case-sp-001",
+      "titel": "Victor 5 år",
+      "alder": 5,
+      "diagnoser": [
+        "Autisme",
+        "Sensorisk overreaktiv profil"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Fagfolk",
+        "Hjem"
+      ],
+      "tema": "Sensorisk sensitivitet, overstimulering, autismeprofil",
+      "problem": "Victor reagerer voldsomt på høje lyde, pludselige berøringer og store grupper af mennesker. Han dækker ørerne, skriger eller flygter, når der opstår uro. Ved samling nægter han at sidde tæt og bryder ofte sammen, hvis flere børn taler samtidig. Han søger tryghed i faste voksne og undgår nye situationer med uforudsigelig lyd eller bevægelse.",
+      "barnets_oplevelse": "Det larmer inde i hovedet, og jeg vil væk.",
+      "typisk_fejl": "At tolke reaktionerne som trods i stedet for sensorisk overbelastning. At skælde ud eller fjerne pauser i stedet for at reducere stimuli. At mangle en plan for sensorisk tryghed. At fokusere på lydtolerance i stedet for reguleringsevne.",
+      "løsning": "Skab et sensorisk trygt miljø med tydelige pauser og mulighed for tilbagetrækning. Brug støjdæmpende hjælpemidler og visuelle varsler før lyd og berøring. Indfør gradvis eksponering i kontrolleret form, så Victor lærer at håndtere stimuli i små doser. Samarbejd med ergoterapeut om sensorisk vurdering og tilpasning af dagligdagen. Fokusér på forudsigelighed, ro og valgmuligheder.",
+      "tiltag": "Etabler ‘pauseplads’ med visuel markering. Brug støjdæmpende hovedtelefoner ved samling og spisning. Indfør ‘5-minutters varsel’ før aktiviteter med lyd eller berøring. Udarbejd visuel dagsplan med forudsigelige overgange. Indfør ‘sensorisk ropause’ efter intensive perioder. Samarbejd med forældre om ensartet strategi hjemme og i børnehaven.",
+      "værktøjer": "Trin 1: Sensorisk kortlægning – identificer triggere (lyd, berøring, visuel uro). Trin 2: Etabler sensorisk tryghedsplan. Trin 3: Implementér støttestrukturer (hovedtelefoner, pausekort, visuel plan). Trin 4: Gradvis eksponering i små, kontrollerede trin. Trin 5: Evaluér og justér sammen med ergoterapeut og pædagogisk team.",
+      "kategori": "Autisme (sensorisk sensitivitet og overstimulering)",
+      "kort_beskrivelse": "Victor bliver hurtigt overvældet af lyd, berøring og uro. Et sensorisk trygt miljø, visuelle varsler og pauser gør det muligt for ham at deltage trygt i børnehavelivet.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da personalet begyndte at give 5-minutters varsler og faste pauser, faldt antallet af sammenbrud markant. Victor begyndte selv at bede om ro i stedet for at flygte.",
+      "resultat": "Victor deltager nu i samling med hovedtelefoner og kan blive i rummet uden sammenbrud. Han bruger selv ‘pausekortet’ og vender tilbage til aktiviteter efter korte reguleringspauser.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Victor reagerer voldsomt på høje lyde, pludselige berøringer og store grupper af mennesker. Han dækker ørerne, skriger eller flygter, når der opstår u..."
+    },
+    {
+      "id": "case-sp-003",
+      "titel": "Freja 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "Autisme",
+        "Angst (overstimulation og kontroltab)"
+      ],
+      "miljø": [
+        "Skole",
+        "Fagfolk",
+        "Hjem"
+      ],
+      "tema": "Sanseoverbelastning, angst, autisme, nedlukning",
+      "problem": "Freja lukker helt ned, når der er mange sanseindtryk, støj eller pludselige ændringer i planerne. Hun reagerer ikke på tiltale, stirrer ud i luften og bliver fysisk passiv. Efterfølgende oplever hun hovedpine, kvalme og ekstrem træthed. Lærere oplever hende som fraværende, men reaktionen er en neurologisk beskyttelsesstrategi mod sanse- og følelsesmæssig overbelastning.",
+      "barnets_oplevelse": "Jeg kan ikke høre, hvad de siger. Det larmer indeni, og jeg bliver helt stille.",
+      "typisk_fejl": "At tolke nedlukningen som trods eller uinteresse. At presse barnet til at svare midt i overbelastning. At undervurdere den fysiske udmattelse efter nedlukning. At mangle en konkret plan for genopladning og regulering.",
+      "løsning": "Identificér tidlige tegn på sanseoverbelastning og giv pauser inden nedlukning. Etabler rolige zoner med dæmpet lys og minimal lyd. Brug visuelle signaler i stedet for tale, når Freja er overbelastet. Giv ekstra tid ved alle skift og forbered ændringer i god tid. Samarbejd med psykolog og ergoterapeut om individuel sanseprofil og reguleringsplan.",
+      "tiltag": "Udarbejd en 'overbelastnings- og pauseplan' med tydelige signaler og handlepunkter. Opret en 'ro-zone' i klassen eller på skolen. Brug billedkort: 'Jeg har brug for ro'. Planlæg genopladningstid efter større sociale eller sansemæssige krav. Aftal håndtering med forældre, så hun kan regulere sig ensartet hjemme og i skole.",
+      "værktøjer": "Trin 1: Kortlæg triggers og tidlige signaler på overload. Trin 2: Etabler ro-zone og visuel kommunikation. Trin 3: Brug forudsigelighed og faste overgange. Trin 4: Genskab tryghed efter nedlukning via relation og pauser. Trin 5: Evaluer sammen med ergoterapeut og psykolog for justering af sanseprofilen.",
+      "kategori": "Autisme & Angst (sanseoverbelastning og nedlukning)",
+      "kort_beskrivelse": "Freja reagerer på overstimulation med total nedlukning. Tidlig forebyggelse, ro-zoner og visuelle signaler forebygger sammenbrud og fremmer genopladning.",
+      "kompleksitet": "moderat-høj",
+      "refleksion": "Da læreren begyndte at give Freja fem minutters varsler og bruge et ro-kort i stedet for ord, undgik de daglige sammenbrud. Freja begyndte selv at signalere, når hun havde brug for ro.",
+      "resultat": "Freja kan nu blive i klassen med visuel støtte og planlagte pauser. Hun har reduceret antal nedlukninger fra flere gange dagligt til enkelte episoder om ugen.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Freja lukker helt ned, når der er mange sanseindtryk, støj eller pludselige ændringer i planerne. Hun reagerer ikke på tiltale, stirrer ud i luften og..."
+    },
+    {
+      "id": "case-sh-002",
+      "titel": "Clara 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "Autisme"
+      ],
+      "miljø": [
+        "Hjem",
+        "Familie"
+      ],
+      "tema": "Skyld, tilbagetrækning, emotionel overansvarlighed",
+      "problem": "Clara reagerer på storebrorens raserianfald ved at trække sig og tage ansvar. Hun forsøger at skabe ro, trøster mor og rydder op efter konflikter. Hun udviser ingen udadreagerende adfærd, men bliver stille, grædende eller undvigende. Hun nægter nogle dage at være hjemme og siger, at hun vil 'gemme sig' ved høje lyde. Forældrene beskriver hende som sød, hjælpsom – og mere og mere trist.",
+      "barnets_oplevelse": "Han bliver sur. Jeg prøver at være god, så mor ikke bliver ked af det.",
+      "typisk_fejl": "At overse Claras stress, fordi hun virker 'nem'. At rose hende for at tage ansvar, hvilket forstærker overtilpasningen. At fokusere udelukkende på det udadreagerende barn. At ignorere hendes behov for tryghed, individuel opmærksomhed og aflastning.",
+      "løsning": "Etabler individuel støtte og tryghed omkring Clara. Anerkend hendes følelser uden at placere ansvar. Skab faste forudsigelige rutiner, hvor hun ikke skal 'passe på' andre. Giv hende 1:1-tid med forælder i rolige rammer. Indfør familiens fælles 'pause-strategi', hvor begge børn har ret til ro uden skyld eller straf. Styrk hendes selvfølelse gennem aktiviteter, hvor hun får lov at være barn – ikke hjælper.",
+      "tiltag": "Lav en 'Clara-plan' med faste pauser og stille-zoner. Giv hende tydelige signaler, når konflikter er overstået, så hun tør komme frem igen. Indfør ros for selvomsorg, ikke for tilpasning: 'Det var godt, du gik ud og passede på dig selv.' Sørg for, at mor og far håndterer brorens udbrud – ikke Clara. Tilbyd evt. samtaler med børnepsykolog for at støtte følelsesmæssig aflastning.",
+      "værktøjer": "Trin 1: Observer Claras stress- og tilbagetrækningsmønstre. Trin 2: Indfør ro-rutiner og faste signaler for tryghed. Trin 3: Giv individuel tid og emotionel anerkendelse. Trin 4: Fjern ansvar og beløn ikke 'at være den voksne'. Trin 5: Involver familiebehandler eller psykolog ved vedvarende tristhed eller undgåelse.",
+      "kategori": "Autisme (internaliserende søskendereaktion)",
+      "kort_beskrivelse": "Clara tager ansvar og trækker sig under søskendekonflikter. Hun fremstår nem, men bærer et skjult følelsesmæssigt pres. Tryghed, aflastning og individuel støtte forebygger overansvar og tristhed.",
+      "kompleksitet": "moderat",
+      "refleksion": "Da forældrene stoppede med at rose Clara for at 'hjælpe' under konflikter og i stedet roste hende for at passe på sig selv, begyndte hun at lege mere frit og vise flere følelser.",
+      "resultat": "Clara tør nu sige, når hun bliver bange, og trækker sig kortvarigt i stedet for helt at undgå hjemmet. Hun deltager igen i fælles aktiviteter uden skyldfølelse.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Clara reagerer på storebrorens raserianfald ved at trække sig og tage ansvar. Hun forsøger at skabe ro, trøster mor og rydder op efter konflikter. Hun..."
+    },
+    {
+      "id": "case-dcd-003",
+      "titel": "Line 13 år",
+      "alder": 13,
+      "diagnoser": [
+        "DCD",
+        "Angst",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Motorisk nederlag, angst, social tilbagetrækning",
+      "problem": "Line trækker sig gradvist fra både undervisning og sociale fællesskaber. Hun undgår praktiske fag og deltager sjældent i gruppearbejde. Hun sidder alene i pauser, virker træt og uinteresseret, og siger ofte 'jeg ved ikke' eller 'jeg er ligeglad'. Hendes skrivehastighed er meget lav, og hun bliver overvældet af opgaver med mange deltrin. Lærerne beskriver hende som stille og høflig, men følelsesmæssigt fraværende.",
+      "barnets_oplevelse": "Jeg siger ikke noget, for jeg gider ikke gøre det forkert igen.",
+      "typisk_fejl": "At tolke stilheden som ligegyldighed i stedet for opgivenhed. At overse motorisk og sensorisk udmattelse som årsag til social isolation. At øge faglige krav for at 'motivere', hvilket i stedet øger hendes angst. At fokusere på præstation frem for relation og restitution.",
+      "løsning": "Reducér belastning og genopbyg motivation gennem succesoplevelser. Skab trygge læringsmiljøer med tydelige, overskuelige opgaver og visuel støtte. Arbejd med sansemæssig og motorisk tilpasning (hjælpemidler, pauser, rytme). Etabler fast voksenkontakt med fokus på relation og mestring. Gradvis genindslusning i sociale aktiviteter med forudsigelighed og støtte. Inddrag psykologisk støtte for at adressere lavt selvværd og angstreaktioner.",
+      "tiltag": "Udarbejd individuel plan med fokus på mestring i små trin. Brug hjælpemidler (tablet, diktering) for at reducere skrivebelastning. Planlæg pauser i sensorisk rolige zoner. Introducér 'samarbejdsaktiviteter med faste roller' for at skabe kontrol i sociale kontekster. Implementér ugentlig samtale med kontaktperson om trivsel og fremgang. Brug styrkebaseret feedback: fokus på indsats og overblik, ikke tempo.",
+      "værktøjer": "Trin 1: Kortlæg sanse- og motorisk belastning. Trin 2: Skab struktureret støtteplan med visuel oversigt. Trin 3: Genopbyg deltagelse gennem små succeser. Trin 4: Inddrag psykologisk støtte og angstregulering. Trin 5: Evaluer progression i både trivsel og deltagelse hver 4. uge.",
+      "kategori": "DCD & Autisme (motorisk nederlag og social tilbagetrækning)",
+      "kort_beskrivelse": "Line trækker sig fra fællesskabet efter gentagne nederlag. En kombineret indsats med struktur, sansepauser og relationel støtte genopbygger motivation og deltagelse.",
+      "kompleksitet": "høj",
+      "refleksion": "Da skolen fjernede krav om gruppearbejde midlertidigt og i stedet fokuserede på små individuelle sejre med visuel feedback, begyndte Line at opsøge de andre elever igen og smile, når hun blev rost for sin indsats.",
+      "resultat": "Line deltager nu i udvalgte fag og korte sociale aktiviteter. Hun bruger hjælpemidler ved skrivning og har genvundet lysten til at prøve. Angst og fravær er faldet markant.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Line trækker sig gradvist fra både undervisning og sociale fællesskaber. Hun undgår praktiske fag og deltager sjældent i gruppearbejde. Hun sidder ale..."
+    },
+    {
+      "id": "case-asf-001",
+      "titel": "Mille 6 år",
+      "alder": 6,
+      "diagnoser": [
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Maskering, indre stress, perfektionisme",
+      "problem": "Mille fremstår som en stille, hjælpsom og vellidt elev. Hun følger alle regler, gør sig umage og søger konstant voksenaccept. Hun deltager, men viser ingen spontanitet. Hjemme bryder hun sammen, græder over små fejl og nægter indimellem at gå i skole. Hun siger 'det skal være rigtigt', og får hovedpine og mavepine efter skoledagen. Forældrene beskriver hende som udmattet og bekymret for at skuffe nogen.",
+      "barnets_oplevelse": "Hvis jeg laver fejl, så bliver det forkert – og så ved de det.",
+      "typisk_fejl": "At tolke hendes tilpasning som trivsel. At overse udmattelsen bag den perfekte facade. At øge krav, fordi hun 'klarer det så godt'. At undervurdere betydningen af pauser og følelsesmæssig støtte. At fokusere på adfærd frem for energi- og stressniveau.",
+      "løsning": "Anerkend, at den synlige trivsel dækker over høj indre belastning. Skab trygge frirum i løbet af dagen, hvor Mille ikke skal præstere. Giv hende eksplicit tilladelse til at lave fejl og vise usikkerhed. Brug visuel plan for dagen, og indfør sensoriske pauser i rolige omgivelser. Reducér perfektionistiske mønstre gennem leg, hvor der ikke findes 'rigtigt' og 'forkert'. Sørg for tæt samarbejde med hjemmet for at balancere krav og restitution.",
+      "tiltag": "Udarbejd en 'maskerings-observationsplan' for at dokumentere forskelle mellem skole og hjem. Skab faste pauserum med sensorisk ro og forudsigelighed. Indfør daglige 'pustepauser' uden sociale krav. Brug fejltræning og legende læring til at normalisere fejl. Giv ros for mod, ikke præcision. Indfør fast kontaktperson, som følger Mille gennem dagen og registrerer stress-tegn.",
+      "værktøjer": "Trin 1: Kortlæg kontrast mellem skole og hjem. Trin 2: Skab frirum og tillad fejl i trygge rammer. Trin 3: Indfør visuelle strukturer og tryghedssignaler. Trin 4: Samarbejd med forældre om restitutionstid og signaler på overbelastning. Trin 5: Evaluer energiniveau og følelsesmæssig balance ugentligt.",
+      "kategori": "Autisme (maskering og perfektionisme)",
+      "kort_beskrivelse": "Mille fremstår perfekt i skolen men bryder sammen hjemme. Maskering, indre stress og perfektionisme kræver balance mellem krav, pauser og følelsesmæssig støtte.",
+      "kompleksitet": "moderat-høj",
+      "refleksion": "Efter lærerne begyndte at give Mille planlagte pauser og aktivt anerkendte fejl som en del af læring, begyndte hun at vise mere spontanitet og mindre gråd derhjemme.",
+      "resultat": "Mille kan nu udtrykke træthed og sige, når hun har brug for pause. Skolefravær er faldet, og hun viser mere naturlig glæde i samspil med både voksne og børn.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Mille fremstår som en stille, hjælpsom og vellidt elev. Hun følger alle regler, gør sig umage og søger konstant voksenaccept. Hun deltager, men viser ..."
+    },
+    {
+      "id": "case-asf-002",
+      "titel": "Alma 10 år",
+      "alder": 10,
+      "diagnoser": [
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Maskering, energiforbrug, social udmattelse",
+      "problem": "Alma klarer sig fagligt, men fremstår træt, langsom og tilbagetrukket. Hun taler kun, når hun bliver spurgt direkte, og undgår fællesaktiviteter. Når der opstår forandringer, 'glemmer' hun opgaver eller stirrer tomt ud i luften. Lærerne beskriver hende som sød og rolig, men passiv og uengageret. Hjemme er hun irritabel, isolerer sig og bryder sammen over små krav. Hun beskriver, at hun bruger al sin energi på at virke normal i skolen.",
+      "barnets_oplevelse": "Jeg bruger al min energi på ikke at lave fejl. Så har jeg ikke mere bagefter.",
+      "typisk_fejl": "At se passivitet som dovenskab i stedet for udmattelse. At belønne overtilpasning uden at skabe reelle pauser. At øge fagligt pres for at 'motivere'. At overse energiforbruget bag social kontrol og stille adfærd.",
+      "løsning": "Erkend udmattelse som hovedproblem. Skab systematiske restitutionszoner og reducer skjulte sociale krav. Giv visuel struktur og mulighed for forudsigelighed. Anerkend indsats frem for præstation. Indfør faste pauser før energien bryder sammen. Sørg for, at Alma har én tryg voksen i skolen, som hun kan 'lade op' hos. Koordiner støtte mellem skole og hjem, så hun ikke bruger energi på kompensation i begge miljøer.",
+      "tiltag": "Udarbejd 'energi- og belastningsprofil' for dagen. Indfør mikropauser (3-5 min) efter krævende sociale aktiviteter. Brug tydelig visuel plan og klare overgange. Implementér et fast 'pausesignal' hun kan bruge diskret. Reducér antal sociale krav i gruppearbejde. Giv roligt sted til restitution i skoletiden. Brug ugeevaluering med barn og voksen om energi og trivsel. Indfør fleksibel aflevering af opgaver ved træthed.",
+      "værktøjer": "Trin 1: Kortlæg energiforbrug og tidspunkter for nedlukning. Trin 2: Skab struktur for restitution og pauser. Trin 3: Indfør fleksible arbejdskrav med visuel støtte. Trin 4: Styrk kontakt med fast voksen og hjem. Trin 5: Evaluér udmattelsesniveau og justér støtten løbende.",
+      "kategori": "Autisme (maskering og udmattelse)",
+      "kort_beskrivelse": "Alma bruger al sin energi på at virke normal og bliver udmattet. Udadtil stille – indeni udbrændt. Kræver systematisk restitution, visuel struktur og tryg voksenrelation.",
+      "kompleksitet": "høj",
+      "refleksion": "Efter skolen begyndte at indføre faste restitutionspauser og fleksible afleveringskrav, stoppede Almas daglige sammenbrud derhjemme. Hun begyndte igen at deltage i klassens små samtaler.",
+      "resultat": "Alma deltager nu stabilt, bruger pausesignal ved behov og udviser mindre irritabilitet hjemme. Hendes koncentration og humør er forbedret, og energiniveauet mere balanceret.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Alma klarer sig fagligt, men fremstår træt, langsom og tilbagetrukket. Hun taler kun, når hun bliver spurgt direkte, og undgår fællesaktiviteter. Når ..."
+    },
+    {
+      "id": "case-asf-003",
+      "titel": "Selma 13 år",
+      "alder": 13,
+      "diagnoser": [
+        "Autisme",
+        "ADHD",
+        "DCD",
+        "OCD",
+        "Selektiv mutisme",
+        "Angst",
+        "Depression"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Kognitiv kompensation, følelsesnedlukning, overkontrol",
+      "problem": "Selma klarer sig fagligt langt over gennemsnittet og leverer præcise, gennemarbejdede opgaver. Men hun deltager ikke i socialt samspil og udviser næsten ingen følelsesmæssige reaktioner. Hun virker rolig, men utilgængelig. Hun reagerer neutralt på ros og kritik og undgår øjenkontakt. I stedet for dialog skriver hun stikord om sig selv: 'træt', 'ingen energi', 'falsk ro'. Hjemme beskrives hun som kontrolleret, stille og udmattet. Forældrene oplever, at hun bryder sammen, når strukturen brydes – men uden ord, kun tårer eller tavshed.",
+      "barnets_oplevelse": "Jeg ved, hvad der virker – men jeg siger ikke noget, for det er for meget.",
+      "typisk_fejl": "At forveksle kontrol med trivsel. At tolke følelsesløshed som styrke. At ignorere energitab, fordi præstationen stadig er høj. At øge krav uden at forstå, at hun allerede arbejder på maksimum. At undervurdere angst bag den 'perfekte facade'.",
+      "løsning": "Fokusér på relation før præstation. Skab trygge rammer uden krav om følelsesmæssig åbenhed – men hvor Selma kan vælge at dele. Reducér kognitiv overkontrol gennem kreative, uforudsigelige aktiviteter uden facit. Etabler ugentlig kontaktperson-samtale uden akademisk fokus. Giv eksplicit tilladelse til at udtrykke tvivl, fejl og følelser. Balancér struktur og fleksibilitet, så hun ikke mister oplevelsen af kontrol.",
+      "tiltag": "Kortlæg hendes stress- og kontrolmønster. Introducér ikke-verbal refleksion (tegning, skrivning, symbolkort). Indfør 'valgfri deltagelse' i sociale opgaver. Reducér forventning om feedback på alle opgaver. Indfør pauser uden krav og uden tilskuere. Brug parallel kommunikation (chat, skrift, symbol) frem for direkte konfrontation. Koordinér mellem skole, psykolog og hjem omkring energistyring, ikke kun faglig plan.",
+      "værktøjer": "Trin 1: Kortlæg kontrol- og kompensationsstrategier. Trin 2: Skab trygge relationer uden præstationskrav. Trin 3: Introducér emotionel fleksibilitet gennem kreative medier. Trin 4: Indfør regulerede pauser og energistyring. Trin 5: Evaluer trivsel gennem tegn, ikke ord.",
+      "kategori": "Autisme & Angst (kognitiv overkontrol og følelsesnedlukning)",
+      "kort_beskrivelse": "Selma præsterer højt men lukker følelsesmæssigt ned. Hendes ro dækker over overkontrol og udmattelse. Relationel tryghed og reduktion af præstationspres er afgørende for at genskabe følelsesmæssig kontakt.",
+      "kompleksitet": "meget høj",
+      "refleksion": "Efter skolen indførte skriftlig kommunikation og fjernede præstationskrav i udvalgte fag, begyndte Selma spontant at deltage i korte samtaler med sin kontaktlærer.",
+      "resultat": "Selma udviser nu begyndende følelsesmæssig kontakt og kan udtrykke behov skriftligt. Stresssymptomer og fravær er reduceret, og hun arbejder fortsat fagligt stabilt men med lavere indre pres.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Selma klarer sig fagligt langt over gennemsnittet og leverer præcise, gennemarbejdede opgaver. Men hun deltager ikke i socialt samspil og udviser næst..."
+    },
+    {
+      "id": "case-asf-004",
+      "titel": "Frida 16 år",
+      "alder": 16,
+      "diagnoser": [
+        "Autisme",
+        "Angst",
+        "Depression"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Venner"
+      ],
+      "tema": "Maskering, identitetstab, følelsesfrakobling",
+      "problem": "Frida fremstår velfungerende udadtil – god karakter, hjælpsom og rolig. Hun tilpasser sig alle miljøer og efterligner sociale koder, men beskriver en indre tomhed. Hun siger, at hun ikke ved, hvem hun selv er, og føler sig 'falsk' i relationer. Hun deltager mindre i sociale aktiviteter, og venner beskriver hende som 'svær at nå'. Hjemme lukker hun døren og trækker sig. Søvnen er forstyrret, og hun spiser uregelmæssigt. Hun udtrykker tanker om, at 'det hele føles ligegyldigt'.",
+      "barnets_oplevelse": "Jeg ved ikke længere, hvem jeg er. Jeg gør bare, hvad der virker, men jeg føler ingenting.",
+      "typisk_fejl": "At antage at høj funktion og selvstændighed = trivsel. At overse, at følelsesmæssig frakobling er en beskyttelsesmekanisme. At fokusere på præstationer og fremtidsplaner i stedet for identitet og tilhør. At tilbyde terapi uden først at genopbygge relationel tryghed.",
+      "løsning": "Skab et miljø, hvor Frida ikke skal præstere eller forklare sig. Fokusér på at genfinde hendes oplevelse af selv og mening – ikke på symptombehandling alene. Brug narrativ og identitetsbaseret tilgang, hvor hun kan udforske, hvem hun er uden masken. Giv plads til tavshed og tvivl – ikke krav om indsigt. Indfør fast kontaktperson, som kan støtte hende kontinuerligt uden evaluering. Koordinér mellem skole, psykolog og hjem om fælles sprog for energiniveau og selvopfattelse.",
+      "tiltag": "Udarbejd 'identitets- og trivselsspor' frem for diagnosefokus. Giv mulighed for nonverbal selvudtryk (kunst, musik, skrivning). Indfør ugentlig 'menings-samtale' uden målkrav. Reducér pres for fremtidsvalg og præstation. Indfør fleksibel skoledeltagelse med fokus på relationel kontakt frem for faglighed. Integrér kropslige pauser og naturaktiviteter for genforankring i sansning og nærvær.",
+      "værktøjer": "Trin 1: Identificér følelsesmæssig frakobling og maskeringsmønstre. Trin 2: Etabler kontinuerlig relationel kontakt og tryghed. Trin 3: Introducér identitetsforankrede aktiviteter (kreativitet, sansning, natur). Trin 4: Gradvis genskabelse af emotionel kontakt og selvoplevelse. Trin 5: Samarbejd tværfagligt med psykolog og familie om langsigtet støtteplan.",
+      "kategori": "Autisme & Depression (identitetstab efter masking)",
+      "kort_beskrivelse": "Frida har tilpasset sig så meget, at hun har mistet kontakten til sig selv. Udadtil velfungerende, men indeni tom og frakoblet. Arbejdet handler nu om at genskabe identitet, mening og følelsesmæssig kontakt – ikke om præstation.",
+      "kompleksitet": "meget høj",
+      "refleksion": "Efter at læreren og psykologen skabte et fast ugentligt refleksionsrum uden præstationskrav, begyndte Frida gradvist at beskrive følelser og ønsker igen. Hendes deltagelse blev mere autentisk, og hun begyndte at tage initiativ socialt.",
+      "resultat": "Frida har genvundet en begyndende oplevelse af selvstændighed og ægthed. Hun deltager i udvalgte aktiviteter efter eget valg og udviser lavere stressniveau. Maskeringen er reduceret, og relationel kontakt er genetableret.",
+      "kilde": "Git master 2025-11-14",
+      "version": "1.0",
+      "sidst_opdateret": "2025-11-14",
+      "category": "Ukendt",
+      "shortDescription": "Frida fremstår velfungerende udadtil – god karakter, hjælpsom og rolig. Hun tilpasser sig alle miljøer og efterligner sociale koder, men beskriver en ..."
+    }
+  ]
+}
