@@ -1549,17 +1549,23 @@
     "structure_need": ["Lav", "Moderat", "Høj"],
     "level": ["Junior", "Intermediate", "Advanced", "Expert"]
   },
-  "teacher_templates": {
-    "opstartsplan": {
-      "title": "PBL Opstartsplan",
-      "fields": [
-        "Elevprofil (diagnose, niveau, interesser)",
-        "Valgt projekt + begrundelse",
-        "Mål (kompetencer at udvikle)",
-        "Varighed og milepæle",
-        "Succeskriterier"
-      ]
-    },
+  "opstartsplan": {
+  "title": "PBL Opstartsplan",
+  "fields": [
+    "Elevprofil (alder, diagnose, funktionsniveau, interesser, styrker)",
+    "Hvorfor dette projekt er valgt til netop dette barn",
+    "Hvad projektet skal hjælpe med (fx ro, fokus, deltagelse, motivation)",
+    "Hvad barnet skal lære undervejs (fx dansk, sprog, regning, rækkefølge, ansvar)",
+    "Startniveau: hvordan ser barnet ud før opstart?",
+    "Valgt projekt + kort begrundelse",
+    "Varighed og ugeopdeling",
+    "Hvad læreren skal observere undervejs",
+    "Hvad forældre kan støtte med hjemme",
+    "Tegn på at forløbet virker",
+    "Tegn på at forløbet skal justeres eller stoppes",
+    "Muligt næste skridt efter forløbet"
+  ]
+},
     "logbog": {
       "title": "PBL Logbog (daglig/ugentlig)",
       "fields": [
