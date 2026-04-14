@@ -29,12 +29,63 @@ export default async function handler(req, res) {
 
   try {
     const dataPath = path.join(process.cwd(), "data", "CDA_Komorbiditet.json");
-    const data = readJsonFile(dataPath);
+    const rawData = readJsonFile(dataPath);
+    const komorbiditetData = rawData.komorbiditet_data || [];
+
+    const { primary, id } = req.query;
+
+    if (id) {
+      for (const diagnosis of komorbiditetData) {
+        const match = (diagnosis.comorbidities || []).find(
+          (item) => item.id.toLowerCase() === String(id).toLowerCase()
+        );
+
+        if (match) {
+          return res.status(200).json({
+            success: true,
+            source: "local",
+            type: "comorbidity",
+            data: match,
+          });
+        }
+      }
+
+      return res.status(404).json({
+        success: false,
+        error: "Komorbiditet ikke fundet",
+        query: { id },
+      });
+    }
+
+    if (primary) {
+      const match = komorbiditetData.find(
+        (item) =>
+          item.primary_diagnosis.toLowerCase() === String(primary).toLowerCase() ||
+          item.id.toLowerCase() === String(primary).toLowerCase()
+      );
+
+      if (!match) {
+        return res.status(404).json({
+          success: false,
+          error: "Primær diagnose ikke fundet",
+          query: { primary },
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        source: "local",
+        type: "primary_diagnosis",
+        data: match,
+      });
+    }
 
     return res.status(200).json({
       success: true,
       source: "local",
-      data,
+      type: "all",
+      count: komorbiditetData.length,
+      data: komorbiditetData,
     });
   } catch (error) {
     console.error("Komorbiditet API error:", error);
