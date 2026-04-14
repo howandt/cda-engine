@@ -1,6 +1,23 @@
 {
-  "version": "2025-05-17",
+  "version": "2026-04-14",
   "description": "CDA PBL Projektbank - Komplet database med intelligent matchlogik",
+  "system_purpose": {
+    "title": "Hvad er CDA-PBL?",
+    "description": "CDA-PBL er et fleksibelt udviklingsspor i skolen for børn, der lærer bedre gennem handling, struktur, mening og praksis end ved kun traditionel klasseundervisning. Formålet er ikke karakterer, men at styrke fokus, koncentration, læring, trivsel, deltagelse og begyndende retning i livet.",
+    "not": [
+      "Ikke parkering",
+      "Ikke karaktergivning",
+      "Ikke erhvervsuddannelse",
+      "Ikke et fastlåst standardforløb for alle børn"
+    ],
+    "goal": [
+      "Give barnet en meningsfuld læringsvej",
+      "Indbygge dansk, sprog, regning og forståelse i praksis",
+      "Observere hvad barnet kan fastholde, lære og trives i",
+      "Pege mod mulige fremtidsspor som håndværk, kreativt arbejde, teknik, landbrug eller service"
+    ],
+    "usage": "Systemet giver lærere og forældre en ramme med forslag, matching, progression og skabeloner. Det konkrete forløb formes omkring barnet og justeres undervejs."
+  },
   "total_projects": 61,
   "projects": [
     {
