@@ -399,6 +399,198 @@
             "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "adhd"
+        },
+        {
+          "id": "angst_asf",
+          "suspected_comorbidity": "Autisme",
+          "title": "Angst + Autisme",
+          "trigger_tegn": [
+            "rigid",
+            "social usikkerhed",
+            "stort behov for kontrol",
+            "urolig ved skift",
+            "sensorisk følsom",
+            "behov for forberedelse",
+            "bliver overbelastet",
+            "fastlåst ved ændringer",
+            "misforstår sociale situationer",
+            "undgår uforudsigelighed"
+          ],
+          "praevalens": "10–40 %",
+          "kort_forklaring": "Når autisme optræder sammen med angst, bliver angstbilledet ofte mere rigidt, mere situationsbundet og mere præget af overbelastning ved forandring, sociale krav eller sansning.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun bekymret eller undgående, men også markant mere rigidt og socialt anderledes",
+            "Undgåelsen handler ikke kun om frygt, men også om uforudsigelighed, sociale koder eller sensorisk belastning",
+            "Reaktionerne virker ofte præget af fastlåsthed, stort kontrolbehov og vanskeligheder med fleksibilitet"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har vedvarende vanskeligheder med social gensidighed og sociale koder",
+            "Om barnet reagerer stærkt på skift, forandringer eller brud på kendte rutiner",
+            "Om barnet virker sensorisk belastet af lyd, lys, berøring eller mange indtryk",
+            "Om undgåelse også hænger sammen med rigiditet og behov for forudsigelighed"
+          ],
+          "typiske_tegn_i_skole": [
+            "Undgår ikke kun krav, men også sociale og uforudsigelige situationer",
+            "Bliver fastlåst ved ændringer i planer, regler eller forventninger",
+            "Virker mere socialt usikker eller misafstemt end typisk ved angst alene",
+            "Bliver hurtigt overbelastet i støjende, sociale eller sansetunge miljøer"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Stærkt behov for kendte rutiner og forberedelse",
+            "Reagerer kraftigt ved ændringer i planer eller hverdagsmønstre",
+            "Har særlige sensoriske reaktioner på mad, tøj, lyd eller berøring",
+            "Undgår situationer, der opleves uforudsigelige, sociale eller overstimulerende"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere rigidt end typisk ved angst",
+            "Barnet er tydeligt mere socialt misafstemt eller belastet af sociale koder end forventet",
+            "Barnet bliver overbelastet af skift, sansning eller uforudsigelighed",
+            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Autisme kan ligne angst, fordi barnet også kan undgå, blive fastlåst og virke socialt usikkert",
+            "Angst kan ligne autisme, hvis barnet bliver meget undgående og rigidt i pressede situationer",
+            "Det afgørende er, om der også ses vedvarende vanskeligheder med social gensidighed, fleksibilitet og sensorisk tilpasning"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med angst, men der ses også tegn på rigiditet, social misafstemning og belastning ved skift eller sansning, som ikke forklares tilstrækkeligt af angsten alene",
+            "Vi observerer, at barnet reagerer markant på uforudsigelighed, sociale krav og sensoriske belastninger",
+            "Det kan være relevant at få belyst, om der også er en autismespektrumproblematik til stede ud over den kendte angstprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af socialt samspil, fleksibilitet og belastningsmønstre",
+            "Beskrivelse af barnets reaktioner på skift, sociale krav og sensoriske forhold",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "autisme"
+        },
+        {
+          "id": "angst_ocd",
+          "suspected_comorbidity": "OCD",
+          "title": "Angst + OCD",
+          "trigger_tegn": [
+            "ritualer",
+            "tvangstanker",
+            "gentager",
+            "kontrollerer",
+            "skal gøre ting på bestemt måde",
+            "påtrængende tanker",
+            "beroliger sig med handlinger",
+            "overdreven tvivl",
+            "mental gennemgang",
+            "kan ikke slippe tanken"
+          ],
+          "praevalens": "10–30 %",
+          "kort_forklaring": "Når OCD optræder sammen med angst, bliver angstbilledet ofte mere ritualiseret, mere tvangspræget og mindre forståeligt ud fra almindelig bekymringsangst alene.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun bekymret eller undgående, men også fanget i ritualer, kontroller eller gentagelser",
+            "Bekymringen er ikke kun bred og situationsbundet, men knyttet til bestemte tanker, forestillinger eller handlinger",
+            "Barnet forsøger at dæmpe ubehag gennem bestemte handlinger eller mentale strategier"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har gentagne ritualer, kontroller eller faste handlinger for at dæmpe angst",
+            "Om barnet plages af påtrængende tanker, som er svære at slippe",
+            "Om barnet bruger lang tid på at sikre sig, at noget er gjort rigtigt eller sikkert",
+            "Om uroen stiger markant, hvis ritualer afbrydes eller ikke kan gennemføres"
+          ],
+          "typiske_tegn_i_skole": [
+            "Bruger uforholdsmæssig lang tid på opgaver, tjek eller gentagelser",
+            "Virker fastlåst i bestemte rutiner eller kontroller",
+            "Har svært ved at komme videre, hvis noget ikke føles helt rigtigt",
+            "Bekymring ledsages af ritualiseret adfærd eller mentale gentagelser"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Skal tjekke, spørge eller gentage ting mange gange",
+            "Bliver meget urolig, hvis bestemte ritualer ikke kan gennemføres",
+            "Bruger meget energi på at sikre sig mod noget frygtet",
+            "Har påtrængende tanker, som forsøges neutraliseret med handlinger eller mentale ritualer"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere ritualiseret end typisk ved angst",
+            "Barnet virker fastlåst i tvangstanker eller kontroller",
+            "Bekymringen er knyttet til gentagelser, neutralisering eller bestemte regler",
+            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "OCD kan ligne almindelig angst, fordi barnet også virker bekymret og undgående",
+            "Angst kan ligne OCD, hvis barnet søger meget forsikring og kontrol",
+            "Det afgørende er, om der også ses påtrængende tanker, ritualer og behov for neutralisering"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med angst, men der ses også tegn på ritualer, kontroller og påtrængende tanker, som ikke forklares tilstrækkeligt af angsten alene",
+            "Vi observerer, at barnet bruger handlinger eller mentale strategier for at dæmpe uro og forhindre noget frygtet",
+            "Det kan være relevant at få belyst, om der også er en OCD-problematik til stede ud over den kendte angstprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af ritualer, tvivl og neutraliserende handlinger",
+            "Beskrivelse af hvilke tanker eller situationer der udløser kontroller og gentagelser",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "ocd"
+        },
+        {
+          "id": "angst_odd",
+          "suspected_comorbidity": "Adfærdsforstyrrelse",
+          "title": "Angst + Adfærdsforstyrrelse",
+          "trigger_tegn": [
+            "vrede",
+            "konflikter",
+            "udadreagerende",
+            "modstand",
+            "lav frustrationstærskel",
+            "oppositionel",
+            "bliver eksplosiv ved krav",
+            "afviser voksne",
+            "provokerer",
+            "stærke reaktioner ved pres"
+          ],
+          "praevalens": "20–40 %",
+          "kort_forklaring": "Når adfærdsforstyrrelse optræder sammen med angst, fremstår barnet ofte mere irritabelt, mere konfliktdrevet og mere udadreagerende, end man normalt forventer ved angst alene.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun bekymret eller undgående, men også vedvarende mere vredt, oppositionelt eller konfliktsøgende",
+            "Der ses modstand, trods eller udadreagerende adfærd, som ikke passer med angst alene",
+            "Reaktionerne virker ikke kun styret af frygt, men også af vedvarende konfliktmønstre og lav frustrationstærskel"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet reagerer med vrede eller modstand ved krav, pres eller usikkerhed",
+            "Om konflikter er vedvarende og ikke kun opstår i enkelte angstfyldte situationer",
+            "Om barnet går i magtkamp med voksne eller andre børn",
+            "Om udadreagerende adfærd ledsager belastning, utryghed eller oplevet kontroltab"
+          ],
+          "typiske_tegn_i_skole": [
+            "Reagerer med modstand, vrede eller konflikter ved krav og grænsesætning",
+            "Virker mere udadreagerende end typisk ved angst alene",
+            "Havner ofte i magtkampe med voksne eller andre elever",
+            "Angst og usikkerhed ledsages af oppositionel eller eksplosiv adfærd"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Gentagne konflikter omkring hverdagens krav",
+            "Bliver hurtigt vred eller afvisende, når noget føles svært eller utrygt",
+            "Har lav frustrationstærskel og reagerer voldsomt ved pres",
+            "Modstand præger hverdagen mere end forventet ved angst alene"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere irritabelt og konfliktsøgende end typisk ved angst",
+            "Barnet reagerer med vedvarende modstand frem for kun undgåelse",
+            "Angst ledsages af trods, vrede eller udadreagerende adfærd",
+            "Angst-indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Adfærdsforstyrrelse kan overses, hvis al modstand tolkes som angstreaktion",
+            "Angst kan ligge bag vrede og modstand, især når barnet bliver presset eller utrygt",
+            "Det afgørende er, om der også ses et mere vedvarende mønster af opposition, konflikt og udadreagerende adfærd"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med angst, men der ses også vedvarende modstand, konflikter og udadreagerende reaktioner, som ikke forklares tilstrækkeligt af angsten alene",
+            "Vi observerer et mønster, hvor krav, pres og usikkerhed ofte ledsages af vrede, trods eller eksplosive reaktioner",
+            "Det kan være relevant at få belyst, om der også er en adfærdsmæssig problematik til stede ud over den kendte angstprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af konflikter, kravsituationer og reaktioner på grænsesætning",
+            "Beskrivelse af hvor ofte og i hvilke mønstre modstand, vrede og udadreagerende adfærd opstår",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "adfaerdsforstyrrelse"
         }
       ]
     }
