@@ -1567,15 +1567,20 @@
   ]
 },
     "logbog": {
-      "title": "PBL Logbog (daglig/ugentlig)",
-      "fields": [
-        "Dato",
-        "Aktivitet i dag",
-        "Elevens reaktion/engagement",
-        "Udfordringer",
-        "Justeringer til næste gang"
-      ]
-    },
+  "title": "PBL Logbog (daglig/ugentlig)",
+  "fields": [
+    "Dato",
+    "Hvad lavede barnet i dag?",
+    "Hvordan gik det med fokus og koncentration?",
+    "Hvordan gik det med trivsel og ro?",
+    "Hvad lærte barnet i dag? (fx dansk, sprog, regning, rækkefølge, ansvar)",
+    "Hvad lykkedes godt?",
+    "Hvad var svært eller skabte uro?",
+    "Hvor meget støtte havde barnet brug for?",
+    "Skal noget justeres til næste gang?",
+    "Kort note til forældre eller næste lærer"
+  ]
+},
     "progressionsskema": {
       "title": "PBL Progressionsskema",
       "fields": [
