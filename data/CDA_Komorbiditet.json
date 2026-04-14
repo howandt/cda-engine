@@ -12,6 +12,16 @@
           "id": "adhd_angst",
           "suspected_comorbidity": "Angst",
           "title": "ADHD + Angst",
+          "trigger_tegn": [
+            "bekymring",
+            "undgåelse",
+            "kravfølsomhed",
+            "social usikkerhed",
+            "frygt for fejl",
+            "stort behov for forberedelse",
+            "søger meget forsikring",
+            "bliver fastlåst i pressede situationer"
+          ],
           "praevalens": "25–35 %",
           "kort_forklaring": "Når angst optræder sammen med ADHD, fremstår barnet ofte mere undgående, mere kravfølsomt og mere belastet, end ADHD alene forklarer.",
           "hvad_passer_ikke_med_grunddiagnosen_alene": [
