@@ -1616,16 +1616,21 @@
     "Anbefalinger til næste lærer eller fagperson"
   ]
 },
-    "foraeldre_kommunikation": {
-      "title": "PBL Forældre-kommunikation",
-      "fields": [
-        "Kort beskrivelse af projekt",
-        "Hvad lærer barnet?",
-        "Hvordan kan forældre støtte hjemme?",
-        "Opdateringer undervejs"
-      ]
-    }
-  },
+  "foraeldre_kommunikation": {
+  "title": "PBL Forældre-kommunikation",
+  "fields": [
+    "Projektnavn",
+    "Kort beskrivelse af hvorfor dette forløb er valgt",
+    "Hvad barnet arbejder med i praksis",
+    "Hvad barnet forventes at lære undervejs",
+    "Hvordan forløbet kan støtte ro, fokus og trivsel",
+    "Hvad forældre kan støtte med hjemme",
+    "Hvad skolen holder øje med undervejs",
+    "Hvordan og hvornår der følges op med forældre",
+    "Tegn på at forløbet virker godt",
+    "Tegn på at forløbet skal justeres"
+  ]
+},
   "rollespil_motor": {
     "enabled": true,
     "activation_keyword": "rollespil_start",
