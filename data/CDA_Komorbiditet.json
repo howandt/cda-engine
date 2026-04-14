@@ -591,6 +591,334 @@
             "Videre faglig drøftelse med PPR eller relevant specialist"
           ],
           "see_also": "adfaerdsforstyrrelse"
+        },
+    {
+      "id": "autisme",
+      "primary_diagnosis": "Autisme",
+      "overview": {
+        "kort_beskrivelse": "Autisme forklarer ofte meget, men ikke altid helheden. Når barnets samlede profil afviger tydeligt fra det forventede autismebillede, bør komorbiditet overvejes.",
+        "klinisk_pointe": "Ved autisme er det ofte komorbiditeten, der forklarer, hvorfor barnet fremstår mere belastet, mere ujævnt fungerende eller mindre typisk, end grunddiagnosen alene tilsiger."
+      },
+      "comorbidities": [
+        {
+          "id": "autisme_adhd",
+          "suspected_comorbidity": "ADHD",
+          "title": "Autisme + ADHD",
+          "trigger_tegn": [
+            "urolig",
+            "impulsiv",
+            "kan ikke fastholde opmærksomhed",
+            "uorganiseret",
+            "rastløs",
+            "glemmer",
+            "skifter hurtigt spor",
+            "svært ved at gennemføre",
+            "ureguleret",
+            "kaotisk hverdag"
+          ],
+          "praevalens": "30–50 %",
+          "kort_forklaring": "Når ADHD optræder sammen med autisme, fremstår barnet ofte mere uroligt, mere impulsivt og mere ujævnt reguleret, end autisme alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun rigidt eller socialt udfordret, men også tydeligt mere impulsivt og uopmærksomt",
+            "Der ses større problemer med fastholdelse, organisering og hæmning, end autisme alene forklarer",
+            "Hverdagen bliver mere kaotisk og mindre styret af den struktur, man ofte ser ved autisme alene"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har vedvarende opmærksomhedsvanskeligheder på tværs af situationer",
+            "Om barnet virker impulsivt eller motorisk uroligt ud over belastningsreaktioner",
+            "Om barnet har svært ved at organisere, afslutte og holde retning i opgaver",
+            "Om vanskelighederne også ses i trygge, kendte rammer og ikke kun ved overbelastning"
+          ],
+          "typiske_tegn_i_skole": [
+            "Har svært ved at fastholde opmærksomhed og gennemføre opgaver",
+            "Virker mere rastløs eller impulsiv end typisk ved autisme alene",
+            "Skifter hurtigt spor og mister overblik i hverdagen",
+            "Har svært ved både krav, struktur og selvregulering"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Har svært ved at holde retning i daglige rutiner",
+            "Virker uorganiseret og let afledelig",
+            "Skifter hurtigt mellem interesser eller aktiviteter uden at afslutte",
+            "Reagerer både med fastlåsthed og impulsivitet i hverdagen"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere impulsivt og uroligt end typisk ved autisme",
+            "Barnet har tydelige opmærksomheds- og organiseringsvanskeligheder",
+            "Funktionsprofilen virker både rigid og kaotisk på samme tid",
+            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "ADHD kan ligne autisme, fordi barnet også kan virke socialt umodent og reguleringsvanskeligt",
+            "Autisme kan ligne ADHD, hvis barnet mister overblik, reagerer stærkt og virker uroligt under belastning",
+            "Det afgørende er, om der også ses bredere og vedvarende opmærksomheds- og impulsivitetsvanskeligheder"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med autisme, men der ses også tydelige tegn på opmærksomheds- og reguleringsvanskeligheder, som ikke forklares tilstrækkeligt af autisme alene",
+            "Vi observerer uro, impulsivitet og manglende fastholdelse, som går ud over det forventede autismebillede",
+            "Det kan være relevant at få belyst, om der også er en ADHD-problematik til stede ud over den kendte autismeprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af opmærksomhed, impulsivitet og organisering på tværs af miljøer",
+            "Beskrivelse af forskellen mellem autistisk fastlåsthed og bredere reguleringsvanskeligheder",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "adhd"
+        },
+        {
+          "id": "autisme_angst",
+          "suspected_comorbidity": "Angst",
+          "title": "Autisme + Angst",
+          "trigger_tegn": [
+            "bekymring",
+            "undgåelse",
+            "alarmberedskab",
+            "søger forsikring",
+            "katastrofetanker",
+            "social frygt",
+            "stærk kravfølsomhed",
+            "bliver fastlåst af frygt",
+            "søger meget kontrol",
+            "undgår bestemte situationer"
+          ],
+          "praevalens": "40–60 %",
+          "kort_forklaring": "Når angst optræder sammen med autisme, fremstår barnet ofte mere undgående, mere alarmpræget og mere belastet af krav, forandringer eller sociale situationer, end autisme alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun rigidt eller socialt usikkert, men også tydeligt mere frygtpræget og bekymret",
+            "Undgåelsen handler ikke kun om autistisk behov for forudsigelighed, men også om frygt, alarm og katastrofetænkning",
+            "Reaktionerne bliver mere præget af sikkerhedsadfærd, forsikringsbehov og kravundgåelse"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet viser tydelig bekymring, katastrofetanker eller frygt i bestemte situationer",
+            "Om barnet søger meget forsikring, kontrol eller tæt voksenstøtte",
+            "Om undgåelse hænger sammen med alarm og ikke kun med rigiditet eller sensorisk belastning",
+            "Om belastningen stiger markant ved krav, sociale forventninger eller usikkerhed"
+          ],
+          "typiske_tegn_i_skole": [
+            "Undgår bestemte krav, situationer eller relationer af frygt",
+            "Virker mere alarmpræget eller ængstelig end typisk ved autisme alene",
+            "Har stort behov for forsikring og forberedelse",
+            "Sociale og faglige krav ledsages af tydelig uro, bekymring eller fastlåsning"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Bekymringer fylder meget før skole, aftaler eller nye situationer",
+            "Har stort behov for kontrol og tryghed omkring hverdagskrav",
+            "Undgår aktiviteter eller situationer, der opleves truende eller uforudsigelige",
+            "Reaktioner præges af både rigiditet og frygt"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere frygtpræget og undgående end typisk ved autisme",
+            "Barnet søger meget forsikring og viser tydelig kravfølsomhed",
+            "Undgåelse og alarm kan ikke forklares af autisme alene",
+            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Angst kan ligne autisme, fordi barnet også kan undgå, blive fastlåst og virke socialt usikkert",
+            "Autisme kan ligne angst, hvis barnet reagerer stærkt på skift, krav og sociale situationer",
+            "Det afgørende er, om der også ses tydelig frygt, bekymring og sikkerhedsadfærd"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med autisme, men der ses også tegn på bekymring, alarm og undgåelse, som ikke forklares tilstrækkeligt af autisme alene",
+            "Vi observerer, at belastningen især øges i situationer med krav, usikkerhed, sociale forventninger eller oplevet fare",
+            "Det kan være relevant at få belyst, om der også er en angstproblematik til stede ud over den kendte autismeprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer på tværs af skole og hjem",
+            "Beskrivelse af hvilke situationer der udløser frygt, undgåelse eller sikkerhedsadfærd",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "angst"
+        },
+        {
+          "id": "autisme_depression",
+          "suspected_comorbidity": "Depression",
+          "title": "Autisme + Depression",
+          "trigger_tegn": [
+            "trist",
+            "mere tilbagetrukket",
+            "lav energi",
+            "fald i deltagelse",
+            "opgivende",
+            "mister lyst",
+            "irritabel",
+            "mere isoleret",
+            "følelsesmæssigt tung",
+            "tydeligt funktionsfald"
+          ],
+          "praevalens": "20–30 %",
+          "kort_forklaring": "Når depression optræder sammen med autisme, fremstår barnet eller den unge ofte mere tilbagetrukket, mere følelsesmæssigt tung og mere funktionsfaldet, end autisme alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun socialt tilbagetrukket eller rigidt, men også tydeligt mere trist, tungt eller opgivende",
+            "Der ses fald i energi, lyst eller deltagelse, som ligger ud over den kendte autismeprofil",
+            "Barnet har et tydeligt fald fra tidligere funktionsniveau"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har tydeligt energifald, mindre initiativ eller mindre kontakt end tidligere",
+            "Om barnet virker mere trist, irritabelt eller håbløst over tid",
+            "Om deltagelse i skole, interesser eller relationer falder markant",
+            "Om ændringen er ny eller tydelig i forhold til barnets vante profil"
+          ],
+          "typiske_tegn_i_skole": [
+            "Deltager mindre end tidligere i undervisning eller fællesskab",
+            "Virker mere passiv, tung eller opgivende",
+            "Har mindre energi til krav, selv i kendte rammer",
+            "Autismeprofilen ledsages af tydeligt funktionsfald"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Mister lyst til interesser eller rutiner, som tidligere gav ro eller mening",
+            "Virker mere isoleret, træt eller følelsesmæssigt flad",
+            "Har mindre overskud til hverdagsaktiviteter",
+            "Reagerer med mere opgivenhed eller irritabilitet end tidligere"
+          ],
+          "mistankeindikatorer": [
+            "Barnet har tydeligt funktionsfald i forhold til sin vante autismeprofil",
+            "Barnet virker mere trist, tungt eller opgivende end forventet",
+            "Tilbagetrækningen er større end det, autisme alene forklarer",
+            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Depression kan overses, hvis tilbagetrækning og lav energi tolkes som en del af autismeprofilen",
+            "Autisme kan fejlfortolkes som depression, hvis barnet generelt er stille og socialt tilbagetrukket",
+            "Det afgørende er, om der er tale om et tydeligt fald fra tidligere funktionsniveau"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med autisme, men der ses også tegn på tristhed, energifald og tydeligt funktionsfald, som ikke forklares tilstrækkeligt af autisme alene",
+            "Vi observerer fald i deltagelse, initiativ og følelsesmæssigt overskud i både skole og hjem",
+            "Det kan være relevant at få belyst, om der også er en depressiv problematik til stede ud over den kendte autismeprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af energi, deltagelse og ændringer i funktionsniveau",
+            "Beskrivelse af hvornår faldet er opstået, og hvordan det viser sig på tværs af miljøer",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "depression"
+        },
+        {
+          "id": "autisme_if",
+          "suspected_comorbidity": "Intellektuel funktionsnedsættelse",
+          "title": "Autisme + Intellektuel funktionsnedsættelse",
+          "trigger_tegn": [
+            "tydeligt forsinket",
+            "lavt abstraktionsniveau",
+            "behov for meget konkret støtte",
+            "langsom læring",
+            "bred udviklingspåvirkning",
+            "forstår mindre end forventet",
+            "har svært ved generalisering",
+            "behov for omfattende hjælp",
+            "stor afhængighed af voksne",
+            "begrænset problemløsning"
+          ],
+          "praevalens": "30–40 %",
+          "kort_forklaring": "Når intellektuel funktionsnedsættelse optræder sammen med autisme, bliver den samlede profil ofte mere gennemgribende påvirket, og støttebehovet bliver bredere og mere omfattende, end autisme alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun socialt og fleksibilitetsmæssigt udfordret, men også bredt kognitivt mere påvirket",
+            "Der ses større vanskeligheder med læring, abstraktion og generalisering, end autisme alene forklarer",
+            "Støttebehovet er mere grundlæggende og omfattende end ved autisme alene"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har tydeligt begrænset abstraktionsniveau og læringstempo",
+            "Om barnet har brug for meget konkret, gentaget og enkel støtte i mange sammenhænge",
+            "Om vanskelighederne er brede og ikke kun handler om social forståelse og fleksibilitet",
+            "Om barnet har svært ved generalisering, problemløsning og selvstændighed"
+          ],
+          "typiske_tegn_i_skole": [
+            "Har svært ved at følge almindelige læringskrav, selv med støtte",
+            "Behøver meget konkret og trinvis undervisning",
+            "Har begrænset overførsel fra én situation til en anden",
+            "Fremstår mere globalt udviklingspåvirket end typisk ved autisme alene"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Har brug for omfattende hjælp i daglige rutiner",
+            "Har svært ved at forstå nye beskeder eller ændringer uden meget støtte",
+            "Virker mere afhængig af voksne end forventet for alder",
+            "Har vanskeligt ved at generalisere læring til nye situationer"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er bredere kognitivt påvirket end typisk ved autisme",
+            "Barnet har meget omfattende behov for konkret støtte",
+            "Læring og selvstændighed er mere begrænset end forventet",
+            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Intellektuel funktionsnedsættelse kan blandes sammen med autisme, fordi begge kan påvirke kommunikation og funktion",
+            "Autisme kan overvurderes, hvis brede kognitive vanskeligheder ikke adskilles fra den autistiske profil",
+            "Det afgørende er, om der også ses en mere generel og gennemgribende kognitiv påvirkning"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med autisme, men der ses også tegn på bredere kognitiv påvirkning og mere omfattende støttebehov, som ikke forklares tilstrækkeligt af autisme alene",
+            "Vi observerer store vanskeligheder med abstraktion, generalisering og selvstændig problemløsning på tværs af situationer",
+            "Det kan være relevant at få belyst, om der også er en intellektuel funktionsnedsættelse til stede ud over den kendte autismeprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af læring, generalisering og behov for konkret støtte",
+            "Beskrivelse af barnets udviklingsniveau og grad af selvstændighed på tværs af miljøer",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "intellektuel_funktionsnedsaettelse"
+        },
+        {
+          "id": "autisme_soevn",
+          "suspected_comorbidity": "Søvnforstyrrelse",
+          "title": "Autisme + Søvnforstyrrelse",
+          "trigger_tegn": [
+            "svært ved at falde i søvn",
+            "vågner om natten",
+            "ustabil døgnrytme",
+            "meget træt om dagen",
+            "mere irritabel efter dårlig søvn",
+            "søvn påvirker funktion tydeligt",
+            "morgenopstart er svær",
+            "sover uroligt",
+            "forværres ved dårlig søvn",
+            "træt og ureguleret"
+          ],
+          "praevalens": "50–80 %",
+          "kort_forklaring": "Når søvnforstyrrelse optræder sammen med autisme, fremstår barnet ofte mere sårbart, mere irritabelt og mere reguleringsudfordret, end autisme alene forklarer.",
+          "hvad_passer_ikke_med_grunddiagnosen_alene": [
+            "Barnet virker ikke kun autistisk belastet, men også tydeligt påvirket af mangelfuld eller ustabil søvn",
+            "Der ses større irritabilitet, lavere belastningstolerance og mere ujævn funktion efter dårlig søvn",
+            "Døgnrytme og søvnkvalitet påvirker barnets profil markant"
+          ],
+          "hvad_boer_observeres": [
+            "Om barnet har vedvarende indsovningsvanskeligheder eller natlige opvågninger",
+            "Om dårlig søvn tydeligt forværrer regulering, fleksibilitet og adfærd dagen efter",
+            "Om morgenopstart og dagsform hænger tæt sammen med søvnkvalitet",
+            "Om søvnproblemerne er mere end almindelig uro omkring sengetid"
+          ],
+          "typiske_tegn_i_skole": [
+            "Virker mere træt, irritabel eller ureguleret efter dårlig søvn",
+            "Har lavere tolerance for krav, skift og sociale situationer",
+            "Fremstår mere sårbar i de første timer af dagen",
+            "Funktionsniveauet svinger tydeligt med søvnkvaliteten"
+          ],
+          "typiske_tegn_i_hjem": [
+            "Har svært ved at falde til ro eller sove stabilt",
+            "Vågner ofte og kommer ikke ordentligt ned i søvn",
+            "Er markant mere belastet i hverdagen efter dårlig søvn",
+            "Søvnproblemer præger hele familiens rytme og barnets regulering"
+          ],
+          "mistankeindikatorer": [
+            "Barnet er mere sårbart og irritabelt end typisk ved autisme alene",
+            "Funktionsniveauet svinger tydeligt med søvnkvalitet",
+            "Dårlig søvn forværrer kendte vanskeligheder markant",
+            "Autismetilpassede indsatser alene forklarer eller afhjælper ikke den samlede profil"
+          ],
+          "differentiale_faldgruber": [
+            "Søvnforstyrrelser kan overses, hvis øget uro og irritabilitet bare tolkes som autisme",
+            "Autisme kan i sig selv give sengetidsvanskeligheder, men ikke nødvendigvis en bred søvnforstyrrelse",
+            "Det afgørende er, om søvnen er vedvarende forstyrret og tydeligt påvirker dagsfunktionen"
+          ],
+          "hvad_kan_formidles_videre": [
+            "Barnet er kendt med autisme, men der ses også tegn på vedvarende søvnproblemer, som ikke forklares tilstrækkeligt af autisme alene",
+            "Vi observerer, at dårlig søvn tydeligt påvirker regulering, belastningstolerance og dagsfunktion",
+            "Det kan være relevant at få belyst, om der også er en søvnproblematik til stede ud over den kendte autismeprofil"
+          ],
+          "anbefalet_videre_spor": [
+            "Systematiske observationer af søvnmønster, opvågninger og dagsfunktion",
+            "Beskrivelse af sammenhængen mellem søvnkvalitet og barnets regulering i skole og hjem",
+            "Videre faglig drøftelse med PPR eller relevant specialist"
+          ],
+          "see_also": "soevnforstyrrelse"
         }
       ]
     }
