@@ -1566,7 +1566,7 @@
     "Muligt næste skridt efter forløbet"
   ]
 },
-   "logbog": {
+  "logbog": {
   "title": "PBL Logbog (daglig/ugentlig)",
   "fields": [
     "Dato",
@@ -1582,24 +1582,26 @@
     "Kort note til forældre eller næste lærer"
   ]
 },
-    "progressionsskema": {
+  "progressionsskema": {
   "title": "PBL Progressionsskema",
   "fields": [
     "Projektnavn",
+    "Periode",
     "Barnets startniveau",
+    "Deltagelse ved opstart (lav / middel / høj)",
+    "Fokus og koncentration ved opstart (lav / middel / høj)",
+    "Trivsel og ro ved opstart (lav / middel / høj)",
     "Hvad barnet kunne ved opstart",
     "Hvad barnet begyndte at mestre undervejs",
     "Hvad barnet kan ved afslutning",
-    "Udvikling i fokus, ro og deltagelse",
-    "Udvikling i læring (fx dansk, sprog, regning, ansvar)",
-    "Hvilken støtte var nødvendig i starten?",
-    "Hvilken støtte var nødvendig til sidst?",
+    "Udvikling i læring (lav / middel / høj)",
+    "Støttebehov ved opstart (lav / middel / høj)",
+    "Støttebehov ved afslutning (lav / middel / høj)",
     "Tegn på øget selvstændighed",
-    "Er barnet klar til næste niveau eller nyt spor?",
-    "Anbefalet næste projekt"
+    "Anbefalet næste skridt"
   ]
 },
-    "evalueringsrapport": {
+  "evalueringsrapport": {
   "title": "PBL Evalueringsrapport",
   "fields": [
     "Projektnavn",
