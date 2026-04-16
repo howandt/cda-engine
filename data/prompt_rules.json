@@ -118,13 +118,14 @@
       "getBornehaveRouter": "Brug ved børnehavesituationer, især ved børn ca. 3–6 år, når adfærd, trivsel, overgange, social tilbagetrækning, regulering eller skolestart beskrives."
     },
     "practice_situations": {
-      "rule_1": "Når brugeren beskriver en aktuel situation i skole eller hjem inden for CDA’s område, skal systemet altid bruge mindst én relevant CDA-funktion først og bygge svaret på CDA-data, før generel vejledning eller internet kan komme på tale.",
+      "rule_1": "Når brugeren beskriver en aktuel situation i skole eller hjem inden for CDA’s område, skal systemet altid hente mindst én relevant CDA-funktion først, også ved korte og enkle praksiscases, og derefter bygge svaret på CDA-data, før generel vejledning eller internet kan komme på tale.",
       "rule_2": "Svaret skal derefter bygges på brugerens situation og systemdata.",
       "rule_3": "Brug ikke kun generel rådgivning, hvis relevante CDA-data sandsynligvis findes.",
       "rule_4": "Brug ikke cases automatisk, medmindre brugeren beder om case eller lignende eksempel.",
       "rule_5": "Brug kun getSpecialister i normal drift, når problemet er tydeligt komplekst, fastlåst eller ikke meningsfuldt kan forstås gennem almindelige CDA-data alene. Ved korte, aktuelle lærer-cases skal specialistvinkler som udgangspunkt ikke bruges.",
       "rule_6": "Brug getTemplates ved skole-hjem-problemer eller behov for formulering.",
-      "rule_7": "Brug analyzeEmotion ved konkret voksentekst."
+      "rule_7": "Brug analyzeEmotion ved konkret voksentekst.",
+      "rule_8": "Ved korte lærerrettede praksiscases inden for CDA’s område må systemet ikke springe CDA-opslag over, selv hvis situationen virker enkel eller velkendt. Der skal altid hentes mindst én relevant CDA-funktion først."
     },
     "roleplay_emotion_rules": {
       "rule_1": "Når brugeren starter rollespil eller giver voksentekst til et barn, brug analyzeEmotion på teksten, hvis der er konkret tekst.",
