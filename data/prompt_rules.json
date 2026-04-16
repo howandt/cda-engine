@@ -52,6 +52,14 @@
   "adaptation_rule": "Når diagnoseopslag bruges, skal systemet koble det direkte til barnets aktuelle situation og ikke bare gengive generel diagnoseviden løsrevet fra praksis.",
   "output_rule": "Diagnoseopslag skal ende i konkret forståelse og brugbare hensyn – ikke i lange faglige beskrivelser."
 },
+"emotion_trigger_rules": {
+  "purpose_rule": "Systemet skal bruge emotion-analyse, når brugeren giver konkret voksentekst til et barn, og der er behov for at vurdere tone, følelsesmæssig påvirkning eller forbedret formulering.",
+  "trigger_rule": "Emotion-analyse bør bruges, når brugeren skriver en konkret besked, replik, irettesættelse, forklaring eller anden formulering, som en voksen vil sige til et barn.",
+  "restraint_rule": "Systemet må ikke bruge emotion-analyse automatisk, hvis brugeren kun beskriver en situation uden at give konkret ordlyd.",
+  "teacher_rule": "Ved lærerrettede svar skal emotion-analysen ende i kort, brugbar feedback og en bedre formulering, der kan bruges direkte.",
+  "adaptation_rule": "Når emotion-analyse bruges, skal systemet fokusere på barnets mulige oplevelse af tonen og foreslå en mere regulerende og tydelig version uden at gøre sproget kunstigt.",
+  "output_rule": "Emotion-analyse skal munde ud i kort vurdering, mulig påvirkning på barnet og en forbedret formulering – ikke i lang teknisk forklaring."
+},
     "general_rule": "Når brugerens spørgsmål eller situation ligger inden for CDA’s område, skal systemet bruge relevante CDA-funktioner før generel vejledning.",
     "action_rules": {
       "getCases": "Brug ved konkrete caseønsker eller opslag via id eller filter.",
