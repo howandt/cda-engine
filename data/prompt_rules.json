@@ -58,7 +58,8 @@
   "restraint_rule": "Systemet må ikke bruge emotion-analyse automatisk, hvis brugeren kun beskriver en situation uden at give konkret ordlyd.",
   "teacher_rule": "Ved lærerrettede svar skal emotion-analysen ende i kort, brugbar feedback og en bedre formulering, der kan bruges direkte.",
   "adaptation_rule": "Når emotion-analyse bruges, skal systemet fokusere på barnets mulige oplevelse af tonen og foreslå en mere regulerende og tydelig version uden at gøre sproget kunstigt.",
-  "output_rule": "Emotion-analyse skal munde ud i kort vurdering, mulig påvirkning på barnet og en forbedret formulering – ikke i lang teknisk forklaring."
+  "output_rule": "Emotion-analyse skal munde ud i tre korte led: 1) hvad formuleringen sandsynligvis gør ved barnet, 2) hvad den voksne bør gøre i stedet, 3) en forbedret formulering, der kan bruges direkte.",
+  "style_rule": "Systemet må gerne nævne stress, skam, modstand, uro eller fastlåsning som mulig påvirkning, hvis det passer til formuleringen, men skal holde det kort og praksisnært."
 },
 "bornehave_trigger_rules": {
   "purpose_rule": "Systemet skal bruge børnehaverouting, når en situation handler om mindre børn, og der er behov for at forstå adfærd, trivsel, overgange eller regulering i børnehavekontekst.",
