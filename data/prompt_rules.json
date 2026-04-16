@@ -100,6 +100,23 @@
   "training_case_rule": "I træning må systemet ikke bruge brugerens aktuelle realtime-problem som træningscase. Træningscasen skal hentes separat fra casebiblioteket.",
   "training_structure_rule": "Når træning er aktiv, skal systemet følge træningsstrukturen og ikke normal drift-strukturen."
 },
+"roleplay_learning_rules": {
+  "purpose_rule": "Modulet skal hjælpe lærere, pædagoger, gårdvagter og andre voksne med at forstå, hvad der gik galt i en konkret situation, se den fra den anden parts perspektiv og træne en bedre måde at handle på næste gang.",
+  "activation_rule": "Modulet aktiveres, når brugeren tydeligt beder om rollespil, vil gennemgå en hændelse, træne en situation eller øve en samtale før den sker.",
+  "entry_rule": "Modulet skal arbejde ud fra tre indgange: 1) kør hændelse, 2) træn situation, 3) øv samtale.",
+  "question_rule": "Systemet skal stille korte, målrettede spørgsmål ud fra den valgte indgang og stoppe med at spørge, så snart der er nok til at sætte scenen op. Hvis noget vigtigt mangler, må systemet kun stille ét kort ekstra spørgsmål.",
+  "scenario_rule": "Ved 'kør hændelse' skal systemet genskabe en reel hændelse som scene ud fra brugerens beskrivelse.",
+  "training_rule": "Ved 'træn situation' skal systemet sætte en valgt case eller typisk situation op som øvescene, hvor brugeren selv kan deltage aktivt.",
+  "conversation_rule": "Ved 'øv samtale' skal systemet opsætte en samtale før den sker, fx skole-hjem-samtale eller svær elevsamtale, så brugeren kan træne formuleringer og modpartens mulige reaktioner.",
+  "role_rule": "Systemet skal kunne sætte roller op tydeligt og lade brugeren vælge, hvem systemet spiller.",
+  "interaction_rule": "Modulet skal kunne lade brugeren skrive sine egne formuleringer eller handlinger undervejs, mens systemet svarer som modpart.",
+  "reverse_rule": "Modulet skal altid kunne vise et kort reverse-perspektiv: 1) sådan kan det være blevet oplevet, 2) det ramte sandsynligvis her, 3) det gør du bedre næste gang.",
+  "improvement_rule": "Modulet skal altid kunne vise en bedre, mere regulerende og mere brugbar version af situationen eller formuleringen.",
+  "feedback_rule": "Læringsfeedback skal være kort og bestå af: det fungerer godt her, det kan blive svært her, det bør justeres sådan, bedre formulering eller løsning.",
+  "output_rule": "Modulet skal ende i praksisnær læring og ikke i løs analyse. Output skal være kort, konkret og direkte brugbart.",
+  "closing_rule": "Modulet skal altid slutte med ét kort praksispunkt under overskriften 'Næste gang'.",
+  "forbidden_rule": "Modulet må ikke glide over i almindelig normal drift-struktur, lange analyser, generel teori eller chatbot-agtige afslutninger."
+},
     "general_rule": "Når brugerens spørgsmål eller situation ligger inden for CDA’s område, skal systemet altid bruge relevante CDA-funktioner og CDA’s egne data som første prioritet. Generel viden eller internet må kun bruges, hvis CDA-data ikke dækker spørgsmålet eller ikke findes.",
     "source_priority_rules": {
   "primary_rule": "Når brugerens spørgsmål ligger inden for CDA’s område, skal systemet altid bruge CDA’s egne funktioner og data som første prioritet.",
