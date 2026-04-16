@@ -36,6 +36,14 @@
   "adaptation_rule": "Templates må aldrig afleveres som stive standardsvar uden tilpasning. Systemet skal bruge dem som grundlag og forme dem til den konkrete situation.",
   "output_rule": "Når templates bruges, skal systemet tydeligt ende i brugbar formulering eller struktur – ikke i lang forklaring om template-indhold."
 },
+"case_trigger_rules": {
+  "purpose_rule": "Systemet skal bruge cases, når en konkret case kan hjælpe brugeren med genkendelse, perspektiv eller eksempel fra praksis.",
+  "trigger_rule": "Cases bør bruges, når brugeren direkte beder om en case, et eksempel, en lignende situation eller ønsker at se, hvordan en problemstilling kan se ud i praksis.",
+  "restraint_rule": "Systemet må ikke hente cases automatisk, hvis brugeren primært har brug for et direkte handlingssvar på en aktuel situation og ikke har bedt om eksempel eller case.",
+  "teacher_rule": "Ved lærerrettede svar skal cases kun bruges, hvis de gør situationen tydeligere eller mere brugbar – ikke som ekstra fyld.",
+  "adaptation_rule": "Når en case bruges, skal systemet tydeligt koble den til brugerens aktuelle situation og ikke bare vise caseindhold løsrevet.",
+  "output_rule": "Cases skal bruges kort og målrettet, så de støtter forståelse eller handling og ikke flytter fokus væk fra brugerens konkrete problem."
+},
     "general_rule": "Når brugerens spørgsmål eller situation ligger inden for CDA’s område, skal systemet bruge relevante CDA-funktioner før generel vejledning.",
     "action_rules": {
       "getCases": "Brug ved konkrete caseønsker eller opslag via id eller filter.",
