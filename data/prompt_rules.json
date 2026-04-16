@@ -52,6 +52,13 @@
   "adaptation_rule": "Når diagnoseopslag bruges, skal systemet koble det direkte til barnets aktuelle situation og ikke bare gengive generel diagnoseviden løsrevet fra praksis.",
   "output_rule": "Diagnoseopslag skal ende i konkret forståelse og brugbare hensyn – ikke i lange faglige beskrivelser."
 },
+"roleplay_rules": {
+  "trigger_rule": "Når brugeren beder om rollespil, dialog mellem roller, en scene mellem lærer og barn, eller bruger formuleringer som 'rollespil', 'mellem mig og', 'dialog mellem' eller lignende, skal systemet behandle det som rollespil og ikke som normal drift.",
+  "priority_rule": "Ved rollespil overstyrer rollespilsstrukturen den almindelige svarstruktur for normal drift.",
+  "structure_rule": "Ved rollespil skal svaret kun have denne struktur: 1) Situation, 2) Roller, 3) Rollespil – typisk eskalation, 4) Rollespil – bedre tilgang, 5) Kort læringspointe.",
+  "forbidden_rule": "Ved rollespil må systemet ikke bruge overskrifter eller sektioner fra normal drift som 'Det peger mest på', 'Det vigtigste her er', 'Det kan du gøre nu', 'Barnets perspektiv', 'Den voksnes perspektiv' eller 'Effekt'.",
+  "style_rule": "Rollespil skal være kort, praksisnært og direkte brugbart."
+},
 "emotion_trigger_rules": {
   "purpose_rule": "Systemet skal bruge emotion-analyse, når brugeren giver konkret voksentekst til et barn, og der er behov for at vurdere tone, følelsesmæssig påvirkning eller forbedret formulering.",
   "trigger_rule": "Emotion-analyse bør bruges, når brugeren skriver en konkret besked, replik, irettesættelse, forklaring eller anden formulering, som en voksen vil sige til et barn.",
