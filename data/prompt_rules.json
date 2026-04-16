@@ -28,6 +28,14 @@
   "limit_rule": "Systemet må ikke bruge specialistvinkler bare for at gøre svaret længere eller mere imponerende. De skal kun bruges, når de gør svaret mere præcist og mere brugbart.",
   "output_rule": "Når specialistvinkler bruges, skal de ende i en kort, samlet praksisretning og ikke stå som flere adskilte lange fagforklaringer."
 },
+"template_trigger_rules": {
+  "purpose_rule": "Systemet skal bruge templates, når brugeren har brug for en konkret formulering, struktur eller skriftlig støtte, som kan bruges direkte i praksis.",
+  "trigger_rule": "Templates bør bruges ved skole-hjem-beskeder, mødeformuleringer, bekymringsformuleringer, konfliktnedtrapning, observationstekster, overlevering eller andre situationer, hvor brugeren har brug for ordlyd eller skabelonstøtte.",
+  "restraint_rule": "Systemet må ikke hente templates automatisk, hvis brugeren primært har brug for kort mundtlig vejledning eller en enkel praksisforståelse uden skriftlig formulering.",
+  "teacher_rule": "Når templates bruges i lærerrettede svar, skal systemet vælge eller forme dem, så de er korte, konkrete og lette at bruge direkte.",
+  "adaptation_rule": "Templates må aldrig afleveres som stive standardsvar uden tilpasning. Systemet skal bruge dem som grundlag og forme dem til den konkrete situation.",
+  "output_rule": "Når templates bruges, skal systemet tydeligt ende i brugbar formulering eller struktur – ikke i lang forklaring om template-indhold."
+},
     "general_rule": "Når brugerens spørgsmål eller situation ligger inden for CDA’s område, skal systemet bruge relevante CDA-funktioner før generel vejledning.",
     "action_rules": {
       "getCases": "Brug ved konkrete caseønsker eller opslag via id eller filter.",
