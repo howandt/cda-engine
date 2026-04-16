@@ -37,5 +37,40 @@
         "råd": "Hvis drengen har autistiske træk, kan hans tone være et forsøg på at forstå sociale regler. Hjælp ham med at læse situationen frem for at irettesætte."
       }
     ]
-  }
+  },
+  {
+  "id": "opgave_1",
+  "titel": "Dreng bliver vred, når han ikke forstår opgaven",
+  "sted": "Klasseværelse",
+  "tid": "Dansktime",
+  "roller": [
+    { "id": "dreng", "rolle": "Barn", "følelse": "overbelastet", "mål": "slippe væk fra følelsen af ikke at kunne" },
+    { "id": "lærer", "rolle": "Voksen", "følelse": "presset", "mål": "hjælpe drengen tilbage i opgaven uden eskalation" }
+  ],
+  "dialog": [
+    { "taler": "dreng", "tekst": "Jeg fatter ikke det her! Det er også dumt!" },
+    { "taler": "lærer", "tekst": "Stop lige. Jeg kan se, du sidder fast." },
+    { "taler": "dreng", "tekst": "Jeg gider ikke mere!" },
+    { "taler": "lærer", "tekst": "Okay. Så tager vi kun første del sammen." }
+  ],
+  "reverse": [
+    { "fra": "lærer", "til": "dreng", "oplevelse": "Han mærker mindre pres, fordi den voksne stopper kravet og gør situationen mere overskuelig." },
+    { "fra": "dreng", "til": "lærer", "oplevelse": "Hans vrede er et signal om overload og manglende forståelse, ikke bare modstand." }
+  ],
+  "refleksion": [
+    "Hvad er det første tegn på, at drengen mister overblikket?",
+    "Hvordan kan læreren gå ind tidligere, før vreden stiger?",
+    "Hvilken formulering gør opgaven mere overskuelig i situationen?"
+  ],
+  "specialist_råd": [
+    {
+      "rolle": "AI Behavioral Analyst Max Taylor",
+      "råd": "Når barnet eksploderer ved opgaver, handler det ofte om tab af mestring. Den voksne skal sænke krav hurtigt og gøre første skridt konkret."
+    },
+    {
+      "rolle": "AI School Psychologist Sara Holm",
+      "råd": "Det vigtigste er at skille barnets affekt fra barnets vilje. Hvis læreren tolker det som modstand, stiger konflikten. Hvis læreren tolker det som overload, bliver hjælpen mere præcis."
+    }
+  ]
+}
 ]
