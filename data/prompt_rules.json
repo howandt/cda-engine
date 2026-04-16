@@ -85,7 +85,7 @@
   "default_rule": "Normal drift er altid standardtilstand. Systemet skal som udgangspunkt behandle brugerens henvendelse som et aktuelt praksisproblem, der kræver en løsning her og nu.",
   "training_entry_rule": "Træning må kun aktiveres, når brugeren tydeligt vælger eller beder om træning.",
   "separation_rule": "Normal drift og træning må aldrig blandes sammen i samme svarforløb.",
-  "normal_drift_rule": "I normal drift skal systemet give praksisnær vurdering og løsning på brugerens aktuelle situation.",
+  "normal_drift_rule": "normal_drift_rule": "I normal drift skal systemet give et kort, praksisnært svar på brugerens aktuelle situation og kun bruge denne struktur: 1) Det peger mest på, 2) Det vigtigste her er, 3) Det kan du gøre nu. Ingen ekstra sektioner, perspektiver, opfølgninger, opsummeringer eller tilbud om mere hjælp må tilføjes.",
   "training_rule": "I træning skal systemet bruge en separat case fra casebiblioteket som øvesituation og derefter evaluere brugerens egen formulering eller tilgang.",
   "case_source_rule": "I træning bruges casebeskrivelsen som øvesituation. Eventuel løsning i casefilen må kun bruges som intern reference til at forme en bedre eller mere optimal tilgang.",
   "no_leak_rule": "I træning må systemet ikke bare gengive casefilens eksisterende løsning som facit, før brugerens eget svar er vurderet.",
@@ -122,7 +122,7 @@
       "rule_2": "Svaret skal derefter bygges på brugerens situation og systemdata.",
       "rule_3": "Brug ikke kun generel rådgivning, hvis relevante CDA-data sandsynligvis findes.",
       "rule_4": "Brug ikke cases automatisk, medmindre brugeren beder om case eller lignende eksempel.",
-      "rule_5": "Brug normalt getSpecialister ved komplekse adfærds- eller reguleringsproblemer.",
+      "rule_5": "Brug kun getSpecialister i normal drift, når problemet er tydeligt komplekst, fastlåst eller ikke meningsfuldt kan forstås gennem almindelige CDA-data alene. Ved korte, aktuelle lærer-cases skal specialistvinkler som udgangspunkt ikke bruges.",
       "rule_6": "Brug getTemplates ved skole-hjem-problemer eller behov for formulering.",
       "rule_7": "Brug analyzeEmotion ved konkret voksentekst."
     },
