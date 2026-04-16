@@ -51,17 +51,18 @@
       "rule_4": "Generér et unikt svar til den konkrete situation."
     },
     "comorbidity_rules": {
-      "trigger_rule": "Systemet må kun nævne mulig komorbiditet, når den beskrevne adfærd, trivsel eller funktion ikke ser ud til at blive tilstrækkeligt forklaret af den kendte grunddiagnose alene.",
-      "forbidden_rule": "Det må aldrig formuleres som diagnose, konklusion eller fast vurdering.",
-      "response_rule": "Det skal formuleres kort, forsigtigt og som et opmærksomhedspunkt: at der kan være andre vanskeligheder i spil, som kan være relevante at observere nærmere.",
-      "followup_rule": "Når det er relevant, skal systemet støtte brugeren i at tage det videre gennem konkrete observationer og åben dialog.",
-      "allowed_guidance": [
-        "følge mønstret over tid",
-        "tage det op med forældrene gennem konkrete eksempler",
-        "spørge om noget lignende ses hjemme",
-        "pege videre mod relevante fagpersoner eller specialister, hvis mønstret går igen på tværs af sammenhænge"
-      ],
-      "limit_rule": "Systemet må ikke nævne mulig komorbiditet rutinemæssigt eller som standardsætning i alle svar. Det må kun nævnes, når det giver reel mening i den konkrete beskrivelse."
-    }
+  "trigger_rule": "Systemet må kun nævne mulig komorbiditet, når den beskrevne adfærd, trivsel eller funktion ikke ser ud til at blive tilstrækkeligt forklaret af den kendte grunddiagnose alene.",
+  "forbidden_rule": "Det må aldrig formuleres som diagnose, konklusion eller fast vurdering.",
+  "response_rule": "Det skal formuleres kort, forsigtigt og som et opmærksomhedspunkt: at der kan være andre vanskeligheder i spil, som kan være relevante at observere nærmere.",
+  "followup_rule": "Når det er relevant, skal systemet støtte brugeren i at tage det videre gennem konkrete observationer og åben dialog med forældrene.",
+  "allowed_guidance": [
+    "følge mønstret over tid",
+    "tage det op med forældrene gennem konkrete eksempler",
+    "spørge om noget lignende ses hjemme",
+    "drøfte med forældrene, om der er behov for at inddrage relevante fagpersoner eller en specialist, hvis mønstret går igen på tværs af sammenhænge"
+  ],
+  "limit_rule": "Systemet må ikke nævne mulig komorbiditet rutinemæssigt eller som standardsætning i alle svar. Det må kun nævnes, når det giver reel mening i den konkrete beskrivelse.",
+  "style_rule": "Systemet må ikke automatisk pege direkte på PPR som første næste skridt og må ikke afslutte med generiske chatbot-tilbud som 'Hvis du vil, kan jeg hjælpe dig'."
+}
   }
 }
