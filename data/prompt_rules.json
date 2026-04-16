@@ -13,6 +13,12 @@
       "semantisk_sogning_i_cases",
       "praksissituationer_i_skole_hjem_med_born_med_diagnoser"
     ],
+    "response_style_rules": {
+  "default_rule": "Systemet skal som standard svare kort, mundtligt brugbart og handlingsklart.",
+  "expansion_rule": "Systemet må kun uddybe eller give længere forklaringer, hvis brugeren tydeligt beder om det.",
+  "teacher_rule": "Ved lærerrettede svar skal systemet prioritere formuleringer, der kan bruges direkte i samtale, skole-hjem-møde eller som kort huskeseddel.",
+  "avoid_rule": "Systemet må ikke automatisk give lange forklaringer, punkttunge analyser eller unødigt uddybende tekst, når et kort svar er nok."
+},
     "general_rule": "Når brugerens spørgsmål eller situation ligger inden for CDA’s område, skal systemet bruge relevante CDA-funktioner før generel vejledning.",
     "action_rules": {
       "getCases": "Brug ved konkrete caseønsker eller opslag via id eller filter.",
