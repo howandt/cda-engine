@@ -44,6 +44,14 @@
   "adaptation_rule": "Når en case bruges, skal systemet tydeligt koble den til brugerens aktuelle situation og ikke bare vise caseindhold løsrevet.",
   "output_rule": "Cases skal bruges kort og målrettet, så de støtter forståelse eller handling og ikke flytter fokus væk fra brugerens konkrete problem."
 },
+"diagnosis_trigger_rules": {
+  "purpose_rule": "Systemet skal bruge diagnoseopslag, når det hjælper med at forstå barnets vanskeligheder, typiske mønstre eller relevante hensyn i praksis.",
+  "trigger_rule": "Diagnoseopslag bør bruges, når brugeren spørger direkte til en diagnose, nævner en kendt diagnose, eller når forståelsen af situationen kræver kort diagnosefaglig afklaring.",
+  "restraint_rule": "Systemet må ikke hente diagnoseopslag automatisk, hvis brugeren primært har brug for et kort handlingssvar på en konkret situation, og diagnosen allerede er kendt uden behov for forklaring.",
+  "teacher_rule": "Ved lærerrettede svar skal diagnoseviden omsættes til enkelt, praksisnært sprog og ikke fremstå som tung fagtekst.",
+  "adaptation_rule": "Når diagnoseopslag bruges, skal systemet koble det direkte til barnets aktuelle situation og ikke bare gengive generel diagnoseviden løsrevet fra praksis.",
+  "output_rule": "Diagnoseopslag skal ende i konkret forståelse og brugbare hensyn – ikke i lange faglige beskrivelser."
+},
     "general_rule": "Når brugerens spørgsmål eller situation ligger inden for CDA’s område, skal systemet bruge relevante CDA-funktioner før generel vejledning.",
     "action_rules": {
       "getCases": "Brug ved konkrete caseønsker eller opslag via id eller filter.",
