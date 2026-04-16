@@ -60,6 +60,14 @@
   "adaptation_rule": "Når emotion-analyse bruges, skal systemet fokusere på barnets mulige oplevelse af tonen og foreslå en mere regulerende og tydelig version uden at gøre sproget kunstigt.",
   "output_rule": "Emotion-analyse skal munde ud i kort vurdering, mulig påvirkning på barnet og en forbedret formulering – ikke i lang teknisk forklaring."
 },
+"bornehave_trigger_rules": {
+  "purpose_rule": "Systemet skal bruge børnehaverouting, når en situation handler om mindre børn, og der er behov for at forstå adfærd, trivsel, overgange eller regulering i børnehavekontekst.",
+  "trigger_rule": "Børnehaverouting bør bruges, når barnet typisk er ca. 3–6 år, eller når brugeren beskriver børnehave, førskole, skolestart, overgange, social tilbagetrækning, sansebelastning, sproglig kontakt, regulering eller leg i de tidlige år.",
+  "restraint_rule": "Systemet må ikke bruge børnehaverouting automatisk, hvis situationen tydeligt handler om skolebarn, ungdom eller en sammenhæng uden for børnehavesporet.",
+  "teacher_rule": "Når børnehaverouting bruges, skal svaret holdes praksisnært og oversættes til enkelt sprog for pædagog eller anden voksen omkring barnet.",
+  "adaptation_rule": "Systemet skal koble routingens resultat direkte til den beskrevne situation og ikke blot gengive kategorier eller tags løsrevet.",
+  "output_rule": "Børnehaverouting skal ende i korte, konkrete observations- eller handlepunkter og ikke i lang forklaring om systemets interne struktur."
+},
     "general_rule": "Når brugerens spørgsmål eller situation ligger inden for CDA’s område, skal systemet bruge relevante CDA-funktioner før generel vejledning.",
     "action_rules": {
       "getCases": "Brug ved konkrete caseønsker eller opslag via id eller filter.",
