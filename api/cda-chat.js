@@ -1,11 +1,19 @@
 import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
+import { createClient } from "@supabase/supabase-js";
 import { routeBornehaveInput } from "../lib/bornehaveRouter.js";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  );
+}
 
 function readTextFile(filePath, errorMessage) {
   if (!fs.existsSync(filePath)) {
