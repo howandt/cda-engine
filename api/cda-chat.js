@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
+import { routeBornehaveInput } from "../lib/bornehaveRouter.js";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -413,6 +414,15 @@ function getCases(args = {}) {
   };
 }
 
+function getBornehaveRouting(args = {}) {
+  return routeBornehaveInput({
+    text: args.text || "",
+    age: args.age ? Number(args.age) : null,
+    category: args.category || "",
+    tags: Array.isArray(args.tags) ? args.tags : [],
+  });
+}
+
 const tools = [
   {
     type: "function",
@@ -512,6 +522,38 @@ const tools = [
     },
     additionalProperties: false,
   },
+    strict: false,
+},
+{
+  type: "function",
+  name: "getBornehaveRouting",
+  description:
+    "Henter eksisterende CDA-børnehaverouting. Brug ved børn i børnehave, observation, adfærd, overlevering til skole eller valg af børnehaveskabelon.",
+  parameters: {
+    type: "object",
+    properties: {
+      text: {
+        type: "string",
+        description: "Beskrivelse af barnet eller situationen.",
+      },
+      age: {
+        type: "number",
+        description: "Barnets alder.",
+      },
+      category: {
+        type: "string",
+        description: "Valgfri kategori.",
+      },
+      tags: {
+        type: "array",
+        items: {
+          type: "string",
+        },
+        description: "Valgfrie observationstags.",
+      },
+    },
+    additionalProperties: false,
+  },
   strict: false,
 },
 ];
@@ -530,6 +572,10 @@ function executeTool(toolCall) {
 
     if (toolCall.name === "getCases") {
   return getCases(args);
+}
+
+if (toolCall.name === "getBornehaveRouting") {
+  return getBornehaveRouting(args);
 }
 
     return {
