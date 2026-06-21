@@ -1153,7 +1153,7 @@ const tools = [
   type: "function",
   name: "getRollespil",
   description:
-    "Henter eksisterende CDA-rollespilsscenarier. Brug ved rollespil, perspektivskifte, træning eller en bestemt rollespilscase.",
+    "Henter eksisterende CDA-rollespilsscenarier. Kald altid dette værktøj, når brugeren beder om rollespil, en liste over eksisterende rollespilsscenarier, perspektivskifte, træning eller et bestemt scenarie. Uden caseId returneres hele listen.",
   parameters: {
     type: "object",
     properties: {
