@@ -412,7 +412,7 @@ export default async function handler(req, res) {
     const heidiPrompt = readHeidiPrompt();
 
     let response = await openai.responses.create({
-      model: "gpt-5-mini",
+      model: "gpt-5.4-mini",
       reasoning: {
         effort: "minimal",
       },
@@ -452,7 +452,7 @@ return {
       });
 
       response = await openai.responses.create({
-        model: "gpt-5-mini",
+        model: "gpt-5.4-mini",
         reasoning: {
           effort: "minimal",
         },
@@ -467,7 +467,7 @@ return {
     return res.status(200).json({
   success: true,
   reply: response.output_text,
-  model: "gpt-5-mini",
+  model: "gpt-5.4-mini",
   tools_used: usedTools,
   tool_debug: toolDebug,
 });
