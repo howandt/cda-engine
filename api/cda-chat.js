@@ -667,6 +667,97 @@ function getEmotionAnalysis(args = {}) {
     communication_tips: data.communication_tips || [],
   };
 }
+function getKomorbiditet(args = {}) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_Komorbiditet.json"
+  );
+
+  const rawData = readJsonFile(
+    filePath,
+    "data/CDA_Komorbiditet.json blev ikke fundet"
+  );
+
+  const komorbiditetData = rawData.komorbiditet_data || [];
+
+  const normalize = (value) =>
+    String(value || "").trim().toLowerCase();
+
+  const primary = normalize(args.primary);
+  const id = normalize(args.id);
+  const trigger = normalize(args.trigger);
+
+  if (id) {
+    for (const diagnosis of komorbiditetData) {
+      const match = (diagnosis.comorbidities || []).find(
+        (item) => normalize(item.id) === id
+      );
+
+      if (match) {
+        return {
+          type: "comorbidity",
+          data: match,
+        };
+      }
+    }
+
+    return {
+      error: `Komorbiditet ikke fundet: ${args.id}`,
+    };
+  }
+
+  if (primary && trigger) {
+    const primaryMatch = komorbiditetData.find(
+      (item) =>
+        normalize(item.primary_diagnosis) === primary ||
+        normalize(item.id) === primary
+    );
+
+    if (!primaryMatch) {
+      return {
+        error: `Primær diagnose ikke fundet: ${args.primary}`,
+      };
+    }
+
+    const matches = (primaryMatch.comorbidities || []).filter((item) =>
+      (item.trigger_tegn || []).some((tegn) =>
+        normalize(tegn).includes(trigger)
+      )
+    );
+
+    return {
+      type: "trigger_search",
+      primary_diagnosis: primaryMatch.primary_diagnosis,
+      trigger: args.trigger,
+      count: matches.length,
+      data: matches,
+    };
+  }
+
+  if (primary) {
+    const match = komorbiditetData.find(
+      (item) =>
+        normalize(item.primary_diagnosis) === primary ||
+        normalize(item.id) === primary
+    );
+
+    return match
+      ? {
+          type: "primary_diagnosis",
+          data: match,
+        }
+      : {
+          error: `Primær diagnose ikke fundet: ${args.primary}`,
+        };
+  }
+
+  return {
+    type: "all",
+    count: komorbiditetData.length,
+    data: komorbiditetData,
+  };
+}
 
 const tools = [
   {
@@ -854,6 +945,34 @@ const tools = [
   },
   strict: false,
 },
+{
+  type: "function",
+  name: "getKomorbiditet",
+  description:
+    "Henter eksisterende CDA-komorbiditetsdata. Brug ved spørgsmål om mulig komorbiditet, primær diagnose eller konkrete triggertegn.",
+  parameters: {
+    type: "object",
+    properties: {
+      primary: {
+        type: "string",
+        description:
+          "Primær diagnose, fx ADHD eller autisme.",
+      },
+      id: {
+        type: "string",
+        description:
+          "Hent en bestemt komorbiditet via id.",
+      },
+      trigger: {
+        type: "string",
+        description:
+          "Søg efter komorbiditet ud fra et konkret triggertegn.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -882,6 +1001,10 @@ if (toolCall.name === "getDiagnoser") {
 
 if (toolCall.name === "getEmotionAnalysis") {
   return getEmotionAnalysis(args);
+}
+
+if (toolCall.name === "getKomorbiditet") {
+  return getKomorbiditet(args);
 }
 
     return {
