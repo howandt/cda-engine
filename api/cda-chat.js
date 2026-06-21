@@ -1141,6 +1141,47 @@ function getSpecialistPanel() {
     data,
   };
 }
+function getTemplates(args = {}) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_Templates.json"
+  );
+
+  const data = readJsonFile(
+    filePath,
+    "data/CDA_Templates.json blev ikke fundet"
+  );
+
+  const templateDatabase = data.template_database || data;
+
+  const templates = Array.isArray(templateDatabase.templates)
+    ? templateDatabase.templates
+    : [];
+
+  const metadata = templateDatabase.metadata || {};
+
+  const searchIndex =
+    templateDatabase.search_index ||
+    data.search_index ||
+    {};
+
+  if (args.type === "index") {
+    return {
+      success: true,
+      source: "local",
+      data: searchIndex,
+    };
+  }
+
+  return {
+    success: true,
+    source: "local",
+    templates,
+    metadata,
+    total: templates.length,
+  };
+}
 
 const tools = [
   {
@@ -1440,6 +1481,24 @@ const tools = [
   },
   strict: false,
 },
+{
+  type: "function",
+  name: "getTemplates",
+  description:
+    "Henter eksisterende CDA-skabeloner og søgeindeks. Brug ved forespørgsler om skabeloner, rapporter, skole-hjem-kommunikation, møder eller overlevering.",
+  parameters: {
+    type: "object",
+    properties: {
+      type: {
+        type: "string",
+        description:
+          "Brug værdien index for kun at hente skabelonernes søgeindeks.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -1488,6 +1547,10 @@ if (toolCall.name === "getSemanticSearch") {
 
 if (toolCall.name === "getSpecialistPanel") {
   return getSpecialistPanel();
+}
+
+if (toolCall.name === "getTemplates") {
+  return getTemplates(args);
 }
 
     return {
