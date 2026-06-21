@@ -22,10 +22,39 @@ function readJsonFile(filePath, errorMessage) {
 function readHeidiPrompt() {
   const promptPath = path.join(process.cwd(), "CDA_HeidiPrompt.md");
 
-  return readTextFile(
+  const heidiPrompt = readTextFile(
     promptPath,
     "CDA_HeidiPrompt.md blev ikke fundet"
   );
+
+  const rulesPath = path.join(
+    process.cwd(),
+    "data",
+    "prompt_rules.json"
+  );
+
+  const rulesData = readJsonFile(
+    rulesPath,
+    "data/prompt_rules.json blev ikke fundet"
+  );
+
+  const responseStyleRules =
+    rulesData?.system_rules?.response_style_rules || {};
+
+  const modeSwitchRules =
+    rulesData?.system_rules?.mode_switch_rules || {};
+
+  return [
+    heidiPrompt,
+    "",
+    "CENTRALE DYNAMISKE SYSTEMREGLER",
+    "",
+    "response_style_rules:",
+    JSON.stringify(responseStyleRules, null, 2),
+    "",
+    "mode_switch_rules:",
+    JSON.stringify(modeSwitchRules, null, 2),
+  ].join("\n");
 }
 
 function getPromptRules(args = {}) {
