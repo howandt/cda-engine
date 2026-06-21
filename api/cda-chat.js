@@ -316,6 +316,7 @@ export default async function handler(req, res) {
     });
 
     const usedTools = [];
+const toolDebug = [];
 
     for (let round = 0; round < 3; round += 1) {
       const toolCalls = response.output.filter(
@@ -327,13 +328,20 @@ export default async function handler(req, res) {
       }
 
       const toolOutputs = toolCalls.map((toolCall) => {
-        usedTools.push(toolCall.name);
+        const parsedArguments = JSON.parse(toolCall.arguments || "{}");
 
-        return {
-          type: "function_call_output",
-          call_id: toolCall.call_id,
-          output: JSON.stringify(executeTool(toolCall)),
-        };
+usedTools.push(toolCall.name);
+
+toolDebug.push({
+  name: toolCall.name,
+  arguments: parsedArguments,
+});
+
+return {
+  type: "function_call_output",
+  call_id: toolCall.call_id,
+  output: JSON.stringify(executeTool(toolCall)),
+};
       });
 
       response = await openai.responses.create({
@@ -350,11 +358,12 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      success: true,
-      reply: response.output_text,
-      model: "gpt-5-mini",
-      tools_used: usedTools,
-    });
+  success: true,
+  reply: response.output_text,
+  model: "gpt-5-mini",
+  tools_used: usedTools,
+  tool_debug: toolDebug,
+});
   } catch (error) {
     console.error("CDA chatfejl:", error);
 
