@@ -1593,7 +1593,11 @@ export default async function handler(req, res) {
     });
   }
 
-  const { message, response_style = "Mellem" } = req.body || {};
+  const {
+  message,
+  response_style = "Mellem",
+  adgangskode,
+} = req.body || {};
 
 if (!message || typeof message !== "string") {
   return res.status(400).json({
@@ -1623,6 +1627,16 @@ try {
         : "Giv en kort forklaring og konkrete næste skridt.",
   ].join("\n");
 
+  let inputTokens = 0;
+let outputTokens = 0;
+let totalTokens = 0;
+
+function addUsage(responseData) {
+  inputTokens += Number(responseData?.usage?.input_tokens || 0);
+  outputTokens += Number(responseData?.usage?.output_tokens || 0);
+  totalTokens += Number(responseData?.usage?.total_tokens || 0);
+}
+
   let response = await openai.responses.create({
       model: "gpt-5.4-mini",
       reasoning: {
@@ -1633,6 +1647,8 @@ try {
       tools,
       max_output_tokens: 1200,
     });
+
+    addUsage(response);
 
     const usedTools = [];
 const toolDebug = [];
@@ -1674,7 +1690,28 @@ return {
         tools,
         max_output_tokens: 1200,
       });
+      addUsage(response);
     }
+
+    if (adgangskode) {
+  const supabase = getSupabase();
+
+  const { error: forbrugsFejl } = await supabase
+    .from("token_forbrug")
+    .insert({
+      adgangskode: adgangskode.trim().toUpperCase(),
+      system: "cda",
+      udbyder: "openai",
+      model: "gpt-5.4-mini",
+      input_tokens: inputTokens,
+      output_tokens: outputTokens,
+      samlet_tokens: totalTokens,
+    });
+
+  if (forbrugsFejl) {
+    console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+  }
+}
 
     return res.status(200).json({
   success: true,
