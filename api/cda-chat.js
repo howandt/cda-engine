@@ -89,6 +89,65 @@ function getPromptRules(args = {}) {
   };
 }
 
+function normalizeSearchWord(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9æøå]/g, "");
+}
+
+function levenshteinDistance(a, b) {
+  const first = normalizeSearchWord(a);
+  const second = normalizeSearchWord(b);
+
+  const matrix = Array.from(
+    { length: second.length + 1 },
+    () => Array(first.length + 1).fill(0)
+  );
+
+  for (let i = 0; i <= second.length; i += 1) {
+    matrix[i][0] = i;
+  }
+
+  for (let j = 0; j <= first.length; j += 1) {
+    matrix[0][j] = j;
+  }
+
+  for (let i = 1; i <= second.length; i += 1) {
+    for (let j = 1; j <= first.length; j += 1) {
+      const cost = second[i - 1] === first[j - 1] ? 0 : 1;
+
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      );
+    }
+  }
+
+  return matrix[second.length][first.length];
+}
+
+function searchWordMatches(searchWord, textWord) {
+  const search = normalizeSearchWord(searchWord);
+  const text = normalizeSearchWord(textWord);
+
+  if (!search || !text) {
+    return false;
+  }
+
+  if (text.includes(search) || search.includes(text)) {
+    return true;
+  }
+
+  if (search.length >= 5 && text.length >= 5) {
+    return levenshteinDistance(search, text) <= 2;
+  }
+
+  return false;
+}
+
 function getPblProjects(args = {}) {
   const filePath = path.join(
     process.cwd(),
@@ -126,13 +185,12 @@ function getPblProjects(args = {}) {
 
 if (args.search) {
   const searchTerms = String(args.search)
-    .toLowerCase()
     .split(/\s+/)
-    .map((term) => term.trim())
+    .map((term) => normalizeSearchWord(term))
     .filter(Boolean);
 
   const interestMatches = projects.filter((project) => {
-    const searchableText = [
+    const searchableWords = [
       project.title,
       project.subtitle,
       project.description,
@@ -142,10 +200,14 @@ if (args.search) {
     ]
       .filter(Boolean)
       .join(" ")
-      .toLowerCase();
+      .split(/\s+/)
+      .map((word) => normalizeSearchWord(word))
+      .filter(Boolean);
 
-    return searchTerms.every((term) =>
-      searchableText.includes(term)
+    return searchTerms.every((searchTerm) =>
+      searchableWords.some((textWord) =>
+        searchWordMatches(searchTerm, textWord)
+      )
     );
   });
 
