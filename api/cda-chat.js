@@ -60,6 +60,126 @@ function getPromptRules(args = {}) {
   };
 }
 
+function getPblProjects(args = {}) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_PBL_Projects.json"
+  );
+
+  const data = readJsonFile(
+    filePath,
+    "data/CDA_PBL_Projects.json blev ikke fundet"
+  );
+
+  let projects = Array.isArray(data.projects)
+    ? [...data.projects]
+    : [];
+
+  if (args.id) {
+    const project = projects.find(
+      (item) => String(item.id || "") === String(args.id)
+    );
+
+    if (!project) {
+      return {
+        error: `PBL-projekt ikke fundet: ${args.id}`,
+      };
+    }
+
+    return {
+      version: data.version || null,
+      project,
+    };
+  }
+
+  if (args.search) {
+    const searchTerms = String(args.search)
+      .toLowerCase()
+      .split(/\s+/)
+      .map((term) => term.trim())
+      .filter(Boolean);
+
+    projects = projects.filter((project) => {
+      const searchableText = [
+        project.title,
+        project.subtitle,
+        project.description,
+        ...(project.activities || []),
+        ...(project.competencies || []),
+        ...(project.career_alignment || []),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      return searchTerms.every((term) =>
+        searchableText.includes(term)
+      );
+    });
+  }
+
+  if (args.diagnosis) {
+    const diagnosisTerms = String(args.diagnosis)
+      .split(",")
+      .map((term) => term.trim().toLowerCase())
+      .filter(Boolean);
+
+    projects = projects.filter((project) =>
+      diagnosisTerms.some((term) =>
+        (project.diagnosis_match || []).some((item) =>
+          String(item).toLowerCase().includes(term)
+        )
+      )
+    );
+  }
+
+  if (args.level) {
+    projects = projects.filter(
+      (project) =>
+        String(project.level || "").toLowerCase() ===
+        String(args.level).toLowerCase()
+    );
+  }
+
+  if (args.social) {
+    projects = projects.filter(
+      (project) =>
+        String(project.social_exposure || "").toLowerCase() ===
+        String(args.social).toLowerCase()
+    );
+  }
+
+  if (args.structure) {
+    projects = projects.filter(
+      (project) =>
+        String(project.structure_need || "").toLowerCase() ===
+        String(args.structure).toLowerCase()
+    );
+  }
+
+  if (args.stimuli) {
+    const stimuliTerms = String(args.stimuli)
+      .split(",")
+      .map((term) => term.trim().toLowerCase())
+      .filter(Boolean);
+
+    projects = projects.filter((project) =>
+      stimuliTerms.some((term) =>
+        (project.stimuli_type || []).some((item) =>
+          String(item).toLowerCase().includes(term)
+        )
+      )
+    );
+  }
+
+  return {
+    version: data.version || null,
+    filtered_count: projects.length,
+    projects,
+  };
+}
+
 const tools = [
   {
     type: "function",
@@ -79,7 +199,78 @@ const tools = [
     },
     strict: false,
   },
+  {
+    type: "function",
+    name: "getPblProjects",
+    description:
+      "Henter og matcher PBL-projekter fra CDA. Brug ved elevinteresser, praktiske styrker, uro, kort koncentration, lav motivation eller behov for aktivering.",
+    parameters: {
+      type: "object",
+      properties: {
+        search: {
+          type: "string",
+          description:
+            "Direkte elevinteresse eller fritekstsøgning, fx cykel, dyr, Minecraft eller træarbejde.",
+        },
+        diagnosis: {
+          type: "string",
+          description:
+            "Diagnosefilter, fx ADHD, autisme eller DCD.",
+        },
+        level: {
+          type: "string",
+          description:
+            "Projektets niveau, fx Junior, Intermediate eller Advanced.",
+        },
+        social: {
+          type: "string",
+          description:
+            "Social belastning, fx Lav, Moderat eller Gruppe.",
+        },
+        structure: {
+          type: "string",
+          description:
+            "Behov for struktur, fx Lav, Moderat eller Høj.",
+        },
+        stimuli: {
+          type: "string",
+          description:
+            "Foretrukken stimulustype, fx Taktil, Visuel eller Kinæstetisk.",
+        },
+        id: {
+          type: "string",
+          description:
+            "Hent et bestemt PBL-projekt via projekt-id.",
+        },
+      },
+      additionalProperties: false,
+    },
+    strict: false,
+  },
 ];
+
+function executeTool(toolCall) {
+  try {
+    const args = JSON.parse(toolCall.arguments || "{}");
+
+    if (toolCall.name === "getPromptRules") {
+      return getPromptRules(args);
+    }
+
+    if (toolCall.name === "getPblProjects") {
+      return getPblProjects(args);
+    }
+
+    return {
+      error: `Ukendt funktion: ${toolCall.name}`,
+    };
+  } catch (error) {
+    return {
+      error: "Funktionen kunne ikke udføres",
+      details: error.message,
+    };
+  }
+}
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -121,38 +312,27 @@ export default async function handler(req, res) {
       instructions: heidiPrompt,
       input: message,
       tools,
-      max_output_tokens: 1000,
+      max_output_tokens: 1200,
     });
 
-    const toolCalls = response.output.filter(
-      (item) => item.type === "function_call"
-    );
+    const usedTools = [];
 
-    if (toolCalls.length > 0) {
+    for (let round = 0; round < 3; round += 1) {
+      const toolCalls = response.output.filter(
+        (item) => item.type === "function_call"
+      );
+
+      if (toolCalls.length === 0) {
+        break;
+      }
+
       const toolOutputs = toolCalls.map((toolCall) => {
-        let result;
-
-        try {
-          const args = JSON.parse(toolCall.arguments || "{}");
-
-          if (toolCall.name === "getPromptRules") {
-            result = getPromptRules(args);
-          } else {
-            result = {
-              error: `Ukendt funktion: ${toolCall.name}`,
-            };
-          }
-        } catch (error) {
-          result = {
-            error: "Funktionen kunne ikke udføres",
-            details: error.message,
-          };
-        }
+        usedTools.push(toolCall.name);
 
         return {
           type: "function_call_output",
           call_id: toolCall.call_id,
-          output: JSON.stringify(result),
+          output: JSON.stringify(executeTool(toolCall)),
         };
       });
 
@@ -165,7 +345,7 @@ export default async function handler(req, res) {
         previous_response_id: response.id,
         input: toolOutputs,
         tools,
-        max_output_tokens: 1000,
+        max_output_tokens: 1200,
       });
     }
 
@@ -173,7 +353,7 @@ export default async function handler(req, res) {
       success: true,
       reply: response.output_text,
       model: "gpt-5-mini",
-      tools_used: toolCalls.map((toolCall) => toolCall.name),
+      tools_used: usedTools,
     });
   } catch (error) {
     console.error("CDA chatfejl:", error);
