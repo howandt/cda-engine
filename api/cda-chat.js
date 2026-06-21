@@ -300,6 +300,119 @@ if (directInterestMatch) {
   };
 }
 
+function safeString(value) {
+  if (value === null || value === undefined) return "";
+  if (Array.isArray(value)) return value.join(" ");
+  if (typeof value === "object") return JSON.stringify(value);
+  return String(value);
+}
+
+function getCases(args = {}) {
+  const casesDir = path.join(
+    process.cwd(),
+    "public",
+    "CDA",
+    "cases"
+  );
+
+  if (!fs.existsSync(casesDir)) {
+    throw new Error(`Case-mappe ikke fundet: ${casesDir}`);
+  }
+
+  const files = fs
+    .readdirSync(casesDir)
+    .filter(
+      (file) =>
+        file.toLowerCase().endsWith(".json") &&
+        !file.toLowerCase().includes("index")
+    );
+
+  let cases = [];
+
+  for (const file of files) {
+    const filePath = path.join(casesDir, file);
+    const parsed = readJsonFile(
+      filePath,
+      `Casefil kunne ikke læses: ${file}`
+    );
+
+    const fileCases = Array.isArray(parsed)
+      ? parsed
+      : parsed.cases || [];
+
+    cases = cases.concat(fileCases);
+  }
+
+  if (args.id) {
+    const match = cases.find(
+      (item) =>
+        safeString(item.id).toLowerCase() ===
+        safeString(args.id).toLowerCase()
+    );
+
+    return match
+      ? { total: 1, data: match }
+      : { error: `Ingen case fundet med ID: ${args.id}` };
+  }
+
+  if (args.tema) {
+    const query = safeString(args.tema).toLowerCase();
+
+    cases = cases.filter((item) =>
+      safeString(item.tema).toLowerCase().includes(query)
+    );
+  }
+
+  if (args.diagnose) {
+    const query = safeString(args.diagnose).toLowerCase();
+
+    cases = cases.filter(
+      (item) =>
+        Array.isArray(item.diagnoser) &&
+        item.diagnoser.some((diagnose) =>
+          safeString(diagnose).toLowerCase().includes(query)
+        )
+    );
+  }
+
+  if (args.kategori) {
+    const query = safeString(args.kategori).toLowerCase();
+
+    cases = cases.filter((item) =>
+      safeString(item.kategori).toLowerCase().includes(query)
+    );
+  }
+
+  if (args.search) {
+    const query = safeString(args.search).toLowerCase();
+
+    cases = cases.filter((item) =>
+      [
+        item.id,
+        item.titel,
+        item.tema,
+        item.problem,
+        item.barnets_oplevelse,
+        item.typisk_fejl,
+        item.løsning,
+        item.tiltag,
+        item.værktøjer,
+        item.kategori,
+        item.kort_beskrivelse,
+        item.diagnoser,
+        item.miljø,
+      ].some((value) =>
+        safeString(value).toLowerCase().includes(query)
+      )
+    );
+  }
+
+  return {
+    total: cases.length,
+    data: cases,
+  };
+}
+
 const tools = [
   {
     type: "function",
@@ -367,6 +480,40 @@ const tools = [
     },
     strict: false,
   },
+  {
+  type: "function",
+  name: "getCases",
+  description:
+    "Henter eksisterende CDA-cases. Brug ved forespørgsler om cases, træningscases, konkrete skolesituationer, diagnoser, temaer eller kategorier.",
+  parameters: {
+    type: "object",
+    properties: {
+      id: {
+        type: "string",
+        description: "Hent en bestemt case via case-id.",
+      },
+      search: {
+        type: "string",
+        description:
+          "Fritekstsøgning i casebiblioteket, fx uro, konflikt, skolevægring eller gruppearbejde.",
+      },
+      tema: {
+        type: "string",
+        description: "Filtrér cases efter tema.",
+      },
+      diagnose: {
+        type: "string",
+        description: "Filtrér cases efter diagnose.",
+      },
+      kategori: {
+        type: "string",
+        description: "Filtrér cases efter kategori.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -380,6 +527,10 @@ function executeTool(toolCall) {
     if (toolCall.name === "getPblProjects") {
       return getPblProjects(args);
     }
+
+    if (toolCall.name === "getCases") {
+  return getCases(args);
+}
 
     return {
       error: `Ukendt funktion: ${toolCall.name}`,
