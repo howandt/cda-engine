@@ -899,6 +899,230 @@ function getRollespil(args = {}) {
     data: scenarios,
   };
 }
+function getSemanticSearch(args = {}) {
+  const searchText = String(args.search || "")
+    .toLowerCase()
+    .trim();
+
+  if (!searchText) {
+    return {
+      success: false,
+      error: "Ingen søgetekst angivet",
+    };
+  }
+
+  const casesPath = path.join(
+    process.cwd(),
+    "data",
+    "cases_ORIGINAL_ARCHIVE",
+    "adhd_angst_cases.json"
+  );
+
+  const semanticPath = path.join(
+    process.cwd(),
+    "public",
+    "data",
+    "semantic_engine.json"
+  );
+
+  const caseData = readJsonFile(
+    casesPath,
+    "data/cases_ORIGINAL_ARCHIVE/adhd_angst_cases.json blev ikke fundet"
+  );
+
+  const cases = Array.isArray(caseData)
+    ? caseData
+    : caseData.cases || [];
+
+  let semantic = {};
+
+  if (fs.existsSync(semanticPath)) {
+    semantic = readJsonFile(
+      semanticPath,
+      "public/data/semantic_engine.json kunne ikke læses"
+    );
+  }
+
+  const normalizeSemantic = (text) =>
+    String(text || "").toLowerCase().trim();
+
+  const normalizeSemanticArray = (value) => {
+    if (Array.isArray(value)) {
+      return value
+        .map((item) => normalizeSemantic(item))
+        .filter(Boolean);
+    }
+
+    if (typeof value === "string") {
+      return [normalizeSemantic(value)].filter(Boolean);
+    }
+
+    return [];
+  };
+
+  const terms = new Set([searchText]);
+  const synonyms = semantic?.synonyms || {};
+
+  for (const [key, values] of Object.entries(synonyms)) {
+    const keyLower = normalizeSemantic(key);
+    const valueList = Array.isArray(values) ? values : [];
+
+    if (
+      searchText === keyLower ||
+      searchText.includes(keyLower)
+    ) {
+      terms.add(keyLower);
+
+      valueList.forEach((value) =>
+        terms.add(normalizeSemantic(value))
+      );
+
+      continue;
+    }
+
+    for (const value of valueList) {
+      const valueLower = normalizeSemantic(value);
+
+      if (
+        valueLower &&
+        (searchText === valueLower ||
+          searchText.includes(valueLower))
+      ) {
+        terms.add(keyLower);
+
+        valueList.forEach((item) =>
+          terms.add(normalizeSemantic(item))
+        );
+      }
+    }
+  }
+
+  const searchTerms = Array.from(terms).filter(Boolean);
+
+  const scoreCase = (item) => {
+    const id = normalizeSemantic(item.id);
+    const titel = normalizeSemantic(item.titel);
+    const temaList = normalizeSemanticArray(item.tema);
+    const beskrivelse = normalizeSemantic(item.beskrivelse);
+    const guiding = normalizeSemantic(item.cda_guiding);
+    const traening = normalizeSemantic(item.cdt_træning);
+
+    let score = 0;
+
+    for (const term of searchTerms) {
+      if (id === term) score += 100;
+      else if (id.includes(term)) score += 30;
+
+      if (titel === term) score += 80;
+      else if (titel.includes(term)) score += 35;
+
+      if (temaList.includes(term)) score += 20;
+      else if (temaList.some((tema) => tema.includes(term))) {
+        score += 8;
+      }
+
+      if (beskrivelse.includes(term)) score += 6;
+      if (guiding.includes(term)) score += 3;
+      if (traening.includes(term)) score += 2;
+    }
+
+    return score;
+  };
+
+  const toResult = (item, score, matchType) => ({
+    id: item.id || null,
+    titel: item.titel || null,
+    tema: Array.isArray(item.tema)
+      ? item.tema
+      : item.tema
+        ? [item.tema]
+        : [],
+    relevante_diagnoser: Array.isArray(
+      item.relevante_diagnoser
+    )
+      ? item.relevante_diagnoser
+      : [],
+    beskrivelse: item.beskrivelse || null,
+    score,
+    match_type: matchType,
+  });
+
+  const primaryMatches = [];
+  const comorbidMatches = [];
+  const textMatches = [];
+
+  for (const item of cases) {
+    const diagnoser = normalizeSemanticArray(
+      item.relevante_diagnoser
+    );
+
+    const textScore = scoreCase(item);
+    const primaryDiagnosis = diagnoser[0] || "";
+
+    const hasPrimaryDiagnosis =
+      primaryDiagnosis === searchText;
+
+    const hasComorbidDiagnosis =
+      !hasPrimaryDiagnosis &&
+      diagnoser.slice(1).includes(searchText);
+
+    if (hasPrimaryDiagnosis) {
+      primaryMatches.push(
+        toResult(
+          item,
+          500 + textScore,
+          "primary_diagnosis"
+        )
+      );
+
+      continue;
+    }
+
+    if (hasComorbidDiagnosis) {
+      comorbidMatches.push(
+        toResult(
+          item,
+          250 + textScore,
+          "comorbid_diagnosis"
+        )
+      );
+
+      continue;
+    }
+
+    if (textScore > 0) {
+      textMatches.push(
+        toResult(item, textScore, "text_match")
+      );
+    }
+  }
+
+  primaryMatches.sort((a, b) => b.score - a.score);
+  comorbidMatches.sort((a, b) => b.score - a.score);
+  textMatches.sort((a, b) => b.score - a.score);
+
+  const limitedPrimary = primaryMatches.slice(0, 10);
+  const limitedComorbid = comorbidMatches.slice(0, 10);
+  const limitedText = textMatches.slice(0, 10);
+
+  return {
+    success: true,
+    query: searchText,
+    terms_used: searchTerms,
+    summary: {
+      primary_matches: limitedPrimary.length,
+      comorbid_matches: limitedComorbid.length,
+      text_matches: limitedText.length,
+      total_returned:
+        limitedPrimary.length +
+        limitedComorbid.length +
+        limitedText.length,
+    },
+    primary_matches: limitedPrimary,
+    comorbid_matches: limitedComorbid,
+    text_matches: limitedText,
+  };
+}
 
 const tools = [
   {
@@ -1167,6 +1391,25 @@ const tools = [
   },
   strict: false,
 },
+{
+  type: "function",
+  name: "getSemanticSearch",
+  description:
+    "Søger semantisk i det eksisterende CDA-casearkiv og skelner mellem primær diagnose, komorbid diagnose og tekstmatch.",
+  parameters: {
+    type: "object",
+    properties: {
+      search: {
+        type: "string",
+        description:
+          "Søgetekst, diagnose, tema eller problemstilling.",
+      },
+    },
+    required: ["search"],
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -1207,6 +1450,10 @@ if (toolCall.name === "getQuiz") {
 
 if (toolCall.name === "getRollespil") {
   return getRollespil(args);
+}
+
+if (toolCall.name === "getSemanticSearch") {
+  return getSemanticSearch(args);
 }
 
     return {
