@@ -21,13 +21,66 @@
 
     <p id="fejl"></p>
   </main>
-  
+
   <script>
   const adgangskode = localStorage.getItem("cda_adgangskode");
+  const chat = document.getElementById("chat");
+  const besked = document.getElementById("besked");
+  const sendKnap = document.getElementById("sendKnap");
+  const fejl = document.getElementById("fejl");
 
   if (!adgangskode) {
     window.location.href = "/cda.html";
   }
+
+  sendKnap.addEventListener("click", async () => {
+    const tekst = besked.value.trim();
+
+    if (!tekst) {
+      fejl.textContent = "Skriv en besked først.";
+      return;
+    }
+
+    fejl.textContent = "";
+    sendKnap.disabled = true;
+    sendKnap.textContent = "Arbejder...";
+
+    const brugerBesked = document.createElement("p");
+    brugerBesked.textContent = `Dig: ${tekst}`;
+    chat.appendChild(brugerBesked);
+
+    besked.value = "";
+
+    try {
+      const svar = await fetch("/api/cda-chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: tekst,
+          response_style: "Mellem",
+          adgangskode,
+        }),
+      });
+
+      const data = await svar.json();
+
+      if (!svar.ok) {
+        fejl.textContent = data.error || "CDA kunne ikke svare.";
+        return;
+      }
+
+      const cdaSvar = document.createElement("p");
+      cdaSvar.textContent = `CDA: ${data.reply}`;
+      chat.appendChild(cdaSvar);
+    } catch (error) {
+      fejl.textContent = "Der opstod en forbindelsesfejl.";
+    } finally {
+      sendKnap.disabled = false;
+      sendKnap.textContent = "Send";
+    }
+  });
 </script>
 </body>
 </html>
