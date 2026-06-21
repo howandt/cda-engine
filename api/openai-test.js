@@ -27,10 +27,13 @@ export default async function handler(req, res) {
 
   try {
     const response = await openai.responses.create({
-      model: "gpt-5-mini",
-      input: "Svar kun med teksten: CDA OpenAI-forbindelse virker.",
-      max_output_tokens: 100,
-    });
+  model: "gpt-5-mini",
+  reasoning: {
+    effort: "minimal",
+  },
+  input: "Svar kun med teksten: CDA OpenAI-forbindelse virker.",
+  max_output_tokens: 100,
+});
 
     return res.status(200).json({
       success: true,
