@@ -545,6 +545,129 @@ function getDiagnoser(args = {}) {
   };
 }
 
+function analyzeEmotion(text, data) {
+  let score = 0;
+  const textLower = String(text || "").toLowerCase();
+
+  const foundWords = {
+    positive: [],
+    negative: [],
+    empathy: [],
+    commands: [],
+    validating: [],
+  };
+
+  const wordCategories = data.word_categories || {};
+
+  if (wordCategories.positive?.words) {
+    wordCategories.positive.words.forEach((word) => {
+      if (textLower.includes(String(word).toLowerCase())) {
+        score += Number(wordCategories.positive.score_value || 0);
+        foundWords.positive.push(word);
+      }
+    });
+  }
+
+  if (wordCategories.negative?.words) {
+    wordCategories.negative.words.forEach((word) => {
+      if (textLower.includes(String(word).toLowerCase())) {
+        score += Number(wordCategories.negative.score_value || 0);
+        foundWords.negative.push(word);
+      }
+    });
+  }
+
+  if (wordCategories.empathy?.phrases) {
+    wordCategories.empathy.phrases.forEach((phrase) => {
+      if (textLower.includes(String(phrase).toLowerCase())) {
+        score += Number(wordCategories.empathy.score_value || 0);
+        foundWords.empathy.push(phrase);
+      }
+    });
+  }
+
+  if (wordCategories.commands?.phrases) {
+    wordCategories.commands.phrases.forEach((phrase) => {
+      if (textLower.includes(String(phrase).toLowerCase())) {
+        score += Number(wordCategories.commands.score_value || 0);
+        foundWords.commands.push(phrase);
+      }
+    });
+  }
+
+  if (wordCategories.validating?.phrases) {
+    wordCategories.validating.phrases.forEach((phrase) => {
+      if (textLower.includes(String(phrase).toLowerCase())) {
+        score += Number(wordCategories.validating.score_value || 0);
+        foundWords.validating.push(phrase);
+      }
+    });
+  }
+
+  let mood = "neutral";
+  let moodData = data.mood_levels?.neutral || {};
+
+  if (score >= 3) {
+    mood = "støttende";
+    moodData = data.mood_levels?.støttende || {};
+  } else if (score >= 1) {
+    mood = "rolig";
+    moodData = data.mood_levels?.rolig || {};
+  } else if (score <= -2) {
+    mood = "pres";
+    moodData = data.mood_levels?.pres || {};
+  } else if (score < 0) {
+    mood = "spændt";
+    moodData = data.mood_levels?.spændt || {};
+  }
+
+  return {
+    score,
+    mood,
+    emoji: moodData.emoji || null,
+    description: moodData.description || null,
+    effect_on_child: moodData.effect_on_child || null,
+    characteristics: moodData.characteristics || [],
+    found_elements: foundWords,
+    word_count: {
+      positive: foundWords.positive.length,
+      negative: foundWords.negative.length,
+      empathy: foundWords.empathy.length,
+      commands: foundWords.commands.length,
+      validating: foundWords.validating.length,
+    },
+  };
+}
+function getEmotionAnalysis(args = {}) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_Emotionengine.json"
+  );
+
+  const data = readJsonFile(
+    filePath,
+    "data/CDA_Emotionengine.json blev ikke fundet"
+  );
+
+  const text = String(args.text || "");
+
+  if (!text) {
+    return {
+      error: "Tekst mangler",
+    };
+  }
+
+  return {
+    input: {
+      text,
+      context: args.context || null,
+    },
+    analysis: analyzeEmotion(text, data),
+    communication_tips: data.communication_tips || [],
+  };
+}
+
 const tools = [
   {
     type: "function",
@@ -678,7 +801,6 @@ const tools = [
   },
   strict: false,
 },
-
 {
   type: "function",
   name: "getDiagnoser",
@@ -710,6 +832,28 @@ const tools = [
   },
   strict: false,
 },
+{
+  type: "function",
+  name: "getEmotionAnalysis",
+  description:
+    "Analyserer eksisterende CDA-kommunikation for tone, pres, empati, validering og kommandoer.",
+  parameters: {
+    type: "object",
+    properties: {
+      text: {
+        type: "string",
+        description: "Den tekst eller formulering, der skal analyseres.",
+      },
+      context: {
+        type: "string",
+        description: "Valgfri kontekst for kommunikationen.",
+      },
+    },
+    required: ["text"],
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -734,6 +878,10 @@ if (toolCall.name === "getBornehaveRouting") {
 
 if (toolCall.name === "getDiagnoser") {
   return getDiagnoser(args);
+}
+
+if (toolCall.name === "getEmotionAnalysis") {
+  return getEmotionAnalysis(args);
 }
 
     return {
