@@ -15,5 +15,40 @@
 
   <p id="fejl"></p>
 </main>
+
+<script>
+  const loginKnap = document.getElementById("loginKnap");
+  const adgangskodeInput = document.getElementById("adgangskode");
+  const fejl = document.getElementById("fejl");
+
+  loginKnap.addEventListener("click", async () => {
+    const kode = adgangskodeInput.value.trim();
+
+    fejl.textContent = "";
+
+    if (!kode) {
+      fejl.textContent = "Indtast en adgangskode.";
+      return;
+    }
+
+    const svar = await fetch("/api/tjek-kode", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ kode }),
+    });
+
+    const data = await svar.json();
+
+    if (!svar.ok) {
+      fejl.textContent = data.fejl || "Koden kunne ikke godkendes.";
+      return;
+    }
+
+    localStorage.setItem("cda_adgangskode", kode.toUpperCase());
+    window.location.href = "/chat.html";
+  });
+</script>
 </body>
 </html>
