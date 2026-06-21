@@ -1123,6 +1123,24 @@ function getSemanticSearch(args = {}) {
     text_matches: limitedText,
   };
 }
+function getSpecialistPanel() {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_SpecialistPanel.json"
+  );
+
+  const data = readJsonFile(
+    filePath,
+    "data/CDA_SpecialistPanel.json blev ikke fundet"
+  );
+
+  return {
+    success: true,
+    source: "local",
+    data,
+  };
+}
 
 const tools = [
   {
@@ -1410,6 +1428,18 @@ const tools = [
   },
   strict: false,
 },
+{
+  type: "function",
+  name: "getSpecialistPanel",
+  description:
+    "Henter det eksisterende CDA-specialistpanel. Brug ved behov for specialistperspektiver, tværfaglig vurdering eller råd fra specialistpanelet.",
+  parameters: {
+    type: "object",
+    properties: {},
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -1454,6 +1484,10 @@ if (toolCall.name === "getRollespil") {
 
 if (toolCall.name === "getSemanticSearch") {
   return getSemanticSearch(args);
+}
+
+if (toolCall.name === "getSpecialistPanel") {
+  return getSpecialistPanel();
 }
 
     return {
