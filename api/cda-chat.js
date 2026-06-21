@@ -855,6 +855,50 @@ function getQuiz(args = {}) {
     })),
   };
 }
+function getRollespil(args = {}) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "rollespil_scenarier.json"
+  );
+
+  const data = readJsonFile(
+    filePath,
+    "data/rollespil_scenarier.json blev ikke fundet"
+  );
+
+  const scenarios = Array.isArray(data)
+    ? data
+    : data.scenarier || data.data || [];
+
+  if (args.caseId) {
+    const scenario = scenarios.find(
+      (item) =>
+        String(item.id || "") === String(args.caseId)
+    );
+
+    return scenario
+      ? {
+          success: true,
+          source: "local",
+          data: scenario,
+        }
+      : {
+          success: false,
+          error: `Rollespilscase ikke fundet: ${args.caseId}`,
+          available_cases: scenarios
+            .map((item) => item.id)
+            .filter(Boolean),
+        };
+  }
+
+  return {
+    success: true,
+    source: "local",
+    total: scenarios.length,
+    data: scenarios,
+  };
+}
 
 const tools = [
   {
@@ -1105,6 +1149,24 @@ const tools = [
   },
   strict: false,
 },
+{
+  type: "function",
+  name: "getRollespil",
+  description:
+    "Henter eksisterende CDA-rollespilsscenarier. Brug ved rollespil, perspektivskifte, træning eller en bestemt rollespilscase.",
+  parameters: {
+    type: "object",
+    properties: {
+      caseId: {
+        type: "string",
+        description:
+          "Hent et bestemt rollespilsscenarie via case-id.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -1141,6 +1203,10 @@ if (toolCall.name === "getKomorbiditet") {
 
 if (toolCall.name === "getQuiz") {
   return getQuiz(args);
+}
+
+if (toolCall.name === "getRollespil") {
+  return getRollespil(args);
 }
 
     return {
