@@ -31,7 +31,7 @@ export default async function handler(req, res) {
     return res.status(404).json({ fejl: "Koden blev ikke fundet." });
   }
 
-  if (data.status === "inaktiv") {
+  if (data.status === "inactive") {
     return res.status(403).json({ fejl: "Denne kode er deaktiveret." });
   }
 
