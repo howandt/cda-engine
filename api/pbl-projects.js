@@ -28,15 +28,40 @@ export default async function handler(req, res) {
     const data = readJsonFile(dataPath);
 
     const {
-      diagnosis,
-      level,
-      social,
-      structure,
-      stimuli,
-      id,
-    } = req.query;
+  diagnosis,
+  level,
+  social,
+  structure,
+  stimuli,
+  search,
+  id,
+} = req.query;
 
     let projects = Array.isArray(data.projects) ? [...data.projects] : [];
+
+    if (search) {
+  const searchTerms = String(search)
+    .toLowerCase()
+    .split(/\s+/)
+    .map((term) => term.trim())
+    .filter(Boolean);
+
+  projects = projects.filter((project) => {
+    const searchableText = [
+      project.title,
+      project.subtitle,
+      project.description,
+      ...(project.activities || []),
+      ...(project.competencies || []),
+      ...(project.career_alignment || []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    return searchTerms.every((term) => searchableText.includes(term));
+  });
+}
 
     if (id) {
       const project = projects.find((p) => String(p.id || "") === String(id));
@@ -115,12 +140,13 @@ export default async function handler(req, res) {
       total_projects: data.total_projects || projects.length,
       filtered_count: projects.length,
       filters_applied: {
-        diagnosis: diagnosis || null,
-        level: level || null,
-        social: social || null,
-        structure: structure || null,
-        stimuli: stimuli || null,
-      },
+  search: search || null,
+  diagnosis: diagnosis || null,
+  level: level || null,
+  social: social || null,
+  structure: structure || null,
+  stimuli: stimuli || null,
+},
       projects,
       filter_categories: data.filter_categories || null,
       teacher_templates: data.teacher_templates || null,
