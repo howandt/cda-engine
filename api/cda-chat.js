@@ -758,6 +758,103 @@ function getKomorbiditet(args = {}) {
     data: komorbiditetData,
   };
 }
+function getQuiz(args = {}) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_Quiz_Bank.json"
+  );
+
+  const data = readJsonFile(
+    filePath,
+    "data/CDA_Quiz_Bank.json blev ikke fundet"
+  );
+
+  const quizzes = Array.isArray(data.quizzes)
+    ? [...data.quizzes]
+    : [];
+
+  if (args.quiz_id) {
+    const quiz = quizzes.find(
+      (item) =>
+        String(item.quiz_id || "") === String(args.quiz_id)
+    );
+
+    return quiz
+      ? {
+          version: data.version || null,
+          quiz,
+        }
+      : {
+          error: `Quiz ikke fundet: ${args.quiz_id}`,
+        };
+  }
+
+  let filteredQuizzes = quizzes;
+
+  if (args.difficulty) {
+    filteredQuizzes = filteredQuizzes.filter(
+      (item) =>
+        String(item.difficulty || "").toLowerCase() ===
+        String(args.difficulty).toLowerCase()
+    );
+  }
+
+  if (args.type) {
+    filteredQuizzes = filteredQuizzes.filter(
+      (item) =>
+        String(item.type || "").toLowerCase() ===
+        String(args.type).toLowerCase()
+    );
+  }
+
+  if (args.keywords) {
+    const keywordArray = String(args.keywords)
+      .split(",")
+      .map((item) => item.trim().toLowerCase())
+      .filter(Boolean);
+
+    filteredQuizzes = filteredQuizzes.filter((quiz) =>
+      keywordArray.some(
+        (keyword) =>
+          Array.isArray(quiz.keywords) &&
+          quiz.keywords.some((item) =>
+            String(item).toLowerCase().includes(keyword)
+          )
+      )
+    );
+  }
+
+  if (args.source_case) {
+    filteredQuizzes = filteredQuizzes.filter(
+      (item) =>
+        String(item.source_case || "") ===
+        String(args.source_case)
+    );
+  }
+
+  return {
+    version: data.version || null,
+    filtered_count: filteredQuizzes.length,
+    quizzes: filteredQuizzes.map((item) => ({
+      quiz_id: item.quiz_id || null,
+      title: item.title || null,
+      description: item.description || null,
+      type: item.type || null,
+      source_case: item.source_case || null,
+      keywords: Array.isArray(item.keywords)
+        ? item.keywords
+        : [],
+      difficulty: item.difficulty || null,
+      total_possible_points:
+        item.total_possible_points || 0,
+      passing_score: item.passing_score || 0,
+      question_count: Array.isArray(item.questions)
+        ? item.questions.length
+        : 0,
+    })),
+  };
+}
 
 const tools = [
   {
@@ -973,6 +1070,41 @@ const tools = [
   },
   strict: false,
 },
+{
+  type: "function",
+  name: "getQuiz",
+  description:
+    "Henter eksisterende CDA-quizzer. Brug ved træning, quizønsker, faglig øvelse eller quiz knyttet til en case.",
+  parameters: {
+    type: "object",
+    properties: {
+      quiz_id: {
+        type: "string",
+        description: "Hent en bestemt quiz via quiz-id.",
+      },
+      difficulty: {
+        type: "string",
+        description: "Filtrér efter sværhedsgrad.",
+      },
+      type: {
+        type: "string",
+        description: "Filtrér efter quiztype.",
+      },
+      keywords: {
+        type: "string",
+        description:
+          "Søg via et eller flere nøgleord, adskilt med komma.",
+      },
+      source_case: {
+        type: "string",
+        description:
+          "Filtrér quizzer efter tilknyttet case-id.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -1005,6 +1137,10 @@ if (toolCall.name === "getEmotionAnalysis") {
 
 if (toolCall.name === "getKomorbiditet") {
   return getKomorbiditet(args);
+}
+
+if (toolCall.name === "getQuiz") {
+  return getQuiz(args);
 }
 
     return {
