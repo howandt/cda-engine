@@ -413,23 +413,42 @@ export default async function handler(req, res) {
     });
   }
 
-  const { message } = req.body || {};
+  const { message, response_style = "Mellem" } = req.body || {};
 
-  if (!message || typeof message !== "string") {
-    return res.status(400).json({
-      error: "Feltet message mangler",
-    });
-  }
+if (!message || typeof message !== "string") {
+  return res.status(400).json({
+    error: "Feltet message mangler",
+  });
+}
 
-  try {
-    const heidiPrompt = readHeidiPrompt();
+const allowedResponseStyles = ["Kort", "Mellem", "Dyb"];
 
-    let response = await openai.responses.create({
+if (!allowedResponseStyles.includes(response_style)) {
+  return res.status(400).json({
+    error: "response_style skal være Kort, Mellem eller Dyb",
+  });
+}
+
+try {
+  const heidiPrompt = readHeidiPrompt();
+
+  const runtimeInstructions = [
+    heidiPrompt,
+    "",
+    `AKTUEL SVARSTIL: ${response_style}`,
+    response_style === "Kort"
+      ? "Svar meget kort og direkte."
+      : response_style === "Dyb"
+        ? "Forklar også hvorfor, faglige sammenhænge og begrundelser, men behold den relevante CDA-struktur."
+        : "Giv en kort forklaring og konkrete næste skridt.",
+  ].join("\n");
+
+  let response = await openai.responses.create({
       model: "gpt-5.4-mini",
       reasoning: {
   effort: "low",
 },
-      instructions: heidiPrompt,
+      instructions: runtimeInstructions,
       input: message,
       tools,
       max_output_tokens: 1200,
@@ -469,7 +488,7 @@ return {
         reasoning: {
   effort: "low",
 },
-        instructions: heidiPrompt,
+        instructions: runtimeInstructions,
         previous_response_id: response.id,
         input: toolOutputs,
         tools,
