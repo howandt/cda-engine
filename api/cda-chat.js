@@ -414,7 +414,6 @@ export default async function handler(req, res) {
     let response = await openai.responses.create({
       model: "gpt-5.4-mini",
       reasoning: {
-        reasoning: {
   effort: "low",
 },
       instructions: heidiPrompt,
@@ -455,7 +454,6 @@ return {
       response = await openai.responses.create({
         model: "gpt-5.4-mini",
         reasoning: {
-          reasoning: {
   effort: "low",
 },
         instructions: heidiPrompt,
