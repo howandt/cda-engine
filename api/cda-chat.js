@@ -423,6 +423,128 @@ function getBornehaveRouting(args = {}) {
   });
 }
 
+function getDiagnoser(args = {}) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_Diagnoser.json"
+  );
+
+  const data = readJsonFile(
+    filePath,
+    "data/CDA_Diagnoser.json blev ikke fundet"
+  );
+
+  const diagnoser = Array.isArray(data.diagnoser)
+    ? [...data.diagnoser]
+    : [];
+
+  if (args.id) {
+    const diagnose = diagnoser.find(
+      (item) =>
+        String(item.id || "").toLowerCase() ===
+        String(args.id).toLowerCase()
+    );
+
+    return diagnose
+      ? {
+          version: data.version || null,
+          diagnose,
+        }
+      : {
+          error: `Diagnose ikke fundet: ${args.id}`,
+        };
+  }
+
+  let filteredDiagnoser = diagnoser;
+
+  if (args.kategori) {
+    filteredDiagnoser = filteredDiagnoser.filter((item) =>
+      String(item.kategori || "")
+        .toLowerCase()
+        .includes(String(args.kategori).toLowerCase())
+    );
+  }
+
+  if (args.komorbiditet) {
+    filteredDiagnoser = filteredDiagnoser.filter(
+      (item) =>
+        Array.isArray(item.komorbiditet_links) &&
+        item.komorbiditet_links.some((link) =>
+          String(link)
+            .toLowerCase()
+            .includes(String(args.komorbiditet).toLowerCase())
+        )
+    );
+  }
+
+  if (args.search) {
+    const query = String(args.search).trim().toLowerCase();
+
+    const scoreDiagnose = (item) => {
+      let score = 0;
+
+      const id = String(item.id || "").toLowerCase();
+      const navn = String(item.navn || "").toLowerCase();
+      const fuldNavn = String(item.fuld_navn || "").toLowerCase();
+      const kategori = String(item.kategori || "").toLowerCase();
+
+      if (id === query) score += 100;
+      else if (id.includes(query)) score += 40;
+
+      if (navn === query) score += 90;
+      else if (navn.includes(query)) score += 35;
+
+      if (fuldNavn === query) score += 80;
+      else if (fuldNavn.includes(query)) score += 25;
+
+      if (
+        Array.isArray(item.noegleord) &&
+        item.noegleord.some(
+          (word) => String(word).toLowerCase() === query
+        )
+      ) {
+        score += 20;
+      } else if (
+        Array.isArray(item.noegleord) &&
+        item.noegleord.some((word) =>
+          String(word).toLowerCase().includes(query)
+        )
+      ) {
+        score += 10;
+      }
+
+      if (kategori === query) score += 8;
+      else if (kategori.includes(query)) score += 3;
+
+      return score;
+    };
+
+    filteredDiagnoser = filteredDiagnoser
+      .map((item) => ({
+        ...item,
+        _score: scoreDiagnose(item),
+      }))
+      .filter((item) => item._score > 0)
+      .sort((a, b) => b._score - a._score)
+      .map(({ _score, ...item }) => item);
+  }
+
+  return {
+    version: data.version || null,
+    total_diagnoser: diagnoser.length,
+    filtered_count: filteredDiagnoser.length,
+    diagnoser: filteredDiagnoser.map((item) => ({
+      id: item.id || null,
+      navn: item.navn || null,
+      fuld_navn: item.fuld_navn || null,
+      kategori: item.kategori || null,
+      praevalens: item.praevalens || null,
+      sidst_opdateret: item.sidst_opdateret || null,
+    })),
+  };
+}
+
 const tools = [
   {
     type: "function",
@@ -556,6 +678,38 @@ const tools = [
   },
   strict: false,
 },
+
+{
+  type: "function",
+  name: "getDiagnoser",
+  description:
+    "Henter eksisterende CDA-diagnosedata. Brug ved spørgsmål om diagnoser, symptombilleder, kategorier eller komorbiditet.",
+  parameters: {
+    type: "object",
+    properties: {
+      id: {
+        type: "string",
+        description: "Hent en bestemt diagnose via diagnose-id.",
+      },
+      search: {
+        type: "string",
+        description:
+          "Søg efter diagnose via navn, fuldt navn, nøgleord eller kategori.",
+      },
+      kategori: {
+        type: "string",
+        description: "Filtrér diagnoser efter kategori.",
+      },
+      komorbiditet: {
+        type: "string",
+        description:
+          "Filtrér diagnoser efter kobling til en mulig komorbiditet.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
 ];
 
 function executeTool(toolCall) {
@@ -576,6 +730,10 @@ function executeTool(toolCall) {
 
 if (toolCall.name === "getBornehaveRouting") {
   return getBornehaveRouting(args);
+}
+
+if (toolCall.name === "getDiagnoser") {
+  return getDiagnoser(args);
 }
 
     return {
