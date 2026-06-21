@@ -8,10 +8,10 @@
     "build:clean": "node scripts/build-clean-index.js"
   },
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "openai": "^6.44.0"
   },
   "engines": {
     "node": "22.x"
   }
 }
-
