@@ -143,6 +143,17 @@ function searchWordMatches(searchWord, textWord) {
     return true;
   }
 
+  const shortestLength = Math.min(search.length, text.length);
+
+  for (let length = shortestLength; length >= 4; length -= 1) {
+    const searchStart = search.slice(0, length);
+    const textStart = text.slice(0, length);
+
+    if (searchStart === textStart) {
+      return true;
+    }
+  }
+
   if (search.length >= 5 && text.length >= 5) {
     return levenshteinDistance(search, text) <= 2;
   }
