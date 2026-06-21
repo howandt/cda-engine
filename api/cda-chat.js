@@ -93,31 +93,47 @@ function getPblProjects(args = {}) {
     };
   }
 
-  if (args.search) {
-    const searchTerms = String(args.search)
-      .toLowerCase()
-      .split(/\s+/)
-      .map((term) => term.trim())
-      .filter(Boolean);
+  let directInterestMatch = false;
 
-    projects = projects.filter((project) => {
-      const searchableText = [
-        project.title,
-        project.subtitle,
-        project.description,
-        ...(project.activities || []),
-        ...(project.competencies || []),
-        ...(project.career_alignment || []),
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
+if (args.search) {
+  const searchTerms = String(args.search)
+    .toLowerCase()
+    .split(/\s+/)
+    .map((term) => term.trim())
+    .filter(Boolean);
 
-      return searchTerms.every((term) =>
-        searchableText.includes(term)
-      );
-    });
+  const interestMatches = projects.filter((project) => {
+    const searchableText = [
+      project.title,
+      project.subtitle,
+      project.description,
+      ...(project.activities || []),
+      ...(project.competencies || []),
+      ...(project.career_alignment || []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    return searchTerms.every((term) =>
+      searchableText.includes(term)
+    );
+  });
+
+  if (interestMatches.length > 0) {
+    projects = interestMatches;
+    directInterestMatch = true;
   }
+}
+
+if (directInterestMatch) {
+  return {
+    version: data.version || null,
+    filtered_count: projects.length,
+    direct_interest_match: true,
+    projects,
+  };
+}
 
   if (args.diagnosis) {
     const diagnosisTerms = String(args.diagnosis)
