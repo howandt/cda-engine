@@ -1757,20 +1757,12 @@ try {
   }
 
   return res.status(200).json({
-    success: true,
-    reply: response.output_text,
-    model: "gpt-5.4-mini",
-    tools_used: usedTools,
-    tool_debug: toolDebug,
-    token_debug: {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    },
-  });
+  success: true,
+  reply: response.output_text,
+  model: "gpt-5.4-mini",
+  tools_used: usedTools,
+  tool_debug: toolDebug,
+});
 } catch (error) {
   console.error("CDA chatfejl:", error);
 
