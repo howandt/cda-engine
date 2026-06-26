@@ -1628,105 +1628,156 @@ try {
   ].join("\n");
 
   let inputTokens = 0;
-let outputTokens = 0;
-let totalTokens = 0;
+  let outputTokens = 0;
+  let totalTokens = 0;
+  const usageByCall = [];
 
-function addUsage(responseData) {
-  inputTokens += Number(responseData?.usage?.input_tokens || 0);
-  outputTokens += Number(responseData?.usage?.output_tokens || 0);
-  totalTokens += Number(responseData?.usage?.total_tokens || 0);
-}
+  function addUsage(responseData, callNumber, phase, toolNames = []) {
+    const callInputTokens = Number(
+      responseData?.usage?.input_tokens || 0
+    );
+
+    const callOutputTokens = Number(
+      responseData?.usage?.output_tokens || 0
+    );
+
+    const callTotalTokens = Number(
+      responseData?.usage?.total_tokens ||
+        callInputTokens + callOutputTokens
+    );
+
+    inputTokens += callInputTokens;
+    outputTokens += callOutputTokens;
+    totalTokens += callTotalTokens;
+
+    usageByCall.push({
+      call: callNumber,
+      phase,
+      tools_returned_to_model: toolNames,
+      input_tokens: callInputTokens,
+      output_tokens: callOutputTokens,
+      total_tokens: callTotalTokens,
+    });
+  }
 
   let response = await openai.responses.create({
+    model: "gpt-5.4-mini",
+    reasoning: {
+      effort: "low",
+    },
+    instructions: runtimeInstructions,
+    input: message,
+    tools,
+    max_output_tokens: 1200,
+  });
+
+  addUsage(response, 1, "initial");
+
+  const usedTools = [];
+  const toolDebug = [];
+
+  for (let round = 0; round < 3; round += 1) {
+    const toolCalls = response.output.filter(
+      (item) => item.type === "function_call"
+    );
+
+    if (toolCalls.length === 0) {
+      break;
+    }
+
+    const toolOutputs = toolCalls.map((toolCall) => {
+      const parsedArguments = JSON.parse(
+        toolCall.arguments || "{}"
+      );
+
+      usedTools.push(toolCall.name);
+
+      toolDebug.push({
+        name: toolCall.name,
+        arguments: parsedArguments,
+      });
+
+      return {
+        type: "function_call_output",
+        call_id: toolCall.call_id,
+        output: JSON.stringify(executeTool(toolCall)),
+      };
+    });
+
+    response = await openai.responses.create({
       model: "gpt-5.4-mini",
       reasoning: {
-  effort: "low",
-},
+        effort: "low",
+      },
       instructions: runtimeInstructions,
-      input: message,
+      previous_response_id: response.id,
+      input: toolOutputs,
       tools,
       max_output_tokens: 1200,
     });
 
-    addUsage(response);
+    addUsage(
+      response,
+      round + 2,
+      "after_tool_output",
+      toolCalls.map((toolCall) => toolCall.name)
+    );
+  }
 
-    const usedTools = [];
-const toolDebug = [];
-
-    for (let round = 0; round < 3; round += 1) {
-      const toolCalls = response.output.filter(
-        (item) => item.type === "function_call"
-      );
-
-      if (toolCalls.length === 0) {
-        break;
-      }
-
-      const toolOutputs = toolCalls.map((toolCall) => {
-        const parsedArguments = JSON.parse(toolCall.arguments || "{}");
-
-usedTools.push(toolCall.name);
-
-toolDebug.push({
-  name: toolCall.name,
-  arguments: parsedArguments,
-});
-
-return {
-  type: "function_call_output",
-  call_id: toolCall.call_id,
-  output: JSON.stringify(executeTool(toolCall)),
-};
-      });
-
-      response = await openai.responses.create({
-        model: "gpt-5.4-mini",
-        reasoning: {
-  effort: "low",
-},
-        instructions: runtimeInstructions,
-        previous_response_id: response.id,
-        input: toolOutputs,
-        tools,
-        max_output_tokens: 1200,
-      });
-      addUsage(response);
-    }
-
-    if (adgangskode) {
-  const supabase = getSupabase();
-
-  const { error: forbrugsFejl } = await supabase
-    .from("token_forbrug")
-    .insert({
-      adgangskode: adgangskode.trim().toUpperCase(),
-      system: "cda",
-      udbyder: "openai",
-      model: "gpt-5.4-mini",
+  console.log("CDA tokenmåling pr. OpenAI-kald:", {
+    usage_by_call: usageByCall,
+    totals: {
       input_tokens: inputTokens,
       output_tokens: outputTokens,
-      samlet_tokens: totalTokens,
-    });
+      total_tokens: totalTokens,
+    },
+  });
 
-  if (forbrugsFejl) {
-    console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+  if (adgangskode) {
+    const supabase = getSupabase();
+
+    const { error: forbrugsFejl } = await supabase
+      .from("token_forbrug")
+      .insert({
+        adgangskode: adgangskode.trim().toUpperCase(),
+        system: "cda",
+        udbyder: "openai",
+        model: "gpt-5.4-mini",
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        samlet_tokens: totalTokens,
+      });
+
+    if (forbrugsFejl) {
+      console.error(
+        "Kunne ikke gemme tokenforbrug:",
+        forbrugsFejl
+      );
+    }
   }
+
+  return res.status(200).json({
+    success: true,
+    reply: response.output_text,
+    model: "gpt-5.4-mini",
+    tools_used: usedTools,
+    tool_debug: toolDebug,
+    token_debug: {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    },
+  });
+} catch (error) {
+  console.error("CDA chatfejl:", error);
+
+  return res.status(500).json({
+    success: false,
+    error: "CDA kunne ikke behandle beskeden",
+    details: error.message,
+  });
 }
-
-    return res.status(200).json({
-  success: true,
-  reply: response.output_text,
-  model: "gpt-5.4-mini",
-  tools_used: usedTools,
-  tool_debug: toolDebug,
-});
-  } catch (error) {
-    console.error("CDA chatfejl:", error);
-
-    return res.status(500).json({
-      success: false,
-      error: "CDA kunne ikke behandle beskeden",
-      details: error.message,
-    });
-  }
 }
