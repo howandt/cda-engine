@@ -811,9 +811,7 @@ function getRollespil(args = {}) {
   };
 }
 function getSemanticSearch(args = {}) {
-  const searchText = String(args.search || "")
-    .toLowerCase()
-    .trim();
+  const searchText = String(args.search || "").trim();
 
   if (!searchText) {
     return {
@@ -822,40 +820,12 @@ function getSemanticSearch(args = {}) {
     };
   }
 
-  const casesPath = path.join(
-    process.cwd(),
-    "data",
-    "cases_ORIGINAL_ARCHIVE",
-    "adhd_angst_cases.json"
-  );
-
-  const semanticPath = path.join(
-    process.cwd(),
-    "public",
-    "data",
-    "semantic_engine.json"
-  );
-
-  const caseData = readJsonFile(
-    casesPath,
-    "data/cases_ORIGINAL_ARCHIVE/adhd_angst_cases.json blev ikke fundet"
-  );
-
-  const cases = Array.isArray(caseData)
-    ? caseData
-    : caseData.cases || [];
-
-  let semantic = {};
-
-  if (fs.existsSync(semanticPath)) {
-    semantic = readJsonFile(
-      semanticPath,
-      "public/data/semantic_engine.json kunne ikke læses"
-    );
-  }
-
-  const normalizeSemantic = (text) =>
-    String(text || "").toLowerCase().trim();
+  const normalizeSemantic = (value) =>
+    String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
 
   const normalizeSemanticArray = (value) => {
     if (Array.isArray(value)) {
@@ -871,167 +841,276 @@ function getSemanticSearch(args = {}) {
     return [];
   };
 
-  const terms = new Set([searchText]);
+  const semanticSafeText = (value) => {
+    if (value === null || value === undefined) return "";
+
+    if (Array.isArray(value)) {
+      return value.map((item) => semanticSafeText(item)).join(" ");
+    }
+
+    if (typeof value === "object") {
+      return Object.values(value)
+        .map((item) => semanticSafeText(item))
+        .join(" ");
+    }
+
+    return String(value);
+  };
+
+  const casesDir = path.join(
+    process.cwd(),
+    "public",
+    "CDA",
+    "cases"
+  );
+
+  if (!fs.existsSync(casesDir)) {
+    throw new Error(`Case-mappe ikke fundet: ${casesDir}`);
+  }
+
+  const files = fs
+    .readdirSync(casesDir)
+    .filter(
+      (file) =>
+        file.toLowerCase().endsWith(".json") &&
+        !file.toLowerCase().includes("index")
+    );
+
+  const uniqueCases = new Map();
+
+  for (const file of files) {
+    const filePath = path.join(casesDir, file);
+    const parsed = readJsonFile(
+      filePath,
+      `Casefil kunne ikke læses: ${file}`
+    );
+
+    const fileCases = Array.isArray(parsed)
+      ? parsed
+      : Array.isArray(parsed.cases)
+        ? parsed.cases
+        : [];
+
+    for (const caseItem of fileCases) {
+      const caseId = normalizeSemantic(caseItem.id);
+
+      if (caseId && !uniqueCases.has(caseId)) {
+        uniqueCases.set(caseId, caseItem);
+      }
+    }
+  }
+
+  const semanticPath = path.join(
+    process.cwd(),
+    "public",
+    "data",
+    "semantic_engine.json"
+  );
+
+  const semantic = fs.existsSync(semanticPath)
+    ? readJsonFile(
+        semanticPath,
+        "public/data/semantic_engine.json kunne ikke læses"
+      )
+    : {};
+
+  const base = normalizeSemantic(searchText);
+  const words = base.split(/\s+/).filter(Boolean);
+  const terms = new Set([base, ...words]);
   const synonyms = semantic?.synonyms || {};
 
   for (const [key, values] of Object.entries(synonyms)) {
-    const keyLower = normalizeSemantic(key);
-    const valueList = Array.isArray(values) ? values : [];
+    const normalizedKey = normalizeSemantic(key);
+    const normalizedValues = Array.isArray(values)
+      ? values.map((value) => normalizeSemantic(value)).filter(Boolean)
+      : [];
 
-    if (
-      searchText === keyLower ||
-      searchText.includes(keyLower)
-    ) {
-      terms.add(keyLower);
+    const keyMatched =
+      base.includes(normalizedKey) || words.includes(normalizedKey);
 
-      valueList.forEach((value) =>
-        terms.add(normalizeSemantic(value))
-      );
-
-      continue;
-    }
-
-    for (const value of valueList) {
-      const valueLower = normalizeSemantic(value);
-
-      if (
-        valueLower &&
-        (searchText === valueLower ||
-          searchText.includes(valueLower))
-      ) {
-        terms.add(keyLower);
-
-        valueList.forEach((item) =>
-          terms.add(normalizeSemantic(item))
-        );
-      }
-    }
-  }
-
-  const searchTerms = Array.from(terms).filter(Boolean);
-
-  const scoreCase = (item) => {
-    const id = normalizeSemantic(item.id);
-    const titel = normalizeSemantic(item.titel);
-    const temaList = normalizeSemanticArray(item.tema);
-    const beskrivelse = normalizeSemantic(item.beskrivelse);
-    const guiding = normalizeSemantic(item.cda_guiding);
-    const traening = normalizeSemantic(item.cdt_træning);
-
-    let score = 0;
-
-    for (const term of searchTerms) {
-      if (id === term) score += 100;
-      else if (id.includes(term)) score += 30;
-
-      if (titel === term) score += 80;
-      else if (titel.includes(term)) score += 35;
-
-      if (temaList.includes(term)) score += 20;
-      else if (temaList.some((tema) => tema.includes(term))) {
-        score += 8;
-      }
-
-      if (beskrivelse.includes(term)) score += 6;
-      if (guiding.includes(term)) score += 3;
-      if (traening.includes(term)) score += 2;
-    }
-
-    return score;
-  };
-
-  const toResult = (item, score, matchType) => ({
-    id: item.id || null,
-    titel: item.titel || null,
-    tema: Array.isArray(item.tema)
-      ? item.tema
-      : item.tema
-        ? [item.tema]
-        : [],
-    relevante_diagnoser: Array.isArray(
-      item.relevante_diagnoser
-    )
-      ? item.relevante_diagnoser
-      : [],
-    beskrivelse: item.beskrivelse || null,
-    score,
-    match_type: matchType,
-  });
-
-  const primaryMatches = [];
-  const comorbidMatches = [];
-  const textMatches = [];
-
-  for (const item of cases) {
-    const diagnoser = normalizeSemanticArray(
-      item.relevante_diagnoser
+    const synonymMatched = normalizedValues.some(
+      (value) => base.includes(value) || words.includes(value)
     );
 
-    const textScore = scoreCase(item);
-    const primaryDiagnosis = diagnoser[0] || "";
-
-    const hasPrimaryDiagnosis =
-      primaryDiagnosis === searchText;
-
-    const hasComorbidDiagnosis =
-      !hasPrimaryDiagnosis &&
-      diagnoser.slice(1).includes(searchText);
-
-    if (hasPrimaryDiagnosis) {
-      primaryMatches.push(
-        toResult(
-          item,
-          500 + textScore,
-          "primary_diagnosis"
-        )
-      );
-
-      continue;
-    }
-
-    if (hasComorbidDiagnosis) {
-      comorbidMatches.push(
-        toResult(
-          item,
-          250 + textScore,
-          "comorbid_diagnosis"
-        )
-      );
-
-      continue;
-    }
-
-    if (textScore > 0) {
-      textMatches.push(
-        toResult(item, textScore, "text_match")
-      );
+    if (keyMatched || synonymMatched) {
+      terms.add(normalizedKey);
+      normalizedValues.forEach((value) => terms.add(value));
     }
   }
 
-  primaryMatches.sort((a, b) => b.score - a.score);
-  comorbidMatches.sort((a, b) => b.score - a.score);
-  textMatches.sort((a, b) => b.score - a.score);
+  const searchTerms = Array.from(terms).filter(
+    (term) => term.length >= 2
+  );
 
-  const limitedPrimary = primaryMatches.slice(0, 10);
-  const limitedComorbid = comorbidMatches.slice(0, 10);
-  const limitedText = textMatches.slice(0, 10);
+  const getFields = (caseItem) => ({
+    id: normalizeSemantic(caseItem.id),
+    title: normalizeSemantic(caseItem.titel || caseItem.title),
+    theme: normalizeSemantic(
+      semanticSafeText(
+        caseItem.tema || caseItem.theme || caseItem.kategori
+      )
+    ),
+    diagnoses: normalizeSemanticArray(
+      caseItem.diagnoser ||
+        caseItem.diagnoses ||
+        caseItem.relevante_diagnoser
+    ),
+    environment: normalizeSemantic(
+      semanticSafeText(
+        caseItem.miljø || caseItem.contexts || caseItem.kontekst
+      )
+    ),
+    behavior: normalizeSemantic(
+      semanticSafeText(
+        caseItem.adfærd ||
+          caseItem.problem ||
+          caseItem.kort_beskrivelse ||
+          caseItem.description ||
+          caseItem.beskrivelse
+      )
+    ),
+    triggers: normalizeSemantic(
+      semanticSafeText(
+        caseItem.triggers || caseItem.trigger || caseItem.udløsere
+      )
+    ),
+    childPerspective: normalizeSemantic(
+      semanticSafeText(
+        caseItem.barnets_oplevelse || caseItem.barnets_perspektiv
+      )
+    ),
+    solution: normalizeSemantic(
+      semanticSafeText(
+        caseItem.løsning ||
+          caseItem.tiltag ||
+          caseItem.cda_guiding ||
+          caseItem.værktøjer
+      )
+    ),
+  });
+
+  const scoreCase = (caseItem) => {
+    const fields = getFields(caseItem);
+    let score = 0;
+    const matchedTerms = new Set();
+
+    for (const term of searchTerms) {
+      if (!term) continue;
+
+      let termMatched = false;
+
+      if (fields.id === term) {
+        score += 150;
+        termMatched = true;
+      } else if (fields.id.includes(term)) {
+        score += 60;
+        termMatched = true;
+      }
+
+      if (fields.title === term) {
+        score += 100;
+        termMatched = true;
+      } else if (fields.title.includes(term)) {
+        score += 45;
+        termMatched = true;
+      }
+
+      if (fields.diagnoses.some((diagnosis) => diagnosis === term)) {
+        score += 80;
+        termMatched = true;
+      } else if (
+        fields.diagnoses.some((diagnosis) => diagnosis.includes(term))
+      ) {
+        score += 40;
+        termMatched = true;
+      }
+
+      if (fields.theme.includes(term)) {
+        score += 25;
+        termMatched = true;
+      }
+
+      if (fields.environment.includes(term)) {
+        score += 20;
+        termMatched = true;
+      }
+
+      if (fields.behavior.includes(term)) {
+        score += 18;
+        termMatched = true;
+      }
+
+      if (fields.triggers.includes(term)) {
+        score += 16;
+        termMatched = true;
+      }
+
+      if (fields.childPerspective.includes(term)) {
+        score += 10;
+        termMatched = true;
+      }
+
+      if (fields.solution.includes(term)) {
+        score += 6;
+        termMatched = true;
+      }
+
+      if (termMatched) matchedTerms.add(term);
+    }
+
+    if (matchedTerms.size > 1) {
+      score += matchedTerms.size * 8;
+    }
+
+    return {
+      score,
+      matchedTerms: Array.from(matchedTerms),
+    };
+  };
+
+  const matches = Array.from(uniqueCases.values())
+    .map((caseItem) => ({
+      caseItem,
+      scoreData: scoreCase(caseItem),
+    }))
+    .filter((item) => item.scoreData.score > 0)
+    .sort((a, b) => b.scoreData.score - a.scoreData.score)
+    .slice(0, 5)
+    .map(({ caseItem, scoreData }) => ({
+      id: caseItem.id || null,
+      titel: caseItem.titel || caseItem.title || null,
+      tema:
+        caseItem.tema ||
+        caseItem.theme ||
+        caseItem.kategori ||
+        null,
+      diagnoser:
+        caseItem.diagnoser ||
+        caseItem.diagnoses ||
+        caseItem.relevante_diagnoser ||
+        [],
+      miljø:
+        caseItem.miljø ||
+        caseItem.contexts ||
+        caseItem.kontekst ||
+        [],
+      kort_beskrivelse:
+        caseItem.kort_beskrivelse ||
+        caseItem.problem ||
+        caseItem.description ||
+        caseItem.beskrivelse ||
+        null,
+      score: scoreData.score,
+      matched_terms: scoreData.matchedTerms,
+    }));
 
   return {
     success: true,
     query: searchText,
     terms_used: searchTerms,
-    summary: {
-      primary_matches: limitedPrimary.length,
-      comorbid_matches: limitedComorbid.length,
-      text_matches: limitedText.length,
-      total_returned:
-        limitedPrimary.length +
-        limitedComorbid.length +
-        limitedText.length,
-    },
-    primary_matches: limitedPrimary,
-    comorbid_matches: limitedComorbid,
-    text_matches: limitedText,
+    total_unique_cases: uniqueCases.size,
+    total_returned: matches.length,
+    results: matches,
   };
 }
 function getSpecialistPanel() {
