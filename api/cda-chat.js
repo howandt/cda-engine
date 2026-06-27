@@ -2035,6 +2035,16 @@ async function createTailoredPblProject(
   });
 
   if (response.status === "incomplete") {
+    console.error("CDA tilpasset PBL-kald ufuldstændigt:", {
+      status: response.status,
+      incomplete_details: response.incomplete_details || null,
+      output_item_types: Array.isArray(response.output)
+        ? response.output.map((item) => item.type || null)
+        : [],
+      output_text_length: String(response.output_text || "").length,
+      usage: response.usage || null,
+    });
+
     throw new Error("Ufuldstændigt tilpasset PBL-projekt");
   }
 
