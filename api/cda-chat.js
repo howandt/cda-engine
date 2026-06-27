@@ -1736,42 +1736,12 @@ function getPblProjectById(projectId) {
 }
 
 function extractProfileField(profileText, fieldNumber) {
-  const profileLabels = {
-    1: "Alder og klassetrin:",
-    2: "Interesser og det eleven selv opsøger:",
-    3: "Praktiske, kreative eller faglige styrker:",
-    4: "Hvor længe kan eleven typisk holde fokus?",
-    5: "Behov for struktur, pauser og bevægelse:",
-    6: "Arbejder eleven bedst alene, med én eller i en lille gruppe?",
-    7: "Sanser eller belastninger, vi skal tage hensyn til:",
-    8: "Modenhed og sikkerhed ved materialer eller værktøj:",
-    9: "Hvor meget voksenstøtte kræves?",
-    10: "Hvilket fagligt mål skal projektet støtte?",
-    11: "Hvad er allerede prøvet, og hvad virkede eller virkede ikke?",
-    12: "Din vurdering: Er PBL relevant nu — ja, nej eller usikkert?",
-  };
-
-  const label = profileLabels[fieldNumber];
-
-  if (!label) {
-    return "";
-  }
-
-  const escapeRegExp = (value) =>
-    String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-  const currentMarker =
-    `(?:^|\\s)${fieldNumber}\\.\\s*${escapeRegExp(label)}\\s*:?\\s*`;
-
-  const nextLabel = profileLabels[fieldNumber + 1];
-  const nextMarker = nextLabel
-    ? `(?=\\s+${fieldNumber + 1}\\.\\s*${escapeRegExp(nextLabel)}\\s*:?)`
-    : "$";
-
-  const match = String(profileText || "").match(
-    new RegExp(`${currentMarker}([\\s\\S]*?)${nextMarker}`, "i")
+  const text = String(profileText || "");
+  const pattern = new RegExp(
+    `(?:^|\\s)${fieldNumber}\\.\\s*[^:]+:\\s*([\\s\\S]*?)(?=\\s+(?:${fieldNumber + 1})\\.\\s*[^:]+:|$)`,
+    "i"
   );
-
+  const match = text.match(pattern);
   return match ? match[1].trim() : "";
 }
 
@@ -1791,72 +1761,34 @@ function getPblProjectsForDynamicAssessment() {
     ? data.projects
     : [];
 
-  const cleanIndexValue = (value) =>
-    String(value || "")
-      .replace(/[|\r\n]+/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-  const compactList = (value, limit = null) => {
-    const items = Array.isArray(value) ? value : [];
-    const selected = Number.isInteger(limit)
-      ? items.slice(0, limit)
-      : items;
-
-    return selected
-      .map((item) => cleanIndexValue(item))
-      .filter(Boolean)
-      .join(",");
+  return {
+    version: data.version || null,
+    projects: projects.map((project) => ({
+      id: project.id || null,
+      title: project.title || null,
+      subtitle: project.subtitle || null,
+      description: project.description || null,
+      activities: Array.isArray(project.activities)
+        ? project.activities
+        : [],
+      competencies: Array.isArray(project.competencies)
+        ? project.competencies
+        : [],
+      diagnosis_match: Array.isArray(project.diagnosis_match)
+        ? project.diagnosis_match
+        : [],
+      stimuli_type: Array.isArray(project.stimuli_type)
+        ? project.stimuli_type
+        : [],
+      social_exposure: project.social_exposure || null,
+      structure_need: project.structure_need || null,
+      level: project.level || null,
+      duration_suggestion: project.duration_suggestion || null,
+      career_alignment: Array.isArray(project.career_alignment)
+        ? project.career_alignment
+        : [],
+    })),
   };
-
-  const codeValue = (value, codes) => {
-    const normalized = String(value || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-
-    return codes[normalized] || cleanIndexValue(value);
-  };
-
-  const rows = projects.map((project) => {
-    const firstActivity = Array.isArray(project.activities)
-      ? project.activities[0]
-      : "";
-
-    return [
-      project.id,
-      project.title,
-      project.description,
-      firstActivity,
-      compactList(project.competencies, 2),
-      compactList(project.diagnosis_match),
-      compactList(project.stimuli_type),
-      codeValue(project.social_exposure, {
-        lav: "L",
-        moderat: "M",
-        gruppe: "G",
-      }),
-      codeValue(project.structure_need, {
-        lav: "L",
-        moderat: "M",
-        hoj: "H",
-      }),
-      codeValue(project.level, {
-        junior: "J",
-        intermediate: "I",
-        advanced: "A",
-      }),
-    ]
-      .map((value) => cleanIndexValue(value))
-      .join("|");
-  });
-
-  return [
-    `VERSION:${cleanIndexValue(data.version)}`,
-    "KOLONNER:id|titel|beskrivelse|første aktivitet|kompetencer|diagnosematch|stimuli|social|struktur|niveau",
-    "KODER:social L=lav M=moderat G=gruppe; struktur L=lav M=moderat H=høj; niveau J=junior I=intermediate A=advanced",
-    ...rows,
-  ].join("\n");
 }
 
 async function assessPblProfileDynamically(profileText) {
@@ -1868,21 +1800,34 @@ async function assessPblProfileDynamically(profileText) {
     "Brug ingen point, vægte, faste særord, skjult facitliste eller diagnose som automatisk konklusion.",
     "Vurder især elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, støttebehov, social belastning, faglige mål og mulighed for realistiske microsteps.",
     "Et direkte interessematch er vigtigt, men skal altid vurderes sammen med resten af profilen.",
-    "Det vedlagte index er automatisk genereret direkte fra projektbanken og er kun et kompakt datagrundlag, ikke en rangering.",
-    "Vælg kun projekt-id'er, der findes i det vedlagte index.",
+    "Vælg kun projekt-id'er, der findes i den vedlagte projektbank.",
     "Vælg to forskellige eksisterende projekter, hvis begge er reelt fagligt egnede.",
     "Hvis projektbanken ikke indeholder to forsvarlige muligheder, skal status være no_suitable_match. Vælg ikke et tilfældigt projekt for at udfylde felterne.",
     "Begrundelserne skal være korte, konkrete og baseret på både elevprofilen og projektdata.",
     "CDA foreslår. Læreren guider. Eleven vælger med.",
   ].join("\n");
 
+  const projectDataJson = JSON.stringify(projectData);
+
   const input = [
-    "STRUKTURERET ELEVPROFIL:",
-    JSON.stringify(getStructuredPblProfile(profileText)),
+    "ELEVPROFIL:",
+    profileText,
     "",
-    "AUTOMATISK GENERERET PBL-INDEKS:",
-    projectData,
+    "PBL-PROJEKTBANK:",
+    projectDataJson,
   ].join("\n");
+
+  console.log("CDA PBL inputmåling:", {
+    project_count: projectData.projects.length,
+    profile_chars: profileText.length,
+    profile_bytes: Buffer.byteLength(profileText, "utf8"),
+    instructions_chars: instructions.length,
+    instructions_bytes: Buffer.byteLength(instructions, "utf8"),
+    project_index_chars: projectDataJson.length,
+    project_index_bytes: Buffer.byteLength(projectDataJson, "utf8"),
+    complete_input_chars: input.length,
+    complete_input_bytes: Buffer.byteLength(input, "utf8"),
+  });
 
   const response = await openai.responses.create({
     model: "gpt-5.4-mini",
@@ -1968,153 +1913,6 @@ async function assessPblProfileDynamically(profileText) {
     first,
     second,
   };
-}
-
-function getStructuredPblProfile(profileText) {
-  return {
-    age_and_grade: extractProfileField(profileText, 1),
-    interests: extractProfileField(profileText, 2),
-    strengths: extractProfileField(profileText, 3),
-    focus: extractProfileField(profileText, 4),
-    structure_and_breaks: extractProfileField(profileText, 5),
-    work_form: extractProfileField(profileText, 6),
-    sensory_load: extractProfileField(profileText, 7),
-    safety_and_maturity: extractProfileField(profileText, 8),
-    adult_support: extractProfileField(profileText, 9),
-    learning_goals: extractProfileField(profileText, 10),
-    previous_attempts: extractProfileField(profileText, 11),
-    pbl_relevance: extractProfileField(profileText, 12),
-  };
-}
-
-async function createTailoredPblProject(
-  profileText,
-  rejectedProjects = []
-) {
-  const profile = getStructuredPblProfile(profileText);
-
-  const rejected = rejectedProjects
-    .filter(Boolean)
-    .map((project) => ({
-      id: project.id || null,
-      title: project.title || null,
-      subtitle: project.subtitle || null,
-    }));
-
-  const instructions = [
-    "Du er CDA's dynamiske PBL-fagmotor.",
-    "De to eksisterende forslag er blevet afvist af lærer eller elev.",
-    "Skab derfor ét nyt, konkret og individuelt tilpasset PBL-projekt ud fra hele elevprofilen.",
-    "Brug ingen point, vægte, faste særord eller skjult facitliste.",
-    "Projektet må ikke blot være en omdøbning eller gentagelse af de afviste projekter.",
-    "Tag især hensyn til elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, støttebehov, social belastning og faglige mål.",
-    "Projektet skal kunne gennemføres i korte, realistiske microsteps og give eleven reelt medejerskab.",
-    "Skriv kort, konkret og anvendeligt for en lærer.",
-  ].join("\n");
-
-  const input = [
-    "STRUKTURERET ELEVPROFIL:",
-    JSON.stringify(profile),
-    "",
-    "AFVISTE PROJEKTER:",
-    JSON.stringify(rejected),
-  ].join("\n");
-
-  const response = await openai.responses.create({
-    model: "gpt-5.4-mini",
-    reasoning: {
-      effort: "low",
-    },
-    instructions,
-    input,
-    max_output_tokens: 650,
-    text: {
-      format: {
-        type: "json_schema",
-        name: "cda_tailored_pbl_project",
-        strict: true,
-        schema: {
-          type: "object",
-          properties: {
-            title: { type: "string" },
-            subtitle: { type: "string" },
-            description: { type: "string" },
-            why_it_fits: { type: "string" },
-            activities: {
-              type: "array",
-              items: { type: "string" },
-              minItems: 3,
-              maxItems: 3,
-            },
-            microsteps: {
-              type: "array",
-              items: { type: "string" },
-              minItems: 3,
-              maxItems: 5,
-            },
-            learning_integration: { type: "string" },
-            safety_framework: { type: "string" },
-            adult_support: { type: "string" },
-          },
-          required: [
-            "title",
-            "subtitle",
-            "description",
-            "why_it_fits",
-            "activities",
-            "microsteps",
-            "learning_integration",
-            "safety_framework",
-            "adult_support",
-          ],
-          additionalProperties: false,
-        },
-      },
-    },
-  });
-
-  if (response.status === "incomplete") {
-    throw new Error("Ufuldstændigt tilpasset PBL-projekt");
-  }
-
-  return {
-    project: JSON.parse(response.output_text || "{}"),
-    response,
-  };
-}
-
-function formatTailoredPblProject(project) {
-  const activities = (project.activities || [])
-    .map((item) => `- ${item}`)
-    .join("\n");
-
-  const microsteps = (project.microsteps || [])
-    .map((item, index) => `${index + 1}. ${item}`)
-    .join("\n");
-
-  return [
-    `**Nyt tilpasset projekt: ${project.title}**`,
-    project.subtitle ? `*${project.subtitle}*` : "",
-    "",
-    project.description || "",
-    project.why_it_fits
-      ? `\n**Hvorfor det passer:** ${project.why_it_fits}`
-      : "",
-    "",
-    activities ? `Projektet kan begynde med:\n${activities}` : "",
-    microsteps ? `\nFørste microsteps:\n${microsteps}` : "",
-    project.learning_integration
-      ? `\nDe faglige mål indbygges sådan: ${project.learning_integration}`
-      : "",
-    project.safety_framework
-      ? `\nSikkerhedsramme: ${project.safety_framework}`
-      : "",
-    project.adult_support
-      ? `\nVoksenstøtte: ${project.adult_support}`
-      : "",
-    "",
-    "Projektet er skabt ud fra elevprofilen, men læreren og eleven skal stadig tilpasse og vælge det sammen.",
-  ].filter(Boolean).join("\n");
 }
 
 function formatPblChoice(project, choiceNumber, profileText, reason = "") {
@@ -2485,107 +2283,13 @@ try {
           normalizeReplyIntent(firstProject.title)
         ));
 
-    const wantsTailoredProject =
-      pblChoiceState.shown === 2 &&
-      (
-        isNegativeReply(message) ||
-        normalizedMessage.includes("nyt projekt") ||
-        normalizedMessage.includes("skab et nyt") ||
-        normalizedMessage.includes("tilpasset projekt")
-      );
-
     const wantsSecond =
       normalizedMessage.includes("valg 2") ||
       normalizedMessage.includes("forslag 2") ||
       normalizedMessage.includes("nummer 2") ||
       normalizedMessage.includes("andet projekt") ||
-      (
-        pblChoiceState.shown !== 2 &&
-        (normalizedMessage === "nej" || normalizedMessage === "nej tak")
-      );
-
-    if (wantsTailoredProject) {
-      const tailoredResult = await createTailoredPblProject(
-        pblChoiceState.profile,
-        [firstProject, secondProject]
-      );
-
-      const { project, response } = tailoredResult;
-      const inputTokens = Number(response?.usage?.input_tokens || 0);
-      const outputTokens = Number(response?.usage?.output_tokens || 0);
-      const totalTokens = Number(
-        response?.usage?.total_tokens || inputTokens + outputTokens
-      );
-
-      const usageByCall = [
-        {
-          call: 1,
-          phase: "dynamic_tailored_pbl_project",
-          tools_returned_to_model: [],
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          total_tokens: totalTokens,
-        },
-      ];
-
-      const usedTools = ["dynamicTailoredPblProject"];
-      const toolDebug = [
-        {
-          name: "dynamicTailoredPblProject",
-          action: "create_after_two_rejections",
-          rejected_project_ids: [
-            firstProject?.id || null,
-            secondProject?.id || null,
-          ],
-        },
-      ];
-
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      console.log("CDA tokenmåling pr. OpenAI-kald:", {
-        usage_by_call: usageByCall,
-        totals: {
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          total_tokens: totalTokens,
-        },
-      });
-
-      if (adgangskode) {
-        const supabase = getSupabase();
-
-        const { error: forbrugsFejl } = await supabase
-          .from("token_forbrug")
-          .insert({
-            adgangskode: adgangskode.trim().toUpperCase(),
-            system: "cda",
-            udbyder: "openai",
-            model: "gpt-5.4-mini",
-            input_tokens: inputTokens,
-            output_tokens: outputTokens,
-            samlet_tokens: totalTokens,
-          });
-
-        if (forbrugsFejl) {
-          console.error(
-            "Kunne ikke gemme tokenforbrug:",
-            forbrugsFejl
-          );
-        }
-      }
-
-      return res.status(200).json({
-        success: true,
-        reply: formatTailoredPblProject(project),
-        model: "gpt-5.4-mini",
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-        pending_action: null,
-      });
-    }
+      normalizedMessage === "nej" ||
+      normalizedMessage === "nej tak";
 
     if (wantsFirst && firstProject) {
       return res.status(200).json({
