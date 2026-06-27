@@ -1736,12 +1736,42 @@ function getPblProjectById(projectId) {
 }
 
 function extractProfileField(profileText, fieldNumber) {
-  const text = String(profileText || "");
-  const pattern = new RegExp(
-    `(?:^|\\s)${fieldNumber}\\.\\s*[^:]+:\\s*([\\s\\S]*?)(?=\\s+(?:${fieldNumber + 1})\\.\\s*[^:]+:|$)`,
-    "i"
+  const profileLabels = {
+    1: "Alder og klassetrin:",
+    2: "Interesser og det eleven selv opsøger:",
+    3: "Praktiske, kreative eller faglige styrker:",
+    4: "Hvor længe kan eleven typisk holde fokus?",
+    5: "Behov for struktur, pauser og bevægelse:",
+    6: "Arbejder eleven bedst alene, med én eller i en lille gruppe?",
+    7: "Sanser eller belastninger, vi skal tage hensyn til:",
+    8: "Modenhed og sikkerhed ved materialer eller værktøj:",
+    9: "Hvor meget voksenstøtte kræves?",
+    10: "Hvilket fagligt mål skal projektet støtte?",
+    11: "Hvad er allerede prøvet, og hvad virkede eller virkede ikke?",
+    12: "Din vurdering: Er PBL relevant nu — ja, nej eller usikkert?",
+  };
+
+  const label = profileLabels[fieldNumber];
+
+  if (!label) {
+    return "";
+  }
+
+  const escapeRegExp = (value) =>
+    String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  const currentMarker =
+    `(?:^|\\s)${fieldNumber}\\.\\s*${escapeRegExp(label)}\\s*:?\\s*`;
+
+  const nextLabel = profileLabels[fieldNumber + 1];
+  const nextMarker = nextLabel
+    ? `(?=\\s+${fieldNumber + 1}\\.\\s*${escapeRegExp(nextLabel)}\\s*:?)`
+    : "$";
+
+  const match = String(profileText || "").match(
+    new RegExp(`${currentMarker}([\\s\\S]*?)${nextMarker}`, "i")
   );
-  const match = text.match(pattern);
+
   return match ? match[1].trim() : "";
 }
 
