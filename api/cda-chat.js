@@ -2090,25 +2090,6 @@ if (!allowedResponseStyles.includes(response_style)) {
 }
 
 try {
-  if (isConcreteStudentPblRequest(message)) {
-    const usedTools = ["localPblProfileOffer"];
-    const toolDebug = [
-      {
-        name: "localPblProfileOffer",
-        action: "offer_profile_before_project_matching",
-      },
-    ];
-
-    return res.status(200).json({
-      success: true,
-      reply: "PBL kunne være relevant her, men jeg vil ikke foreslå et konkret projekt uden en kort elevprofil. Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, støttebehov, arbejdsform, sikkerhed og fagligt mål. Vil du have den korte elevprofilskabelon?",
-      model: "local",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: "pbl_profile",
-    });
-  }
-
   if (pending_action === "pbl_profile") {
     if (isAffirmativeReply(message)) {
       const reply = getPblProfileTemplate();
@@ -2293,6 +2274,25 @@ try {
         pending_action: null,
       });
     }
+  }
+
+  if (isConcreteStudentPblRequest(message)) {
+    const usedTools = ["localPblProfileOffer"];
+    const toolDebug = [
+      {
+        name: "localPblProfileOffer",
+        action: "offer_profile_before_project_matching",
+      },
+    ];
+
+    return res.status(200).json({
+      success: true,
+      reply: "PBL kunne være relevant her, men jeg vil ikke foreslå et konkret projekt uden en kort elevprofil. Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, støttebehov, arbejdsform, sikkerhed og fagligt mål. Vil du have den korte elevprofilskabelon?",
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: "pbl_profile",
+    });
   }
 
   if (isOtherExperienceCaseRequest(message)) {
