@@ -1629,6 +1629,80 @@ if (toolCall.name === "getTemplates") {
 }
 
 
+function normalizeReplyIntent(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9æøå ]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isAffirmativeReply(value) {
+  const text = normalizeReplyIntent(value);
+  return [
+    "ja",
+    "ja tak",
+    "gerne",
+    "det vil jeg gerne",
+    "vis den",
+    "send den",
+    "lav den",
+    "lad os gøre det",
+    "lad os gore det"
+  ].includes(text);
+}
+
+function isNegativeReply(value) {
+  const text = normalizeReplyIntent(value);
+  return [
+    "nej",
+    "nej tak",
+    "ikke nu",
+    "ellers tak",
+    "det vil jeg ikke",
+    "gå videre",
+    "ga videre"
+  ].includes(text);
+}
+
+function getPblProfileTemplate() {
+  return [
+    "Udfyld kort det, du ved. Du behøver ikke have svar på alt:",
+    "",
+    "1. Alder og klassetrin:",
+    "2. Interesser og det eleven selv opsøger:",
+    "3. Praktiske, kreative eller faglige styrker:",
+    "4. Hvor længe kan eleven typisk holde fokus?",
+    "5. Behov for struktur, pauser og bevægelse:",
+    "6. Arbejder eleven bedst alene, med én eller i en lille gruppe?",
+    "7. Sanser eller belastninger, vi skal tage hensyn til:",
+    "8. Modenhed og sikkerhed ved materialer eller værktøj:",
+    "9. Hvor meget voksenstøtte kræves?",
+    "10. Hvilket fagligt mål skal projektet støtte?",
+    "11. Hvad er allerede prøvet, og hvad virkede eller virkede ikke?",
+    "12. Din vurdering: Er PBL relevant nu — ja, nej eller usikkert?"
+  ].join("\n");
+}
+
+function extractPendingAction(replyText) {
+  const marker = "[[PENDING_ACTION:PBL_PROFILE]]";
+  const text = String(replyText || "");
+
+  if (!text.includes(marker)) {
+    return {
+      reply: text.trim(),
+      pendingAction: null,
+    };
+  }
+
+  return {
+    reply: text.replace(marker, "").trim(),
+    pendingAction: "pbl_profile",
+  };
+}
+
 function shouldUseSpecializedToolFlow(message) {
   const text = String(message || "")
     .toLowerCase()
@@ -1704,6 +1778,7 @@ export default async function handler(req, res) {
   message,
   response_style = "Mellem",
   adgangskode,
+  pending_action = null,
 } = req.body || {};
 
 if (!message || typeof message !== "string") {
@@ -1721,6 +1796,61 @@ if (!allowedResponseStyles.includes(response_style)) {
 }
 
 try {
+  if (pending_action === "pbl_profile") {
+    if (isAffirmativeReply(message)) {
+      const reply = getPblProfileTemplate();
+      const usedTools = ["localPblProfileFlow"];
+      const toolDebug = [
+        {
+          name: "localPblProfileFlow",
+          action: "show_profile_template",
+        },
+      ];
+
+      console.log("CDA værktøjskald:", {
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+      });
+
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
+        usage_by_call: [],
+        totals: {
+          input_tokens: 0,
+          output_tokens: 0,
+          total_tokens: 0,
+        },
+      });
+
+      return res.status(200).json({
+        success: true,
+        reply,
+        model: "local",
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+        pending_action: null,
+      });
+    }
+
+    if (isNegativeReply(message)) {
+      const usedTools = ["localPblProfileFlow"];
+      const toolDebug = [
+        {
+          name: "localPblProfileFlow",
+          action: "decline_profile_template",
+        },
+      ];
+
+      return res.status(200).json({
+        success: true,
+        reply: "Helt fint. Så går vi videre uden PBL-profilen.",
+        model: "local",
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+        pending_action: null,
+      });
+    }
+  }
+
   if (isOtherExperienceCaseRequest(message)) {
     const selectedCase = findBestOtherExperienceCase(message);
 
@@ -1822,6 +1952,7 @@ try {
         model: "gpt-5.4-mini",
         tools_used: usedTools,
         tool_debug: toolDebug,
+        pending_action: null,
       });
     }
   }
@@ -1837,7 +1968,10 @@ try {
       "Brug ikke cases, PBL, specialistpanel, rollespil, skabeloner eller komorbiditet, medmindre brugeren udtrykkeligt beder om det.",
       "Foretag ingen internetsøgning og påstå ikke, at oplysninger er hentet på nettet.",
       "Giv en direkte faglig vurdering, en kort forklaring og højst 3 konkrete handlinger.",
-      "PBL må ikke foreslås som første løsning på almindelig uro eller koncentrationsvanskeligheder.",
+      "PBL må ikke præsenteres som et elevprojekt uden en udfyldt elevprofil.",
+      "Hvis PBL efter din faglige vurdering kan være en relevant senere mulighed, må du højst nævne det kort og spørge præcist: 'PBL kunne være relevant her. Vil du have en kort elevprofilskabelon?'",
+      "Når du stiller netop dette spørgsmål, skal du til sidst tilføje maskinmarkøren [[PENDING_ACTION:PBL_PROFILE]]. Markøren vises ikke til brugeren.",
+      "Hvis PBL ikke er relevant, må du ikke nævne det eller tilføje markøren.",
       `AKTUEL SVARSTIL: ${response_style}`,
       response_style === "Kort"
         ? "Svar kort og direkte."
@@ -1855,6 +1989,8 @@ try {
       input: message,
       max_output_tokens: response_style === "Dyb" ? 900 : 500,
     });
+
+    const normalReplyData = extractPendingAction(response.output_text);
 
     const inputTokens = Number(response?.usage?.input_tokens || 0);
     const outputTokens = Number(response?.usage?.output_tokens || 0);
@@ -1922,10 +2058,11 @@ try {
 
     return res.status(200).json({
       success: true,
-      reply: response.output_text,
+      reply: normalReplyData.reply,
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
+      pending_action: normalReplyData.pendingAction,
     });
   }
 
@@ -2080,6 +2217,7 @@ try {
   model: "gpt-5.4-mini",
   tools_used: usedTools,
   tool_debug: toolDebug,
+  pending_action: null,
 });
 } catch (error) {
   console.error("CDA chatfejl:", error);
