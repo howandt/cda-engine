@@ -1628,6 +1628,57 @@ if (toolCall.name === "getTemplates") {
   }
 }
 
+
+function shouldUseSpecializedToolFlow(message) {
+  const text = String(message || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const explicitPatterns = [
+    "vis en case",
+    "find en case",
+    "case om",
+    "case med",
+    "ga i dybden med en case",
+    "gå i dybden med en case",
+    "pbl",
+    "projektbaseret læring",
+    "lav et projekt",
+    "find et projekt",
+    "specialistpanel",
+    "specialist panel",
+    "hvad siger specialisterne",
+    "specialistperspektiv",
+    "tværfaglig vurdering",
+    "tvaerfaglig vurdering",
+    "rollespil",
+    "rolleleg",
+    "perspektivskifte",
+    "lav et skema",
+    "lav en skabelon",
+    "vis en skabelon",
+    "handleplan",
+    "støtteplan",
+    "stoetteplan",
+    "komorbiditet",
+    "kan der være andet end",
+    "kan der vaere andet end",
+    "forklar diagnosen",
+    "hvad er adhd",
+    "hvad er autisme",
+    "hvad er angst",
+    "diagnoseopslag",
+    "børnehaveoverlevering",
+    "bornehaveoverlevering",
+    "overlevering til skole"
+  ];
+
+  return explicitPatterns.some((pattern) => text.includes(pattern));
+}
+
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -1776,6 +1827,107 @@ try {
   }
 
   const heidiPrompt = readHeidiPrompt();
+
+  if (!shouldUseSpecializedToolFlow(message)) {
+    const normalInstructions = [
+      heidiPrompt,
+      "",
+      "NORMAL RÅDGIVNING UDEN EKSTRA MODULER",
+      "Svar ud fra CDA's interne faglige prompt og regler.",
+      "Brug ikke cases, PBL, specialistpanel, rollespil, skabeloner eller komorbiditet, medmindre brugeren udtrykkeligt beder om det.",
+      "Foretag ingen internetsøgning og påstå ikke, at oplysninger er hentet på nettet.",
+      "Giv en direkte faglig vurdering, en kort forklaring og højst 3 konkrete handlinger.",
+      "PBL må ikke foreslås som første løsning på almindelig uro eller koncentrationsvanskeligheder.",
+      `AKTUEL SVARSTIL: ${response_style}`,
+      response_style === "Kort"
+        ? "Svar kort og direkte."
+        : response_style === "Dyb"
+          ? "Forklar relevante faglige sammenhænge, men hold fokus på brugerens konkrete problem."
+          : "Giv en kort forklaring og konkrete næste skridt.",
+    ].join("\n");
+
+    const response = await openai.responses.create({
+      model: "gpt-5.4-mini",
+      reasoning: {
+        effort: "low",
+      },
+      instructions: normalInstructions,
+      input: message,
+      max_output_tokens: response_style === "Dyb" ? 900 : 500,
+    });
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "normal_advice_local_routing",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["localNormalAdviceRouting"];
+    const toolDebug = [
+      {
+        name: "localNormalAdviceRouting",
+        arguments: {
+          response_style,
+        },
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply: response.output_text,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+  }
 
   const runtimeInstructions = [
     heidiPrompt,
