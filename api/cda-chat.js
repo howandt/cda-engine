@@ -1704,99 +1704,253 @@ function extractPendingAction(replyText) {
 }
 
 
-function normalizePblRequestText(value) {
+function encodePblChoiceState(data) {
+  return `pbl_choice:${Buffer.from(
+    JSON.stringify(data),
+    "utf8"
+  ).toString("base64url")}`;
+}
+
+function decodePblChoiceState(value) {
+  const text = String(value || "");
+
+  if (!text.startsWith("pbl_choice:")) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(
+      Buffer.from(
+        text.slice("pbl_choice:".length),
+        "base64url"
+      ).toString("utf8")
+    );
+  } catch {
+    return null;
+  }
+}
+
+function getPblProjectById(projectId) {
+  const result = getPblProjects({ id: projectId });
+  return result?.project || null;
+}
+
+function extractProfileField(profileText, fieldNumber) {
+  const text = String(profileText || "");
+  const pattern = new RegExp(
+    `(?:^|\\s)${fieldNumber}\\.\\s*[^:]+:\\s*([\\s\\S]*?)(?=\\s+(?:${fieldNumber + 1})\\.\\s*[^:]+:|$)`,
+    "i"
+  );
+  const match = text.match(pattern);
+  return match ? match[1].trim() : "";
+}
+
+function tokenizePblText(value) {
+  const stopWords = new Set([
+    "og", "eller", "som", "med", "for", "til", "ved", "det", "den",
+    "de", "en", "et", "er", "har", "kan", "skal", "sig", "sin",
+    "sine", "der", "her", "fra", "på", "af", "i", "at", "ikke",
+    "meget", "god", "gode", "bedst", "gerne", "eleven"
+  ]);
+
   return String(value || "")
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
+    .replace(/[^a-z0-9æøå ]/g, " ")
+    .split(/\s+/)
+    .map((word) => normalizeSearchWord(word))
+    .filter((word) => word.length >= 3 && !stopWords.has(word));
 }
 
-function isDirectPblLibraryRequest(message) {
-  const text = normalizePblRequestText(message);
-
-  if (/\bpbl[_ -]?\d+\b/.test(text)) {
-    return true;
-  }
-
-  const directPatterns = [
-    "vis projektet",
-    "vis pbl projektet",
-    "vis pbl-projektet",
-    "find projektet",
-    "søg efter projektet",
-    "sog efter projektet",
-    "åbn projektet",
-    "aabn projektet",
-    "åbn pbl",
-    "aabn pbl",
-    "pbl bibliotek",
-    "pbl-bibliotek",
-    "vis alle pbl",
-    "liste over pbl",
-    "til egen læring",
-    "til egen laering",
-    "som inspiration"
-  ];
-
-  return directPatterns.some((pattern) => text.includes(pattern));
-}
-
-function isConcreteStudentPblRequest(message) {
-  const text = normalizePblRequestText(message);
-
-  const mentionsPbl =
-    text.includes("pbl") ||
-    text.includes("projektbaseret læring") ||
-    text.includes("projektbaseret laering");
-
-  if (!mentionsPbl || isDirectPblLibraryRequest(message)) {
-    return false;
-  }
-
-  const studentPatterns = [
-    "jeg har en elev",
-    "min elev",
-    "eleven",
-    "et barn",
-    "barnet",
-    "en dreng",
-    "en pige",
-    "han har",
-    "hun har",
-    "til ham",
-    "til hende",
-    "for denne elev",
-    "for barnet"
-  ];
-
-  const asksForRecommendation = [
-    "foreslå",
-    "foresla",
-    "anbefal",
-    "finde et",
-    "find et",
-    "hvilket projekt",
-    "et pbl-projekt",
-    "et pbl projekt",
-    "pbl til"
-  ].some((pattern) => text.includes(pattern));
-
-  return (
-    asksForRecommendation &&
-    studentPatterns.some((pattern) => text.includes(pattern))
+function rankPblProjectsFromProfile(profileText) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_PBL_Projects.json"
   );
+
+  const data = readJsonFile(
+    filePath,
+    "data/CDA_PBL_Projects.json blev ikke fundet"
+  );
+
+  const projects = Array.isArray(data.projects)
+    ? data.projects
+    : [];
+
+  const ageText = extractProfileField(profileText, 1);
+  const interests = extractProfileField(profileText, 2);
+  const strengths = extractProfileField(profileText, 3);
+  const focus = extractProfileField(profileText, 4);
+  const structure = extractProfileField(profileText, 5);
+  const workForm = extractProfileField(profileText, 6);
+  const safety = extractProfileField(profileText, 8);
+  const learningGoals = extractProfileField(profileText, 10);
+
+  const ageMatch = ageText.match(/\b(\d{1,2})\b/);
+  const age = ageMatch ? Number(ageMatch[1]) : null;
+
+  const interestTerms = tokenizePblText(interests);
+  const strengthTerms = tokenizePblText(strengths);
+  const goalTerms = tokenizePblText(learningGoals);
+
+  const profileNormalized = normalizeReplyIntent(profileText);
+
+  const scored = projects.map((project) => {
+    const titleText = [
+      project.title,
+      project.subtitle,
+    ].filter(Boolean).join(" ");
+
+    const broadText = [
+      project.title,
+      project.subtitle,
+      project.description,
+      ...(project.activities || []),
+      ...(project.competencies || []),
+      ...(project.career_alignment || []),
+    ].filter(Boolean).join(" ");
+
+    const titleWords = tokenizePblText(titleText);
+    const broadWords = tokenizePblText(broadText);
+
+    let score = 0;
+    const reasons = [];
+
+    const directInterestMatches = interestTerms.filter((term) =>
+      titleWords.some((word) => searchWordMatches(term, word)) ||
+      broadWords.some((word) => searchWordMatches(term, word))
+    );
+
+    const titleInterestMatches = interestTerms.filter((term) =>
+      titleWords.some((word) => searchWordMatches(term, word))
+    );
+
+    if (directInterestMatches.length > 0) {
+      score += directInterestMatches.length * 35;
+      reasons.push("direkte interesse");
+    }
+
+    if (titleInterestMatches.length > 0) {
+      score += titleInterestMatches.length * 55;
+    }
+
+    const strengthMatches = strengthTerms.filter((term) =>
+      broadWords.some((word) => searchWordMatches(term, word))
+    );
+
+    if (strengthMatches.length > 0) {
+      score += strengthMatches.length * 10;
+      reasons.push("styrker");
+    }
+
+    const goalMatches = goalTerms.filter((term) =>
+      broadWords.some((word) => searchWordMatches(term, word))
+    );
+
+    if (goalMatches.length > 0) {
+      score += goalMatches.length * 8;
+      reasons.push("faglige mål");
+    }
+
+    if (
+      profileNormalized.includes("adhd") &&
+      (project.diagnosis_match || []).some((item) =>
+        normalizeReplyIntent(item).includes("adhd")
+      )
+    ) {
+      score += 18;
+      reasons.push("ADHD-match");
+    }
+
+    if (age !== null) {
+      const level = normalizeReplyIntent(project.level);
+
+      if (age <= 11 && level === "junior") score += 22;
+      if (age <= 11 && level === "advanced") score -= 35;
+      if (age <= 11 && level === "intermediate") score -= 8;
+    }
+
+    if (
+      /alene|en rolig|én rolig|lille gruppe/i.test(workForm) &&
+      normalizeReplyIntent(project.social_exposure) === "lav"
+    ) {
+      score += 15;
+      reasons.push("lav social belastning");
+    }
+
+    if (
+      /tydelig|struktur|delmål|korte instruktioner/i.test(structure) &&
+      normalizeReplyIntent(project.structure_need) === "hoj"
+    ) {
+      score += 12;
+      reasons.push("struktur");
+    }
+
+    if (
+      /praktisk|hænder|haender|skille|samle|mekan/i.test(
+        `${strengths} ${interests}`
+      ) &&
+      (project.stimuli_type || []).some((item) =>
+        ["taktil", "kinaestetisk", "kinæstetisk"].includes(
+          normalizeReplyIntent(item)
+        )
+      )
+    ) {
+      score += 16;
+      reasons.push("praktisk arbejdsform");
+    }
+
+    if (
+      /ikke.*skarpe|ikke.*elektriske|tæt voksenopsyn|taet voksenopsyn/i.test(
+        safety
+      ) &&
+      normalizeReplyIntent(project.level) === "advanced"
+    ) {
+      score -= 25;
+    }
+
+    return {
+      project,
+      score,
+      reasons: [...new Set(reasons)],
+    };
+  });
+
+  return scored
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 2);
 }
 
-function getPblProfileOfferReply() {
+function formatPblChoice(project, choiceNumber, profileText) {
+  const learningGoals = extractProfileField(profileText, 10);
+  const safety = extractProfileField(profileText, 8);
+
+  const activities = (project.activities || [])
+    .slice(0, 3)
+    .map((item) => `- ${item}`)
+    .join("\n");
+
   return [
-    "PBL kunne være relevant her, men jeg vil ikke foreslå et konkret projekt uden en kort elevprofil.",
+    `**Forslag ${choiceNumber}: ${project.title}**`,
+    project.subtitle ? `*${project.subtitle}*` : "",
     "",
-    "Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, støttebehov, arbejdsform, sikkerhed og fagligt mål.",
+    project.description || "",
     "",
-    "Vil du have den korte elevprofilskabelon?"
-  ].join("\n");
+    activities ? `Projektet kan begynde med:\n${activities}` : "",
+    learningGoals
+      ? `\nDe faglige mål kan indbygges sådan: ${learningGoals}`
+      : "",
+    safety
+      ? `\nSikkerhedsramme: ${safety}`
+      : "",
+    "",
+    "Det er et forslag, ikke en beslutning. Tal med eleven om, hvad der virker spændende ved projektet.",
+    choiceNumber === 1
+      ? "Vil I vælge dette projekt, se forslag 2 eller tale om projektet først?"
+      : "Vil I vælge dette projekt, gå tilbage til forslag 1 eller have CDA til at skabe et nyt projekt sammen med jer?"
+  ].filter(Boolean).join("\n");
 }
 
 function shouldUseSpecializedToolFlow(message) {
@@ -1923,7 +2077,7 @@ try {
         model: "local",
         tools_used: usedTools,
         tool_debug: toolDebug,
-        pending_action: null,
+        pending_action: "pbl_profile_input",
       });
     }
 
@@ -1942,6 +2096,137 @@ try {
         model: "local",
         tools_used: usedTools,
         tool_debug: toolDebug,
+        pending_action: null,
+      });
+    }
+  }
+
+  if (pending_action === "pbl_profile_input") {
+    const rankedProjects = rankPblProjectsFromProfile(message);
+    const first = rankedProjects[0]?.project || null;
+    const second = rankedProjects[1]?.project || null;
+
+    if (first) {
+      const state = encodePblChoiceState({
+        firstId: first.id,
+        secondId: second?.id || null,
+        profile: message,
+        shown: 1,
+      });
+
+      return res.status(200).json({
+        success: true,
+        reply: formatPblChoice(first, 1, message),
+        model: "local",
+        tools_used: ["localPblProfileRanking"],
+        tool_debug: [
+          {
+            name: "localPblProfileRanking",
+            first_choice: first.id,
+            second_choice: second?.id || null,
+            first_score: rankedProjects[0]?.score || 0,
+            second_score: rankedProjects[1]?.score || 0,
+          },
+        ],
+        pending_action: state,
+      });
+    }
+  }
+
+  const pblChoiceState = decodePblChoiceState(pending_action);
+
+  if (pblChoiceState) {
+    const normalizedMessage = normalizeReplyIntent(message);
+    const firstProject = getPblProjectById(pblChoiceState.firstId);
+    const secondProject = getPblProjectById(pblChoiceState.secondId);
+
+    const wantsFirst =
+      normalizedMessage.includes("valg 1") ||
+      normalizedMessage.includes("forslag 1") ||
+      normalizedMessage.includes("forste") ||
+      normalizedMessage.includes("første") ||
+      normalizedMessage.includes("tilbage") ||
+      (firstProject &&
+        normalizeReplyIntent(message).includes(
+          normalizeReplyIntent(firstProject.title)
+        ));
+
+    const wantsSecond =
+      normalizedMessage.includes("valg 2") ||
+      normalizedMessage.includes("forslag 2") ||
+      normalizedMessage.includes("nummer 2") ||
+      normalizedMessage.includes("andet projekt") ||
+      normalizedMessage === "nej" ||
+      normalizedMessage === "nej tak";
+
+    if (wantsFirst && firstProject) {
+      return res.status(200).json({
+        success: true,
+        reply: formatPblChoice(
+          firstProject,
+          1,
+          pblChoiceState.profile
+        ),
+        model: "local",
+        tools_used: ["localPblChoiceFlow"],
+        tool_debug: [
+          {
+            name: "localPblChoiceFlow",
+            action: "return_to_first_choice",
+            project_id: firstProject.id,
+          },
+        ],
+        pending_action: encodePblChoiceState({
+          ...pblChoiceState,
+          shown: 1,
+        }),
+      });
+    }
+
+    if (wantsSecond && secondProject) {
+      return res.status(200).json({
+        success: true,
+        reply: formatPblChoice(
+          secondProject,
+          2,
+          pblChoiceState.profile
+        ),
+        model: "local",
+        tools_used: ["localPblChoiceFlow"],
+        tool_debug: [
+          {
+            name: "localPblChoiceFlow",
+            action: "show_second_choice",
+            project_id: secondProject.id,
+          },
+        ],
+        pending_action: encodePblChoiceState({
+          ...pblChoiceState,
+          shown: 2,
+        }),
+      });
+    }
+
+    if (isAffirmativeReply(message)) {
+      const selectedProject =
+        pblChoiceState.shown === 2 && secondProject
+          ? secondProject
+          : firstProject;
+
+      return res.status(200).json({
+        success: true,
+        reply: selectedProject
+          ? `Godt. I har valgt **${selectedProject.title}**. Næste skridt er, at læreren og eleven sammen aftaler første lille delmål og sikkerhedsrammen.`
+          : "Godt. Projektet er valgt.",
+        model: "local",
+        tools_used: ["localPblChoiceFlow"],
+        tool_debug: [
+          {
+            name: "localPblChoiceFlow",
+            action: "confirm_choice",
+            project_id: selectedProject?.id || null,
+          },
+        ],
         pending_action: null,
       });
     }
@@ -2051,40 +2336,6 @@ try {
         pending_action: null,
       });
     }
-  }
-
-  if (isConcreteStudentPblRequest(message)) {
-    const reply = getPblProfileOfferReply();
-    const usedTools = ["localPblProfileOffer"];
-    const toolDebug = [
-      {
-        name: "localPblProfileOffer",
-        action: "offer_profile_before_student_project",
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
-
-    return res.status(200).json({
-      success: true,
-      reply,
-      model: "local",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: "pbl_profile",
-    });
   }
 
   const heidiPrompt = readHeidiPrompt();
