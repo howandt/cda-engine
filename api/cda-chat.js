@@ -1953,6 +1953,50 @@ function formatPblChoice(project, choiceNumber, profileText) {
   ].filter(Boolean).join("\n");
 }
 
+
+function isDirectPblLibraryRequest(message) {
+  const text = normalizeReplyIntent(message);
+
+  return (
+    /\bpbl[_ -]?\d+\b/i.test(String(message || "")) ||
+    text.includes("projektbank") ||
+    text.includes("projekt bibliotek") ||
+    text.includes("projektbibliotek") ||
+    text.includes("vis projektet") ||
+    text.includes("hent projektet") ||
+    text.includes("bike repair workshop")
+  );
+}
+
+function isConcreteStudentPblRequest(message) {
+  const text = normalizeReplyIntent(message);
+
+  const mentionsStudent = [
+    "elev",
+    "barn",
+    "dreng",
+    "pige",
+    "han",
+    "hun"
+  ].some((word) => text.includes(word));
+
+  const requestsProject = [
+    "pbl",
+    "projektbaseret laering",
+    "projektbaseret læring",
+    "foresla et projekt",
+    "foreslå et projekt",
+    "find et projekt",
+    "lav et projekt"
+  ].some((phrase) => text.includes(phrase));
+
+  return (
+    mentionsStudent &&
+    requestsProject &&
+    !isDirectPblLibraryRequest(message)
+  );
+}
+
 function shouldUseSpecializedToolFlow(message) {
   const text = String(message || "")
     .toLowerCase()
@@ -2046,6 +2090,25 @@ if (!allowedResponseStyles.includes(response_style)) {
 }
 
 try {
+  if (isConcreteStudentPblRequest(message)) {
+    const usedTools = ["localPblProfileOffer"];
+    const toolDebug = [
+      {
+        name: "localPblProfileOffer",
+        action: "offer_profile_before_project_matching",
+      },
+    ];
+
+    return res.status(200).json({
+      success: true,
+      reply: "PBL kunne være relevant her, men jeg vil ikke foreslå et konkret projekt uden en kort elevprofil. Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, støttebehov, arbejdsform, sikkerhed og fagligt mål. Vil du have den korte elevprofilskabelon?",
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: "pbl_profile",
+    });
+  }
+
   if (pending_action === "pbl_profile") {
     if (isAffirmativeReply(message)) {
       const reply = getPblProfileTemplate();
