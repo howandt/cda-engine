@@ -1761,33 +1761,71 @@ function getPblProjectsForDynamicAssessment() {
     ? data.projects
     : [];
 
+  const cleanIndexValue = (value, maxLength = null) => {
+    const cleaned = String(value || "")
+      .replace(/[|\r\n]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    return Number.isInteger(maxLength)
+      ? cleaned.slice(0, maxLength)
+      : cleaned;
+  };
+
+  const compactList = (value, limit = null) => {
+    const items = Array.isArray(value) ? value : [];
+    const selected = Number.isInteger(limit)
+      ? items.slice(0, limit)
+      : items;
+
+    return selected
+      .map((item) => cleanIndexValue(item))
+      .filter(Boolean)
+      .join(",");
+  };
+
+  const codeValue = (value, codes) => {
+    const normalized = String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    return codes[normalized] || cleanIndexValue(value);
+  };
+
+  const rows = projects.map((project) => [
+    cleanIndexValue(project.id),
+    cleanIndexValue(project.title),
+    cleanIndexValue(project.description, 60),
+    compactList(project.competencies, 2),
+    compactList(project.diagnosis_match),
+    compactList(project.stimuli_type),
+    codeValue(project.social_exposure, {
+      lav: "L",
+      moderat: "M",
+      gruppe: "G",
+    }),
+    codeValue(project.structure_need, {
+      lav: "L",
+      moderat: "M",
+      hoj: "H",
+    }),
+    codeValue(project.level, {
+      junior: "J",
+      intermediate: "I",
+      advanced: "A",
+    }),
+  ].join("|"));
+
   return {
     version: data.version || null,
-    projects: projects.map((project) => ({
-      id: project.id || null,
-      title: project.title || null,
-      subtitle: project.subtitle || null,
-      description: project.description || null,
-      activities: Array.isArray(project.activities)
-        ? project.activities
-        : [],
-      competencies: Array.isArray(project.competencies)
-        ? project.competencies
-        : [],
-      diagnosis_match: Array.isArray(project.diagnosis_match)
-        ? project.diagnosis_match
-        : [],
-      stimuli_type: Array.isArray(project.stimuli_type)
-        ? project.stimuli_type
-        : [],
-      social_exposure: project.social_exposure || null,
-      structure_need: project.structure_need || null,
-      level: project.level || null,
-      duration_suggestion: project.duration_suggestion || null,
-      career_alignment: Array.isArray(project.career_alignment)
-        ? project.career_alignment
-        : [],
-    })),
+    projectCount: projects.length,
+    indexText: [
+      `VERSION:${cleanIndexValue(data.version)}`,
+      "KOLONNER:id|titel|kort tema|kompetencer|diagnosematch|stimuli|social|struktur|niveau",
+      "KODER:social L=lav M=moderat G=gruppe; struktur L=lav M=moderat H=høj; niveau J=junior I=intermediate A=advanced",
+      ...rows,
+    ].join("\n"),
   };
 }
 
@@ -1796,35 +1834,35 @@ async function assessPblProfileDynamically(profileText) {
 
   const instructions = [
     "Du er CDA's dynamiske PBL-fagmotor.",
-    "Foretag en samlet faglig vurdering af elevprofilen og projektbanken.",
+    "Foretag en samlet faglig vurdering af elevprofilen og det kompakte projektindex.",
     "Brug ingen point, vægte, faste særord, skjult facitliste eller diagnose som automatisk konklusion.",
     "Vurder især elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, støttebehov, social belastning, faglige mål og mulighed for realistiske microsteps.",
     "Et direkte interessematch er vigtigt, men skal altid vurderes sammen med resten af profilen.",
-    "Vælg kun projekt-id'er, der findes i den vedlagte projektbank.",
+    "Vælg kun projekt-id'er, der findes i det vedlagte projektindex.",
     "Vælg to forskellige eksisterende projekter, hvis begge er reelt fagligt egnede.",
-    "Hvis projektbanken ikke indeholder to forsvarlige muligheder, skal status være no_suitable_match. Vælg ikke et tilfældigt projekt for at udfylde felterne.",
+    "Hvis projektindexet ikke indeholder to forsvarlige muligheder, skal status være no_suitable_match. Vælg ikke et tilfældigt projekt for at udfylde felterne.",
     "Begrundelserne skal være korte, konkrete og baseret på både elevprofilen og projektdata.",
     "CDA foreslår. Læreren guider. Eleven vælger med.",
   ].join("\n");
 
-  const projectDataJson = JSON.stringify(projectData);
+  const projectIndex = projectData.indexText;
 
   const input = [
     "ELEVPROFIL:",
     profileText,
     "",
-    "PBL-PROJEKTBANK:",
-    projectDataJson,
+    "KOMPAKT PBL-PROJEKTINDEX:",
+    projectIndex,
   ].join("\n");
 
   console.log("CDA PBL inputmåling:", {
-    project_count: projectData.projects.length,
+    project_count: projectData.projectCount,
     profile_chars: profileText.length,
     profile_bytes: Buffer.byteLength(profileText, "utf8"),
     instructions_chars: instructions.length,
     instructions_bytes: Buffer.byteLength(instructions, "utf8"),
-    project_index_chars: projectDataJson.length,
-    project_index_bytes: Buffer.byteLength(projectDataJson, "utf8"),
+    project_index_chars: projectIndex.length,
+    project_index_bytes: Buffer.byteLength(projectIndex, "utf8"),
     complete_input_chars: input.length,
     complete_input_bytes: Buffer.byteLength(input, "utf8"),
   });
