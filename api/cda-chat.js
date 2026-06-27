@@ -1962,24 +1962,40 @@ async function createTailoredPblProject(
       subtitle: project.subtitle || null,
     }));
 
+  const compactProfile = Object.fromEntries(
+    Object.entries({
+      age: profile.age_and_grade,
+      interests: profile.interests,
+      strengths: profile.strengths,
+      focus: profile.focus,
+      structure: profile.structure_and_breaks,
+      work_form: profile.work_form,
+      sensory_load: profile.sensory_load,
+      safety: profile.safety_and_maturity,
+      adult_support: profile.adult_support,
+      learning_goals: profile.learning_goals,
+      previous_attempts: profile.previous_attempts,
+      pbl_relevance: profile.pbl_relevance,
+    }).filter(([, value]) => String(value || "").trim())
+  );
+
   const instructions = [
     "Du er CDA's dynamiske PBL-fagmotor.",
-    "De to eksisterende forslag er blevet afvist af lærer eller elev.",
-    "Skab derfor ét nyt, konkret og individuelt tilpasset PBL-projekt ud fra hele elevprofilen.",
-    "Brug ingen point, vægte, faste særord eller skjult facitliste.",
-    "Projektet må ikke blot være en omdøbning eller gentagelse af de afviste projekter.",
-    "Tag især hensyn til elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, støttebehov, social belastning og faglige mål.",
-    "Projektet skal kunne gennemføres i korte, realistiske microsteps og give eleven reelt medejerskab.",
-    "Skriv kort, konkret og anvendeligt for en lærer.",
+    "Begge eksisterende forslag er afvist.",
+    "Skab ét nyt og tydeligt anderledes PBL-projekt ud fra elevprofilen som helhed.",
+    "Brug ingen point, vægte, særord eller skjult facitliste.",
+    "Tag hensyn til interesse, koncentration, arbejdsform, alder, sikkerhed, støttebehov, social belastning og faglige mål.",
+    "Projektet skal kunne gennemføres i korte microsteps og give eleven medejerskab.",
+    "Hold titel og tekstfelter korte. Skriv præcis 3 aktiviteter og 3 microsteps. Hvert listepunkt må højst være 12 ord.",
   ].join("\n");
 
-  const input = [
-    "STRUKTURERET ELEVPROFIL:",
-    JSON.stringify(profile),
-    "",
-    "AFVISTE PROJEKTER:",
-    JSON.stringify(rejected),
-  ].join("\n");
+  const input = JSON.stringify({
+    profile: compactProfile,
+    rejected_projects: rejected.map((project) => ({
+      id: project.id,
+      title: project.title,
+    })),
+  });
 
   const response = await openai.responses.create({
     model: "gpt-5.4-mini",
@@ -1988,7 +2004,7 @@ async function createTailoredPblProject(
     },
     instructions,
     input,
-    max_output_tokens: 650,
+    max_output_tokens: 850,
     text: {
       format: {
         type: "json_schema",
@@ -2011,11 +2027,8 @@ async function createTailoredPblProject(
               type: "array",
               items: { type: "string" },
               minItems: 3,
-              maxItems: 5,
+              maxItems: 3,
             },
-            learning_integration: { type: "string" },
-            safety_framework: { type: "string" },
-            adult_support: { type: "string" },
           },
           required: [
             "title",
@@ -2024,9 +2037,6 @@ async function createTailoredPblProject(
             "why_it_fits",
             "activities",
             "microsteps",
-            "learning_integration",
-            "safety_framework",
-            "adult_support",
           ],
           additionalProperties: false,
         },
@@ -2048,8 +2058,17 @@ async function createTailoredPblProject(
     throw new Error("Ufuldstændigt tilpasset PBL-projekt");
   }
 
+  const generatedProject = JSON.parse(
+    response.output_text || "{}"
+  );
+
   return {
-    project: JSON.parse(response.output_text || "{}"),
+    project: {
+      ...generatedProject,
+      learning_integration: profile.learning_goals,
+      safety_framework: profile.safety_and_maturity,
+      adult_support: profile.adult_support,
+    },
     response,
   };
 }
