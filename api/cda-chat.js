@@ -1797,12 +1797,12 @@ function getPblProjectsForDynamicAssessment() {
       id: project.id || null,
       title: project.title || null,
       subtitle: project.subtitle || null,
-      description: project.description || null,
-      activities: Array.isArray(project.activities)
-        ? project.activities
+      summary: project.description || null,
+      activity_examples: Array.isArray(project.activities)
+        ? project.activities.slice(0, 2)
         : [],
       competencies: Array.isArray(project.competencies)
-        ? project.competencies
+        ? project.competencies.slice(0, 4)
         : [],
       diagnosis_match: Array.isArray(project.diagnosis_match)
         ? project.diagnosis_match
@@ -1814,9 +1814,6 @@ function getPblProjectsForDynamicAssessment() {
       structure_need: project.structure_need || null,
       level: project.level || null,
       duration_suggestion: project.duration_suggestion || null,
-      career_alignment: Array.isArray(project.career_alignment)
-        ? project.career_alignment
-        : [],
     })),
   };
 }
@@ -1838,10 +1835,10 @@ async function assessPblProfileDynamically(profileText) {
   ].join("\n");
 
   const input = [
-    "ELEVPROFIL:",
-    profileText,
+    "STRUKTURERET ELEVPROFIL:",
+    JSON.stringify(getStructuredPblProfile(profileText)),
     "",
-    "PBL-PROJEKTBANK:",
+    "KOMPAKT PBL-PROJEKTOVERSIGT:",
     JSON.stringify(projectData),
   ].join("\n");
 
@@ -1962,40 +1959,24 @@ async function createTailoredPblProject(
       subtitle: project.subtitle || null,
     }));
 
-  const compactProfile = Object.fromEntries(
-    Object.entries({
-      age: profile.age_and_grade,
-      interests: profile.interests,
-      strengths: profile.strengths,
-      focus: profile.focus,
-      structure: profile.structure_and_breaks,
-      work_form: profile.work_form,
-      sensory_load: profile.sensory_load,
-      safety: profile.safety_and_maturity,
-      adult_support: profile.adult_support,
-      learning_goals: profile.learning_goals,
-      previous_attempts: profile.previous_attempts,
-      pbl_relevance: profile.pbl_relevance,
-    }).filter(([, value]) => String(value || "").trim())
-  );
-
   const instructions = [
     "Du er CDA's dynamiske PBL-fagmotor.",
-    "Begge eksisterende forslag er afvist.",
-    "Skab ét nyt og tydeligt anderledes PBL-projekt ud fra elevprofilen som helhed.",
-    "Brug ingen point, vægte, særord eller skjult facitliste.",
-    "Tag hensyn til interesse, koncentration, arbejdsform, alder, sikkerhed, støttebehov, social belastning og faglige mål.",
-    "Projektet skal kunne gennemføres i korte microsteps og give eleven medejerskab.",
-    "Hold titel og tekstfelter korte. Skriv præcis 3 aktiviteter og 3 microsteps. Hvert listepunkt må højst være 12 ord.",
+    "De to eksisterende forslag er blevet afvist af lærer eller elev.",
+    "Skab derfor ét nyt, konkret og individuelt tilpasset PBL-projekt ud fra hele elevprofilen.",
+    "Brug ingen point, vægte, faste særord eller skjult facitliste.",
+    "Projektet må ikke blot være en omdøbning eller gentagelse af de afviste projekter.",
+    "Tag især hensyn til elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, støttebehov, social belastning og faglige mål.",
+    "Projektet skal kunne gennemføres i korte, realistiske microsteps og give eleven reelt medejerskab.",
+    "Skriv kort, konkret og anvendeligt for en lærer.",
   ].join("\n");
 
-  const input = JSON.stringify({
-    profile: compactProfile,
-    rejected_projects: rejected.map((project) => ({
-      id: project.id,
-      title: project.title,
-    })),
-  });
+  const input = [
+    "STRUKTURERET ELEVPROFIL:",
+    JSON.stringify(profile),
+    "",
+    "AFVISTE PROJEKTER:",
+    JSON.stringify(rejected),
+  ].join("\n");
 
   const response = await openai.responses.create({
     model: "gpt-5.4-mini",
@@ -2004,7 +1985,7 @@ async function createTailoredPblProject(
     },
     instructions,
     input,
-    max_output_tokens: 850,
+    max_output_tokens: 650,
     text: {
       format: {
         type: "json_schema",
@@ -2027,8 +2008,11 @@ async function createTailoredPblProject(
               type: "array",
               items: { type: "string" },
               minItems: 3,
-              maxItems: 3,
+              maxItems: 5,
             },
+            learning_integration: { type: "string" },
+            safety_framework: { type: "string" },
+            adult_support: { type: "string" },
           },
           required: [
             "title",
@@ -2037,6 +2021,9 @@ async function createTailoredPblProject(
             "why_it_fits",
             "activities",
             "microsteps",
+            "learning_integration",
+            "safety_framework",
+            "adult_support",
           ],
           additionalProperties: false,
         },
@@ -2045,30 +2032,11 @@ async function createTailoredPblProject(
   });
 
   if (response.status === "incomplete") {
-    console.error("CDA tilpasset PBL-kald ufuldstændigt:", {
-      status: response.status,
-      incomplete_details: response.incomplete_details || null,
-      output_item_types: Array.isArray(response.output)
-        ? response.output.map((item) => item.type || null)
-        : [],
-      output_text_length: String(response.output_text || "").length,
-      usage: response.usage || null,
-    });
-
     throw new Error("Ufuldstændigt tilpasset PBL-projekt");
   }
 
-  const generatedProject = JSON.parse(
-    response.output_text || "{}"
-  );
-
   return {
-    project: {
-      ...generatedProject,
-      learning_integration: profile.learning_goals,
-      safety_framework: profile.safety_and_maturity,
-      adult_support: profile.adult_support,
-    },
+    project: JSON.parse(response.output_text || "{}"),
     response,
   };
 }
