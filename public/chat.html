@@ -28,6 +28,7 @@
   const besked = document.getElementById("besked");
   const sendKnap = document.getElementById("sendKnap");
   const fejl = document.getElementById("fejl");
+  let pendingAction = sessionStorage.getItem("cda_pending_action");
 
   if (!adgangskode) {
     window.location.href = "/cda.html";
@@ -61,6 +62,7 @@
           message: tekst,
           response_style: "Mellem",
           adgangskode,
+          pending_action: pendingAction,
         }),
       });
 
@@ -69,6 +71,14 @@
       if (!svar.ok) {
         fejl.textContent = data.error || "CDA kunne ikke svare.";
         return;
+      }
+
+      if (data.pending_action) {
+        pendingAction = data.pending_action;
+        sessionStorage.setItem("cda_pending_action", pendingAction);
+      } else {
+        pendingAction = null;
+        sessionStorage.removeItem("cda_pending_action");
       }
 
       const cdaSvar = document.createElement("p");
