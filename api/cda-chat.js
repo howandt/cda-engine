@@ -1791,31 +1791,72 @@ function getPblProjectsForDynamicAssessment() {
     ? data.projects
     : [];
 
-  return {
-    version: data.version || null,
-    projects: projects.map((project) => ({
-      id: project.id || null,
-      title: project.title || null,
-      subtitle: project.subtitle || null,
-      summary: project.description || null,
-      activity_examples: Array.isArray(project.activities)
-        ? project.activities.slice(0, 2)
-        : [],
-      competencies: Array.isArray(project.competencies)
-        ? project.competencies.slice(0, 4)
-        : [],
-      diagnosis_match: Array.isArray(project.diagnosis_match)
-        ? project.diagnosis_match
-        : [],
-      stimuli_type: Array.isArray(project.stimuli_type)
-        ? project.stimuli_type
-        : [],
-      social_exposure: project.social_exposure || null,
-      structure_need: project.structure_need || null,
-      level: project.level || null,
-      duration_suggestion: project.duration_suggestion || null,
-    })),
+  const cleanIndexValue = (value) =>
+    String(value || "")
+      .replace(/[|\r\n]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const compactList = (value, limit = null) => {
+    const items = Array.isArray(value) ? value : [];
+    const selected = Number.isInteger(limit)
+      ? items.slice(0, limit)
+      : items;
+
+    return selected
+      .map((item) => cleanIndexValue(item))
+      .filter(Boolean)
+      .join(",");
   };
+
+  const codeValue = (value, codes) => {
+    const normalized = String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    return codes[normalized] || cleanIndexValue(value);
+  };
+
+  const rows = projects.map((project) => {
+    const firstActivity = Array.isArray(project.activities)
+      ? project.activities[0]
+      : "";
+
+    return [
+      project.id,
+      project.title,
+      project.description,
+      firstActivity,
+      compactList(project.competencies, 2),
+      compactList(project.diagnosis_match),
+      compactList(project.stimuli_type),
+      codeValue(project.social_exposure, {
+        lav: "L",
+        moderat: "M",
+        gruppe: "G",
+      }),
+      codeValue(project.structure_need, {
+        lav: "L",
+        moderat: "M",
+        hoj: "H",
+      }),
+      codeValue(project.level, {
+        junior: "J",
+        intermediate: "I",
+        advanced: "A",
+      }),
+    ]
+      .map((value) => cleanIndexValue(value))
+      .join("|");
+  });
+
+  return [
+    `VERSION:${cleanIndexValue(data.version)}`,
+    "KOLONNER:id|titel|beskrivelse|første aktivitet|kompetencer|diagnosematch|stimuli|social|struktur|niveau",
+    "KODER:social L=lav M=moderat G=gruppe; struktur L=lav M=moderat H=høj; niveau J=junior I=intermediate A=advanced",
+    ...rows,
+  ].join("\n");
 }
 
 async function assessPblProfileDynamically(profileText) {
@@ -1827,7 +1868,8 @@ async function assessPblProfileDynamically(profileText) {
     "Brug ingen point, vægte, faste særord, skjult facitliste eller diagnose som automatisk konklusion.",
     "Vurder især elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, støttebehov, social belastning, faglige mål og mulighed for realistiske microsteps.",
     "Et direkte interessematch er vigtigt, men skal altid vurderes sammen med resten af profilen.",
-    "Vælg kun projekt-id'er, der findes i den vedlagte projektbank.",
+    "Det vedlagte index er automatisk genereret direkte fra projektbanken og er kun et kompakt datagrundlag, ikke en rangering.",
+    "Vælg kun projekt-id'er, der findes i det vedlagte index.",
     "Vælg to forskellige eksisterende projekter, hvis begge er reelt fagligt egnede.",
     "Hvis projektbanken ikke indeholder to forsvarlige muligheder, skal status være no_suitable_match. Vælg ikke et tilfældigt projekt for at udfylde felterne.",
     "Begrundelserne skal være korte, konkrete og baseret på både elevprofilen og projektdata.",
@@ -1838,8 +1880,8 @@ async function assessPblProfileDynamically(profileText) {
     "STRUKTURERET ELEVPROFIL:",
     JSON.stringify(getStructuredPblProfile(profileText)),
     "",
-    "KOMPAKT PBL-PROJEKTOVERSIGT:",
-    JSON.stringify(projectData),
+    "AUTOMATISK GENERERET PBL-INDEKS:",
+    projectData,
   ].join("\n");
 
   const response = await openai.responses.create({
