@@ -1667,6 +1667,11 @@ try {
     );
   }
 
+  console.log("CDA værktøjskald:", {
+    tools_used: usedTools,
+    tool_debug: toolDebug,
+  });
+
   console.log("CDA tokenmåling pr. OpenAI-kald:", {
     usage_by_call: usageByCall,
     totals: {
