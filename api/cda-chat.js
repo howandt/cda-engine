@@ -1703,6 +1703,102 @@ function extractPendingAction(replyText) {
   };
 }
 
+
+function normalizePblRequestText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isDirectPblLibraryRequest(message) {
+  const text = normalizePblRequestText(message);
+
+  if (/\bpbl[_ -]?\d+\b/.test(text)) {
+    return true;
+  }
+
+  const directPatterns = [
+    "vis projektet",
+    "vis pbl projektet",
+    "vis pbl-projektet",
+    "find projektet",
+    "søg efter projektet",
+    "sog efter projektet",
+    "åbn projektet",
+    "aabn projektet",
+    "åbn pbl",
+    "aabn pbl",
+    "pbl bibliotek",
+    "pbl-bibliotek",
+    "vis alle pbl",
+    "liste over pbl",
+    "til egen læring",
+    "til egen laering",
+    "som inspiration"
+  ];
+
+  return directPatterns.some((pattern) => text.includes(pattern));
+}
+
+function isConcreteStudentPblRequest(message) {
+  const text = normalizePblRequestText(message);
+
+  const mentionsPbl =
+    text.includes("pbl") ||
+    text.includes("projektbaseret læring") ||
+    text.includes("projektbaseret laering");
+
+  if (!mentionsPbl || isDirectPblLibraryRequest(message)) {
+    return false;
+  }
+
+  const studentPatterns = [
+    "jeg har en elev",
+    "min elev",
+    "eleven",
+    "et barn",
+    "barnet",
+    "en dreng",
+    "en pige",
+    "han har",
+    "hun har",
+    "til ham",
+    "til hende",
+    "for denne elev",
+    "for barnet"
+  ];
+
+  const asksForRecommendation = [
+    "foreslå",
+    "foresla",
+    "anbefal",
+    "finde et",
+    "find et",
+    "hvilket projekt",
+    "et pbl-projekt",
+    "et pbl projekt",
+    "pbl til"
+  ].some((pattern) => text.includes(pattern));
+
+  return (
+    asksForRecommendation &&
+    studentPatterns.some((pattern) => text.includes(pattern))
+  );
+}
+
+function getPblProfileOfferReply() {
+  return [
+    "PBL kunne være relevant her, men jeg vil ikke foreslå et konkret projekt uden en kort elevprofil.",
+    "",
+    "Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, støttebehov, arbejdsform, sikkerhed og fagligt mål.",
+    "",
+    "Vil du have den korte elevprofilskabelon?"
+  ].join("\n");
+}
+
 function shouldUseSpecializedToolFlow(message) {
   const text = String(message || "")
     .toLowerCase()
@@ -1955,6 +2051,40 @@ try {
         pending_action: null,
       });
     }
+  }
+
+  if (isConcreteStudentPblRequest(message)) {
+    const reply = getPblProfileOfferReply();
+    const usedTools = ["localPblProfileOffer"];
+    const toolDebug = [
+      {
+        name: "localPblProfileOffer",
+        action: "offer_profile_before_student_project",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: "pbl_profile",
+    });
   }
 
   const heidiPrompt = readHeidiPrompt();
