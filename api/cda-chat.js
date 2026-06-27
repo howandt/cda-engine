@@ -1113,6 +1113,119 @@ function getSemanticSearch(args = {}) {
     results: matches,
   };
 }
+
+function isOtherExperienceCaseRequest(message) {
+  const text = String(message || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const patterns = [
+    "hvad gjorde andre",
+    "hvad har andre gjort",
+    "hvad gjorde en anden",
+    "hvad gjorde andre lærere",
+    "hvad gjorde en anden lærer",
+    "har andre prøvet",
+    "har en anden prøvet",
+    "har andre lærere prøvet",
+    "har en anden lærer prøvet",
+    "er der andre der har prøvet",
+    "er der en lærer der har prøvet"
+  ];
+
+  return patterns.some((pattern) => text.includes(pattern));
+}
+
+function getRichestCaseById(caseId) {
+  const normalizedId = String(caseId || "").toLowerCase().trim();
+
+  if (!normalizedId) return null;
+
+  const casesDir = path.join(
+    process.cwd(),
+    "public",
+    "CDA",
+    "cases"
+  );
+
+  if (!fs.existsSync(casesDir)) return null;
+
+  const candidates = [];
+  const files = fs
+    .readdirSync(casesDir)
+    .filter(
+      (file) =>
+        file.toLowerCase().endsWith(".json") &&
+        !file.toLowerCase().includes("index")
+    );
+
+  for (const file of files) {
+    const parsed = readJsonFile(
+      path.join(casesDir, file),
+      `Casefil kunne ikke læses: ${file}`
+    );
+
+    const fileCases = Array.isArray(parsed)
+      ? parsed
+      : Array.isArray(parsed.cases)
+        ? parsed.cases
+        : [];
+
+    for (const item of fileCases) {
+      if (String(item.id || "").toLowerCase().trim() === normalizedId) {
+        candidates.push(item);
+      }
+    }
+  }
+
+  if (candidates.length === 0) return null;
+
+  const richnessScore = (item) =>
+    [
+      item.problem,
+      item.løsning,
+      item.tiltag,
+      item.resultat,
+      item.refleksion,
+      item.barnets_oplevelse,
+    ].reduce(
+      (total, value) => total + String(value || "").trim().length,
+      0
+    );
+
+  return candidates.sort(
+    (a, b) => richnessScore(b) - richnessScore(a)
+  )[0];
+}
+
+function findBestOtherExperienceCase(message) {
+  const searchResult = getSemanticSearch({ search: message });
+  const bestMatch = searchResult?.results?.[0];
+
+  if (!bestMatch?.id || Number(bestMatch.score || 0) <= 0) {
+    return null;
+  }
+
+  const fullCase = getRichestCaseById(bestMatch.id);
+
+  if (!fullCase) return null;
+
+  return {
+    id: fullCase.id || null,
+    titel: fullCase.titel || fullCase.title || null,
+    alder: fullCase.alder || fullCase.age || null,
+    problem: fullCase.problem || fullCase.kort_beskrivelse || null,
+    løsning: fullCase.løsning || null,
+    tiltag: fullCase.tiltag || null,
+    resultat: fullCase.resultat || null,
+    score: bestMatch.score,
+    matched_terms: bestMatch.matched_terms || [],
+  };
+}
+
 function getSpecialistPanel() {
   const filePath = path.join(
     process.cwd(),
@@ -1557,6 +1670,111 @@ if (!allowedResponseStyles.includes(response_style)) {
 }
 
 try {
+  if (isOtherExperienceCaseRequest(message)) {
+    const selectedCase = findBestOtherExperienceCase(message);
+
+    if (selectedCase) {
+      const caseInstructions = [
+        "Du er Heidi, CDA's faglige skolekonsulent.",
+        "Brugeren spørger, hvad andre har gjort i en lignende situation.",
+        "Svar kort og naturligt på dansk ud fra den ene vedlagte case.",
+        "Fortæl kun: den lignende situation, hvad den voksne gjorde, hvad der virkede, og én enkel reference brugeren kan overveje.",
+        "Lav ikke en fuld analyse. Brug ikke standardoverskrifter som 'Det peger mest på'.",
+        "Tilføj ikke generelle råd, diagnoser eller oplysninger, som ikke står i casen.",
+        "Skriv højst 120 ord."
+      ].join("\n");
+
+      const caseInput = [
+        `BRUGERENS SPØRGSMÅL:\n${message}`,
+        "",
+        "VALGT LIGNENDE CASE:",
+        JSON.stringify(selectedCase, null, 2),
+      ].join("\n");
+
+      const response = await openai.responses.create({
+        model: "gpt-5.4-mini",
+        reasoning: {
+          effort: "low",
+        },
+        instructions: caseInstructions,
+        input: caseInput,
+        max_output_tokens: 300,
+      });
+
+      const inputTokens = Number(response?.usage?.input_tokens || 0);
+      const outputTokens = Number(response?.usage?.output_tokens || 0);
+      const totalTokens = Number(
+        response?.usage?.total_tokens || inputTokens + outputTokens
+      );
+
+      const usageByCall = [
+        {
+          call: 1,
+          phase: "local_case_reference",
+          tools_returned_to_model: [],
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          total_tokens: totalTokens,
+        },
+      ];
+
+      const usedTools = ["localOtherExperienceCaseSearch"];
+      const toolDebug = [
+        {
+          name: "localOtherExperienceCaseSearch",
+          arguments: { search: message },
+          selected_case_id: selectedCase.id,
+          selected_case_score: selectedCase.score,
+        },
+      ];
+
+      console.log("CDA værktøjskald:", {
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+      });
+
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
+        usage_by_call: usageByCall,
+        totals: {
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          total_tokens: totalTokens,
+        },
+      });
+
+      if (adgangskode) {
+        const supabase = getSupabase();
+
+        const { error: forbrugsFejl } = await supabase
+          .from("token_forbrug")
+          .insert({
+            adgangskode: adgangskode.trim().toUpperCase(),
+            system: "cda",
+            udbyder: "openai",
+            model: "gpt-5.4-mini",
+            input_tokens: inputTokens,
+            output_tokens: outputTokens,
+            samlet_tokens: totalTokens,
+          });
+
+        if (forbrugsFejl) {
+          console.error(
+            "Kunne ikke gemme tokenforbrug:",
+            forbrugsFejl
+          );
+        }
+      }
+
+      return res.status(200).json({
+        success: true,
+        reply: response.output_text,
+        model: "gpt-5.4-mini",
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+      });
+    }
+  }
+
   const heidiPrompt = readHeidiPrompt();
 
   const runtimeInstructions = [
