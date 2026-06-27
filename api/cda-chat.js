@@ -1745,25 +1745,7 @@ function extractProfileField(profileText, fieldNumber) {
   return match ? match[1].trim() : "";
 }
 
-function tokenizePblText(value) {
-  const stopWords = new Set([
-    "og", "eller", "som", "med", "for", "til", "ved", "det", "den",
-    "de", "en", "et", "er", "har", "kan", "skal", "sig", "sin",
-    "sine", "der", "her", "fra", "på", "af", "i", "at", "ikke",
-    "meget", "god", "gode", "bedst", "gerne", "eleven"
-  ]);
-
-  return String(value || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9æøå ]/g, " ")
-    .split(/\s+/)
-    .map((word) => normalizeSearchWord(word))
-    .filter((word) => word.length >= 3 && !stopWords.has(word));
-}
-
-function rankPblProjectsFromProfile(profileText) {
+function getPblProjectsForDynamicAssessment() {
   const filePath = path.join(
     process.cwd(),
     "data",
@@ -1779,151 +1761,147 @@ function rankPblProjectsFromProfile(profileText) {
     ? data.projects
     : [];
 
-  const ageText = extractProfileField(profileText, 1);
-  const interests = extractProfileField(profileText, 2);
-  const strengths = extractProfileField(profileText, 3);
-  const focus = extractProfileField(profileText, 4);
-  const structure = extractProfileField(profileText, 5);
-  const workForm = extractProfileField(profileText, 6);
-  const safety = extractProfileField(profileText, 8);
-  const learningGoals = extractProfileField(profileText, 10);
-
-  const ageMatch = ageText.match(/\b(\d{1,2})\b/);
-  const age = ageMatch ? Number(ageMatch[1]) : null;
-
-  const interestTerms = tokenizePblText(interests);
-  const strengthTerms = tokenizePblText(strengths);
-  const goalTerms = tokenizePblText(learningGoals);
-
-  const profileNormalized = normalizeReplyIntent(profileText);
-
-  const scored = projects.map((project) => {
-    const titleText = [
-      project.title,
-      project.subtitle,
-    ].filter(Boolean).join(" ");
-
-    const broadText = [
-      project.title,
-      project.subtitle,
-      project.description,
-      ...(project.activities || []),
-      ...(project.competencies || []),
-      ...(project.career_alignment || []),
-    ].filter(Boolean).join(" ");
-
-    const titleWords = tokenizePblText(titleText);
-    const broadWords = tokenizePblText(broadText);
-
-    let score = 0;
-    const reasons = [];
-
-    const directInterestMatches = interestTerms.filter((term) =>
-      titleWords.some((word) => searchWordMatches(term, word)) ||
-      broadWords.some((word) => searchWordMatches(term, word))
-    );
-
-    const titleInterestMatches = interestTerms.filter((term) =>
-      titleWords.some((word) => searchWordMatches(term, word))
-    );
-
-    if (directInterestMatches.length > 0) {
-      score += directInterestMatches.length * 35;
-      reasons.push("direkte interesse");
-    }
-
-    if (titleInterestMatches.length > 0) {
-      score += titleInterestMatches.length * 55;
-    }
-
-    const strengthMatches = strengthTerms.filter((term) =>
-      broadWords.some((word) => searchWordMatches(term, word))
-    );
-
-    if (strengthMatches.length > 0) {
-      score += strengthMatches.length * 10;
-      reasons.push("styrker");
-    }
-
-    const goalMatches = goalTerms.filter((term) =>
-      broadWords.some((word) => searchWordMatches(term, word))
-    );
-
-    if (goalMatches.length > 0) {
-      score += goalMatches.length * 8;
-      reasons.push("faglige mål");
-    }
-
-    if (
-      profileNormalized.includes("adhd") &&
-      (project.diagnosis_match || []).some((item) =>
-        normalizeReplyIntent(item).includes("adhd")
-      )
-    ) {
-      score += 18;
-      reasons.push("ADHD-match");
-    }
-
-    if (age !== null) {
-      const level = normalizeReplyIntent(project.level);
-
-      if (age <= 11 && level === "junior") score += 22;
-      if (age <= 11 && level === "advanced") score -= 35;
-      if (age <= 11 && level === "intermediate") score -= 8;
-    }
-
-    if (
-      /alene|en rolig|én rolig|lille gruppe/i.test(workForm) &&
-      normalizeReplyIntent(project.social_exposure) === "lav"
-    ) {
-      score += 15;
-      reasons.push("lav social belastning");
-    }
-
-    if (
-      /tydelig|struktur|delmål|korte instruktioner/i.test(structure) &&
-      normalizeReplyIntent(project.structure_need) === "hoj"
-    ) {
-      score += 12;
-      reasons.push("struktur");
-    }
-
-    if (
-      /praktisk|hænder|haender|skille|samle|mekan/i.test(
-        `${strengths} ${interests}`
-      ) &&
-      (project.stimuli_type || []).some((item) =>
-        ["taktil", "kinaestetisk", "kinæstetisk"].includes(
-          normalizeReplyIntent(item)
-        )
-      )
-    ) {
-      score += 16;
-      reasons.push("praktisk arbejdsform");
-    }
-
-    if (
-      /ikke.*skarpe|ikke.*elektriske|tæt voksenopsyn|taet voksenopsyn/i.test(
-        safety
-      ) &&
-      normalizeReplyIntent(project.level) === "advanced"
-    ) {
-      score -= 25;
-    }
-
-    return {
-      project,
-      score,
-      reasons: [...new Set(reasons)],
-    };
-  });
-
-  return scored
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 2);
+  return {
+    version: data.version || null,
+    projects: projects.map((project) => ({
+      id: project.id || null,
+      title: project.title || null,
+      subtitle: project.subtitle || null,
+      description: project.description || null,
+      activities: Array.isArray(project.activities)
+        ? project.activities
+        : [],
+      competencies: Array.isArray(project.competencies)
+        ? project.competencies
+        : [],
+      diagnosis_match: Array.isArray(project.diagnosis_match)
+        ? project.diagnosis_match
+        : [],
+      stimuli_type: Array.isArray(project.stimuli_type)
+        ? project.stimuli_type
+        : [],
+      social_exposure: project.social_exposure || null,
+      structure_need: project.structure_need || null,
+      level: project.level || null,
+      duration_suggestion: project.duration_suggestion || null,
+      career_alignment: Array.isArray(project.career_alignment)
+        ? project.career_alignment
+        : [],
+    })),
+  };
 }
 
-function formatPblChoice(project, choiceNumber, profileText) {
+async function assessPblProfileDynamically(profileText) {
+  const projectData = getPblProjectsForDynamicAssessment();
+
+  const instructions = [
+    "Du er CDA's dynamiske PBL-fagmotor.",
+    "Foretag en samlet faglig vurdering af elevprofilen og projektbanken.",
+    "Brug ingen point, vægte, faste særord, skjult facitliste eller diagnose som automatisk konklusion.",
+    "Vurder især elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, støttebehov, social belastning, faglige mål og mulighed for realistiske microsteps.",
+    "Et direkte interessematch er vigtigt, men skal altid vurderes sammen med resten af profilen.",
+    "Vælg kun projekt-id'er, der findes i den vedlagte projektbank.",
+    "Vælg to forskellige eksisterende projekter, hvis begge er reelt fagligt egnede.",
+    "Hvis projektbanken ikke indeholder to forsvarlige muligheder, skal status være no_suitable_match. Vælg ikke et tilfældigt projekt for at udfylde felterne.",
+    "Begrundelserne skal være korte, konkrete og baseret på både elevprofilen og projektdata.",
+    "CDA foreslår. Læreren guider. Eleven vælger med.",
+  ].join("\n");
+
+  const input = [
+    "ELEVPROFIL:",
+    profileText,
+    "",
+    "PBL-PROJEKTBANK:",
+    JSON.stringify(projectData),
+  ].join("\n");
+
+  const response = await openai.responses.create({
+    model: "gpt-5.4-mini",
+    reasoning: {
+      effort: "low",
+    },
+    instructions,
+    input,
+    max_output_tokens: 700,
+    text: {
+      format: {
+        type: "json_schema",
+        name: "cda_pbl_assessment",
+        strict: true,
+        schema: {
+          type: "object",
+          properties: {
+            status: {
+              type: "string",
+              enum: ["matched", "no_suitable_match"],
+            },
+            first_id: {
+              type: "string",
+            },
+            second_id: {
+              type: "string",
+            },
+            first_reason: {
+              type: "string",
+            },
+            second_reason: {
+              type: "string",
+            },
+            no_match_reason: {
+              type: "string",
+            },
+          },
+          required: [
+            "status",
+            "first_id",
+            "second_id",
+            "first_reason",
+            "second_reason",
+            "no_match_reason",
+          ],
+          additionalProperties: false,
+        },
+      },
+    },
+  });
+
+  if (response.status === "incomplete") {
+    throw new Error("Ufuldstændig dynamisk PBL-vurdering");
+  }
+
+  const assessment = JSON.parse(response.output_text || "{}");
+
+  if (assessment.status === "no_suitable_match") {
+    return {
+      assessment,
+      response,
+      first: null,
+      second: null,
+    };
+  }
+
+  const first = getPblProjectById(assessment.first_id);
+  const second = getPblProjectById(assessment.second_id);
+
+  if (
+    !first ||
+    !second ||
+    String(first.id) === String(second.id)
+  ) {
+    throw new Error(
+      "PBL-fagmotoren returnerede ugyldige eller ens projektvalg"
+    );
+  }
+
+  return {
+    assessment,
+    response,
+    first,
+    second,
+  };
+}
+
+function formatPblChoice(project, choiceNumber, profileText, reason = "") {
   const learningGoals = extractProfileField(profileText, 10);
   const safety = extractProfileField(profileText, 8);
 
@@ -1937,6 +1915,7 @@ function formatPblChoice(project, choiceNumber, profileText) {
     project.subtitle ? `*${project.subtitle}*` : "",
     "",
     project.description || "",
+    reason ? `\n**Hvorfor det passer:** ${reason}` : "",
     "",
     activities ? `Projektet kan begynde med:\n${activities}` : "",
     learningGoals
@@ -2146,35 +2125,130 @@ try {
   }
 
   if (pending_action === "pbl_profile_input") {
-    const rankedProjects = rankPblProjectsFromProfile(message);
-    const first = rankedProjects[0]?.project || null;
-    const second = rankedProjects[1]?.project || null;
+    const dynamicResult = await assessPblProfileDynamically(message);
+    const { assessment, response, first, second } = dynamicResult;
 
-    if (first) {
-      const state = encodePblChoiceState({
-        firstId: first.id,
-        secondId: second?.id || null,
-        profile: message,
-        shown: 1,
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "dynamic_pbl_assessment",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    if (assessment.status === "no_suitable_match") {
+      const usedTools = ["dynamicPblAssessment"];
+      const toolDebug = [
+        {
+          name: "dynamicPblAssessment",
+          action: "no_suitable_existing_project",
+        },
+      ];
+
+      console.log("CDA værktøjskald:", {
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+      });
+
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
+        usage_by_call: usageByCall,
+        totals: {
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          total_tokens: totalTokens,
+        },
       });
 
       return res.status(200).json({
         success: true,
-        reply: formatPblChoice(first, 1, message),
-        model: "local",
-        tools_used: ["localPblProfileRanking"],
-        tool_debug: [
-          {
-            name: "localPblProfileRanking",
-            first_choice: first.id,
-            second_choice: second?.id || null,
-            first_score: rankedProjects[0]?.score || 0,
-            second_score: rankedProjects[1]?.score || 0,
-          },
-        ],
-        pending_action: state,
+        reply: assessment.no_match_reason
+          ? `Ingen af de eksisterende projekter passer godt nok til elevprofilen. ${assessment.no_match_reason}`
+          : "Ingen af de eksisterende projekter passer godt nok til elevprofilen. CDA vælger derfor ikke et tilfældigt projekt.",
+        model: "gpt-5.4-mini",
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+        pending_action: null,
       });
     }
+
+    const state = encodePblChoiceState({
+      firstId: first.id,
+      secondId: second.id,
+      firstReason: assessment.first_reason,
+      secondReason: assessment.second_reason,
+      profile: message,
+      shown: 1,
+    });
+
+    const usedTools = ["dynamicPblAssessment"];
+    const toolDebug = [
+      {
+        name: "dynamicPblAssessment",
+        action: "whole_profile_assessment",
+        first_choice: first.id,
+        second_choice: second.id,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply: formatPblChoice(
+        first,
+        1,
+        message,
+        assessment.first_reason
+      ),
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: state,
+    });
   }
 
   const pblChoiceState = decodePblChoiceState(pending_action);
@@ -2209,7 +2283,8 @@ try {
         reply: formatPblChoice(
           firstProject,
           1,
-          pblChoiceState.profile
+          pblChoiceState.profile,
+          pblChoiceState.firstReason || ""
         ),
         model: "local",
         tools_used: ["localPblChoiceFlow"],
@@ -2233,7 +2308,8 @@ try {
         reply: formatPblChoice(
           secondProject,
           2,
-          pblChoiceState.profile
+          pblChoiceState.profile,
+          pblChoiceState.secondReason || ""
         ),
         model: "local",
         tools_used: ["localPblChoiceFlow"],
