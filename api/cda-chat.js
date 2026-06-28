@@ -3737,6 +3737,11 @@ try {
     });
 
     const normalReplyData = extractPendingAction(response.output_text);
+    const normalReply = normalReplyData.pendingAction
+      ? normalReplyData.reply
+      : normalReplyData.reply
+          .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+          .trim();
 
     const inputTokens = Number(response?.usage?.input_tokens || 0);
     const outputTokens = Number(response?.usage?.output_tokens || 0);
@@ -3806,7 +3811,7 @@ try {
 
     return res.status(200).json({
       success: true,
-      reply: normalReplyData.reply,
+      reply: normalReply,
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
