@@ -864,18 +864,19 @@ function getDiagnosisIntent(message, role) {
     ]),
     school:
       role === "Lærer" ||
-      includesAny([
-        "skole",
-        "elev",
-        "undervisning",
-        "klasse",
-        "laering",
-        "laerer",
-        "school",
-        "student",
-        "teaching",
-        "classroom",
-      ]),
+      (role !== "Forælder" &&
+        includesAny([
+          "skole",
+          "elev",
+          "undervisning",
+          "klasse",
+          "laering",
+          "laerer",
+          "school",
+          "student",
+          "teaching",
+          "classroom",
+        ])),
     home:
       role === "Forælder" ||
       includesAny([
@@ -3570,7 +3571,9 @@ try {
       "Udfør ikke Analyse-systemets fulde caseanalyse og foretag ikke komorbiditetstest i dette flow.",
       role === "Specialist"
         ? "Svar fagperson til fagperson med præcist specialistsprog, men hold dig til det konkrete spørgsmål og lav ikke en fuld Analyse-vurdering."
-        : "Hold svaret praksisnært og direkte anvendeligt for den valgte rolle.",
+        : role === "Forælder"
+          ? "Forældresvaret skal tage udgangspunkt i hjemmet og familiens hverdag. Antag aldrig, at barnet viser samme adfærd hjemme og i skolen. Skolen må kun nævnes kort som en mulig sammenligning, fx at spørge læreren, hvad læreren ser. Forskelle mellem hjem og skole kan have mange forklaringer og må ikke tolkes sikkert. Giv højst 3 konkrete råd og afslut uden et generisk tilbud eller et automatisk spørgsmål."
+          : "Hold svaret praksisnært og direkte anvendeligt for den valgte rolle.",
       `AKTUEL SVARSTIL: ${response_style}`,
       response_style === "Kort"
         ? "Svar kort og direkte."
@@ -3669,7 +3672,7 @@ try {
     }
 
     const diagnosisReply = String(response.output_text || "")
-      .replace(/\s*(?:Hvis du vil,\s*kan jeg(?: også)?|If you want,\s*I can(?: also)?)[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
     return res.status(200).json({
