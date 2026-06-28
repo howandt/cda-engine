@@ -3668,9 +3668,13 @@ try {
       }
     }
 
+    const diagnosisReply = String(response.output_text || "")
+      .replace(/\s*(?:Hvis du vil,\s*kan jeg(?: også)?|If you want,\s*I can(?: also)?)[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .trim();
+
     return res.status(200).json({
       success: true,
-      reply: response.output_text,
+      reply: diagnosisReply,
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
