@@ -1915,6 +1915,75 @@ function getSpecialistPanel() {
     data,
   };
 }
+
+function isDirectSpecialistPanelRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+  const directPatterns = [
+    "specialistpanel",
+    "specialist panel",
+    "hvad siger specialisterne",
+    "specialistperspektiv",
+    "tværfaglig vurdering",
+    "tvaerfaglig vurdering",
+  ];
+
+  return directPatterns.some((pattern) =>
+    text.includes(normalizeDiagnosisPhrase(pattern))
+  );
+}
+
+function getCompactSpecialistPanelIndex() {
+  const panelResult = getSpecialistPanel();
+  const specialists = Array.isArray(panelResult?.data?.specialists)
+    ? panelResult.data.specialists
+    : [];
+
+  const cleanValue = (value) =>
+    String(value || "")
+      .replace(/[|\r\n]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const rows = specialists.map((specialist) => {
+    const voiceProfile = specialist?.voice_profile || {};
+
+    return [
+      cleanValue(specialist?.id),
+      cleanValue(specialist?.name),
+      cleanValue(specialist?.category),
+      cleanValue(specialist?.group),
+      cleanValue(specialist?.function),
+      (Array.isArray(specialist?.keywords)
+        ? specialist.keywords
+        : []
+      )
+        .map((keyword) => cleanValue(keyword))
+        .filter(Boolean)
+        .join(","),
+      cleanValue(voiceProfile?.tone),
+      cleanValue(voiceProfile?.style),
+      cleanValue(specialist?.disclaimer),
+    ].join("|");
+  });
+
+  return {
+    specialistIds: specialists
+      .map((specialist) => String(specialist?.id || ""))
+      .filter(Boolean),
+    specialistSummaries: specialists
+      .map((specialist) => ({
+        id: String(specialist?.id || ""),
+        name: String(specialist?.name || ""),
+        group: String(specialist?.group || ""),
+        function: String(specialist?.function || ""),
+      }))
+      .filter((specialist) => specialist.id),
+    indexText: [
+      "KOLONNER:id|navn|kategori|gruppe|funktion|keywords|tone|stil|disclaimer",
+      ...rows,
+    ].join("\n"),
+  };
+}
 function getTemplates(args = {}) {
   const filePath = path.join(
     process.cwd(),
@@ -2204,18 +2273,6 @@ const tools = [
       },
     },
     required: ["search"],
-    additionalProperties: false,
-  },
-  strict: false,
-},
-{
-  type: "function",
-  name: "getSpecialistPanel",
-  description:
-    "Henter det eksisterende CDA-specialistpanel. Brug ved behov for specialistperspektiver, tværfaglig vurdering eller råd fra specialistpanelet.",
-  parameters: {
-    type: "object",
-    properties: {},
     additionalProperties: false,
   },
   strict: false,
@@ -3541,6 +3598,184 @@ try {
   }
 
   const heidiPrompt = readHeidiPrompt();
+
+  if (isDirectSpecialistPanelRequest(message)) {
+    const specialistPanel = getCompactSpecialistPanelIndex();
+
+    if (specialistPanel.specialistIds.length === 0) {
+      throw new Error("Specialistpanelet indeholder ingen specialister");
+    }
+
+    const specialistInstructions = [
+      heidiPrompt,
+      "",
+      audienceInstructions,
+      "",
+      "LOKALT CDA-SPECIALISTPANEL",
+      "Specialistpanelet er kun aktiveret, fordi brugeren udtrykkeligt har bedt om det.",
+      "Gennemgå hele det kompakte specialistindex og vælg 1-3 relevante specialister ud fra brugerens konkrete beskrivelse, specialisternes keywords og deres fagområder.",
+      "Vælg højst 3 specialister. Vælg komplementære faglige perspektiver, når det giver reel værdi, så barnet vurderes bredt og ikke kun gennem en kendt diagnose eller ét fagområde. Skab ikke kunstig bredde, hvis færre perspektiver er tilstrækkelige.",
+      "Hver valgt specialist må kun bidrage inden for eget fagområde. CDA skal samle perspektiverne i én praktisk og sammenhængende vurdering frem for tre løsrevne svar.",
+      "En kendt diagnose er kontekst, ikke facit. Beskriv relevante mønstre og alternative forklaringer forsigtigt, men sig aldrig, at en diagnose eller komorbiditet er fundet, og foreslå ikke en konkret ny diagnose ud fra en kort beskrivelse.",
+      "Hvis observationerne ligger tydeligt uden for det kendte mønster eller kræver egentlig vurdering, anbefal relevante observationer og inddragelse af PPR, teamet eller en relevant specialist. Brug ikke formuleringen 'menneskelig fagperson'.",
+      "Giv ingen medicinordination eller juridisk afgørelse.",
+      "Svaret skal være dynamisk, rollebaseret og direkte anvendeligt. Vis ikke specialistindex, interne ids, keywords eller udvælgelseslogik.",
+      "I normal kort drift: giv højst 3 konkrete handlinger og undgå generiske tilbud om mere hjælp. Et konkret fagligt opfølgende spørgsmål er tilladt, hvis det er nødvendigt for at bringe sagen videre.",
+      `AKTUEL SVARSTIL: ${response_style}`,
+      response_style === "Kort"
+        ? "Svar kort og direkte."
+        : response_style === "Dyb"
+          ? "Uddyb de relevante specialistperspektiver og deres fælles faglige betydning uden unødvendig gentagelse."
+          : "Giv en kort tværfaglig forklaring og konkrete næste skridt.",
+    ].join("\n");
+
+    const specialistInput = [
+      "BRUGERENS SPØRGSMÅL:",
+      message,
+      "",
+      "KOMPAKT SPECIALISTINDEX:",
+      specialistPanel.indexText,
+    ].join("\n");
+
+    const response = await openai.responses.create({
+      model: "gpt-5.4-mini",
+      reasoning: {
+        effort: "low",
+      },
+      instructions: specialistInstructions,
+      input: specialistInput,
+      max_output_tokens:
+        response_style === "Dyb"
+          ? 1100
+          : response_style === "Kort"
+            ? 650
+            : 850,
+      text: {
+        format: {
+          type: "json_schema",
+          name: "cda_specialist_panel_response",
+          strict: true,
+          schema: {
+            type: "object",
+            properties: {
+              selected_specialist_ids: {
+                type: "array",
+                items: {
+                  type: "string",
+                  enum: specialistPanel.specialistIds,
+                },
+              },
+              reply: {
+                type: "string",
+              },
+            },
+            required: ["selected_specialist_ids", "reply"],
+            additionalProperties: false,
+          },
+        },
+      },
+    });
+
+    if (response.status === "incomplete") {
+      throw new Error("Ufuldstændigt svar fra specialistpanelet");
+    }
+
+    const panelResponse = JSON.parse(response.output_text || "{}");
+    const validSpecialistIds = new Set(
+      specialistPanel.specialistIds
+    );
+    const selectedSpecialistIds = Array.from(
+      new Set(
+        (Array.isArray(panelResponse.selected_specialist_ids)
+          ? panelResponse.selected_specialist_ids
+          : []
+        ).filter((id) => validSpecialistIds.has(String(id)))
+      )
+    ).slice(0, 3);
+
+    const reply = String(panelResponse.reply || "").trim();
+
+    if (!reply) {
+      throw new Error("Specialistpanelet returnerede intet svar");
+    }
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "specialist_panel_local_routing",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["localSpecialistPanelRouting"];
+    const toolDebug = [
+      {
+        name: "localSpecialistPanelRouting",
+        selected_specialists: selectedSpecialistIds.map((id) =>
+          specialistPanel.specialistSummaries.find(
+            (specialist) => specialist.id === id
+          )
+        ).filter(Boolean),
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
 
   const structuredDiagnosisMeta = getSingleStructuredDiagnosisMatch(message);
 
