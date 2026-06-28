@@ -1,0 +1,176 @@
+{
+  "id": "narcissisme",
+  "navn": "Narcissisme",
+  "fuld_navn": "Narcissistisk Personlighedsforstyrrelse",
+  "kort_visning": {
+    "hvad_er_det": "Narcissistisk personlighedsforstyrrelse er et vedvarende mønster præget af grandiositet, stærkt behov for anerkendelse og vanskeligheder med empati og gensidighed i relationer. Under overfladen ligger der hos mange en betydelig sårbarhed i selvfølelse og skam.",
+    "hvordan_viser_det_sig": [
+      "Den unge kan have stærkt behov for at være særlig eller i centrum",
+      "Den unge kan reagere voldsomt på kritik eller oplevet ydmygelse",
+      "Der kan være stor optagethed af status, anerkendelse eller overlegenhed",
+      "Andre kan blive brugt til at støtte den unges selvfølelse",
+      "Der kan være vekslen mellem storhedsfølelse og tomhed, skam eller sammenbrud"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er arrogance eller egoisme",
+      "At det kun handler om selvtillid",
+      "At stærk selvhævdelse betyder indre styrke",
+      "At man hjælper ved enten at ydmyge eller give efter",
+      "At sårbarheden under overfladen ikke er vigtig"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Mød den unge med rolig tydelighed frem for ydmygelse",
+      "Sæt klare grænser uden at gå ind i magtkampe",
+      "Giv præcis feedback uden unødigt angreb på selvværd",
+      "Hjælp den unge med at tåle kritik og frustration gradvist",
+      "Søg specialiseret hjælp, hvis mønstrene er vedvarende og skadelige"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Narcissistiske mønstre handler ikke bare om egoisme eller ond vilje. De kan dække over dybere vanskeligheder i selvfølelse, skam, regulering og relationer. Det gør ikke skaden mindre virkelig, men det gør forståelsen mere præcis.",
+    "hvad_er_narcissisme": "Ved narcissistisk personlighedsforstyrrelse ser man typisk et vedvarende mønster af grandiositet, behov for beundring og tydelige vanskeligheder med empati og gensidighed i relationer. Udadtil kan det ligne selvoptagethed, krav om særstatus eller arrogance, men hos mange er selvfølelsen langt mere skrøbelig, end den ser ud.",
+    "centrale_moenstre": {
+      "selvbillede_og_status": [
+        "Stærkt behov for at være særlig",
+        "Optagethed af succes, status eller overlegenhed",
+        "Krav om anerkendelse og beundring",
+        "Særligt sensitiv over for nederlag eller tab af status"
+      ],
+      "relationer": [
+        "Brug af andre til at understøtte egen selvfølelse",
+        "Vanskeligheder med gensidighed",
+        "Manglende eller begrænset perspektivtagning",
+        "Stor følsomhed over for afvisning eller kritik"
+      ],
+      "indre_saarbarhed": [
+        "Skrøbelig selvfølelse",
+        "Stærk skam",
+        "Krenkelsesparathed",
+        "Vekslen mellem storhedsfølelse og tomhed"
+      ]
+    },
+    "hvordan_det_kan_vise_sig": [
+      "Den unge reagerer kraftigt, når andre ikke giver den ønskede opmærksomhed",
+      "Kritik kan udløse vrede, skam eller sammenbrud",
+      "Relationer kan blive præget af dominans, krav eller manglende hensyn",
+      "Den unge kan fremstå enten åbenlyst selvhævdende eller mere sårbar og krænkelsesparat",
+      "Omgivelserne kan opleve at blive brugt, nedgjort eller drænet"
+    ],
+    "hvornår_man_taler_om_diagnose": {
+      "forklaring": "Man stiller ikke diagnosen ud fra enkelte episoder eller almindelig ungdommelig selvoptagethed. Det kræver en grundig faglig vurdering af mønstre over tid.",
+      "man_ser_typisk_paa": [
+        "Grandiositet",
+        "Behov for beundring",
+        "Empativanskeligheder",
+        "Reaktioner på kritik, skam og status-tab",
+        "Funktion i relationer, skole og hverdag",
+        "Hvor gennemgribende mønstret er på tværs af situationer"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "En ordentlig vurdering ser på udviklingshistorie, relationelle mønstre, funktion over tid og andre mulige forklaringer.",
+      "indgaar_typisk": [
+        "Udviklingshistorie",
+        "Relationelle mønstre",
+        "Adfærd over tid",
+        "Funktion i familie, skole og sociale sammenhænge",
+        "Selvfølelse, empati og reaktion på kritik",
+        "Indhentning af oplysninger fra flere sider"
+      ],
+      "vigtigt_at_skille_fra": [
+        "ADHD",
+        "Autisme",
+        "Traumer",
+        "Bipolare tilstande",
+        "Depression",
+        "Andre personlighedsproblematikker"
+      ]
+    },
+    "aarsager_og_baggrund": {
+      "forklaring": "Der er sjældent én enkelt årsag. Mønstrene udvikles ofte i et samspil mellem temperament, sårbarhed, relationelle erfaringer og lærte måder at beskytte selvfølelsen på.",
+      "mulige_forhold": [
+        "Betinget anerkendelse",
+        "Stærk kritik eller skam",
+        "Fokus på præstation og status frem for sårbarhed",
+        "Tidlige relationelle erfaringer, hvor selvværd blev ustabilt eller afhængigt af ydre bekræftelse"
+      ],
+      "vigtigt": "Skyld er sjældent det mest hjælpsomme fokus. Det afgørende er at forstå mønstret præcist nok til at kunne handle på det."
+    },
+    "behandling_og_hjaelp": {
+      "overordnet": "Den vigtigste behandling er psykoterapi, men motivationen for behandling kan være en stor udfordring.",
+      "terapi_kan_arbejde_med": [
+        "Selvfølelse og skam",
+        "Realistisk selvforståelse",
+        "Reaktioner på kritik",
+        "Relationelle mønstre",
+        "Empati og perspektivtagning",
+        "Mere modne måder at regulere behovet for anerkendelse på"
+      ],
+      "former": [
+        "Kognitivt orienteret terapi",
+        "Psykodynamisk terapi",
+        "Relationel terapi",
+        "Gruppeterapi i nogle tilfælde"
+      ],
+      "vigtigt": "Mange søger først hjælp, når relationer bryder sammen, eller når skam, livskriser eller depression bliver for svære at bære.",
+      "medicin": "Der findes ikke medicin, som i sig selv behandler narcissistisk personlighedsforstyrrelse, men samtidig depression, angst eller søvnproblemer kan behandles."
+    },
+    "narcissisme_i_skole_og_hverdag": {
+      "udfordringer": [
+        "Kraftige reaktioner på kritik eller sammenligning",
+        "Behov for opmærksomhed eller særstilling",
+        "Dominans eller nedgøring af andre",
+        "Vrede eller skam ved nederlag",
+        "Samarbejdsproblemer når den unge ikke får den ønskede position"
+      ],
+      "hjaelper_ofte": [
+        "Rolige og tydelige voksne",
+        "Klar feedback uden ydmygelse",
+        "Faste grænser",
+        "Struktur i samarbejde med andre",
+        "Hjælp til at tåle ikke altid at være centrum"
+      ]
+    },
+    "livet_derhjemme": {
+      "for_familien": [
+        "Tydelige regler",
+        "Tydelige konsekvenser",
+        "Så lidt inkonsistens som muligt",
+        "Skelnen mellem forståelse og eftergivenhed",
+        "Beskyttelse af søskende og andre i familien hvis mønstrene bliver skadelige"
+      ],
+      "vigtigt": "Man kan godt forstå sårbarheden bag adfærden uden at acceptere løgn, krænkelse eller systematisk tilsidesættelse af andre."
+    },
+    "udvikling_over_tid": {
+      "barndom_og_ungdom": "Hos børn og unge ser man ofte træk og mønstre i udvikling, ikke altid et fuldt stabilt voksenbillede. Men vedvarende mønstre bør tages alvorligt.",
+      "voksenliv": "Hos voksne kan billedet blive mere stabilt, og derfor betyder tidlig indsats noget, før mønstrene bliver mere fastlåste."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Narcissisme er bare arrogance",
+        "realitet": "Arrogance kan være noget af det synlige, men under det ligger der ofte mere sårbarhed, skam og ustabil selvfølelse."
+      },
+      {
+        "myte": "Alle med narcissistiske træk er uden håb",
+        "realitet": "Nogle forløb er svære, men målrettet hjælp, tydelige grænser og præcis forståelse kan gøre en forskel."
+      },
+      {
+        "myte": "Hvis man forstår baggrunden, skal man acceptere adfærden",
+        "realitet": "Forståelse og grænsesætning må ofte gå hånd i hånd."
+      },
+      {
+        "myte": "Det er let at spotte",
+        "realitet": "Nogle fremstår åbne og selvhævdende, andre mere sårbare eller charmerende. Derfor er grundig vurdering vigtig."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Psykologer med erfaring i personlighedsproblematikker",
+      "Psykiatrisk vurdering ved behov",
+      "Familieterapi",
+      "Forældrevejledning",
+      "Pårørendestøtte",
+      "Skole og behandlingssamarbejde"
+    ],
+    "afslutning": "Når man ser de narcissistiske mønstre rigtigt, bliver det muligt at hjælpe mere præcist og mindre naivt. Det handler ikke om at undskylde skadelig adfærd, men om at forstå både sårbarheden og relationernes belastning, så man kan sætte grænser og støtte mere ordentligt."
+  }
+}

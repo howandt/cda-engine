@@ -1,0 +1,244 @@
+{
+  "id": "odd",
+  "navn": "ODD",
+  "fuld_navn": "Oppositionel trodsig forstyrrelse",
+  "kort_visning": {
+    "hvad_er_det": "ODD er en børnepsykiatrisk problematik, hvor barnet over tid viser et vedvarende mønster af irritabilitet, vrede, argumenterende eller trodsig adfærd og nogle gange hævngerrighed. Det er mere end almindelig trods og mere end en kort udviklingsfase.",
+    "hvordan_viser_det_sig": [
+      "Barnet reagerer ofte med modstand, vrede eller kamp på almindelige beskeder og krav",
+      "Der kan være konstante diskussioner, nægtelse, skyldplacering og lav frustrationstolerance",
+      "Konflikter opstår ofte særligt i relation til voksne, der sætter rammer",
+      "Hverdagen kan blive præget af skænderier, raserianfald eller sejt fastlåst modstand",
+      "Barnet virker ofte mere viljestyret udefra, end det reelt er indefra"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er dårlig opdragelse",
+      "At barnet bare er ondt eller manipulerende",
+      "At hårdere straf løser det",
+      "At barnet bare vokser fra det uden hjælp",
+      "At ODD er det samme som almindelig trods eller teenage-opposition"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag vedvarende og belastende mønstre alvorligt tidligt",
+      "Søg ordentlig vurdering, især hvis konflikterne fylder både hjemme og i skole",
+      "Arbejd med tydelige beskeder, forudsigelige konsekvenser og mere positiv kontakt",
+      "Undersøg samtidig ADHD, angst, depression, læringsvanskeligheder eller andre medvirkende forhold",
+      "Skift fokus fra moral og kamp til regulering, strategi og færdighedsopbygning"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når et barn næsten hver dag reagerer med modstand, vrede eller kamp på almindelige beskeder, slider det hurtigt på hele familien, skolen og barnets egen selvforståelse. Når man begynder at se ODD rigtigt, bliver det muligt at forstå, at mønstret ikke bare handler om dårlig opførsel, men om et fastlåst og belastende regulerings- og samspilsmønster.",
+    "hvad_er_odd": "Oppositionel trodsig forstyrrelse beskriver et vedvarende mønster af vrede eller irritabel stemning, argumenterende eller trodsig adfærd og hævngerrighed. Det særlige er ikke, at barnet indimellem bliver vredt eller siger nej, men at modstanden bliver et gennemgribende og funktionsforstyrrende mønster, som går igen over tid.",
+    "centrale_traek": {
+      "vrede_og_irritabilitet": [
+        "Mister ofte besindelsen",
+        "Bliver let fornærmet eller irriteret",
+        "Virker ofte vred eller bitter"
+      ],
+      "argumenterende_og_trodsig_adfaerd": [
+        "Argumenterer meget med voksne",
+        "Nægter at følge regler eller almindelige anmodninger",
+        "Udfordrer autoritetsrelationer",
+        "Giver andre skylden for egne fejl eller dårlig opførsel"
+      ],
+      "haevngerrighed": [
+        "Kan reagere ondt eller hævngerrigt",
+        "Kan bære nag eller søge gengældelse i enkelte mønstre"
+      ]
+    },
+    "dsm_5_og_vurdering": {
+      "forklaring": "Diagnosen bygger på et mønster, der har varet mindst seks måneder, hvor barnet har mindst fire relevante symptomer fra områderne vrede/irritabilitet, trodsig adfærd og hævngerrighed.",
+      "vigtigt": [
+        "Adfærden skal være belastende og skabe funktionsproblemer",
+        "Man må altid overveje om noget andet forklarer billedet bedre",
+        "Sværhedsgraden vurderes blandt andet ud fra hvor mange arenaer symptomerne optræder i"
+      ]
+    },
+    "hvordan_det_kan_se_ud_i_hverdagen": [
+      "Morgenrutiner bliver til kamp",
+      "Måltider ender i opgør",
+      "Lektier udløser skænderier eller affekt",
+      "Nederlag i spil eller kravsituationer giver vrede og skyldplacering",
+      "Skolen oplever barnet som barnet der siger imod, nægter eller presser reglerne",
+      "Venskaber bliver skrøbelige på grund af vrede, stædighed og konflikt"
+    ],
+    "naar_det_bliver_tolket_forkert": {
+      "forklaring": "ODD bliver ofte læst som ren ulydighed eller ond vilje, men mange børn med ODD ryger meget hurtigt op i et spændingsniveau, hvor de mister fleksibilitet, overblik og evne til at vælge en anden reaktion.",
+      "det_der_ofte_overses": [
+        "Lav frustrationstolerance",
+        "Reguleringsproblemer",
+        "Impulsivitet",
+        "Skam og nederlag bagefter",
+        "Fastlåste samspilscirkler mellem barn og voksne"
+      ]
+    },
+    "odd_og_adhd": {
+      "forklaring": "En stor del af børn med ODD har også ADHD, og den kombination gør ofte hverdagen mere eksplosiv.",
+      "vigtigt": [
+        "ADHD kan øge impulsivitet og gøre konflikter hurtigere og voldsommere",
+        "ODD handler mere om det vedvarende oppositionelle mønster over for krav og voksne",
+        "Når begge dele er til stede, giver det ofte god mening at tage ADHD meget alvorligt i behandlingen"
+      ]
+    },
+    "hvorfor_det_sker": {
+      "forklaring": "Der findes ikke én enkelt årsag. ODD opstår ofte i et samspil mellem sårbarhed og miljø.",
+      "genetisk_saarbarhed": [
+        "Nogle børn har en større sårbarhed for impulsivitet, følelsesmæssig ustabilitet og aggressionsproblemer"
+      ],
+      "neurobiologi_og_regulering": [
+        "Barnet kan have svært ved at holde vrede tilbage når den opstår",
+        "Barnet kan have sværere ved at lære af negative konsekvenser",
+        "Krav, pres og frustration kan opleves stærkere og udløse hurtigere kamp"
+      ],
+      "foraeldre_barn_cirkler": [
+        "Negative samspilsmønstre kan vedligeholde problemerne",
+        "Konflikter kan udvikle sig til faste cirkler af krav, modstand, eskalation og opgivenhed",
+        "Barnet kan gradvist lære, at massiv modstand nogle gange virker"
+      ],
+      "belastninger_i_omgivelserne": [
+        "Familiekonflikter",
+        "Skilsmisse",
+        "Vold",
+        "Misbrug",
+        "Psykisk sygdom hos forældre",
+        "Fattigdom eller anden vedvarende belastning"
+      ]
+    },
+    "komorbiditet": {
+      "forklaring": "ODD står sjældent alene.",
+      "hyppige_samtidige_vanskeligheder": [
+        "ADHD",
+        "Angst",
+        "Depressive symptomer",
+        "Læringsvanskeligheder",
+        "Andre regulerings- eller adfærdsproblemer"
+      ],
+      "vigtigt": "Hvis man overser det, der ligger under eller ved siden af ODD-mønstret, bliver hjælpen ofte for snæver."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Udredning kræver, at man ser bredt og grundigt på barnet.",
+      "indgaar_typisk": [
+        "Grundige samtaler med forældre",
+        "Skolens eller institutionens perspektiv",
+        "Observation af samspil",
+        "Beskrivelse af varighed, hyppighed og typiske triggere",
+        "Spørgeskemaer og adfærdsratings som supplement"
+      ],
+      "vigtigt_at_skille_fra": [
+        "ADHD",
+        "Autisme",
+        "Angst",
+        "Traumer",
+        "Depression",
+        "Bipolar lidelse",
+        "Læringsvanskeligheder"
+      ],
+      "vigtigt": "ODD er ikke bare en etikette på trodsig adfærd. Det kræver, at man forstår, hvad der ligger under."
+    },
+    "behandling_og_hjaelp": {
+      "parent_management_training": {
+        "forklaring": "Den bedst dokumenterede behandling er psykosocial og bygger ofte på forældretræning og strukturerede adfærdsbaserede indsatser.",
+        "fokus": [
+          "Øge positiv opmærksomhed",
+          "Give korte, tydelige og gennemførlige beskeder",
+          "Bruge ros og belønning mere præcist",
+          "Skabe forudsigelige, rimelige og konsistente konsekvenser",
+          "Bryde de fastlåste konflikter gradvist op"
+        ]
+      },
+      "samarbejdende_problemloesning": [
+        "Forstå hvilke færdigheder barnet mangler",
+        "Dæmpe kampstemningen",
+        "Inddrage barnet mere aktivt i løsninger",
+        "Arbejde med fleksibilitet, frustrationstolerance og problemløsning"
+      ],
+      "direkte_arbejde_med_barnet": [
+        "Følelsesregulering",
+        "Problemløsning",
+        "Sociale færdigheder",
+        "At genkende spændingssignaler",
+        "At sætte ord på vrede",
+        "At bruge pauser og alternativer"
+      ],
+      "medicin": {
+        "forklaring": "Der findes ikke medicin, som behandler ODD direkte.",
+        "vigtigt": [
+          "Medicin kan være relevant ved ADHD eller andre samtidige tilstande",
+          "Ved svær aggression kan medicin i særlige tilfælde indgå som del af en samlet behandling",
+          "Kernebehandlingen er fortsat psykosocial"
+        ]
+      }
+    },
+    "skole_og_hverdag": {
+      "udfordringer": [
+        "Svært ved at følge instruktioner",
+        "Svært ved at tåle korrektion",
+        "Mange konflikter med lærere",
+        "Risiko for dårligt ry og fastlåst problembarnsrolle",
+        "Faglige nederlag kan forværre mønstret"
+      ],
+      "hjaelper_ofte": [
+        "Klare og få regler",
+        "Stor forudsigelighed",
+        "Hurtig positiv feedback",
+        "Tæt skole-hjem-samarbejde",
+        "Voksne der kan deeskalere frem for at gå i magtkamp",
+        "Opmærksomhed på triggere som overgange, bestemte fag, træthed og social usikkerhed"
+      ]
+    },
+    "familien_omkring_barnet": {
+      "forklaring": "ODD rammer hele familien, ikke kun barnet.",
+      "hjaelper_ofte": [
+        "Daglig positiv tid med barnet uden krav",
+        "At vælge sine kampe med omtanke",
+        "At skabe små øer af positiv kontakt",
+        "At beskytte søskende og give dem plads",
+        "At støtte forældre med netværk, pauser og vejledning"
+      ],
+      "vigtigt": "Hjælpen må ikke kun handle om at få barnet til at opføre sig pænere, men også om at beskytte relationerne i familien."
+    },
+    "udvikling_over_tid_og_prognose": {
+      "forklaring": "ODD kan ændre sig betydeligt over tid, især når barnet mødes tidligt med den rigtige hjælp.",
+      "vigtigt": [
+        "Nogle børn får markant færre symptomer",
+        "Andre fortsætter med et mere fastlåst mønster hvis problemerne er ubehandlede",
+        "Tidlig indsats gør en stor forskel",
+        "Ikke alle børn med ODD udvikler mere alvorlige adfærdsproblemer",
+        "Risikoen for senere conduct disorder er højere ved manglende hjælp og store samtidige belastninger"
+      ]
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Det er bare dårlig opdragelse",
+        "realitet": "Forældre kan påvirke mønsteret, men ODD kan ikke reduceres til slap disciplin."
+      },
+      {
+        "myte": "Barnet er bare ondt eller manipulerende",
+        "realitet": "Mange børn med ODD virker kontrollerende eller provokerende, men bagved ligger ofte reguleringsvanskeligheder og fastlåste mønstre."
+      },
+      {
+        "myte": "Mere straf er løsningen",
+        "realitet": "Jo mere konfliktniveauet stiger, desto mere fastlåst bliver mønstret ofte."
+      },
+      {
+        "myte": "Barnet vokser det bare fra",
+        "realitet": "Nogle bedres med alderen, men mange har brug for målrettet hjælp."
+      },
+      {
+        "myte": "ODD er en håbløs diagnose",
+        "realitet": "Det er en alvorlig problematik, men den rette indsats gør ofte en reel forskel."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "PPR",
+      "Skole",
+      "Kommunale tilbud",
+      "Børne- og ungdomspsykiatrien",
+      "Forældretræningsforløb",
+      "Familieorienteret vejledning",
+      "Støtte til skole-hjem-samarbejde"
+    ],
+    "afslutning": "Når man ser ODD rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke konflikterne fra den ene dag til den anden, men det flytter blikket fra fordømmelse til forståelse, fra kamp til strategi og fra afmagt til målrettet arbejde."
+  }
+}

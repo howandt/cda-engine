@@ -1,0 +1,233 @@
+{
+  "id": "borderline",
+  "navn": "Borderline",
+  "fuld_navn": "Borderline Personlighedsforstyrrelse",
+  "kort_visning": {
+    "hvad_er_det": "Borderline personlighedsforstyrrelse er kendetegnet ved stor ustabilitet i følelsesregulering, relationer, selvopfattelse og impulskontrol. Hos unge kan det vise sig som meget stærke følelsesreaktioner, frygt for at blive forladt, ustabile relationer, selvskade og impulsiv adfærd.",
+    "hvordan_viser_det_sig": [
+      "Følelser kan skifte hurtigt og voldsomt",
+      "Relationer kan være intense og ustabile",
+      "Den unge kan have stærk frygt for at blive afvist eller forladt",
+      "Selvopfattelsen kan være ustabil og præget af tomhedsfølelse",
+      "Der kan være impulsivitet, selvskade eller anden selvdestruktiv adfærd"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At den unge bare er manipulerende",
+      "At det bare er almindelig teenageadfærd",
+      "At den unge ikke vil hjælpes",
+      "At det kun handler om opførsel og ikke om stærk indre smerte",
+      "At diagnosen i sig selv gør situationen håbløs"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Mød den unge roligt og tydeligt, også når følelserne er stærke",
+      "Validér følelsen uden nødvendigvis at bekræfte konklusionen",
+      "Sæt grænser med fasthed og omsorg",
+      "Tag selvskade og selvmordstanker alvorligt hver gang",
+      "Søg specialiseret hjælp og arbejd med fælles planer i hjem, skole og behandling"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Borderline personlighedsforstyrrelse hos unge er alvorligt, men det er behandlingsbart. Den unge er ikke ødelagt, men ofte i stærk følelsesmæssig smerte. Med den rigtige hjælp kan der ske markant bedring.",
+    "hvad_er_borderline": "Borderline personlighedsforstyrrelse er præget af ustabilitet i følelser, relationer, selvopfattelse og adfærd. Det viser sig ofte som følelsesmæssig overvældelse, frygt for forladthed, ustabile relationer, identitetsusikkerhed og impulsiv eller selvskadende adfærd.",
+    "centrale_omraader": {
+      "foelelsesregulering": [
+        "Følelser kan skifte hurtigt og intenst",
+        "Små hændelser kan udløse meget store reaktioner",
+        "Vrede, fortvivlelse og tomhed kan fylde voldsomt",
+        "Den unge kan have svært ved selv at regulere følelsesstorme"
+      ],
+      "relationer": [
+        "Relationer kan skifte mellem idealisering og devaluering",
+        "Frygt for at blive forladt kan fylde meget",
+        "Den unge kan både klamre sig til andre og skubbe dem væk",
+        "Sort-hvid tænkning kan præge relationer"
+      ],
+      "selvopfattelse": [
+        "Ustabil identitetsfølelse",
+        "Skiftende mål, værdier eller interesser",
+        "Kronisk tomhedsfølelse",
+        "Usikkerhed på hvem man er"
+      ],
+      "adfaerd": [
+        "Impulsivitet",
+        "Selvskade",
+        "Selvmordstanker eller -forsøg",
+        "Risikoabel adfærd",
+        "Stofbrug eller spiseforstyrret adfærd hos nogle"
+      ]
+    },
+    "diagnostiske_traek": {
+      "forklaring": "Diagnosen stilles på baggrund af et mønster af flere samtidige træk og betydelig påvirkning af funktion og trivsel.",
+      "typiske_traek": [
+        "Stærk angst for at blive forladt",
+        "Ustabile og intense relationer",
+        "Ustabil selvopfattelse",
+        "Impulsivitet på flere områder",
+        "Selvskadende eller selvmordstruende adfærd",
+        "Følelsesmæssig ustabilitet",
+        "Kronisk tomhedsfølelse",
+        "Intens vrede",
+        "Stressrelateret paranoia eller dissociation"
+      ],
+      "vigtigt": "Hos unge kan man godt stille diagnosen, når billedet er tydeligt og vurderingen er grundig."
+    },
+    "nyt_om_borderline_hos_unge": {
+      "forklaring": "Nyere forskning peger på, at borderline hos unge bør opdages og behandles tidligt frem for at blive overset eller udsat.",
+      "centrale_punkter": [
+        "Tidlig intervention kan mindske forværring",
+        "Mange unge får markant symptomreduktion med den rigtige behandling",
+        "Jo tidligere hjælpen sættes ind, jo bedre er prognosen ofte",
+        "Ambulant behandling kan i mange tilfælde være mere hjælpsom end langvarig indlæggelse"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Udredningen kræver en grundig psykologisk eller psykiatrisk vurdering.",
+      "indgaar_typisk": [
+        "Klinisk interview",
+        "Udviklingshistorie",
+        "Afdækning af familieforhold og traumer",
+        "Vurdering af selvskade, selvmordstanker og impulsivitet",
+        "Strukturerede interviews eller spørgeskemaer",
+        "Observation af følelsesregulering og relationsmønstre"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Bipolar lidelse",
+        "ADHD",
+        "PTSD og kompleks PTSD",
+        "Depression med emotionel dysregulering",
+        "Autisme",
+        "Andre samtidige psykiske vanskeligheder"
+      ]
+    },
+    "aarsager_og_risikofaktorer": {
+      "genetik": "Der er en arvelig komponent, og borderline ses oftere i nogle familier.",
+      "hjernens_udvikling": "Nyere forskning peger på, at følelsesregulering, impulsregulering og stressrespons kan fungere anderledes.",
+      "traumer_og_belastning": [
+        "Tidlige traumer",
+        "Omsorgssvigt",
+        "Ustabile eller kaotiske familieforhold",
+        "Mobning",
+        "Tab eller forladthed"
+      ],
+      "tilknytning_og_miljoe": [
+        "Usikker tilknytning",
+        "Følelsesmæssigt utilgængelige eller inkonsistente relationer",
+        "Omgivelser præget af høj ustabilitet"
+      ],
+      "temperament": "Nogle unge er fra starten mere følelsesmæssigt sårbare og reagerer stærkere på belastning.",
+      "vigtigt": "Det er ikke et simpelt spørgsmål om skyld. Flere biologiske, udviklingsmæssige og miljømæssige faktorer kan spille sammen."
+    },
+    "behandling_og_hjaelp": {
+      "psykoterapi": {
+        "vigtigt": "Psykoterapi er førstevalg og den vigtigste del af behandlingen.",
+        "former": [
+          "Dialektisk adfærdsterapi (DBT)",
+          "Mentalization-Based Therapy (MBT-A)",
+          "Schema Therapy",
+          "Transference-Focused Psychotherapy (TFP)",
+          "EMDR ved tydelig traumekomorbiditet"
+        ]
+      },
+      "hvad_terapi_typisk_arbejder_med": [
+        "Følelsesregulering",
+        "Impulskontrol",
+        "Selvskadeforebyggelse",
+        "Relationer",
+        "Mentalisering",
+        "Krisehåndtering",
+        "Stabilitet i hverdagen"
+      ],
+      "foraeldreinvolvering": "Forældre kan have stor gavn af at lære færdigheder, der hjælper dem med at støtte den unge mere roligt og mere præcist.",
+      "medicin": {
+        "forklaring": "Ingen medicin kurerer borderline, men medicin kan nogle gange bruges mod samtidige symptomer som angst, depression, søvnproblemer eller stærk uro.",
+        "vigtigt": "Medicin skal ses som supplement, ikke som hovedbehandling."
+      },
+      "ramme_for_hjaelp": {
+        "ambulant": "Ambulant behandling er ofte relevant og kan være meget hjælpsom.",
+        "indlaeggelse": "Indlæggelse bør normalt være kortvarig og bruges ved akut høj risiko, hvor sikkerhed ikke kan sikres på anden måde."
+      }
+    },
+    "borderline_i_skole_og_hverdag": {
+      "udfordringer": [
+        "Følelser kan stjæle energi og koncentration",
+        "Konflikter kan fylde meget",
+        "Relationer til jævnaldrende og voksne kan være ustabile",
+        "Den unge kan reagere stærkt på oplevet afvisning eller kritik",
+        "Selvskade, skam eller kaos kan gøre skolegang meget vanskelig"
+      ],
+      "hjaelper_ofte": [
+        "Klare aftaler og forudsigelighed",
+        "Kriseplan",
+        "Tryg voksenkontakt",
+        "Mulighed for pauser og regulering",
+        "Samarbejde mellem skole, hjem og behandling",
+        "Tilpasninger ved særligt belastede perioder"
+      ]
+    },
+    "livet_derhjemme": {
+      "for_foraeldre": [
+        "Lær at validere følelser uden at forstærke destruktive mønstre",
+        "Sæt grænser med ro og tydelighed",
+        "Tag trusler om selvskade og selvmord alvorligt",
+        "Undgå at leve konstant på tåspidser",
+        "Søg støtte og aflastning til dig selv"
+      ],
+      "for_soeskende": [
+        "Giv forklaring der passer til alder",
+        "Skab plads til deres egne følelser",
+        "Sørg for at de ikke bliver behandlere i hjemmet"
+      ],
+      "ved_kriser": {
+        "goer": [
+          "Bevar roen",
+          "Sørg for sikkerhed",
+          "Validér smerten",
+          "Brug aftalte alternativer og kriseplaner",
+          "Kontakt akut hjælp ved behov"
+        ],
+        "undgaa": [
+          "Panik",
+          "Straffe",
+          "Bagatellisering",
+          "Moraliserende svar midt i krisen"
+        ]
+      }
+    },
+    "gennem_livet": {
+      "teenageaar": "Her ses ofte de tydeligste følelsesstorme, selvskade og relationskaos, men også den hurtigste mulighed for at lære nye færdigheder.",
+      "ung_voksen": "Med behandling ses ofte gradvis mere stabilitet i relationer, impulskontrol og selvforståelse.",
+      "voksenliv": "Langtidsstudier viser, at mange med tiden får markant færre symptomer og kan leve meningsfulde liv."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "De er bare manipulerende",
+        "realitet": "Det man ser er ofte desperation, smerte og dårlig regulering, ikke kold manipulation."
+      },
+      {
+        "myte": "Det kan ikke behandles",
+        "realitet": "Borderline er en af de personlighedsforstyrrelser, hvor der findes god behandling og reelt håb."
+      },
+      {
+        "myte": "Det er bare teenageadfærd",
+        "realitet": "Når der er selvskade, stærk tomhedsfølelse, ekstrem forladthedsangst og alvorlig ustabilitet, er det mere end almindelig ungdomsuro."
+      },
+      {
+        "myte": "Diagnosen gør kun skade",
+        "realitet": "En præcis diagnose kan åbne for målrettet behandling og mindre fejlfortolkning."
+      },
+      {
+        "myte": "Det er forældrenes skyld",
+        "realitet": "Der findes ikke én simpel årsag. Biologi, sårbarhed, belastning og udviklingsforhold kan spille sammen."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Børne- og ungdomspsykiatrien",
+      "Skolepsykolog eller PPR",
+      "DBT- eller MBT-orienterede behandlere",
+      "Pårørendegrupper",
+      "Psykiatrifonden, SIND og relevante netværk",
+      "Akut hjælp ved selvskade eller selvmordsfare"
+    ],
+    "afslutning": "Borderline hos unge er alvorligt, men ikke håbløst. Med tidlig, respektfuld og evidensbaseret hjælp kan den unge lære at regulere følelser, mindske selvskade og opbygge mere stabile relationer og et mere bæredygtigt liv."
+  }
+}

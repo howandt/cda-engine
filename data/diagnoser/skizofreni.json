@@ -1,0 +1,219 @@
+{
+  "id": "skizofreni",
+  "navn": "Skizofreni",
+  "fuld_navn": "Skizofreni og psykotiske lidelser",
+  "kort_visning": {
+    "hvad_er_det": "Skizofreni er en alvorlig psykisk lidelse, som påvirker tænkning, følelsesliv, virkelighedsopfattelse og funktion. Kernen er psykose, hvor kontakten med virkeligheden bliver forstyrret.",
+    "hvordan_viser_det_sig": [
+      "Den unge kan virke fjern, mistroisk eller optaget af noget andre ikke kan følge",
+      "Der kan være hallucinationer, vrangforestillinger eller forstyrret tænkning",
+      "Den unge kan få svært ved at hænge sammen i tale, relationer og hverdag",
+      "Der kan være social tilbagetrækning, lav motivation og følelsesmæssig fladhed",
+      "Koncentration, hukommelse og overblik kan blive tydeligt svækket"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er mærkelig adfærd eller svaghed",
+      "At personen bare skal tage sig sammen",
+      "At skizofreni betyder flere personligheder",
+      "At alle med psykose er farlige",
+      "At medicin er den eneste hjælp"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag alvorlige ændringer i virkelighedsopfattelse og funktion alvorligt",
+      "Søg hurtig psykiatrisk vurdering ved mistanke om psykose",
+      "Tal enkelt, roligt og uden at gå i hård kamp med vrangforestillinger",
+      "Skru ned for krav og kaos, når den unge er stærkt belastet",
+      "Sørg også for støtte til familien og tænk sikkerhed først ved akut forværring"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Skizofreni og andre psykotiske lidelser er alvorlige tilstande, men alvorligt er ikke det samme som håbløst. Når man begynder at se sygdommen rigtigt, bliver det muligt at forstå både symptomerne, belastningen og mennesket bag.",
+    "hvad_er_skizofreni": "Skizofreni er en alvorlig psykisk lidelse, som påvirker tænkning, følelsesliv, virkelighedsopfattelse og funktion. Kernen er psykose, hvor personen kan opleve noget, andre ikke oplever, tro noget som ikke kan korrigeres af almindelige forklaringer, eller tænke og tale på en måde, hvor sammenhængen bryder ned.",
+    "typiske_symptomer": {
+      "positive_symptomer": [
+        "Hallucinationer",
+        "Vrangforestillinger",
+        "Forstyrret tænkning",
+        "Uorganiseret tale",
+        "Mærkelig eller stærkt forstyrret adfærd"
+      ],
+      "negative_symptomer": [
+        "Mindre følelsesmæssigt udtryk",
+        "Social tilbagetrækning",
+        "Manglende initiativ",
+        "Svækket motivation",
+        "Lidt tale",
+        "Nedsat lyst eller evne til at deltage i hverdagsliv"
+      ],
+      "kognitive_symptomer": [
+        "Svært ved at koncentrere sig",
+        "Problemer med hukommelse",
+        "Vanskeligheder med planlægning og organisering",
+        "Problemer med at træffe beslutninger",
+        "Svært ved at følge en samtale eller holde en rød tråd"
+      ]
+    },
+    "naar_det_begynder": {
+      "forklaring": "Skizofreni kommer sjældent helt ud af det blå. Ofte ses en gradvis ændring i en periode før tydelig psykose.",
+      "tidlige_tegn": [
+        "Mere social tilbagetrækning",
+        "Sværere ved at passe skole eller uddannelse",
+        "Søvnforandringer",
+        "Øget mistro eller forvirring",
+        "Mere følelsesmæssig fladhed",
+        "Øget optagethed af indre oplevelser",
+        "Tab af struktur og greb om hverdagen"
+      ],
+      "vigtigt": "Den tidlige fase kan ligne stress, depression, angst, ungdomsuro, stofbrug eller social belastning, og netop derfor skal alvorlige ændringer tages seriøst."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Skizofreni konstateres ikke ved én hurtig samtale. Det kræver en grundig psykiatrisk udredning.",
+      "indgaar_typisk": [
+        "Afdækning af symptomer og varighed",
+        "Vurdering af funktion i hverdagen",
+        "Samtaler med den unge og pårørende",
+        "Observation af tale, tænkning, følelsesliv og virkelighedsopfattelse",
+        "Undersøgelse af medicinske årsager og eventuelt stofbrug"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Bipolar lidelse",
+        "Svær depression med psykotiske symptomer",
+        "PTSD",
+        "Rusmiddelpåvirkning",
+        "Neurologiske sygdomme",
+        "Autoimmune tilstande",
+        "Andre kortvarige psykotiske episoder"
+      ]
+    },
+    "aarsager_og_saarbarhed": {
+      "forklaring": "Skizofreni opstår som regel i et samspil mellem biologisk sårbarhed og belastninger.",
+      "genetik": "Der er en tydelig arvelig komponent, men ikke ét enkelt gen der forklarer det hele.",
+      "hjerne_og_neurobiologi": [
+        "Forskelle i hjernens udvikling og funktion",
+        "Betydning af dopaminsystemet",
+        "Påvirkning af opmærksomhed, følelsesregulering og virkelighedsbearbejdning"
+      ],
+      "belastninger_og_miljoe": [
+        "Tidlige traumer",
+        "Vedvarende stress",
+        "Komplikationer omkring graviditet eller fødsel",
+        "Social belastning",
+        "Cannabis og andet stofbrug hos sårbare unge"
+      ],
+      "vigtigt": "Skizofreni skyldes ikke dårlig opdragelse."
+    },
+    "behandling_og_hjaelp": {
+      "medicin": {
+        "forklaring": "Antipsykotisk medicin er for mange en central del af behandlingen, især når der er tydelig psykose.",
+        "kan_hjaelpe_med": [
+          "At dæmpe hallucinationer og vrangforestillinger",
+          "At mindske risiko for tilbagefald",
+          "At gøre personen mere tilgængelig for anden hjælp"
+        ],
+        "vigtigt": "Behandlingen skal tilpasses individuelt og følges tæt, også fordi bivirkninger kan fylde meget."
+      },
+      "psykoterapi_og_psykoedukation": [
+        "Forstå symptomerne bedre",
+        "Lære tidlige tegn på tilbagefald at kende",
+        "Håndtere stress",
+        "Skabe struktur i hverdagen",
+        "Arbejde med angst, skam og selvforståelse",
+        "Kognitiv terapi for psykose kan være hjælpsom for nogle"
+      ],
+      "familieinddragelse": "Familien spiller ofte en vigtig rolle i at opdage tidlige ændringer, støtte den unge og mindske konflikter gennem viden og fælles planlægning.",
+      "psykosocial_stoette": [
+        "Støtte til skole eller uddannelse",
+        "Støtte til arbejde eller daglig struktur",
+        "Kontaktperson eller bostøtte for nogle",
+        "Rehabiliterende indsatser"
+      ],
+      "tidlig_intervention": "Jo hurtigere psykose opdages og behandles, desto bedre er mulighederne ofte for at mindske belastning og tab af funktion."
+    },
+    "skole_og_laering": {
+      "udfordringer": [
+        "Koncentration",
+        "Hukommelse",
+        "Overblik",
+        "Social kontakt",
+        "Udholdenhed",
+        "Evnen til at holde sammen på sig selv under pres"
+      ],
+      "hjaelper_ofte": [
+        "Færre krav i en periode",
+        "Forudsigelig struktur",
+        "Rolige rammer",
+        "Pauser",
+        "Støtteperson",
+        "Ekstra tid",
+        "Tæt samarbejde mellem familie, skole og behandling"
+      ],
+      "vigtigt": "Målet er ikke kun at holde fast i normalitet for enhver pris, men at finde en vej den unge faktisk kan være i."
+    },
+    "livet_derhjemme": {
+      "forklaring": "At leve tæt på et menneske med psykose er følelsesmæssigt og praktisk krævende for familien.",
+      "hjaelper_ofte": [
+        "Rolig stemme",
+        "Korte beskeder",
+        "Så lidt kaos som muligt",
+        "At holde fast i kontakt og sikkerhed frem for hård diskussion om selve psykosen",
+        "Realistiske forventninger til hvad den unge kan bære i situationen"
+      ],
+      "for_familien": [
+        "Pårørendekurser",
+        "Samtaler",
+        "Støttegrupper",
+        "Egen terapi ved behov"
+      ]
+    },
+    "naar_det_bliver_akut": {
+      "akutte_tegn": [
+        "Hurtigt tiltagende psykose",
+        "Svær forvirring",
+        "Selvmordsfare",
+        "Risiko for at skade sig selv eller andre"
+      ],
+      "vigtigt": "Ved alvorlig akut mistanke må sikkerhed komme først, og man bør hellere søge akut hjælp en gang for meget end en gang for lidt."
+    },
+    "forloeb_over_tid": {
+      "forklaring": "Forløbet varierer meget fra person til person.",
+      "muligheder": [
+        "Episodisk forløb med gode perioder imellem",
+        "Vedvarende sårbarhed",
+        "Betydelig bedring hos nogle",
+        "Behov for omfattende støtte over lang tid hos andre"
+      ],
+      "vigtigt": "Udvikling er mulig, også hvis vejen ikke bliver en enkel tilbagevenden til det gamle liv."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Skizofreni betyder split personlighed",
+        "realitet": "Skizofreni handler om psykose og forstyrret virkelighedsopfattelse, ikke om flere personligheder."
+      },
+      {
+        "myte": "Mennesker med skizofreni er farlige",
+        "realitet": "De fleste er ikke farlige. Mange er tværtimod mere sårbare og udsatte, end omgivelserne forstår."
+      },
+      {
+        "myte": "Det kan ikke behandles",
+        "realitet": "Der findes ikke altid en enkel kur, men behandling kan gøre en stor forskel for mange."
+      },
+      {
+        "myte": "Det skyldes dårlig opdragelse",
+        "realitet": "Skizofreni er ikke noget, forældre skaber med forkerte valg i opdragelsen."
+      },
+      {
+        "myte": "Medicin er den eneste hjælp",
+        "realitet": "Medicin er ofte vigtig, men relationer, terapi, psykoedukation og social støtte er også centrale."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Psykiatrien",
+      "Egen læge",
+      "Kommunale støttetilbud",
+      "Skole eller uddannelsessystem",
+      "Pårørendeforeninger",
+      "Netværk med andre pårørende"
+    ],
+    "afslutning": "Når man ser psykose og skizofreni rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det ændrer ikke alt med det samme, men det flytter blikket fra det skræmmende alene til også at omfatte sygdommen, belastningen og mennesket bag symptomerne."
+  }
+}

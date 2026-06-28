@@ -1,0 +1,192 @@
+{
+  "id": "adhd",
+  "navn": "ADHD",
+  "fuld_navn": "Attention Deficit Hyperactivity Disorder",
+  "kort_visning": {
+    "hvad_er_det": "ADHD er en opmærksomheds- og reguleringsforstyrrelse. Det betyder, at barnet kan have svært ved at styre fokus, impulser, tempo, følelser og overblik i en hverdag, der hurtigt bliver for meget.",
+    "hvordan_viser_det_sig": [
+      "Barnet bliver let distraheret og mister tråden",
+      "Barnet har svært ved at færdiggøre opgaver og holde styr på ting",
+      "Barnet kan virke motorisk uroligt eller have indre uro",
+      "Barnet reagerer hurtigt, afbryder eller har svært ved at vente",
+      "Barnet kan falde sammen efter skole eller blive hurtigt overbelastet"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At barnet ikke gider",
+      "At barnet ikke hører efter",
+      "At barnet er dårligt opdraget",
+      "At barnet bare skal tage sig sammen",
+      "At ADHD kun handler om synlig uro"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Giv korte og tydelige beskeder",
+      "Del opgaver op i mindre trin",
+      "Skab forudsigelighed og hjælp ved skift",
+      "Brug visuel støtte og konkrete rammer",
+      "Giv pauser før barnet er helt overbelastet"
+    ]
+  },
+  "lang_visning": {
+    "intro": "ADHD handler ikke om, at et barn ikke vil. Det handler ofte om, at barnet har svært ved at regulere sig selv på en måde, som omgivelserne forventer. Det gælder opmærksomhed, impulser, tempo, følelser, overblik og evnen til at holde sammen på sig selv i en hverdag, som let bliver for meget.",
+    "hvad_er_adhd": "ADHD står for Attention Deficit Hyperactivity Disorder. På dansk taler man ofte om ADHD som en opmærksomheds- og reguleringsforstyrrelse. Det betyder, at hjernen har sværere ved at styre og regulere nogle af de funktioner, som er helt centrale i hverdagen.",
+    "definition_og_typiske_symptomer": {
+      "opmaerksomhedsvanskeligheder": [
+        "Barnet bliver let distraheret",
+        "Barnet mister tråden",
+        "Barnet har svært ved at færdiggøre opgaver",
+        "Barnet glemmer beskeder og aftaler",
+        "Barnet mister ting",
+        "Barnet har svært ved at organisere sig",
+        "Barnet virker som om det ikke lytter, selv når det prøver"
+      ],
+      "hyperaktivitet_og_uro": [
+        "Barnet har svært ved at sidde stille",
+        "Barnet bevæger sig meget",
+        "Barnet virker motorisk uroligt",
+        "Barnet taler meget",
+        "Barnet har svært ved at finde ro i kroppen",
+        "Barnet virker på hele tiden",
+        "Nogle børn har mest indre uro, som andre ikke ser"
+      ],
+      "impulsivitet_og_foelelsesregulering": [
+        "Barnet afbryder",
+        "Barnet reagerer hurtigt uden at tænke sig om",
+        "Barnet har svært ved at vente på tur",
+        "Frustration vokser hurtigt",
+        "Små ting kan udløse store reaktioner",
+        "Barnet kan bagefter skamme sig over sin egen reaktion"
+      ]
+    },
+    "naar_adfaerden_bliver_misforstaaet": {
+      "forklaring": "Noget af det, der gør ADHD svært for mange familier og fagpersoner, er, at vanskelighederne ofte viser sig som adfærd. De voksne ser resultatet først, ikke nødvendigvis årsagen.",
+      "det_der_ofte_ligger_under": [
+        "Et nervesystem der hurtigere bliver belastet",
+        "En hjerne der bruger mere energi på at sortere og holde sammen",
+        "En svagere evne til at bremse impulser i tide",
+        "En højere følsomhed over for støj, krav, skift og overstimulering"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Diagnosen stilles ikke på baggrund af én test eller en hurtig vurdering. Det kræver en grundig samlet udredning.",
+      "indgaar_typisk": [
+        "Samtaler med forældre eller den voksne selv",
+        "Oplysninger fra skole eller institution",
+        "Beskrivelse af barnets udvikling og hverdag",
+        "Vurdering af symptomer over tid",
+        "Vurdering af hvor meget symptomerne påvirker daglig funktion",
+        "Undersøgelse af om andre forhold også er til stede"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Angst",
+        "Søvnproblemer",
+        "Depression",
+        "Belastningsreaktioner",
+        "Sansevanskeligheder",
+        "Indlæringsvanskeligheder",
+        "Andre udviklingsforstyrrelser"
+      ]
+    },
+    "aarsager_og_risikofaktorer": {
+      "genetiske_forhold": "ADHD ses ofte i familier, og arv spiller en væsentlig rolle.",
+      "neurologiske_forhold": "ADHD hænger sammen med forskelle i hjernens måde at regulere opmærksomhed, impulskontrol, motivation og eksekutive funktioner på.",
+      "miljoemaessige_belastninger": [
+        "Belastninger tidligt i livet",
+        "Komplikationer omkring graviditet og fødsel",
+        "Søvnproblemer",
+        "Stress i hverdagen",
+        "Andre samtidige udfordringer"
+      ],
+      "vigtigt": "ADHD opstår ikke på grund af dovenskab, dårlig opdragelse eller manglende disciplin."
+    },
+    "behandling_og_stoette": {
+      "psykoedukation": "Det hjælper, når barnet, familien og de voksne omkring barnet forstår, hvad ADHD er.",
+      "struktur_og_paedagogik": [
+        "Tydelige rammer",
+        "Korte beskeder",
+        "Forudsigelighed",
+        "Hjælp til overgange",
+        "Visuel støtte",
+        "Opdeling af opgaver i mindre trin",
+        "Pauser før systemet er helt overbelastet"
+      ],
+      "samtaleforloeb_og_traening": [
+        "Forældrevejledning",
+        "Coaching",
+        "Strategier til planlægning",
+        "Følelsesregulering",
+        "Konflikthåndtering",
+        "Opstart og selvforståelse"
+      ],
+      "medicin": "For nogle er medicin en vigtig del af behandlingen, fordi den kan gøre det lettere at fokusere, regulere sig selv og bruge strategier i hverdagen."
+    },
+    "i_skole_og_laering": {
+      "udfordringer": [
+        "At sidde stille",
+        "At fastholde opmærksomhed",
+        "At sortere information",
+        "At følge kollektive beskeder",
+        "At planlægge",
+        "At færdiggøre",
+        "At skifte mellem aktiviteter",
+        "At regulere frustration og overstimulering"
+      ],
+      "hjaelper_ofte": [
+        "Tydeligere instruktioner",
+        "Mindre delmål",
+        "Mere overskuelige opgaver",
+        "Bedre pauser",
+        "Mulighed for bevægelse",
+        "En mere rolig arbejdsplads",
+        "En voksen der hjælper med at skabe overblik"
+      ]
+    },
+    "familie_og_sociale_relationer": {
+      "familie": "ADHD påvirker ikke kun barnet, men hele familien. Mange forældre lever i en hverdag med gentagelser, konflikter, bekymringer, dårlig samvittighed og udmattelse.",
+      "socialt": [
+        "Barnet kan afbryde",
+        "Barnet kan reagere hurtigt",
+        "Barnet kan misforstå signaler",
+        "Barnet kan blive for meget eller trække sig",
+        "Barnet kan havne i konflikter, det ikke selv helt forstår bagefter"
+      ]
+    },
+    "livsstadier": {
+      "barndom": "Ofte ses uro, impulsivitet, følelsesudbrud, koncentrationsvanskeligheder og konflikter omkring krav, skift og struktur.",
+      "ungdom": "Kravene til planlægning, selvstændighed og social navigation bliver større, og vanskelighederne kan blive mere tydelige.",
+      "voksenliv": "Hos voksne kan ADHD vise sig som problemer med struktur, tid, økonomi, vedholdenhed, følelsesregulering, relationer og mental overbelastning."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "ADHD skyldes dårlig opdragelse",
+        "realitet": "ADHD er ikke et resultat af, at forældre ikke har sat grænser nok."
+      },
+      {
+        "myte": "Børn med ADHD skal bare tage sig sammen",
+        "realitet": "Mange med ADHD prøver allerede hårdt. Problemet er ofte regulering, ikke vilje."
+      },
+      {
+        "myte": "ADHD er bare uro",
+        "realitet": "ADHD kan også være glemsomhed, udtrætning, indre uro, følelsesmæssig sårbarhed og usynlig overanstrengelse."
+      },
+      {
+        "myte": "Det er en modediagnose",
+        "realitet": "ADHD er en veldokumenteret neurodevelopmental tilstand."
+      },
+      {
+        "myte": "Medicin er altid forkert",
+        "realitet": "For nogle er medicin hjælpsom, for andre ikke. Det skal vurderes fagligt og individuelt."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Forældrevejledning",
+      "Skolesamarbejde",
+      "PPR eller andre relevante fagpersoner",
+      "Psykologisk støtte",
+      "Pædagogisk tilpasning",
+      "Netværk med andre familier",
+      "Patientforeninger og vidensmiljøer",
+      "Praktiske redskaber til struktur og regulering"
+    ],
+    "afslutning": "Når forståelsen begynder at falde på plads, ændrer udgangspunktet sig. Så går man fra at tænke: Hvorfor gør du det her? til i stedet at spørge: Hvad er det, der er svært for dig lige nu? Det er ofte dér, den virkelige forandring begynder."
+  }
+}

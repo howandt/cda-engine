@@ -1,0 +1,181 @@
+{
+  "id": "antisocial",
+  "navn": "Antisocial",
+  "fuld_navn": "Antisocial Personlighedsforstyrrelse",
+  "kort_visning": {
+    "hvad_er_det": "Antisocial personlighedsforstyrrelse er et vedvarende mønster præget af at ignorere eller krænke andres rettigheder. Hos børn og unge taler man oftere om antisociale træk eller adfærdsforstyrrelse, fordi den fulde diagnose som udgangspunkt først stilles i voksenalderen.",
+    "hvordan_viser_det_sig": [
+      "Gentagne regelbrud og brud på sociale normer",
+      "Løgn, bedrag eller manipulation",
+      "Impulsiv eller aggressiv adfærd",
+      "Manglende ansvarlighed",
+      "Hensynsløshed over for andres grænser",
+      "Begrænset anger eller lille læring af konsekvenser"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er almindelig ungdomsprovokation",
+      "At alle med antisociale træk er kriminelle",
+      "At hårdere straf alene løser problemet",
+      "At forståelse betyder eftergivenhed",
+      "At tidlige tegn ikke behøver tages alvorligt"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Sæt klare grænser og konsekvenser",
+      "Vær tydelig og konsekvent på tværs af voksne",
+      "Beskyt andre børn og unge, hvis adfærden er skadelig",
+      "Søg tidlig og specialiseret hjælp ved vedvarende mønstre",
+      "Skel mellem forståelse af baggrund og accept af skadelig adfærd"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Antisociale mønstre handler ikke bare om at være vanskelig eller provokerende. Når mønstret er vedvarende og skadeligt, kræver det præcis forståelse, tydelige grænser og ofte målrettet hjælp. Det er et område, hvor forenklinger hurtigt gør skade.",
+    "hvad_er_antisociale_moenstre": "Ved antisociale mønstre ser man et mere vedvarende mønster af at ignorere eller krænke andres rettigheder. Det kan vise sig som løgn, bedrag, aggressivitet, impulsivitet, hensynsløshed, manglende ansvarlighed og begrænset anger. Psykopati er ikke det samme som antisocial personlighedsforstyrrelse og bør ikke bruges løst.",
+    "centrale_moenstre": {
+      "regelbrud_og_bedrag": [
+        "Gentagne brud på regler og normer",
+        "Løgn og bedrag",
+        "Manipulation for at opnå noget",
+        "Tyveri eller andre alvorlige overtrædelser hos nogle"
+      ],
+      "aggression_og_impulsivitet": [
+        "Impulsiv adfærd",
+        "Aggression",
+        "Hensynsløshed",
+        "Lav frustrationstolerance hos nogle"
+      ],
+      "ansvar_og_anger": [
+        "Manglende ansvarlighed",
+        "Begrænset læring af konsekvenser",
+        "Problemer med anger eller reparation efter skade",
+        "Skader andre eller sætter dem i fare uden tilstrækkelig hensyntagen"
+      ]
+    },
+    "hvordan_det_kan_vise_sig": [
+      "Den unge bryder regler igen og igen trods tydelige konsekvenser",
+      "Der kan være løgn, manipulation eller hensynsløs brug af andre",
+      "Omgivelserne kan opleve voksende utryghed og slid",
+      "Der kan være mobning, trusler eller aggressiv adfærd",
+      "Familie og skole kan blive fanget i gentagne kriser og optrapninger"
+    ],
+    "hvornår_man_taler_om_diagnose": {
+      "forklaring": "Man stiller ikke en personlighedsforstyrrelsesdiagnose på baggrund af enkelte episoder. Det kræver vedvarende mønstre over tid og en grundig faglig vurdering.",
+      "vigtigt": [
+        "Hos børn og unge taler man ofte om antisociale træk eller adfærdsforstyrrelse",
+        "Fuld antisocial personlighedsforstyrrelse stilles som udgangspunkt først i voksenalderen",
+        "Der skal typisk have været tegn på adfærdsforstyrrelse før 15-årsalderen"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "En ordentlig vurdering ser på udviklingshistorie, relationer, adfærd over tid og funktion på tværs af arenaer.",
+      "indgaar_typisk": [
+        "Udviklingshistorie",
+        "Adfærd over tid",
+        "Relationelle mønstre",
+        "Funktion i familie, skole og sociale sammenhænge",
+        "Impulsivitet, aggression og regelbrud",
+        "Reaktioner på konsekvenser og ansvar"
+      ],
+      "vigtigt_at_skille_fra": [
+        "ADHD",
+        "Autisme",
+        "Traumer",
+        "Misbrug",
+        "Bipolare tilstande",
+        "Depression",
+        "Andre personlighedsproblematikker"
+      ]
+    },
+    "aarsager_og_baggrund": {
+      "forklaring": "Der er sjældent én enkel årsag. Mønstret opstår typisk i et samspil mellem biologisk sårbarhed, temperament, opvækstvilkår, relationelle erfaringer og lærte mønstre.",
+      "mulige_forhold": [
+        "Tidlige adfærdsproblemer",
+        "Impulsivitet",
+        "Aggressivitet",
+        "Lav frygtrespons",
+        "Vanskeligheder med at lære af konsekvenser",
+        "Omsorgssvigt",
+        "Vold eller ustabile miljøer",
+        "Tidlig eksponering for kriminalitet eller alvorlige belastninger"
+      ],
+      "vigtigt": "Ikke alle med svære opvækstvilkår udvikler antisociale mønstre, og mønstret kan ikke forklares af miljø alene."
+    },
+    "behandling_og_hjaelp": {
+      "overordnet": "Behandlingen er ofte udfordrende, blandt andet fordi motivation, ansvarstagen og stabil deltagelse kan være vanskelige områder.",
+      "man_arbejder_typisk_med": [
+        "Impulskontrol",
+        "Konsekvensforståelse",
+        "Aggressionsregulering",
+        "Ansvarlighed",
+        "Problemløsning",
+        "Mentalisering",
+        "Reduktion af skadelig adfærd"
+      ],
+      "rammer": [
+        "Tydelige behandlingsrammer",
+        "Struktureret opfølgning",
+        "Konkret arbejde med risikosituationer",
+        "Tidlig indsats når mønstrene viser sig"
+      ],
+      "medicin": "Der findes ikke medicin, som i sig selv behandler antisocial personlighedsforstyrrelse, men samtidig uro, aggression, depression eller andre problemer kan nogle gange behandles supplerende."
+    },
+    "antisociale_moenstre_i_skole_og_hverdag": {
+      "udfordringer": [
+        "Alvorlige regelbrud",
+        "Løgn og manipulation",
+        "Aggression eller mobning",
+        "Manglende hensyn til andre elevers sikkerhed og grænser",
+        "Vedvarende konflikter med voksne"
+      ],
+      "hjaelper_ofte": [
+        "Klare regler og konsekvenser",
+        "Ensartet voksenlinje",
+        "Tæt opfølgning",
+        "Arbejdet med aggression og sociale færdigheder",
+        "Beskyttelse af andre børn og unge når det er nødvendigt"
+      ],
+      "vigtigt": "Forståelse må aldrig stå i stedet for sikkerhed. Når en elev skader andre, skal de andre beskyttes."
+    },
+    "livet_derhjemme": {
+      "for_familien": [
+        "Skab tydelige regler og konsekvenser",
+        "Vær så konsekvent som muligt",
+        "Søg støtte til forældrene selv",
+        "Undgå at stå alene med alvorlig adfærd",
+        "Vurder realistisk hvad familien kan bære"
+      ],
+      "beskyttelse": "Hvis et barn eller en ung er voldelig, truende eller alvorligt skadelig over for søskende eller andre i hjemmet, må beskyttelse komme først.",
+      "vigtigt": "Det er ikke et svigt at søge mere omfattende hjælp eller at insistere på sikkerhed."
+    },
+    "udvikling_over_tid": {
+      "barndom_og_ungdom": "Hos børn og unge ser man ofte træk og adfærdsmønstre, som kan være i bevægelse, men vedvarende alvorlige mønstre skal tages tidligt alvorligt.",
+      "voksenliv": "Hos voksne bliver billedet ofte mere stabilt, og derfor betyder tidlig indsats noget, mens der stadig er mere bevægelighed i udviklingen."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Alle med antisocial personlighedsforstyrrelse er farlige kriminelle",
+        "realitet": "Nogle begår kriminalitet, andre gør ikke. Men mønstret handler stadig om alvorlige vanskeligheder med ansvar, hensyn og grænser."
+      },
+      {
+        "myte": "Børn med de her træk er håbløse",
+        "realitet": "Nogle forløb er meget svære, men præcision, tydelige grænser og tidlig hjælp er mere hjælpsomt end håbløshed."
+      },
+      {
+        "myte": "Hvis man forstår baggrunden, skal man acceptere adfærden",
+        "realitet": "Forståelse og grænsesætning er ikke modsætninger."
+      },
+      {
+        "myte": "Det er let at se, hvem der har de her problemer",
+        "realitet": "Nogle kan fremstå charmerende eller overbevisende i lange perioder, og derfor er grundig vurdering vigtig."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Psykiatrisk vurdering",
+      "Psykologer med erfaring i adfærds- og personlighedsproblematikker",
+      "Familiebehandling",
+      "Forældrevejledning",
+      "Skole og behandlingssamarbejde",
+      "Mere omfattende støtte når sikkerhed er truet"
+    ],
+    "afslutning": "Når man ser de antisociale mønstre rigtigt, bliver det muligt at handle mindre naivt og mere præcist. Det handler ikke om at bortforklare skade, men om at forstå mønstret godt nok til at sætte tydelige grænser, beskytte andre og arbejde med det, der faktisk kan flyttes."
+  }
+}

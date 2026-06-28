@@ -1,0 +1,229 @@
+{
+  "id": "selektiv_mutisme",
+  "navn": "Selektiv mutisme",
+  "fuld_navn": "Selektiv mutisme",
+  "kort_visning": {
+    "hvad_er_det": "Selektiv mutisme er en angstlidelse, hvor barnet i bestemte sociale situationer ikke kan tale, selv om barnet godt kan tale andre steder. Det handler ikke om trods eller manglende vilje, men om et nervesystem, der går i alarm og fastfryser stemmen.",
+    "hvordan_viser_det_sig": [
+      "Barnet taler ofte frit hjemme, men bliver helt tavst i skole, børnehave eller over for bestemte voksne",
+      "Kroppen kan stivne, blikket fryse og stemmen blive utilgængelig i sociale kravsituationer",
+      "Barnet kan måske nikke, pege eller hviske til enkelte personer, men ikke tale frit",
+      "Tavsheden kan gradvist brede sig til flere sammenhænge, hvis problemet får lov at sætte sig fast",
+      "Skam, social isolation og faglige problemer kan vokse over tid"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At barnet bare er genert",
+      "At barnet er trodsigt eller manipulerende",
+      "At man bare skal presse barnet lidt mere",
+      "At barnet nok vokser fra det uden hjælp",
+      "At problemet skyldes, at barnet ikke vil tale"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Forstå tavsheden som angst og fastfrysning, ikke som modvilje",
+      "Søg tidlig vurdering hos fagperson med viden om børn og angst",
+      "Arbejd med små, gradvise skridt i stedet for pres eller ultimative krav",
+      "Samarbejd tæt mellem hjem og skole om en fælles plan",
+      "Bevar varme og tryghed, men hjælp barnet fremad i realistiske trin"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når et barn taler frit hjemme, men bliver helt tavst i skolen eller i andre sociale sammenhænge, bliver omgivelserne ofte forvirrede. Men bag tavsheden står der som regel ikke et barn, der ikke vil tale. Der står et barn, som bliver så angst, at stemmen låser sig fast.",
+    "hvad_er_selektiv_mutisme": "Selektiv mutisme betyder, at et barn konsekvent ikke taler i bestemte sociale situationer, hvor tale forventes, samtidig med at barnet taler i andre situationer. Det afgørende er netop selektiviteten. Barnet er ikke mutistisk alle steder, men fastlåst i bestemte kontekster, ofte i skole eller institution.",
+    "hvad_der_karakteriserer_tilstanden": {
+      "centralt": [
+        "Barnet kan tale i trygge rammer",
+        "Barnet kan ikke få stemmen frem i bestemte sociale situationer",
+        "Problemet handler om angstregulering og fastfrysning",
+        "Tavsheden er ikke et bevidst valg"
+      ],
+      "vigtigt": "Det er ikke det samme som almindelig generthed, generel mutisme eller en sprogforstyrrelse."
+    },
+    "dsm_5_og_vurdering": {
+      "forklaring": "Diagnosen bygger på et vedvarende mønster, hvor barnet ikke taler i bestemte sociale situationer, selv om barnet taler andre steder.",
+      "vigtigt": [
+        "Problemet skal påvirke funktion i skole, social deltagelse eller anden vigtig kommunikation",
+        "Mønstret skal have varet mindst en måned og ikke kun være en kort tilpasningsperiode",
+        "Barnet skal beherske sproget i den pågældende situation",
+        "Billedet må ikke bedre forklares af sprogforstyrrelse, autisme, psykose eller lignende forhold"
+      ]
+    },
+    "hvordan_det_kan_se_ud_i_virkeligheden": [
+      "Barnet taler hjemme, men er fuldstændig tavst i skole eller børnehave",
+      "Barnet kan måske hviske til én udvalgt person, men ikke til læreren",
+      "Barnet kan måske tale i et tomt lokale, men ikke når andre er til stede",
+      "Nogle børn bliver så fastfrosne, at også nonverbal kommunikation bliver meget begrænset",
+      "Jo længere problemet varer, desto større bliver risikoen for social isolation, faglige problemer og skam"
+    ],
+    "hvorfor_det_sker": {
+      "forklaring": "Den grundlæggende drivkraft er angst, men problemet udvikler sig ofte i et samspil mellem temperament, biologisk sårbarhed, erfaringer og vedligeholdende mønstre.",
+      "temperament_og_arvelig_saarbarhed": [
+        "Mange børn har fra tidlig alder været mere forsigtige og hæmmede i nye situationer",
+        "Behavioral inhibition kan være en vigtig sårbarhedsfaktor",
+        "Angstlidelser eller social angst ses ofte i familien"
+      ],
+      "nervesystem_og_fastfrysning": [
+        "Barnets frygtsystem går højt op i sociale kravsituationer",
+        "Kroppen går i alarm",
+        "Barnet fastfryser i stedet for at gå i kamp eller flugt",
+        "Stemmen bliver utilgængelig i det afgørende øjeblik"
+      ],
+      "laerte_forbindelser": [
+        "Bestemte situationer kan kobles til stærk angst",
+        "Skole eller tale kan blive forbundet med fare og skam",
+        "Tavshed giver kortvarig lettelse og bliver derfor en stærk beskyttelsesstrategi"
+      ],
+      "det_der_vedligeholder_problemet": [
+        "Når barnet ikke taler, falder angsten ofte lidt med det samme",
+        "Omgivelserne kommer let til at tale for barnet",
+        "Forventningen om tale forsvinder gradvist",
+        "Barnet lærer ikke, at stemmen også kan bruges sikkert i de svære situationer"
+      ]
+    },
+    "komorbiditet": {
+      "forklaring": "Selektiv mutisme står sjældent helt alene.",
+      "hyppige_samtidige_vanskeligheder": [
+        "Social angst",
+        "Separationsangst",
+        "Generaliseret angst",
+        "Specifikke fobier",
+        "Perfektionisme",
+        "ADHD i nogle tilfælde",
+        "Autisme i nogle komplekse forløb"
+      ],
+      "vigtigt": "Behandlingen må derfor ikke kun fokusere snævert på talen, men også på barnets bredere angstprofil og trivsel."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Udredning kræver som regel en fagperson med erfaring i børn og angstlidelser.",
+      "indgaar_typisk": [
+        "Observation af barnet i forskellige sammenhænge",
+        "Kortlægning af hvor barnet taler og ikke taler",
+        "Samtaler med forældre",
+        "Samtaler med skole eller institution",
+        "Vurdering af hvordan omgivelserne har reageret indtil nu",
+        "Eventuelle spørgeskemaer som støtte til vurderingen"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Hørenedsættelse",
+        "Sprogforstyrrelse",
+        "Almindelig generthed",
+        "Autisme",
+        "Andetsprogssituationer hvor barnet endnu ikke behersker sproget"
+      ],
+      "vigtigt": "Det karakteristiske er den skarpe kontekstafhængighed: barnet kan tale, men ikke i de bestemte situationer."
+    },
+    "behandling_og_hjaelp": {
+      "grundprincip": "Behandling virker bedst, når den er aktiv, gradvis og angstforstående.",
+      "gradvis_eksponering": [
+        "Barnet øver sig i at bruge stemmen i lidt sværere situationer ad gangen",
+        "Man starter ikke med det sværeste",
+        "Målet er at give barnet nye erfaringer med, at stemmen kan bruges sikkert også dér"
+      ],
+      "stimulus_fading_og_shaping": [
+        "En tryg person suppleres gradvist med en ny person",
+        "Små skridt forstærkes systematisk",
+        "Man kan begynde med lyde, så hvisken, så ord, så korte sætninger"
+      ],
+      "arbejde_med_foraldrene": [
+        "Forældre skal forstå tavsheden som angst og ikke som trods",
+        "De skal opdage, hvornår de utilsigtet vedligeholder problemet",
+        "De skal støtte barnet varmt, men også mere strategisk"
+      ],
+      "skolebaserede_indsatser": [
+        "Skolen skal undgå skam og direkte pres",
+        "Der skal laves små realistiske mål",
+        "Fremskridt skal anerkendes systematisk",
+        "Trygge kammerater og mindre truende kommunikationsformer kan bruges som bro"
+      ],
+      "specialiserede_tilgange": [
+        "Tilpassede parent-child interaction therapy-forløb",
+        "Intensive gruppeforløb med mange trygge eksponeringsmuligheder",
+        "Andre angstbehandlingsforløb bygget op omkring gradvis taleeksponering"
+      ],
+      "medicin": {
+        "forklaring": "Der findes ikke medicin, som i sig selv ophæver selektiv mutisme.",
+        "vigtigt": [
+          "Ved svær og bred angstproblematik kan medicin i nogle tilfælde indgå som støtte",
+          "Det bør ses som supplement til den aktive angst- og adfærdsbehandling, ikke som erstatning"
+        ]
+      },
+      "det_man_skal_undgaa": [
+        "At tvinge barnet til at tale",
+        "Pres og offentlig udstilling",
+        "Straffe tavsheden",
+        "Permanent fritagelse fra al tale uden plan for gradvis bevægelse"
+      ]
+    },
+    "dit_barn_i_skolen": {
+      "udfordringer": [
+        "Barnet kan ikke vise viden mundtligt",
+        "Barnet kan ikke bede om hjælp eller sige fra",
+        "Social deltagelse bliver sværere",
+        "Klassekammerater kan begynde at undre sig, trække sig eller mobbe",
+        "Skole forbindes med skam og spænding"
+      ],
+      "hjaelper_ofte": [
+        "Viden hos lærere og pædagoger",
+        "Ro og tålmodighed",
+        "Små forudsigelige trin",
+        "Positiv opmærksomhed på selv små fremskridt",
+        "Planlagt samarbejde mellem hjem og skole"
+      ],
+      "vigtigt": "Skolen må ikke bare registrere tavsheden. Den skal aktivt være en del af løsningen."
+    },
+    "familien_omkring_barnet": {
+      "forklaring": "Selektiv mutisme rammer ikke kun barnet, men også hele familien.",
+      "hjaelper_ofte_hjemme": [
+        "At bevare hjemmet som et sted hvor stemmen bruges naturligt og uden overfokusering",
+        "At skabe små trygge eksponeringer",
+        "At rose modige skridt i stedet for kun at bemærke tavsheden",
+        "At kombinere varme med retning"
+      ],
+      "soeskende": [
+        "Søskende kan komme til at tale på barnets vegne eller blive irriterede over problemet",
+        "De har brug for forklaring og plads i familien"
+      ],
+      "vigtigt": "Barnet skal føle sig forstået, men også hjælpes fremad."
+    },
+    "udvikling_over_tid_og_prognose": {
+      "forklaring": "Selektiv mutisme bør ikke tages let, men prognosen er langt bedre, når problemet opdages tidligt og mødes med den rette hjælp.",
+      "vigtigt": [
+        "Uden behandling kan tavsheden blive mere fastlåst",
+        "Der kan udvikles social angst, skolevægring, isolation og lavt selvværd",
+        "Mange børn kan få markant bedring",
+        "Udviklingen går ofte i små trin",
+        "Tålmodig, aktiv støtte gør en reel forskel"
+      ]
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Barnet er bare meget genert",
+        "realitet": "Generthed er ikke det samme som selektiv mutisme. Barnet med selektiv mutisme kan i de kritiske situationer ikke få stemmen frem."
+      },
+      {
+        "myte": "Barnet vil vokse fra det af sig selv",
+        "realitet": "Det kan ske, men det er risikabelt at basere sig på håb alene. Problemet bliver ofte mere fastlåst uden hjælp."
+      },
+      {
+        "myte": "Barnet er trodsigt eller manipulerende",
+        "realitet": "Tavsheden er som regel et udtryk for angst, ikke modvilje."
+      },
+      {
+        "myte": "Man skal bare presse barnet lidt mere",
+        "realitet": "Pres øger som regel angsten og gør fastfrysningen stærkere."
+      },
+      {
+        "myte": "Forældrene har skylden",
+        "realitet": "Forældre kan utilsigtet vedligeholde problemet, men det er noget andet end at være årsag til det."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "PPR",
+      "Skolepsykologisk system",
+      "Børne- og ungdomspsykiatrien",
+      "Fagpersoner med viden om børn, angst og gradvis eksponering",
+      "Samarbejde mellem hjem og skole"
+    ],
+    "afslutning": "Når man ser selektiv mutisme rigtigt, bliver det muligt at hjælpe mere præcist og mindre pressende. Det fjerner ikke tavsheden fra den ene dag til den anden, men det flytter blikket fra trods og generthed til også at omfatte angsten, fastfrysningen og barnets gradvise vej tilbage til stemmen."
+  }
+}

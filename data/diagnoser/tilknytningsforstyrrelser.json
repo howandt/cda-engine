@@ -1,0 +1,267 @@
+{
+  "id": "tilknytningsforstyrrelser",
+  "navn": "Tilknytningsforstyrrelser",
+  "fuld_navn": "Tilknytningsforstyrrelser (RAD og DSED)",
+  "kort_visning": {
+    "hvad_er_det": "Tilknytningsforstyrrelser er alvorlige relationelle forstyrrelser, som typisk opstår på baggrund af svær tidlig omsorgssvigt. De handler ikke om almindelig usikkerhed eller vanskeligt temperament, men om et barn, der meget tidligt har lært, at nærhed, trøst og voksne ikke er noget, man trygt kan regne med.",
+    "hvordan_viser_det_sig": [
+      "Nogle børn søger næsten ikke trøst og tager kun i meget begrænset grad imod nærhed fra deres egne voksne",
+      "Andre børn nærmer sig fremmede uden almindelig forsigtighed og uden tydelig orientering mod deres egne omsorgspersoner",
+      "Barnet kan virke følelsesmæssigt lukket, stivnet, ukritisk socialt eller vanskeligt at regulere relationelt",
+      "Der kan være stor usikkerhed i kontakt, lav glædesrespons og mærkelige mønstre omkring trøst og nærhed",
+      "Problemet handler ofte lige så meget om relationel tryghed som om adfærd"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At barnet afviser nærhed fordi plejeforældrene eller adoptivforældrene gør noget forkert",
+      "At barnet bare er meget udadvendt eller meget reserveret af natur",
+      "At alle plejebørn eller adoptivbørn automatisk har RAD",
+      "At tvungen nærhed eller hård konfrontation hjælper",
+      "At kærlighed alene uden struktur og viden er nok"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Forstå adfærden som beskyttelsesstrategi frem for personlig afvisning",
+      "Skab ro, forudsigelighed og stabilitet over lang tid",
+      "Søg specialiseret vurdering ved mistanke om RAD eller DSED",
+      "Arbejd med tilknytningsbaseret støtte og professionel vejledning",
+      "Beskyt også de voksne omkring barnet mod udbrændthed gennem støtte og aflastning"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når et barn enten stivner ved nærhed eller søger mod alle voksne uden tydelig forskel, er det let for forældre at føle sig afvist eller som om de gør alt forkert. Men ofte er det ikke det, der foregår. Det, man ser, kan være tegn på en tilknytningsforstyrrelse, hvor barnets tidlige erfaringer har lært det, at nærhed ikke uden videre er noget, man kan stole på.",
+    "hvad_er_tilknytningsforstyrrelser": "Tilknytning er barnets følelsesmæssige bånd til sine vigtigste omsorgspersoner. I en tryg udvikling lærer barnet gradvist, at nogen kommer, når det har brug for hjælp, og at det ikke er alene med det svære. Ved tilknytningsforstyrrelser er dette mønster blevet forstyrret gennem alvorlig og vedvarende utilstrækkelig omsorg. Barnet lærer i stedet, at voksne ikke nødvendigvis kommer, at behov ikke mødes, eller at nærhed kan være forbundet med fare.",
+    "de_to_typer": {
+      "rad": {
+        "navn": "Reactive Attachment Disorder",
+        "kerne": "Et mønster hvor barnet fremstår emotionelt tilbagetrukket og hæmmet i forhold til sine omsorgspersoner.",
+        "typiske_traek": [
+          "Søger kun minimalt trøst hos sine omsorgspersoner",
+          "Responderer kun minimalt på trøst når den tilbydes",
+          "Lav social og følelsesmæssig responsivitet",
+          "Begrænset positiv affekt",
+          "Irritabilitet, tristhed eller frygt i kontakt med omsorgspersoner uden tydelig ydre grund"
+        ],
+        "hvad_man_ofte_ser_i_praksis": [
+          "Barnet glæder sig ikke tydeligt ved synet af forælderen",
+          "Barnet bliver ikke særligt påvirket ved adskillelse",
+          "Barnet søger ikke fysisk nærhed",
+          "Barnet bruger ikke den voksne som sikker base",
+          "Barnet kan stivne ved berøring eller virke følelsesmæssigt lukket"
+        ]
+      },
+      "dsed": {
+        "navn": "Disinhibited Social Engagement Disorder",
+        "kerne": "Et mønster hvor barnet er socialt uhæmmet og ikke viser almindelig selektiv tilknytning eller forsigtighed over for fremmede.",
+        "typiske_traek": [
+          "Reduceret eller fraværende tilbageholdenhed over for fremmede voksne",
+          "Overfamiliær verbal eller fysisk adfærd",
+          "Manglende tilbagesøgning til omsorgsperson efter at have bevæget sig væk",
+          "Villighed til at gå med en fremmed voksen med minimal eller ingen tøven"
+        ],
+        "hvad_man_ofte_ser_i_praksis": [
+          "Barnet gør meget lidt forskel på egne voksne og fremmede",
+          "Barnet orienterer sig ikke naturligt mod sin omsorgsperson",
+          "Barnet virker venligt og socialt modigt, men uden normalt socialt sikkerhedssystem",
+          "Barnet kan virke charmerende uden at relationen samtidig er selektiv eller tryg"
+        ]
+      },
+      "vigtig_forskel": "Barnet med RAD trækker sig væk fra alle, også sine nærmeste. Barnet med DSED søger mod alle uden tydelig forskel mellem omsorgsperson og fremmed."
+    },
+    "hvorfor_det_sker": {
+      "forklaring": "Tilknytningsforstyrrelser udvikler sig typisk på baggrund af svær tidlig omsorgssvigt, ikke almindelige forældrefejl eller korte belastningsperioder.",
+      "typiske_baggrunde": [
+        "Langvarig institutionsanbringelse uden stabil følelsesmæssigt tilgængelig voksenkontakt",
+        "Gentagne skift i omsorgspersoner eller placeringer",
+        "Svær forsømmelse i hjemmet",
+        "Omsorgspersoner præget af psykisk sygdom, misbrug, vold eller ekstrem ustabilitet",
+        "Situationer hvor barnet både er afhængigt af og bange for den samme voksne"
+      ],
+      "vigtigt": "Det er mønstre over tid, ikke enkelte episoder, der er problemet."
+    },
+    "neurobiologi": {
+      "stress_systemet": [
+        "Barnets alarmsystem kan blive vedvarende aktiveret",
+        "Barnet kan hurtigt gå i kamp, flugt eller fastfrysning",
+        "Det kan være svært at komme tilbage til ro"
+      ],
+      "oxytocin_og_social_tryghed": [
+        "Systemer for nærhed og social binding kan fungere anderledes",
+        "Fysisk nærhed opleves ikke nødvendigvis automatisk som beroligende"
+      ],
+      "amygdala_og_farefoelsomhed": [
+        "Barnets frygtsystem kan være særligt sensitivt",
+        "Omgivelserne læses lettere som potentielt farlige"
+      ],
+      "praefrontal_regulering": [
+        "Svært ved at regulere følelser og impulser",
+        "Svært ved at aflæse ansigter og sociale signaler",
+        "Sværere ved at indgå i stabil samregulering med en voksen"
+      ],
+      "vigtigt": "Neurobiologi gør ikke forløbet låst, men forklarer hvorfor reaktionerne ofte er dybe og automatiske."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Udredning af RAD og DSED kræver specialistvurdering og skal altid forstås i lyset af barnets omsorgshistorie.",
+      "indgaar_typisk": [
+        "Grundig omsorgs- og udviklingshistorie",
+        "Observation af barnet sammen med sine omsorgspersoner",
+        "Observation af barnets respons på nærhed, adskillelse og genforening",
+        "Vurdering af hvordan barnet forholder sig til fremmede voksne",
+        "Interviews og eventuelt strukturerede redskaber"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Autisme",
+        "ADHD",
+        "Intellektuel udviklingshæmning",
+        "Andre udviklingsforstyrrelser",
+        "Traumereaktioner uden egentlig RAD eller DSED"
+      ],
+      "vigtigt": "Barnet kan godt have både udviklingsforstyrrelse og konsekvenser af alvorlig omsorgssvigt. Derfor kræver vurderingen ro, tid og erfaring."
+    },
+    "komorbiditet": {
+      "forklaring": "RAD og DSED står sjældent alene.",
+      "hyppige_samtidige_vanskeligheder": [
+        "ADHD-lignende symptomer",
+        "Angst",
+        "Depressive symptomer",
+        "PTSD",
+        "Læringsvanskeligheder",
+        "Sensoriske reguleringsvanskeligheder",
+        "Adfærdsproblemer",
+        "Søvnproblemer"
+      ],
+      "vigtigt": "Behandlingen kan derfor sjældent kun handle om tilknytning i snæver forstand."
+    },
+    "behandling_og_hjaelp": {
+      "grundprincip": "Det mest virksomme udgangspunkt er stabil, tryg og vedvarende omsorg over tid.",
+      "abc": {
+        "navn": "Attachment and Biobehavioral Catch-Up",
+        "fokus": [
+          "Styrke den voksnes evne til at give trøst og omsorg selv når barnet ikke inviterer til det",
+          "Følge barnets initiativer og signaler mere præcist",
+          "Reducere adfærd hos den voksne som virker skræmmende eller uforudsigelig",
+          "Bruge video-feedback til at styrke hjælpsomme samspilsmønstre"
+        ]
+      },
+      "vipp": {
+        "navn": "Video-feedback Intervention to Promote Positive Parenting",
+        "fokus": [
+          "Styrke forælderens sensitivitet",
+          "Hjælpe forælderen til at se de øjeblikke der allerede fungerer",
+          "Udvide og styrke positive samspilsmønstre"
+        ]
+      },
+      "cos_p": {
+        "navn": "Circle of Security Parenting",
+        "fokus": [
+          "Forstå barnets behov for både udforskning og tryg base",
+          "Hjælpe voksne til at være følelsesmæssigt tilgængelige",
+          "Arbejde med de steder hvor forældrenes egne reaktioner gør det svært at møde barnet"
+        ]
+      },
+      "pcit": {
+        "navn": "Parent-Child Interaction Therapy",
+        "fokus": [
+          "Styrke positivt samspil",
+          "Skabe tydelig og rolig grænsesætning",
+          "Mindske konflikt og styrke relationel kvalitet"
+        ]
+      },
+      "tf_cbt": {
+        "navn": "Trauma-Focused Cognitive Behavioral Therapy",
+        "fokus": [
+          "Psykoedukation",
+          "Reguleringsfærdigheder",
+          "Bearbejdning af traumeminder",
+          "Støtte til barnet og forældrene omkring traumebelastning"
+        ],
+        "vigtigt": "Behandler ikke tilknytningsforstyrrelsen direkte, men kan være afgørende ved traumesymptomer eller PTSD."
+      },
+      "medicin": "Der findes ikke medicin, som behandler tilknytningsforstyrrelser direkte, men medicin kan være relevant ved komorbide tilstande som ADHD, angst eller depression.",
+      "det_man_skal_vaere_saerligt_forsigtig_med": [
+        "Holding therapy",
+        "Tvungen fastholdelse",
+        "Coercive attachment therapy",
+        "Rebirthing-lignende metoder"
+      ],
+      "vigtigt": "Et barn med tidlige relationelle traumer skal ikke tvinges ind i nærhed. Barnet skal hjælpes ind i tryghed."
+    },
+    "hvad_hjaelper_i_hverdagen": {
+      "forstaaelse_foer_fortolkning": [
+        "Barnet beskytter sig",
+        "Barnet afviser ikke nødvendigvis dig personligt",
+        "Adfærden giver mening i lyset af barnets tidligere erfaringer"
+      ],
+      "taalmodighed": [
+        "Tilknytning kan ikke presses frem",
+        "Udvikling kommer ofte i små skridt",
+        "Små tegn på bevægelse skal tages alvorligt"
+      ],
+      "konsistens": [
+        "Den voksne skal være nogenlunde forudsigelig",
+        "Barnet har brug for den samme rolige kontakt igen og igen",
+        "Det er den gentagne stabilitet der skaber ny læring"
+      ],
+      "professionel_stoette": [
+        "Forældre har ofte brug for konkrete redskaber og vejledning",
+        "Video-feedback og specialiseret støtte kan være afgørende"
+      ],
+      "omsorg_for_foraldrene_selv": [
+        "Netværk",
+        "Supervision",
+        "Terapi",
+        "Aflastning"
+      ]
+    },
+    "fra_tidlig_barndom_til_voksenliv": {
+      "forklaring": "Billedet ændrer sig med alderen, og vinduet for tidlig intervention er særligt vigtigt i de første leveår.",
+      "vigtigt": [
+        "RAD kan ofte bedres markant i en stabil familie",
+        "DSED kan være mere vedvarende og kræve længerevarende guidning og sikkerhedsarbejde",
+        "I teenageårene kan de tidlige vanskeligheder vise sig mere som problemer med tillid, relationer, identitet og følelsesregulering",
+        "Mange kan udvikle nære og sunde relationer, især hvis de tidligt kommer ind i et trygt miljø"
+      ],
+      "prognose": {
+        "rad": "Prognosen er ofte relativt god, når barnet tidligt kommer i en stabil og tryg familie med kvalificeret støtte.",
+        "dsed": "Forløbet er ofte mere sejt og langvarigt, men også her kan barnet lære bedre grænser, mere sikker social adfærd og stærkere relationel selektivitet."
+      }
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Alle plejebørn eller adoptivbørn har RAD",
+        "realitet": "Nej. Mange har sårbarheder uden at have en egentlig RAD eller DSED."
+      },
+      {
+        "myte": "Et barn med RAD kan aldrig knytte sig",
+        "realitet": "Mange børn kan bevæge sig betydeligt i trygge og stabile relationer."
+      },
+      {
+        "myte": "Hård konfrontation eller tvungen nærhed virker",
+        "realitet": "Tvungen nærhed kan gentage barnets erfaring af magtesløshed og gøre skade."
+      },
+      {
+        "myte": "Barnet manipulerer bare",
+        "realitet": "Kontrol er ofte en overlevelsesstrategi, ikke bare manipulation."
+      },
+      {
+        "myte": "Kærlighed alene er nok",
+        "realitet": "Kærlighed er afgørende, men ofte ikke tilstrækkelig uden viden, struktur og tålmodighed."
+      },
+      {
+        "myte": "Barnet vokser det bare fra",
+        "realitet": "Nogle vanskeligheder mildnes, men uden intervention kan problemerne fortsætte eller skifte form."
+      },
+      {
+        "myte": "RAD og DSED er bare to ord for det samme",
+        "realitet": "Nej. De udspringer begge af alvorlig omsorgssvigt, men viser sig forskelligt og kræver forskellig præcision i forståelsen."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Børne- og ungdomspsykiatrien",
+      "Specialiserede psykologer med erfaring i tidlig omsorgssvigt og tilknytning",
+      "Plejefamilierådgivning",
+      "Adoptionsrådgivning",
+      "Specialiseret supervision og netværk",
+      "Fagpersoner med viden om udviklingstraumer og relationel behandling"
+    ],
+    "afslutning": "Når man ser tilknytningsforstyrrelser rigtigt, bliver det muligt at hjælpe mere præcist og mindre personligt såret eller moraliserende. Det fjerner ikke barnets sårbarhed fra den ene dag til den anden, men det flytter blikket fra afvisning eller grænseløshed alene til også at omfatte beskyttelsesstrategierne, historien bag og muligheden for ny læring gennem tryghed over tid."
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "id": "spiseforstyrrelser",
+  "navn": "Spiseforstyrrelser",
+  "fuld_navn": "Spiseforstyrrelser",
+  "kort_visning": {
+    "hvad_er_det": "Spiseforstyrrelser er alvorlige psykiske lidelser, hvor forholdet til mad, krop, vægt og kontrol bliver så forstyrret, at det overtager store dele af livet. Det handler ikke kun om mad, men også om frygt, skam, kontrol, kropsopfattelse og psykisk belastning.",
+    "hvordan_viser_det_sig": [
+      "Barnet eller den unge kan spise mindre og mindre eller blive meget optaget af mad og kontrol",
+      "Måltider kan blive konfliktfyldte, og der kan være ritualer, undgåelse eller hemmeligholdelse",
+      "Der kan være opkastning, afføringsmidler, overdreven motion eller overspisning",
+      "Krop, vægt og selvforståelse kan fylde ekstremt meget",
+      "Skole, relationer, energi og psykisk trivsel kan blive tydeligt påvirket"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er en fase eller teenageusikkerhed",
+      "At det bare handler om at ville være tynd",
+      "At man altid kan se det tydeligt på kroppen",
+      "At barnet bare er trodsigt eller vil have kontrol",
+      "At det er noget man bare kan beslutte sig for at stoppe med"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag tidlige tegn alvorligt og vent ikke for længe",
+      "Søg både medicinsk og psykologisk vurdering",
+      "Skab ro, struktur og regelmæssighed omkring måltider",
+      "Undgå at gøre måltider til moralske opgør",
+      "Sørg også for støtte til forældre og søskende, fordi hele familien bliver belastet"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Spiseforstyrrelser handler sjældent kun om mad. De handler også om frygt, kontrol, kropsopfattelse, skam og et indre pres, som barnet eller den unge ofte ikke længere selv kan styre. Når man begynder at se sygdommen rigtigt, bliver det muligt at forstå både adfærden og mennesket bag.",
+    "hvad_er_spiseforstyrrelser": "Spiseforstyrrelser er psykiske lidelser, hvor forholdet til mad, krop, vægt og kontrol bliver så forstyrret, at det overtager store dele af livet. For nogle handler det tydeligt om vægt og kropsbillede, for andre mere om angst, sanser, kontrol, skam eller følelsesregulering. De kan være livstruende og skal tages alvorligt tidligt.",
+    "former_for_spiseforstyrrelser": {
+      "anoreksi": [
+        "Alvorlig restriktion af mad",
+        "Intens frygt for vægtøgning",
+        "Forstyrret oplevelse af egen krop eller vægt",
+        "Kan vise sig som vægttab, kuldskærhed, træthed, koncentrationsbesvær og social tilbagetrækning",
+        "Barnet eller den unge oplever sig ikke altid selv som syg"
+      ],
+      "bulimi": [
+        "Episoder med overspisning efterfulgt af kompenserende adfærd",
+        "Opkastning, afføringsmidler, faste eller ekstrem motion",
+        "Stærk skam efter episoderne",
+        "Kan være meget skjult og foregå bag en normalvægtig facade"
+      ],
+      "overspisningsforstyrrelse": [
+        "Tilbagevendende episoder med store mængder mad og tab af kontrol",
+        "Ingen regelmæssig kompenserende adfærd bagefter",
+        "Stor skam, hemmeligholdelse og psykisk belastning",
+        "Overlapper ofte med depression eller angst"
+      ],
+      "arfid": [
+        "Undgåelse eller stærk begrænsning af mad uden at vægt eller kropsbillede nødvendigvis er kernen",
+        "Kan handle om konsistens, lugt, smag, farve eller frygt for at kaste op eller blive kvalt",
+        "Bliver ofte misforstået som kræsenhed"
+      ],
+      "atypisk_anoreksi": [
+        "Samme alvorlige symptomer og frygt som ved anoreksi",
+        "Personen er ikke nødvendigvis undervægtig",
+        "Kan være lige så alvorlig og bliver ofte overset"
+      ]
+    },
+    "naar_det_bliver_tolket_forkert": {
+      "forklaring": "Spiseforstyrrelser bliver let misforstået, fordi omgivelserne ser det synlige lag, men ikke altid det indre pres bag.",
+      "det_der_ofte_overses": [
+        "Frygten bag maden",
+        "Skammen bag opkastning eller overspisning",
+        "Den forstyrrede kropsopfattelse",
+        "Kontrol som forsøg på at holde noget andet nede",
+        "At sygdommen kan overtage tænkningen mere end barnet selv kan styre"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Spiseforstyrrelser kræver en grundig vurdering og findes ikke ved kun at kigge på vægt eller spisevaner isoleret.",
+      "indgaar_typisk": [
+        "Vurdering af spisemønstre",
+        "Vægtudvikling",
+        "Tanker om krop og mad",
+        "Kompenserende adfærd",
+        "Psykisk trivsel",
+        "Hvor meget symptomerne påvirker hverdagen"
+      ],
+      "medicinsk_vurdering": [
+        "Puls",
+        "Blodtryk",
+        "Temperatur",
+        "Elektrolytter",
+        "Hjertebelastning",
+        "Andre kropslige konsekvenser"
+      ],
+      "psykologisk_vurdering": [
+        "Frygt og skam",
+        "Ritualer",
+        "Selvforståelse",
+        "Kontrolbehov",
+        "Kropsopfattelse"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Angst",
+        "Depression",
+        "OCD",
+        "Traumer",
+        "ADHD",
+        "Autisme",
+        "Somatiske sygdomme der påvirker appetit og vægt"
+      ]
+    },
+    "aarsager_og_saarbarhed": {
+      "forklaring": "Der er sjældent én enkelt årsag. Spiseforstyrrelser opstår som regel i et samspil mellem biologisk sårbarhed, psykiske mønstre og miljø.",
+      "genetik_og_biologi": [
+        "Arvelig komponent",
+        "Sårbarhed i systemer der har betydning for angst, belønning, impulskontrol, sult og mæthed",
+        "Tvangsprægede mønstre kan også spille en rolle"
+      ],
+      "perfektionisme_kontrol_og_angst": [
+        "Perfektionisme",
+        "Stærkt behov for kontrol",
+        "Lavt selvværd",
+        "Angst",
+        "Impulsivitet og følelsesregulering særligt ved bulimi og overspisningsforstyrrelse"
+      ],
+      "traumer_og_belastning": [
+        "Traumer",
+        "Mobning",
+        "Kritik af kroppen",
+        "Andre psykiske belastninger"
+      ],
+      "kultur_og_sociale_medier": [
+        "Massivt pres omkring krop, sundhed og udseende",
+        "Sammenligning med andre",
+        "Filtrerede billeder og idealer"
+      ],
+      "restriktion_som_udloeser": "Slankekure og markant restriktion kan hos sårbare personer være en alvorlig udløser."
+    },
+    "behandling_og_hjaelp": {
+      "familiebaseret_behandling": {
+        "forklaring": "Ved anoreksi hos børn og unge er familiebaseret behandling ofte central.",
+        "indebarer_typisk": [
+          "Forældre tager i en periode mere ansvar for måltider, struktur og ernæring",
+          "Barnet eller den unge skal ikke bære kampen alene",
+          "Forældre bliver en del af hjælpen, ikke gjort til årsagen"
+        ]
+      },
+      "psykologisk_behandling": [
+        "Kognitiv adfærdsterapi ved bulimi og overspisningsforstyrrelse",
+        "Arbejde med triggere, skam, kropsbillede og kompenserende adfærd",
+        "Mere følelsesregulerende tilgange ved stærk impulsivitet, selvskade eller følelsesmæssig ustabilitet"
+      ],
+      "ernaeringsstoette": [
+        "Normalisering af måltider",
+        "Genopbygning af et mere stabilt forhold til mad",
+        "Hjælp ved underernæring eller kaotisk spisning",
+        "Skal ske specialiseret og ikke som endnu en kamp om rigtig og forkert mad"
+      ],
+      "medicin": "Medicin er ikke en kur mod spiseforstyrrelser, men kan i nogle tilfælde bruges som supplement ved samtidige symptomer som depression eller angst.",
+      "mere_intensiv_hjaelp": {
+        "kan_vaere_noedvendigt_ved": [
+          "Meget lav vægt",
+          "Alvorlige elektrolytforstyrrelser",
+          "Hjertemæssig belastning",
+          "Selvmordsfare",
+          "Situationer hvor barnet ikke længere kan holdes medicinsk forsvarligt hjemme"
+        ],
+        "vigtigt": "I sådanne situationer må sikkerhed komme først."
+      }
+    },
+    "spiseforstyrrelser_i_skole_og_laering": {
+      "udfordringer": [
+        "Koncentrationsproblemer",
+        "Hukommelsesbesvær",
+        "Lav energi",
+        "Social skam og kropsfokus",
+        "Fravær",
+        "Sammenbrud eller hemmeligholdelse omkring måltider"
+      ],
+      "hjaelper_ofte": [
+        "Forudsigelighed",
+        "Støtte omkring måltider",
+        "Realistiske krav i svære perioder",
+        "Fleksibilitet under behandling",
+        "Tæt samarbejde mellem hjem, skole og behandlere"
+      ],
+      "vigtigt": "Skolen bør undgå unødigt kropsfokus, kommentarer om vægt eller aktiviteter der forstærker skam og sammenligning."
+    },
+    "livet_derhjemme": {
+      "forklaring": "Når en spiseforstyrrelse kommer ind i en familie, rammer det hele hjemmet og kan gøre måltider, stemning og relationer meget belastede.",
+      "hjaelper_ofte": [
+        "At tage sygdommen alvorligt tidligt",
+        "At forældrene så vidt muligt står samlet",
+        "Rolighed",
+        "Struktur",
+        "Regelmæssighed",
+        "At måltider ikke bliver til moralske opgør",
+        "At sygdommen ikke får lov at styre hele hjemmet ubegrænset"
+      ],
+      "soeskende": [
+        "Søskende mærker ofte spændingen og frygten tydeligt",
+        "De har brug for forklaring, omsorg og plads til også at være børn eller unge i familien"
+      ],
+      "foraeldrestoette": [
+        "Pårørendestøtte",
+        "Rådgivning",
+        "Familieterapi",
+        "Egen samtalehjælp ved behov"
+      ],
+      "vigtigt": "Det er ikke egoistisk at søge støtte som forælder. Det er ofte nødvendigt for at kunne holde til at hjælpe."
+    },
+    "fra_barndom_til_voksenliv": {
+      "forklaring": "Spiseforstyrrelser kan begynde i forskellige aldre og se forskelligt ud afhængigt af udviklingsfase.",
+      "typiske_moenstre": [
+        "Hos yngre børn ses oftere ARFID eller tidlige restriktive mønstre",
+        "I ungdomsårene bliver anoreksi, bulimi og kropsfokuserede forstyrrelser ofte tydeligere",
+        "Puberteten er en sårbar periode med øget fokus på krop, sammenligning og selvfølelse"
+      ],
+      "vigtigt": "Recovery er sjældent lineær. Der kan være fremskridt, tilbagefald, gode perioder og meget svære perioder, men mange kommer sig betydeligt eller helt."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Det er bare et valg",
+        "realitet": "Spiseforstyrrelser er ikke et frit valg, men alvorlige psykiske lidelser."
+      },
+      {
+        "myte": "Det rammer kun tynde teenagepiger",
+        "realitet": "Drenge, unge mænd, voksne, børn og mennesker med mange forskellige kroppe kan få spiseforstyrrelser."
+      },
+      {
+        "myte": "Man kan altid se det på kroppen",
+        "realitet": "Bulimi, overspisningsforstyrrelse og atypisk anoreksi kan være meget alvorlige uden at være tydeligt synlige i første blik."
+      },
+      {
+        "myte": "Det handler bare om mad og vægt",
+        "realitet": "Under det synlige lag ligger ofte kontrol, perfektionisme, skam, traumer, angst og følelsesreguleringsvanskeligheder."
+      },
+      {
+        "myte": "Det er forældrenes skyld",
+        "realitet": "Forældre er ofte en vigtig del af løsningen, ikke problemet."
+      },
+      {
+        "myte": "Man bliver aldrig rigtig rask",
+        "realitet": "Mange kommer sig betydeligt eller helt, især når hjælpen bliver præcis og kommer i tide."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "Psykolog",
+      "Psykiatri",
+      "Specialiserede spiseforstyrrelsesteams",
+      "Skole",
+      "Rådgivningstilbud",
+      "Pårørendeforeninger"
+    ],
+    "afslutning": "Når man ser spiseforstyrrelser rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke sygdommen fra den ene dag til den anden, men det flytter blikket fra maden alene til også at omfatte frygten, skammen og det menneske, der er fanget i sygdommen."
+  }
+}

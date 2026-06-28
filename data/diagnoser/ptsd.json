@@ -1,0 +1,277 @@
+{
+  "id": "ptsd",
+  "navn": "PTSD",
+  "fuld_navn": "Posttraumatisk stresslidelse",
+  "kort_visning": {
+    "hvad_er_det": "PTSD er en tilstand, der kan opstå efter voldsomme eller overvældende oplevelser, hvor krop og hjerne fortsætter med at reagere, som om faren stadig er der. Det handler ikke om svaghed, men om et alarmsystem, der ikke har fået ro.",
+    "hvordan_viser_det_sig": [
+      "Barnet eller den unge kan få mareridt, flashbacks eller påtrængende minder",
+      "Der kan være undgåelse af steder, mennesker, tanker eller situationer, der minder om traumet",
+      "Barnet kan virke konstant på vagt, uroligt, irritabelt eller let at skræmme",
+      "Der kan være skam, skyld, følelsesmæssig fladhed eller afstand til andre",
+      "Koncentration, søvn, skolegang og relationer kan blive tydeligt påvirket"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At barnet bare overreagerer",
+      "At det bare er angst eller dårlig opførsel",
+      "At barnet bare skal komme videre",
+      "At små børn ikke kan få PTSD",
+      "At PTSD kun rammer soldater eller voksne"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag traumereaktioner alvorligt og se bag adfærden",
+      "Skab ro, forudsigelighed og tryghed i hverdagen",
+      "Hjælp barnet uden at presse det hårdt til at tale frit om traumet uden ramme",
+      "Søg traumefaglig vurdering og behandling ved vedvarende belastning",
+      "Samarbejd tæt mellem hjem, skole og behandling og tænk sikkerhed først ved akut forværring"
+    ]
+  },
+  "lang_visning": {
+    "intro": "PTSD handler ikke om svaghed eller om at et barn bare ikke kan give slip. Det handler om et nervesystem, der fortsætter med at reagere, som om faren stadig er der. Når man begynder at se det rigtigt, bliver det muligt at forstå både symptomerne og barnet bag dem.",
+    "hvad_er_ptsd": "PTSD står for posttraumatisk stresslidelse. Det er en tilstand, som kan opstå efter meget voldsomme, overvældende eller truende oplevelser. Traumet bliver ikke bare til en almindelig hukommelse om noget, der skete dengang, men bliver ved med at leve i kroppen og hjernen, som om det stadig er nu.",
+    "hvad_der_kan_udloese_ptsd": [
+      "Fysisk vold",
+      "Seksuelle overgreb",
+      "Vold i hjemmet",
+      "Alvorlige ulykker",
+      "Brand",
+      "Naturkatastrofer",
+      "Krig",
+      "Terror",
+      "Pludselige dødsfald",
+      "Andre situationer med alvorlig fare, afmagt eller overvældelse"
+    ],
+    "typiske_symptomomraader": {
+      "genoplevelse": [
+        "Flashbacks",
+        "Mareridt",
+        "Påtrængende minder",
+        "Pludselige kropslige reaktioner",
+        "Stærk angst når noget minder om det skete"
+      ],
+      "undgaaelse": [
+        "Undgår bestemte steder",
+        "Undgår bestemte mennesker",
+        "Undgår samtaler eller følelser",
+        "Undgår aktiviteter eller tanker der vækker traumeminder"
+      ],
+      "negative_aendringer_i_tanker_og_humoer": [
+        "Skyld",
+        "Skam",
+        "Følelse af at være ødelagt",
+        "Mistillid til andre",
+        "Oplevelse af at verden er farlig",
+        "Følelsesmæssig fladhed eller afstand til andre"
+      ],
+      "hyperarousal": [
+        "Konstant vagtsomhed",
+        "Let at skræmme",
+        "Irritabilitet",
+        "Vredeudbrud",
+        "Søvnproblemer",
+        "Uro",
+        "Koncentrationsvanskeligheder"
+      ]
+    },
+    "saerligt_hos_boern_og_unge": {
+      "mindre_boern": [
+        "Traumet kan vise sig i leg",
+        "Regression",
+        "Separationsangst",
+        "Søvnproblemer",
+        "Stærk kropslig uro",
+        "Sengevædning"
+      ],
+      "stoerre_boern_og_unge": [
+        "Mere aggression",
+        "Mere tilbagetrækning",
+        "Mere risikosøgende adfærd",
+        "Selvskade hos nogle",
+        "Forsøg på at holde alt væk",
+        "Social lukkethed"
+      ],
+      "vigtigt": "Traumet kan komme til udtryk forskelligt afhængigt af alder og udvikling."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "PTSD findes ikke ved en hurtig konklusion. Det kræver en grundig faglig vurdering af både hændelser, symptomer, varighed og funktionspåvirkning.",
+      "indgaar_typisk": [
+        "Samtaler med barnet eller den unge",
+        "Samtaler med forældre",
+        "Afdækning af traumatiske hændelser",
+        "Vurdering af symptomernes varighed og styrke",
+        "Vurdering af påvirkning af hverdagen",
+        "Eventuelle spørgeskemaer og vurderingsredskaber"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Angst",
+        "Depression",
+        "Dissociation",
+        "Adfærdsvanskeligheder",
+        "Udviklingsforstyrrelser",
+        "Andre psykiske belastninger"
+      ],
+      "vigtigt": "Ingen test kan stå alene. Det afgørende er den samlede faglige forståelse."
+    },
+    "kompleks_ptsd": {
+      "forklaring": "Ved langvarige, gentagne eller relationelle traumer kan man se kompleks PTSD, hvor der ud over PTSD-symptomerne også ofte er mere dybe vanskeligheder.",
+      "kan_indeholde": [
+        "Store vanskeligheder med følelsesregulering",
+        "Dyb skam",
+        "Negativ selvforståelse",
+        "Store relationelle problemer",
+        "Svært ved at stole på andre",
+        "Oplevelse af at være grundlæggende forkert eller ødelagt"
+      ],
+      "vigtigt": "Kompleks PTSD kræver ofte mere faseopdelt og længerevarende hjælp."
+    },
+    "hvorfor_nogle_udvikler_ptsd": {
+      "forklaring": "Ikke alle børn der oplever traumer udvikler PTSD. Flere forhold spiller ind i, hvordan traumet sætter sig.",
+      "traumets_karakter": [
+        "Jo mere voldsomt traumet er",
+        "Jo mere langvarigt eller gentaget det er",
+        "Jo tættere traumet er knyttet til nære relationer",
+        "Jo tidligere i livet det sker"
+      ],
+      "tidligere_traumer": "Tidligere belastninger kan øge sårbarheden, fordi traumer kan lægge sig oven på hinanden.",
+      "stoette_efter_traumet": [
+        "Om barnet bliver troet",
+        "Om barnet bliver beskyttet",
+        "Om barnet får trøst og hjælp",
+        "Om barnet mødes med tavshed, tvivl eller krav om bare at gå videre"
+      ],
+      "biologisk_saarbarhed": "Nogle børn har et mere følsomt stresssystem eller større sårbarhed i forhold til angst, følelsesregulering og belastning.",
+      "eksisterende_vanskeligheder": [
+        "Angst",
+        "Depression",
+        "Andre psykiske eller udviklingsmæssige vanskeligheder"
+      ]
+    },
+    "hvad_der_sker_i_hjernen_og_kroppen": {
+      "forklaring": "PTSD sætter sig ikke kun i tankerne, men i hele systemet.",
+      "kan_involvere": [
+        "Mere følsomt alarmsystem",
+        "Krop der hurtigere går i fareberedskab",
+        "Forstyrret søvn",
+        "Forandret hukommelsesbearbejdning",
+        "Svækket evne til at mærke at faren hører fortiden til"
+      ],
+      "vigtigt": "Det er ikke noget barnet bare kan tænke sig ud af. Med den rette hjælp kan hjernen og kroppen dog gradvist falde mere til ro igen."
+    },
+    "behandling_og_hjaelp": {
+      "traumefokuseret_kognitiv_adfaerdsterapi": [
+        "Forstå traumereaktionen",
+        "Skabe stabilitet og regulering",
+        "Nærme sig traumeminder på en tryg og struktureret måde",
+        "Bearbejde det skete",
+        "Arbejde med skyld, skam og fastlåste tanker"
+      ],
+      "emdr": [
+        "Bearbejde traumeminder på en måde der hjælper hjernen med at organisere dem anderledes",
+        "Kan være hjælpsomt for nogle børn og unge"
+      ],
+      "faseopdelt_behandling_ved_kompleks_ptsd": [
+        "Først sikkerhed og stabilisering",
+        "Derefter traumebearbejdning",
+        "Senere mere arbejde med integration, relationer og opbygning af livet"
+      ],
+      "familieinddragelse": "Familien spiller ofte en vigtig rolle, fordi barnet skal finde sikkerhed i hverdagen. Viden om triggers og præcis støtte hjælper ofte behandlingen.",
+      "medicin": "Medicin kan i nogle tilfælde bruges som supplement, især hvis søvn, angst eller depression fylder meget, men medicin er ikke kernen i behandlingen af PTSD hos børn."
+    },
+    "hvad_hjaelper_ikke": [
+      "At presse barnet til at fortælle frit og længe om traumet uden tryg ramme",
+      "At bagatellisere traumet",
+      "At kræve at barnet bare skal videre",
+      "At forstå al adfærd som trods eller dovenskab når det er traumereaktioner"
+    ],
+    "ptsd_i_skole_og_laering": {
+      "udfordringer": [
+        "Koncentrationsproblemer",
+        "Hukommelsesbesvær",
+        "Fravær",
+        "Social tilbagetrækning",
+        "Pludselige sammenbrud",
+        "Vredeudbrud",
+        "Undgåelse af bestemte fag, lyde eller situationer"
+      ],
+      "hjaelper_ofte": [
+        "Forudsigelighed",
+        "Rolige voksne",
+        "Tryg kontaktperson",
+        "Mulighed for pauser",
+        "Realistiske krav i svære perioder",
+        "Tæt samarbejde mellem hjem, skole og behandling"
+      ],
+      "vigtigt": "Målet er ikke at presse barnet hurtigst muligt tilbage i normal funktion, men at skabe en skolehverdag barnet faktisk kan være i."
+    },
+    "livet_derhjemme": {
+      "hjaelper_ofte": [
+        "Forudsigelighed og sikkerhed",
+        "Rolige voksne",
+        "At barnet bliver troet",
+        "At nogen tydeligt siger at det skete var forfærdeligt og ikke barnets skyld",
+        "Kendskab til barnets triggers",
+        "Små øer af almindeligt liv som musik, natur, dyr, bevægelse eller leg"
+      ],
+      "soeskende": [
+        "Forklaringer der passer til deres alder",
+        "Egen tid med de voksne",
+        "Plads til deres egne følelser"
+      ],
+      "foraeldrebelastning": "Forældre kan selv blive belastede af barnets traume og symptomer. Det er ikke egoistisk at søge hjælp til sig selv, men ofte nødvendigt."
+    },
+    "naar_det_bliver_akut": {
+      "akutte_tegn": [
+        "Selvmordstanker",
+        "Selvskade",
+        "Stærk dissociation",
+        "Massiv symptomforværring",
+        "Situationer hvor barnet ikke længere kan holdes trygt hjemme"
+      ],
+      "vigtigt": "I akutte situationer må sikkerhed komme først. Nogle situationer kan ikke bæres alene hjemme."
+    },
+    "fra_barndom_til_voksenliv": {
+      "forklaring": "PTSD i barndommen kan få betydning langt frem, især hvis det ikke bliver forstået og behandlet.",
+      "kan_paavirke": [
+        "Tilknytning",
+        "Følelsesregulering",
+        "Selvforståelse",
+        "Relationer",
+        "Læring",
+        "Sundhed",
+        "Senere risiko for andre psykiske vanskeligheder"
+      ],
+      "vigtigt": "Tidlig hjælp gør en forskel. Recovery betyder ikke nødvendigvis, at traumet forsvinder helt, men at det gradvist mister sin magt."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "PTSD rammer kun soldater",
+        "realitet": "PTSD kan ramme børn, unge og voksne efter mange forskellige typer traumer."
+      },
+      {
+        "myte": "Hvis man får PTSD, er man svag",
+        "realitet": "PTSD er en menneskelig reaktion på overvældende oplevelser, ikke et tegn på svag karakter."
+      },
+      {
+        "myte": "Man skal bare komme videre",
+        "realitet": "Traumer forsvinder ikke bare fordi omgivelserne ønsker det."
+      },
+      {
+        "myte": "Børn er for små til at få PTSD",
+        "realitet": "Også små børn kan udvikle PTSD, selv om det kan se anderledes ud end hos voksne."
+      },
+      {
+        "myte": "PTSD kan ikke behandles",
+        "realitet": "Der findes behandling, som hjælper mange børn og unge markant."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Psykolog",
+      "Psykiatri",
+      "Traumebehandling",
+      "Skole",
+      "Pårørendetilbud",
+      "Organisationer med viden om traumer og psykisk belastning"
+    ],
+    "afslutning": "Når man ser PTSD rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke traumet fra den ene dag til den anden, men det flytter blikket fra overfladiske forklaringer til forståelse af alarmsystemet, frygten og den belastning barnet faktisk lever med."
+  }
+}

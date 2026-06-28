@@ -1,0 +1,280 @@
+{
+  "id": "adfaerd_og_impulskontrol",
+  "navn": "Adfærd og impulskontrol",
+  "fuld_navn": "Adfærds- og impulskontrolforstyrrelser",
+  "kort_visning": {
+    "hvad_er_det": "Adfærds- og impulskontrolforstyrrelser handler om alvorlige vanskeligheder med at bremse, regulere og stoppe sig selv i tide. Det kan vise sig som voldsom vrede, trods, regelbrud, aggression eller andre handlinger, der skader barnet selv, relationer eller omgivelserne.",
+    "hvordan_viser_det_sig": [
+      "Barnet eller den unge reagerer hurtigt og voldsomt, før noget når at blive tænkt igennem",
+      "Der kan være hyppige konflikter, ødelæggelser, løgne, aggression eller regelbrud",
+      "Nogle mister ofte besindelsen og kommer i kamp med voksne",
+      "Andre krænker andres grænser mere alvorligt og vedvarende",
+      "Impulsivitet, vrede og dårlig regulering kan skabe store problemer hjemme, i skole og socialt"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er uartighed eller dårlig opdragelse",
+      "At det kun handler om trods",
+      "At hård straf løser det",
+      "At alle børn med eksplosiv adfærd har samme problem",
+      "At man bare skal vente og håbe, det går over"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag vedvarende og alvorlige mønstre alvorligt tidligt",
+      "Skab tydelige regler, forudsigelighed og rolige konsekvenser",
+      "Søg grundig vurdering, så man ikke overser ADHD, autisme, traumer eller andre forklaringer",
+      "Undgå at reagere kun med moralsk forargelse eller hård kamp",
+      "Tænk sikkerhed først, hvis barnet eller den unge er voldelig eller alvorligt skadelig"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når et barn eller en ung igen og igen handler, før noget når at blive tænkt igennem, og konflikter, regelbrud eller aggression begynder at fylde meget, er det vigtigt at se mere præcist på, hvad der foregår. Det handler ikke altid bare om opdragelse eller trods, men kan handle om alvorlige vanskeligheder med impulskontrol, følelsesregulering og adfærd.",
+    "hvad_taler_man_egentlig_om": "Begrebet dækker flere forskellige tilstande. Nogle handler om vrede og aggression, nogle om regelbrud og krænkelse af andres grænser, og nogle om mere specifikke impulsive handlinger. Ikke al oppositionel eller impulsiv adfærd er en diagnose. Det klinisk vigtige afhænger blandt andet af hyppighed, varighed, alvor og funktionspåvirkning.",
+    "vigtige_former_hos_boern_og_unge": {
+      "odd": {
+        "navn": "Oppositionel trodsforstyrrelse",
+        "typiske_traek": [
+          "Hyppige vredesudbrud",
+          "Let irritabilitet",
+          "Vrede og bitterhed",
+          "Mange diskussioner med voksne",
+          "Modstand mod regler",
+          "Bevidst irritation af andre",
+          "Lægger skylden udenfor sig selv"
+        ],
+        "vigtigt": "Ved ODD bliver mønstret mere vedvarende, mere gennemgribende og mere belastende over tid end almindelig trods."
+      },
+      "adfaerdsforstyrrelse": {
+        "navn": "Adfærdsforstyrrelse",
+        "typiske_traek": [
+          "Fysisk aggression",
+          "Mobning",
+          "Grusomhed mod dyr eller mennesker",
+          "Bevidst ødelæggelse af ejendom",
+          "Ildspåsættelse",
+          "Tyveri",
+          "Løgn med bedrag",
+          "Pjæk",
+          "Løben hjemmefra",
+          "Andre alvorlige regelbrud"
+        ],
+        "vigtigt": "Det er et mere alvorligt mønster, hvor andres rettigheder eller vigtige regler bliver krænket tydeligt."
+      },
+      "ied": {
+        "navn": "Intermitterende eksplosiv forstyrrelse",
+        "typiske_traek": [
+          "Tilbagevendende eksplosive vredesudbrud",
+          "Verbale raseriudbrud",
+          "Kast med ting",
+          "Ødelæggelse",
+          "Fysiske angreb"
+        ],
+        "vigtigt": "Udbruddene er ofte ikke planlagte, men kommer hurtigt og er ude af proportion med situationen."
+      },
+      "andre_impulskontrolforstyrrelser": {
+        "typiske_eksempler": [
+          "Kleptomani",
+          "Pyromani",
+          "Trikotillomani"
+        ],
+        "vigtigt": "De fungerer ikke helt som ODD eller adfærdsforstyrrelse, men impulsregulering er også her et centralt problem."
+      }
+    },
+    "naar_det_bliver_laest_forkert": {
+      "forklaring": "Adfærden bliver ofte læst moralsk, før den bliver forstået klinisk.",
+      "det_der_ofte_overses": [
+        "ADHD med stærk impulsivitet",
+        "Autisme med overbelastning og rigiditet",
+        "Traumer og alarmreaktioner",
+        "Indlærte aggressive mønstre fra belastede miljøer",
+        "Mere gennemgribende reguleringsvanskeligheder"
+      ],
+      "vigtigt": "Man hjælper sjældent godt, hvis man kun reagerer med moralsk forargelse."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Det kræver en grundig vurdering at forstå, hvad barnet faktisk står med.",
+      "indgaar_typisk": [
+        "Hvilken adfærd der er tale om",
+        "Hvor ofte den optræder",
+        "Hvor længe den har stået på",
+        "I hvilke sammenhænge den viser sig",
+        "Hvilke udløsere der går igen",
+        "Hvordan barnet fungerer hjemme, i skole og med andre børn",
+        "Om der er skade, risiko eller vedvarende funktionsproblemer"
+      ],
+      "vigtigt_at_skille_fra": [
+        "ADHD",
+        "Autisme",
+        "Traumer",
+        "Angst",
+        "Depression",
+        "Bipolar lidelse",
+        "Læringsvanskeligheder",
+        "Belastninger i hjem eller skole"
+      ],
+      "vigtigt": "Ingen test kan stå alene. Det afgørende er den samlede faglige forståelse."
+    },
+    "hvorfor_det_sker": {
+      "forklaring": "Impulskontrolproblemer opstår ofte i et samspil mellem biologisk sårbarhed, følelsesregulering, udviklingsforhold og miljø.",
+      "temperament_og_biologi": [
+        "Hurtigere frustration",
+        "Sværere ved at vente",
+        "Lettere overvældelse",
+        "Sværere ved at bremse sig selv"
+      ],
+      "hjerne_og_impulskontrol": [
+        "Forskelle i impulskontrol",
+        "Konsekvensvurdering",
+        "Følelsesregulering",
+        "Belønningssystemer"
+      ],
+      "traumer_og_belastning": [
+        "Traumer",
+        "Vold",
+        "Omsorgssvigt",
+        "Utryghed",
+        "Vedvarende stress",
+        "Aggression som indlært sprog"
+      ],
+      "familie_og_opdragelsesmoenstre": [
+        "Inkonsistente grænser",
+        "Meget konflikt",
+        "Hård straf",
+        "Manglende forudsigelighed",
+        "Manglende opsyn"
+      ],
+      "jaevnaldrende_og_sociale_miljoeer": [
+        "Jævnaldrende med lignende problemer",
+        "Forstærkning af regelbrud",
+        "Aggression",
+        "Kriminalitet eller rusmiddelproblemer"
+      ]
+    },
+    "behandling_og_hjaelp": {
+      "foraeldretraening": [
+        "Klar og rolig kommunikation",
+        "Forudsigelige regler",
+        "Konsistente konsekvenser",
+        "Positiv forstærkning",
+        "Mindske utilsigtet forstærkning af konflikt",
+        "Vælge sine kampe klogere"
+      ],
+      "kognitiv_adfaerdsterapi_og_reguleringstraening": [
+        "Arbejde med triggere",
+        "Kropslige tegn på optrapning",
+        "Tankemønstre",
+        "Vredeshåndtering",
+        "Problemløsning",
+        "Konsekvensforståelse",
+        "Sociale færdigheder"
+      ],
+      "familiearbejde": [
+        "Kommunikation",
+        "Grænser",
+        "Roller i familien",
+        "Konfliktmønstre",
+        "Mindre kamp og mere struktur i hjemmet"
+      ],
+      "multisystemiske_og_intensive_indsatser": [
+        "Arbejdet på tværs af hjem, skole og fritidsmiljø",
+        "Mere omfattende hjælp ved alvorligere adfærdsforstyrrelse"
+      ],
+      "skolebaserede_indsatser": [
+        "Klare rammer",
+        "Forudsigelighed",
+        "Tæt samarbejde med hjemmet",
+        "Støtte til sociale færdigheder",
+        "Realistiske krav",
+        "Voksne der kan holde ro uden at gå i magtkamp"
+      ],
+      "medicin": "Medicin er ikke første løsning ved ODD eller adfærdsforstyrrelse alene, men kan i nogle tilfælde være relevant ved samtidig ADHD, betydelig aggression eller andre samtidige vanskeligheder.",
+      "tidlig_indsats": "Tidlig hjælp gør en reel forskel, fordi mønstre ellers kan sætte sig dybere over tid."
+    },
+    "skole_og_laering": {
+      "udfordringer": [
+        "Svært ved at tage imod beskeder",
+        "Svært ved at holde sig i ro",
+        "Svært ved at vente",
+        "Svært ved at tåle korrektion",
+        "Svært ved at håndtere nederlag eller krav",
+        "Hyppige konflikter",
+        "Udvisninger fra klassen",
+        "Dårlig læring",
+        "Fravær"
+      ],
+      "hjaelper_ofte": [
+        "Klare rammer",
+        "Tydelige voksne",
+        "Mindre straffende og mere systematisk tilgang",
+        "Pædagogisk-psykologisk vurdering",
+        "Støtteplaner",
+        "Tæt koordinering mellem skole, hjem og behandlere"
+      ],
+      "vigtigt": "Barnet må ikke bare fastlåses i rollen som problembarn."
+    },
+    "livet_derhjemme": {
+      "hjaelper_ofte": [
+        "Tydelighed",
+        "Få regler",
+        "Klare konsekvenser",
+        "Forudsigelighed",
+        "Så lidt voksensplid som muligt",
+        "At vælge sine kampe"
+      ],
+      "vigtigt_at_fokusere_paa": [
+        "Sikkerhed",
+        "Respekt",
+        "Ansvar"
+      ],
+      "soeskende": [
+        "Søskende lever ofte tæt på kaosset",
+        "De kan blive bange, vrede, loyale eller oversete",
+        "De har brug for forklaringer, egen tid og tydelig besked om, at de ikke skal bære familieproblemet"
+      ],
+      "naar_sikkerhed_kommer_foerst": "Hvis barnet eller den unge er voldelig, truende eller alvorligt skadelig over for andre i hjemmet, må sikkerhed komme først."
+    },
+    "fra_barndom_til_voksenliv": {
+      "forklaring": "Nogle børn med tidlige trods- og impulsproblemer vokser ud af meget af det, andre gør ikke.",
+      "vigtigt": [
+        "Tidlige oppositionelle træk betyder ikke automatisk et ødelagt voksenliv",
+        "Vedvarende, alvorlige og tværgående problemer skal tages alvorligt",
+        "Tidlig indsats kan ændre udviklingsretning"
+      ]
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Det er bare uartige børn",
+        "realitet": "Nogle børn er meget vanskelige at være sammen med, men det er ikke hele forklaringen."
+      },
+      {
+        "myte": "Det er kun forældrenes skyld",
+        "realitet": "Forældre betyder meget, men de er sjældent hele forklaringen."
+      },
+      {
+        "myte": "Hård straf løser det",
+        "realitet": "For mange børn øger hård straf bare modstand, skam og aggression."
+      },
+      {
+        "myte": "De vokser bare fra det",
+        "realitet": "Nogle gør, andre gør ikke. Derfor må man hverken overdramatisere eller vente for længe."
+      },
+      {
+        "myte": "Medicin er løsningen",
+        "realitet": "Medicin kan i nogle tilfælde hjælpe noget, men kernen i hjælpen er ofte relationel, pædagogisk og adfærdsmæssig."
+      },
+      {
+        "myte": "Der er ingen håb",
+        "realitet": "Mange børn og unge flytter sig betydeligt, når de bliver forstået tidligt og får hjælp, der passer."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "PPR",
+      "Skole",
+      "Børne- og ungdomspsykiatri",
+      "Familiebehandling",
+      "Kommunale støttetilbud",
+      "Pårørendeorganisationer"
+    ],
+    "afslutning": "Når man ser adfærds- og impulskontrolvanskeligheder rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke problemerne fra den ene dag til den anden, men det flytter blikket fra bare adfærd til også at omfatte regulering, sårbarhed og de mønstre, der ligger under."
+  }
+}

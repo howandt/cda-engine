@@ -1,0 +1,261 @@
+{
+  "id": "bipolar",
+  "navn": "Bipolar",
+  "fuld_navn": "Bipolar lidelse",
+  "kort_visning": {
+    "hvad_er_det": "Bipolar lidelse er en alvorlig psykisk lidelse, hvor humør, energi og aktivitetsniveau svinger mellem episoder med mani, hypomani, depression eller blandingstilstande. Det handler ikke om almindelige humørsvingninger, men om tydelige episoder, der påvirker funktion og dømmekraft.",
+    "hvordan_viser_det_sig": [
+      "Den unge kan i perioder sove meget lidt og samtidig virke fuld af energi",
+      "Der kan være hurtig tale, mange idéer, rastløshed, irritabilitet eller storhedsfølelse",
+      "I andre perioder kan der være udmattelse, håbløshed, tomhed og manglende lyst",
+      "Dømmekraft, risikoadfærd og funktion i skole og relationer kan blive tydeligt påvirket",
+      "Nogle oplever blandingstilstande med både høj energi og mørke tanker samtidigt"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er teenageuro eller store følelser",
+      "At mani bare er en god periode",
+      "At det bare er ADHD eller stress",
+      "At depressionen kan forstås uden at se de opstemte perioder med",
+      "At personen bare skal tage sig sammen"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Se efter hele mønstret over tid og ikke kun den aktuelle episode",
+      "Tag ændringer i søvn, energi, tempo og dømmekraft alvorligt",
+      "Søg psykiatrisk vurdering ved mistanke om bipolar lidelse",
+      "Hjælp med ro, struktur og beskyttelse af søvn og døgnrytme",
+      "Lav kriseplan i rolige perioder og tag mørke tanker og risikoadfærd alvorligt"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Bipolar lidelse handler ikke om almindelige humørsvingninger, men om episoder, hvor et menneske bliver kastet mellem yderpunkter i energi, stemning og livskraft. Når man begynder at se mønstrene rigtigt, bliver det muligt at forstå både sygdommen og mennesket bag udsvingene.",
+    "hvad_er_bipolar_lidelse": "Bipolar lidelse er en alvorlig psykisk lidelse, hvor humør, energi og aktivitetsniveau svinger mellem forskellige stemningspoler. Kernen er episoder med mani, hypomani, depression eller blandingstilstande, som varer i dage, uger eller længere og påvirker funktion og dømmekraft betydeligt.",
+    "former_for_bipolar_lidelse": {
+      "bipolar_1": [
+        "Mindst én egentlig manisk episode",
+        "Manien forstyrrer tydeligt funktion, relationer og dømmekraft",
+        "Der kan også være psykotiske symptomer",
+        "Mange har også depressive episoder"
+      ],
+      "bipolar_2": [
+        "Hypomani og depression",
+        "Ingen fuld mani",
+        "Hypomanien er lettere end mani, men stadig tydelig",
+        "De depressive episoder kan være meget alvorlige"
+      ],
+      "cyklotymi": [
+        "Længerevarende udsving mellem lettere depressive og lettere hypomane symptomer",
+        "Kriterierne for bipolar I eller II er ikke fuldt opfyldt",
+        "Udsvingene kan stadig fylde meget i hverdagen"
+      ],
+      "blandingstilstande": [
+        "Symptomer på opstemthed og depression samtidig",
+        "Kan vise sig som høj energi, hurtige tanker, indre uro og samtidig håbløshed eller mørke tanker",
+        "Kan være særligt pinefulde og risikofyldte"
+      ]
+    },
+    "hvordan_det_ser_ud_i_praksis": {
+      "maniske_episoder": [
+        "Sover meget lidt uden at føle sig træt",
+        "Taler hurtigt og vedholdende",
+        "Virker usædvanligt opstemt eller irritabel",
+        "Får mange idéer og planer på én gang",
+        "Kan få storhedstanker",
+        "Bruger mange penge eller tager store risici",
+        "Kan blive mere seksuelt grænseløs",
+        "Kan i nogle tilfælde udvikle psykotiske symptomer"
+      ],
+      "hypomane_episoder": [
+        "Mere energi, tale og aktivitet end normalt",
+        "Kan virke mere produktiv eller mere selvsikker",
+        "Kan også blive mere rastløs, kortluntet eller svær at være sammen med",
+        "Kan se næsten positiv ud i begyndelsen og derfor let blive overset"
+      ],
+      "depressive_episoder": [
+        "Mister lysten til det meste",
+        "Føler sig håbløs eller tom",
+        "Har svært ved at komme ud af sengen",
+        "Sover for meget eller for lidt",
+        "Spiser mere eller mindre end normalt",
+        "Er udmattet",
+        "Har svært ved at koncentrere sig",
+        "Kan føle skyld eller værdiløshed",
+        "Kan i nogle tilfælde få tanker om døden eller ikke at ville leve"
+      ]
+    },
+    "naar_det_bliver_misforstaaet": {
+      "forklaring": "Bipolar lidelse bliver ofte læst forkert, fordi manien kan ligne ADHD, stress, rusmiddelpåvirkning eller en særlig energisk periode, og depressionen kan ligne almindelig depression.",
+      "vigtigt": [
+        "Man skal se hele mønstret over tid",
+        "Ikke kun den episode der er synlig lige nu",
+        "Mange får først hjælp for depression, selv om der også er hypomane eller maniske perioder i historien"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Bipolar lidelse konstateres ikke ved én hurtig samtale. Det kræver en grundig psykiatrisk vurdering.",
+      "indgaar_typisk": [
+        "Stemningssvingninger over tid",
+        "Søvnmønstre",
+        "Energiniveau",
+        "Adfærd under opstemthed og depression",
+        "Dømmekraft",
+        "Risikoadfærd",
+        "Påvirkning af funktion og relationer",
+        "Samtaler med både personen selv og ofte også pårørende"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Unipolar depression",
+        "ADHD",
+        "Borderline personlighedsforstyrrelse",
+        "Rusmiddelpåvirkning",
+        "Skizofreni og andre psykotiske lidelser",
+        "Medicinske tilstande som stofskifteforstyrrelser"
+      ]
+    },
+    "aarsager_og_saarbarhed": {
+      "forklaring": "Der findes ikke én enkelt forklaring. Bipolar lidelse opstår som regel i et samspil mellem biologisk sårbarhed og belastninger.",
+      "arvelighed": "Der er en tydelig genetisk komponent, og risikoen er højere i nogle familier end i andre.",
+      "hjerne_og_regulering": [
+        "Forskelle i hjernens systemer for stemningsregulering",
+        "Betydning af impulskontrol, belønningssystem og energiomsætning",
+        "Signalstoffer som dopamin, serotonin og noradrenalin spiller sandsynligvis en rolle"
+      ],
+      "belastninger_og_udloesende_faktorer": [
+        "Søvnmangel",
+        "Stress",
+        "Store livsbegivenheder",
+        "Brud og tab",
+        "Traumer",
+        "Rusmidler som cannabis, alkohol og stimulanser"
+      ],
+      "vigtigt": "Bipolar lidelse skyldes ikke dårlig opdragelse."
+    },
+    "behandling_og_hjaelp": {
+      "medicin": {
+        "forklaring": "For mange er medicin en vigtig del af behandlingen.",
+        "kan_omfatte": [
+          "Stemningsstabiliserende medicin",
+          "Lithium for nogle",
+          "Andre stemningsstabilisatorer",
+          "Antipsykotisk medicin ved mani eller psykotiske symptomer"
+        ],
+        "vigtigt": [
+          "Behandlingen skal tilpasses nøje",
+          "Bivirkninger som træthed og vægtforandringer skal tages alvorligt",
+          "Bipolar depression kræver særlig omhu i behandlingen"
+        ]
+      },
+      "psykoedukation_og_samtalebehandling": [
+        "Forstå episoderne bedre",
+        "Opdage triggere",
+        "Arbejde med skam og selvforståelse",
+        "Håndtere stress",
+        "Genkende tidlige tegn på mani eller depression",
+        "Skabe en mere stabil hverdag omkring sygdommen"
+      ],
+      "soevn_og_rytme": [
+        "Stabil døgnrytme",
+        "Beskyttelse af søvn",
+        "Regelmæssige måltider og aktivitetsmønstre",
+        "Mindre kaos og færre store udsving i hverdagen"
+      ],
+      "rusmidler": "Rusmidler komplicerer næsten altid billedet og bør tages meget alvorligt.",
+      "familieinddragelse": "Familien kan ofte hjælpe med at opdage tidlige tegn og handle hurtigere og mindre kaotisk, når de har viden og en fælles plan."
+    },
+    "skole_og_laering": {
+      "udfordringer": [
+        "Koncentration",
+        "Søvn",
+        "Udholdenhed",
+        "Planlægning",
+        "Stabilt fremmøde",
+        "Socialt samspil",
+        "Evnen til at regulere tempo og energi"
+      ],
+      "hjaelper_ofte": [
+        "Fleksibilitet i perioder",
+        "Forudsigelig struktur",
+        "Mulighed for pauser",
+        "Realistiske krav under episoder",
+        "Tæt samarbejde mellem hjem, behandling og skole",
+        "Opmærksomhed på tidlige tegn, når funktionsniveauet ændrer sig"
+      ],
+      "vigtigt": "Vejen gennem skole eller uddannelse kan blive mere ujævn, uden at alt derfor er tabt."
+    },
+    "livet_derhjemme": {
+      "forklaring": "Bipolar lidelse påvirker hele hjemmet og kan belaste søvn, økonomi, sikkerhed, søskende og de voksnes nervesystem.",
+      "under_opstemthed": [
+        "Den unge kan afvise at noget er galt",
+        "Omgivelserne mærker ofte tydeligt ændret dømmekraft",
+        "Tydelighed, ro og kontakt til behandling hjælper ofte mere end lange diskussioner"
+      ],
+      "under_depression": [
+        "Tag mørke tanker alvorligt",
+        "Skab nærvær og støtte",
+        "Søg hurtig faglig hjælp i alvorlige situationer"
+      ],
+      "kriseplan": [
+        "Hvad man skal holde øje med",
+        "Hvem der kontaktes",
+        "Hvordan søvn og belastning beskyttes",
+        "Hvornår akut hjælp er nødvendig"
+      ],
+      "soeskende": [
+        "Søskende mærker ofte mere end voksne tror",
+        "De kan blive bange, vrede eller føle sig overset",
+        "De har brug for forklaring, støtte og plads til også at være børn eller unge"
+      ]
+    },
+    "naar_det_bliver_akut": {
+      "akutte_tegn": [
+        "Psykotiske symptomer",
+        "Svær mani",
+        "Stor risikoadfærd",
+        "Selvmordsfare",
+        "Funktionsfald der ikke kan bæres hjemme"
+      ],
+      "vigtigt": "I akutte situationer må sikkerhed komme først. Det er ikke et nederlag at søge mere hjælp, end familien kan bære alene."
+    },
+    "forloeb_over_tid": {
+      "forklaring": "Bipolar lidelse begynder ofte i ungdomsårene eller tidlig voksenalder og kan få stor betydning i en periode, hvor identitet, relationer og uddannelse er under opbygning.",
+      "vigtigt": [
+        "Tidlig behandling kan mindske voldsomme episoder og tab af funktion",
+        "For nogle bliver forløbet præget af tilbagevendende episoder",
+        "For andre bliver det mere stabilt med tiden",
+        "Mange lærer deres egne mønstre bedre at kende"
+      ],
+      "mennesket_bag_diagnosen": "Et menneske med bipolar lidelse er mere end sin diagnose og har stadig personlighed, evner, drømme og relationer."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Det er bare humørsvingninger",
+        "realitet": "Bipolar lidelse handler om episoder, som er langt mere intense og indgribende end almindelige humørudsving."
+      },
+      {
+        "myte": "Mani er bare en god periode",
+        "realitet": "Mani kan være kaotisk, risikofyldt, aggressiv og dybt ødelæggende."
+      },
+      {
+        "myte": "Man kan bare tage sig sammen",
+        "realitet": "Bipolar lidelse er ikke et spørgsmål om viljestyrke."
+      },
+      {
+        "myte": "Medicin fjerner hele personligheden",
+        "realitet": "Målet med behandling er at mindske de ødelæggende yderpunkter og skabe mere stabilitet."
+      },
+      {
+        "myte": "Et menneske med bipolar lidelse kan ikke få et godt liv",
+        "realitet": "Mange kan få et godt og meningsfuldt liv med behandling, indsigt og støtte."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Psykiatrien",
+      "Egen læge",
+      "Psykolog",
+      "Skole eller uddannelsessystem",
+      "Pårørendetilbud",
+      "Organisationer der arbejder med affektive lidelser",
+      "Netværk med andre familier"
+    ],
+    "afslutning": "Når man ser bipolar lidelse rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke sygdommen fra den ene dag til den anden, men det flytter blikket fra forenklede forklaringer til den reelle sygdom, mønstrene og mennesket bag."
+  }
+}

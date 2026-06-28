@@ -1,0 +1,219 @@
+{
+  "id": "ocd",
+  "navn": "OCD",
+  "fuld_navn": "Obsessiv-kompulsiv lidelse",
+  "kort_visning": {
+    "hvad_er_det": "OCD er en angstpræget lidelse, hvor barnet eller den unge bliver styret af tvangstanker og ritualer, som de ikke selv kan slippe fri af. Det handler ikke bare om ordentlighed eller perfektionisme, men om massiv indre uro, tvang og et system, der prøver at dæmpe angst gennem gentagelser.",
+    "hvordan_viser_det_sig": [
+      "Barnet kan få påtrængende tanker om fare, smitte, fejl eller katastrofer",
+      "Der kan være ritualer som vaskning, tjekning, tælling, ordning eller mentale neutraliseringer",
+      "Nogle ritualer er synlige, andre foregår mest inde i hovedet",
+      "Barnet ved ofte godt, at noget virker urimeligt, men kan ikke stoppe i situationen",
+      "Hverdagen kan blive præget af langsomhed, skam, udmattelse og undgåelse"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er ordentlighed eller perfektionisme",
+      "At barnet bare kan lade være",
+      "At OCD kun handler om håndvask",
+      "At ritualerne bare er en dårlig vane",
+      "At barnet gør det for opmærksomhed eller for at bestemme"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag tvangstanker og ritualer alvorligt tidligt",
+      "Søg vurdering hos fagperson med viden om OCD",
+      "Undgå at reducere det til stædighed eller ordenssans",
+      "Støt barnet roligt uden at gå med ind i alle ritualer",
+      "Arbejd sammen med behandling og skole om at mindske vedligeholdelse af tvangen"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når OCD tager fat, handler det sjældent kun om det mærkelige, man kan se udefra. Det handler også om angst, tvang, skam og et indre pres, som barnet eller den unge ikke selv kan få stoppet. Når man begynder at se det rigtigt, bliver det muligt at forstå både symptomerne og barnet bag dem.",
+    "hvad_er_ocd": "OCD står for obsessiv-kompulsiv lidelse og består typisk af to tæt forbundne dele: tvangstanker og tvangshandlinger eller mentale ritualer. Det særlige er, at ritualerne ofte kun hjælper meget kortvarigt, hvorefter angsten vender tilbage og kræver mere af det samme.",
+    "tvangstanker_og_tvangshandlinger": {
+      "tvangstanker": [
+        "Påtrængende tanker om smitte og forurening",
+        "Tanker om at nogen kommer til skade",
+        "Tanker om at noget forfærdeligt vil ske",
+        "Tanker om at man selv kan gøre noget forkert eller farligt",
+        "Behov for at ting skal være helt præcise eller lige rigtige",
+        "Religiøse, seksuelle eller voldelige tanker, som barnet bliver forskrækket over"
+      ],
+      "tvangshandlinger_og_ritualer": [
+        "Vaskning",
+        "Tjekning",
+        "Tælling",
+        "Ordning",
+        "Gentagelser",
+        "Bønner eller bestemte sætninger i hovedet",
+        "Mentale neutraliseringer",
+        "Konstant søgen efter beroligelse",
+        "Undgåelse af bestemte ting eller situationer"
+      ],
+      "vigtigt": "Barnet ønsker som regel ikke tankerne. Tværtimod er de ofte stærkt plaget af dem."
+    },
+    "hvordan_ocd_ser_ud_i_hverdagen": {
+      "forklaring": "OCD ser ikke ens ud hos alle, og ikke al alvorlig OCD er synlig i første blik.",
+      "typiske_moenstre": [
+        "Meget lang tid ved håndvask eller i bad",
+        "Gentagen tjekning af døre, ting eller handlinger",
+        "Sengetid der trækker ud fordi noget skal gøres i bestemt rækkefølge",
+        "Undgåelse af bestemte ting eller steder",
+        "Skjulte mentale ritualer som tælling, bønner eller neutraliseringer",
+        "Stærk indre uro som andre ikke nødvendigvis kan se"
+      ]
+    },
+    "naar_det_bliver_tolket_forkert": {
+      "forklaring": "OCD bliver let læst som stædighed, ordentlighed eller dårlig vane, men det er ofte angst og tvang, der driver det.",
+      "det_der_ofte_overses": [
+        "Den stærke angst bag ritualerne",
+        "Det indre pres om at noget farligt kun kan holdes væk ved ritualet",
+        "At barnet ofte godt kan se, at tankerne virker overdrevne, men ikke kan bryde fri i situationen"
+      ]
+    },
+    "diagnose_og_vurdering": {
+      "forklaring": "OCD konstateres ikke ved blot at lægge mærke til, at et barn gør ting mange gange. Det kræver en grundig vurdering.",
+      "indgaar_typisk": [
+        "Hvilke tvangstanker der er til stede",
+        "Hvilke tvangshandlinger eller mentale ritualer der udføres",
+        "Hvor meget tid de fylder",
+        "Hvor meget de forstyrrer hverdagen",
+        "Hvor meget angst og lidelse de skaber",
+        "Om der er andre forhold, der også spiller ind"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Angstlidelser",
+        "Autisme",
+        "ADHD",
+        "Tics og Tourette",
+        "Spiseforstyrrelser",
+        "Psykose",
+        "Traumerelaterede tilstande"
+      ],
+      "vigtigt": "Ingen skala eller test kan stå alene. Det afgørende er den samlede faglige forståelse."
+    },
+    "hvorfor_ocd_opstaar": {
+      "forklaring": "OCD opstår som regel i et samspil mellem biologisk sårbarhed, tænkning, følelsesregulering og belastninger.",
+      "genetik_og_biologi": [
+        "Tydelig arvelig komponent",
+        "Sårbarhed i kredsløb der har betydning for fejldetektion, usikkerhed og stop-signaler",
+        "Hjernen kan igen og igen sende signaler om, at noget ikke er sikkert nok, rent nok eller afsluttet nok"
+      ],
+      "taenkning_og_ansvar": [
+        "Overvurdering af fare",
+        "Overdreven ansvarsfølelse",
+        "Intolerance for usikkerhed",
+        "Behov for perfekt sikkerhed",
+        "Oplevelse af at tanker i sig selv er farlige eller betydningsfulde"
+      ],
+      "stress_og_belastning": [
+        "Store forandringer",
+        "Stress",
+        "Andre belastninger kan udløse eller forværre symptomerne"
+      ]
+    },
+    "behandling_og_hjaelp": {
+      "kognitiv_adfaerdsterapi_med_erp": {
+        "forklaring": "Den mest centrale behandling er kognitiv adfærdsterapi med exposure and response prevention, ERP.",
+        "det_handler_om": [
+          "Gradvis at nærme sig det, der vækker tvangen",
+          "At lade være med at udføre ritualet bagefter",
+          "At lære at angsten kan falde igen af sig selv",
+          "At den frygtede katastrofe ikke nødvendigvis sker",
+          "At man kan overleve usikkerhed uden ritualet"
+        ],
+        "vigtigt": "ERP bygges normalt op trin for trin og kræver støtte, struktur og mod."
+      },
+      "familieinddragelse": [
+        "Forældre kommer ofte utilsigtet til at deltage i ritualer for at skabe ro",
+        "Det giver lindring her og nu, men kan holde OCD i live",
+        "Familien har brug for hjælp til at støtte barnet uden samtidig at fodre sygdommen"
+      ],
+      "medicin": {
+        "forklaring": "SSRI-præparater kan for nogle være en vigtig del af hjælpen, især ved moderat til svær OCD eller når terapi alene ikke er nok.",
+        "vigtigt": "Medicin bruges typisk som supplement til terapi, ikke som erstatning for den."
+      },
+      "mere_intensiv_hjaelp": "Nogle børn og unge har så svær OCD, at mere intensiv eller specialiseret hjælp er nødvendig."
+    },
+    "ocd_i_skole_og_laering": {
+      "udfordringer": [
+        "Langsomhed",
+        "Problemer med at komme i gang",
+        "Ufærdige opgaver",
+        "Svært ved at afslutte",
+        "Skolefravær",
+        "Koncentrationsproblemer",
+        "Social tilbagetrækning",
+        "Skjulte ritualer som tager energi"
+      ],
+      "hjaelper_ofte": [
+        "Forudsigelighed",
+        "Rolig kontaktperson",
+        "Realistiske krav i svære perioder",
+        "Forståelse for langsomhed og belastning",
+        "Tæt samarbejde med hjem og behandling",
+        "Støtte til gradvis deltagelse frem for bare pres"
+      ],
+      "vigtigt": "Barnet bør forstås som et barn med en angstdrevet lidelse, ikke bare som et besværligt eller langsomt barn."
+    },
+    "livet_derhjemme": {
+      "hjaelper_ofte": [
+        "Viden om hvad OCD er",
+        "Rolighed",
+        "Forudsigelighed",
+        "Fælles linje mellem de voksne",
+        "Støtte til behandlingens principper hjemme",
+        "Hjælp til ikke at falde tilbage i alle de gamle ritualmønstre"
+      ],
+      "soeskende": [
+        "Søskende mærker ventetid, ritualer, skænderier og udmattelse",
+        "De har brug for forklaring, omsorg og plads til stadig at være børn eller unge i familien"
+      ],
+      "foraeldrestoette": "OCD kan slide hårdt på forældre, og det er ikke egoistisk at have brug for hjælp som pårørende."
+    },
+    "fra_barndom_til_voksenliv": {
+      "forklaring": "OCD begynder ofte i barndom eller ungdom og kan brede sig gradvist, hvis det ikke bliver behandlet.",
+      "vigtigt": [
+        "Tidlig hjælp gør en forskel",
+        "Ritualerne kan tage mere tid over tid uden behandling",
+        "Skam og isolation kan vokse",
+        "Mange oplever stor symptomreduktion med den rette behandling",
+        "Nogle bliver næsten symptomfrie, andre lever videre med sårbarhed men langt mere frihed"
+      ]
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "OCD er bare at være ordentlig",
+        "realitet": "Ordentlighed er ikke det samme som tvang."
+      },
+      {
+        "myte": "Barnet kan bare lade være",
+        "realitet": "Hvis det var så enkelt, ville mange børn allerede have gjort det."
+      },
+      {
+        "myte": "OCD handler kun om håndvask",
+        "realitet": "OCD kan handle om mange ting, også helt usynlige tanker og mentale ritualer."
+      },
+      {
+        "myte": "Dårlig opdragelse giver OCD",
+        "realitet": "Forældre er ikke årsagen til OCD, men de kan blive en vigtig del af hjælpen."
+      },
+      {
+        "myte": "Medicin alene løser det",
+        "realitet": "Medicin kan være vigtig for nogle, men terapi og især ERP er fortsat centrale i behandlingen."
+      },
+      {
+        "myte": "Der er ingen vej ud",
+        "realitet": "Mange kan få det betydeligt bedre med den rette hjælp."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "Psykolog med erfaring i OCD og ERP",
+      "Børne- og ungdomspsykiatri",
+      "Skole",
+      "Pårørendetilbud",
+      "Organisationer med viden om angst og OCD"
+    ],
+    "afslutning": "Når man ser OCD rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke tvangen fra den ene dag til den anden, men det flytter blikket fra ritualerne alene til også at omfatte frygten, usikkerheden og det menneske, der er fanget i sygdommen."
+  }
+}

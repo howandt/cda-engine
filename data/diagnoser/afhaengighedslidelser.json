@@ -1,0 +1,281 @@
+{
+  "id": "afhaengighedslidelser",
+  "navn": "Afhængighedslidelser",
+  "fuld_navn": "Afhængighedslidelser",
+  "kort_visning": {
+    "hvad_er_det": "Afhængighedslidelser handler om, at et stof eller en adfærd gradvist får så stærk en plads, at personen mister friheden til at stoppe eller styre det. Det handler ikke bare om dårlig moral eller manglende vilje, men om kontroltab, trang og et system, der bliver mere og mere bundet.",
+    "hvordan_viser_det_sig": [
+      "Den unge bruger mere eller oftere end planlagt",
+      "Det bliver svært at stoppe eller skære ned",
+      "Brugen fortsætter trods tydelige konsekvenser",
+      "Meget tid og energi går med at skaffe, bruge eller tænke på det",
+      "Humør, søvn, skole, relationer og dømmekraft bliver gradvist påvirket"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er en fase",
+      "At det bare handler om dårlig moral eller svag karakter",
+      "At unge ikke kan blive rigtigt afhængige",
+      "At cannabis eller vaping er ufarligt",
+      "At den unge bare kunne stoppe, hvis de virkelig ville"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag tydelige mønstre med kontroltab og konsekvenser alvorligt tidligt",
+      "Søg grundig vurdering i stedet for kun at diskutere moral og skyld",
+      "Stå tydeligt i både kærlighed og grænser",
+      "Undersøg om brugen også fungerer som selvmedicinering for noget andet",
+      "Søg hjælp til både den unge og familien, fordi afhængighed sjældent rammer én alene"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når afhængighed begynder at tage fat, handler det sjældent kun om det konkrete stof eller den konkrete adfærd. Det handler også om kontroltab, skam, benægtelse, konflikt og et belønningssystem, som gradvist får mere magt over den unge, end den unge selv kan bære.",
+    "hvad_er_afhaengighedslidelser": "Afhængighedslidelser handler om, at et stof eller en adfærd gradvist får så stærk en plads, at personen mister kontrol over det. Det betyder ikke nødvendigvis, at personen bruger hele tiden, men over tid ser man ofte mere brug end planlagt, svært ved at stoppe, fortsættelse trods konsekvenser og stærk trang eller uro, når adgangen begrænses.",
+    "former_for_afhaengighed": {
+      "stofafhaengighed": [
+        "Alkohol",
+        "Cannabis",
+        "Nikotin",
+        "Opioider",
+        "Stimulanser",
+        "Beroligende medicin",
+        "Andre rusmidler"
+      ],
+      "adfaerdsafhaengighed_og_problematisk_brug": [
+        "Gaming",
+        "Spil og gambling",
+        "Skærm- og internetbrug",
+        "Shopping",
+        "Andre handlinger som gradvist overtager mere og mere"
+      ],
+      "vigtigt": "Ikke al høj brug er afhængighed. Det afgørende er blandt andet kontroltab, irritabilitet ved afbrydelse, søvnforstyrrelse, skoleproblemer og tilbagetrækning fra resten af livet."
+    },
+    "hvad_man_ofte_ser_hos_unge": [
+      "Hemmelighedskræmmeri",
+      "Ændret vennekreds",
+      "Søvnforstyrrelse",
+      "Fald i skolefunktion",
+      "Mere løgn og undvigelse",
+      "Brug af penge uden forklaring",
+      "Ændret humør",
+      "Øget irritabilitet",
+      "Voksende optagethed af det der bruges"
+    ],
+    "hyppige_former": {
+      "alkohol": [
+        "Kan bruges for at passe ind, dæmpe angst eller slippe væk fra tanker",
+        "Risikoen stiger når alkohol igen og igen bruges til følelsesregulering eller social håndtering",
+        "Problemet er ikke kun mængden, men også mønstret"
+      ],
+      "cannabis": [
+        "Bruges hos nogle som reguleringsmiddel mod uro, kedsomhed, angst eller tristhed",
+        "Kan påvirke koncentration, motivation, hukommelse og skolefunktion",
+        "Kan forværre psykisk sårbarhed, især ved angst eller psykoserisiko"
+      ],
+      "nikotin_og_vaping": [
+        "Nikotin er stærkt afhængighedsskabende",
+        "Vaping kan opleves som mindre alvorligt, men afhængigheden kan sætte sig hurtigt",
+        "Det kan begynde socialt og glide over i mere fast brug"
+      ],
+      "opioider_og_medicinmisbrug": [
+        "Misbrug af smertestillende eller beroligende medicin skal tages meget alvorligt",
+        "Der kan være høj risiko for overdose, især ved usikker styrke eller blanding med andre stoffer"
+      ],
+      "gaming_og_anden_adfaerd": [
+        "Problemet er ikke kun antal timer, men funktion",
+        "Når den unge ikke længere kan stoppe, bliver voldsomt irritabel ved afbrydelse, mister søvn og gradvist trækker sig fra resten af livet, bør man se nærmere på afhængighedslignende mønstre"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Afhængighedslidelser konstateres ikke ved, at nogen bare har prøvet noget. Det kræver en grundig vurdering af mønstre, funktion og konsekvenser.",
+      "indgaar_typisk": [
+        "Hvad der bruges",
+        "Hvor ofte",
+        "Hvor meget",
+        "Hvornår det begyndte",
+        "Hvilke konsekvenser det har fået",
+        "Om der er tab af kontrol",
+        "Om der er tolerance, abstinens eller stærk trang"
+      ],
+      "vigtigt_hos_unge": [
+        "Se ikke kun på mængde, men også på skole, søvn, relationer, humør og dømmekraft",
+        "Samtaler med den unge",
+        "Samtaler med forældre",
+        "Nogle gange skole eller andre fagpersoner",
+        "Screeningsredskaber eller prøver kan bruges som supplement"
+      ],
+      "vigtigt_at_skille_fra_eller_taenke_sammen_med": [
+        "Angst",
+        "Depression",
+        "ADHD",
+        "Traumer",
+        "Adfærdsproblemer",
+        "Andre psykiske belastninger"
+      ],
+      "vigtigt": "Prøver kan vise brug, men ikke alene afgøre om der er afhængighed. Det afgørende er den samlede forståelse."
+    },
+    "hvorfor_det_sker": {
+      "forklaring": "Afhængighed opstår som regel i et samspil mellem biologi, udvikling, psykologi og miljø.",
+      "hjerneudvikling_og_beloenning": [
+        "Ungdomshjernen er stadig under udvikling",
+        "Belønningssystemet reagerer stærkt",
+        "Impulskontrol og konsekvensvurdering er endnu ikke fuldt udviklet",
+        "Det gør unge mere sårbare over for hurtig belønning og handling før eftertanke"
+      ],
+      "genetik_og_saarbarhed": [
+        "Nogle unge har større biologisk sårbarhed end andre",
+        "Afhængighed ses oftere i nogle familier"
+      ],
+      "selvmedicinering": [
+        "Angst",
+        "Tomhed",
+        "Rastløshed",
+        "Traumesmerte",
+        "Kedsomhed",
+        "Skam",
+        "Søvnproblemer",
+        "Social usikkerhed"
+      ],
+      "miljoe_og_tilgaengelighed": [
+        "Venner og kultur",
+        "Let adgang til rusmidler",
+        "Normalisering af brug",
+        "Høj belastning, konflikt eller lavt opsyn",
+        "Konstant online belønning uden tydelig modvægt i resten af livet"
+      ]
+    },
+    "behandling_og_hjaelp": {
+      "familieinddragelse": [
+        "Bedre kommunikation",
+        "Mindre konflikt",
+        "Mere struktur",
+        "Tydeligere grænser",
+        "Fælles sprog for det der sker"
+      ],
+      "kognitiv_adfaerdsterapi_og_motivationsarbejde": [
+        "Arbejde med triggere",
+        "Craving",
+        "Tankemønstre",
+        "Situationer med høj risiko",
+        "Følelsesregulering",
+        "Mere realistiske måder at håndtere pres og trang på",
+        "Arbejde med ambivalens omkring at stoppe"
+      ],
+      "beloenningsbaserede_og_strukturerede_indsatser": [
+        "Tydelige mål",
+        "Opfølgning",
+        "Belønning for fremgang",
+        "Konkrete rammer omkring brug"
+      ],
+      "behandling_af_samtidig_psykisk_lidelse": [
+        "ADHD",
+        "Angst",
+        "Depression",
+        "PTSD",
+        "Andre samtidige vanskeligheder skal tænkes med"
+      ],
+      "medicin": {
+        "forklaring": "Ved nogle afhængighedslidelser kan medicin være en vigtig del af behandlingen.",
+        "eksempler": [
+          "Opioidafhængighed kan kræve medicinsk understøttet behandling",
+          "Nikotinbehandling kan være relevant",
+          "Medicin kan også bruges mod samtidig psykisk belastning"
+        ],
+        "vigtigt": "Behandling skal tilpasses individuelt og ikke reduceres til én metode."
+      },
+      "mere_intensiv_hjaelp": {
+        "kan_vaere_noedvendigt_ved": [
+          "Alvorlig afhængighed",
+          "Høj risiko",
+          "Stor psykisk belastning",
+          "Situationer hvor hjemmet ikke kan bære det alene"
+        ],
+        "vigtigt": "I sådanne situationer må sikkerhed komme først."
+      }
+    },
+    "skole_og_laering": {
+      "udfordringer": [
+        "Fravær",
+        "Faldende karakterer",
+        "Skift i vennegruppe",
+        "Konflikter",
+        "Svært ved at møde op",
+        "Mindre deltagelse i det, der før fyldte sundt"
+      ],
+      "hjaelper_ofte": [
+        "Forudsigelighed",
+        "Tydelig kontakt",
+        "Samarbejde med hjemmet",
+        "Realistiske krav",
+        "Mulighed for at holde fast i noget meningsfuldt mens behandlingen står på"
+      ],
+      "vigtigt": "Ren straf hjælper sjældent nok alene. Støtte, behandling og realistisk plan gør ofte mere."
+    },
+    "livet_derhjemme": {
+      "forklaring": "Afhængighed påvirker tillid, økonomi, søskende, de voksnes nervesystem og hele følelsen af, om man ved hvad der egentlig foregår.",
+      "hjaelper_ofte": [
+        "At stå i både kærlighed og grænser samtidig",
+        "Tydelighed om penge, bil, medicin i hjemmet og aftaler",
+        "Klare konsekvenser",
+        "Undgå at hele familien begynder at medbære sygdommen uden grænser"
+      ],
+      "soeskende": [
+        "Søskende mærker uro, løgne, spænding og skuffelser",
+        "De har brug for forklaring, omsorg og plads til stadig at være børn eller unge i familien"
+      ],
+      "foraeldrestoette": [
+        "Pårørendestøtte",
+        "Egen hjælp som forælder",
+        "Støtte til at stå tydeligere i det"
+      ],
+      "vigtigt": "Det er ikke egoistisk at søge hjælp som pårørende. Det er ofte nødvendigt."
+    },
+    "fra_ungdom_til_voksenliv": {
+      "forklaring": "Ungdomsårene er en følsom periode, fordi meget stadig er under udvikling.",
+      "vigtigt": [
+        "Nogle unge eksperimenterer uden at udvikle afhængighed, andre gør ikke",
+        "Tidlig hjælp gør en reel forskel",
+        "Afhængighedsmønstre sætter sig dybere med tiden, hvis de får lov at udvikle sig uden modspil",
+        "Mange unge kommer sig",
+        "Nogle får tilbagefald",
+        "Nogle har brug for længere støtteforløb"
+      ]
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Det er bare en fase",
+        "realitet": "Nogle unge eksperimenterer og lægger det bag sig, men tydeligt tab af kontrol og konsekvenser bør ikke bagatelliseres."
+      },
+      {
+        "myte": "Cannabis er naturligt og derfor ufarligt",
+        "realitet": "Naturligt er ikke det samme som harmløst, især ikke hos unge og ved psykisk sårbarhed."
+      },
+      {
+        "myte": "Afhængighed er et valg",
+        "realitet": "Der kan være valg i begyndelsen, men afhængighed er netop kendetegnet ved at friheden gradvist bliver mindre."
+      },
+      {
+        "myte": "De skal bare ramme bunden",
+        "realitet": "Tidlig hjælp er ofte langt mere hjælpsom end at vente på, at alt bliver værre."
+      },
+      {
+        "myte": "Hvis de virkelig ville, kunne de stoppe",
+        "realitet": "Afhængighed ændrer motivation, belønning og regulering på en måde, som gør det meget svært at stoppe alene."
+      },
+      {
+        "myte": "Teenagere kan ikke blive rigtigt afhængige",
+        "realitet": "Jo, og for nogle går det hurtigere end hos voksne."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "Kommunale misbrugscentre",
+      "Psykologer",
+      "Psykiatri",
+      "Familiebehandling",
+      "Skole",
+      "Ungecentre",
+      "Rådgivnings- og pårørendetilbud",
+      "Støttegrupper"
+    ],
+    "afslutning": "Når man ser afhængighed rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke afhængigheden fra den ene dag til den anden, men det flytter blikket fra løgn og brug alene til også at omfatte kontrollabet, trangen, skammen og den funktion, afhængigheden har fået."
+  }
+}

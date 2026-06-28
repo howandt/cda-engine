@@ -1,0 +1,244 @@
+{
+  "id": "angst",
+  "navn": "Angst",
+  "fuld_navn": "Angstlidelser",
+  "kort_visning": {
+    "hvad_er_det": "Angst bliver en lidelse, når barnets alarmsystem reagerer, som om der er reel fare, selv når der ikke er. Det kan fylde så meget, at barnet får svært ved at fungere i skole, hjemme eller socialt.",
+    "hvordan_viser_det_sig": [
+      "Barnet bekymrer sig meget og kan have svært ved at stoppe tankerne",
+      "Barnet kan undgå situationer, steder eller mennesker, der føles farlige",
+      "Barnet kan få fysiske symptomer som hjertebanken, mavepine, kvalme eller åndenød",
+      "Barnet kan blive meget uroligt, klæbende, irritabelt eller have svært ved at sove",
+      "Barnet kan få panik, lukke ned eller have svært ved at deltage i skole og sociale situationer"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At barnet bare er sart",
+      "At barnet skal tage sig sammen",
+      "At barnet bare undgår fordi det ikke gider",
+      "At angsten ikke er reel fordi faren ikke er reel",
+      "At man hjælper ved at presse barnet hårdt eller fjerne alle udløsere"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Anerkend at angsten føles virkelig for barnet",
+      "Skab struktur, ro og forudsigelighed omkring barnet",
+      "Støt barnet i små, overskuelige skridt i stedet for hårdt pres",
+      "Samarbejd med skole og fagpersoner om konkrete tilpasninger",
+      "Tænk støtte og regulering før krav og korrektion"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Angst er ikke svaghed, og det er ikke noget barnet bare kan tage sig sammen til at komme over. Barnets nervesystem reagerer, som om der er fare, selv når der ikke er. Med den rigtige hjælp kan barnet lære at håndtere angsten og leve et godt liv.",
+    "hvad_er_angst": "Angst er i sig selv en sund reaktion, fordi den beskytter os. Men hos nogle børn går alarmsystemet i overarbejde. Det reagerer for let, for kraftigt og er svært at slukke igen. Det er her, man taler om angstlidelser.",
+    "typer_af_angstlidelser": {
+      "generaliseret_angst": [
+        "Bekymrer sig om mange ting på én gang",
+        "Har svært ved at stoppe bekymringerne",
+        "Lever med en konstant indre uro"
+      ],
+      "panikangst": [
+        "Pludselige anfald med hjertebanken, åndenød, svimmelhed og stærk frygt",
+        "Kan bagefter blive bange for at få et nyt anfald",
+        "Kan begynde at undgå steder eller situationer, hvor det skete"
+      ],
+      "fobier": [
+        "Intens frygt for noget bestemt som hunde, mørke, blod eller edderkopper",
+        "Barnet ved ofte godt, at frygten er uforholdsmæssig",
+        "Frygten kan stadig ikke styres i situationen"
+      ],
+      "social_angst": [
+        "Frygt for at blive bedømt eller gøre noget pinligt",
+        "Kan undgå at sige noget i klassen, spise foran andre eller deltage i sociale aktiviteter",
+        "Er ikke det samme som almindelig generthed"
+      ],
+      "separationsangst": [
+        "Stor angst ved at være adskilt fra forældre eller trygge personer",
+        "Kan vise sig som skolevægring, mareridt eller stærk klæben",
+        "Hos større børn kan det være en egentlig lidelse"
+      ],
+      "ocd": [
+        "Gentagne tvangstanker og tvangshandlinger for at dæmpe angst",
+        "Kan handle om renhed, kontrol, skade eller gentagelser",
+        "Skal forstås som angstdrevet regulering og ikke viljestyret adfærd"
+      ]
+    },
+    "hvordan_angst_viser_sig": {
+      "i_kroppen": [
+        "Hjertebanken",
+        "Åndenød",
+        "Mavepine",
+        "Kvalme",
+        "Hovedpine",
+        "Muskelspændinger",
+        "Svimmelhed",
+        "Svedtendens"
+      ],
+      "i_tankerne": [
+        "Hvad nu hvis-tanker i ring",
+        "Katastrofetænkning",
+        "Svært ved at koncentrere sig",
+        "Glemsomhed",
+        "Svært ved at træffe beslutninger"
+      ],
+      "i_adfaerden": [
+        "Undgår situationer",
+        "Klæber sig til voksne",
+        "Vil ikke prøve nyt",
+        "Bliver irritabel",
+        "Har svært ved at sove",
+        "Kan ikke finde ro"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Diagnosen stilles på baggrund af en samlet vurdering, ikke én enkelt test.",
+      "indgaar_typisk": [
+        "Samtale med læge om symptomer og varighed",
+        "Vurdering af om der kan være fysiske årsager",
+        "Psykologisk eller psykiatrisk vurdering",
+        "Samtaler med forældre og barnet",
+        "Spørgeskemaer og observationer",
+        "Vurdering af hvor meget angsten påvirker hverdagen"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Fysiske sygdomme",
+        "Depression",
+        "ADHD",
+        "Autisme",
+        "Traumer",
+        "Andre psykiske eller udviklingsmæssige vanskeligheder"
+      ],
+      "vigtigt": "Mange børn har flere former for angst samtidig, og angst optræder ofte sammen med andre vanskeligheder."
+    },
+    "aarsager_og_risikofaktorer": {
+      "genetik": "Angst ses ofte i familier, og arvelighed spiller en rolle.",
+      "hjernens_kemi": "Forskelle i signalstoffer og regulering i hjernen kan gøre alarmsystemet mere følsomt.",
+      "miljoe_og_oplevelser": [
+        "Traumatiske begivenheder",
+        "Mobning",
+        "Tab",
+        "Skilsmisse",
+        "Kronisk stress",
+        "Kaotisk hverdag",
+        "Forældres egen angst eller psykiske belastning"
+      ],
+      "andre_forhold": [
+        "Medicinske tilstande",
+        "Koffein og andre stoffer",
+        "Høj følsomhed eller sårbarhed"
+      ],
+      "vigtigt": "Det er ikke et spørgsmål om skyld. Flere forhold kan spille sammen, og forældre har brug for forståelse og støtte, ikke mere skyld."
+    },
+    "behandling_og_hjaelp": {
+      "kat": {
+        "forklaring": "Kognitiv adfærdsterapi er førstevalg ved mange angstlidelser hos børn.",
+        "dele": [
+          "Psykoedukation om hvad angst er",
+          "Arbejdet med angsttanker og tankefælder",
+          "Gradvis eksponering for det, barnet frygter"
+        ]
+      },
+      "medicin": {
+        "forklaring": "Medicin kan være relevant, hvis angsten er så svær, at barnet ikke kan bruge terapien eller ikke kommer tilstrækkeligt videre med terapi alene.",
+        "vigtigt": "Det skal altid vurderes fagligt og individuelt."
+      },
+      "mindfulness_og_afslapning": [
+        "Vejrtrækningsøvelser",
+        "Muskelafspænding",
+        "Mindfulness og opmærksomhed på nuet"
+      ],
+      "livsstil_og_hverdag": [
+        "Motion",
+        "Søvn",
+        "Regelmæssige måltider",
+        "Mindre koffein",
+        "Mere struktur og forudsigelighed"
+      ]
+    },
+    "angst_i_skole_og_laering": {
+      "udfordringer": [
+        "Skolevægring",
+        "Præstationsangst",
+        "Social angst i klassen",
+        "Panik i gruppearbejde eller prøvesituationer",
+        "Separationsangst ved aflevering",
+        "Svært ved at lære når kroppen er i alarm"
+      ],
+      "hjaelper_ofte": [
+        "Forudsigelig struktur",
+        "Tydelig information om ændringer",
+        "En tryg voksen på skolen",
+        "Stille rum eller pauser ved behov",
+        "Tilpassede krav og prøvesituationer",
+        "Skolepsykologisk støtte"
+      ],
+      "vigtigt": "Skolen kan blive en stor belastning, men den kan også være et sted, hvor barnet får støtte, overskuelighed og tryghed."
+    },
+    "livet_derhjemme_og_foraeldrestoette": {
+      "foraeldre": [
+        "Valider barnets følelser",
+        "Undgå at bagatellisere angsten",
+        "Undgå også at fjerne alle udløsere",
+        "Støt barnet i små skridt",
+        "Model rolig regulering og vis, at stress kan håndteres",
+        "Fejr små fremskridt"
+      ],
+      "soeskende": [
+        "Giv forklaringer der passer til deres alder",
+        "Giv dem egen tid og opmærksomhed",
+        "Anerkend deres frustrationer"
+      ],
+      "kriser_og_panik": {
+        "goer": [
+          "Bevar roen",
+          "Sig at barnet er i sikkerhed",
+          "Guide vejrtrækning",
+          "Fjern publikum og unødigt pres",
+          "Brug rolige sansemæssige stimuli hvis det hjælper"
+        ],
+        "undgaa": [
+          "At sige slap af",
+          "At stille mange spørgsmål midt i anfaldet",
+          "At blive vred",
+          "At kræve at barnet tager sig sammen"
+        ]
+      }
+    },
+    "angst_gennem_livet": {
+      "barndom": "Fokus er ofte på at identificere angsten, lære grundlæggende strategier og involvere forældrene i støtten.",
+      "teenageaar": "Her kan social angst, præstationsangst og identitetsrelateret angst fylde mere, og der er risiko for selvmedicinering.",
+      "voksenliv": "Med tidlig og god hjælp lærer mange at håndtere angsten godt. Uden behandling er der større risiko for kronisk angst, depression og undgåelsesadfærd."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Angst er bare svaghed",
+        "realitet": "Angst er en reel psykisk lidelse med stærke kropslige og mentale reaktioner."
+      },
+      {
+        "myte": "Barnet skal bare tage sig sammen",
+        "realitet": "Hvis barnet kunne, ville det. Problemet er ikke manglende vilje."
+      },
+      {
+        "myte": "Hvis vi fjerner alle udløsere, forsvinder angsten",
+        "realitet": "Undgåelse holder ofte angsten ved lige. Barnet skal støttes i gradvist at kunne møde det svære."
+      },
+      {
+        "myte": "Medicin løser det hele",
+        "realitet": "Medicin kan hjælpe, men terapi og konkrete strategier er ofte nødvendige for varig bedring."
+      },
+      {
+        "myte": "Barnet vil altid have angst",
+        "realitet": "Mange børn får det markant bedre, og også dem der fortsat er sårbare, kan leve gode og fulde liv."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Læge",
+      "Børnepsykolog",
+      "Børnepsykiater",
+      "KAT-terapeut",
+      "PPR",
+      "Skolesamarbejde",
+      "Angstforeningen og andre relevante organisationer",
+      "Konkrete redskaber til hverdagsmestring"
+    ],
+    "afslutning": "Angst er behandlingsbar. Barnet behøver ikke leve i konstant frygt. Med den rigtige støtte, de rigtige redskaber og et roligt samarbejde omkring barnet kan der ske reel forandring, skridt for skridt."
+  }
+}

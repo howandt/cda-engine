@@ -1,0 +1,260 @@
+{
+  "id": "arfid",
+  "navn": "ARFID",
+  "fuld_navn": "Avoidant/Restrictive Food Intake Disorder",
+  "kort_visning": {
+    "hvad_er_det": "ARFID er en spiseforstyrrelse, hvor barnet eller den unge spiser så lidt, så snævert eller så begrænset, at ernæring, vækst, vægt eller daglig funktion bliver påvirket. Det handler ikke om ønske om at blive tyndere, men om sansefølsomhed, lav appetit eller frygt for negative konsekvenser ved at spise.",
+    "hvordan_viser_det_sig": [
+      "Barnet spiser meget få typer mad eller meget små mængder",
+      "Maden kan afvises på grund af konsistens, lugt, smag, temperatur eller udseende",
+      "Nogle børn virker næsten uden appetit og siger hurtigt stop",
+      "Andre undgår mad på grund af frygt for at kaste op, få noget galt i halsen eller få smerter",
+      "Måltider, sociale situationer og skoleliv kan blive stærkt påvirket"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er kræsenhed",
+      "At barnet bare skal blive sultent nok",
+      "At barnet manipulerer",
+      "At det er det samme som anoreksi",
+      "At mere pres eller tvang løser problemet"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag vedvarende og belastende spiseproblemer alvorligt tidligt",
+      "Søg grundig vurdering af både ernæring, medicinske forhold og psykologiske mekanismer",
+      "Arbejd med små, realistiske skridt frem for magtkamp ved bordet",
+      "Sørg for ernæringsmæssig stabilisering, hvis barnet er truet på vægt eller næring",
+      "Forstå barnets konkrete profil: sensorisk, lav appetit, frygtbaseret eller en kombination"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når et barn uge efter uge kun spiser ganske bestemte ting eller næsten ingenting, er det let for omgivelserne at tænke kræsenhed, trods eller manglende vilje. Men hos nogle børn er der tale om ARFID, hvor mad bliver begrænset i en grad, så kroppen, hverdagen og det sociale liv bliver reelt påvirket.",
+    "hvad_er_arfid": "ARFID står for Avoidant/Restrictive Food Intake Disorder. Diagnosen beskriver en spiseforstyrrelse, hvor barnet undgår eller begrænser madindtag i en grad, så ernæring, vækst, vægt eller daglig funktion bliver påvirket. Det kan vise sig ved for lidt mad i mængde, meget få typer fødevarer eller begge dele samtidig.",
+    "hovedprofiler": {
+      "sensorisk_foelsomhed": {
+        "kendetegn": [
+          "Maden føles forkert i smag, lugt, konsistens, farve eller temperatur",
+          "Barnet tåler ofte kun meget bestemte mærker, former eller strukturer",
+          "Små variationer kan udløse stærk afvisning"
+        ],
+        "vigtigt": "Oplevelsen er reel for barnet. Det er ikke skuespil eller bevidst modstand."
+      },
+      "lav_appetit_eller_manglende_interesse_for_mad": {
+        "kendetegn": [
+          "Barnet mærker kun lidt sult",
+          "Bliver hurtigt mæt",
+          "Spiser meget langsomt",
+          "Virker næsten uinteresseret i mad"
+        ],
+        "vigtigt": "Problemet kan være svært at forstå udefra, fordi barnet ikke nødvendigvis virker ængsteligt."
+      },
+      "frygt_for_negative_konsekvenser": {
+        "kendetegn": [
+          "Frygt for at kaste op",
+          "Frygt for at få noget galt i halsen",
+          "Frygt for smerter, kvalme eller allergisk reaktion",
+          "Undgåelse af mad efter ubehagelige oplevelser"
+        ],
+        "vigtigt": "Undgåelse giver kortvarig lettelse og vedligeholder derfor ofte problemet."
+      }
+    },
+    "dsm_5_og_vurdering": {
+      "forklaring": "Diagnosen stilles, når barnet vedvarende ikke får dækket sine ernæringsmæssige eller energimæssige behov.",
+      "tegn_der_kan_opfylde_kriterier": [
+        "Signifikant vægttab eller manglende forventet vægtøgning",
+        "Ernæringsmæssige mangler",
+        "Afhængighed af kosttilskud eller sondeernæring",
+        "Tydelig psykosocial funktionspåvirkning"
+      ],
+      "vigtigt": [
+        "Problemet må ikke bedre forklares af manglende adgang til mad",
+        "Det må ikke være drevet af ønske om vægttab eller forvrænget kropsopfattelse",
+        "Andre medicinske eller psykiske tilstande kan være til stede samtidig, men spiseproblemet skal være mere alvorligt end man ellers ville forvente"
+      ]
+    },
+    "hvordan_det_kan_se_ud_i_virkeligheden": [
+      "Barnet spiser kun fem til ti fødevarer og afviser resten med tydeligt ubehag",
+      "Barnet får så lidt samlet set, at vægten stagnerer eller falder",
+      "Barnet bliver blegt, træt eller ukoncentreret",
+      "Hele måltidssituationen bliver præget af angst, kontrol og bekymring",
+      "Fødselsdage, kantine, lejrture og besøg hos andre bliver meget vanskelige"
+    ],
+    "hvorfor_det_sker": {
+      "forklaring": "ARFID udvikler sig sjældent af én enkelt grund, men i et samspil mellem biologisk sårbarhed, sanseforarbejdning, appetitregulering, angst og erfaringer.",
+      "genetisk_og_biologisk_saarbarhed": [
+        "Nogle børn har medfødt sårbarhed i forhold til appetit, sansefølsomhed eller angstreaktioner"
+      ],
+      "sanseforarbejdning": [
+        "Maden opleves mere intenst og mere belastende end hos andre",
+        "Nogle børn reagerer stærkt på bitterhed, temperatur, klæbrighed eller små teksturforskelle"
+      ],
+      "appetitregulering": [
+        "Barnet mærker mindre sult",
+        "Bliver hurtigt mæt",
+        "Kan få endnu dårligere appetit hvis måltider bliver belastende"
+      ],
+      "angst_og_undgaaelse": [
+        "Barnet undgår mad for at undgå oplevet fare",
+        "På kort sigt falder angsten",
+        "På lang sigt vokser problemet"
+      ]
+    },
+    "komorbiditet": {
+      "forklaring": "ARFID optræder ofte sammen med andre vanskeligheder.",
+      "hyppige_samtidige_vanskeligheder": [
+        "Autisme",
+        "ADHD",
+        "Angstlidelser",
+        "OCD-lignende træk",
+        "Depression",
+        "Mave-tarm-problemer",
+        "Smerteproblematikker"
+      ],
+      "vigtigt": "Man kommer sjældent langt med en enkel forklaring. Barnets samlede mønster skal forstås."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Udredning bør være grundig og helst tværfaglig.",
+      "medicinsk_vurdering": [
+        "Vægt, højde og vækstkurver",
+        "Tegn på underernæring",
+        "Blodprøver efter behov",
+        "Overvejelse af medicinske forklaringer som refluks, cøliaki, eosinofil øsofagitis, forstoppelse eller andre mave-tarm-problemer"
+      ],
+      "ernaeringsmaessig_vurdering": [
+        "Hvad barnet faktisk får i sig",
+        "Mængder og hyppighed",
+        "Protein, jern, calcium, D-vitamin og andre næringsstoffer",
+        "Behov for kosttilskud eller anden ernæringsstøtte"
+      ],
+      "psykologisk_vurdering": [
+        "Om problemet primært er sensorisk, appetitbetinget, frygtbaseret eller blandet",
+        "Hvornår det begyndte",
+        "Om der er udløsende hændelser",
+        "Hvordan det påvirker barnets sociale og daglige liv"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Almindelig kræsenhed",
+        "Anoreksi",
+        "Rent medicinske tilstande",
+        "Sekundære spiseproblemer ved andre lidelser"
+      ]
+    },
+    "behandling_og_hjaelp": {
+      "grundprincip": "ARFID behandles bedst tværfagligt.",
+      "ernaeringsmaessig_stabilisering": [
+        "Sikre nok energi og næring",
+        "Bruge kosttilskud eller energitæt kost ved behov",
+        "Sondeernæring i svære tilfælde",
+        "Beskytte kroppen mens øvrig behandling foregår"
+      ],
+      "gradvis_eksponering_ved_sensorisk_type": [
+        "Have maden i rummet",
+        "Have maden på bordet",
+        "Have maden på tallerkenen",
+        "Røre, lugte eller lege med maden",
+        "Smage ganske lidt",
+        "Tygge og eventuelt synke"
+      ],
+      "food_chaining": [
+        "Tage udgangspunkt i kendte sikre fødevarer",
+        "Bevæge sig i små variationer derfra",
+        "Arbejde med nært beslægtede fødevarer trin for trin"
+      ],
+      "struktur_ved_lav_appetit": [
+        "Faste måltider",
+        "Overskuelige portioner",
+        "Energitætte fødevarer",
+        "Ro omkring måltiderne",
+        "Medicinsk justering hvis appetitnedsættende medicin spiller ind"
+      ],
+      "kognitiv_adfaerdsterapi_ved_frygtprofil": [
+        "Forstå angstcirklen",
+        "Opdage katastrofetanker",
+        "Gradvis nærme sig det barnet frygter",
+        "Eksponering i konkrete, bæredygtige trin"
+      ],
+      "familieinddragelse": [
+        "Hjælpe forældre til at støtte uden at vedligeholde undgåelse",
+        "Undgå både hård tvang og total opgivenhed",
+        "Skabe en mere bæredygtig ramme omkring måltider"
+      ],
+      "intensive_forloeb": [
+        "Dagbehandling eller indlæggelse kan være nødvendig ved svær ernæringsmæssig trussel eller meget fastlåste mønstre"
+      ],
+      "medicin": {
+        "forklaring": "Der findes ikke medicin, som specifikt ophæver ARFID.",
+        "vigtigt": [
+          "Medicin kan nogle gange støtte ved komorbid angst, OCD, depression eller appetitproblemer",
+          "Det er sjældent hele løsningen"
+        ]
+      }
+    },
+    "dit_barn_i_skolen": {
+      "udfordringer": [
+        "Madpakken kommer urørt med hjem",
+        "Barnet spiser ikke i kantinen",
+        "Undgår fødselsdage eller fælles spisning",
+        "Virker træt og ukoncentreret sidst på dagen"
+      ],
+      "hjaelper_ofte": [
+        "At skolen forstår, at problemet er reelt",
+        "At barnet i en periode kan medbringe sikre fødevarer",
+        "At skolen indgår i den samlede plan frem for bare at presse eller moraliserer",
+        "At gradvise skridt koordineres med hjem og behandlere"
+      ]
+    },
+    "socialt_og_hjemme": {
+      "forklaring": "ARFID påvirker hele familien og kan gøre måltider til kampzoner.",
+      "hjaelper_ofte_i_hverdagen": [
+        "Mindre pres og færre ultimative krav",
+        "Tydelig arbejdsdeling hvor de voksne sætter rammerne, men barnet ikke tvinges voldsomt",
+        "Mindst én sikker fødevare ved måltider",
+        "Opmærksomhed på små fremskridt"
+      ],
+      "vigtigt": "Målet er ikke passiv tilpasning for altid, men realistisk deltagelse mens udvikling støttes."
+    },
+    "udvikling_over_tid_og_prognose": {
+      "forklaring": "ARFID begynder ofte tidligt, men forløbet varierer meget.",
+      "vigtigt": [
+        "Mange børn kan få et bredere og mere bæredygtigt forhold til mad med behandling",
+        "Nogle vil fortsat være mere selektive end gennemsnittet, men kan spise nok og deltage mere frit",
+        "Uden behandling er der større risiko for kronisk problemudvikling og social begrænsning",
+        "Jo tidligere mønstret forstås, desto bedre muligheder er der ofte"
+      ]
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Det er bare kræsenhed",
+        "realitet": "ARFID giver ofte vækstpåvirkning, ernæringsmangel eller tydelig social funktionsnedsættelse."
+      },
+      {
+        "myte": "Barnet spiser, hvis det bare bliver sultent nok",
+        "realitet": "Ikke nødvendigvis. Lav appetit eller høj angst kan gøre, at sult ikke automatisk fører til spisning."
+      },
+      {
+        "myte": "Barnet manipulerer",
+        "realitet": "Barnet beskytter sig mod noget, nervesystemet oplever som overvældende."
+      },
+      {
+        "myte": "Det er det samme som anoreksi",
+        "realitet": "Ved ARFID er problemet ikke drevet af vægtfrygt eller kropsutilfredshed."
+      },
+      {
+        "myte": "Mere tvang er løsningen",
+        "realitet": "Tvang forværrer ofte angst, modstand og aversion."
+      },
+      {
+        "myte": "Forældrene er skyld i det",
+        "realitet": "Problemet udspringer som regel af et komplekst samspil mellem barnets sårbarheder og omgivelserne."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "Børneafdeling",
+      "Børne- og ungdomspsykiatri",
+      "Tværfaglige teams med læge, diætist og psykolog",
+      "PPR i relevante tilfælde",
+      "Specialiserede behandlere med viden om ARFID"
+    ],
+    "afslutning": "Når man ser ARFID rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke spiseproblemet fra den ene dag til den anden, men det flytter blikket fra kræsenhed og pres til også at omfatte ernæring, sanser, angst, appetitregulering og barnets gradvise vej mod mere frihed omkring mad."
+  }
+}

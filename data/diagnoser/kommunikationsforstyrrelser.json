@@ -1,0 +1,241 @@
+{
+  "id": "kommunikationsforstyrrelser",
+  "navn": "Kommunikationsforstyrrelser",
+  "fuld_navn": "Kommunikationsforstyrrelser – stammen og sprogforstyrrelser",
+  "kort_visning": {
+    "hvad_er_det": "Kommunikationsforstyrrelser kan handle om forskellige vanskeligheder i tale og sprog. I denne sammenhæng handler det især om stammen, hvor talen brydes af gentagelser, forlængelser eller blokeringer, og om sprogforstyrrelser, hvor barnet har vanskeligheder med at forstå og formulere sprog alderssvarende.",
+    "hvordan_viser_det_sig": [
+      "Barnet ved måske godt, hvad det vil sige, men talen går i stå eller brydes",
+      "Andre børn får ordene frem, men sproget er kort, upræcist eller svært at forstå",
+      "Barnet kan få svært ved at deltage mundtligt i skole og sociale situationer",
+      "Der kan komme skam, undgåelse eller misforståelser omkring barnets evner",
+      "Vanskelighederne kan påvirke både læring, relationer og selvopfattelse"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At stammen bare er nervøsitet",
+      "At barnet med sprogforstyrrelse er umodent eller mindre begavet",
+      "At barnet bare skal tage sig sammen og tale tydeligere",
+      "At alle børn vokser fra det af sig selv",
+      "At problemerne skyldes dårlig opdragelse eller manglende indsats"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Søg logopædisk vurdering tidligt ved vedvarende bekymring",
+      "Mød barnet med ro, tid og forståelse frem for pres",
+      "Tilpas skole og hverdag til barnets reelle sproglige belastning",
+      "Undersøg om der er brug for støtte både til tale, sprogforståelse og social deltagelse",
+      "Hold fast i barnets styrker, så vanskeligheden ikke bliver hele identiteten"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når tale og sprog ikke flyder eller bærer som forventet, bliver barnet let misforstået. Et barn, der stammer, kan blive opfattet som nervøst eller dårligt forberedt. Et barn med sprogforstyrrelse kan blive opfattet som umodent, uopmærksomt eller mindre begavet, end det faktisk er. Når man ser det rigtigt, bliver det muligt at forstå både vanskeligheden og barnet bag den.",
+    "to_hovedomraader": {
+      "stammen": {
+        "hvad_er_det": "Stammen er en forstyrrelse i talens flydende forløb og timing. Barnet ved som regel godt, hvad der skal siges, men selve fremførelsen bliver ujævn på grund af gentagelser, forlængelser, blokeringer eller undgåelsesstrategier.",
+        "hvordan_det_viser_sig": [
+          "Gentagelser af lyde eller stavelser",
+          "Forlængelser af lyde",
+          "Tavse eller hørbare blokeringer",
+          "Spænding i ansigt og krop",
+          "Sekundær adfærd som øjeblink, hovedbevægelser eller undgåelse af bestemte ord"
+        ],
+        "vigtigt": "Stammen er ikke bare nervøsitet. Angst kan forværre stammen, men er ikke den oprindelige årsag."
+      },
+      "sprogforstyrrelse_dld": {
+        "hvad_er_det": "DLD står for Developmental Language Disorder og handler om en udviklingsmæssig sprogforstyrrelse. Barnet har betydelige vanskeligheder med at lære, forstå og bruge talesprog, uden at problemet bedre forklares af høretab, autisme, generel intellektuel funktionsnedsættelse eller kendt neurologisk skade.",
+        "hvordan_det_viser_sig": [
+          "Begrænset ordforråd",
+          "Korte eller upræcise sætninger",
+          "Usikker grammatik",
+          "Svært ved at forstå instruktioner og fortællinger",
+          "Svært ved at fortælle sammenhængende eller formulere tanker sprogligt"
+        ],
+        "vigtigt": "Barnet ved ofte mere, end det kan få sagt. Problemet er ikke dovenskab eller lav intelligens."
+      }
+    },
+    "dsm_5_og_vurdering": {
+      "stammen": [
+        "Vedvarende forstyrrelse i talens flydende forløb og timing",
+        "Hyppige gentagelser, forlængelser, blokeringer eller spændt taleproduktion",
+        "Påvirker kommunikation, social deltagelse eller funktion",
+        "Debut i tidlig udvikling"
+      ],
+      "sprogforstyrrelse": [
+        "Betydelige vanskeligheder med sprogforståelse, sprogproduktion eller begge dele",
+        "Påvirker læring, kommunikation og daglig funktion",
+        "Kan ikke bedre forklares af høretab, generel udviklingshæmning, autisme eller utilstrækkelig sprogeksponering"
+      ],
+      "vigtigt": "Det afgørende er ikke kun enkeltstående symptomer, men om problemet faktisk påvirker barnets deltagelse og hverdag."
+    },
+    "hvordan_det_ser_ud_i_praksis": {
+      "stammen": [
+        "Barnet går i stå i begyndelsen af ord",
+        "Undgår at sige bestemte ord eller række hånden op",
+        "Bliver bevidst om problemet og kan udvikle skam og talefrygt",
+        "Talen bliver ofte værre ved træthed, ophidselse eller socialt pres"
+      ],
+      "sprogforstyrrelse": [
+        "Barnet svarer kort, usammenhængende eller meget enkelt",
+        "Har svært ved flertrinsbeskeder",
+        "Får problemer med både læring og sociale relationer",
+        "Bliver let opfattet som uopmærksomt, selv om det i virkeligheden kæmper for at forstå"
+      ]
+    },
+    "hvorfor_det_sker": {
+      "stammen": {
+        "genetik": [
+          "Stammen ses ofte i familier",
+          "Der er en tydelig arvelig komponent"
+        ],
+        "neurobiologi": [
+          "Forskelle i hjernens netværk for tale, timing og auditiv feedback",
+          "Timing og sekventering i taleproduktionen kommer lettere ud af takt"
+        ],
+        "udvikling_og_modning": [
+          "Debut ligger ofte i to- til femårsalderen",
+          "Nogle børn forbedres spontant, andre får mere vedvarende forløb"
+        ]
+      },
+      "sprogforstyrrelse": {
+        "genetik": [
+          "Sprogforstyrrelser ses ofte i familier",
+          "Der er en betydelig arvelig komponent"
+        ],
+        "hjerne_og_sprogbearbejdning": [
+          "Forskelle i sproglige netværk og auditiv bearbejdning",
+          "Vanskeligheder med mønsterlæring og implicit sprogtilegnelse"
+        ],
+        "vigtigt": [
+          "Problemet skyldes ikke bare, at forældre har talt for lidt med barnet",
+          "Barnet arbejder ofte hårdt for at forstå og formulere sig"
+        ]
+      }
+    },
+    "diagnoseprocessen": {
+      "stammen": [
+        "Observation af taleflow, blokeringer og spænding",
+        "Samtale med forældre og eventuelt barnet selv",
+        "Vurdering af hvor belastende problemet er",
+        "Standardiserede redskaber som støtte til vurderingen"
+      ],
+      "sprogforstyrrelse": [
+        "Standardiserede sproglige tests",
+        "Analyse af spontan tale og fortælling",
+        "Vurdering af sprogforståelse og sprogproduktion",
+        "Udelukkelse af andre forklaringer som høretab eller utilstrækkelig sprogeksponering"
+      ],
+      "vigtigt": "Logopædisk vurdering er central ved begge typer vanskeligheder."
+    },
+    "behandling_og_hjaelp": {
+      "stammen": {
+        "små_børn": [
+          "Tidlig støtte gennem forældrebaserede forløb",
+          "Mere støttende tale-miljø med lavere tempo og mindre pres",
+          "Programmer som Lidcombe eller lignende strukturerede tilgange"
+        ],
+        "skoleboern_og_unge": [
+          "Stuttering modification",
+          "Fluency shaping",
+          "Kombinerede forløb med taleteknik, reduktion af undgåelse og angsthåndtering"
+        ],
+        "vigtigt": "Målet er ikke kun glat tale, men også mindre spænding, mindre skam og større frihed i kommunikationen."
+      },
+      "sprogforstyrrelse": {
+        "tidlig_indsats": [
+          "Forældrevejledning",
+          "Mere hjælpsomt sproginput",
+          "Udvidelse af barnets ytringer",
+          "Modellering og gentagelse"
+        ],
+        "direkte_logopaedisk_intervention": [
+          "Arbejde med ordforråd",
+          "Grammatik",
+          "Fortællestruktur",
+          "Sprogforståelse",
+          "Kombination af implicit og eksplicit undervisning"
+        ],
+        "laese_og_skrivestotte": [
+          "Fonologisk opmærksomhed",
+          "Afkodning",
+          "Læseforståelse",
+          "Skriftlig formulering"
+        ],
+        "vigtigt": "DLD forsvinder ikke nødvendigvis af sig selv, men kan forbedres betydeligt med præcis støtte."
+      }
+    },
+    "barnet_i_skolen": {
+      "stammen": [
+        "Barnet kan frygte fremlæggelser og mundtlige svar",
+        "Det hjælper sjældent at sige tal langsommere eller slap af",
+        "Det hjælper mere med ro, tid, normal øjenkontakt og mindre præstationspres"
+      ],
+      "sprogforstyrrelse": [
+        "Barnet har brug for korte og tydelige instruktioner",
+        "Ét trin ad gangen",
+        "Visuel støtte",
+        "Ekstra svartid",
+        "Kontrol af forståelse",
+        "Gentagelse og omformulering"
+      ],
+      "vigtigt": "Skolen skal forstå, at der er tale om reelle vanskeligheder, ikke bare manglende vilje."
+    },
+    "familien_omkring_barnet": {
+      "stammen": [
+        "Forældre bliver ofte usikre på om de skal hjælpe, vente eller aflede",
+        "Den bedste første hjælp er ofte ro, tid og nysgerrig lytning"
+      ],
+      "sprogforstyrrelse": [
+        "Forældre kan blive frustrerede over misforståelser og korte svar",
+        "Barnet har ikke brug for skældud over et sprog, der allerede er svært",
+        "Barnet har brug for støtte, modeller og tid"
+      ],
+      "soeskende": [
+        "Søskende kan blive irriterede eller begynde at tale for barnet",
+        "Hele familien har gavn af en fælles forståelse"
+      ]
+    },
+    "udvikling_over_tid_og_prognose": {
+      "stammen": [
+        "Mange børn forbedres i løbet af de første år, især før skolealderen",
+        "En mindre gruppe får mere vedvarende stammen",
+        "Tidlig vurdering og støtte er vigtig ved belastende eller langvarige forløb"
+      ],
+      "sprogforstyrrelse": [
+        "DLD er ofte mere vedvarende",
+        "Barnet vokser ikke nødvendigvis helt fra det",
+        "Men barnet kan forbedre forståelse, ordforråd, grammatik og funktionel kommunikation markant"
+      ],
+      "vigtigt": "Tidlig og præcis støtte gør ofte en reel forskel ved begge typer vanskeligheder."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Stammen er bare nervøsitet",
+        "realitet": "Nervøsitet kan gøre stammen værre, men er ikke selve årsagen."
+      },
+      {
+        "myte": "Barnet med sprogforstyrrelse er bare umodent",
+        "realitet": "DLD er en reel udviklingsmæssig sprogforstyrrelse."
+      },
+      {
+        "myte": "Man hjælper ved at sige tal langsommere eller slap af",
+        "realitet": "Den slags øger ofte pres og selvbevidsthed."
+      },
+      {
+        "myte": "Alle børn vokser fra det",
+        "realitet": "Nogle gør, men ikke alle. Vedvarende problemer kræver vurdering."
+      },
+      {
+        "myte": "Problemet skyldes for lidt sprog hjemme",
+        "realitet": "Miljø betyder noget, men disse vanskeligheder er grundlæggende mere komplekse og ofte neurobiologisk forankrede."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Logopæd",
+      "PPR",
+      "Tale-høre-systemet",
+      "Skole eller daginstitution",
+      "Eventuelt privat logopæd som supplement",
+      "Netværk og relevante foreninger"
+    ],
+    "afslutning": "Når man ser kommunikationsforstyrrelser rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke vanskeligheden fra den ene dag til den anden, men det flytter blikket fra dovenskab, nervøsitet eller umodenhed til også at omfatte tale, sprog, regulering og barnets reelle belastning."
+  }
+}

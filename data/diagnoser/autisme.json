@@ -1,0 +1,201 @@
+{
+  "id": "autisme",
+  "navn": "Autisme",
+  "fuld_navn": "Autismespektrumforstyrrelse",
+  "kort_visning": {
+    "hvad_er_det": "Autisme er en neurodevelopmentel tilstand. Det betyder, at barnet opfatter, bearbejder og organiserer verden anderledes, især i forhold til social forståelse, kommunikation, sanser, mønstre og behov for forudsigelighed.",
+    "hvordan_viser_det_sig": [
+      "Barnet kan have svært ved at aflæse ansigtsudtryk, kropssprog og sociale signaler",
+      "Barnet kan virke bogstaveligt, holde fast i egne emner eller have svært ved at komme ind i leg og relationer",
+      "Barnet kan reagere stærkt på ændringer, skift, støj eller uforudsigelighed",
+      "Barnet kan have intense interesser, faste rutiner eller behov for gentagelse",
+      "Barnet kan blive overbelastet og bryde sammen, selv om det udefra ikke altid ser sådan ud"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At barnet er koldt eller ligeglad med andre",
+      "At barnet er stædigt eller trodsigt",
+      "At barnet bare skal presses til at være mere fleksibelt",
+      "At barnet mangler opdragelse",
+      "At det kun handler om sociale færdigheder"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Skab forudsigelighed og forbered barnet på ændringer",
+      "Brug tydelig og konkret kommunikation",
+      "Giv pauser og mulighed for tilbagetrækning ved belastning",
+      "Gør krav og overgange mere overskuelige",
+      "Se bag adfærden og tænk regulering før korrektion"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Autisme er ikke mangel på opdragelse, kærlighed eller vilje. Det er en anden måde at være i verden på. Når man begynder at se det rigtigt, falder meget på plads, fordi man ikke længere kun ser det, der skurrer, men også hvordan barnet faktisk oplever verden.",
+    "hvad_er_autisme": "Autismespektrumforstyrrelse er en neurodevelopmentel tilstand. Det betyder, at barnets måde at opfatte, bearbejde og organisere verden på udvikler sig anderledes. Det handler om social forståelse, kommunikation, mønstre, forudsigelighed, sanser og belastning.",
+    "definition_og_typiske_kendetegn": {
+      "social_kommunikation_og_samspil": [
+        "Barnet kan have svært ved at aflæse ansigtsudtryk og kropssprog",
+        "Barnet kan misforstå ironi, hentydninger og skjulte sociale regler",
+        "Barnet kan have svært ved at vide, hvordan man går ind i leg og relationer",
+        "Barnet kan virke meget bogstaveligt",
+        "Barnet kan tale ensidigt eller holde fast i egne emner",
+        "Barnet kan have svært ved at mærke, hvad den anden tænker, føler eller forventer",
+        "Barnet kan undgå eller bruge øjenkontakt på en anden måde"
+      ],
+      "begraensede_repetitive_eller_faste_moenstre": [
+        "Barnet kan have meget intense interesser",
+        "Barnet kan holde fast i rutiner og reagere stærkt på ændringer",
+        "Barnet kan gentage bestemte bevægelser eller handlinger",
+        "Barnet kan ordne ting på bestemte måder",
+        "Barnet kan have brug for, at ting sker i en bestemt rækkefølge",
+        "Barnet kan reagere kraftigt på lyde, lys, lugte, berøring eller bestemte materialer",
+        "Barnet kan spise meget selektivt eller afvise bestemte konsistenser"
+      ]
+    },
+    "saadan_ser_det_ofte_ud_i_hverdagen": [
+      "Små ændringer kan vælte det hele",
+      "Tøj, mad eller bestemte materialer kan føles helt forkerte",
+      "Barnet kan låse sig fast, når planen ændres",
+      "Leg og sociale situationer kan ikke glide naturligt",
+      "Skolen kan se nogenlunde ud udefra, men ende i nedsmeltning hjemme",
+      "Barnet kan blive mødt med krav om fleksibilitet, som det ikke kan honorere i situationen"
+    ],
+    "naar_det_bliver_tolket_forkert": {
+      "forklaring": "Autisme bliver let læst forkert. Omgivelserne ser ofte adfærden, men ikke det, der ligger bag.",
+      "det_der_ofte_overses": [
+        "Social overbelastning",
+        "Mistet fodfæste ved ændringer",
+        "Behov for ro og sammenhæng i bestemte emner eller mønstre",
+        "Belastning der har bygget sig op længe før sammenbruddet"
+      ]
+    },
+    "forskellige_former_og_betegnelser": {
+      "forklaring": "I dag bruger man som udgangspunkt betegnelsen autismespektrumforstyrrelse. De gamle betegnelser som Aspergers syndrom, infantil autisme og atypisk autisme bruges mindre, fordi variationen forstås bedre som et spektrum.",
+      "vigtigt": [
+        "Det afgørende er ikke kun etiketten",
+        "Det afgørende er hvordan autisme viser sig hos det konkrete barn",
+        "Støttebehov, styrker og vanskeligheder skal forstås i praksis"
+      ]
+    },
+    "diagnoseprocessen": {
+      "forklaring": "Autisme afgøres ikke ved en hurtig liste eller én test. Det kræver en grundig udredning.",
+      "indgaar_typisk": [
+        "Samtaler med forældre",
+        "Beskrivelse af barnets udvikling",
+        "Observationer",
+        "Faglige vurderinger",
+        "Oplysninger fra skole eller dagtilbud",
+        "Vurdering af hvordan mønstrene har været over tid",
+        "Vurdering af hvor meget det påvirker barnets liv"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Sprogforstyrrelser",
+        "Angst",
+        "Traumer",
+        "Opmærksomhedsvanskeligheder",
+        "Intellektuelle vanskeligheder",
+        "Sanseforstyrrelser",
+        "Andre udviklingsmæssige forhold"
+      ]
+    },
+    "aarsager_og_risikofaktorer": {
+      "genetiske_forhold": "Autisme hænger i høj grad sammen med biologiske og genetiske forhold og ses ofte i familier.",
+      "neurologiske_forhold": "Hjernen udvikler og organiserer information på en anden måde, blandt andet social information, sansebearbejdning, mønstergenkendelse og behov for forudsigelighed.",
+      "miljoemaessige_forhold": "Der kan være forskellige risikofaktorer under graviditet og tidlig udvikling, men autisme kan ikke meningsfuldt reduceres til én enkelt årsag.",
+      "vigtigt": [
+        "Autisme skyldes ikke vacciner",
+        "Autisme skyldes ikke dårlig opdragelse",
+        "Autisme skyldes ikke mangel på kærlighed",
+        "Autisme skyldes ikke for meget skærm"
+      ]
+    },
+    "behandling_hjaelp_og_stoette": {
+      "viden_og_forstaaelse": "Noget af det første, der hjælper, er at forstå mønstrene rigtigt, så barnet ikke hele tiden bliver fejlfortolket.",
+      "struktur_og_forudsigelighed": [
+        "Forudsigelige rammer",
+        "Tydelige overgange",
+        "Forberedelse på ændringer",
+        "Visuel støtte",
+        "Klar kommunikation",
+        "Pauser",
+        "Mulighed for tilbagetrækning",
+        "Opgaver i overskuelige bidder"
+      ],
+      "kommunikation_og_sociale_redskaber": [
+        "Hjælp til at forstå kropssprog og turtagning",
+        "Hjælp til samtaler og sociale situationer",
+        "Alternative kommunikationsformer hvis talesprog ikke er tilstrækkeligt"
+      ],
+      "sanser_og_daglige_faerdigheder": [
+        "Konkrete sensoriske tilpasninger",
+        "Mere præcis forståelse af barnets sensoriske profil",
+        "Støtte til mad, tøj, lys, lyd og andre belastende input"
+      ],
+      "psykisk_trivsel": "Støtte skal også handle om trivsel, ikke kun om adfærd. Nogle børn og unge udvikler angst, nedtrykthed eller stor udmattelse.",
+      "medicin": "Der findes ikke medicin, som fjerner autisme, men nogle børn kan have gavn af medicin for vanskeligheder ved siden af eller oveni, for eksempel søvnproblemer, angst, ADHD-symptomer eller stærk uro."
+    },
+    "autisme_i_skole_og_laering": {
+      "udfordringer": [
+        "At aflæse sociale situationer",
+        "At tåle støj",
+        "At skifte aktivitet hurtigt",
+        "At arbejde i grupper",
+        "At forstå uklare beskeder",
+        "At holde sammen på sig selv i et miljø med mange indtryk",
+        "At håndtere pauser, skift og uforudsigelighed"
+      ],
+      "vigtigt": "Det er ofte ikke fagligheden alene, der vælter barnet, men den samlede belastning.",
+      "hjaelper_ofte": [
+        "Tydelighed",
+        "Tilpasning af krav",
+        "Reel pædagogisk forståelse",
+        "Mindre social og sensorisk belastning",
+        "Mere overskuelighed i hverdagen"
+      ]
+    },
+    "familie_og_sociale_relationer": {
+      "familie": "Autisme rammer også familien. Det påvirker planlægning, energi, søskende, parforhold, fritid og helt almindelige hverdage.",
+      "socialt": [
+        "Barnet vil måske gerne være med, men ved ikke hvordan",
+        "Barnet kan misforstå legen",
+        "Barnet kan blive for styrende eller fastlåst",
+        "Barnet kan trække sig helt",
+        "Relationer kræver ofte mere støtte, oversættelse og tålmodighed"
+      ]
+    },
+    "autisme_gennem_livet": {
+      "smaa_boern": "Her ses ofte forskelle i kontakt, kommunikation, leg, fleksibilitet, sanser og reaktioner på forandring.",
+      "skoleboern": "Kravene til fleksibilitet, samarbejde og implicit forståelse bliver større, og vanskelighederne kan blive tydeligere.",
+      "unge": "Sociale krav, identitet og ansvar fylder mere, og mange unge kæmper med angst, udmattelse, ensomhed eller følelsen af at være bagud.",
+      "voksne": "Hos voksne kan autisme vise sig som vanskeligheder med relationer, arbejdsliv, sansepres, fleksibilitet, energi og daglig organisering."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Autistiske børn vil ikke andre mennesker",
+        "realitet": "Nogle søger kontakt på andre måder, og nogle vil gerne være tæt på, men bliver hurtigt overbelastede."
+      },
+      {
+        "myte": "Autisme er bare mangel på sociale færdigheder",
+        "realitet": "Autisme handler også om sanser, regulering, fleksibilitet, mønstre, belastning og måden verden skaber mening på."
+      },
+      {
+        "myte": "Alle autister er genier",
+        "realitet": "Nogle har særlige styrker, andre store vanskeligheder, og mange har en blanding."
+      },
+      {
+        "myte": "Autisme skyldes vacciner",
+        "realitet": "Den myte bygger ikke på holdbar viden."
+      },
+      {
+        "myte": "Det kan trænes væk",
+        "realitet": "Man kan støtte udvikling og mindske belastning, men pointen er ikke at gøre barnet mindre sig selv."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Skole og dagtilbud",
+      "PPR og andre fagpersoner",
+      "Udredning og rådgivning",
+      "Forældrevejledning",
+      "Netværk med andre familier",
+      "Konkrete redskaber, der virker i hverdagen"
+    ],
+    "afslutning": "Når man ikke forstår autisme, kommer man let til at kalde det trods, kulde, stædighed eller dårlig opdragelse. Når man ser det rigtigt, bliver det muligt at hjælpe mere præcist, mindre moraliserende og mindre skadeligt. Det flytter blikket, og ofte er det dér, forandringen begynder."
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "id": "soevnforstyrrelser",
+  "navn": "Søvnforstyrrelser",
+  "fuld_navn": "Søvnforstyrrelser",
+  "kort_visning": {
+    "hvad_er_det": "Søvnforstyrrelser er tilstande, hvor søvnens kvalitet, varighed, timing eller biologiske regulering bliver så forstyrret, at det påvirker funktion og trivsel. Det handler ikke bare om dovenskab eller dårlige vaner.",
+    "hvordan_viser_det_sig": [
+      "Barnet eller den unge kan have svært ved at falde i søvn eller blive sovende",
+      "Der kan være snorken, vejrtrækningspauser, uro eller mærkelig adfærd under søvn",
+      "Den unge kan være meget træt om dagen, men stadig ikke kunne falde i søvn om aftenen",
+      "Humør, koncentration, impulskontrol og skolegang kan blive tydeligt påvirket",
+      "Søvnproblemer kan ligne eller forværre andre vanskeligheder som ADHD, angst eller depression"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er dårlige vaner",
+      "At barnet bare er dovent eller ugideligt",
+      "At snorken er harmløst",
+      "At teenagere bare skal prøve hårdere at sove",
+      "At søvnproblemer ikke er så alvorlige"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag vedvarende søvnproblemer alvorligt tidligt",
+      "Skab rolige og stabile rutiner omkring søvn",
+      "Søg faglig vurdering ved tydelig dagtræthed, snorken eller alvorlig søvnkamp",
+      "Undgå at gøre søvn til en ren viljes- eller moral-kamp",
+      "Samarbejd mellem hjem, skole og relevante fagpersoner, når søvnen påvirker dagen tydeligt"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når søvnen ikke fungerer, mærkes det hurtigt i resten af livet. Det påvirker humør, koncentration, læring, krop, konfliktniveau og hele familiens belastning. Søvn er ikke et luksusområde, men et fundament.",
+    "hvorfor_soevn_er_vigtigt": {
+      "forklaring": "Søvn er en grundlæggende biologisk funktion, hvor hjernen og kroppen restituerer, bearbejder hukommelse og regulerer følelser.",
+      "mangel_paa_soevn_kan_paavirke": [
+        "Koncentration",
+        "Læring",
+        "Humør",
+        "Impulskontrol",
+        "Angstniveau",
+        "Depressive symptomer",
+        "Kropslig trivsel",
+        "Familiens samlede belastning"
+      ]
+    },
+    "hvad_er_soevnforstyrrelser": "Søvnforstyrrelser er tilstande, hvor søvnens kvalitet, varighed, timing eller biologiske regulering bliver så forstyrret, at det påvirker funktion og trivsel. Nogle handler om indsovning, andre om at blive ved med at sove, døgnrytme, vejrtrækning, bevægelser eller søvn-vågen-systemet.",
+    "vigtige_former_for_soevnforstyrrelser": {
+      "insomni": [
+        "Svært ved at falde i søvn",
+        "Hyppige opvågninger",
+        "Meget tidlig opvågning",
+        "Bekymring ved sengetid",
+        "Træthed og irritabilitet dagen efter"
+      ],
+      "obstruktiv_soevnapnoe": [
+        "Høj snorken",
+        "Pauser i vejrtrækningen",
+        "Urolig søvn",
+        "Sveden om natten",
+        "Dagtræthed",
+        "Hovedpine om morgenen",
+        "Koncentrations- eller adfærdsproblemer"
+      ],
+      "narkolepsi": [
+        "Meget stærk dagtræthed",
+        "Pludselige søvnanfald",
+        "Katapleksi ved stærke følelser",
+        "Søvnlammelse",
+        "Drømmeagtige oplevelser ved indsovning eller opvågning"
+      ],
+      "restless_legs_og_bevaegelsesforstyrrelser": [
+        "Kriblen eller uro i benene",
+        "Stærkt behov for at bevæge benene om aftenen eller ved hvile",
+        "Kan gøre indsovning meget svær",
+        "Kan hos nogle hænge sammen med jernmangel"
+      ],
+      "parasomnier": [
+        "Mareridt",
+        "Nat-terror",
+        "Søvngængeri",
+        "Forvirrede opvågninger",
+        "Anden usædvanlig adfærd under søvn"
+      ],
+      "forsinket_soevnfasesyndrom": [
+        "Den unge bliver først naturligt søvnig meget sent",
+        "Har svært ved at stå op om morgenen",
+        "Kan sove mere normalt hvis rytmen får lov at følge egen biologiske timing",
+        "Konflikt mellem biologi og skolestart bliver tydelig"
+      ]
+    },
+    "naar_det_bliver_tolket_forkert": {
+      "forklaring": "Søvnforstyrrelser bliver let misforstået som noget viljestyret eller opdragelsesmæssigt.",
+      "eksempler": [
+        "Det trætte barn læses som dovent",
+        "Det irritable barn læses som trodsigt",
+        "Den unge der ikke kan stå op læses som ugidelig",
+        "Barnet der snorker og sover dårligt læses som uroligt eller ukoncentreret"
+      ],
+      "vigtigt": "Ofte er det et system, der ikke får den søvn, det er afhængigt af."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "En ordentlig vurdering begynder ofte med en grundig søvnhistorie og en præcis afdækning af mønstre over tid.",
+      "indgaar_typisk": [
+        "Sengetid",
+        "Indsovningstid",
+        "Opvågninger om natten",
+        "Vågnetid om morgenen",
+        "Dagtræthed",
+        "Snorken",
+        "Vejrtrækning",
+        "Bevægelser under søvn",
+        "Funktion i dagtimerne"
+      ],
+      "redskaber_og_undersoegelser": [
+        "Søvndagbog",
+        "Actigrafi",
+        "Polysomnografi ved mere komplekse søvnforstyrrelser",
+        "Dagtests ved mistanke om narkolepsi",
+        "Blodprøver som jernstatus ved mistanke om restless legs"
+      ],
+      "vigtigt": "Målet er ikke bare at sætte navn på noget, men at forstå hvilken type søvnproblem man faktisk står med, og hvad der holder det i gang."
+    },
+    "hvorfor_soevnforstyrrelser_opstaar": {
+      "forklaring": "Der findes sjældent én enkelt forklaring. Søvnforstyrrelser opstår ofte i et samspil mellem biologi, nervesystem, vaner, miljø og andre psykiske eller medicinske forhold.",
+      "nervesystem_og_psykisk_belastning": [
+        "Angst",
+        "Depression",
+        "PTSD",
+        "Vedvarende stress"
+      ],
+      "neurodevelopmentelle_forhold": [
+        "ADHD",
+        "Autisme",
+        "Uro",
+        "Hyperfokus",
+        "Sanseforstyrrelser",
+        "Døgnrytmeproblemer"
+      ],
+      "skaerme_og_doegnrytme": [
+        "Blåt lys",
+        "Mentalt aktiverende indhold",
+        "Sociale medier og konstant tilgængelighed",
+        "Forværring af eksisterende søvnproblemer"
+      ],
+      "biologiske_forhold": [
+        "Luftveje, mandler, polypper og vægt ved søvnapnø",
+        "Hjernens regulering af vågenhed ved narkolepsi",
+        "Jernmangel ved restless legs"
+      ],
+      "pubertet_og_doegnrytme": [
+        "Biologisk forskydning af døgnrytmen hos mange teenagere",
+        "Kronisk søvnunderskud når skolen kræver tidlig opstart"
+      ]
+    },
+    "behandling_og_hjaelp": {
+      "soevnhygiejne_og_doegnrytme": [
+        "Regelmæssige sengetider",
+        "Regelmæssig opvågning",
+        "Rolige rutiner før sengetid",
+        "Mindre skærm tæt på søvn",
+        "Et sovemiljø med ro, mørke og passende temperatur"
+      ],
+      "kognitiv_adfaerdsterapi_for_insomni": [
+        "Arbejde med forbindelsen mellem seng og søvn",
+        "Reducere bekymring og præstationspres omkring søvn",
+        "Ændre vedligeholdende søvnmønstre"
+      ],
+      "behandling_af_soevnapnoe": [
+        "Operation ved forstørrede mandler eller polypper hos nogle",
+        "CPAP eller anden specialiseret hjælp hos andre"
+      ],
+      "behandling_af_narkolepsi": [
+        "Medicin",
+        "Planlagte lure",
+        "Specialiseret støtte"
+      ],
+      "behandling_af_restless_legs": [
+        "Jerntilskud ved jernmangel",
+        "Andre specifikke tiltag ved behov"
+      ],
+      "lysbehandling_og_melatonin": [
+        "Kan bruges ved forskudt døgnrytme",
+        "Timing er vigtig",
+        "Bør bruges med faglig vejledning"
+      ],
+      "medicin": "Sovemedicin er ikke førstevalg ved de fleste søvnproblemer hos børn og unge. Adfærdsmæssig og døgnrytmeorienteret behandling er ofte vigtigere."
+    },
+    "soevn_og_skole": {
+      "udfordringer": [
+        "Koncentration",
+        "Hukommelse",
+        "Udholdenhed",
+        "Humørregulering",
+        "Impulskontrol",
+        "Evnen til at møde op og holde sig vågen og samlet"
+      ],
+      "hjaelper_ofte": [
+        "Forudsigelighed",
+        "Forståelse fra lærere",
+        "Realistiske krav i belastede perioder",
+        "Pauser",
+        "Fleksibilitet",
+        "Tæt samarbejde mellem hjem og relevante fagpersoner"
+      ],
+      "vigtigt": "Hos unge med tydeligt forskudt døgnrytme er konflikten mellem biologi og skolestart særlig vigtig at forstå."
+    },
+    "livet_derhjemme": {
+      "forklaring": "Søvnproblemer rammer sjældent kun den, der ikke sover. De rammer hele familien.",
+      "hjaelper_ofte": [
+        "Konsistens frem for hårdhed",
+        "Rolige rutiner",
+        "Nogenlunde samme ramme fra dag til dag",
+        "Så lidt kaos som muligt omkring sengetid",
+        "Fælles forståelse mellem de voksne omkring barnet"
+      ],
+      "vigtigt": "Hvis søvnproblemet bliver en magtkamp, kan presset omkring søvnen gøre problemet værre.",
+      "foraeldrebelastning": "Hvis et barn ikke sover, sover familien ofte heller ikke ordentligt. Det slider, og forældre kan have brug for støtte."
+    },
+    "fra_barndom_til_ungdom_og_voksenliv": {
+      "forklaring": "Søvnproblemer ser forskelligt ud på forskellige alderstrin.",
+      "typiske_moenstre": [
+        "Hos små børn fylder opvågninger, parasomnier og rytmiske bevægelser mere",
+        "Hos skolebørn bliver insomni, søvnapnø og uro i benene mere synlige",
+        "Hos teenagere bliver døgnrytmeforskydning, søvnmangel og sammenhængen til psykisk belastning ofte tydeligere"
+      ],
+      "vigtigt": "Ikke alt er sygdom, men noget er. Og når noget er, hjælper det at se det i tide."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Det er bare dårlige vaner",
+        "realitet": "Nogle søvnproblemer hænger sammen med vaner, men egentlige søvnforstyrrelser er mere end det."
+      },
+      {
+        "myte": "Børn vokser altid fra det",
+        "realitet": "Nogle gør, andre gør ikke. Vedvarende snorken, svær dagtræthed og kronisk søvnløshed skal tages alvorligt."
+      },
+      {
+        "myte": "Snorken er harmløst",
+        "realitet": "Hos børn kan snorken være tegn på søvnapnø og bør ikke bare afskrives."
+      },
+      {
+        "myte": "Teenagere er bare dovne",
+        "realitet": "Mange teenagere lever med biologisk forskudt døgnrytme og kronisk søvnunderskud."
+      },
+      {
+        "myte": "Man kan bare prøve hårdere at sove",
+        "realitet": "Ved insomni gør pres og præstationsangst ofte søvnen sværere."
+      },
+      {
+        "myte": "Søvnproblemer er ikke så alvorlige",
+        "realitet": "Søvnproblemer kan påvirke udvikling, psykisk trivsel, skolegang og familieliv meget mere, end mange tror."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "Søvnklinik",
+      "Børnelæge",
+      "Øre-næse-hals-læge",
+      "Psykolog",
+      "Andre relevante fagpersoner afhængigt af søvnproblemets type"
+    ],
+    "afslutning": "Når man ser søvnforstyrrelser rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke problemet fra den ene dag til den anden, men det flytter blikket fra dovenskab og modstand til det forstyrrede system, der faktisk har brug for hjælp."
+  }
+}

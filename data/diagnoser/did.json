@@ -1,0 +1,185 @@
+{
+  "id": "did",
+  "navn": "DID",
+  "fuld_navn": "Dissociativ Identitetsforstyrrelse",
+  "kort_visning": {
+    "hvad_er_det": "Dissociativ identitetsforstyrrelse er en meget sjælden, traumebaseret dissociativ lidelse, hvor der kan være adskilte identitetstilstande sammen med tydelige hukommelseshuller og dissociation. Hos unge skal man være meget varsom, fordi dissociation, traumer, identitetsforvirring og social medie-påvirkning kan ligne noget, der ikke er reel DID.",
+    "hvordan_viser_det_sig": [
+      "Tydelige hukommelseshuller eller oplevelse af at miste tid",
+      "Dissociative oplevelser som uvirkelighedsfølelse eller oplevelse af at være adskilt fra sig selv",
+      "Store skift i adfærd eller identitetstilstande, som ikke bare er almindelige humørsvingninger",
+      "Stærk indre belastning, ofte med baggrund i tidlige traumer",
+      "Betydelig påvirkning af hverdagsfunktion og trivsel"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At alle der taler om flere identiteter har reel DID",
+      "At social medie-præsentation automatisk betyder diagnosen er reel",
+      "At det bare er opmærksomhedssøgende adfærd",
+      "At man hurtigt kan afgøre det uden grundig specialistvurdering",
+      "At lidelsen er almindelig hos teenagere"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag barnets eller den unges lidelse alvorligt uden at låse dig fast på én forklaring",
+      "Søg grundig vurdering hos fagperson med viden om traumer og dissociation",
+      "Hold fokus på sikkerhed, belastning og funktion i hverdagen",
+      "Mød den unge roligt og respektfuldt frem for konfronterende",
+      "Begræns ikke hjælpen til diagnosenavn, men se på den underliggende smerte og støttebehov"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når en ung fortæller, at de har flere identiteter eller oplever at skifte mellem forskellige dele af sig selv, skal det tages alvorligt. Men det skal også vurderes grundigt og roligt. Reel DID er sjælden, og andre tilstande eller belastninger kan ligne noget af det samme.",
+    "hvad_er_did": "Dissociativ identitetsforstyrrelse er en sjælden dissociativ lidelse, hvor der er adskilte identitetstilstande sammen med hukommelseshuller og dissociation. Det er ikke det samme som almindelige humørsvingninger, identitetssøgning eller at opføre sig forskelligt i forskellige situationer.",
+    "centrale_kendetegn": {
+      "identitetstilstande": [
+        "To eller flere tydeligt adskilte identitetstilstande",
+        "Skift i oplevelse af sig selv og i måden personen fungerer på",
+        "Forskelle i præferencer, stemmeføring, adfærd eller oplevelse af alder og rolle"
+      ],
+      "amnesi": [
+        "Hukommelseshuller for daglige begivenheder",
+        "Oplevelse af at miste tid",
+        "Manglende erindring om ting man selv har gjort, sagt eller skrevet"
+      ],
+      "dissociation": [
+        "Følelse af at være adskilt fra sin krop",
+        "Oplevelse af at verden er uvirkelig",
+        "Tågethed eller oplevelse af at stå uden for sig selv"
+      ]
+    },
+    "hvor_sjaeldent_det_er": {
+      "forklaring": "Reel DID er sjælden i befolkningen og diagnosticeres oftest først i voksenalderen, selv om rødderne ligger tidligere.",
+      "vigtigt": [
+        "Tilstanden er sjælden",
+        "Teenagepræsentationer kræver særlig forsigtighed",
+        "Ikke al dissociation eller identitetsforvirring er DID"
+      ]
+    },
+    "sociale_medier_og_nye_praesentationer": {
+      "forklaring": "Nyere forskning og kliniske observationer peger på en stigning i unge, der identificerer sig med DID efter eksponering på sociale medier. Det betyder ikke, at de ikke lider, men det betyder, at man skal skelne mellem reel traumebaseret DID og andre former for belastning, identitetsarbejde eller påvirkning.",
+      "tegn_der_kraever_ekstra_nuance": [
+        "Pludselig identifikation med diagnosen efter social medie-eksponering",
+        "Detaljeret beskrivelse af mange identiteter tidligt i forløbet",
+        "Manglende reel amnesi",
+        "Præsentationer der i høj grad følger online-mønstre og terminologi",
+        "Samtidig tydelig følelsesmæssig smerte eller identitetsforvirring"
+      ],
+      "vigtigt": "Den unge skal tages alvorligt, også hvis vurderingen ender med at pege på noget andet end DID."
+    },
+    "hvordan_reel_did_opstaar": {
+      "forklaring": "Reel DID forbindes typisk med meget tidlig, alvorlig og gentagen traumatisering sammen med manglende beskyttelse og støtte.",
+      "traumatiske_forhold": [
+        "Svær og gentagen tidlig traumatisering",
+        "Manglende tryghed eller beskyttelse",
+        "Dissociation som ekstrem overlevelsesstrategi"
+      ],
+      "udviklingsperspektiv": "Når meget små børn udsættes for ekstrem belastning, kan integrationen af identitet og hukommelse forstyrres, så adskilte tilstande opretholdes som en måde at overleve på."
+    },
+    "tilknytning_og_hjerne": {
+      "tilknytning": "Tidlig disorganiseret tilknytning og stærk utryghed kan øge sårbarheden for dissociative symptomer senere.",
+      "hjerne_og_stressrespons": "Forskning peger på, at stresssystem, følelsesregulering og hukommelsesrelaterede områder kan være påvirket, men hjernescanning kan ikke i sig selv stille diagnosen."
+    },
+    "diagnoseprocessen": {
+      "forklaring": "DID er en af de sværeste diagnoser at stille korrekt og kræver specialistvurdering over tid.",
+      "indgaar_typisk": [
+        "Grundig udviklings- og traumahistorie",
+        "Afdækning af dissociation og hukommelseshuller",
+        "Strukturerede interviews og spørgeskemaer",
+        "Observation over tid",
+        "Differentiel vurdering af andre mulige forklaringer"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Borderline personlighedsforstyrrelse",
+        "Kompleks PTSD",
+        "Bipolar lidelse",
+        "Psykotiske tilstande",
+        "Autisme",
+        "Maladaptive dagdrømme",
+        "Social medie-påvirket identitetspræsentation"
+      ],
+      "vigtigt": "Man skal hverken afvise for hurtigt eller bekræfte for hurtigt. Begge dele kan skade."
+    },
+    "behandling_og_hjaelp": {
+      "overordnet": "Behandlingen er typisk langvarig, faseopdelt og traumefokuseret.",
+      "fase_1_stabilisering": [
+        "Sikkerhed i hverdagen",
+        "Følelsesregulering",
+        "Reduktion af selvskade",
+        "Udvikling af copingstrategier",
+        "Opbygning af tryg terapeutisk relation"
+      ],
+      "fase_2_traumebearbejdning": [
+        "Forsigtig og gradvis bearbejdning af traumer",
+        "Arbejde med dissocierede minder og reaktioner",
+        "Kun når stabiliteten er tilstrækkelig"
+      ],
+      "fase_3_integration_eller_samarbejde": [
+        "Større sammenhæng mellem identitetstilstande",
+        "Mindre amnesi",
+        "Bedre samarbejde mellem indre dele",
+        "Fokus på funktion, relationer og livsopbygning"
+      ],
+      "terapiformer": [
+        "Traumefokuseret psykoterapi",
+        "Faseorienteret dissociationsbehandling",
+        "EMDR i nøje tilrettelagt form",
+        "DBT som støtte ved følelsesregulering og selvskade"
+      ],
+      "medicin": {
+        "forklaring": "Ingen medicin kurerer DID, men medicin kan bruges mod samtidige symptomer som depression, angst eller søvnproblemer.",
+        "vigtigt": "Medicin er supplement, ikke hovedbehandling."
+      }
+    },
+    "hvis_den_unge_siger_de_har_did": {
+      "goer": [
+        "Tag udsagnet alvorligt som tegn på reel lidelse",
+        "Søg fagperson med viden om dissociation og traumer",
+        "Vær åben for at forklaringen kan være DID eller noget andet",
+        "Fokuser på funktion, sikkerhed og belastning",
+        "Mød den unge med respekt og ro"
+      ],
+      "undgaa": [
+        "Hån eller latterliggørelse",
+        "Hurtig konklusion uden udredning",
+        "At reducere alt til sociale medier",
+        "At bekræfte en tung diagnose uden specialistvurdering"
+      ],
+      "sociale_medier": "Ved stærk påvirkning fra sociale medier kan det være hjælpsomt gradvist at reducere eksponeringen og samtidig opbygge andre identitets- og fællesskabsrum."
+    },
+    "prognose": {
+      "reel_did": "Ved reel DID kan langvarig, specialiseret behandling føre til bedre funktion, færre dissociative episoder og større indre sammenhæng.",
+      "andre_tilstande": "Hvis den unge ikke har DID, men andre belastninger eller traumeprægede symptomer, kan de stadig få væsentlig hjælp gennem målrettet behandling.",
+      "vigtigt": "Der er håb, men hurtige og forsimplede løsninger hjælper sjældent."
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Alle der siger de har DID lyver",
+        "realitet": "Nogle har reel DID, andre har andre reelle problemer. Lidelsen skal altid tages alvorligt."
+      },
+      {
+        "myte": "DID er bare opmærksomhedssøgning",
+        "realitet": "Reel DID er en alvorlig traumebaseret dissociativ lidelse. Andre præsentationer kan også dække over reel smerte."
+      },
+      {
+        "myte": "Man kan hurtigt kende DID på sociale medier",
+        "realitet": "Det kræver specialistvurdering at skelne præcist."
+      },
+      {
+        "myte": "Alters er bare separate personer i én krop",
+        "realitet": "Der er tale om adskilte dele eller tilstande i én person, ikke flere fuldt separate personer."
+      },
+      {
+        "myte": "Hvis det ikke er DID, er problemet ikke alvorligt",
+        "realitet": "Der kan være betydelig smerte og behandlingsbehov, også når forklaringen er en anden."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Børne- og ungdomspsykiatrien",
+      "Traume- og dissociationskyndige psykologer",
+      "Psykiatrifonden",
+      "SIND",
+      "Specialiserede fagmiljøer med viden om dissociation",
+      "Akut hjælp ved selvskade eller alvorlig sikkerhedsrisiko"
+    ],
+    "afslutning": "Når en ung taler om DID eller identitetsskift, skal fokus ikke først være at vinde en diskussion om diagnosen. Fokus skal være at forstå lidelsen bag og få den rette hjælp på plads. Reel DID er sjælden, men dissociation, traumer og identitetsmæssig smerte er reelle og fortjener respektfuld, præcis hjælp."
+  }
+}

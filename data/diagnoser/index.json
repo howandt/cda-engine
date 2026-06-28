@@ -1,0 +1,112 @@
+[
+  {
+    "id": "adhd",
+    "navn": "ADHD",
+    "fil": "adhd.json"
+  },
+  {
+    "id": "autisme",
+    "navn": "Autisme",
+    "fil": "autisme.json"
+  },
+  {
+    "id": "angst",
+    "navn": "Angst",
+    "fil": "angst.json"
+  },
+  {
+    "id": "borderline",
+    "navn": "Borderline",
+    "fil": "borderline.json"
+  },
+  {
+    "id": "did",
+    "navn": "DID",
+    "fil": "did.json"
+  },
+  {
+    "id": "narcissisme",
+    "navn": "Narcissisme",
+    "fil": "narcissisme.json"
+  },
+  {
+    "id": "antisocial",
+    "navn": "Antisocial",
+    "fil": "antisocial.json"
+  },
+  {
+    "id": "skizofreni",
+    "navn": "Skizofreni",
+    "fil": "skizofreni.json"
+  },
+  {
+    "id": "bipolar",
+    "navn": "Bipolar",
+    "fil": "bipolar.json"
+  },
+  {
+    "id": "ptsd",
+    "navn": "PTSD",
+    "fil": "ptsd.json"
+  },
+  {
+    "id": "spiseforstyrrelser",
+    "navn": "Spiseforstyrrelser",
+    "fil": "spiseforstyrrelser.json"
+  },
+  {
+    "id": "soevnforstyrrelser",
+    "navn": "Søvnforstyrrelser",
+    "fil": "soevnforstyrrelser.json"
+  },
+  {
+    "id": "adfaerd_og_impulskontrol",
+    "navn": "Adfærd og impulskontrol",
+    "fil": "adfaerd_og_impulskontrol.json"
+  },
+  {
+    "id": "afhaengighedslidelser",
+    "navn": "Afhængighedslidelser",
+    "fil": "afhaengighedslidelser.json"
+  },
+  {
+    "id": "ocd",
+    "navn": "OCD",
+    "fil": "ocd.json"
+  },
+  {
+    "id": "laeringsvanskeligheder",
+    "navn": "Læringsvanskeligheder",
+    "fil": "laeringsvanskeligheder.json"
+  },
+  {
+    "id": "tics_tourettes",
+    "navn": "Tics og Tourettes",
+    "fil": "tics_tourettes.json"
+  },
+  {
+    "id": "tilknytningsforstyrrelser",
+    "navn": "Tilknytningsforstyrrelser",
+    "fil": "tilknytningsforstyrrelser.json"
+  },
+  {
+    "id": "odd",
+    "navn": "ODD",
+    "fil": "odd.json"
+  },
+  {
+    "id": "selektiv_mutisme",
+    "navn": "Selektiv mutisme",
+    "fil": "selektiv_mutisme.json"
+  },
+  {
+    "id": "arfid",
+    "navn": "ARFID",
+    "fil": "arfid.json"
+  },
+  {
+    "id": "kommunikationsforstyrrelser",
+    "navn": "Kommunikationsforstyrrelser",
+    "fil": "kommunikationsforstyrrelser.json"
+  }
+]

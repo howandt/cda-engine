@@ -1,0 +1,252 @@
+{
+  "id": "laeringsvanskeligheder",
+  "navn": "Læringsvanskeligheder",
+  "fuld_navn": "Specifikke læringsvanskeligheder",
+  "kort_visning": {
+    "hvad_er_det": "Læringsvanskeligheder handler om vedvarende vanskeligheder med bestemte skolefærdigheder som læsning, skrivning eller matematik, som ikke står i rimeligt forhold til barnets øvrige muligheder, undervisning eller intelligens. Det betyder ikke, at barnet er dumt eller dovent, men at hjernen lærer på en anden måde.",
+    "hvordan_viser_det_sig": [
+      "Barnet kæmper vedvarende med læsning, stavning, skrivning eller matematik",
+      "Opgaver tager ofte meget længere tid end for andre børn",
+      "Barnet bliver hurtigere træt, frustreret eller opgivende i skolearbejde",
+      "Der kan komme undgåelse, modstand eller stærk uro omkring bestemte fag",
+      "Selvværdet kan gradvist blive påvirket af mange nederlag"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At barnet bare ikke øver sig nok",
+      "At barnet er sløset eller ukoncentreret",
+      "At det betyder lav intelligens",
+      "At teknologiske hjælpemidler er snyd",
+      "At barnet bare vokser fra det"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag vedvarende faglige vanskeligheder alvorligt tidligt",
+      "Søg ordentlig vurdering gennem skole, PPR eller relevante fagpersoner",
+      "Skeln mellem indsats og resultat, så barnet ikke får skam oven i vanskeligheden",
+      "Brug kompenserende hjælpemidler og den rigtige type støtte i stedet for bare mere af det samme",
+      "Hold fast i barnets styrker, så vanskeligheden ikke kommer til at definere hele selvforståelsen"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når et barn kæmper med noget, andre børn tilsyneladende glider lettere igennem, sætter det sig hurtigt i både skoleliv, selvværd og mod til at prøve igen. Når man ser læringsvanskeligheder rigtigt, bliver det muligt at forstå både vanskeligheden og den store indsats, barnet allerede lægger i noget, som bare ikke kommer let.",
+    "hvad_er_laeringsvanskeligheder": "Specifikke læringsvanskeligheder handler om vedvarende vanskeligheder med bestemte skolefærdigheder som læsning, skrivning og matematik, som ikke står i rimeligt forhold til barnets øvrige muligheder, undervisning eller intelligens. Mange børn med læringsvanskeligheder er kvikke, kreative og stærke på en række andre områder.",
+    "de_mest_kendte_former": {
+      "dysleksi": {
+        "navn": "Dysleksi",
+        "typiske_vanskeligheder": [
+          "At koble bogstaver og lyde",
+          "At afkode ord hurtigt",
+          "At læse flydende",
+          "At stave",
+          "At holde forståelsen oppe når meget energi går til afkodning"
+        ],
+        "vigtigt": "Barnet kan ofte forstå indhold fint, når det bliver fortalt højt, men læsningen i sig selv koster så meget energi, at forståelsen bliver sværere at holde fast i."
+      },
+      "dyskalkuli": {
+        "navn": "Dyskalkuli",
+        "typiske_vanskeligheder": [
+          "At forstå talmængder",
+          "At huske regnefakta",
+          "At gennemskue regnestrategier",
+          "At holde styr på rækkefølger og procedurer",
+          "At læse klokke, håndtere penge eller arbejde med mere abstrakt matematik"
+        ],
+        "vigtigt": "Matematik kan blive noget barnet frygter længe før omgivelserne forstår, hvor meget det faktisk koster at være i det."
+      },
+      "dysgrafi_og_skrivevanskeligheder": {
+        "navn": "Skrivevanskeligheder",
+        "typiske_vanskeligheder": [
+          "At skrive langsomt",
+          "At blive hurtigt træt i hånden",
+          "At have ujævn eller svært læselig skrift",
+          "At stave sikkert",
+          "At få tanker organiseret og formuleret på papir"
+        ],
+        "vigtigt": "Mange børn kan sige langt mere, end de kan skrive."
+      }
+    },
+    "saadan_ser_det_ofte_ud_i_hverdagen": {
+      "typiske_tegn": [
+        "Bruger meget længere tid end andre på lektier",
+        "Undgår at læse højt",
+        "Får ondt i maven før diktat eller matematik",
+        "Bliver vredt, træt eller opgivende når noget skal skrives eller regnes",
+        "Begynder at sige ting som: jeg er dum, jeg kan ikke finde ud af noget, jeg hader skole"
+      ],
+      "vigtigt": "Når det når dertil, står man ikke længere kun med et fagligt problem, men også med et barn, der er ved at bygge en identitet op omkring nederlag."
+    },
+    "naar_det_bliver_tolket_forkert": {
+      "forklaring": "Læringsvanskeligheder bliver let misforstået som dovenskab, sløseri eller manglende boglighed.",
+      "det_der_ofte_overses": [
+        "Hvor meget ekstra energi barnet bruger",
+        "At barnet ofte allerede kæmper hårdt",
+        "At modstand, træthed og frustration ofte er konsekvenser af vedvarende nederlag"
+      ],
+      "vigtigt": "Hvis omgivelserne kun læser det som manglende indsats, får barnet skam oven i vanskeligheden."
+    },
+    "flere_vanskeligheder_kan_optraede_sammen": {
+      "forklaring": "Læringsvanskeligheder står sjældent helt alene.",
+      "kan_optraede_sammen_med": [
+        "Læse- og skrivevanskeligheder samtidig",
+        "Dysleksi og dyskalkuli samtidig",
+        "ADHD",
+        "Autisme",
+        "Motoriske vanskeligheder",
+        "Angst",
+        "Lavt selvværd efter mange nederlag"
+      ],
+      "vigtigt": "Barnet skal forstås bredt. Hvis man kun ser ét problem og overser resten, bliver hjælpen for snæver."
+    },
+    "hvordan_finder_man_ud_af_det": {
+      "forklaring": "Læringsvanskeligheder afgøres ikke ved en hurtig fornemmelse alene, men kræver en ordentlig vurdering.",
+      "indgaar_typisk": [
+        "Hvordan barnet klarer sig i læsning, skrivning eller matematik",
+        "Hvordan udviklingen har set ud over tid",
+        "Hvordan barnet fungerer i undervisningen",
+        "Om vanskelighederne står i kontrast til barnets øvrige forudsætninger og den undervisning, barnet har fået"
+      ],
+      "kan_omfatte": [
+        "Samtaler med forældre og lærere",
+        "Observationer",
+        "Pædagogiske vurderinger",
+        "Mere formelle prøver eller tests"
+      ],
+      "vigtigt": "En god udredning handler ikke kun om at sætte et navn på noget, men om at forstå hvordan barnet lærer, hvor det støder imod, og hvad der skal til for at hjælpe mere præcist."
+    },
+    "hvorfor_opstaar_de": {
+      "forklaring": "Læringsvanskeligheder hænger i høj grad sammen med neurobiologiske og genetiske forhold. Det betyder, at hjernen organiserer eller bearbejder bestemte typer information anderledes.",
+      "arvelighed": [
+        "Læringsvanskeligheder ses ofte i familier",
+        "Nogle forældre forstår først deres egne gamle skoleerfaringer i nyt lys, når barnet bliver undersøgt"
+      ],
+      "hjernens_bearbejdning": [
+        "Ved dysleksi fylder vanskeligheder i fonologisk bearbejdning",
+        "Ved dyskalkuli fylder talsans, mængdeforståelse og regneprocesser",
+        "Ved skrivevanskeligheder kan motorik, stavning, sprog og organisering alle spille ind"
+      ],
+      "miljoe_spiller_en_rolle": [
+        "Undervisning, støtte, stress og hjemmemiljø betyder noget for udviklingen",
+        "God støtte kan gøre det bedre",
+        "Dårlig støtte kan gøre det værre",
+        "Men selve sårbarheden ligger ofte dybere end miljø alene"
+      ]
+    },
+    "hvad_hjaelper": {
+      "tidlig_og_maalrettet_indsats": [
+        "Jo tidligere hjælpen kommer, desto mindre risiko er der for faglig bagudgang og begyndende skam"
+      ],
+      "struktureret_undervisning": {
+        "ved_dysleksi": [
+          "Systematisk, eksplicit og gentaget undervisning i lyd, bogstav, afkodning og læsestrategier"
+        ],
+        "ved_dyskalkuli": [
+          "Konkret og trinvis undervisning med tydelig støtte til talforståelse og regnestrategier"
+        ],
+        "ved_skrivevanskeligheder": [
+          "Støtte til stavning, skriftlig struktur og eventuelt den motoriske del alt efter problemet"
+        ],
+        "vigtigt": "Det afgørende er ikke kun mere af det samme, men den rigtige type hjælp."
+      },
+      "multisensoriske_og_kompenserende_strategier": [
+        "Lære gennem flere kanaler på én gang",
+        "Se, høre, gøre og gentage",
+        "Oplæsning",
+        "Tale-til-tekst",
+        "Stavestøtte",
+        "Lommeregner i bestemte sammenhænge",
+        "Strukturerende værktøjer"
+      ],
+      "foraeldre_som_medspillere": [
+        "Skabe ro og struktur",
+        "Have realistiske forventninger",
+        "Støtte uden konstant kamp",
+        "Hjælpe barnet til at mærke: du er ikke dum, du lærer anderledes"
+      ],
+      "teknologi": [
+        "Oplæsningsværktøjer",
+        "Skrivestøtte",
+        "Digitale ordbøger",
+        "Tale-til-tekst",
+        "Andre kompenserende løsninger"
+      ]
+    },
+    "laeringsvanskeligheder_i_skolelivet": {
+      "udfordringer": [
+        "At læse hurtigt",
+        "At stave sikkert",
+        "At skrive under tidspres",
+        "At huske regnefakta",
+        "At følge med i tempoet"
+      ],
+      "hjaelper_ofte": [
+        "Ekstra tid",
+        "Oplæsning",
+        "Kompenserende it",
+        "Flere mundtlige muligheder",
+        "Mindre fokus på tempo alene",
+        "Undervisning der matcher barnets profil"
+      ],
+      "vigtigt": "Skolen skal hjælpe barnet med at bevare værdighed. Mange børn lider mindst lige så meget under skammen som under selve vanskeligheden."
+    },
+    "hjemmet_og_det_foelelsesmaessige_slid": {
+      "forklaring": "Læringsvanskeligheder rammer også lektier, aftenenergi, tålmodighed og stemningen omkring skole derhjemme.",
+      "hjaelper_ofte": [
+        "At skelne mellem indsats og udkomme",
+        "At anerkende hvor hårdt barnet faktisk arbejder",
+        "At holde fast i barnets styrker og ikke lade vanskeligheden blive hele identiteten"
+      ],
+      "styrker_der_ogsaa_skal_ses": [
+        "Sociale styrker",
+        "Kreativitet",
+        "Teknisk dygtighed",
+        "Fantasi",
+        "Stærk mundtlig forståelse",
+        "Praktisk begavelse"
+      ]
+    },
+    "fra_barn_til_ung_og_voksen": {
+      "forklaring": "Læringsvanskeligheder forsvinder ikke nødvendigvis, bare fordi barnet bliver ældre, men de kan blive langt bedre håndteret.",
+      "vigtigt": [
+        "Mange lærer strategier",
+        "Mange finder hjælpemidler der virker",
+        "Mange opdager områder hvor de har store styrker",
+        "Mange får et godt uddannelses- og arbejdsliv med den rette støtte",
+        "Vanskelighederne behøver ikke definere et helt liv"
+      ]
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Barnet er bare dovent",
+        "realitet": "Mange børn med læringsvanskeligheder arbejder hårdere, end omgivelserne aner."
+      },
+      {
+        "myte": "Det betyder lav intelligens",
+        "realitet": "Læringsvanskeligheder er ikke det samme som lav begavelse."
+      },
+      {
+        "myte": "De vokser bare fra det",
+        "realitet": "Ikke nødvendigvis, men barnet kan lære at håndtere det bedre med den rette støtte."
+      },
+      {
+        "myte": "Teknologiske hjælpemidler er snyd",
+        "realitet": "De er kompensation, ligesom briller er det ved synsvanskeligheder."
+      },
+      {
+        "myte": "Det skyldes dårlig undervisning eller dårlige forældre",
+        "realitet": "Det kan gøre forskel, hvordan barnet bliver mødt, men det er sjældent hele forklaringen."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Skolen",
+      "PPR",
+      "Specialundervisning",
+      "Læsevejledere",
+      "Kompenserende hjælpemidler",
+      "Relevante foreninger og netværk",
+      "Nota",
+      "Ordblindeområdet",
+      "Kommunale støttesystemer",
+      "Skolens specialpædagogiske ressourcer"
+    ],
+    "afslutning": "Når man ser læringsvanskeligheder rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke vanskeligheden fra den ene dag til den anden, men det flytter blikket fra fejlene alene til også at omfatte indsatsen, trætheden og den måde barnet faktisk lærer på."
+  }
+}

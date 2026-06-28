@@ -1,0 +1,266 @@
+{
+  "id": "tics_tourettes",
+  "navn": "Tics og Tourettes",
+  "fuld_navn": "Tic-lidelser og Tourettes syndrom",
+  "kort_visning": {
+    "hvad_er_det": "Tic-lidelser handler om pludselige, hurtige og gentagne bevægelser eller lyde, som barnet eller den unge ikke bare kan stoppe. Det handler ikke om mærkelig adfærd eller dårlig opdragelse, men om et nervesystem, der sender bevægelser og lyde af sted, ofte sammen med en indre kropslig trang.",
+    "hvordan_viser_det_sig": [
+      "Barnet kan blinke, rykke med hovedet, trække på skuldrene eller lave ansigtsgrimaser",
+      "Der kan være lyde som rømmen, snifen, grynten eller andre gentagne vokale tics",
+      "Tics kan undertrykkes kortvarigt, men det koster ofte meget energi og kommer tit stærkere igen bagefter",
+      "Stress, træthed og ophidselse kan gøre tics tydeligere",
+      "Skam, social sårbarhed og lavt selvværd kan vokse, hvis omgivelserne misforstår det"
+    ],
+    "hvad_misforstaas_ofte": [
+      "At det bare er dårlige vaner",
+      "At barnet bare kan lade være",
+      "At Tourette betyder bandeord",
+      "At det skyldes dårlig opdragelse",
+      "At det kun er tic’ene, der fylder, og ikke de samtidige vanskeligheder"
+    ],
+    "hvad_kan_den_voksne_gore": [
+      "Tag tics alvorligt uden at gøre dem til et konstant fokus",
+      "Undgå hele tiden at sige stop, fordi det ofte øger spænding og skam",
+      "Søg faglig vurdering, især hvis der er både motoriske og vokale tics eller tydelig belastning",
+      "Se barnet samlet og undersøg også ADHD, OCD, angst eller andre samtidige vanskeligheder",
+      "Skab ro, forudsigelighed og beskyttelse mod mobning og misforståelser"
+    ]
+  },
+  "lang_visning": {
+    "intro": "Når et barn får tics, rammer det sjældent kun selve bevægelsen eller lyden. Det rammer også blikkene fra andre, misforståelserne, skammen og den store indsats barnet bruger på at prøve at holde noget tilbage, som kroppen alligevel sender ud. Når man begynder at se det rigtigt, bliver det muligt at forstå både tic’ene og barnet bag dem.",
+    "hvad_er_tics": "Et tic er en pludselig, hurtig, gentagen og ikke-rytmisk bevægelse eller lyd. Tics er både ufrivillige og alligevel til en vis grad noget, barnet kan holde tilbage i kortere tid. Det betyder ikke, at barnet vælger dem som almindelige handlinger. Mange beskriver også en indre spænding, trang eller kropslig uro lige før tic’en kommer, og en kort lettelse bagefter.",
+    "typer_af_tics": {
+      "motoriske_tics": {
+        "simple": [
+          "Øjenblink",
+          "Hovedryk",
+          "Skuldertræk",
+          "Ansigtsgrimaser",
+          "Næserykning"
+        ],
+        "komplekse": [
+          "Hop",
+          "Berøring af ting",
+          "Rette på tøj",
+          "Gentagne bevægelsesmønstre",
+          "Mere sammensatte handlinger"
+        ]
+      },
+      "vokale_tics": {
+        "simple": [
+          "Rømmen",
+          "Snifen",
+          "Grynten",
+          "Harklen"
+        ],
+        "komplekse": [
+          "Ord",
+          "Gentagelser",
+          "Længere lyde",
+          "Gentagelse af egne eller andres ord"
+        ],
+        "vigtigt": "Tourette er ikke lig med bandeord. Koprolali findes kun hos en mindre del og er ikke det typiske billede."
+      }
+    },
+    "de_forskellige_diagnoser": {
+      "forbigaaende_tic_lidelse": [
+        "Tics i en periode under et år",
+        "Ofte relativt almindeligt i barndommen",
+        "Mange forsvinder igen af sig selv"
+      ],
+      "kronisk_motorisk_eller_vokal_tic_lidelse": [
+        "Tics varer længere end et år",
+        "Der er enten motoriske eller vokale tics, men ikke begge dele"
+      ],
+      "tourettes_syndrom": [
+        "Både motoriske og vokale tics på et tidspunkt i forløbet",
+        "Tics har stået på i mere end et år",
+        "Debut i barndommen"
+      ],
+      "vigtigt": "Tics varierer ofte over tid. De kan komme og gå, skifte karakter og være værre i nogle perioder end i andre."
+    },
+    "saadan_ser_det_ud_i_hverdagen": {
+      "typiske_moenstre": [
+        "Barnet holder igen i skolen og kommer hjem helt udmattet",
+        "Den unge undgår sociale situationer fordi andre stirrer eller spørger",
+        "Barnet bruger store kræfter på at se normalt ud",
+        "Ticsene bliver tydeligere hjemme, når spændingen slipper"
+      ],
+      "belastning": [
+        "Skam",
+        "Tilbagetrækning",
+        "Undgåelse",
+        "Følelse af at være mærkelig eller forkert",
+        "Begyndende lavt selvværd"
+      ]
+    },
+    "naar_det_bliver_tolket_forkert": {
+      "forklaring": "Omgivelserne ser ofte bevægelsen eller lyden, men ikke den indre trang, spændingen og den energi, det koster at holde tilbage.",
+      "det_der_ofte_overses": [
+        "At barnet allerede har forsøgt at holde tic’en tilbage længe",
+        "At tic’en ofte aflaster en kropslig spænding kortvarigt",
+        "At tics ikke er bevidst uro eller mærkelig adfærd med vilje"
+      ]
+    },
+    "komorbiditet": {
+      "forklaring": "Tic-lidelser og Tourettes syndrom optræder ofte sammen med andre vanskeligheder.",
+      "hyppige_samtidige_vanskeligheder": [
+        "ADHD",
+        "OCD",
+        "Angst",
+        "Depression",
+        "Autistiske træk eller autismespektrumforstyrrelse",
+        "Læringsvanskeligheder",
+        "Søvnproblemer"
+      ],
+      "vigtigt": "For nogle børn er det faktisk de samtidige vanskeligheder, der fylder mest i hverdagen. Barnet skal forstås samlet."
+    },
+    "diagnose_og_vurdering": {
+      "forklaring": "Tic-lidelser og Tourettes vurderes først og fremmest klinisk.",
+      "indgaar_typisk": [
+        "Hvilke tics der er til stede",
+        "Hvornår de begyndte",
+        "Hvor længe de har stået på",
+        "Om der er både motoriske og vokale tics",
+        "Hvor meget de påvirker barnets liv"
+      ],
+      "kan_omfatte": [
+        "Samtaler med barn og forældre",
+        "Nogle gange skole eller andre voksne",
+        "Skalaer til vurdering af sværhedsgrad"
+      ],
+      "vigtigt_at_skille_fra": [
+        "Stereotype bevægelser",
+        "Tvangshandlinger ved OCD",
+        "Dystonier eller andre neurologiske bevægelser",
+        "Bivirkninger til medicin"
+      ],
+      "vigtigt": "Ingen skala kan stå alene. Det afgørende er den samlede faglige forståelse og en god vurdering af komorbiditet."
+    },
+    "hvorfor_opstaar_tic_lidelser": {
+      "forklaring": "Der er sjældent én enkelt forklaring. Tics og Tourettes hænger i høj grad sammen med neurobiologiske og genetiske forhold.",
+      "arvelighed": [
+        "Tics, OCD, ADHD og beslægtede vanskeligheder ses ofte i familier",
+        "Nogle børn har en større sårbarhed i systemet fra begyndelsen"
+      ],
+      "hjerne_og_bevaegelseskontrol": [
+        "Kredsløb for bevægelseskontrol, impulsregulering og hæmning fungerer anderledes",
+        "Filtrering og tilbageholdelse af bevægelser og lyde fungerer ikke på samme måde"
+      ],
+      "stress_og_belastning": [
+        "Stress skaber ikke tic-lidelsen alene",
+        "Stress, træthed og overbelastning kan gøre tic’ene tydeligere"
+      ]
+    },
+    "behandling_og_hjaelp": {
+      "psykoedukation": [
+        "Viden til barnet",
+        "Viden til familien",
+        "Viden til skolen",
+        "Mindre misforståelse og mere ro omkring det, barnet står med"
+      ],
+      "cbit_og_habit_reversal": {
+        "forklaring": "CBIT er en central adfærdsterapeutisk behandling ved generende tics.",
+        "arbejder_typisk_med": [
+          "At opdage tic’en og fornemmelsen før den",
+          "At kende triggere",
+          "At lære en konkurrerende respons",
+          "At skabe mere kontrol og mindre interferens i hverdagen"
+        ],
+        "vigtigt": "Det er ikke bare rå undertrykkelse med vilje, men en systematisk træning i bevidsthed, regulering og alternative responser."
+      },
+      "medicin": [
+        "Kan være relevant ved svære tics",
+        "Kan også være relevant ved betydelig samtidig belastning",
+        "Skal altid vurderes konkret i forhold til effekt og bivirkninger"
+      ],
+      "behandling_af_komorbiditet": [
+        "ADHD",
+        "OCD",
+        "Angst",
+        "Depression",
+        "Andre samtidige vanskeligheder skal tages lige så alvorligt som tic’ene"
+      ]
+    },
+    "tics_i_skole_og_laering": {
+      "udfordringer": [
+        "Koncentrationen forstyrres af tics eller trang før tics",
+        "Det koster kognitiv energi at holde igen",
+        "ADHD eller OCD oveni øger belastningen",
+        "Social sårbarhed, stirren, spørgsmål eller mobning kan fylde meget"
+      ],
+      "hjaelper_ofte": [
+        "Uddannelse af lærere",
+        "Viden i klassen hvis barnet og familien ønsker det",
+        "Mulighed for pauser",
+        "Forudsigelighed",
+        "Rolige voksne",
+        "Tilpasninger ved prøver og opgaver",
+        "Tydelig beskyttelse mod mobning"
+      ],
+      "vigtigt": "Barnet skal ikke forstås som forstyrrende med vilje, men som et barn der bruger store kræfter på at regulere noget neurologisk."
+    },
+    "livet_derhjemme": {
+      "hjaelper_ofte": [
+        "Forståelse",
+        "Accept",
+        "Rolige rutiner",
+        "Opmærksomhed på stress og træthed",
+        "Støtte til barnets styrker og almindelige liv",
+        "Mindre konstant korrektion"
+      ],
+      "vigtigt": "Når voksne igen og igen siger stop, øger det ofte barnets skam og spænding mere, end det hjælper. Venlig ignorering og ro hjælper ofte bedre end konstant fokus.",
+      "soeskende": [
+        "Søskende kan blive irriterede, bekymrede eller føle sig oversete",
+        "De har brug for forklaring, omsorg og plads til også at være børn i familien"
+      ],
+      "foraeldrestoette": "Det er ikke egoistisk at have brug for hjælp som forælder. Det er ofte nødvendigt."
+    },
+    "fra_barndom_til_ungdom_og_voksenliv": {
+      "forklaring": "Tics begynder typisk i barndommen, topper ofte i de sene barneår eller tidlige ungdomsår og bliver hos mange mildere med tiden.",
+      "vigtigt": [
+        "Nogle bliver næsten symptomfrie som voksne",
+        "Andre har fortsat tics i mildere grad",
+        "Nogle få har mere vedvarende og belastende forløb",
+        "Mange lærer deres mønstre bedre at kende og finder strategier, der virker"
+      ]
+    },
+    "myter_og_misforstaaelser": [
+      {
+        "myte": "Det er bare dårlige vaner",
+        "realitet": "Tics er neurologisk og reguleringsmæssigt forankrede, ikke bare vaner."
+      },
+      {
+        "myte": "Barnet kan bare lade være",
+        "realitet": "Mange kan holde igen kortvarigt, men det koster meget og er ikke det samme som frit valg."
+      },
+      {
+        "myte": "Tourettes betyder bandeord",
+        "realitet": "Det typiske billede er langt oftere simple motoriske og vokale tics."
+      },
+      {
+        "myte": "Det skyldes dårlig opdragelse",
+        "realitet": "Forældre skaber ikke tic-lidelser med forkert opdragelse."
+      },
+      {
+        "myte": "ADHD-medicin gør altid tics værre",
+        "realitet": "Det er en gammel og forenklet forestilling. Vurderingen skal altid være konkret og faglig."
+      },
+      {
+        "myte": "Der er ingen hjælp",
+        "realitet": "Der findes behandling og støtte, som kan gøre en reel forskel."
+      }
+    ],
+    "ressourcer_og_stoette": [
+      "Egen læge",
+      "Børne- og ungdomspsykiatri",
+      "Neurologi",
+      "PPR",
+      "Skole",
+      "Psykologer med viden om CBIT",
+      "Relevante patientforeninger",
+      "Touretteforeningen og beslægtede netværk"
+    ],
+    "afslutning": "Når man ser tics og Tourettes rigtigt, bliver det muligt at hjælpe mere præcist og mindre moraliserende. Det fjerner ikke tic’ene fra den ene dag til den anden, men det flytter blikket fra det mærkelige alene til også at omfatte spændingen, trangen, skammen og det barn, der prøver at holde sammen på sig selv midt i det."
+  }
+}
