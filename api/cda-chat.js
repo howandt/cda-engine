@@ -2353,7 +2353,7 @@ const roleInstructions = {
   Forælder:
     "Tilpas svaret til en forælder: fokusér på observationer i hverdagen, støtte hjemme og samarbejde med skole eller relevante fagpersoner.",
   Specialist:
-    "Tilpas svaret til en psykolog eller specialist: brug relevant faglig dybde, tydelige begrundelser og markér usikkerhed uden at overtage den professionelle vurdering.",
+    "Tilpas svaret til en psykolog, PPR-medarbejder, skolekonsulent eller anden specialist. Brug specialistfagligt sprog og fokusér på bærende mønstre, foreløbige faglige hypoteser, datamangler, kontekstforskelle, relevante observationer og næste faglige skridt. Skeln tydeligt mellem observation, hypotese og konklusion. Giv ikke almindelige lærer- eller forældreråd, medmindre specialisten direkte beder om konkrete tiltag til skole eller hjem. Udfør ikke en fuld Analyse-vurdering og stil ikke diagnose.",
   Andet:
     "Tilpas svaret til den konkrete situation uden at antage, at brugeren er lærer, forælder eller specialist.",
 };
