@@ -8,6 +8,29 @@
 <body>
 <main>
   <h1>CDA System</h1>
+
+  <label for="sprog">Sprog</label>
+  <select id="sprog">
+    <option value="Dansk">Dansk</option>
+    <option value="English">English</option>
+  </select>
+
+  <label for="rolle">Din rolle</label>
+  <select id="rolle">
+    <option value="">Vælg rolle</option>
+    <option value="Lærer">Lærer</option>
+    <option value="Forælder">Forælder</option>
+    <option value="Specialist">Psykolog / specialist</option>
+    <option value="Andet">Andet</option>
+  </select>
+
+  <label for="svarstil">Svarlængde</label>
+  <select id="svarstil">
+    <option value="Kort">Kort</option>
+    <option value="Mellem">Mellem</option>
+    <option value="Dyb">Dyb</option>
+  </select>
+
   <p>Indtast din adgangskode</p>
 
   <input id="adgangskode" type="text" placeholder="F.eks. TEST-0001" />
@@ -19,35 +42,76 @@
 <script>
   const loginKnap = document.getElementById("loginKnap");
   const adgangskodeInput = document.getElementById("adgangskode");
+  const sprogInput = document.getElementById("sprog");
+  const rolleInput = document.getElementById("rolle");
+  const svarstilInput = document.getElementById("svarstil");
   const fejl = document.getElementById("fejl");
+
+  const gemtSprog = localStorage.getItem("cda_sprog");
+  const gemtRolle = localStorage.getItem("cda_rolle");
+  const gemtSvarstil = localStorage.getItem("cda_response_style");
+
+  if (gemtSprog) {
+    sprogInput.value = gemtSprog;
+  }
+
+  if (gemtRolle) {
+    rolleInput.value = gemtRolle;
+  }
+
+  if (gemtSvarstil) {
+    svarstilInput.value = gemtSvarstil;
+  }
 
   loginKnap.addEventListener("click", async () => {
     const kode = adgangskodeInput.value.trim();
+    const sprog = sprogInput.value;
+    const rolle = rolleInput.value;
+    const svarstil = svarstilInput.value;
 
     fejl.textContent = "";
+
+    if (!rolle) {
+      fejl.textContent = "Vælg din rolle.";
+      return;
+    }
 
     if (!kode) {
       fejl.textContent = "Indtast en adgangskode.";
       return;
     }
 
-    const svar = await fetch("/api/tjek-kode", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ kode }),
-    });
+    loginKnap.disabled = true;
+    loginKnap.textContent = "Kontrollerer...";
 
-    const data = await svar.json();
+    try {
+      const svar = await fetch("/api/tjek-kode", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ kode }),
+      });
 
-    if (!svar.ok) {
-      fejl.textContent = data.fejl || "Koden kunne ikke godkendes.";
-      return;
+      const data = await svar.json();
+
+      if (!svar.ok) {
+        fejl.textContent = data.fejl || "Koden kunne ikke godkendes.";
+        return;
+      }
+
+      localStorage.setItem("cda_adgangskode", kode.toUpperCase());
+      localStorage.setItem("cda_sprog", sprog);
+      localStorage.setItem("cda_rolle", rolle);
+      localStorage.setItem("cda_response_style", svarstil);
+
+      window.location.href = "/chat.html";
+    } catch (error) {
+      fejl.textContent = "Der opstod en forbindelsesfejl.";
+    } finally {
+      loginKnap.disabled = false;
+      loginKnap.textContent = "Åbn CDA";
     }
-
-    localStorage.setItem("cda_adgangskode", kode.toUpperCase());
-    window.location.href = "/chat.html";
   });
 </script>
 </body>
