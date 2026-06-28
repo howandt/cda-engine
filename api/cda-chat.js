@@ -1437,6 +1437,139 @@ function getKomorbiditet(args = {}) {
     data: komorbiditetData,
   };
 }
+
+function isConcreteKnownDiagnosisCase(message) {
+  const text = normalizeDiagnosisPhrase(message);
+  const words = text.split(" ").filter(Boolean);
+
+  const personPatterns = [
+    "elev",
+    "barn",
+    "dreng",
+    "pige",
+    "min son",
+    "min datter",
+    "mit barn",
+    "han",
+    "hun",
+  ];
+
+  const observationPatterns = [
+    "har",
+    "er blevet",
+    "bliver",
+    "virker",
+    "viser",
+    "reagerer",
+    "undgar",
+    "traekker sig",
+    "kan ikke",
+    "begyndt",
+    "den sidste tid",
+    "mere end tidligere",
+    "ofte",
+    "vedvarende",
+    "pludselig",
+    "aendret",
+    "forvaerret",
+  ];
+
+  const hasPerson = personPatterns.some((pattern) =>
+    containsDiagnosisPhrase(text, pattern)
+  );
+
+  const observationCount = observationPatterns.filter((pattern) =>
+    text.includes(normalizeDiagnosisPhrase(pattern))
+  ).length;
+
+  const startsAsDefinition = [
+    "hvad er",
+    "forklar",
+    "definition",
+    "what is",
+    "explain",
+  ].some((pattern) => text.startsWith(normalizeDiagnosisPhrase(pattern)));
+
+  if (startsAsDefinition && words.length < 20) {
+    return false;
+  }
+
+  return hasPerson && words.length >= 12 && observationCount >= 2;
+}
+
+function buildAutomaticComorbidityContext(diagnosisMeta) {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_Komorbiditet.json"
+  );
+
+  const rawData = readJsonFile(
+    filePath,
+    "data/CDA_Komorbiditet.json blev ikke fundet"
+  );
+
+  const entries = Array.isArray(rawData?.komorbiditet_data)
+    ? rawData.komorbiditet_data
+    : [];
+
+  const candidates = new Set(
+    [
+      diagnosisMeta?.id,
+      diagnosisMeta?.navn,
+      diagnosisMeta?.fuld_navn,
+      String(diagnosisMeta?.fil || "").replace(/\.json$/i, ""),
+      ...(STRUCTURED_DIAGNOSIS_ALIASES[diagnosisMeta?.id] || []),
+    ]
+      .map((value) => normalizeDiagnosisPhrase(value))
+      .filter(Boolean)
+  );
+
+  const primary = entries.find((entry) => {
+    const id = normalizeDiagnosisPhrase(entry?.id);
+    const name = normalizeDiagnosisPhrase(entry?.primary_diagnosis);
+    return candidates.has(id) || candidates.has(name);
+  });
+
+  if (!primary || !Array.isArray(primary.comorbidities)) {
+    return null;
+  }
+
+  const patterns = primary.comorbidities.map((item) => ({
+    id: item?.id || null,
+    internal_pattern_name: item?.suspected_comorbidity || null,
+    short_explanation: item?.kort_forklaring || null,
+    signs_beyond_known_diagnosis: Array.isArray(
+      item?.naar_grunddiagnosen_ikke_forklarer_det_hele
+    )
+      ? item.naar_grunddiagnosen_ikke_forklarer_det_hele.slice(0, 3)
+      : [],
+    observations_for_school: Array.isArray(
+      item?.det_skal_laereren_kigge_efter
+    )
+      ? item.det_skal_laereren_kigge_efter.slice(0, 5)
+      : [],
+    typical_school_expression: Array.isArray(
+      item?.saadan_ses_det_typisk_i_skole
+    )
+      ? item.saadan_ses_det_typisk_i_skole.slice(0, 4)
+      : [],
+  }));
+
+  if (patterns.length === 0) {
+    return null;
+  }
+
+  return {
+    source: "CDA_Komorbiditet.json",
+    primary_id: primary.id || diagnosisMeta?.id || null,
+    primary_diagnosis:
+      primary.primary_diagnosis || diagnosisMeta?.navn || null,
+    overview: primary.overview || null,
+    observation_patterns: patterns,
+  };
+}
+
 function getRollespil(args = {}) {
   const filePath = path.join(
     process.cwd(),
@@ -3778,6 +3911,159 @@ try {
   }
 
   const structuredDiagnosisMeta = getSingleStructuredDiagnosisMatch(message);
+
+  const automaticComorbidityContext =
+    structuredDiagnosisMeta &&
+    isConcreteKnownDiagnosisCase(message)
+      ? buildAutomaticComorbidityContext(structuredDiagnosisMeta)
+      : null;
+
+  if (structuredDiagnosisMeta && automaticComorbidityContext) {
+    const structuredDiagnosis = loadStructuredDiagnosis(
+      structuredDiagnosisMeta
+    );
+
+    const {
+      context: diagnosisContext,
+      selectedSections,
+    } = buildStructuredDiagnosisContext(
+      structuredDiagnosis,
+      message,
+      role
+    );
+
+    const automaticComorbidityInstructions = [
+      heidiPrompt,
+      "",
+      audienceInstructions,
+      "",
+      "AUTOMATISK CDA-SAMMENLIGNING VED KENDT DIAGNOSE",
+      "Dette flow bruges kun, fordi brugeren beskriver en konkret elev eller et konkret barn med en kendt diagnose.",
+      "Sammenhold observationerne med den kendte diagnose og de vedlagte komorbiditetsdata i ét samlet fagligt svar.",
+      "Vurder først, om observationerne kan forklares rimeligt inden for den kendte diagnose. Hvis de kan, skal du ikke gøre komorbiditet til et tema.",
+      "Brug kun komorbiditetsdata, når observationerne tydeligt ligger ud over eller afviger fra det forventede billede ved den kendte diagnose.",
+      "Sig aldrig, at CDA eller brugeren har fundet eller påvist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'måske autisme', 'måske depression' eller tilsvarende på baggrund af en kort beskrivelse.",
+      "Omsæt de interne spor til neutrale observationsområder som fx bekymring og undgåelse, social belastning, energifald og funktionsændring, rigiditet, sansning eller vedvarende konfliktmønstre.",
+      "Når noget ligger tydeligt uden for den kendte diagnose, beskriv afvigelsen forsigtigt og anbefal konkrete observationer samt drøftelse med relevante lærere/team, PPR eller en relevant specialist. Pres ikke på for udredning; formålet er bedre forståelse og støtte.",
+      "Brug ikke specialistpanelet i dette flow. Udfør ikke Analyse-systemets fulde analyse.",
+      role === "Specialist"
+        ? "Svar fagperson til fagperson. Skeln tydeligt mellem observation, hypotese og konklusion, og henvis ikke automatisk brugeren til PPR."
+        : role === "Forælder"
+          ? "Svar i forældrevenligt sprog. Antag ikke, at barnet viser det samme hjemme og i skole, og respekter bekymring for stempling eller udredning."
+          : "Svar praksisnært til læreren og gør næste observation eller handling tydelig.",
+      "I kort normal drift: giv højst 3 konkrete handlinger. Undgå generiske tilbud om mere hjælp. Ét konkret opklarende spørgsmål er tilladt, hvis svaret er nødvendigt for at bringe sagen fagligt videre.",
+      `AKTUEL SVARSTIL: ${response_style}`,
+      response_style === "Kort"
+        ? "Svar kort og direkte."
+        : response_style === "Dyb"
+          ? "Uddyb de relevante forskelle mellem kendt diagnose, afvigende observationer og nødvendige næste skridt uden at diagnosticere."
+          : "Giv en kort faglig forklaring og konkrete næste skridt.",
+    ].join("\n");
+
+    const automaticComorbidityInput = [
+      "BRUGERENS SPØRGSMÅL:",
+      message,
+      "",
+      "RELEVANTE STRUKTUREREDE DATA OM DEN KENDTE DIAGNOSE:",
+      JSON.stringify(diagnosisContext, null, 2),
+      "",
+      "RELEVANTE CDA-DATA TIL AUTOMATISK OBSERVATIONSSAMMENLIGNING:",
+      JSON.stringify(automaticComorbidityContext, null, 2),
+    ].join("\n");
+
+    const response = await openai.responses.create({
+      model: "gpt-5.4-mini",
+      reasoning: {
+        effort: "low",
+      },
+      instructions: automaticComorbidityInstructions,
+      input: automaticComorbidityInput,
+      max_output_tokens:
+        response_style === "Dyb"
+          ? 1000
+          : response_style === "Kort"
+            ? 600
+            : 800,
+    });
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "automatic_comorbidity_local_routing",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["localAutomaticComorbidityRouting"];
+    const toolDebug = [
+      {
+        name: "localAutomaticComorbidityRouting",
+        diagnosis_id: structuredDiagnosisMeta.id,
+        diagnosis_file: structuredDiagnosisMeta.fil,
+        diagnosis_sections: selectedSections,
+        comorbidity_source: automaticComorbidityContext.source,
+        observation_pattern_count:
+          automaticComorbidityContext.observation_patterns.length,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply: String(response.output_text || "").trim(),
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
 
   if (structuredDiagnosisMeta) {
     const structuredDiagnosis = loadStructuredDiagnosis(
