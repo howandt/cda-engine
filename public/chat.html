@@ -24,13 +24,18 @@
 
   <script>
   const adgangskode = localStorage.getItem("cda_adgangskode");
+  const sprog = localStorage.getItem("cda_sprog");
+  const rolle = localStorage.getItem("cda_rolle");
+  const svarstil = localStorage.getItem("cda_response_style");
+
   const chat = document.getElementById("chat");
   const besked = document.getElementById("besked");
   const sendKnap = document.getElementById("sendKnap");
   const fejl = document.getElementById("fejl");
+
   let pendingAction = sessionStorage.getItem("cda_pending_action");
 
-  if (!adgangskode) {
+  if (!adgangskode || !sprog || !rolle || !svarstil) {
     window.location.href = "/cda.html";
   }
 
@@ -60,7 +65,9 @@
         },
         body: JSON.stringify({
           message: tekst,
-          response_style: "Mellem",
+          language: sprog,
+          role: rolle,
+          response_style: svarstil,
           adgangskode,
           pending_action: pendingAction,
         }),
