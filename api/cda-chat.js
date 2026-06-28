@@ -2859,7 +2859,7 @@ try {
       },
       instructions: normalInstructions,
       input: message,
-      max_output_tokens: response_style === "Dyb" ? 900 : 500,
+      max_output_tokens: response_style === "Dyb" ? 900 : 700,
     });
 
     const normalReplyData = extractPendingAction(response.output_text);
