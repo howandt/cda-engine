@@ -553,6 +553,677 @@ function getDiagnoser(args = {}) {
   };
 }
 
+const STRUCTURED_DIAGNOSIS_ALIASES = {
+  adfaerd_og_impulskontrol: [
+    "adfaerd og impulskontrol",
+    "adfaerdsforstyrrelse",
+    "adfaerdsforstyrrelser",
+    "impulskontrolforstyrrelse",
+    "impulskontrolforstyrrelser",
+    "conduct disorder",
+    "impulse control disorder",
+  ],
+  adhd: ["adhd", "attention deficit hyperactivity disorder"],
+  afhaengighedslidelser: [
+    "afhaengighedslidelse",
+    "afhaengighedslidelser",
+    "afhaengighed",
+    "addiction disorder",
+    "addiction disorders",
+  ],
+  angst: [
+    "angst",
+    "angstlidelse",
+    "angstlidelser",
+    "anxiety",
+    "anxiety disorder",
+    "anxiety disorders",
+  ],
+  antisocial: [
+    "antisocial personlighedsforstyrrelse",
+    "antisociale moenstre",
+    "antisocial personality disorder",
+    "antisocial",
+  ],
+  arfid: [
+    "arfid",
+    "avoidant restrictive food intake disorder",
+    "undgaaende restriktiv spiseforstyrrelse",
+  ],
+  autisme: [
+    "autisme",
+    "autismespektrum",
+    "autismespektrumforstyrrelse",
+    "autism",
+    "autism spectrum",
+    "asd",
+  ],
+  bipolar: [
+    "bipolar",
+    "bipolar lidelse",
+    "bipolar disorder",
+    "maniodepressiv",
+  ],
+  borderline: [
+    "borderline",
+    "emotionelt ustabil personlighedsforstyrrelse",
+    "borderline personality disorder",
+  ],
+  did: [
+    "dissociativ identitetsforstyrrelse",
+    "dissociative identity disorder",
+  ],
+  kommunikationsforstyrrelser: [
+    "kommunikationsforstyrrelse",
+    "kommunikationsforstyrrelser",
+    "communication disorder",
+    "communication disorders",
+  ],
+  laeringsvanskeligheder: [
+    "laeringsvanskelighed",
+    "laeringsvanskeligheder",
+    "indlaeringsvanskelighed",
+    "indlaeringsvanskeligheder",
+    "learning disability",
+    "learning disabilities",
+    "learning disorder",
+    "learning disorders",
+  ],
+  narcissisme: [
+    "narcissisme",
+    "narcissistisk personlighedsforstyrrelse",
+    "narcissism",
+    "narcissistic personality disorder",
+  ],
+  ocd: [
+    "ocd",
+    "tvangslidelse",
+    "tvangstanker og tvangshandlinger",
+    "obsessive compulsive disorder",
+  ],
+  odd: [
+    "oppositionel trodsforstyrrelse",
+    "oppositional defiant disorder",
+  ],
+  ptsd: [
+    "ptsd",
+    "posttraumatisk stresslidelse",
+    "post traumatic stress disorder",
+  ],
+  selektiv_mutisme: [
+    "selektiv mutisme",
+    "selective mutism",
+  ],
+  skizofreni: ["skizofreni", "schizophrenia"],
+  soevnforstyrrelser: [
+    "soevnforstyrrelse",
+    "soevnforstyrrelser",
+    "sleep disorder",
+    "sleep disorders",
+  ],
+  spiseforstyrrelser: [
+    "spiseforstyrrelse",
+    "spiseforstyrrelser",
+    "eating disorder",
+    "eating disorders",
+  ],
+  tics_tourettes: [
+    "tics",
+    "tic lidelse",
+    "tic lidelser",
+    "tourette",
+    "tourettes",
+    "tourette syndrom",
+    "tourette syndrome",
+  ],
+  tilknytningsforstyrrelser: [
+    "tilknytningsforstyrrelse",
+    "tilknytningsforstyrrelser",
+    "attachment disorder",
+    "attachment disorders",
+  ],
+};
+
+function normalizeDiagnosisPhrase(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "o")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function containsDiagnosisPhrase(normalizedText, phrase) {
+  const normalizedPhrase = normalizeDiagnosisPhrase(phrase);
+
+  if (!normalizedPhrase) {
+    return false;
+  }
+
+  return ` ${normalizedText} `.includes(` ${normalizedPhrase} `);
+}
+
+function getStructuredDiagnosisIndex() {
+  const indexPath = path.join(
+    process.cwd(),
+    "data",
+    "diagnoser",
+    "index.json"
+  );
+
+  const indexData = readJsonFile(
+    indexPath,
+    "data/diagnoser/index.json blev ikke fundet"
+  );
+
+  return Array.isArray(indexData) ? indexData : [];
+}
+
+function loadStructuredDiagnosis(meta) {
+  if (!meta?.fil) {
+    return null;
+  }
+
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "diagnoser",
+    meta.fil
+  );
+
+  return readJsonFile(
+    filePath,
+    `Struktureret diagnosefil blev ikke fundet: ${meta.fil}`
+  );
+}
+
+function findStructuredDiagnosisMatches(message) {
+  const originalText = String(message || "");
+  const normalizedText = normalizeDiagnosisPhrase(originalText);
+  const indexData = getStructuredDiagnosisIndex();
+  const matches = [];
+
+  for (const meta of indexData) {
+    const id = String(meta?.id || "");
+
+    if (id === "did") {
+      const hasDidAbbreviation = /\bDID\b/.test(originalText);
+      const hasDidName = (STRUCTURED_DIAGNOSIS_ALIASES.did || []).some(
+        (alias) => containsDiagnosisPhrase(normalizedText, alias)
+      );
+
+      if (!hasDidAbbreviation && !hasDidName) {
+        continue;
+      }
+    } else if (id === "odd") {
+      const hasOddAbbreviation = /\bODD\b/.test(originalText);
+      const hasOddName = (STRUCTURED_DIAGNOSIS_ALIASES.odd || []).some(
+        (alias) => containsDiagnosisPhrase(normalizedText, alias)
+      );
+
+      if (!hasOddAbbreviation && !hasOddName) {
+        continue;
+      }
+    } else {
+      const candidates = [
+        meta.id,
+        meta.navn,
+        String(meta.fil || "").replace(/\.json$/i, ""),
+        ...(STRUCTURED_DIAGNOSIS_ALIASES[id] || []),
+      ];
+
+      if (
+        !candidates.some((candidate) =>
+          containsDiagnosisPhrase(normalizedText, candidate)
+        )
+      ) {
+        continue;
+      }
+    }
+
+    matches.push(meta);
+  }
+
+  return matches;
+}
+
+function isReservedSpecializedRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  const reservedPatterns = [
+    "vis en case",
+    "find en case",
+    "case om",
+    "case med",
+    "pbl",
+    "projektbaseret laering",
+    "lav et projekt",
+    "find et projekt",
+    "specialistpanel",
+    "specialist panel",
+    "hvad siger specialisterne",
+    "rollespil",
+    "rolleleg",
+    "perspektivskifte",
+    "lav et skema",
+    "lav en skabelon",
+    "vis en skabelon",
+    "handleplan",
+    "stotteplan",
+    "komorbiditet",
+    "komorbid",
+    "overlap mellem",
+    "kan der vaere andet end",
+    "kan der vare andet end",
+    "bornehaveoverlevering",
+    "overlevering til skole",
+  ];
+
+  return reservedPatterns.some((pattern) => text.includes(pattern));
+}
+
+function getSingleStructuredDiagnosisMatch(message) {
+  if (isReservedSpecializedRequest(message)) {
+    return null;
+  }
+
+  const matches = findStructuredDiagnosisMatches(message);
+
+  return matches.length === 1 ? matches[0] : null;
+}
+
+function diagnosisKeyMatches(key, patterns) {
+  const normalizedKey = normalizeDiagnosisPhrase(key);
+  return patterns.some((pattern) => normalizedKey.includes(pattern));
+}
+
+function getDiagnosisIntent(message, role) {
+  const text = normalizeDiagnosisPhrase(message);
+  const includesAny = (phrases) =>
+    phrases.some((phrase) => text.includes(normalizeDiagnosisPhrase(phrase)));
+
+  return {
+    definition: includesAny([
+      "hvad er",
+      "forklar",
+      "definition",
+      "what is",
+      "explain",
+    ]),
+    symptoms: includesAny([
+      "symptom",
+      "tegn",
+      "viser sig",
+      "kendetegn",
+      "opmaerksom pa",
+      "manifest",
+    ]),
+    school:
+      role === "Lærer" ||
+      includesAny([
+        "skole",
+        "elev",
+        "undervisning",
+        "klasse",
+        "laering",
+        "laerer",
+        "school",
+        "student",
+        "teaching",
+        "classroom",
+      ]),
+    home:
+      role === "Forælder" ||
+      includesAny([
+        "hjem",
+        "familie",
+        "foraelder",
+        "forælder",
+        "home",
+        "family",
+        "parent",
+      ]),
+    assessment: includesAny([
+      "udredning",
+      "diagnoseproces",
+      "vurdering",
+      "test",
+      "diagnostic",
+      "assessment",
+    ]),
+    causes: includesAny([
+      "aarsag",
+      "hvorfor",
+      "risikofaktor",
+      "cause",
+      "risk factor",
+    ]),
+    support: includesAny([
+      "behandling",
+      "hjaelp",
+      "stoette",
+      "tiltag",
+      "strategi",
+      "hvad kan",
+      "treatment",
+      "support",
+      "strategy",
+    ]),
+    myths: includesAny([
+      "myte",
+      "misforstaa",
+      "myth",
+      "misunderstand",
+    ]),
+    life: includesAny([
+      "barn",
+      "ung",
+      "voksen",
+      "livsstadie",
+      "gennem livet",
+      "child",
+      "teen",
+      "adult",
+      "life stage",
+    ]),
+    acute: includesAny([
+      "akut",
+      "fare",
+      "selvskade",
+      "suicid",
+      "acute",
+      "danger",
+      "self harm",
+    ]),
+    social: includesAny([
+      "social",
+      "venner",
+      "venskab",
+      "relation",
+      "friends",
+      "relationship",
+    ]),
+  };
+}
+
+function scoreDiagnosisSection(key, message, role, intent) {
+  const normalizedKey = normalizeDiagnosisPhrase(key);
+  const messageWords = new Set(
+    normalizeDiagnosisPhrase(message)
+      .split(" ")
+      .filter((word) => word.length >= 4)
+  );
+
+  let score = normalizedKey === "intro" ? 1 : 0;
+
+  for (const word of normalizedKey.split(" ")) {
+    if (word.length >= 4 && messageWords.has(word)) {
+      score += 3;
+    }
+  }
+
+  const groups = {
+    definition: [
+      "intro",
+      "hvad er",
+      "hvad taler",
+      "definition",
+      "centrale",
+      "typiske",
+      "kendetegn",
+      "hovedomraader",
+    ],
+    symptoms: [
+      "symptom",
+      "kendetegn",
+      "viser sig",
+      "ser ud",
+      "hverdagen",
+      "centrale",
+      "traek",
+    ],
+    school: [
+      "skole",
+      "laering",
+      "barnet i skolen",
+      "dit barn i skolen",
+      "skolelivet",
+    ],
+    home: [
+      "hjem",
+      "familie",
+      "foraeldre",
+      "sociale relationer",
+      "socialt og hjemme",
+    ],
+    assessment: ["diagnose", "vurdering", "udredning", "dsm"],
+    causes: [
+      "aarsag",
+      "hvorfor",
+      "risiko",
+      "saarbarhed",
+      "neurobiologi",
+    ],
+    support: ["behandling", "hjaelp", "stoette", "ressourcer"],
+    myths: ["myter", "misforstaa", "tolket forkert", "laest forkert"],
+    life: [
+      "liv",
+      "udvikling",
+      "forloeb",
+      "prognose",
+      "barndom",
+      "ungdom",
+      "voksen",
+    ],
+    acute: ["akut"],
+    social: ["social", "relation", "venner", "hverdagen"],
+  };
+
+  for (const [intentName, patterns] of Object.entries(groups)) {
+    if (intent[intentName] && diagnosisKeyMatches(normalizedKey, patterns)) {
+      score += 6;
+    }
+  }
+
+  if (role === "Lærer" && diagnosisKeyMatches(normalizedKey, groups.school)) {
+    score += 5;
+  }
+
+  if (role === "Forælder" && diagnosisKeyMatches(normalizedKey, groups.home)) {
+    score += 5;
+  }
+
+  if (
+    role === "Specialist" &&
+    diagnosisKeyMatches(normalizedKey, [
+      ...groups.definition,
+      ...groups.symptoms,
+      ...groups.assessment,
+      "komorbid",
+    ])
+  ) {
+    score += 3;
+  }
+
+  return score;
+}
+
+function findBestDiagnosisSectionKey(entries, patterns, excludedKeys) {
+  const match = entries.find(
+    ([key]) =>
+      !excludedKeys.has(key) && diagnosisKeyMatches(key, patterns)
+  );
+
+  return match ? match[0] : null;
+}
+
+function buildStructuredDiagnosisContext(entry, message, role) {
+  const shortView = entry?.kort_visning || {};
+  const longView = entry?.lang_visning || {};
+  const intent = getDiagnosisIntent(message, role);
+  const selectedShort = {
+    hvad_er_det: shortView.hvad_er_det || null,
+    hvordan_viser_det_sig: shortView.hvordan_viser_det_sig || null,
+    hvad_misforstaas_ofte: shortView.hvad_misforstaas_ofte || null,
+  };
+
+  if (role !== "Specialist" || intent.support) {
+    selectedShort.hvad_kan_den_voksne_gore =
+      shortView.hvad_kan_den_voksne_gore || null;
+  }
+
+  const entries = Object.entries(longView)
+    .map(([key, value]) => ({
+      key,
+      value,
+      score: scoreDiagnosisSection(key, message, role, intent),
+    }))
+    .sort((a, b) => b.score - a.score);
+
+  const rawEntries = Object.entries(longView);
+  const requiredKeys = [];
+  const usedKeys = new Set();
+
+  const addRequiredKey = (patterns) => {
+    const key = findBestDiagnosisSectionKey(
+      rawEntries,
+      patterns,
+      usedKeys
+    );
+
+    if (key) {
+      requiredKeys.push(key);
+      usedKeys.add(key);
+    }
+  };
+
+  if (intent.definition) {
+    addRequiredKey([
+      "hvad er",
+      "hvad taler",
+      "definition",
+      "intro",
+      "hovedomraader",
+    ]);
+  }
+
+  if (intent.school) {
+    addRequiredKey([
+      "skole",
+      "laering",
+      "barnet i skolen",
+      "dit barn i skolen",
+      "skolelivet",
+    ]);
+  }
+
+  if (intent.home) {
+    addRequiredKey([
+      "hjem",
+      "familie",
+      "foraeldre",
+      "sociale relationer",
+      "socialt og hjemme",
+    ]);
+  }
+
+  if (intent.assessment || role === "Specialist") {
+    addRequiredKey(["diagnose", "vurdering", "udredning", "dsm"]);
+  }
+
+  if (intent.causes) {
+    addRequiredKey([
+      "aarsag",
+      "hvorfor",
+      "risiko",
+      "saarbarhed",
+      "neurobiologi",
+    ]);
+  }
+
+  if (intent.support) {
+    addRequiredKey(["behandling", "hjaelp", "stoette"]);
+  }
+
+  if (intent.myths) {
+    addRequiredKey(["myter", "misforstaa", "tolket forkert"]);
+  }
+
+  if (intent.life) {
+    addRequiredKey([
+      "liv",
+      "udvikling",
+      "forloeb",
+      "prognose",
+      "barndom",
+      "ungdom",
+      "voksen",
+    ]);
+  }
+
+  if (intent.acute) {
+    addRequiredKey(["akut"]);
+  }
+
+  if (intent.social) {
+    addRequiredKey(["social", "relation", "hverdagen"]);
+  }
+
+  const maxSections = role === "Specialist" ? 4 : 3;
+  const maxCharacters = role === "Specialist" ? 6800 : 5600;
+  const selectedKeys = [];
+
+  for (const key of requiredKeys) {
+    if (!selectedKeys.includes(key)) {
+      selectedKeys.push(key);
+    }
+  }
+
+  for (const item of entries) {
+    if (selectedKeys.length >= maxSections) {
+      break;
+    }
+
+    if (!selectedKeys.includes(item.key)) {
+      selectedKeys.push(item.key);
+    }
+  }
+
+  const selectedLong = {};
+  const contextBase = {
+    id: entry?.id || null,
+    navn: entry?.navn || null,
+    fuld_navn: entry?.fuld_navn || null,
+    kort_visning: selectedShort,
+    relevante_fagafsnit: selectedLong,
+  };
+
+  for (const key of selectedKeys) {
+    const nextLong = {
+      ...selectedLong,
+      [key]: longView[key],
+    };
+
+    const nextContext = {
+      ...contextBase,
+      relevante_fagafsnit: nextLong,
+    };
+
+    if (JSON.stringify(nextContext).length <= maxCharacters) {
+      selectedLong[key] = longView[key];
+    }
+  }
+
+  return {
+    context: contextBase,
+    selectedSections: Object.keys(selectedLong),
+  };
+}
+
+
 function analyzeEmotion(text, data) {
   let score = 0;
   const textLower = String(text || "").toLowerCase();
@@ -2870,6 +3541,144 @@ try {
   }
 
   const heidiPrompt = readHeidiPrompt();
+
+  const structuredDiagnosisMeta = getSingleStructuredDiagnosisMatch(message);
+
+  if (structuredDiagnosisMeta) {
+    const structuredDiagnosis = loadStructuredDiagnosis(
+      structuredDiagnosisMeta
+    );
+
+    const {
+      context: diagnosisContext,
+      selectedSections,
+    } = buildStructuredDiagnosisContext(
+      structuredDiagnosis,
+      message,
+      role
+    );
+
+    const diagnosisInstructions = [
+      heidiPrompt,
+      "",
+      audienceInstructions,
+      "",
+      "STRUKTURERET CDA-DIAGNOSEFLOW",
+      "Brug de vedlagte strukturerede CDA-diagnosedata som det faglige grundlag for svaret.",
+      "Besvar brugerens konkrete spørgsmål dynamisk. Gengiv ikke data mekanisk, og vis ikke interne feltnavne eller datastruktur.",
+      "Brug kun de dele af datagrundlaget, der er relevante for spørgsmålet og rollen.",
+      "Kobl ikke en konkret elev til en diagnose uden formel udredning. Ved en kendt diagnose må du forklare relevante mønstre og hensyn uden at genvurdere diagnosen.",
+      "Udfør ikke Analyse-systemets fulde caseanalyse og foretag ikke komorbiditetstest i dette flow.",
+      role === "Specialist"
+        ? "Svar fagperson til fagperson med præcist specialistsprog, men hold dig til det konkrete spørgsmål og lav ikke en fuld Analyse-vurdering."
+        : "Hold svaret praksisnært og direkte anvendeligt for den valgte rolle.",
+      `AKTUEL SVARSTIL: ${response_style}`,
+      response_style === "Kort"
+        ? "Svar kort og direkte."
+        : response_style === "Dyb"
+          ? "Uddyb relevante faglige sammenhænge, men undgå unødvendig teori og gentagelser."
+          : "Giv en kort forklaring og konkrete relevante hensyn.",
+    ].join("\n");
+
+    const diagnosisInput = [
+      "BRUGERENS SPØRGSMÅL:",
+      message,
+      "",
+      "RELEVANTE STRUKTUREREDE CDA-DIAGNOSEDATA:",
+      JSON.stringify(diagnosisContext, null, 2),
+    ].join("\n");
+
+    const response = await openai.responses.create({
+      model: "gpt-5.4-mini",
+      reasoning: {
+        effort: "low",
+      },
+      instructions: diagnosisInstructions,
+      input: diagnosisInput,
+      max_output_tokens:
+        response_style === "Dyb"
+          ? 900
+          : response_style === "Kort"
+            ? 500
+            : 700,
+    });
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "structured_diagnosis_local_routing",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["localStructuredDiagnosisRouting"];
+    const toolDebug = [
+      {
+        name: "localStructuredDiagnosisRouting",
+        diagnosis_id: structuredDiagnosisMeta.id,
+        diagnosis_file: structuredDiagnosisMeta.fil,
+        selected_sections: selectedSections,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply: response.output_text,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
 
   if (!shouldUseSpecializedToolFlow(message)) {
     const normalModeInstructions =
