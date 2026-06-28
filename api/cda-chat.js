@@ -2872,16 +2872,32 @@ try {
   const heidiPrompt = readHeidiPrompt();
 
   if (!shouldUseSpecializedToolFlow(message)) {
+    const normalModeInstructions =
+      role === "Specialist"
+        ? [
+            "CDA-SPECIALISTSPOR UDEN ANALYSEMODUL",
+            "Disse specialistregler har forrang over HeidiPromptens normale lærer- og forældreformat.",
+            "Svar fagperson til fagperson. Brug ikke overskriften 'Det kan du gøre nu' og tal ikke til brugeren som klasselærer eller forælder.",
+            "Brug denne kompakte disposition: Foreløbig faglig forståelse; Datamangler; Mulige alternative forklaringer; Bør afdækkes; Fagligt næste skridt.",
+            "Skeln tydeligt mellem observation, hypotese og konklusion. Peg ikke sikkert på diagnose ud fra en kort case.",
+            "Formulér eventuelle skoleindsatser som anbefalinger, specialisten kan give videre til skolen — ikke som direkte instruktioner til specialisten.",
+            "Henvis ikke brugeren til PPR, da brugeren selv kan være PPR, psykolog eller skolekonsulent.",
+            "Udfør ikke en fuld Analyse-vurdering og opfind ikke oplysninger, der mangler.",
+          ]
+        : [
+            "NORMAL RÅDGIVNING UDEN EKSTRA MODULER",
+            "Giv en direkte faglig vurdering, en kort forklaring og højst 3 konkrete handlinger.",
+          ];
+
     const normalInstructions = [
       heidiPrompt,
       "",
       audienceInstructions,
       "",
-      "NORMAL RÅDGIVNING UDEN EKSTRA MODULER",
+      ...normalModeInstructions,
       "Svar ud fra CDA's interne faglige prompt og regler.",
       "Brug ikke cases, PBL, specialistpanel, rollespil, skabeloner eller komorbiditet, medmindre brugeren udtrykkeligt beder om det.",
       "Foretag ingen internetsøgning og påstå ikke, at oplysninger er hentet på nettet.",
-      "Giv en direkte faglig vurdering, en kort forklaring og højst 3 konkrete handlinger.",
       "PBL må ikke præsenteres som et elevprojekt uden en udfyldt elevprofil.",
       "Hvis PBL efter din faglige vurdering kan være en relevant senere mulighed, må du højst nævne det kort og spørge præcist: 'PBL kunne være relevant her. Vil du have en kort elevprofilskabelon?'",
       "Når du stiller netop dette spørgsmål, skal du til sidst tilføje maskinmarkøren [[PENDING_ACTION:PBL_PROFILE]]. Markøren vises ikke til brugeren.",
