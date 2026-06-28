@@ -3095,6 +3095,175 @@ function isConcreteStudentPblRequest(message) {
   );
 }
 
+
+function extractBornehaveAge(message) {
+  const match = String(message || "").match(
+    /\b([3-6])\s*(?:år|aar)\b/i
+  );
+
+  return match ? Number(match[1]) : null;
+}
+
+function isBornehavePracticeRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+  const age = extractBornehaveAge(message);
+
+  const contextPatterns = [
+    "bornehave",
+    "bornehavebarn",
+    "daginstitution",
+    "paedagog",
+    "paedagogmedhjaelper",
+    "paedagogisk assistent",
+    "foerskole",
+    "skolestart",
+    "0 klasse",
+    "bornehaveklasse",
+    "brobygning",
+    "aflevering",
+    "stue",
+  ];
+
+  const childPatterns = ["barn", "dreng", "pige"];
+  const hasExplicitContext = contextPatterns.some((pattern) =>
+    text.includes(normalizeDiagnosisPhrase(pattern))
+  );
+  const hasAgeContext =
+    age !== null &&
+    childPatterns.some((pattern) =>
+      containsDiagnosisPhrase(text, pattern)
+    );
+
+  if (!hasExplicitContext && !hasAgeContext) {
+    return false;
+  }
+
+  const excludedPatterns = [
+    "vis en case",
+    "find en case",
+    "case om",
+    "case med",
+    "hvad gjorde andre",
+    "hvad har andre gjort",
+    "har andre provet",
+    "pbl",
+    "projektbaseret laering",
+    "find et projekt",
+    "lav et projekt",
+    "specialistpanel",
+    "specialist panel",
+    "hvad siger specialisterne",
+    "rollespil",
+    "rolleleg",
+    "perspektivskifte",
+    "lav et skema",
+    "lav en skabelon",
+    "vis en skabelon",
+    "udfyld en skabelon",
+    "lav en overlevering",
+    "udfyld en overlevering",
+    "komorbiditet",
+    "kan der vaere andet end",
+    "kan der vare andet end",
+  ];
+
+  if (
+    excludedPatterns.some((pattern) =>
+      text.includes(normalizeDiagnosisPhrase(pattern))
+    )
+  ) {
+    return false;
+  }
+
+  const startsAsDiagnosisDefinition = [
+    "hvad er",
+    "forklar diagnosen",
+    "definition",
+    "what is",
+    "explain",
+  ].some((pattern) =>
+    text.startsWith(normalizeDiagnosisPhrase(pattern))
+  );
+
+  if (
+    startsAsDiagnosisDefinition &&
+    findStructuredDiagnosisMatches(message).length === 1
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+function compactBornehaveTemplate(template) {
+  if (!template) return null;
+
+  const templateData = template.content || {};
+  const content = templateData.content || {};
+
+  return {
+    id: template.id || templateData.id || null,
+    title: template.title || templateData.title || null,
+    category: template.category || templateData.category || null,
+    role: template.role || null,
+    purpose: content.purpose || null,
+    description: content.description || null,
+    principles: Array.isArray(content.principles)
+      ? content.principles
+      : [],
+    use_cases: Array.isArray(content.use_cases)
+      ? content.use_cases
+      : [],
+    practice_template: content.template_markdown || null,
+  };
+}
+
+function buildBornehavePracticeContext(routing) {
+  const templates = [];
+  const primary = compactBornehaveTemplate(
+    routing?.primary_template_object
+  );
+
+  if (primary) {
+    templates.push(primary);
+  }
+
+  if (
+    routing?.handover_ready &&
+    routing?.handover_template &&
+    routing.handover_template !== routing.primary_template
+  ) {
+    const handoverObject = (
+      Array.isArray(routing?.flow_template_objects)
+        ? routing.flow_template_objects
+        : []
+    ).find(
+      (template) => template.id === routing.handover_template
+    );
+
+    const handover = compactBornehaveTemplate(handoverObject);
+
+    if (handover) {
+      templates.push(handover);
+    }
+  }
+
+  return {
+    module: routing?.module || "CDA_Bornehavespor",
+    version: routing?.version || null,
+    age: routing?.age || null,
+    matched_behavior_tags: Array.isArray(
+      routing?.matched_behavior_tags
+    )
+      ? routing.matched_behavior_tags
+      : [],
+    primary_template: routing?.primary_template || null,
+    handover_ready: Boolean(routing?.handover_ready),
+    templates,
+    practice_knowledge: routing?.practice_knowledge || null,
+  };
+}
+
 function shouldUseSpecializedToolFlow(message) {
   const text = String(message || "")
     .toLowerCase()
@@ -4058,6 +4227,149 @@ try {
     return res.status(200).json({
       success: true,
       reply: String(response.output_text || "").trim(),
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
+  if (isBornehavePracticeRequest(message)) {
+    const age = extractBornehaveAge(message);
+    const routing = getBornehaveRouting({
+      text: message,
+      age,
+      tags: [],
+    });
+    const bornehaveContext = buildBornehavePracticeContext(routing);
+
+    const bornehaveInstructions = [
+      heidiPrompt,
+      "",
+      audienceInstructions,
+      "",
+      "LOKALT CDA-BØRNEHAVESPOR",
+      "Disse regler har forrang, når de kolliderer med almindelige lærer- eller forældreregler.",
+      "Brug den vedlagte børnehaveskabelon og de udvalgte praksisafsnit som fagligt grundlag. Brug kun de dele, der er relevante for spørgsmålet.",
+      "Svar naturligt og praksisnært. Vis ikke filnavne, interne ids, tags, scores eller datastruktur.",
+      "Børnehavesporet observerer og støtter; det diagnosticerer ikke. Beskriv konkrete mønstre, barnets mulige oplevelse, hvad der kan afprøves, og hvornår observationerne bør løftes videre.",
+      "Skeln mellem almindelig udviklingsvariation og vedvarende mønstre, der påvirker trivsel, deltagelse, relationer eller sikkerhed. Konkludér aldrig diagnose ud fra en kort beskrivelse.",
+      "Når brugeren arbejder i børnehaven, skal svaret rettes til pædagogen eller børnehavepersonalet — ikke til en klasselærer.",
+      "Ved spørgsmål om skolestart eller overlevering skal styrker, triggere, det der virker, det der ikke virker, relationer, kommunikation og støttebehov fremgå tydeligt, så skolen kan starte rigtigt fra første dag.",
+      "Ved spørgsmål om forældresamtaler skal observationer deles neutralt og samarbejdende uden etiketter eller skjulte diagnoselignende konklusioner.",
+      "Giv højst 3 konkrete handlinger i normal kort drift. Ét målrettet fagligt opfølgende spørgsmål er tilladt, når det er nødvendigt; afslut ikke med et generisk tilbud om mere hjælp.",
+      "Brug ikke cases, PBL, specialistpanel, rollespil eller komorbiditet i dette flow, medmindre brugeren udtrykkeligt har bedt om det — sådanne forespørgsler håndteres i andre flows.",
+      `AKTUEL SVARSTIL: ${response_style}`,
+      response_style === "Kort"
+        ? "Svar kort og direkte."
+        : response_style === "Dyb"
+          ? "Uddyb de relevante pædagogiske sammenhænge uden unødvendig teori eller gentagelser."
+          : "Giv en kort faglig forklaring og konkrete næste skridt.",
+    ].join("\n");
+
+    const bornehaveInput = [
+      "BRUGERENS SPØRGSMÅL:",
+      message,
+      "",
+      "RELEVANTE CDA-DATA FRA BØRNEHAVESPOR:",
+      JSON.stringify(bornehaveContext, null, 2),
+    ].join("\n");
+
+    const response = await openai.responses.create({
+      model: "gpt-5.4-mini",
+      reasoning: {
+        effort: "low",
+      },
+      instructions: bornehaveInstructions,
+      input: bornehaveInput,
+      max_output_tokens:
+        response_style === "Dyb"
+          ? 900
+          : response_style === "Kort"
+            ? 500
+            : 700,
+    });
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "bornehave_practice_local_routing",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["localBornehavePracticeRouting"];
+    const toolDebug = [
+      {
+        name: "localBornehavePracticeRouting",
+        primary_template: routing?.primary_template || null,
+        included_templates: bornehaveContext.templates.map(
+          (template) => template.id
+        ),
+        selected_knowledge_entries:
+          routing?.practice_knowledge?.selected_entry_ids || [],
+        matched_behavior_tags:
+          routing?.matched_behavior_tags || [],
+        handover_ready: Boolean(routing?.handover_ready),
+        age,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    const reply = String(response.output_text || "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .trim();
+
+    return res.status(200).json({
+      success: true,
+      reply,
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
