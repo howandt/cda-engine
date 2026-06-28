@@ -1,0 +1,765 @@
+{
+  "module": "CDA_Bornehave_Praksisguide",
+  "version": "1.0",
+  "language": "da",
+  "source": {
+    "title": "CDA BØRNEHAVE CASES – Tidlige Varselstegn og Støtte (3-6 år)",
+    "source_version": "November 2025",
+    "converted_to_structured_knowledge": "2026-06-28",
+    "note": "De 15 konkrete cases er ikke kopieret ind i denne fil. De forbliver i den aktive casebank. Denne fil indeholder den generelle pædagogiske praksisviden fra kildedokumentet."
+  },
+  "purpose": "At give pædagoger, medhjælpere og andet børnehavepersonale kort, konkret og ikke-diagnosticerende støtte til observation, handling, forældresamarbejde, tværfagligt samarbejde og overgang til skole.",
+  "age_range": [
+    3,
+    6
+  ],
+  "target_groups": [
+    "Pædagoger",
+    "Pædagogiske assistenter",
+    "Pædagogmedhjælpere",
+    "Børnehaveledere",
+    "Skolepersonale ved overlevering"
+  ],
+  "scope": {
+    "contains": [
+      "Generelle praksisprincipper",
+      "Normal udvikling versus bekymrende mønstre",
+      "Observation og dokumentation",
+      "Forældresamtaler",
+      "Handlingsniveauer",
+      "Tværfagligt samarbejde",
+      "Overgange og skolestart",
+      "Praktiske strategier til hverdagen"
+    ],
+    "does_not_contain": [
+      "De 15 konkrete børnehavecases",
+      "Diagnostiske konklusioner",
+      "Erstatning for faglig vurdering eller lokale procedurer"
+    ],
+    "active_case_bank": "public/CDA/cases/",
+    "active_template_module": "CDA/templates/bornehave/"
+  },
+  "professional_boundaries": [
+    "Vi observerer og støtter – vi diagnosticerer ikke.",
+    "Alle børn udvikler sig i forskelligt tempo.",
+    "Mønstre, varighed, intensitet og påvirkning er vigtigere end enkelthændelser.",
+    "Barnets trivsel, perspektiv og værdighed er centrum.",
+    "Styrker og det, der virker, dokumenteres sammen med vanskeligheder.",
+    "Ved akut bekymring følges institutionens gældende beredskab og lokale procedurer."
+  ],
+  "retrieval_contract": {
+    "mode": "section_retrieval",
+    "recommended_max_entries_per_request": 3,
+    "selection_signals": [
+      "brugerrolle",
+      "barnets alder",
+      "beskrevet adfærd",
+      "miljø eller situation",
+      "spørgsmålets formål",
+      "bekymringsgrad"
+    ],
+    "do_not_require_user_command": true,
+    "notes": [
+      "Brugeren skal ikke kende filnavn, ID eller kommandoord.",
+      "CDA skal vælge relevante vidensafsnit ud fra almindeligt sprog.",
+      "Hele filen må ikke sendes til modellen ved hvert spørgsmål.",
+      "Kombinér efter behov med højst relevante børnehaveskabeloner og cases."
+    ]
+  },
+  "knowledge_entries": [
+    {
+      "id": "bh_praksis_grundprincipper",
+      "title": "Grundprincipper for tidlig observation og støtte",
+      "category": "grundprincipper",
+      "priority": 1,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Pædagogisk assistent",
+        "Pædagogmedhjælper",
+        "Børnehaveleder"
+      ],
+      "tags": [
+        "tidlige tegn",
+        "observation",
+        "støtte",
+        "ikke diagnosticere",
+        "barnets perspektiv",
+        "trivsel"
+      ],
+      "search_keywords": [
+        "hvordan observerer vi",
+        "tidlige tegn børnehave",
+        "må pædagoger diagnosticere",
+        "barn kæmper",
+        "bekymring for barn",
+        "hvordan støtter vi"
+      ],
+      "activate_when": [
+        "Brugeren er usikker på sin rolle eller sit ansvar.",
+        "Spørgsmålet handler bredt om tidlige tegn eller støtte.",
+        "Der er risiko for at en observation bliver gjort til en diagnose."
+      ],
+      "related_template_ids": [
+        "bh_observation_lobende"
+      ],
+      "content": {
+        "core_messages": [
+          "Du behøver ikke være diagnoseekspert for at opdage, at et barn har brug for støtte.",
+          "Beskriv det, du ser, i stedet for at sætte et mærkat på barnet.",
+          "Tidlig opdagelse og støtte kan gøre stor forskel for barnets udvikling og skolestart.",
+          "Se efter gentagne mønstre på tværs af situationer og over tid.",
+          "Dokumentér både udfordringer, styrker og de voksengreb, der hjælper."
+        ],
+        "practice_focus": [
+          "Hvad sker konkret?",
+          "Hvornår og hvor ofte sker det?",
+          "Hvad sker lige før?",
+          "Hvordan påvirker det barnets trivsel, deltagelse og relationer?",
+          "Hvad hjælper, og hvad forværrer?"
+        ]
+      }
+    },
+    {
+      "id": "bh_uro_opmaerksomhed_og_regulering",
+      "title": "Uro, opmærksomhed og regulering i børnehaven",
+      "category": "regulering",
+      "priority": 2,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Pædagogisk assistent",
+        "Pædagogmedhjælper"
+      ],
+      "tags": [
+        "uro",
+        "impulsivitet",
+        "opmærksomhed",
+        "bevægelse",
+        "sensorik",
+        "regulering"
+      ],
+      "search_keywords": [
+        "barn kan ikke sidde stille",
+        "meget urolig i børnehaven",
+        "dagdrømmer",
+        "glemmer beskeder",
+        "løber rundt",
+        "impulsiv",
+        "sensorisk søgende"
+      ],
+      "activate_when": [
+        "Barnets uro eller opmærksomhed adskiller sig tydeligt fra jævnaldrendes.",
+        "Uroen påvirker læring, leg, sikkerhed eller sociale relationer.",
+        "Personalet efterspørger konkrete hverdagsstrategier."
+      ],
+      "related_template_ids": [
+        "bh_uro_og_impulsivitet",
+        "bh_sensoriske_reaktioner_og_regulering",
+        "bh_observation_lobende"
+      ],
+      "content": {
+        "concern_indicators": [
+          "Mønstret er markant anderledes end hos jævnaldrende.",
+          "Barnet kan sjældent fastholde deltagelse, også i foretrukne aktiviteter.",
+          "Adfærden påvirker barnets læring, sociale udvikling eller sikkerhed.",
+          "Støttestrategier giver ingen eller kun kortvarig forbedring.",
+          "Forældrene ser tilsvarende vanskeligheder hjemme."
+        ],
+        "documentation_points": [
+          "Brug konkrete eksempler frem for generelle vurderinger.",
+          "Notér varighed, hyppighed og intensitet.",
+          "Notér, hvad der hjælper, og hvad der ikke hjælper.",
+          "Sammenlign forsigtigt med udviklingsniveauet hos jævnaldrende."
+        ],
+        "practical_strategies": [
+          "Brug korte aktiviteter med planlagte bevægelsespauser.",
+          "Giv korte og tydelige instruktioner, gerne med visuel støtte.",
+          "Integrér bevægelse og praktiske hjælpeopgaver i dagen.",
+          "Tilbyd alternative måder at sidde eller deltage på.",
+          "Indbyg sensorisk støtte og rolige områder i hverdagen.",
+          "Brug legbaserede læringsformer og guidede positive samspil."
+        ],
+        "avoid": [
+          "Gentagne krav om bare at sidde stille.",
+          "At kalde barnet dovent, uartigt eller uopmærksomt.",
+          "At sammenligne barnet nedværdigende med mere rolige børn.",
+          "Kun at korrigere adfærden uden at give et brugbart alternativ."
+        ]
+      }
+    },
+    {
+      "id": "bh_social_udvikling_leg_og_kommunikation",
+      "title": "Social udvikling, leg og kommunikation",
+      "category": "social",
+      "priority": 2,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Pædagogisk assistent",
+        "Pædagogmedhjælper"
+      ],
+      "tags": [
+        "leg",
+        "social udvikling",
+        "kommunikation",
+        "tilbagetrækning",
+        "venskaber",
+        "empati",
+        "tavshed"
+      ],
+      "search_keywords": [
+        "leger altid alene",
+        "kan ikke komme ind i legen",
+        "andre børn undgår barnet",
+        "taler ikke i børnehaven",
+        "social tilbagetrækning",
+        "dominerer legen",
+        "mangler sociale signaler"
+      ],
+      "activate_when": [
+        "Barnets sociale udvikling står stille eller går tilbage.",
+        "Isolation, angst, aggression eller rigiditet hindrer deltagelse.",
+        "Personalet ønsker hjælp til leg, kommunikation eller inklusion."
+      ],
+      "related_template_ids": [
+        "bh_social_tilbagetraekning",
+        "bh_leg_fleksibilitet_og_samspil",
+        "bh_sprog_tavshed_og_kontakt",
+        "bh_aggression_alarm_og_voldsomme_reaktioner"
+      ],
+      "content": {
+        "developmental_paths": {
+          "play": [
+            "Parallel leg",
+            "Samarbejdende leg",
+            "Mere kompleks gruppeleg"
+          ],
+          "communication": [
+            "Nonverbal kontakt",
+            "Verbal kontakt",
+            "Gensidige samtaler"
+          ],
+          "social_understanding": [
+            "Eget perspektiv",
+            "Begyndende forståelse af andres perspektiv",
+            "Gensidige relationer"
+          ]
+        },
+        "concern_indicators": [
+          "Regression i social udvikling eller kommunikation.",
+          "Isolation, der ikke forbedres med rolig og gradvis støtte.",
+          "Angst, tavshed eller frys, der forhindrer deltagelse.",
+          "Aggression eller dominerende adfærd, der påvirker andre børn.",
+          "Vedvarende vanskeligheder med at aflæse eller reagere på sociale signaler."
+        ],
+        "practical_strategies": [
+          "Brug legbaseret støtte frem for formel undervisning i social adfærd.",
+          "Start med små, trygge og strukturerede samspil.",
+          "Giv barnet en tydelig rolle i legen.",
+          "Brug barnets interesser som bro til andre børn.",
+          "Tillad nonverbal deltagelse og reducer pres ved tavshed eller angst.",
+          "Facilitér inklusion aktivt frem for blot at bede barnet om selv at gå ind i legen.",
+          "Følg barnets tempo og øg krav gradvist."
+        ],
+        "avoid": [
+          "At presse barnet til spontan social deltagelse foran andre.",
+          "At gøre tavshed eller social usikkerhed til et offentligt tema.",
+          "At udelukke barnet fra leg uden samtidig at lære alternativer.",
+          "At antage, at al aleneleg er et problem, uden at se på barnets trivsel og udvikling."
+        ]
+      }
+    },
+    {
+      "id": "bh_overgange_tryghed_og_skolestart",
+      "title": "Overgange, tryghed og skolestart",
+      "category": "overgange",
+      "priority": 1,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Pædagogisk assistent",
+        "Børnehaveleder",
+        "Skolepersonale"
+      ],
+      "tags": [
+        "overgange",
+        "aflevering",
+        "aktivitetsskift",
+        "skolestart",
+        "forudsigelighed",
+        "tryghed",
+        "brobygning"
+      ],
+      "search_keywords": [
+        "svær aflevering",
+        "separationsangst",
+        "kan ikke skifte aktivitet",
+        "rutineændring",
+        "skolestart",
+        "overlevering til skole",
+        "børnehave til skole",
+        "morgenrutiner"
+      ],
+      "activate_when": [
+        "Barnet reagerer kraftigt ved aflevering, skift eller ændringer.",
+        "Skolestart nærmer sig, og vigtig praksisviden skal følge barnet.",
+        "Familien eller institutionen har brug for en gradvis overgangsplan."
+      ],
+      "related_template_ids": [
+        "bh_overgange_og_skift",
+        "bh_tryghed_angst_og_separationsvanskeligheder",
+        "bh_overlevering_til_skole",
+        "bh_observation_lobende"
+      ],
+      "content": {
+        "critical_periods": {
+          "home_to_kindergarten_age_3_4": [
+            "Separationsreaktioner og opbygning af tryghed.",
+            "Etablering af kendte rutiner og forudsigelighed.",
+            "Gradvis selvstændiggørelse uden at fjerne støtte for hurtigt."
+          ],
+          "kindergarten_to_school_age_5_6": [
+            "Tilpasning til mere struktur og nye forventninger.",
+            "Social reorganisering og ændringer i venskaber.",
+            "Større krav til planlægning, opmærksomhed og selvregulering."
+          ],
+          "daily_transitions": [
+            "Morgenrutiner og tidsforståelse.",
+            "Aktivitetsskift og fleksibilitet.",
+            "Stresspåvirkning i barnet og familien."
+          ]
+        },
+        "concern_indicators": [
+          "Kraftige reaktioner, der ikke aftager over tid.",
+          "Regression i tidligere mestrede færdigheder.",
+          "Tydelig påvirkning af barnets trivsel, udvikling eller deltagelse.",
+          "Familiens eller institutionens hverdag bliver vedvarende belastet.",
+          "Barnet kan kun fungere under særlige rammer, som skolen endnu ikke kender."
+        ],
+        "practical_strategies": [
+          "Brug gradvis introduktion frem for pludselige store skift.",
+          "Brug visuel støtte, varsling og tydelige afslutningsritualer.",
+          "Bevar kendte tryghedselementer under forandring.",
+          "Lav en enkel plan B ved ændringer.",
+          "Koordinér strategier mellem hjem, børnehave og skole.",
+          "Videregiv barnets styrker, triggere, støttebehov og det, der allerede virker."
+        ],
+        "school_handover_focus": [
+          "Barnets styrker og interesser.",
+          "Konkrete voksengreb og rammer, der virker.",
+          "Kendte triggere, belastninger og tegn på mistrivsel.",
+          "Kommunikation, som barnet reagerer godt på.",
+          "Sociale relationer og trygge personer.",
+          "Støtte, der bør være klar fra første skoledag."
+        ]
+      }
+    },
+    {
+      "id": "bh_observation_og_dokumentation",
+      "title": "Observation og dokumentation af bekymrende adfærd",
+      "category": "observation",
+      "priority": 1,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Pædagogisk assistent",
+        "Pædagogmedhjælper",
+        "Børnehaveleder"
+      ],
+      "tags": [
+        "observationsskema",
+        "dokumentation",
+        "konkrete eksempler",
+        "hyppighed",
+        "varighed",
+        "trivsel"
+      ],
+      "search_keywords": [
+        "hvordan dokumenterer vi",
+        "observationsskema",
+        "hvad skal vi skrive ned",
+        "bekymrende adfærd",
+        "forberede PPR",
+        "forberede forældresamtale"
+      ],
+      "activate_when": [
+        "Brugeren skal beskrive et mønster sagligt.",
+        "Der forberedes forældresamtale, teamdrøftelse eller faglig vurdering.",
+        "Beskrivelsen er for generel, fx 'urolig' eller 'svær'."
+      ],
+      "related_template_ids": [
+        "bh_observation_lobende",
+        "bh_overlevering_til_skole"
+      ],
+      "content": {
+        "observation_fields": [
+          {
+            "field": "konkret_adfaerd",
+            "question": "Hvad ser eller hører I konkret?",
+            "avoid": "Generelle etiketter som 'urolig' eller 'umulig'.",
+            "example": "Barnet rejser sig gentagne gange under samling, går hen til andre børn og mister tråden i aktiviteten."
+          },
+          {
+            "field": "hyppighed_og_situation",
+            "question": "Hvor ofte sker det, og i hvilke situationer?"
+          },
+          {
+            "field": "varighed",
+            "question": "Hvor længe har mønstret stået på, og hvor længe varer episoderne?"
+          },
+          {
+            "field": "udviklingsniveau",
+            "question": "Er mønstret markant anderledes end hos jævnaldrende?"
+          },
+          {
+            "field": "afproevede_strategier",
+            "question": "Hvad har I prøvet, hvad hjalp, og hvad hjalp ikke?"
+          },
+          {
+            "field": "paavirkning",
+            "question": "Hvordan påvirker det barnets læring, venskaber, selvværd og deltagelse?"
+          },
+          {
+            "field": "styrker_og_beskyttende_faktorer",
+            "question": "Hvornår trives barnet, hvad er barnet god til, og hvilke relationer skaber tryghed?"
+          }
+        ],
+        "quality_rules": [
+          "Adskil observation fra tolkning.",
+          "Brug datoer, situationer og konkrete hændelser, når det er muligt.",
+          "Beskriv udvikling over tid.",
+          "Dokumentér barnets ressourcer og det, der lykkes.",
+          "Skriv, så næste voksne kan handle på informationen."
+        ]
+      }
+    },
+    {
+      "id": "bh_foraeldresamtale",
+      "title": "Samarbejdende samtale med forældre",
+      "category": "foraeldresamarbejde",
+      "priority": 1,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Pædagogisk assistent",
+        "Børnehaveleder"
+      ],
+      "tags": [
+        "forældresamtale",
+        "samarbejde",
+        "observationer",
+        "bekymring",
+        "fælles strategi",
+        "faglig vurdering"
+      ],
+      "search_keywords": [
+        "hvordan taler vi med forældrene",
+        "forældresamtale bekymring",
+        "forældre bliver defensive",
+        "mistanke om diagnose",
+        "fælles plan hjem og børnehave",
+        "foreslå PPR"
+      ],
+      "activate_when": [
+        "Personalet skal dele en bekymring med forældrene.",
+        "Der skal laves fælles strategi mellem hjem og institution.",
+        "Der skal foreslås faglig vurdering uden at diagnosticere."
+      ],
+      "related_template_ids": [
+        "bh_observation_lobende",
+        "bh_overlevering_til_skole"
+      ],
+      "content": {
+        "before_meeting": [
+          "Saml konkrete observationer over en passende periode.",
+          "Notér både udfordringer og styrker.",
+          "Forbered, hvad institutionen allerede har afprøvet, og hvilken effekt det havde.",
+          "Gå ind i samtalen for at lytte til forældrenes oplevelse."
+        ],
+        "during_meeting": {
+          "open_with_relationship": [
+            "Fortæl, at formålet er at støtte barnet bedst muligt.",
+            "Begynd med barnets styrker og det, personalet holder af ved barnet."
+          ],
+          "share_observations": [
+            "Brug konkrete eksempler og neutralt sprog.",
+            "Beskriv forskelle fra jævnaldrende forsigtigt og uden etiketter.",
+            "Adskil det, I har set, fra mulige forklaringer."
+          ],
+          "ask_about_home": [
+            "Spørg, om forældrene ser noget lignende hjemme.",
+            "Spørg, hvad der hjælper barnet i hjemmet og i andre miljøer."
+          ],
+          "make_shared_plan": [
+            "Aftal én eller få konkrete strategier, der kan bruges begge steder.",
+            "Aftal, hvornår I følger op, og hvad I vil holde øje med."
+          ],
+          "when_more_help_is_needed": [
+            "Forklar, at en faglig vurdering kan hjælpe med at forstå barnets behov.",
+            "Tilbyd at samle og beskrive observationerne, så familien ikke står alene."
+          ]
+        },
+        "helpful_phrases": [
+          "Vi vil gerne støtte barnet bedst muligt og vil gerne høre, hvordan I oplever det hjemme.",
+          "Vi har lagt mærke til et mønster i bestemte situationer og vil gerne undersøge, hvad der hjælper.",
+          "Skal vi prøve den samme enkle strategi hjemme og her og følge op sammen?",
+          "Barnet kan måske have gavn af, at en fagperson hjælper os med at forstå behovene bedre."
+        ],
+        "avoid_phrases": [
+          "Jeg tror, barnet har ADHD.",
+          "Der er noget galt med barnet.",
+          "I skal opdrage barnet bedre.",
+          "Det går nok over, selv om mønstret er alvorligt eller vedvarende."
+        ]
+      }
+    },
+    {
+      "id": "bh_handlingsniveauer",
+      "title": "Fire handlingsniveauer ved bekymring",
+      "category": "vurdering_og_eskalation",
+      "priority": 1,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Pædagogisk assistent",
+        "Pædagogmedhjælper",
+        "Børnehaveleder"
+      ],
+      "tags": [
+        "handlingsniveau",
+        "bekymring",
+        "akut",
+        "PPR",
+        "tværfagligt",
+        "evaluering"
+      ],
+      "search_keywords": [
+        "hvornår skal vi handle",
+        "er det normalt",
+        "hvornår PPR",
+        "akut bekymring barn",
+        "hvornår leder",
+        "barn i fare",
+        "bekymring niveau"
+      ],
+      "activate_when": [
+        "Brugeren spørger, om et mønster kræver ekstra støtte eller videre handling.",
+        "Der er tvivl om forskellen mellem almindelig udvikling og alvorlig bekymring.",
+        "Der beskrives fare, pludselig regression eller tegn på alvorlig belastning."
+      ],
+      "related_template_ids": [
+        "bh_observation_lobende",
+        "bh_belastning_traume_og_utryghed",
+        "bh_aggression_alarm_og_voldsomme_reaktioner"
+      ],
+      "content": {
+        "levels": [
+          {
+            "level": 1,
+            "name": "Normal udvikling – fortsæt observation",
+            "indicators": [
+              "Adfærden er alderssvarende.",
+              "Der sker forbedring med almindelig støtte.",
+              "Barnets trivsel og udvikling er ikke tydeligt påvirket.",
+              "Forældre og institution ser en positiv udvikling."
+            ],
+            "actions": [
+              "Fortsæt god pædagogisk praksis og almindelig opmærksomhed."
+            ]
+          },
+          {
+            "level": 2,
+            "name": "Opmærksomhedsbehov – ekstra støtte",
+            "indicators": [
+              "Adfærden er mere udfordrende end hos jævnaldrende.",
+              "Nogle strategier hjælper, men barnet kræver ekstra støtte.",
+              "Der er lettere påvirkning af deltagelse, læring eller relationer.",
+              "Forældrene bemærker også udfordringer."
+            ],
+            "actions": [
+              "Lav en konkret og enkel handlingsplan i teamet.",
+              "Hold tæt dialog med forældrene.",
+              "Aftal et tydeligt tidspunkt for evaluering."
+            ]
+          },
+          {
+            "level": 3,
+            "name": "Bekymring – tværfagligt samarbejde",
+            "indicators": [
+              "Mønstret er markant, vedvarende og anderledes end hos jævnaldrende.",
+              "Strategier hjælper kun kortvarigt eller slet ikke.",
+              "Barnets udvikling, trivsel eller deltagelse er tydeligt påvirket.",
+              "Både hjem og institution ser væsentlige vanskeligheder."
+            ],
+            "actions": [
+              "Inddrag leder og relevante faglige ressourcer.",
+              "Saml saglig dokumentation og inddrag forældrene.",
+              "Foreslå relevant faglig vurdering, fx PPR, læge eller psykolog afhængigt af situationen.",
+              "Fortsæt den pædagogiske støtte, mens sagen løftes videre."
+            ]
+          },
+          {
+            "level": 4,
+            "name": "Akut – øjeblikkelig handling",
+            "indicators": [
+              "Barnet eller andre er i fare.",
+              "Der er ekstrem regression eller en pludselig alvorlig ændring.",
+              "Der er tegn på omsorgssvigt, vold, misbrug eller alvorlig belastning.",
+              "Der er selvskadende eller anden farlig adfærd."
+            ],
+            "actions": [
+              "Kontakt ansvarlig leder samme dag.",
+              "Følg institutionens gældende beredskab og lokale procedurer.",
+              "Dokumentér konkret og omhyggeligt.",
+              "Sørg for, at barnet og andre er i sikkerhed."
+            ]
+          }
+        ],
+        "important_note": "Handlingsniveauerne støtter faglig vurdering, men erstatter ikke institutionens gældende beredskab, kommunale procedurer eller lovpligtige handlinger."
+      }
+    },
+    {
+      "id": "bh_tvaerfaglig_hjaelp_og_ressourcer",
+      "title": "Hvor institution og familie kan søge hjælp",
+      "category": "tvaerfagligt_samarbejde",
+      "priority": 2,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Børnehaveleder",
+        "Forælder"
+      ],
+      "tags": [
+        "PPR",
+        "læge",
+        "sundhedsplejerske",
+        "pædagogisk konsulent",
+        "tværfagligt",
+        "henvisning"
+      ],
+      "search_keywords": [
+        "hvem kan hjælpe",
+        "hvor søger vi hjælp",
+        "PPR børnehave",
+        "læge eller PPR",
+        "kommunal konsulent",
+        "forældre søger hjælp"
+      ],
+      "activate_when": [
+        "Brugeren efterspørger næste faglige instans.",
+        "En bekymring skal løftes videre.",
+        "Familie og institution har brug for koordineret støtte."
+      ],
+      "related_template_ids": [
+        "bh_observation_lobende",
+        "bh_overlevering_til_skole"
+      ],
+      "content": {
+        "institution_options": [
+          "Institutionens leder og interne ressourcepersoner.",
+          "Kommunal pædagogisk konsulent.",
+          "PPR eller tilsvarende kommunal rådgivning.",
+          "Kommunens relevante børnefaglige funktioner."
+        ],
+        "family_options": [
+          "Praktiserende læge eller børnelæge.",
+          "Sundhedsplejerske.",
+          "PPR eller kommunal rådgivning.",
+          "Specialiseret børne- og ungdomspsykiatrisk hjælp ved alvorlige problemstillinger, når relevant."
+        ],
+        "coordination_principles": [
+          "Del konkrete observationer frem for diagnoselignende konklusioner.",
+          "Fortæl, hvad der allerede er prøvet, og hvilken effekt det havde.",
+          "Hold barnets styrker og perspektiv synligt i samarbejdet.",
+          "Aftal, hvem der gør hvad, og hvornår der følges op."
+        ],
+        "named_resources_from_source": [
+          "ADHD-foreningen",
+          "Autismeforeningen",
+          "Børns Vilkår"
+        ]
+      }
+    },
+    {
+      "id": "bh_personalets_faglige_rolle",
+      "title": "Pædagogens og assistentens faglige betydning",
+      "category": "faglig_rolle",
+      "priority": 3,
+      "age_range": [
+        3,
+        6
+      ],
+      "target_roles": [
+        "Pædagog",
+        "Pædagogisk assistent",
+        "Pædagogmedhjælper"
+      ],
+      "tags": [
+        "faglig tryghed",
+        "rolle",
+        "tidlig opdagelse",
+        "søge hjælp",
+        "barnets styrker"
+      ],
+      "search_keywords": [
+        "jeg er ikke ekspert",
+        "usikker pædagog",
+        "må jeg være bekymret",
+        "hvad er min rolle",
+        "pædagog uden diagnoseviden"
+      ],
+      "activate_when": [
+        "Brugeren udtrykker usikkerhed om egen faglighed.",
+        "Personalet er bange for at gøre noget forkert.",
+        "Der er behov for at fastholde fokus på observation og støtte."
+      ],
+      "related_template_ids": [
+        "bh_observation_lobende"
+      ],
+      "content": {
+        "messages": [
+          "Du behøver ikke have alle svar.",
+          "Det er fagligt ansvarligt at søge hjælp og vejledning.",
+          "Fejl og afprøvninger kan bruges som læring, når de dokumenteres og justeres.",
+          "Barnet er altid mere end sine udfordringer.",
+          "Den voksne, der ser mønstret tidligt og beskriver det præcist, kan ændre barnets videre forløb."
+        ]
+      }
+    }
+  ],
+  "future_integration": {
+    "status": "data_only_not_connected",
+    "planned_entry_point": "bornehaveRouter.js",
+    "planned_behavior": [
+      "Vælg relevante knowledge_entries ud fra almindeligt brugerinput.",
+      "Returnér højst 1-3 entries sammen med relevante børnehaveskabeloner.",
+      "Brug cases som eksempler, ikke som eneste svargrundlag.",
+      "Undgå at gentage samme case, hvis flere relevante cases findes."
+    ]
+  }
+}
