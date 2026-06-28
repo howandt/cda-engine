@@ -2307,6 +2307,8 @@ export default async function handler(req, res) {
 
   const {
   message,
+  language = "Dansk",
+  role = "Lærer",
   response_style = "Mellem",
   adgangskode,
   pending_action = null,
@@ -2318,13 +2320,50 @@ if (!message || typeof message !== "string") {
   });
 }
 
+const allowedLanguages = ["Dansk", "English"];
+const allowedRoles = ["Lærer", "Forælder", "Specialist", "Andet"];
 const allowedResponseStyles = ["Kort", "Mellem", "Dyb"];
+
+if (!allowedLanguages.includes(language)) {
+  return res.status(400).json({
+    error: "language skal være Dansk eller English",
+  });
+}
+
+if (!allowedRoles.includes(role)) {
+  return res.status(400).json({
+    error: "role skal være Lærer, Forælder, Specialist eller Andet",
+  });
+}
 
 if (!allowedResponseStyles.includes(response_style)) {
   return res.status(400).json({
     error: "response_style skal være Kort, Mellem eller Dyb",
   });
 }
+
+const languageInstruction =
+  language === "English"
+    ? "Answer in English unless the user clearly asks for another language."
+    : "Svar på dansk, medmindre brugeren tydeligt beder om et andet sprog.";
+
+const roleInstructions = {
+  Lærer:
+    "Tilpas svaret til en lærer: fokusér på forståelse, klassepraksis, observation og realistiske handlinger i skoledagen.",
+  Forælder:
+    "Tilpas svaret til en forælder: fokusér på observationer i hverdagen, støtte hjemme og samarbejde med skole eller relevante fagpersoner.",
+  Specialist:
+    "Tilpas svaret til en psykolog eller specialist: brug relevant faglig dybde, tydelige begrundelser og markér usikkerhed uden at overtage den professionelle vurdering.",
+  Andet:
+    "Tilpas svaret til den konkrete situation uden at antage, at brugeren er lærer, forælder eller specialist.",
+};
+
+const audienceInstructions = [
+  `AKTUELT SPROG: ${language}`,
+  languageInstruction,
+  `AKTUEL ROLLE: ${role}`,
+  roleInstructions[role],
+].join("\n");
 
 try {
   if (pending_action === "pbl_profile") {
@@ -2729,8 +2768,9 @@ try {
     if (selectedCase) {
       const caseInstructions = [
         "Du er Heidi, CDA's faglige skolekonsulent.",
+        audienceInstructions,
         "Brugeren spørger, hvad andre har gjort i en lignende situation.",
-        "Svar kort og naturligt på dansk ud fra den ene vedlagte case.",
+        "Svar kort og naturligt på det valgte sprog ud fra den ene vedlagte case.",
         "Fortæl kun: den lignende situation, hvad den voksne gjorde, hvad der virkede, og én enkel reference brugeren kan overveje.",
         "Lav ikke en fuld analyse. Brug ikke standardoverskrifter som 'Det peger mest på'.",
         "Tilføj ikke generelle råd, diagnoser eller oplysninger, som ikke står i casen.",
@@ -2835,6 +2875,8 @@ try {
     const normalInstructions = [
       heidiPrompt,
       "",
+      audienceInstructions,
+      "",
       "NORMAL RÅDGIVNING UDEN EKSTRA MODULER",
       "Svar ud fra CDA's interne faglige prompt og regler.",
       "Brug ikke cases, PBL, specialistpanel, rollespil, skabeloner eller komorbiditet, medmindre brugeren udtrykkeligt beder om det.",
@@ -2886,6 +2928,8 @@ try {
       {
         name: "localNormalAdviceRouting",
         arguments: {
+          language,
+          role,
           response_style,
         },
       },
@@ -2940,6 +2984,8 @@ try {
 
   const runtimeInstructions = [
     heidiPrompt,
+    "",
+    audienceInstructions,
     "",
     `AKTUEL SVARSTIL: ${response_style}`,
     response_style === "Kort"
