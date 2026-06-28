@@ -2881,7 +2881,9 @@ try {
             "Brug denne kompakte disposition: Foreløbig faglig forståelse; Datamangler; Mulige alternative forklaringer; Bør afdækkes; Fagligt næste skridt.",
             "Skeln tydeligt mellem observation, hypotese og konklusion. Peg ikke sikkert på diagnose ud fra en kort case.",
             "Formulér eventuelle skoleindsatser som anbefalinger, specialisten kan give videre til skolen — ikke som direkte instruktioner til specialisten.",
+            "Under 'Fagligt næste skridt' skal handlingerne være specialistens egne faglige handlinger, fx at indhente oplysninger, afklare mønstre, aftale en afprøvning med skolen eller evaluere effekten — ikke lærerens direkte klassehandlinger.",
             "Henvis ikke brugeren til PPR, da brugeren selv kan være PPR, psykolog eller skolekonsulent.",
+            "Afslut ikke med generiske tilbud som 'Hvis du vil, kan jeg hjælpe'. Stil højst ét konkret fagligt opfølgende spørgsmål, hvis casen kræver det.",
             "Udfør ikke en fuld Analyse-vurdering og opfind ikke oplysninger, der mangler.",
           ]
         : [
