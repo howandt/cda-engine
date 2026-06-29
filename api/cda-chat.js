@@ -2405,6 +2405,135 @@ function findBestLocalTemplate(message, templates) {
   return best;
 }
 
+
+function getDirectTemplateFileRequest(message, template) {
+  const text = normalizeTemplateSearch(message);
+
+  const modificationPatterns = [
+    "tilpas",
+    "tilpasse",
+    "udfyld",
+    "udfylde",
+    "personliggor",
+    "personliggore",
+    "personaliser",
+    "rediger",
+    "aendr",
+    "aendre",
+    "omskriv",
+    "forkort",
+    "opsummer",
+    "forklar",
+    "oversaet",
+    "indsæt",
+    "indsaet",
+    "brug den til",
+    "lav den til",
+    "adapt",
+    "customize",
+    "personalize",
+    "fill in",
+    "udfyldt",
+    "med navnet",
+    "med elevens",
+    "for eleven",
+    "for mit barn",
+    "for min elev",
+    "saet navn",
+    "edit",
+    "change",
+    "rewrite",
+    "shorten",
+    "summarize",
+    "explain",
+    "translate",
+  ];
+
+  if (
+    modificationPatterns.some((pattern) =>
+      text.includes(normalizeTemplateSearch(pattern))
+    )
+  ) {
+    return null;
+  }
+
+  const displayPatterns = [
+    "hent",
+    "vis",
+    "gengiv",
+    "åbn",
+    "send",
+    "uden aendringer",
+    "opfind ikke",
+    "show",
+    "display",
+    "retrieve",
+    "open",
+    "without changes",
+  ];
+
+  const hasDisplayIntent = displayPatterns.some((pattern) =>
+    text.includes(normalizeTemplateSearch(pattern))
+  );
+
+  const exactCandidates = [
+    template?.id,
+    String(template?.id || "").replace(/_/g, " "),
+    template?.title,
+    ...(Array.isArray(template?.command_triggers)
+      ? template.command_triggers
+      : []),
+  ]
+    .map((candidate) => normalizeTemplateSearch(candidate))
+    .filter(Boolean);
+
+  const exactTemplateRequest = exactCandidates.includes(text);
+
+  if (!hasDisplayIntent && !exactTemplateRequest) {
+    return null;
+  }
+
+  const contentFile = String(template?.content_file || "").trim();
+
+  if (!contentFile) {
+    return null;
+  }
+
+  const projectRoot = path.resolve(process.cwd());
+  const templatesRoot = path.resolve(projectRoot, "templates");
+  const resolvedPath = path.resolve(projectRoot, contentFile);
+
+  if (
+    resolvedPath !== templatesRoot &&
+    !resolvedPath.startsWith(`${templatesRoot}${path.sep}`)
+  ) {
+    throw new Error(
+      `Ugyldig templatefil uden for templates-mappen: ${contentFile}`
+    );
+  }
+
+  if (path.extname(resolvedPath).toLowerCase() !== ".md") {
+    throw new Error(
+      `Ugyldig filtype for direkte templatevisning: ${contentFile}`
+    );
+  }
+
+  if (!fs.existsSync(resolvedPath)) {
+    return null;
+  }
+
+  const content = fs.readFileSync(resolvedPath, "utf8").trim();
+
+  if (!content) {
+    return null;
+  }
+
+  return {
+    content,
+    contentFile,
+  };
+}
+
 function buildLocalTemplateContext(template) {
   const content = template?.content || {};
 
@@ -4502,6 +4631,54 @@ try {
   }
 
   if (localTemplateRequest?.type === "match") {
+    const directTemplateFile = getDirectTemplateFileRequest(
+      message,
+      localTemplateRequest.template
+    );
+
+    if (directTemplateFile) {
+      const usedTools = ["localTemplateRouting"];
+      const toolDebug = [
+        {
+          name: "localTemplateRouting",
+          action: "show_existing_template_direct_file",
+          template_id: localTemplateRequest.template?.id || null,
+          template_title: localTemplateRequest.template?.title || null,
+          content_file: directTemplateFile.contentFile,
+          match_score: localTemplateRequest.score,
+          matched_fields: localTemplateRequest.matchedFields,
+          matched_words: localTemplateRequest.matchedWords,
+          role,
+          response_style,
+        },
+      ];
+
+      const reply = directTemplateFile.content;
+
+      console.log("CDA værktøjskald:", {
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+      });
+
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
+        usage_by_call: [],
+        totals: {
+          input_tokens: 0,
+          output_tokens: 0,
+          total_tokens: 0,
+        },
+      });
+
+      return res.status(200).json({
+        success: true,
+        reply,
+        model: "local",
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+        pending_action: null,
+      });
+    }
+
     const templateInstructions = [
       heidiPrompt,
       "",
