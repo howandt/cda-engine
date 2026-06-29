@@ -27,7 +27,6 @@ Dataserveren er **frontend-uafhængig** og hostes via GitHub + Vercel som statis
 | `/scripts/clean-index.js` | Script til at generere clean-index fra master |
 | `/templates/` | Skabeloner til intervention, støtte og struktur |
 | `/pbl/` | Projektbaserede læringsforløb (8–12 uger) |
-| `/quiz/` | Vidensquizzer til test og træning |
 | `/specialister/CDA_SpecialistPanel.json` | Specialistpanelets profiler og tone |
 | `/diagnoser/` | Markdown-filer for hver diagnose (ADHD, ASF, angst...) |
 | `CDA_Diagnoser.json` | Metadata for diagnoser og relationer |
