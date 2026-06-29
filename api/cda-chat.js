@@ -2159,6 +2159,322 @@ function getTemplates(args = {}) {
   };
 }
 
+
+function normalizeTemplateSearch(value) {
+  return normalizeDiagnosisPhrase(value);
+}
+
+function templatePhraseIsPresent(messageText, value) {
+  const phrase = normalizeTemplateSearch(value);
+
+  if (!phrase || phrase.length < 4) {
+    return false;
+  }
+
+  return ` ${messageText} `.includes(` ${phrase} `);
+}
+
+function getTemplateRequestSignals(message, templates) {
+  const text = normalizeTemplateSearch(message);
+
+  const bankPatterns = [
+    "templatebank",
+    "skabelonbank",
+    "cda templatebank",
+    "cda template bank",
+    "cda skabelonbank",
+    "template bank",
+    "cda template",
+    "cda skabelon",
+    "eksisterende template",
+    "eksisterende skabelon",
+    "existing template",
+    "template library",
+  ];
+
+  const listPatterns = [
+    "vis alle",
+    "hvilke skabeloner",
+    "hvilke templates",
+    "liste over",
+    "oversigt over",
+    "hvad findes",
+    "show all",
+    "which templates",
+    "list templates",
+  ];
+
+  const directBankRequest = bankPatterns.some((pattern) =>
+    text.includes(normalizeTemplateSearch(pattern))
+  );
+
+  const knownTemplateMention = templates.some((template) => {
+    const candidates = [
+      template?.id,
+      template?.title,
+      ...(Array.isArray(template?.command_triggers)
+        ? template.command_triggers
+        : []),
+    ];
+
+    return candidates.some((candidate) =>
+      templatePhraseIsPresent(text, candidate)
+    );
+  });
+
+  const listRequest =
+    directBankRequest &&
+    listPatterns.some((pattern) =>
+      text.includes(normalizeTemplateSearch(pattern))
+    );
+
+  return {
+    text,
+    directBankRequest,
+    knownTemplateMention,
+    listRequest,
+    isDirectRequest: directBankRequest || knownTemplateMention,
+  };
+}
+
+function findBestLocalTemplate(message, templates) {
+  const text = normalizeTemplateSearch(message);
+  const ignoredWords = new Set([
+    "hent",
+    "find",
+    "vis",
+    "lav",
+    "brug",
+    "gerne",
+    "eksisterende",
+    "skabelon",
+    "skabelonen",
+    "skabeloner",
+    "template",
+    "templates",
+    "templatebank",
+    "skabelonbank",
+    "cda",
+    "fra",
+    "til",
+    "for",
+    "med",
+    "den",
+    "det",
+    "der",
+    "som",
+    "ikke",
+    "opfind",
+    "selv",
+    "noget",
+    "show",
+    "existing",
+    "library",
+    "from",
+    "and",
+    "the",
+  ]);
+
+  const queryWords = text
+    .split(" ")
+    .map((word) => word.trim())
+    .filter(
+      (word) =>
+        word.length >= 3 &&
+        !ignoredWords.has(word)
+    );
+
+  const scoreTemplate = (template) => {
+    const title = normalizeTemplateSearch(template?.title);
+    const id = normalizeTemplateSearch(
+      String(template?.id || "").replace(/_/g, " ")
+    );
+    const category = normalizeTemplateSearch(template?.category);
+    const subcategory = normalizeTemplateSearch(template?.subcategory);
+    const description = normalizeTemplateSearch(
+      template?.description || template?.content?.description
+    );
+
+    const triggers = Array.isArray(template?.command_triggers)
+      ? template.command_triggers.map(normalizeTemplateSearch)
+      : [];
+
+    const keywords = Array.isArray(template?.search_keywords)
+      ? template.search_keywords.map(normalizeTemplateSearch)
+      : [];
+
+    const tags = Array.isArray(template?.tags)
+      ? template.tags.map(normalizeTemplateSearch)
+      : [];
+
+    let score = 0;
+    const matchedFields = new Set();
+    const matchedWords = new Set();
+
+    if (title && templatePhraseIsPresent(text, title)) {
+      score += 300;
+      matchedFields.add("title");
+    }
+
+    if (id && templatePhraseIsPresent(text, id)) {
+      score += 240;
+      matchedFields.add("id");
+    }
+
+    for (const trigger of triggers) {
+      if (trigger && templatePhraseIsPresent(text, trigger)) {
+        score += 220;
+        matchedFields.add("command_trigger");
+      }
+    }
+
+    for (const keyword of keywords) {
+      if (keyword && templatePhraseIsPresent(text, keyword)) {
+        score += 80;
+        matchedFields.add("search_keyword");
+      }
+    }
+
+    const titleWords = new Set(title.split(" ").filter(Boolean));
+    const triggerWords = new Set(
+      triggers.join(" ").split(" ").filter(Boolean)
+    );
+    const keywordWords = new Set(
+      keywords.join(" ").split(" ").filter(Boolean)
+    );
+    const tagWords = new Set(
+      tags.join(" ").split(" ").filter(Boolean)
+    );
+    const categoryWords = new Set(
+      `${category} ${subcategory}`.split(" ").filter(Boolean)
+    );
+    const descriptionWords = new Set(
+      description.split(" ").filter(Boolean)
+    );
+
+    for (const queryWord of queryWords) {
+      if (titleWords.has(queryWord)) {
+        score += 35;
+        matchedWords.add(queryWord);
+        matchedFields.add("title_words");
+      } else if (triggerWords.has(queryWord)) {
+        score += 28;
+        matchedWords.add(queryWord);
+        matchedFields.add("trigger_words");
+      } else if (keywordWords.has(queryWord)) {
+        score += 20;
+        matchedWords.add(queryWord);
+        matchedFields.add("keyword_words");
+      } else if (tagWords.has(queryWord)) {
+        score += 14;
+        matchedWords.add(queryWord);
+        matchedFields.add("tag_words");
+      } else if (categoryWords.has(queryWord)) {
+        score += 9;
+        matchedWords.add(queryWord);
+        matchedFields.add("category_words");
+      } else if (descriptionWords.has(queryWord)) {
+        score += 4;
+        matchedWords.add(queryWord);
+        matchedFields.add("description_words");
+      }
+    }
+
+    if (matchedWords.size > 1) {
+      score += matchedWords.size * 8;
+    }
+
+    return {
+      template,
+      score,
+      matchedFields: Array.from(matchedFields),
+      matchedWords: Array.from(matchedWords),
+    };
+  };
+
+  const ranked = templates
+    .map(scoreTemplate)
+    .sort((a, b) => b.score - a.score);
+
+  const best = ranked[0] || null;
+
+  if (!best || best.score < 35) {
+    return null;
+  }
+
+  return best;
+}
+
+function buildLocalTemplateContext(template) {
+  const content = template?.content || {};
+
+  return {
+    id: template?.id || null,
+    title: template?.title || null,
+    category: template?.category || null,
+    subcategory: template?.subcategory || null,
+    target_group: template?.target_group || null,
+    purpose: content?.purpose || null,
+    description:
+      template?.description || content?.description || null,
+    use_cases: Array.isArray(content?.use_cases)
+      ? content.use_cases
+      : [],
+    components: Array.isArray(content?.components)
+      ? content.components
+      : [],
+    variables: template?.variables || null,
+    template_markdown:
+      template?.template_markdown ||
+      content?.template_markdown ||
+      null,
+    steps: Array.isArray(template?.steps)
+      ? template.steps
+      : [],
+    cda_synthesis: template?.cda_synthesis || null,
+  };
+}
+
+function getLocalTemplateRequest(message) {
+  const templateResult = getTemplates();
+  const templates = Array.isArray(templateResult?.templates)
+    ? templateResult.templates
+    : [];
+
+  const signals = getTemplateRequestSignals(message, templates);
+
+  if (!signals.isDirectRequest) {
+    return null;
+  }
+
+  if (signals.listRequest) {
+    return {
+      type: "list",
+      templates,
+      total: templates.length,
+    };
+  }
+
+  const bestMatch = findBestLocalTemplate(message, templates);
+
+  if (!bestMatch) {
+    return {
+      type: "not_found",
+      templates,
+      total: templates.length,
+    };
+  }
+
+  return {
+    type: "match",
+    template: bestMatch.template,
+    context: buildLocalTemplateContext(bestMatch.template),
+    score: bestMatch.score,
+    matchedFields: bestMatch.matchedFields,
+    matchedWords: bestMatch.matchedWords,
+  };
+}
+
 const tools = [
   {
     type: "function",
@@ -4070,6 +4386,229 @@ try {
         );
       }
     }
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
+  const localTemplateRequest = getLocalTemplateRequest(message);
+
+  if (localTemplateRequest?.type === "list") {
+    const titles = localTemplateRequest.templates
+      .map((template) => String(template?.title || "").trim())
+      .filter(Boolean);
+
+    const reply = [
+      language === "English"
+        ? `CDA's template bank contains ${titles.length} existing templates:`
+        : `CDA's templatebank indeholder ${titles.length} eksisterende skabeloner:`,
+      "",
+      ...titles.map((title) => `- ${title}`),
+    ].join("\n");
+
+    const usedTools = ["localTemplateRouting"];
+    const toolDebug = [
+      {
+        name: "localTemplateRouting",
+        action: "list_templates",
+        total_templates: titles.length,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
+  if (localTemplateRequest?.type === "not_found") {
+    const titles = localTemplateRequest.templates
+      .map((template) => String(template?.title || "").trim())
+      .filter(Boolean);
+
+    const reply = language === "English"
+      ? [
+          "I found no existing template in CDA's template bank that matches your request.",
+          titles.length > 0
+            ? `The template bank includes: ${titles.slice(0, 6).join(", ")}.`
+            : "The template bank contains no templates.",
+        ].join("\n\n")
+      : [
+          "Jeg fandt ingen eksisterende skabelon i CDA's templatebank, der matcher din forespørgsel.",
+          titles.length > 0
+            ? `Templatebanken indeholder blandt andet: ${titles.slice(0, 6).join(", ")}.`
+            : "Templatebanken indeholder ingen skabeloner.",
+        ].join("\n\n");
+
+    const usedTools = ["localTemplateRouting"];
+    const toolDebug = [
+      {
+        name: "localTemplateRouting",
+        action: "no_matching_template",
+        total_templates: localTemplateRequest.total,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
+  if (localTemplateRequest?.type === "match") {
+    const templateInstructions = [
+      heidiPrompt,
+      "",
+      audienceInstructions,
+      "",
+      "LOKAL CDA-TEMPLATEROUTING",
+      "Brug kun den ene vedlagte eksisterende CDA-skabelon som grundlag for svaret.",
+      "Brugeren har udtrykkeligt bedt om en eksisterende skabelon fra CDA's templatebank. Sig derfor ikke, at templatebanken er utilgængelig.",
+      "Opfind ikke en ny skabelon, nye afsnit, nye faglige påstande eller manglende personoplysninger.",
+      "Når brugeren beder om at få skabelonen vist, skal du gengive dens praktiske indhold troværdigt og komplet.",
+      "Bevar tomme felter og pladsholdere, når brugeren ikke har givet værdier. Teknisk betingelsessyntaks må omskrives til tydelige valgfrie felter uden at ændre indholdet.",
+      "Vis ikke interne ids, matchscore, søgeord eller datastruktur.",
+      "Svar kort før selve skabelonen. Afslut uden et generisk tilbud om mere hjælp.",
+      "Svarstilen må ikke få dig til at udelade centrale dele af den eksisterende skabelon.",
+      `AKTUEL SVARSTIL: ${response_style}`,
+    ].join("\n");
+
+    const templateInput = [
+      "BRUGERENS SPØRGSMÅL:",
+      message,
+      "",
+      "DEN ENE MATCHENDE EKSISTERENDE CDA-SKABELON:",
+      JSON.stringify(localTemplateRequest.context, null, 2),
+    ].join("\n");
+
+    const response = await openai.responses.create({
+      model: "gpt-5.4-mini",
+      reasoning: {
+        effort: "low",
+      },
+      instructions: templateInstructions,
+      input: templateInput,
+      max_output_tokens: 1600,
+    });
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "template_local_routing",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["localTemplateRouting"];
+    const toolDebug = [
+      {
+        name: "localTemplateRouting",
+        action: "show_existing_template",
+        template_id: localTemplateRequest.template?.id || null,
+        template_title: localTemplateRequest.template?.title || null,
+        match_score: localTemplateRequest.score,
+        matched_fields: localTemplateRequest.matchedFields,
+        matched_words: localTemplateRequest.matchedWords,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    const reply = String(response.output_text || "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .trim();
 
     return res.status(200).json({
       success: true,
