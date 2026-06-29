@@ -281,51 +281,122 @@
       },
       {
         "id": "skolevagring_plan",
-        "title": "Trinvis Plan mod Skolevægring",
+        "title": "Trinvis guide ved skolevægring",
         "category": "intervention",
-        "target_group": "Lærere, forældre, pædagoger",
-        "description": "En praktisk trin-for-trin plan til håndtering af skolevægring hos børn med diagnoser. Fokus er på at genetablere tryghed, samarbejde og struktur i tæt dialog mellem skole og hjem.",
+        "subcategory": "skolevægring",
+        "tags": [
+          "skolevægring",
+          "fravær",
+          "fremmøde",
+          "tilbagevenden til skole",
+          "trygge små skridt",
+          "skole-hjem-samarbejde",
+          "elevperspektiv",
+          "observation",
+          "indsats",
+          "PPR"
+        ],
+        "age_range": [
+          6,
+          18
+        ],
+        "diagnoses": [
+          "ingen diagnose påkrævet"
+        ],
+        "complexity": "intermediate",
+        "usage_frequency": "løbende",
+        "urgency": "high",
+        "target_group": "Lærere, pædagoger, forældre, ressourcepersoner og PPR",
+        "description": "En neutral og praktisk guide til at planlægge, afprøve og evaluere små, trygge skridt ved skolevægring eller vedvarende vanskeligheder med fremmøde. Guiden bruges i samarbejde mellem elev, skole og hjem og stiller ikke diagnose eller lover et bestemt resultat.",
+        "content": {
+          "purpose": "At skabe en fælles og overskuelig plan for små, forudsigelige skridt mod øget kontakt med skolen og mulig deltagelse.",
+          "description": "Guiden samler elevens perspektiv, det næste aftalte trin, voksenstøtte, belastning, observeret effekt og næste aftale.",
+          "use_cases": [
+            "Elev der har svært ved at møde i skole",
+            "Gradvis genopbygning af kontakt til skolen",
+            "Planlægning mellem skole og hjem",
+            "Opfølgning på små afprøvede skridt",
+            "Grundlag for faglig sparring eller PPR"
+          ],
+          "components": [
+            "Kort trinvis guide",
+            "Elevens perspektiv",
+            "Oversigt over allerede afprøvede tiltag",
+            "Aftale for næste trin",
+            "Skole-hjem-kommunikationsaftale",
+            "Notatlog",
+            "Samlet vurdering og næste skridt"
+          ]
+        },
+        "search_keywords": [
+          "skolevægring",
+          "skolevaegering",
+          "fravær",
+          "fravaer",
+          "vil ikke i skole",
+          "svært ved at møde",
+          "svært ved fremmøde",
+          "fremmøde",
+          "tilbage til skole",
+          "tilbagevenden til skole",
+          "gradvis tilbagevenden",
+          "trygge små skridt",
+          "morgen og skole",
+          "skolefravær",
+          "kontakt til skolen"
+        ],
+        "command_triggers": [
+          "Skolevægring",
+          "Hent skolevægringsplan",
+          "Vis trinvis guide ved skolevægring",
+          "Skabelon til tilbagevenden til skole",
+          "Ikke vil i skole",
+          "Plan for skolefravær"
+        ],
+        "variables": {
+          "required": [
+            "student_name",
+            "school_name",
+            "school_contact",
+            "start_date",
+            "review_date"
+          ],
+          "optional": [
+            "student_age",
+            "home_contact",
+            "support_person",
+            "ppr_contact"
+          ]
+        },
         "steps": [
           {
             "step": 1,
-            "title": "Observation og forståelse",
-            "content": "Observer barnet uden at presse. Notér hvornår og hvordan modstanden opstår – fx ved morgenrutiner, transport, klassemiljø eller relationer. Skab overblik over mønstre og udløsere."
+            "title": "Observer",
+            "content": "Notér hvornår modstanden eller belastningen opstår, og hvad eleven selv oplever."
           },
           {
             "step": 2,
-            "title": "Kommunikation og kontakt",
-            "content": "Etabler daglig kommunikation med barnet på barnets præmisser. Brug korte beskeder, valider følelser og undgå at tale om 'fravær' som fejl. Skolen kontakter forældrene roligt og løsningsorienteret."
+            "title": "Skab kontakt",
+            "content": "Brug korte, rolige beskeder og en kendt voksen. Undgå pres og skyld."
           },
           {
             "step": 3,
-            "title": "Fælles forståelsesgrundlag",
-            "content": "Afhold et møde mellem skole og forældre uden barnet for at skabe fælles forståelse. Fokusér på tryghed frem for fravær. Beslut hvem der er kontaktperson og hvordan barnet mødes i skolen."
+            "title": "Aftal ét lille trin",
+            "content": "Vælg ét konkret og realistisk skridt, som eleven er forberedt på."
           },
           {
             "step": 4,
-            "title": "Tryghedsskabende mikrotræning",
-            "content": "Barnet skal langsomt genvinde tillid til skolemiljøet. Start med korte, forudsigelige besøg – fx 10 minutter i et trygt lokale. Brug faste ritualer, samme voksen og tydelig forudsigelighed."
+            "title": "Gør det forudsigeligt",
+            "content": "Aftal hvem eleven møder, hvor det sker, hvor længe det varer, og hvordan eleven kan holde pause eller afslutte."
           },
           {
             "step": 5,
-            "title": "Delmål og positiv forstærkning",
-            "content": "Lav små, opnåelige delmål: fx at møde op på skolens parkeringsplads, derefter at gå ind, senere deltage i en time. Anerkend indsatsen, ikke resultatet. Brug visuel fremgangsplan."
-          },
-          {
-            "step": 6,
-            "title": "Tværfaglig koordinering",
-            "content": "Hvis udviklingen går i stå, inddrag PPR, ergoterapeut eller psykolog. Evaluer sammen med familien – hvad virker, og hvad skal justeres? Dokumentér alt, men uden skyldplacering."
-          },
-          {
-            "step": 7,
-            "title": "Langsigtet stabilisering",
-            "content": "Efter tilbagevenden fastholdes struktur og støtte. Sørg for roligt tempo, tydelige overgange og faste voksne. Lav ugentlige korte statusmøder mellem skole og hjem i minimum 8 uger."
+            "title": "Evaluér",
+            "content": "Registrér elevens reaktion og den observerede effekt. Trinnet kan gentages, ændres eller sættes på pause."
           }
         ],
-        "real_life_solution": "I praksis viste det sig, at en lærer opnåede størst effekt ved at flytte fokus fra fravær til tryghed. Barnet fik sin egen 'morgenmentor', som mødte ham ved bilen hver dag, gik med ham ind og fulgte ham i gang. Efter tre uger kunne han selv gå ind, men ritualet blev fastholdt som symbol på tillid.",
-        "specialist_ideal_solution": "CDA-panelet anbefaler en kombineret indsats: Psykologen fokuserer på angst- og kontrolstrategier, ergoterapeuten på sensorisk ro og faste rutiner, socialrådgiveren på koordinering med hjemmet og kommunen. Sammen skaber de en helhedsplan med fokus på gradvis eksponering og tryghedsskabende miljø.",
-        "cda_synthesis": "Barnet viser skolevægring som udtryk for overbelastning og mistet forudsigelighed. Den bedste indsats er ikke pres, men struktureret genopbygning af tillid. Samarbejdet skal være dagligt, konkret og uden skyld. Fokus: relation, gentagelse og langsom fremgang.",
-        "learning_reflection": "Denne case viser, at skolevægring sjældent løses gennem krav eller regler, men gennem relationel tryghed og stabile voksne. Systemet har lært, at indsatsen skal prioriteres før fraværsregistrering — og at små succeser gentaget mange gange er nøglen til varig tilbagevenden."
+        "cda_synthesis": "Guiden er et fleksibelt arbejdsredskab. Det næste skridt vælges ud fra elevens aktuelle belastning, perspektiv og reaktion. Der må ikke presses videre alene for at følge en fast rækkefølge.",
+        "template_markdown": "# Trinvis guide ved skolevægring\n\n**Elev:** {student_name}  \n**Alder, hvis relevant:** {student_age}  \n**Skole:** {school_name}  \n**Kontaktperson på skolen:** {school_contact}  \n**Kontaktperson i hjemmet:** {home_contact}  \n**Fast støtteperson, hvis relevant:** {support_person}  \n**PPR-kontakt, hvis relevant:** {ppr_contact}  \n**Startdato:** {start_date}  \n**Næste evaluering:** {review_date}\n\n> **Formål**  \n> Guiden hjælper elev, skole og hjem med at undersøge, hvilke små og trygge skridt eleven kan deltage i.  \n> Den stiller ikke diagnose og lover ikke et bestemt resultat.\n\n---\n\n## 1. Kort guide\n\n### Observer\nNotér hvornår modstanden eller belastningen opstår, hvad der sker umiddelbart før, og hvad eleven selv fortæller eller viser.\n\n### Skab kontakt\nBrug korte, rolige beskeder og en kendt voksen. Lyt til elevens oplevelse uden at presse på for en hurtig løsning.\n\n### Aftal ét lille trin\nEksempler:\n\n- kontakt med en kendt voksen\n- køre hen til skolen\n- stå uden for skolen\n- gå ind i skolegården\n- besøge et roligt lokale\n- deltage kort i en aktivitet\n\n### Gør det forudsigeligt\nAftal på forhånd:\n\n- hvad der skal ske\n- hvem eleven møder\n- hvor længe det varer\n- hvordan eleven kan holde pause eller afslutte\n\n### Evaluér\nRegistrér elevens reaktion og den observerede effekt. Et trin kan gentages, ændres eller sættes på pause.\n\n---\n\n## 2. Elevens perspektiv\n\n**Hvad oplever eleven som svært?**  \n____________________________________________________\n\n**Hvad oplever eleven kan gøre næste skridt mere trygt?**  \n____________________________________________________\n\n**Elevens egne ord eller signaler:**  \n____________________________________________________\n\n---\n\n## 3. Hvad er allerede afprøvet?\n\n| Tiltag eller trin | Periode | Elevens reaktion | Observeret effekt |\n|---|---|---|---|\n|  |  |  |  |\n|  |  |  |  |\n|  |  |  |  |\n\n---\n\n## 4. Aftale for næste trin\n\n**Det aftalte trin:**  \n____________________________________________________\n\n**Hvem deltager?**  \n____________________________________________________\n\n**Hvor og hvor længe?**  \n____________________________________________________\n\n**Hvordan forberedes eleven?**  \n____________________________________________________\n\n**Hvad kan eleven gøre ved høj belastning?**  \n____________________________________________________\n\n**Hvem afslutter eller ændrer trinnet, hvis belastningen bliver for høj?**  \n____________________________________________________\n\n---\n\n## 5. Skole-hjem-kommunikationsaftale\n\n**Fast kontaktperson:**  \n____________________________________________________\n\n**Kommunikationsform:**  \n____________________________________________________\n\n**Hvor ofte gives en kort status?**  \n____________________________________________________\n\n**Hvilke felter deles?**\n\n- det afprøvede trin\n- elevens reaktion\n- observeret belastning\n- hvad der hjalp eller øgede belastningen\n- næste aftale\n\n---\n\n## 6. Notatlog\n\n| Dato | Trin eller aktivitet | Elevens reaktion | Hvad hjalp eller øgede belastningen? | Observeret effekt | Næste skridt |\n|---|---|---|---|---|---|\n|  |  |  |  | ☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring |  |\n|  |  |  |  | ☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring |  |\n|  |  |  |  | ☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring |  |\n|  |  |  |  | ☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring |  |\n\n---\n\n## 7. Samlet vurdering\n\n**Hvad så ud til at mindske belastningen?**  \n____________________________________________________\n\n**Hvad så ud til at øge belastningen?**  \n____________________________________________________\n\n**Hvad er fortsat usikkert?**  \n____________________________________________________\n\n**Skal det samme trin gentages, ændres eller sættes på pause?**  \n____________________________________________________\n\n**Næste aftale:**  \n____________________________________________________\n\n**Ansvarlig:** __________________________  \n**Dato:** ______________________________\n\n---\n\n## 8. Behov for yderligere faglig sparring\n\n- [ ] Skolens interne ressourceperson\n- [ ] PPR\n- [ ] Anden relevant fagperson\n- [ ] Ikke aktuelt\n\n**Hvad ønskes der konkret hjælp til at belyse?**  \n____________________________________________________\n\n> Ved alvorlig eller akut bekymring følges skolens gældende procedure.\n"
       },
       {
         "id": "hvis_jeg_foeler",
