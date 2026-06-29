@@ -3,42 +3,500 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CDA System</title>
+  <meta
+    name="description"
+    content="Log ind på CDA – Children Diagnosis Adviser fra CDAI Systems."
+  />
+  <title>CDA System | CDAI Systems</title>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --text: #17243a;
+      --muted: #66758a;
+      --line: #dce4ef;
+      --primary: #3157d5;
+      --primary-dark: #203fa8;
+      --secondary: #0d7b72;
+      --danger: #b42318;
+      --danger-bg: #fff1f0;
+      --shadow: 0 28px 80px rgba(31, 50, 81, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 8%, rgba(49, 87, 213, 0.14), transparent 30%),
+        radial-gradient(circle at 92% 88%, rgba(13, 123, 114, 0.12), transparent 32%),
+        var(--bg);
+      display: grid;
+      place-items: center;
+      padding: 28px 18px;
+    }
+
+    .login-shell {
+      width: min(980px, 100%);
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      overflow: hidden;
+      border: 1px solid rgba(220, 228, 239, 0.9);
+      border-radius: 28px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .brand-panel {
+      position: relative;
+      overflow: hidden;
+      min-height: 620px;
+      padding: 46px 42px;
+      color: white;
+      background:
+        linear-gradient(145deg, rgba(49, 87, 213, 0.98), rgba(13, 123, 114, 0.94));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .brand-panel::before,
+    .brand-panel::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .brand-panel::before {
+      width: 280px;
+      height: 280px;
+      top: -120px;
+      right: -120px;
+    }
+
+    .brand-panel::after {
+      width: 220px;
+      height: 220px;
+      bottom: -100px;
+      left: -90px;
+    }
+
+    .brand-lockup,
+    .brand-copy,
+    .brand-note {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-name {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.12;
+    }
+
+    .brand-name strong {
+      font-size: 1.08rem;
+    }
+
+    .brand-name span {
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy {
+      margin: auto 0;
+      padding: 54px 0;
+    }
+
+    .brand-copy h1 {
+      max-width: 390px;
+      font-size: clamp(2.25rem, 4vw, 3.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+    }
+
+    .brand-copy p {
+      max-width: 410px;
+      margin-top: 22px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .visual {
+      position: relative;
+      width: 180px;
+      height: 120px;
+      margin-top: 34px;
+    }
+
+    .visual-card {
+      position: absolute;
+      width: 122px;
+      height: 80px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 38px rgba(15, 37, 72, 0.22);
+    }
+
+    .visual-card.one {
+      top: 0;
+      left: 0;
+      transform: rotate(-7deg);
+    }
+
+    .visual-card.two {
+      right: 0;
+      bottom: 0;
+      transform: rotate(8deg);
+    }
+
+    .visual-line {
+      height: 7px;
+      margin: 16px 16px 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .visual-line.short {
+      width: 48%;
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.38);
+    }
+
+    .brand-note {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.86rem;
+    }
+
+    .form-panel {
+      padding: 52px 54px;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-content {
+      width: 100%;
+      max-width: 470px;
+      margin: 0 auto;
+    }
+
+    .mobile-brand {
+      display: none;
+      margin-bottom: 28px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mobile-brand .brand-mark {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .mobile-brand .brand-name strong {
+      color: var(--text);
+    }
+
+    .mobile-brand .brand-name span {
+      color: var(--muted);
+    }
+
+    .form-kicker {
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .form-content h2 {
+      margin-top: 10px;
+      font-size: clamp(2rem, 3vw, 2.7rem);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+    }
+
+    .form-intro {
+      margin-top: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .field-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    label,
+    .field-label {
+      color: #35445b;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    select,
+    input {
+      width: 100%;
+      min-height: 50px;
+      padding: 0 15px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--text);
+      background: white;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(49, 87, 213, 0.12);
+    }
+
+    input::placeholder {
+      color: #9aa6b6;
+    }
+
+    .access-group {
+      margin-top: 4px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .access-hint {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    #loginKnap {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 13px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 14px 30px rgba(49, 87, 213, 0.24);
+      font-size: 1rem;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+    }
+
+    #loginKnap:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(49, 87, 213, 0.30);
+    }
+
+    #loginKnap:disabled {
+      cursor: wait;
+      opacity: 0.68;
+    }
+
+    #fejl {
+      min-height: 0;
+      margin-top: 14px;
+      color: var(--danger);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    #fejl:not(:empty) {
+      padding: 11px 13px;
+      border: 1px solid #ffd2cf;
+      border-radius: 10px;
+      background: var(--danger-bg);
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 820px) {
+      body {
+        padding: 18px 12px;
+      }
+
+      .login-shell {
+        grid-template-columns: 1fr;
+        border-radius: 22px;
+      }
+
+      .brand-panel {
+        display: none;
+      }
+
+      .form-panel {
+        padding: 38px 28px;
+      }
+
+      .mobile-brand {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-panel {
+        padding: 30px 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<main>
-  <h1>CDA System</h1>
+  <main class="login-shell">
+    <section class="brand-panel" aria-label="CDAI Systems">
+      <div class="brand-lockup">
+        <div class="brand-mark">CDAI</div>
+        <div class="brand-name">
+          <strong>CDAI Systems</strong>
+          <span>Children Diagnosis AI Systems</span>
+        </div>
+      </div>
 
-  <label for="sprog">Sprog</label>
-  <select id="sprog">
-    <option value="Dansk">Dansk</option>
-    <option value="English">English</option>
-  </select>
+      <div class="brand-copy">
+        <h1>Praksisnær støtte, når hverdagen kræver mere.</h1>
+        <p>
+          CDA hjælper lærere, pædagoger og fagpersoner med at finde forståelse,
+          struktur og konkrete næste skridt.
+        </p>
 
-  <label for="rolle">Din rolle</label>
-  <select id="rolle">
-    <option value="">Vælg rolle</option>
-    <option value="Lærer">Lærer</option>
-    <option value="Pædagog">Pædagog</option>
-    <option value="Forælder">Forælder</option>
-    <option value="Specialist">Psykolog / specialist</option>
-    <option value="Andet">Andet</option>
-  </select>
+        <div class="visual" aria-hidden="true">
+          <div class="visual-card one">
+            <div class="visual-line"></div>
+            <div class="visual-line short"></div>
+          </div>
+          <div class="visual-card two">
+            <div class="visual-line"></div>
+            <div class="visual-line short"></div>
+          </div>
+        </div>
+      </div>
 
-  <label for="svarstil">Svarlængde</label>
-  <select id="svarstil">
-    <option value="Kort">Kort</option>
-    <option value="Mellem">Mellem</option>
-    <option value="Dyb">Dyb</option>
-  </select>
+      <p class="brand-note">
+        Børn skal ikke passe til skolen – skolen skal passe til børnene.
+      </p>
+    </section>
 
-  <p>Indtast din adgangskode</p>
+    <section class="form-panel">
+      <div class="form-content">
+        <div class="mobile-brand">
+          <div class="brand-mark">CDAI</div>
+          <div class="brand-name">
+            <strong>CDAI Systems</strong>
+            <span>Children Diagnosis AI Systems</span>
+          </div>
+        </div>
 
-  <input id="adgangskode" type="text" placeholder="F.eks. TEST-0001" />
-  <button id="loginKnap">Åbn CDA</button>
+        <p class="form-kicker">CDA System</p>
+        <h2>Velkommen</h2>
+        <p class="form-intro">
+          Vælg dine indstillinger og indtast din personlige adgangskode.
+        </p>
 
-  <p id="fejl"></p>
-</main>
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="sprog">Sprog</label>
+            <select id="sprog">
+              <option value="Dansk">Dansk</option>
+              <option value="English">English</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="rolle">Din rolle</label>
+            <select id="rolle">
+              <option value="">Vælg rolle</option>
+              <option value="Lærer">Lærer</option>
+              <option value="Pædagog">Pædagog</option>
+              <option value="Forælder">Forælder</option>
+              <option value="Specialist">Psykolog / specialist</option>
+              <option value="Andet">Andet</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="svarstil">Svarlængde</label>
+            <select id="svarstil">
+              <option value="Kort">Kort</option>
+              <option value="Mellem">Mellem</option>
+              <option value="Dyb">Dyb</option>
+            </select>
+          </div>
+
+          <div class="field-group access-group">
+            <label for="adgangskode">Personlig adgangskode</label>
+            <input
+              id="adgangskode"
+              type="text"
+              placeholder="F.eks. TEST-0001"
+              autocomplete="off"
+            />
+            <p class="access-hint">Brug den kode, du har fået fra din skole eller CDAI Systems.</p>
+          </div>
+        </div>
+
+        <button id="loginKnap" type="button">Åbn CDA</button>
+        <p id="fejl" role="alert"></p>
+
+        <a class="back-link" href="/">← Tilbage til forsiden</a>
+      </div>
+    </section>
+  </main>
 
 <script>
   const loginKnap = document.getElementById("loginKnap");
