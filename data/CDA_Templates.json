@@ -3,8 +3,8 @@
     "metadata": {
       "system": "CDA/CDT",
       "version": "2025.2",
-      "total_templates": 12,
-      "last_updated": "2025-11-02",
+      "total_templates": 13,
+      "last_updated": "2026-06-29",
       "creator": "Howandt - 72 år, 65 år med ADHD/Aspergers, 9000+ timer udvikling",
       "philosophy": "Børn skal ikke passe til skolen, skolen skal passe til børnene"
     },
@@ -1119,6 +1119,110 @@
           ]
         },
         "template_markdown": "# 🚽 Toilettræning for {child_name}\n\n**Barn:** {child_name}, {child_age} år\n**Startdato:** ___________\n{current_level ? **Nuværende niveau:** {current_level} : }\n{specific_challenges ? **Udfordringer:** {specific_challenges} : }\n\n---\n\n## 🎯 Trinvis Plan:\n\n### Fase 1: Forberedelse (Uge 1-2)\n**Mål:** {child_name} bliver fortrolig med toilettet\n\n**Daglige aktiviteter:**\n- ☐ Gå på toilettet sammen med voksen\n- ☐ Sidde på toilettet med tøj på (bare 1 minut)\n- ☐ Se toiletbøger eller videoer\n- ☐ Lege med dukke der \"går på toilet\"\n\n### Fase 2: Timing (Uge 3-4) \n**Mål:** Faste toiletbesøg\n\n**Toiletbesøg hver dag:**\n- ☐ Efter morgenmad\n- ☐ Før frokost  \n- ☐ Efter mellemmåltid\n- ☐ Før aftensmad\n- ☐ Før sengetid\n\n### Fase 3: Selvstændighed (Uge 5+)\n**Mål:** {child_name} går selv på toilettet\n\n**Selvstændige færdigheder:**\n- ☐ Siger selv når der skal skiftes ble/underbukser\n- ☐ Går på toilettet når jeg spørger\n- ☐ Begynder at gå selv på toilettet\n- ☐ Tørrer sig selv\n- ☐ Vasker hænder efter\n\n## 📅 Daglig Tracking:\n\n| **Dag** | **Morgenmad** | **Frokost** | **Snack** | **Aftensmad** | **Sengetid** | **Succes** |\n|---------|---------------|-------------|-----------|---------------|--------------|------------|\n| Man     | ✅❌         | ✅❌       | ✅❌     | ✅❌         | ✅❌        | ___/5 |\n| Tir     | ✅❌         | ✅❌       | ✅❌     | ✅❌         | ✅❌        | ___/5 |\n| Ons     | ✅❌         | ✅❌       | ✅❌     | ✅❌         | ✅❌        | ___/5 |\n\n## 🎁 Belønningssystem:\n{reward_preference ? **{child_name}'s foretrukne belønning:** {reward_preference} : \n**Små belønninger:**\n- 🌟 Klistermærke på toiletkalender\n- 🎵 Synge en særlig \"toilet-sang\"\n- 📚 Vælge aftenhistorie\n}\n\n**Store belønninger (5 succeser i træk):**\n- Særlig leg/aktivitet med forælder\n- Ny \"store børn\" underbukser\n- Lille gave eller udflyt\n\n## 💡 Hygiejne-rutine:\n\n**Visuel guide til {child_name}:**\n1. 🚽 Træk bukser og ble/underbukser ned\n2. 🪑 Sid på toilettet\n3. 🧻 Tag toiletpapir (vis hvor meget)\n4. 🤲 Tør dig bagfra og fremad\n5. 👕 Træk tøj op\n6. 💧 Vask hænder med sæbe\n7. 🌟 Stolt af mig selv!\n\n💬 **Lærer-erfaring (cm):** *\"5-årig dreng med autisme lærte toilettræning på 3 uger med visuel guide - forældrene havde prøvet i 2 år\"*"
+      },
+      {
+        "id": "school_home_observation_ppr_log",
+        "title": "Skole-hjem observations- og indsatslog",
+        "category": "kommunikation",
+        "subcategory": "skole_hjem_ppr_dokumentation",
+        "tags": [
+          "skole-hjem-samarbejde",
+          "observation",
+          "belastning",
+          "elevperspektiv",
+          "indsatslog",
+          "afprøvede tiltag",
+          "observeret effekt",
+          "aftaler",
+          "PPR",
+          "dokumentation",
+          "ikke-diagnosticerende"
+        ],
+        "age_range": [
+          3,
+          18
+        ],
+        "diagnoses": [
+          "ingen diagnose påkrævet"
+        ],
+        "complexity": "advanced",
+        "usage_frequency": "løbende og ved evaluering",
+        "urgency": "routine",
+        "target_group": "Lærere, pædagoger, AKT-medarbejdere, ressourcepersoner, skoleledere, forældre og PPR",
+        "description": "En omfattende, neutral observations- og indsatslog til længere dokumentationsforløb mellem skole, hjem og relevante fagpersoner. Loggen registrerer konkrete observationer, belastning, elevperspektiv, afprøvede støttetiltag, elevens reaktion, observeret effekt, aftaler og spørgsmål til PPR uden at stille diagnose.",
+        "content": {
+          "purpose": "At samle konkrete og neutrale observationer fra skole, hjem og elev, så mønstre, belastninger, afprøvede støttetiltag og deres observerede effekt kan drøftes og dokumenteres.",
+          "description": "Den fulde log består af 17 afsnit og kan bruges ved længere observationsperioder, fælles evaluering, ressourcekonferencer og forberedelse af materiale til PPR.",
+          "use_cases": [
+            "Længere observations- og dokumentationsforløb",
+            "Forberedelse til skole-hjem-møde",
+            "Evaluering af pædagogiske støttetiltag",
+            "Intern team- eller ressourcekonference",
+            "Dokumentation ved ønske om sparring fra PPR",
+            "Overlevering mellem relevante fagpersoner"
+          ],
+          "components": [
+            "Grundoplysninger og afgrænset fokus",
+            "Vejledning i neutral observation",
+            "Elevens styrker og perspektiv",
+            "Skolens og hjemmets observationer",
+            "Belastningsområder og løbende registrering",
+            "Afprøvede støttetiltag og observeret effekt",
+            "Fælles evaluering og konkrete aftaler",
+            "PPR-relevant opsamling",
+            "Kvalitetstjek før deling"
+          ]
+        },
+        "search_keywords": [
+          "skole-hjem observationslog",
+          "observations- og indsatslog",
+          "observationslog",
+          "indsatslog",
+          "skole hjem dokumentation",
+          "PPR dokumentation",
+          "materiale til PPR",
+          "forberedelse til PPR",
+          "neutral observation",
+          "elevobservation",
+          "belastningsregistrering",
+          "afprøvede tiltag",
+          "elevens reaktion",
+          "observeret effekt",
+          "skole hjem aftaler",
+          "fælles evaluering",
+          "ressourcekonference",
+          "lang observationsskabelon",
+          "fuld observationsskabelon"
+        ],
+        "command_triggers": [
+          "Skole-hjem observations- og indsatslog",
+          "Hent den store observationslog",
+          "Vis den fulde skole-hjem-log",
+          "Skabelon til PPR-dokumentation",
+          "Hent observations- og indsatslog",
+          "Vis den lange observationsskabelon"
+        ],
+        "variables": {
+          "required": [
+            "student_name",
+            "school_name",
+            "class_name",
+            "school_contact",
+            "home_contact",
+            "documentation_start",
+            "review_date"
+          ],
+          "optional": [
+            "student_age",
+            "additional_participants",
+            "communication_channel",
+            "special_focus",
+            "ppr_request"
+          ]
+        },
+        "cda_synthesis": "Skabelonen bruges til konkret observation og pædagogisk dokumentation. Observationer, udsagn og hypoteser skal holdes adskilt. Dokumentet må ikke bruges til at stille eller afkræfte en diagnose.",
+        "content_file": "templates/observations-og-indsatslog.md",
+        "template_markdown": "# Skole-hjem observations- og indsatslog\n\n## Neutral dokumentation af elevens hverdag og støttebehov\n\n> **Dokumentets formål**  \n> Dette dokument samler konkrete observationer, elevens og hjemmets perspektiv, oplevede belastninger, afprøvede støttetiltag og observerede ændringer.  \n>\n> Dokumentet beskriver ikke en diagnose og må ikke anvendes som diagnostisk konklusion.\n\n---\n\n## 1. Grundoplysninger\n\n| Felt | Oplysning |\n|---|---|\n| Elev | {student_name} |\n| Alder, hvis relevant | {student_age} |\n| Skole | {school_name} |\n| Klasse eller tilbud | {class_name} |\n| Primær kontaktperson i skolen | {school_contact} |\n| Primær kontaktperson i hjemmet | {home_contact} |\n| Andre deltagere | {additional_participants} |\n| Dokumentationsperiode | {documentation_start} til {review_date} |\n| Aftalt kommunikationsform | {communication_channel} |\n| Dato for næste fælles evaluering | {review_date} |\n\n### Formål med dokumentationsperioden\n\n**Hvad ønsker skole og hjem at blive klogere på?**\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Afgrænset fokus\n\nBeskriv ét til tre områder, der observeres. Brug konkrete hverdagssituationer.\n\n- Fokus 1: _________________________________________________________\n- Fokus 2: _________________________________________________________\n- Fokus 3: _________________________________________________________\n\n---\n\n## 2. Sådan udfyldes dokumentet\n\n### Skriv observationer frem for vurderinger\n\n**Observation:**\n\n> Eleven lagde blyanten, holdt hænderne over ørerne og gik ud af lokalet, da gruppearbejdet blev startet.\n\n**Fortolkning, som ikke må stå alene:**\n\n> Eleven ville ikke samarbejde.\n\n### Brug så vidt muligt\n\n- dato og klokkeslæt\n- aktivitet eller situation\n- hvad der skete umiddelbart før\n- hvad eleven konkret sagde eller gjorde\n- hvad den voksne konkret gjorde\n- elevens reaktion\n- hvor længe situationen varede\n- hvad der skete bagefter\n\n### Adskil fakta og mulig forklaring\n\n| Type | Eksempel |\n|---|---|\n| Konkret observation | Eleven spurgte fire gange, hvornår timen sluttede. |\n| Elevens udsagn | “Jeg kan ikke holde lyden ud.” |\n| Oplysning fra hjemmet | Hjemmet oplyser, at eleven sov cirka fem timer. |\n| Forsigtig hypotese | Det kan undersøges, om støjniveauet havde betydning. |\n| Ikke egnet formulering | Eleven har helt sikkert angst eller ADHD. |\n\n---\n\n## 3. Elevens styrker og beskyttende forhold\n\n### Interesser, ressourcer og kompetencer\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Situationer, hvor eleven typisk deltager eller virker tilpas\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Relationer eller voksne, som eleven søger eller tager imod støtte fra\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Rammer, kommunikation eller aktiviteter, eleven reagerer positivt på\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n---\n\n## 4. Elevens perspektiv\n\nUdfyldes på en måde, der passer til elevens alder og kommunikationsform. Eleven kan svare mundtligt, skriftligt, visuelt eller gennem valg.\n\n### Elevens egne ord\n\n> “________________________________________________________________”\n\n> “________________________________________________________________”\n\n### Eleven oplever især, at dette er svært\n\n____________________________________________________________________\n\n### Eleven oplever, at dette hjælper\n\n____________________________________________________________________\n\n### Eleven ønsker, at de voksne skal vide\n\n____________________________________________________________________\n\n### Elevens deltagelse i aftalerne\n\n- [ ] Eleven har været direkte inddraget.\n- [ ] Eleven har været inddraget gennem en kendt voksen.\n- [ ] Eleven har kommunikeret gennem billeder, skala eller valg.\n- [ ] Elevens perspektiv er endnu ikke tilstrækkeligt belyst.\n- [ ] Eleven ønskede ikke at udtale sig.\n- [ ] Andet: _______________________________________________________\n\n---\n\n## 5. Fælles udgangspunkt før afprøvning\n\n### Skolens observationer\n\nBeskriv situationer, hyppighed, varighed og påvirkning.\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Hjemmets observationer\n\nBeskriv, hvad der ses hjemme, eksempelvis ved morgen, krav, skift, lektier, sociale aktiviteter, måltider eller søvn.\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Ligheder mellem skole og hjem\n\n____________________________________________________________________\n\n### Forskelle mellem skole og hjem\n\n____________________________________________________________________\n\n### Det ved vi endnu ikke\n\n____________________________________________________________________\n\n---\n\n## 6. Belastningsområder\n\nBelastning registreres ud fra elevens egne udsagn og konkrete tegn. Skalaen er et arbejdsredskab og ikke en klinisk vurdering.\n\n### Vejledende belastningsskala\n\n| Niveau | Beskrivelse |\n|---|---|\n| 0 | Ingen tydelige tegn på belastning i situationen |\n| 1 | Let ændring; eleven deltager fortsat uden særlig støtte |\n| 2 | Tydelige tegn; eleven har behov for støtte eller tilpasning |\n| 3 | Høj belastning; deltagelse reduceres eller afbrydes |\n| 4 | Meget høj eller akut belastning; aktiviteten stoppes, og gældende procedure følges |\n| ? | Belastningen kan ikke vurderes på det foreliggende grundlag |\n\n### Kendte eller mulige belastningsområder\n\n| Område | Skole | Hjem | Elevens udsagn | Konkret eksempel |\n|---|---:|---:|---|---|\n| Uforudsete ændringer | 0–4/? | 0–4/? |  |  |\n| Overgange og aktivitetsskift | 0–4/? | 0–4/? |  |  |\n| Faglige krav | 0–4/? | 0–4/? |  |  |\n| Mængde eller tempo | 0–4/? | 0–4/? |  |  |\n| Mundtlige beskeder | 0–4/? | 0–4/? |  |  |\n| Støj, lys eller mange indtryk | 0–4/? | 0–4/? |  |  |\n| Gruppearbejde | 0–4/? | 0–4/? |  |  |\n| Pauser og frikvarter | 0–4/? | 0–4/? |  |  |\n| Sociale misforståelser eller konflikter | 0–4/? | 0–4/? |  |  |\n| At blive vurderet eller være i centrum | 0–4/? | 0–4/? |  |  |\n| Træthed, sult eller søvn | 0–4/? | 0–4/? |  |  |\n| Morgen og fremmøde | 0–4/? | 0–4/? |  |  |\n| Andet | 0–4/? | 0–4/? |  |  |\n\n---\n\n## 7. Løbende observationsregistrering\n\nKopiér dette afsnit for hver relevant observation. Det er ikke nødvendigt at registrere alle mindre hændelser.\n\n### Observation nummer: ______\n\n| Felt | Registrering |\n|---|---|\n| Dato |  |\n| Klokkeslæt |  |\n| Sted |  |\n| Observatør |  |\n| Aktivitet eller krav |  |\n| Antal elever eller voksne til stede |  |\n| Forventet varighed af aktiviteten |  |\n| Observeret belastningsniveau før situationen | 0 / 1 / 2 / 3 / 4 / ? |\n| Observeret belastningsniveau under situationen | 0 / 1 / 2 / 3 / 4 / ? |\n| Observeret belastningsniveau efter situationen | 0 / 1 / 2 / 3 / 4 / ? |\n\n#### A. Hvad skete umiddelbart før?\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n#### B. Hvad blev konkret observeret?\n\nBeskriv det, der kunne ses eller høres. Undgå ord som doven, manipulerende, umulig, opmærksomhedssøgende eller ligeglad.\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n#### C. Elevens ord eller signaler\n\n> “________________________________________________________________”\n\nAndre signaler:\n\n____________________________________________________________________\n\n#### D. Mulige belastende forhold i situationen\n\n- [ ] Uventet ændring\n- [ ] Uklar besked\n- [ ] Flere beskeder samtidig\n- [ ] Tidspres\n- [ ] Fagligt krav\n- [ ] Socialt krav\n- [ ] Støj eller mange indtryk\n- [ ] Ventetid\n- [ ] Konflikt eller misforståelse\n- [ ] Træthed, sult eller fysisk ubehag\n- [ ] Ukendt\n- [ ] Andet: _______________________________________________________\n\n> Markeringerne er arbejdshypoteser og ikke fastlagte årsager.\n\n#### E. Hvad gjorde den voksne?\n\nSkriv den præcise besked, støtte eller ændring.\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n#### F. Elevens umiddelbare reaktion\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n#### G. Observeret effekt\n\n- [ ] Ikke vurderbar\n- [ ] Ingen tydelig ændring\n- [ ] Kortvarig ændring\n- [ ] Delvis ændring\n- [ ] Tydelig ændring i denne situation\n- [ ] Belastningen steg\n- [ ] Der opstod en anden eller uønsket reaktion\n\n**Konkret beskrivelse af effekten:**\n\n____________________________________________________________________\n\n#### H. Varighed og efterforløb\n\n- Situationens varighed: ___________________________________________\n- Tid før eleven igen deltog eller var tilgængelig: _________________\n- Hvad skete senere samme dag? ____________________________________\n- Var yderligere støtte nødvendig? _________________________________\n\n#### I. Foreløbig læring fra observationen\n\n- Hvad kan med rimelighed beskrives?  \n  __________________________________________________________________\n\n- Hvad er fortsat usikkert?  \n  __________________________________________________________________\n\n- Hvad bør observeres næste gang?  \n  __________________________________________________________________\n\n---\n\n## 8. Registrering af afprøvede støttetiltag\n\nÉt tiltag beskrives så præcist, at en anden voksen kan gennemføre det på samme måde.\n\n| Felt | Oplysning |\n|---|---|\n| Tiltag nummer |  |\n| Navn på tiltaget |  |\n| Formål |  |\n| Startdato |  |\n| Slutdato eller evalueringsdato |  |\n| Situationer, hvor det anvendes |  |\n| Ansvarlig person |  |\n| Hyppighed |  |\n| Varighed pr. gang |  |\n\n### Præcis beskrivelse af tiltaget\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Hvad blev eleven forberedt på?\n\n____________________________________________________________________\n\n### Hvordan blev elevens perspektiv inddraget?\n\n____________________________________________________________________\n\n### Elevens reaktion ved introduktion\n\n____________________________________________________________________\n\n### Elevens reaktion efter gentagen brug\n\n____________________________________________________________________\n\n### Observeret effekt\n\n| Område | Før tiltaget | Under afprøvning | Efter afprøvning |\n|---|---|---|---|\n| Deltagelse |  |  |  |\n| Belastning |  |  |  |\n| Behov for voksenstøtte |  |  |  |\n| Opgavestart |  |  |  |\n| Udholdenhed |  |  |  |\n| Sociale situationer |  |  |  |\n| Fremmøde eller overgang |  |  |  |\n\n### Samlet vurdering af tiltaget\n\n- [ ] Effekten kan endnu ikke vurderes.\n- [ ] Der blev ikke observeret en relevant ændring.\n- [ ] Der blev observeret en kortvarig ændring.\n- [ ] Der blev observeret en delvis ændring.\n- [ ] Der blev observeret en tydelig ændring i bestemte situationer.\n- [ ] Effekten varierede mellem skole og hjem.\n- [ ] Tiltaget medførte øget belastning eller andre uønskede reaktioner.\n- [ ] Tiltaget blev ikke gennemført som planlagt.\n\n### Hvad bør ske med tiltaget?\n\n- [ ] Fortsættes uændret frem til næste evaluering.\n- [ ] Justeres.\n- [ ] Afsluttes.\n- [ ] Afprøves i en anden situation.\n- [ ] Afprøves over en længere periode.\n- [ ] Drøftes med eleven.\n- [ ] Drøftes med skole og hjem.\n- [ ] Drøftes med relevant fagperson.\n\n**Begrundelse:**\n\n____________________________________________________________________\n\n---\n\n## 9. Skolens status\n\n### Deltagelse i undervisningen\n\n____________________________________________________________________\n\n### Opgavestart og gennemførelse\n\n____________________________________________________________________\n\n### Pauser, overgange og skift\n\n____________________________________________________________________\n\n### Sociale situationer\n\n____________________________________________________________________\n\n### Fremmøde og fravær, hvis relevant\n\n| Periode | Fremmøde | Delvist fremmøde | Fravær | Bemærkning |\n|---|---:|---:|---:|---|\n|  |  |  |  |  |\n\n### Støtte eleven aktuelt modtager\n\n____________________________________________________________________\n\n### Situationer, hvor eleven har mindst behov for støtte\n\n____________________________________________________________________\n\n---\n\n## 10. Hjemmets status\n\n### Morgen og overgang til skole\n\n____________________________________________________________________\n\n### Efter skole\n\n____________________________________________________________________\n\n### Energi og restitution\n\n____________________________________________________________________\n\n### Søvn, hvis relevant for skolegangen\n\n____________________________________________________________________\n\n### Lektier eller skoleopgaver hjemme\n\n____________________________________________________________________\n\n### Sociale aktiviteter og fritid\n\n____________________________________________________________________\n\n### Det hjemmet oplever hjælper\n\n____________________________________________________________________\n\n### Det hjemmet oplever øger belastningen\n\n____________________________________________________________________\n\n---\n\n## 11. Sammenholdelse af skole, hjem og elevperspektiv\n\n| Tema | Skolens observation | Hjemmets observation | Elevens oplevelse | Fælles mønster? |\n|---|---|---|---|---|\n| Overgange |  |  |  | Ja / Nej / Uafklaret |\n| Krav og opgaver |  |  |  | Ja / Nej / Uafklaret |\n| Sociale situationer |  |  |  | Ja / Nej / Uafklaret |\n| Sanseindtryk |  |  |  | Ja / Nej / Uafklaret |\n| Energi og træthed |  |  |  | Ja / Nej / Uafklaret |\n| Kommunikation |  |  |  | Ja / Nej / Uafklaret |\n| Andet |  |  |  | Ja / Nej / Uafklaret |\n\n### Forhold, der går igen på tværs af sammenhænge\n\n____________________________________________________________________\n\n### Forhold, der kun ses i bestemte sammenhænge\n\n____________________________________________________________________\n\n### Mulige forklaringer, der bør undersøges nærmere\n\n> Må ikke formuleres som konklusion eller diagnose.\n\n____________________________________________________________________\n\n### Oplysninger, der mangler\n\n____________________________________________________________________\n\n---\n\n## 12. Fælles evaluering\n\n### Periode, der evalueres\n\nFra __________________________ til __________________________\n\n### Deltagere\n\n____________________________________________________________________\n\n### Det har været muligt at observere\n\n____________________________________________________________________\n\n### Det har ikke været muligt at vurdere endnu\n\n____________________________________________________________________\n\n### Ændringer siden periodens start\n\n- [ ] Ingen tydelig ændring\n- [ ] Mindre belastning i enkelte situationer\n- [ ] Større belastning i enkelte situationer\n- [ ] Mere stabil deltagelse\n- [ ] Mere ustabil deltagelse\n- [ ] Mindre behov for voksenstøtte\n- [ ] Større behov for voksenstøtte\n- [ ] Forskellig udvikling i skole og hjem\n- [ ] Andet: _______________________________________________________\n\n### Konkrete eksempler på ændringer\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Elevens vurdering\n\n____________________________________________________________________\n\n### Hjemmets vurdering\n\n____________________________________________________________________\n\n### Skolens vurdering\n\n____________________________________________________________________\n\n---\n\n## 13. Aftaler\n\nAlle aftaler skal have en ansvarlig person og en dato.\n\n| Aftale | Ansvarlig | Startdato | Hyppighed | Evalueres den |\n|---|---|---|---|---|\n|  |  |  |  |  |\n|  |  |  |  |  |\n|  |  |  |  |  |\n|  |  |  |  |  |\n\n### Det gør skolen\n\n1. _________________________________________________________________\n2. _________________________________________________________________\n3. _________________________________________________________________\n\n### Det gør hjemmet\n\n1. _________________________________________________________________\n2. _________________________________________________________________\n3. _________________________________________________________________\n\n### Det gør eleven, når det er realistisk og aftalt\n\n1. _________________________________________________________________\n2. _________________________________________________________________\n\n### Det gør en eventuel ressourceperson eller fagperson\n\n1. _________________________________________________________________\n2. _________________________________________________________________\n\n### Kommunikationsaftale\n\n- Kontaktperson: ___________________________________________________\n- Kanal: ___________________________________________________________\n- Hyppighed: _______________________________________________________\n- Hvilke oplysninger deles? ________________________________________\n- Hvornår kontaktes hjemmet samme dag? _____________________________\n\n---\n\n## 14. Næste skridt\n\n### Frem til næste evaluering\n\n- [ ] Fortsæt nuværende støtte og registrering.\n- [ ] Justér et eksisterende tiltag.\n- [ ] Afprøv ét nyt afgrænset tiltag.\n- [ ] Indhent elevens perspektiv på en anden måde.\n- [ ] Indhent yderligere observationer fra relevante situationer.\n- [ ] Inddrag skolens interne ressourceperson.\n- [ ] Afhold nyt skole-hjem-møde.\n- [ ] Drøft behovet for ekstern faglig sparring.\n- [ ] Forbered materiale til PPR eller tilsvarende rådgivning.\n- [ ] Følg lokal procedure ved akut eller alvorlig bekymring.\n- [ ] Andet: _______________________________________________________\n\n### Næste konkrete handling\n\n____________________________________________________________________\n\n### Ansvarlig\n\n____________________________________________________________________\n\n### Frist\n\n____________________________________________________________________\n\n### Næste evalueringsdato\n\n____________________________________________________________________\n\n---\n\n## 15. PPR-relevant opsamling\n\nDette afsnit kan anvendes som bilag eller arbejdsgrundlag, når skole og hjem ønsker rådgivning. Det beskriver behovet for hjælp uden at foreslå en diagnose.\n\n### Hvad ønskes der rådgivning eller støtte til?\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n### Hvor længe har mønstret været observeret?\n\n____________________________________________________________________\n\n### I hvilke situationer ses det?\n\n____________________________________________________________________\n\n### Hvor ofte ses det?\n\n____________________________________________________________________\n\n### Hvor længe varer situationerne typisk?\n\n____________________________________________________________________\n\n### Hvordan påvirkes elevens deltagelse?\n\n#### Fagligt\n\n____________________________________________________________________\n\n#### Socialt\n\n____________________________________________________________________\n\n#### Trivsel og energi\n\n____________________________________________________________________\n\n#### Fremmøde eller overgang til skole\n\n____________________________________________________________________\n\n### Hvilke styrker og ressourcer har eleven?\n\n____________________________________________________________________\n\n### Hvilke støttetiltag er afprøvet?\n\n| Tiltag | Periode | Omfang | Elevens reaktion | Observeret effekt |\n|---|---|---|---|---|\n|  |  |  |  |  |\n|  |  |  |  |  |\n|  |  |  |  |  |\n\n### Hvad ser ud til at mindske belastningen?\n\n____________________________________________________________________\n\n### Hvad ser ud til at øge belastningen?\n\n____________________________________________________________________\n\n### Hvad oplever eleven selv?\n\n____________________________________________________________________\n\n### Hvad oplever hjemmet?\n\n____________________________________________________________________\n\n### Hvad oplever skolen?\n\n____________________________________________________________________\n\n### Hvilke spørgsmål ønskes PPR's hjælp til at belyse?\n\n1. _________________________________________________________________\n2. _________________________________________________________________\n3. _________________________________________________________________\n\n### Hvilken form for støtte efterspørges?\n\n- [ ] Observation i skolen\n- [ ] Pædagogisk sparring\n- [ ] Sparring om læringsmiljø\n- [ ] Sparring om deltagelse og relationer\n- [ ] Sparring om skole-hjem-samarbejde\n- [ ] Vurdering af behov for yderligere faglig afdækning\n- [ ] Hjælp til plan og opfølgning\n- [ ] Andet: _______________________________________________________\n\n### Relevante bilag\n\n- [ ] Løbende observationsregistrering\n- [ ] Fraværsoversigt\n- [ ] Elevprodukter eller opgaveeksempler\n- [ ] Elevens egne udsagn eller visuelle besvarelser\n- [ ] Oversigt over afprøvede støttetiltag\n- [ ] Referater fra skole-hjem-møder\n- [ ] Relevant faglig vurdering, som allerede foreligger\n- [ ] Andet: _______________________________________________________\n\n---\n\n## 16. Kvalitetstjek før deling\n\n- [ ] Observationer og fortolkninger er tydeligt adskilt.\n- [ ] Der er anvendt konkrete eksempler, datoer og situationer.\n- [ ] Hyppighed, varighed og påvirkning er beskrevet, hvor det er muligt.\n- [ ] Elevens styrker og ressourcer fremgår.\n- [ ] Elevens perspektiv fremgår eller er forsøgt indhentet.\n- [ ] Hjemmets og skolens perspektiver fremgår hver for sig.\n- [ ] Afprøvede tiltag er beskrevet præcist.\n- [ ] Elevens reaktion og den observerede effekt er registreret.\n- [ ] Usikkerheder og manglende oplysninger er synlige.\n- [ ] Der er ikke stillet diagnose eller angivet en fast årsag.\n- [ ] Aftaler har ansvarlig person, tidsperiode og evalueringsdato.\n- [ ] Dokumentet indeholder kun relevante oplysninger.\n- [ ] Deling følger gældende lokale regler og aftaler.\n\n---\n\n## 17. Deltagere og godkendelse af referat\n\nUnderskrift betyder, at personen har set dokumentet. Det betyder ikke nødvendigvis, at alle parter fortolker oplysningerne ens.\n\n| Navn | Rolle | Dato | Set eller kommenteret |\n|---|---|---|---|\n|  |  |  |  |\n|  |  |  |  |\n|  |  |  |  |\n|  |  |  |  |\n\n### Eventuelle uenigheder eller supplerende bemærkninger\n\n____________________________________________________________________\n\n____________________________________________________________________\n\n---\n\n## Kort faglig påmindelse\n\nDokumentér:\n\n- hvad der konkret blev observeret\n- hvilken situation det skete i\n- hvad der allerede var afprøvet\n- hvordan eleven reagerede\n- hvilken ændring der blev observeret\n- hvad der fortsat er usikkert\n- hvem der gør hvad som næste skridt\n\nUndgå:\n\n- diagnoselignende konklusioner\n- skjulte antagelser om elevens intention\n- skyldplacering mellem skole og hjem\n- løfter om, at et bestemt tiltag vil virke\n- formuleringer, der gør enkelte hændelser til faste egenskaber ved eleven"
       }
     ],
     "search_index": {
@@ -1134,7 +1238,8 @@
         "kommunikation": {
           "templates": [
             "refleksionsark",
-            "kommunikationslog"
+            "kommunikationslog",
+            "school_home_observation_ppr_log"
           ],
           "description": "Værktøjer til bedre kommunikation mellem barn, hjem og skole"
         },
@@ -1263,7 +1368,8 @@
             "hvis_jeg_foeler",
             "tal_til_ro",
             "spisning_maltider",
-            "toilettraening_hygiejne"
+            "toilettraening_hygiejne",
+            "school_home_observation_ppr_log"
           ],
           "focus": "Grundlæggende rutiner og sensorisk støtte"
         },
@@ -1283,7 +1389,8 @@
             "tal_til_ro",
             "sociale_relationer",
             "spisning_maltider",
-            "motivation_belonning"
+            "motivation_belonning",
+            "school_home_observation_ppr_log"
           ],
           "focus": "Skoleintegration og sociale færdigheder"
         },
@@ -1300,7 +1407,8 @@
             "ugeplan_maal",
             "skolevagring_plan",
             "sociale_relationer",
-            "motivation_belonning"
+            "motivation_belonning",
+            "school_home_observation_ppr_log"
           ],
           "focus": "Selvstændighed og identitetsudvikling"
         }
@@ -1314,7 +1422,8 @@
             "kommunikationslog",
             "ugeplan_maal",
             "tal_til_ro",
-            "toilettraening_hygiejne"
+            "toilettraening_hygiejne",
+            "school_home_observation_ppr_log"
           ],
           "description": "Daglige værktøjer og rutiner"
         },
@@ -1364,7 +1473,8 @@
         },
         "advanced": {
           "templates": [
-            "skolevagring_plan"
+            "skolevagring_plan",
+            "school_home_observation_ppr_log"
           ],
           "description": "Komplekse interventioner der ofte kræver professionel støtte"
         }
