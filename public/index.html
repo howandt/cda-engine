@@ -175,12 +175,16 @@
     }
 
     .action-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       min-width: 190px;
       padding: 15px 22px;
       border: 0;
       border-radius: 13px;
       color: white;
       font-weight: 800;
+      text-decoration: none;
       box-shadow: 0 12px 28px rgba(28, 49, 86, 0.18);
       transition: transform 160ms ease, box-shadow 160ms ease;
     }
@@ -295,44 +299,10 @@
       font-size: 0.9rem;
     }
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: none;
-      place-items: center;
-      padding: 20px;
-      background: rgba(12, 22, 38, 0.62);
-      backdrop-filter: blur(5px);
-    }
 
-    .modal-backdrop.open {
-      display: grid;
-    }
 
-    .modal {
-      width: min(500px, 100%);
-      padding: 30px;
-      border-radius: 22px;
-      background: white;
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
-    }
 
-    .modal p {
-      margin-top: 12px;
-      color: var(--muted);
-    }
 
-    .modal-close {
-      width: 100%;
-      margin-top: 24px;
-      padding: 13px 18px;
-      border: 0;
-      border-radius: 11px;
-      color: white;
-      background: var(--text);
-      font-weight: 800;
-    }
 
     @media (max-width: 780px) {
       .topbar-link {
@@ -390,13 +360,13 @@
         </p>
 
         <div class="hero-actions" aria-label="Vælg system">
-          <button class="action-button primary" type="button" data-product="CDA">
+          <a class="action-button primary" href="/cda.html">
             Åbn CDA
-          </button>
+          </a>
 
-          <button class="action-button secondary" type="button" data-product="Analyse">
+          <a class="action-button secondary" href="https://cda-analyse.vercel.app/adgang">
             Åbn Analyse
-          </button>
+          </a>
         </div>
       </section>
 
@@ -457,44 +427,5 @@
     </footer>
   </div>
 
-  <div class="modal-backdrop" id="accessModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal">
-      <h2 id="modalTitle">Adgang til systemet</h2>
-      <p id="modalText">Loginforbindelsen kobles på i næste trin.</p>
-      <button class="modal-close" type="button" id="closeModal">Luk</button>
-    </div>
-  </div>
-
-  <script>
-    const modal = document.getElementById("accessModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalText = document.getElementById("modalText");
-    const closeModalButton = document.getElementById("closeModal");
-
-    document.querySelectorAll("[data-product]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const product = button.dataset.product;
-        modalTitle.textContent = `Adgang til ${product}`;
-        modalText.textContent =
-          "Forsiden er klar. Den eksisterende Supabase-loginløsning kobles på denne knap, når adgangsflowet er besluttet.";
-        modal.classList.add("open");
-        closeModalButton.focus();
-      });
-    });
-
-    function closeModal() {
-      modal.classList.remove("open");
-    }
-
-    closeModalButton.addEventListener("click", closeModal);
-
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) closeModal();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && modal.classList.contains("open")) closeModal();
-    });
-  </script>
 </body>
 </html>
