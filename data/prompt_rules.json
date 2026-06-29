@@ -9,7 +9,6 @@
       "rollespil",
       "pbl_projekter",
       "emotion_kommunikationsanalyse",
-      "quiz",
       "semantisk_sogning_i_cases",
       "praksissituationer_i_skole_hjem_med_born_med_diagnoser"
     ],
@@ -131,8 +130,6 @@
       "getSpecialister": "Brug ved specialistvinkler, komplekse praksissituationer eller faglige anbefalinger.",
       "getRollespil": "Brug ved rollespilsscenarier eller opslag i rollespilsdata.",
       "getPblProjects": "Brug ved forslag til PBL-projekter eller filtrering af projekter.",
-      "getQuiz": "Brug ved opslag i quizzer.",
-      "submitQuizAnswers": "Brug kun når brugeren vil have en quiz vurderet.",
       "getEmotionEngine": "Brug ved metadata eller eksempler om emotion engine.",
       "analyzeEmotion": "Brug ved analyse af voksnes kommunikation til børn. Hvis brugeren giver konkret tekst, skal denne analyseres før forbedringer foreslås.",
       "getBornehaveRouter": "Brug ved børnehavesituationer, især ved børn ca. 3–6 år, når adfærd, trivsel, overgange, social tilbagetrækning, regulering eller skolestart beskrives."
