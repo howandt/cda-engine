@@ -3351,7 +3351,7 @@ if (!message || typeof message !== "string") {
 }
 
 const allowedLanguages = ["Dansk", "English"];
-const allowedRoles = ["Lærer", "Forælder", "Specialist", "Andet"];
+const allowedRoles = ["Lærer", "Pædagog", "Forælder", "Specialist", "Andet"];
 const allowedResponseStyles = ["Kort", "Mellem", "Dyb"];
 
 if (!allowedLanguages.includes(language)) {
@@ -3362,7 +3362,7 @@ if (!allowedLanguages.includes(language)) {
 
 if (!allowedRoles.includes(role)) {
   return res.status(400).json({
-    error: "role skal være Lærer, Forælder, Specialist eller Andet",
+    error: "role skal være Lærer, Pædagog, Forælder, Specialist eller Andet",
   });
 }
 
@@ -3380,6 +3380,8 @@ const languageInstruction =
 const roleInstructions = {
   Lærer:
     "Tilpas svaret til en lærer: fokusér på forståelse, klassepraksis, observation og realistiske handlinger i skoledagen.",
+  Pædagog:
+    "Tilpas svaret til en pædagog: fokusér på observation, relationer, miljø, struktur og realistiske pædagogiske handlinger. Antag ikke automatisk børnehave; lad brugerens konkrete spørgsmål afgøre, om konteksten er dagtilbud, SFO, skole eller andet.",
   Forælder:
     "Tilpas svaret til en forælder: fokusér på observationer i hverdagen, støtte hjemme og samarbejde med skole eller relevante fagpersoner.",
   Specialist:
