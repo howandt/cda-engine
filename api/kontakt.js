@@ -60,7 +60,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         from: "CDA System <kontakt@cdaisystems.com>",
-        to: ["kontakt@cdaisystems.com"],
+        to: ["kontakt@cdaisystems.com", "bfeedb@gmail.com"],
         reply_to: email,
         subject: `Ny testanmodning – CDA – ${safeSubjectName}`,
         text: `Navn: ${navn}
