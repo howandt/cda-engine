@@ -35,7 +35,7 @@
     .note{margin-top:28px;padding:18px 20px;border:1px solid #d9e5f3;border-radius:16px;color:#45566e;background:#f7faff}
     .trial{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start;margin-top:28px;padding:clamp(30px,5vw,52px);border-radius:24px;color:#fff;background:linear-gradient(135deg,var(--primary-dark),#075c55);box-shadow:var(--shadow)}.trial p{margin-top:14px;color:rgba(255,255,255,.78)}.steps{display:grid;gap:12px;margin-top:24px}.step{display:flex;gap:12px;align-items:flex-start}.step b{flex:0 0 auto;width:30px;height:30px;display:grid;place-items:center;border-radius:10px;color:var(--primary-dark);background:#fff}.step p{margin:2px 0 0;color:rgba(255,255,255,.88)}.trial-note{margin-top:20px;padding:14px 15px;border:1px solid rgba(255,255,255,.17);border-radius:13px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.82);font-size:.9rem}
     .form-card{padding:26px;border-radius:20px;color:var(--text);background:#fff;box-shadow:0 18px 42px rgba(11,31,57,.20)}.form-card h3{font-size:1.35rem}.form-card>p{margin-top:8px;color:var(--muted)}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:22px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}label{color:#36465d;font-size:.84rem;font-weight:800}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;color:var(--text);background:#fbfcfe;outline:none}input,select{min-height:48px;padding:0 13px}textarea{min-height:118px;padding:12px 13px;resize:vertical;line-height:1.5}input:focus,select:focus,textarea:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 4px rgba(49,87,213,.10)}
-    .check{display:flex;gap:10px;align-items:flex-start;margin-top:17px}.check input{width:18px;min-height:18px;margin-top:2px}.check label{color:var(--muted);font-weight:650}.submit{width:100%;min-height:50px;margin-top:18px;border:0;border-radius:12px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-dark));font-weight:850;box-shadow:0 12px 26px rgba(49,87,213,.22)}.status{min-height:22px;margin-top:11px;color:#177d63;font-size:.86rem;font-weight:750}
+    .check{display:flex;gap:10px;align-items:flex-start;margin-top:17px}.check input{width:18px;min-height:18px;margin-top:2px}.check label{color:var(--muted);font-weight:650}.submit{width:100%;min-height:50px;margin-top:18px;border:0;border-radius:12px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-dark));font-weight:850;box-shadow:0 12px 26px rgba(49,87,213,.22)}.submit:disabled{cursor:wait;opacity:.72}.status{min-height:22px;margin-top:11px;color:#177d63;font-size:.86rem;font-weight:750}
     footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:30px 0 38px;color:var(--muted);font-size:.9rem}
     @media(max-width:900px){.hero,.levels,.trial{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:680px){.page{width:min(100% - 20px,1180px)}.brand-text span,.nav-link{display:none}.hero{padding:34px 24px}.actions{flex-direction:column}.button{width:100%}.grid2,.grid4,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}footer{align-items:flex-start;flex-direction:column}}
@@ -133,7 +133,7 @@
 
         <form class="form-card" id="testForm">
           <h3>Ansøg om testadgang</h3>
-          <p>Udfyld felterne nedenfor. Selve afsendelsen kobles på sammen med Resend i næste tekniske trin.</p>
+          <p>Udfyld felterne nedenfor. Din anmodning sendes direkte til CDAI Systems.</p>
           <div class="form-grid">
             <div class="field"><label for="navn">Navn</label><input id="navn" name="navn" type="text" autocomplete="name" required></div>
             <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -153,11 +153,56 @@
   </div>
 
   <script>
-    const testForm=document.getElementById("testForm");
-    const formStatus=document.getElementById("formStatus");
-    testForm.addEventListener("submit",event=>{
+    const testForm = document.getElementById("testForm");
+    const formStatus = document.getElementById("formStatus");
+    const submitButton = testForm.querySelector('button[type="submit"]');
+
+    testForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      formStatus.textContent="Formularen er klar. Selve afsendelsen kobles på sammen med Resend i næste tekniske trin.";
+
+      formStatus.textContent = "";
+      formStatus.style.color = "#177d63";
+      submitButton.disabled = true;
+      submitButton.textContent = "Sender...";
+
+      const formData = new FormData(testForm);
+      const payload = {
+        navn: formData.get("navn"),
+        email: formData.get("email"),
+        telefon: formData.get("telefon"),
+        organisation: formData.get("organisation"),
+        type: formData.get("type"),
+        besked: formData.get("besked"),
+        samtykke: formData.get("samtykke") === "on",
+      };
+
+      try {
+        const response = await fetch("/api/kontakt", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(result.fejl || "Beskeden kunne ikke sendes.");
+        }
+
+        testForm.reset();
+        formStatus.style.color = "#177d63";
+        formStatus.textContent =
+          "Tak — din anmodning er sendt. Vi vender tilbage hurtigst muligt.";
+      } catch (error) {
+        formStatus.style.color = "#b42318";
+        formStatus.textContent =
+          error.message || "Beskeden kunne ikke sendes. Prøv igen senere.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send anmodning";
+      }
     });
   </script>
 </body>
