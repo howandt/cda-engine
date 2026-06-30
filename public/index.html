@@ -3,429 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CDAI Systems – praksisnær støtte til skoler og fagpersoner omkring børn med diagnoser, mistrivsel og komplekse behov.">
-  <title>CDAI Systems</title>
+  <meta name="description" content="CDA fra CDAI Systems – praksisnær faglig støtte til lærere, pædagoger, børnehaver, fagpersoner og specialister.">
+  <title>CDAI Systems – CDA</title>
   <style>
     :root {
-      --bg: #f5f7fb;
-      --surface: #ffffff;
-      --surface-soft: #eef3fb;
-      --text: #152238;
-      --muted: #5d6b7d;
-      --primary: #3157d5;
-      --primary-dark: #203fa8;
-      --secondary: #0d7b72;
-      --secondary-dark: #075c55;
-      --line: #dfe6f0;
-      --shadow: 0 22px 60px rgba(28, 49, 86, 0.12);
+      --bg:#f5f7fb; --surface:#fff; --soft:#eef3fb; --text:#152238; --muted:#5d6b7d;
+      --primary:#3157d5; --primary-dark:#203fa8; --secondary:#0d7b72; --line:#dfe6f0;
+      --shadow:0 22px 60px rgba(28,49,86,.12);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 12% 0%, rgba(49, 87, 213, 0.12), transparent 34%),
-        radial-gradient(circle at 92% 18%, rgba(13, 123, 114, 0.10), transparent 31%),
-        var(--bg);
-      line-height: 1.6;
-    }
-
-    a, button {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    .page-shell {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 26px 0;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 800;
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      color: white;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      box-shadow: 0 10px 28px rgba(49, 87, 213, 0.24);
-      font-size: 0.92rem;
-      letter-spacing: 0.04em;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .brand-text strong {
-      font-size: 1.08rem;
-    }
-
-    .brand-text span {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .topbar-link {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .topbar-link:hover {
-      color: var(--primary);
-    }
-
-    main {
-      padding: 18px 0 56px;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(42px, 7vw, 82px);
-      border: 1px solid rgba(223, 230, 240, 0.85);
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: var(--shadow);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 310px;
-      height: 310px;
-      top: -170px;
-      right: -120px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(49, 87, 213, 0.18), rgba(13, 123, 114, 0.12));
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      margin-bottom: 20px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      color: var(--primary-dark);
-      background: #edf1ff;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      max-width: 850px;
-      font-size: clamp(2.5rem, 6vw, 5.1rem);
-      line-height: 1.02;
-      letter-spacing: -0.055em;
-    }
-
-    .hero-lead {
-      max-width: 760px;
-      margin-top: 24px;
-      color: var(--muted);
-      font-size: clamp(1.05rem, 2vw, 1.28rem);
-    }
-
-    .hero-quote {
-      margin-top: 18px;
-      color: var(--text);
-      font-weight: 800;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
-    }
-
-    .action-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 190px;
-      padding: 15px 22px;
-      border: 0;
-      border-radius: 13px;
-      color: white;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 12px 28px rgba(28, 49, 86, 0.18);
-      transition: transform 160ms ease, box-shadow 160ms ease;
-    }
-
-    .action-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(28, 49, 86, 0.23);
-    }
-
-    .action-button.primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    }
-
-    .action-button.secondary {
-      background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
-    }
-
-    .systems {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-      margin-top: 26px;
-    }
-
-    .system-card {
-      padding: 30px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      box-shadow: 0 14px 36px rgba(28, 49, 86, 0.07);
-    }
-
-    .system-label {
-      display: inline-block;
-      margin-bottom: 14px;
-      color: var(--primary-dark);
-      font-size: 0.78rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .system-card:nth-child(2) .system-label {
-      color: var(--secondary-dark);
-    }
-
-    .system-card h2 {
-      font-size: 1.6rem;
-      line-height: 1.2;
-    }
-
-    .system-card p {
-      margin-top: 12px;
-      color: var(--muted);
-    }
-
-    .system-card ul {
-      display: grid;
-      gap: 9px;
-      margin-top: 20px;
-      padding-left: 20px;
-    }
-
-    .access-section {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
-      margin-top: 26px;
-    }
-
-    .access-panel, .contact-panel {
-      padding: 30px;
-      border-radius: 18px;
-    }
-
-    .access-panel {
-      background: linear-gradient(135deg, #18243b, #253959);
-      color: white;
-      box-shadow: 0 16px 38px rgba(24, 36, 59, 0.18);
-    }
-
-    .access-panel p {
-      margin-top: 10px;
-      color: rgba(255, 255, 255, 0.76);
-    }
-
-    .contact-panel {
-      border: 1px solid var(--line);
-      background: var(--surface-soft);
-    }
-
-    .contact-panel p {
-      margin-top: 10px;
-      color: var(--muted);
-    }
-
-    .contact-link {
-      display: inline-block;
-      margin-top: 16px;
-      color: var(--primary-dark);
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 28px 0 38px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-
-
-
-
-
-    @media (max-width: 780px) {
-      .topbar-link {
-        display: none;
-      }
-
-      .systems, .access-section {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .action-button {
-        width: 100%;
-      }
-
-      footer {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{min-height:100vh;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 12% 0%,rgba(49,87,213,.12),transparent 34%),radial-gradient(circle at 92% 18%,rgba(13,123,114,.10),transparent 31%),var(--bg);line-height:1.6}
+    a,button,input,select,textarea{font:inherit} a{color:inherit} button{cursor:pointer}
+    .page{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .topbar{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800}
+    .mark{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--secondary));box-shadow:0 10px 28px rgba(49,87,213,.24);font-size:.9rem;letter-spacing:.04em}
+    .brand-text{display:flex;flex-direction:column;line-height:1.1}.brand-text span{margin-top:5px;color:var(--muted);font-size:.76rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+    .top-actions{display:flex;align-items:center;gap:12px}.nav-link{color:var(--muted);text-decoration:none;font-weight:750}.login{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 17px;border-radius:12px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-dark));text-decoration:none;font-weight:850;box-shadow:0 10px 24px rgba(49,87,213,.20)}
+    main{padding:12px 0 60px} section{scroll-margin-top:24px}
+    .hero{position:relative;overflow:hidden;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;padding:clamp(42px,7vw,80px);border:1px solid rgba(223,230,240,.85);border-radius:30px;background:rgba(255,255,255,.94);box-shadow:var(--shadow)}
+    .hero:after{content:"";position:absolute;width:330px;height:330px;top:-170px;right:-110px;border-radius:50%;background:linear-gradient(135deg,rgba(49,87,213,.18),rgba(13,123,114,.12))}
+    .hero>*{position:relative;z-index:1}.eyebrow{display:inline-flex;margin-bottom:18px;padding:8px 12px;border-radius:999px;color:var(--primary-dark);background:#edf1ff;font-size:.8rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+    h1{max-width:790px;font-size:clamp(2.5rem,5.5vw,4.9rem);line-height:1.02;letter-spacing:-.052em}.hero-lead{max-width:730px;margin-top:22px;color:var(--muted);font-size:clamp(1.05rem,2vw,1.25rem)}.hero-quote{margin-top:17px;font-weight:850}
+    .actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:31px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 21px;border-radius:13px;text-decoration:none;font-weight:850;transition:.16s}.button:hover{transform:translateY(-2px)}.button.primary{color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-dark));box-shadow:0 12px 28px rgba(49,87,213,.22)}.button.secondary{color:#075c55;border:1px solid #b9ddd7;background:#ecf8f6}
+    .hero-visual{display:grid;gap:14px;padding:22px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#f7f9fd,#edf3fa)}.visual-card{padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 10px 24px rgba(28,49,86,.06)}.visual-card strong,.visual-card span{display:block}.visual-card span{margin-top:4px;color:var(--muted);font-size:.85rem}.visual-card:nth-child(2){margin-left:30px}.visual-card:nth-child(3){margin-right:30px}
+    .block{margin-top:28px;padding:clamp(30px,5vw,52px);border:1px solid var(--line);border-radius:24px;background:var(--surface);box-shadow:0 14px 36px rgba(28,49,86,.07)}.kicker{color:var(--primary);font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.heading{max-width:760px}.heading h2,.trial h2{margin-top:8px;font-size:clamp(1.9rem,3.5vw,2.8rem);line-height:1.12;letter-spacing:-.035em}.heading p{margin-top:12px;color:var(--muted);font-size:1.03rem}
+    .grid3,.grid2,.grid4{display:grid;gap:18px;margin-top:28px}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}.card.white{background:#fff}.icon{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--secondary));font-weight:900}.card h3{margin-top:16px;font-size:1.12rem;line-height:1.25}.card p{margin-top:8px;color:var(--muted)}.card ul{display:grid;gap:8px;margin-top:14px;padding-left:20px;color:#36465d}
+    .levels{display:grid;grid-template-columns:.95fr 1.05fr;gap:26px;align-items:center;margin-top:28px;padding:28px;border-radius:20px;color:#fff;background:linear-gradient(135deg,#17243a,#263b5d)}.levels p{margin-top:10px;color:rgba(255,255,255,.76)}.level-list{display:grid;gap:12px}.level-row{padding:14px 16px;border:1px solid rgba(255,255,255,.16);border-radius:14px;background:rgba(255,255,255,.08)}.level-row strong,.level-row span{display:block}.level-row span{margin-top:3px;color:rgba(255,255,255,.70);font-size:.88rem}
+    .note{margin-top:28px;padding:18px 20px;border:1px solid #d9e5f3;border-radius:16px;color:#45566e;background:#f7faff}
+    .trial{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start;margin-top:28px;padding:clamp(30px,5vw,52px);border-radius:24px;color:#fff;background:linear-gradient(135deg,var(--primary-dark),#075c55);box-shadow:var(--shadow)}.trial p{margin-top:14px;color:rgba(255,255,255,.78)}.steps{display:grid;gap:12px;margin-top:24px}.step{display:flex;gap:12px;align-items:flex-start}.step b{flex:0 0 auto;width:30px;height:30px;display:grid;place-items:center;border-radius:10px;color:var(--primary-dark);background:#fff}.step p{margin:2px 0 0;color:rgba(255,255,255,.88)}.trial-note{margin-top:20px;padding:14px 15px;border:1px solid rgba(255,255,255,.17);border-radius:13px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.82);font-size:.9rem}
+    .form-card{padding:26px;border-radius:20px;color:var(--text);background:#fff;box-shadow:0 18px 42px rgba(11,31,57,.20)}.form-card h3{font-size:1.35rem}.form-card>p{margin-top:8px;color:var(--muted)}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:22px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}label{color:#36465d;font-size:.84rem;font-weight:800}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;color:var(--text);background:#fbfcfe;outline:none}input,select{min-height:48px;padding:0 13px}textarea{min-height:118px;padding:12px 13px;resize:vertical;line-height:1.5}input:focus,select:focus,textarea:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 4px rgba(49,87,213,.10)}
+    .check{display:flex;gap:10px;align-items:flex-start;margin-top:17px}.check input{width:18px;min-height:18px;margin-top:2px}.check label{color:var(--muted);font-weight:650}.submit{width:100%;min-height:50px;margin-top:18px;border:0;border-radius:12px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-dark));font-weight:850;box-shadow:0 12px 26px rgba(49,87,213,.22)}.status{min-height:22px;margin-top:11px;color:#177d63;font-size:.86rem;font-weight:750}
+    footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:30px 0 38px;color:var(--muted);font-size:.9rem}
+    @media(max-width:900px){.hero,.levels,.trial{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:680px){.page{width:min(100% - 20px,1180px)}.brand-text span,.nav-link{display:none}.hero{padding:34px 24px}.actions{flex-direction:column}.button{width:100%}.visual-card:nth-child(2),.visual-card:nth-child(3){margin:0}.grid2,.grid4,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}footer{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
-
 <body>
-  <div class="page-shell">
+  <div class="page">
     <header class="topbar">
       <a class="brand" href="/" aria-label="CDAI Systems forside">
-        <span class="brand-mark">CDAI</span>
-        <span class="brand-text">
-          <strong>CDAI Systems</strong>
-          <span>Children Diagnosis AI Systems</span>
-        </span>
+        <span class="mark">CDAI</span>
+        <span class="brand-text"><strong>CDAI Systems</strong><span>Children Diagnosis AI Systems</span></span>
       </a>
-
-      <a class="topbar-link" href="mailto:kontakt@cdaisystems.com">Kontakt</a>
+      <div class="top-actions">
+        <a class="nav-link" href="#kontakt">Kontakt</a>
+        <a class="login" href="/cda.html">Har du adgang? Log ind</a>
+      </div>
     </header>
 
     <main>
       <section class="hero">
-        <span class="eyebrow">Praksisnær støtte til skoler og fagpersoner</span>
-
-        <h1>Bedre forståelse. Klarere næste skridt.</h1>
-
-        <p class="hero-lead">
-          CDAI Systems samler faglig viden, konkrete værktøjer og struktureret analyse,
-          så lærere, pædagoger og andre fagpersoner kan handle mere præcist omkring børn,
-          der har brug for en anden vej.
-        </p>
-
-        <p class="hero-quote">
-          Børn skal ikke passe til skolen – skolen skal passe til børnene.
-        </p>
-
-        <div class="hero-actions" aria-label="Vælg system">
-          <a class="action-button primary" href="/cda.html">
-            Åbn CDA
-          </a>
-
-          <a class="action-button secondary" href="https://cda-analyse.vercel.app/adgang">
-            Åbn Analyse
-          </a>
+        <div>
+          <span class="eyebrow">Praksisnær faglig støtte – bygget på erfaring</span>
+          <h1>Bedre forståelse. Klarere næste skridt.</h1>
+          <p class="hero-lead">CDA hjælper lærere, pædagoger, børnehaver, fagpersoner og specialister med at forstå konkrete situationer omkring børn og unge og finde en brugbar faglig retning.</p>
+          <p class="hero-quote">Samme system – tilpasset brugerens rolle, faglige niveau og behov.</p>
+          <div class="actions">
+            <a class="button primary" href="#kontakt">Prøv CDA gratis i 30 dage</a>
+            <a class="button secondary" href="/cda.html">Log ind på CDA</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-card"><strong>Konkrete situationer</strong><span>Fra uro og koncentration til mistrivsel, relationer og skole-hjem-samarbejde.</span></div>
+          <div class="visual-card"><strong>Faglig tilpasning</strong><span>Korte, praksisnære svar eller mere dybdegående faglige perspektiver.</span></div>
+          <div class="visual-card"><strong>Fra forståelse til handling</strong><span>Observationer, næste skridt, cases, værktøjer og skabeloner.</span></div>
         </div>
       </section>
 
-      <section class="systems" aria-label="CDAI Systems produkter">
-        <article class="system-card">
-          <span class="system-label">CDA</span>
-          <h2>Støtte i den konkrete skolehverdag</h2>
-          <p>
-            CDA hjælper med at forstå situationen, finde en brugbar retning og omsætte
-            faglig viden til handling.
-          </p>
-          <ul>
-            <li>Konkrete råd og næste skridt</li>
-            <li>Cases, værktøjer og skabeloner</li>
-            <li>Støtte til skole-hjem-samarbejdet</li>
-          </ul>
-        </article>
-
-        <article class="system-card">
-          <span class="system-label">Analyse</span>
-          <h2>Struktureret blik på komplekse mønstre</h2>
-          <p>
-            Analyse hjælper fagpersoner med at samle observationer, se mønstre og finde
-            relevante spor uden at stille diagnose.
-          </p>
-          <ul>
-            <li>Systematisk gennemgang af en sag</li>
-            <li>Opmærksomhed på mulige overlap</li>
-            <li>Et tydeligt grundlag for næste faglige skridt</li>
-          </ul>
-        </article>
+      <section class="block">
+        <div class="heading">
+          <span class="kicker">Hvad CDA bygger på</span>
+          <h2>Udviklet fra praksis – ikke som en almindelig chatbot</h2>
+          <p>CDA arbejder med CDAI Systems’ egne fagdata, cases, diagnoseviden, komorbiditetsviden, skabeloner og arbejdsgange.</p>
+        </div>
+        <div class="grid3">
+          <article class="card"><div class="icon">1</div><h3>Bygget på erfaring</h3><p>Udviklet med udgangspunkt i mange års praksiserfaring og arbejde med børn, familier, skoler og fagpersoner.</p></article>
+          <article class="card"><div class="icon">2</div><h3>Tilpasset fagligt niveau</h3><p>Lærere og pædagoger får konkrete svar. Fagpersoner og specialister kan arbejde mere dybdegående.</p></article>
+          <article class="card"><div class="icon">3</div><h3>Fra forståelse til handling</h3><p>CDA hjælper med at samle situationen, se det væsentlige og finde næste relevante skridt.</p></article>
+        </div>
       </section>
 
-      <section class="access-section" id="adgang">
-        <div class="access-panel">
-          <h2>Har du fået testadgang?</h2>
-          <p>
-            Vælg det system, du har fået adgang til. Din personlige kode og adgang
-            bliver senere koblet til den fælles loginløsning.
-          </p>
+      <section class="block">
+        <div class="heading">
+          <span class="kicker">Hvad CDA kan hjælpe med</span>
+          <h2>Et samlet arbejdsredskab til praksis</h2>
+          <p>CDA kan bruges både i den hurtige hverdag og når en situation kræver mere systematisk faglig opmærksomhed.</p>
+        </div>
+        <div class="grid2">
+          <article class="card white"><div class="icon">A</div><h3>Konkrete elev- og børnesituationer</h3><ul><li>Uro, koncentration og impulsivitet</li><li>Mistrivsel, angst og tilbagetrækning</li><li>Relationer, konflikter og overgange</li><li>Kendte diagnoser og relevante hensyn</li></ul></article>
+          <article class="card white"><div class="icon">B</div><h3>Skole, børnehave og hjem</h3><ul><li>Skole-hjem-samarbejde</li><li>Observation og dokumentation</li><li>Børnehavesituationer og skolestart</li><li>Tværfagligt samarbejde</li></ul></article>
+          <article class="card white"><div class="icon">C</div><h3>Værktøjer til handling</h3><ul><li>Cases og lignende situationer</li><li>Skabeloner og praksisnære guides</li><li>PBL-forløb ud fra barnets interesser</li><li>Rollespil og træning</li></ul></article>
+          <article class="card white"><div class="icon">D</div><h3>Faglig opmærksomhed</h3><ul><li>Mønstre der kræver nærmere observation</li><li>Mulige overlap og komorbiditetsspor</li><li>Støtte til relevant næste skridt</li><li>Ingen automatisk diagnose</li></ul></article>
         </div>
 
-        <div class="contact-panel">
-          <h2>Skole eller faglig organisation?</h2>
-          <p>
-            Kontakt CDAI Systems om testforløb, adgang eller en kommende skoleaftale.
-          </p>
-          <a class="contact-link" href="mailto:kontakt@cdaisystems.com">
-            kontakt@cdaisystems.com
-          </a>
+        <div class="levels">
+          <div><span class="kicker" style="color:#9fc0ff">Tilpasset brugerens rolle</span><h2>Brugbart i både praksis og specialistarbejde</h2><p>CDA tilpasser sprog, fokus og dybde til den fagperson, der bruger systemet.</p></div>
+          <div class="level-list">
+            <div class="level-row"><strong>Lærer, pædagog og børnehave</strong><span>Korte, konkrete og direkte anvendelige næste skridt.</span></div>
+            <div class="level-row"><strong>Fagperson og inklusionsmedarbejder</strong><span>Mere systematisk arbejde med observationer, mønstre og samarbejde.</span></div>
+            <div class="level-row"><strong>PPR, psykolog og specialist</strong><span>Mulighed for mere dybdegående faglige perspektiver og analyse.</span></div>
+          </div>
         </div>
+
+        <div class="grid4">
+          <article class="card"><h3>Skole</h3><p>Lærere, skoleledelse, inklusion og ressourcepersoner.</p></article>
+          <article class="card"><h3>Børnehave</h3><p>Pædagoger, ledelse og andre voksne omkring barnet.</p></article>
+          <article class="card"><h3>Fagperson</h3><p>Tværfaglige medarbejdere, rådgivere og støttefunktioner.</p></article>
+          <article class="card"><h3>Specialist</h3><p>PPR, psykologer og andre med behov for større faglig dybde.</p></article>
+        </div>
+
+        <div class="note"><strong>Vigtig faglig afgrænsning:</strong> CDA stiller ikke diagnose. Systemet støtter observation, forståelse, faglig refleksion og valg af næste relevante skridt.</div>
+      </section>
+
+      <section class="trial" id="kontakt">
+        <div>
+          <span class="kicker" style="color:#b8d8ff">30 dages gratis test</span>
+          <h2>Afprøv CDA i jeres egen hverdag</h2>
+          <p>En reel afprøvning kræver tid. Derfor får udvalgte testpersoner 30 dage til at arbejde med konkrete situationer, værktøjer og rådgivning.</p>
+          <div class="steps">
+            <div class="step"><b>1</b><p>Udfyld formularen med dine kontaktoplysninger og dit arbejdsområde.</p></div>
+            <div class="step"><b>2</b><p>CDAI Systems vurderer anmodningen og opretter en personlig testkode.</p></div>
+            <div class="step"><b>3</b><p>Du modtager 30 dages adgang til CDA og kan afprøve systemet i praksis.</p></div>
+          </div>
+          <div class="trial-note">Der må ikke indsendes elevnavne, følsomme personoplysninger eller konkrete sagsoplysninger i formularen.</div>
+        </div>
+
+        <form class="form-card" id="testForm">
+          <h3>Ansøg om testadgang</h3>
+          <p>Udfyld felterne nedenfor. Selve afsendelsen kobles på sammen med Resend i næste tekniske trin.</p>
+          <div class="form-grid">
+            <div class="field"><label for="navn">Navn</label><input id="navn" name="navn" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="telefon">Telefon – valgfrit</label><input id="telefon" name="telefon" type="tel" autocomplete="tel"></div>
+            <div class="field"><label for="organisation">Skole, børnehave eller organisation</label><input id="organisation" name="organisation" type="text" required></div>
+            <div class="field"><label for="type">Type</label><select id="type" name="type" required><option value="">Vælg type</option><option value="Skole">Skole</option><option value="Børnehave">Børnehave</option><option value="Fagperson">Fagperson</option><option value="Specialist">Specialist</option><option value="Andet">Andet</option></select></div>
+            <div class="field"><label for="rolle">Rolle eller stilling</label><input id="rolle" name="rolle" type="text" placeholder="Fx lærer, pædagog, PPR eller psykolog" required></div>
+            <div class="field full"><label for="besked">Hvad vil du gerne afprøve CDA til?</label><textarea id="besked" name="besked" placeholder="Beskriv kort dit arbejdsområde og hvad du gerne vil teste. Undlad elevnavne og følsomme oplysninger." required></textarea></div>
+          </div>
+          <div class="check"><input id="samtykke" name="samtykke" type="checkbox" required><label for="samtykke">Jeg ønsker at ansøge om 30 dages gratis test og accepterer, at CDAI Systems kontakter mig om min anmodning.</label></div>
+          <button class="submit" type="submit">Send anmodning</button>
+          <p class="status" id="formStatus" role="status"></p>
+        </form>
       </section>
     </main>
 
-    <footer>
-      <span>© 2026 CDAI Systems</span>
-      <span>Udviklet med fokus på børn, skoler og faglig praksis</span>
-    </footer>
+    <footer><span>© 2026 CDAI Systems</span><span>Udviklet med fokus på børn, skoler, børnehaver og faglig praksis</span></footer>
   </div>
 
+  <script>
+    const testForm=document.getElementById("testForm");
+    const formStatus=document.getElementById("formStatus");
+    testForm.addEventListener("submit",event=>{
+      event.preventDefault();
+      formStatus.textContent="Formularen er klar. Selve afsendelsen kobles på sammen med Resend i næste tekniske trin.";
+    });
+  </script>
 </body>
 </html>
