@@ -3828,6 +3828,33 @@ function isRoleplayStartRequest(message) {
   return patterns.some((pattern) => text.includes(pattern));
 }
 
+function isRoleplayStructureChangeRequest(message) {
+  const text = normalizeReplyIntent(message);
+  const patterns = [
+    "byt roller",
+    "bytte roller",
+    "skift rolle",
+    "skifte rolle",
+    "skift perspektiv",
+    "perspektivskifte",
+    "reverse perspektiv",
+    "spil nu",
+    "du spiller nu",
+    "jeg spiller nu",
+    "tilføj en deltager",
+    "tilfoj en deltager",
+    "inddrag en deltager",
+    "tag pigen med",
+    "tag drengen med",
+    "tag forælderen med",
+    "tag foraelderen med",
+    "tag læreren med",
+    "tag laereren med"
+  ];
+
+  return patterns.some((pattern) => text.includes(pattern));
+}
+
 function getRoleplayScenarioContext(message) {
   const result = getRollespil();
   const scenarios = Array.isArray(result?.data) ? result.data : [];
@@ -3913,6 +3940,8 @@ async function runRoleplayTurn({
   audienceInstructions,
 }) {
   const isStarting = !state;
+  const structureChangeRequested =
+    !isStarting && isRoleplayStructureChangeRequest(message);
   const scenarioContext = isStarting
     ? getRoleplayScenarioContext(message)
     : null;
@@ -3930,10 +3959,34 @@ async function runRoleplayTurn({
     turns: [],
   };
 
+  const lockedUserRole = String(
+    currentState.user_role || role || ""
+  ).trim();
+  const lockedCdaRole = String(
+    currentState.cda_role || ""
+  ).trim();
+  const rolesAreLocked = Boolean(
+    !isStarting &&
+      !structureChangeRequested &&
+      lockedUserRole &&
+      lockedCdaRole
+  );
+
+  const roleLockInstructions = rolesAreLocked
+    ? [
+        `ROLLELÅS: Brugeren spiller "${lockedUserRole}". Du spiller "${lockedCdaRole}".`,
+        "Rollerne må ikke ændres i denne tur.",
+        `user_message er en replik eller handling fra "${lockedUserRole}". Svar direkte og kun som "${lockedCdaRole}".`,
+        "Gentag, omskriv eller færdiggør aldrig brugerens replik. Reagér på den fra din låste rolle.",
+        "Returnér user_role og cda_role uændret i JSON-resultatet.",
+      ].join("\n")
+    : "Rolleskift eller ændring af deltagere må kun ske, når brugeren direkte har bedt om det.";
+
   const instructions = [
     "Du er CDA's dynamiske motor til perspektivtræning, rollespil og beskedtjek.",
     audienceInstructions,
     `AKTUEL SVARSTIL: ${responseStyle}`,
+    roleLockInstructions,
     "Før samtalen én replik ad gangen. Skriv aldrig brugerens replik for brugeren, medmindre brugeren direkte beder om en demonstration.",
     "Brug almindeligt, naturligt sprog. Start straks, når roller og situation er tydelige. Stil kun ét kort afklarende spørgsmål, hvis en nødvendig oplysning mangler.",
     "Under aktivt rollespil skal du blive i den valgte rolle. Giv kun feedback undervejs, hvis feedback_mode er during eller brugeren beder om det.",
@@ -3953,6 +4006,12 @@ async function runRoleplayTurn({
     current_state: {
       ...currentState,
       turns: trimRoleplayTranscript(currentState.turns),
+    },
+    role_control: {
+      roles_locked: rolesAreLocked,
+      user_role: lockedUserRole || null,
+      cda_role: lockedCdaRole || null,
+      structure_change_requested: structureChangeRequested,
     },
     scenario_context: scenarioContext,
     output_language: language,
@@ -4030,19 +4089,33 @@ async function runRoleplayTurn({
     { role: "assistant", text: result.reply || "" },
   ]);
 
+  const preserveRoleplayStructure = Boolean(
+    !isStarting && !structureChangeRequested
+  );
+
   return {
     response,
     result,
     nextState: {
       version: 1,
       mode: result.mode,
-      user_role: result.user_role,
-      cda_role: result.cda_role,
-      participants: result.participants,
-      situation: result.situation,
+      user_role: preserveRoleplayStructure
+        ? currentState.user_role
+        : result.user_role,
+      cda_role: preserveRoleplayStructure
+        ? currentState.cda_role
+        : result.cda_role,
+      participants: preserveRoleplayStructure
+        ? currentState.participants
+        : result.participants,
+      situation: preserveRoleplayStructure
+        ? currentState.situation
+        : result.situation,
       feedback_mode: result.feedback_mode,
       phase: result.status,
-      scenario_id: result.scenario_id,
+      scenario_id: preserveRoleplayStructure
+        ? currentState.scenario_id
+        : result.scenario_id,
       turns,
     },
   };
