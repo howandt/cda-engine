@@ -3828,6 +3828,93 @@ function isRoleplayStartRequest(message) {
   return patterns.some((pattern) => text.includes(pattern));
 }
 
+function getRoleplayControlIntent(message) {
+  const text = normalizeReplyIntent(message);
+  const includesAny = (patterns) =>
+    patterns.some((pattern) => text.includes(pattern));
+
+  const newSession = includesAny([
+    "start rollespilmotor",
+    "start rollespil motor",
+    "start rollespilmotro",
+    "start rollespil",
+    "nyt rollespil",
+    "ny scene",
+    "reset rollespil",
+    "nulstil rollespil",
+    "begynd forfra",
+    "start forfra",
+    "jeg vil komme med en case",
+    "jeg kommer med en case",
+    "lad mig give dig en case",
+    "jeg vil selv give casen",
+  ]);
+
+  const wantsHelp = includesAny([
+    "forklar hvordan jeg bruger",
+    "hvordan bruger jeg",
+    "vis kommandoer",
+    "hvilke kommandoer",
+    "forklar rollespilmotor",
+  ]);
+
+  const stop = includesAny([
+    "stop rollespil",
+    "stop rollespillet",
+    "afslut rollespil",
+    "slut rollespillet",
+  ]);
+
+  const pause = includesAny(["pause", "sæt på pause", "saet paa pause"]);
+  const resume = includesAny(["fortsæt", "fortsaet", "fortsæt rollespil"]);
+
+  const explicitRoleSetup =
+    includesAny([
+      "du spiller",
+      "du skal spille",
+      "vær en",
+      "vaer en",
+      "spil en",
+      "spil et",
+      "jeg er læreren",
+      "jeg er laereren",
+      "jeg spiller",
+    ]) && isRoleplayStartRequest(message);
+
+  return {
+    newSession,
+    wantsHelp,
+    stop,
+    pause,
+    resume,
+    explicitRoleSetup,
+  };
+}
+
+function getRoleplaySetupReply(language) {
+  if (language === "English") {
+    return [
+      "**The roleplay engine is ready.**",
+      "",
+      "Tell me the situation, who you are playing, and who CDA should play. You can choose feedback during the scene or at the end.",
+      "",
+      "During the exercise you can write: **Pause**, **Continue**, **Switch roles**, **Show the other perspective**, **Make it harder**, **Hint**, **Feedback**, or **Stop roleplay**.",
+      "",
+      "Describe your case when you are ready.",
+    ].join("\n");
+  }
+
+  return [
+    "**Rollespilmotoren er klar.**",
+    "",
+    "Beskriv situationen, hvem du selv spiller, og hvem CDA skal spille. Du kan vælge feedback undervejs eller til sidst.",
+    "",
+    "Under øvelsen kan du skrive: **Pause**, **Fortsæt**, **Byt roller**, **Vis den anden side**, **Gør det sværere**, **Hint**, **Feedback** eller **Stop rollespil**.",
+    "",
+    "Kom med din case, når du er klar.",
+  ].join("\n");
+}
+
 function getRoleplayScenarioContext(message) {
   const result = getRollespil();
   const scenarios = Array.isArray(result?.data) ? result.data : [];
@@ -3927,6 +4014,7 @@ async function runRoleplayTurn({
     feedback_mode: "at_end",
     phase: "active",
     scenario_id: null,
+    case_facts: [],
     turns: [],
   };
 
@@ -3937,6 +4025,11 @@ async function runRoleplayTurn({
     "Før samtalen én replik ad gangen. Skriv aldrig brugerens replik for brugeren, medmindre brugeren direkte beder om en demonstration.",
     "Brug almindeligt, naturligt sprog. Start straks, når roller og situation er tydelige. Stil kun ét kort afklarende spørgsmål, hvis en nødvendig oplysning mangler.",
     "Under aktivt rollespil skal du blive i den valgte rolle. Giv kun feedback undervejs, hvis feedback_mode er during eller brugeren beder om det.",
+    "Bevar samme case og samme centrale fakta gennem hele scenen. Opfind aldrig konkrete hændelser, navne, steder eller involverede personer, som ikke er givet eller tydeligt etableret i scenen.",
+    "Hvis en central oplysning mangler, så spørg kort i stedet for at udfylde den selv. Små neutrale detaljer må kun bruges, når de ikke ændrer sagens indhold.",
+    "Når brugeren siger, at vedkommende vil komme med en case, skal du gå i opsætning og vente på casen. Start ikke en tilfældig scene.",
+    "Hvis brugeren vælger roller tydeligt, bekræft dem kort og start direkte med én replik i CDA-rollen.",
+    "Ved 'lad os tage den fra den anden side' eller tilsvarende skal du bevare casen og dens fakta, men bytte eller ændre perspektiv som ønsket.",
     "Ved feedback skal du være konkret og ærlig om tydelighed, tone, samarbejde, grænsesætning og mulige misforståelser. Ros ikke automatisk.",
     "Ved reverse-perspektiv skal du skelne mellem afsenderens hensigt, mulig oplevelse hos modtageren, risiko for misforståelse og en mulig justering.",
     "Påstå aldrig med sikkerhed, hvad et bestemt barn tænker eller føler. Brug formuleringer som 'kan muligvis opleves som'.",
@@ -4001,6 +4094,11 @@ async function runRoleplayTurn({
               enum: ["during", "at_end", "none"],
             },
             scenario_id: { type: ["string", "null"] },
+            case_facts: {
+              type: "array",
+              items: { type: "string" },
+              maxItems: 12,
+            },
           },
           required: [
             "reply",
@@ -4011,7 +4109,8 @@ async function runRoleplayTurn({
             "participants",
             "situation",
             "feedback_mode",
-            "scenario_id"
+            "scenario_id",
+            "case_facts"
           ],
           additionalProperties: false,
         },
@@ -4043,6 +4142,11 @@ async function runRoleplayTurn({
       feedback_mode: result.feedback_mode,
       phase: result.status,
       scenario_id: result.scenario_id,
+      case_facts: Array.isArray(result.case_facts)
+        ? result.case_facts
+        : Array.isArray(currentState.case_facts)
+          ? currentState.case_facts
+          : [],
       turns,
     },
   };
@@ -4159,7 +4263,65 @@ const audienceInstructions = [
 ].join("\n");
 
 try {
-  const activeRoleplayState = decodeRoleplayState(pending_action);
+  const decodedRoleplayState = decodeRoleplayState(pending_action);
+  const roleplayControl = getRoleplayControlIntent(message);
+
+  if (decodedRoleplayState && roleplayControl.stop) {
+    return res.status(200).json({
+      success: true,
+      reply:
+        language === "English"
+          ? "Roleplay stopped. The scene has been cleared."
+          : "Rollespillet er stoppet, og scenen er nulstillet.",
+      model: "local",
+      tools_used: ["localRoleplayControl"],
+      tool_debug: [
+        {
+          name: "localRoleplayControl",
+          action: "stop_and_clear",
+        },
+      ],
+      pending_action: null,
+    });
+  }
+
+  if (
+    roleplayControl.newSession &&
+    !roleplayControl.explicitRoleSetup
+  ) {
+    const setupState = {
+      version: 1,
+      mode: "free_roleplay",
+      user_role: role,
+      cda_role: "",
+      participants: [],
+      situation: "",
+      feedback_mode: "at_end",
+      phase: "setup",
+      scenario_id: null,
+      case_facts: [],
+      turns: [],
+    };
+
+    return res.status(200).json({
+      success: true,
+      reply: getRoleplaySetupReply(language),
+      model: "local",
+      tools_used: ["localRoleplayControl"],
+      tool_debug: [
+        {
+          name: "localRoleplayControl",
+          action: "reset_to_setup",
+        },
+      ],
+      pending_action: encodeRoleplayState(setupState),
+    });
+  }
+
+  const activeRoleplayState =
+    roleplayControl.newSession || roleplayControl.explicitRoleSetup
+      ? null
+      : decodedRoleplayState;
 
   if (activeRoleplayState || isRoleplayStartRequest(message)) {
     const roleplayTurn = await runRoleplayTurn({
