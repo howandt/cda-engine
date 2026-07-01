@@ -639,6 +639,30 @@
       font-size: 0.76rem;
     }
 
+    .back-to-start-wrap {
+      max-width: 980px;
+      margin: 10px auto 0;
+      text-align: center;
+    }
+
+    .back-to-start-button {
+      border: 0;
+      padding: 7px 10px;
+      color: var(--primary-dark);
+      background: transparent;
+      font-size: 0.80rem;
+      font-weight: 850;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .back-to-start-button:hover,
+    .back-to-start-button:focus-visible {
+      color: var(--primary);
+      outline: none;
+    }
+
     #fejl {
       color: var(--danger);
       font-weight: 750;
@@ -875,6 +899,14 @@
 
             <div class="faq-list" aria-label="Hjælp til at bruge CDA">
               <details class="faq-item">
+                <summary>Hvordan prøver jeg flere eksempler?</summary>
+                <div class="faq-body">
+                  <p>Vælg et eksempel, send det, og læs svaret. Når du vil tilbage og prøve noget nyt, trykker du på <strong>“Tilbage til start og prøv noget nyt”</strong> nederst på skærmen.</p>
+                  <p>Det afslutter den aktuelle samtale og åbner FAQ’en igen. Dine login- og rolleindstillinger bevares.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
                 <summary>Hvordan beskriver jeg en elevsituation?</summary>
                 <div class="faq-body">
                   <p>Fortæl kort, hvad der sker, hvornår det sker, og hvad I allerede har prøvet.</p>
@@ -1008,6 +1040,12 @@
         <span>Enter sender · Shift + Enter laver ny linje</span>
         <p id="fejl" role="alert"></p>
       </div>
+
+      <div class="back-to-start-wrap" id="backToStartWrap" hidden>
+        <button class="back-to-start-button" id="backToStartButton" type="button">
+          ← Tilbage til start og prøv noget nyt
+        </button>
+      </div>
     </section>
   </main>
 
@@ -1025,6 +1063,8 @@
     let welcome = document.getElementById("welcome");
     const welcomeTemplate = welcome.outerHTML;
     const newConversationButton = document.getElementById("newConversationButton");
+    const backToStartWrap = document.getElementById("backToStartWrap");
+    const backToStartButton = document.getElementById("backToStartButton");
     const rolleVisning = document.getElementById("rolleVisning");
     const svarstilVisning = document.getElementById("svarstilVisning");
 
@@ -1106,6 +1146,7 @@
       }
 
       newConversationButton.hidden = false;
+      backToStartWrap.hidden = false;
     }
 
     function scrollToBottom() {
@@ -1316,6 +1357,7 @@
 
       appShell.classList.add("is-start");
       newConversationButton.hidden = true;
+      backToStartWrap.hidden = true;
 
       bindFaqPrompts();
       syncViewportHeight();
@@ -1324,6 +1366,7 @@
 
     bindFaqPrompts();
     newConversationButton.addEventListener("click", startNewConversation);
+    backToStartButton.addEventListener("click", startNewConversation);
     sendKnap.addEventListener("click", sendMessage);
 
     besked.addEventListener("keydown", (event) => {
