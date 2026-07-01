@@ -3923,28 +3923,24 @@ function isRoleplayDebriefRequest(message) {
   const text = normalizeReplyIntent(message);
   const patterns = [
     "debrief",
-    "kort debrief",
-    "faglig debrief",
     "giv feedback",
-    "giv mig feedback",
-    "rådgiv mig",
-    "raadgiv mig",
-    "giv mig råd",
-    "giv mig raad",
-    "gør mig klar",
-    "gor mig klar",
+    "feedback på hele forløbet",
+    "feedback pa hele forlobet",
+    "vurder hele forløbet",
+    "vurder hele forlobet",
     "hvad lærte jeg",
     "hvad laerte jeg",
-    "hvad gjorde jeg godt",
-    "hvad kunne jeg gøre bedre",
-    "hvad kunne jeg gore bedre",
+    "rådgiv mig",
+    "radgiv mig",
+    "gør mig klar til mødet",
+    "gor mig klar til modet",
     "nu er vi dig og mig",
-    "vi stopper her",
-    "stop rollespillet",
-    "afslut rollespillet",
     "vi stopper rollespillet",
-    "nu vil jeg have råd",
-    "nu vil jeg have raad"
+    "stop rollespillet og",
+    "stop træningen og",
+    "stop traeningen og",
+    "kort konkret debrief",
+    "kort faglig debrief"
   ];
 
   return patterns.some((pattern) => text.includes(pattern));
@@ -3953,16 +3949,14 @@ function isRoleplayDebriefRequest(message) {
 function isRoleplayFinalEndRequest(message) {
   const text = normalizeReplyIntent(message);
   const patterns = [
-    "tak det var det",
-    "vi er færdige",
-    "vi er faerdige",
-    "jeg er færdig",
-    "jeg er faerdig",
-    "afslut helt",
+    "afslut rollespillet helt",
+    "afslut træningen helt",
+    "afslut traeningen helt",
+    "luk rollespillet",
+    "luk træningen",
+    "luk traeningen",
+    "ryd rollespillet",
     "slut helt",
-    "stop helt",
-    "ingen flere spørgsmål",
-    "ingen flere spoergsmaal",
     "ny samtale"
   ];
 
@@ -4054,19 +4048,17 @@ async function runRoleplayTurn({
   audienceInstructions,
 }) {
   const isStarting = !state;
-  const debriefWasActive = Boolean(
-    state && state.phase === "debrief"
+  const debriefRequested =
+    !isStarting && isRoleplayDebriefRequest(message);
+  const finalEndRequested =
+    !isStarting && isRoleplayFinalEndRequest(message);
+  const continuingDebrief = Boolean(
+    !isStarting && state?.phase === "debrief" && !finalEndRequested
   );
-  const debriefRequested = Boolean(
-    !isStarting && isRoleplayDebriefRequest(message)
-  );
-  const finalEndRequested = Boolean(
-    !isStarting && isRoleplayFinalEndRequest(message)
-  );
-  const debriefMode = debriefWasActive || debriefRequested;
+  const inDebrief = debriefRequested || continuingDebrief;
   const structureChangeRequested =
     !isStarting &&
-    !debriefMode &&
+    !inDebrief &&
     isRoleplayStructureChangeRequest(message);
   const scenarioContext = isStarting
     ? getRoleplayScenarioContext(message)
@@ -4093,29 +4085,15 @@ async function runRoleplayTurn({
   ).trim();
   const rolesAreLocked = Boolean(
     !isStarting &&
+      !inDebrief &&
+      !finalEndRequested &&
       !structureChangeRequested &&
-      !debriefMode &&
       lockedUserRole &&
       lockedCdaRole
   );
 
-  const roleLockInstructions = finalEndRequested
+  const roleLockInstructions = rolesAreLocked
     ? [
-        "BRUGEREN HAR UDTRYKKELIGT AFSLUTTET HELE TRÆNINGEN.",
-        "Svar kort og menneskeligt uden ny analyse, og sæt status til ended.",
-      ].join("\n")
-    : debriefMode
-      ? [
-          "DEBRIEF- OG UDVIKLINGSKONSULENTTILSTAND:",
-          "Træd ud af den spillede rolle. Tal nu direkte med brugeren som erfaren skolekonsulent, rådgiver og kritisk medspiller.",
-          "Brug de konkrete hændelser, formuleringer og reaktioner i current_state.turns. Giv ikke en generisk debrief, når konkrete oplysninger findes.",
-          "Ved alvorlige hændelser skal du nævne dem tydeligt og neutralt, forklare deres betydning for tryghed og ansvar og give et konkret næste skridt.",
-          "Skeln mellem observerede fakta, mulige fortolkninger og anbefalinger. Gæt ikke på kultur, religion, diagnose eller motiv.",
-          "Når brugeren ønsker mødeforberedelse, skal du give en menneskelig formulering, som kan siges højt, og pege på sandsynligt modspil.",
-          "Hold samtalehistorikken tilgængelig til opfølgende spørgsmål. Sæt status til active, medmindre brugeren udtrykkeligt siger, at hele træningen er færdig.",
-        ].join("\n")
-      : rolesAreLocked
-        ? [
         `ROLLELÅS: Brugeren spiller "${lockedUserRole}". Du spiller "${lockedCdaRole}".`,
         "Rollerne må ikke ændres i denne tur.",
         `user_message er en replik eller handling fra "${lockedUserRole}". Svar direkte og kun som "${lockedCdaRole}".`,
@@ -4133,11 +4111,30 @@ async function runRoleplayTurn({
         ].join("\n")
       : "Rolleskift eller ændring af deltagere må kun ske, når brugeren direkte har bedt om det.";
 
+  const debriefInstructions = finalEndRequested
+    ? [
+        "BRUGEREN AFSLUTTER NU TRÆNINGEN HELT.",
+        "Svar kort og afslut. Sæt status til ended.",
+      ].join("\n")
+    : inDebrief
+      ? [
+          "DEBRIEF-/RÅDGIVNINGSTILSTAND: Du er nu Heidi som skolekonsulent og udviklingspartner — ikke den tidligere rollefigur.",
+          "Brug hele current_state.turns som konkret grundlag. Udled ikke en standardskabelon, når forløbet indeholder faktiske hændelser og formuleringer.",
+          "Nævn de vigtigste konkrete observationer og alvorlige hændelser fra forløbet. Spring ikke sikkerheds-, trivsels- eller grænseoverskridende forhold over.",
+          "Vurder konkret, hvad brugerens ord gjorde godt, hvad der kunne skabe modstand eller misforståelse, og hvad næste faglige skridt er.",
+          "Hvis brugeren ønsker en formulering, lever en færdig formulering med de faktiske oplysninger fra forløbet. Brug aldrig pladsholdere som [konkret adfærd], [navn] eller lignende.",
+          "Ved følsomme antagelser om kultur, religion, køn eller familie skal du tydeligt forklare risikoen for fejltolkning og foreslå en neutral, undersøgende formulering.",
+          "Opfind ikke detaljer. Hvis en nødvendig oplysning mangler, sig præcist hvad der mangler.",
+          "Hold status active, så brugeren kan stille opfølgende spørgsmål til debriefen. Afslut kun helt ved en direkte anmodning om at afslutte træningen helt.",
+        ].join("\n")
+      : "Ingen debrief er aktiveret i denne tur.";
+
   const instructions = [
     "Du er CDA's dynamiske motor til perspektivtræning, rollespil og beskedtjek.",
     audienceInstructions,
     `AKTUEL SVARSTIL: ${responseStyle}`,
     roleLockInstructions,
+    debriefInstructions,
     "Før samtalen én replik ad gangen. Skriv aldrig brugerens replik for brugeren, medmindre brugeren direkte beder om en demonstration.",
     "Brug almindeligt, naturligt sprog. Start straks, når roller og situation er tydelige. Stil kun ét kort afklarende spørgsmål, hvis en nødvendig oplysning mangler.",
     "Under aktivt rollespil skal du blive i den valgte rolle. Giv kun feedback undervejs, hvis feedback_mode er during eller brugeren beder om det.",
@@ -4146,9 +4143,8 @@ async function runRoleplayTurn({
     "Påstå aldrig med sikkerhed, hvad et bestemt barn tænker eller føler. Brug formuleringer som 'kan muligvis opleves som'.",
     "Diagnoser er kun kontekst og må aldrig gøre en reaktion fast eller stereotyp.",
     "Forstå naturlige styringsønsker som stop, giv feedback, byt roller, prøv igen, start forfra, gør situationen sværere, tilføj en deltager, ingen feedback endnu, giv valgmuligheder og lad mig svare frit.",
-    debriefMode
-      ? "I debrief-tilstand skal du fortsætte som rådgiver og sætte status til active, medmindre brugeren udtrykkeligt afslutter hele træningen."
-      : "Hvis brugeren stopper og beder om vurdering eller råd, skal du skifte til debrief-tilstand og bevare forløbet til opfølgende spørgsmål.",
+    "En anmodning om debrief, rådgivning eller feedback afslutter ikke automatisk tilstanden. Debriefen skal bygge på hele det gemte forløb og status skal forblive active.",
+    "Sæt kun status til ended, når brugeren direkte afslutter træningen helt, eller når et enkeltstående beskedtjek tydeligt er færdigt.",
     "Hvis brugeren beder om beskedtjek uden et egentligt rollespil, kan du gennemføre beskedtjekket i ét svar og afslutte, medmindre brugeren tydeligt vil træne videre.",
     "Returnér kun gyldig JSON efter det krævede schema.",
   ].join("\n");
@@ -4165,6 +4161,8 @@ async function runRoleplayTurn({
       user_role: lockedUserRole || null,
       cda_role: lockedCdaRole || null,
       structure_change_requested: structureChangeRequested,
+      debrief_active: inDebrief,
+      final_end_requested: finalEndRequested,
     },
     scenario_context: scenarioContext,
     output_language: language,
@@ -4235,14 +4233,16 @@ async function runRoleplayTurn({
     throw new Error("Ufuldstændigt svar fra CDA-rollespilsmotoren");
   }
 
-  const result = JSON.parse(response.output_text || "{}");
-
-  if (finalEndRequested) {
-    result.status = "ended";
-  } else if (debriefMode) {
-    result.status = "active";
-  }
-
+  const rawResult = JSON.parse(response.output_text || "{}");
+  const effectiveStatus = finalEndRequested
+    ? "ended"
+    : inDebrief
+      ? "active"
+      : rawResult.status;
+  const result = {
+    ...rawResult,
+    status: effectiveStatus,
+  };
   const turns = trimRoleplayTranscript([
     ...(currentState.turns || []),
     { role: "user", text: message },
@@ -4274,7 +4274,7 @@ async function runRoleplayTurn({
       feedback_mode: result.feedback_mode,
       phase: finalEndRequested
         ? "ended"
-        : debriefMode
+        : inDebrief
           ? "debrief"
           : result.status,
       scenario_id: preserveRoleplayStructure
