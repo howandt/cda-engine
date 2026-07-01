@@ -360,6 +360,94 @@
       font-size: 0.80rem;
     }
 
+    .faq-intro {
+      margin-bottom: 10px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .faq-item {
+      border: 1px solid #dfe6f0;
+      border-radius: 11px;
+      background: white;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      padding: 11px 12px;
+      color: #2e4058;
+      background: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 850;
+    }
+
+    .faq-item summary:hover,
+    .faq-item summary:focus-visible {
+      background: #f6f8fc;
+      outline: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-body {
+      padding: 0 12px 12px;
+      color: #53647a;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .faq-body p + p {
+      margin-top: 8px;
+    }
+
+    .faq-prompts {
+      display: grid;
+      gap: 6px;
+      margin-top: 9px;
+    }
+
+    .faq-prompt {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: 9px;
+      color: #3f5068;
+      background: #f9fbfd;
+      text-align: left;
+      font-size: 0.80rem;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    .faq-prompt:hover,
+    .faq-prompt:focus-visible {
+      border-color: #c8d5f5;
+      background: #f1f5ff;
+      outline: none;
+    }
+
+    .faq-note {
+      margin-top: 10px;
+      padding: 10px 11px;
+      border-radius: 9px;
+      color: #39516b;
+      background: #eef5ff;
+      font-size: 0.80rem;
+      font-weight: 700;
+    }
+
     .message-row {
       width: 100%;
       display: flex;
@@ -749,19 +837,125 @@
         <details class="help-box">
           <summary>ⓘ Sådan bruger du CDA</summary>
           <div class="help-content">
-            <p>
-              Skriv gerne, hvad du observerer, hvornår det sker, og hvad I allerede
-              har prøvet. Du behøver ikke bruge faglige ord.
-            </p>
-            <p>
-              Du kan spørge om adfærd, diagnoser, mulig komorbiditet, støtte i
-              hverdagen, skole-hjem-samarbejde, PBL, cases og skabeloner.
+            <p class="faq-intro">
+              Du behøver ikke kende den rigtige faglige formulering. Skriv med dine egne ord,
+              hvad du ser, hvad du er bekymret for, eller hvad du vil have hjælp til.
             </p>
 
-            <div class="help-examples" aria-label="Eksempler på spørgsmål">
-              <div class="help-example">“En elev bliver meget vred ved skift. Hvad kan vi gøre?”</div>
-              <div class="help-example">“Barnet vil ikke længere i skole. Hvordan starter vi roligt?”</div>
-              <div class="help-example">“Lav en kort observationslog til skole og hjem.”</div>
+            <div class="faq-list" aria-label="Hjælp til at bruge CDA">
+              <details class="faq-item">
+                <summary>Hvordan beskriver jeg en elevsituation?</summary>
+                <div class="faq-body">
+                  <p>Fortæl kort, hvad der sker, hvornår det sker, og hvad I allerede har prøvet.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="En elev forlader sin plads efter få minutter og forstyrrer undervisningen. Hvad kan jeg gøre?">En elev forlader sin plads efter få minutter. Hvad kan jeg gøre?</button>
+                    <button class="faq-prompt" type="button" data-prompt="En elev bliver vred ved skift mellem aktiviteter. Hvad kan ligge bag, og hvad kan jeg prøve?">En elev bliver vred ved skift. Hvad kan ligge bag?</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvordan spørger jeg om en diagnose?</summary>
+                <div class="faq-body">
+                  <p>Spørg hvordan en diagnose kan vise sig i skolen, og hvad der kan hjælpe i praksis.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="Hvad skal jeg som lærer være opmærksom på ved ADHD?">Hvad skal jeg være opmærksom på ved ADHD?</button>
+                    <button class="faq-prompt" type="button" data-prompt="Hvordan kan autisme vise sig i en almindelig klasse?">Hvordan kan autisme vise sig i klassen?</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvordan får jeg konkrete råd til undervisningen?</summary>
+                <div class="faq-body">
+                  <p>Beskriv elevens udfordring, alder eller klassetrin og den konkrete situation.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="Hvordan gør jeg en opgave mere overskuelig for en elev med koncentrationsvanskeligheder?">Hvordan gør jeg en opgave mere overskuelig?</button>
+                    <button class="faq-prompt" type="button" data-prompt="Hvad kan jeg gøre, når en elev mister fokus efter 10 minutter?">Eleven mister fokus efter 10 minutter. Hvad gør jeg?</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvordan får jeg hjælp til uro, konflikter eller stærke reaktioner?</summary>
+                <div class="faq-body">
+                  <p>Beskriv gerne, hvad der sker lige før, under og efter situationen.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="Hvorfor bliver eleven vred, når han skal vente, og hvad kan vi gøre?">Hvorfor bliver eleven vred, når han skal vente?</button>
+                    <button class="faq-prompt" type="button" data-prompt="Hvordan følger jeg op efter en konflikt uden at skabe mere modstand?">Hvordan følger jeg op efter en konflikt?</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvordan spørger jeg om sensoriske behov?</summary>
+                <div class="faq-body">
+                  <p>Du kan spørge om støj, lys, berøring, bevægelse, uro og regulerende værktøjer.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="Hvordan kan jeg se, om en elev bliver overbelastet af støj?">Hvordan ser jeg tegn på overbelastning fra støj?</button>
+                    <button class="faq-prompt" type="button" data-prompt="Hvordan kan vi indrette et roligt område i klassen uden at isolere eleven?">Hvordan indretter vi et roligt område i klassen?</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvordan får jeg hjælp til skole-hjem-samarbejde?</summary>
+                <div class="faq-body">
+                  <p>CDA kan hjælpe med forberedelse, formuleringer, struktur og konkrete aftaler.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="Hvordan taler jeg med forældrene om deres barns uro uden at skabe konflikt?">Hvordan taler jeg med forældrene om barnets uro?</button>
+                    <button class="faq-prompt" type="button" data-prompt="Hvilke aftaler bør skrives ned efter en skole-hjem-samtale?">Hvilke aftaler bør skrives ned efter mødet?</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvordan får jeg hjælp til observationer og PPR?</summary>
+                <div class="faq-body">
+                  <p>Beskriv, hvad du har set. CDA kan hjælpe med at gøre materialet konkret, neutralt og anvendeligt.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="Hvordan beskriver jeg elevens adfærd neutralt uden at tolke eller diagnosticere?">Hvordan beskriver jeg adfærd neutralt?</button>
+                    <button class="faq-prompt" type="button" data-prompt="Hvilke observationer er relevante at sende til PPR?">Hvilke observationer er relevante for PPR?</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvordan finder jeg en guide eller skabelon?</summary>
+                <div class="faq-body">
+                  <p>Skriv, hvad du skal bruge dokumentet til. Du behøver ikke kende det præcise navn.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="Vis en guide til modtagelse af en ny elev med ADHD.">Vis en guide til modtagelse af en ny elev med ADHD.</button>
+                    <button class="faq-prompt" type="button" data-prompt="Hent en skabelon til skole-hjem-samtale.">Hent en skabelon til skole-hjem-samtale.</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvordan får jeg hjælp til motivation, interesser og PBL?</summary>
+                <div class="faq-body">
+                  <p>Fortæl, hvad eleven interesserer sig for, og hvilket fagligt mål der skal arbejdes med.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="En elev elsker cykler. Hvordan kan jeg bruge det i et matematikforløb?">Hvordan bruger jeg elevens interesse for cykler i matematik?</button>
+                    <button class="faq-prompt" type="button" data-prompt="Lav et kort PBL-forløb med fokus på dansk og elevens interesse for dyr.">Lav et PBL-forløb ud fra elevens interesse.</button>
+                  </div>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary>Hvad gør jeg, når jeg ikke ved, hvad jeg skal spørge om?</summary>
+                <div class="faq-body">
+                  <p>Start med det, du ser. CDA kan hjælpe med at afklare, hvad næste skridt bør være.</p>
+                  <div class="faq-prompts">
+                    <button class="faq-prompt" type="button" data-prompt="Jeg er bekymret for en elev, men jeg ved ikke præcis hvorfor. Hjælp mig med at finde ud af, hvad jeg skal observere.">Jeg er bekymret for en elev, men ved ikke præcis hvorfor.</button>
+                    <button class="faq-prompt" type="button" data-prompt="Jeg har prøvet flere ting uden effekt. Hvad skal jeg se nærmere på?">Jeg har prøvet flere ting uden effekt. Hvad nu?</button>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="faq-note">
+              Tryk på et eksempel for at sætte det ind i skrivefeltet. Du kan altid rette teksten, før du sender.
             </div>
           </div>
         </details>
@@ -1062,6 +1256,15 @@
         scrollToBottom();
       }
     }
+
+    document.querySelectorAll(".faq-prompt").forEach((button) => {
+      button.addEventListener("click", () => {
+        const prompt = button.dataset.prompt || "";
+        besked.value = prompt;
+        besked.focus({ preventScroll: true });
+        besked.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
 
     sendKnap.addEventListener("click", sendMessage);
 
