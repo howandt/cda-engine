@@ -2,7 +2,10 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
+  />
   <meta
     name="description"
     content="CDA – praksisnær støtte til lærere, pædagoger og fagpersoner."
@@ -25,6 +28,7 @@
       --danger: #b42318;
       --danger-bg: #fff1f0;
       --shadow: 0 22px 60px rgba(31, 50, 81, 0.13);
+      --app-height: 100dvh;
     }
 
     * {
@@ -35,12 +39,13 @@
 
     html,
     body {
-      height: 100%;
+      min-height: 100%;
     }
 
     body {
-      min-height: 100vh;
-      overflow: hidden;
+      min-height: 100svh;
+      overflow-x: hidden;
+      overflow-y: auto;
       font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
@@ -50,21 +55,39 @@
     }
 
     button,
-    textarea {
+    textarea,
+    select {
       font: inherit;
+    }
+
+    button,
+    summary,
+    select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     .app-shell {
       width: min(1180px, calc(100% - 28px));
-      height: calc(100vh - 28px);
+      height: calc(var(--app-height) - 28px);
+      min-height: 520px;
       margin: 14px auto;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
       border: 1px solid rgba(220, 229, 239, 0.95);
       border-radius: 24px;
       background: var(--surface);
       box-shadow: var(--shadow);
+    }
+
+    .app-shell.is-start {
+      height: auto;
+      min-height: 0;
+      overflow: visible;
     }
 
     .topbar {
@@ -73,15 +96,17 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
+      flex: 0 0 auto;
       padding: 14px 22px;
       border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .brand-mark {
@@ -89,6 +114,7 @@
       height: 46px;
       display: grid;
       place-items: center;
+      flex: 0 0 auto;
       border-radius: 14px;
       color: white;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -99,6 +125,7 @@
     }
 
     .brand-copy {
+      min-width: 0;
       display: flex;
       flex-direction: column;
       line-height: 1.15;
@@ -119,6 +146,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
+      align-items: center;
       gap: 8px;
     }
 
@@ -130,23 +158,111 @@
       background: var(--surface-soft);
       font-size: 0.78rem;
       font-weight: 800;
+      white-space: nowrap;
     }
 
-    .settings-link {
+    .settings-button {
       display: inline-flex;
       align-items: center;
-      padding: 7px 10px;
+      justify-content: center;
+      min-height: 32px;
+      padding: 7px 11px;
+      border: 0;
       border-radius: 999px;
       color: var(--primary-dark);
       background: #edf1ff;
       font-size: 0.78rem;
       font-weight: 850;
-      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .settings-button:hover,
+    .settings-button:focus-visible {
+      background: #e0e7ff;
+      outline: none;
+    }
+
+    .settings-panel {
+      flex: 0 0 auto;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--line);
+      background: #f8faff;
+    }
+
+    .settings-panel-inner {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .settings-heading {
+      margin-bottom: 12px;
+      font-size: 0.96rem;
+      font-weight: 850;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .field-label {
+      display: grid;
+      gap: 6px;
+      color: #46566d;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .field-label select {
+      width: 100%;
+      min-height: 43px;
+      padding: 9px 11px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--text);
+      background: white;
+      outline: none;
+    }
+
+    .field-label select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
+    }
+
+    .settings-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .small-button {
+      min-height: 39px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .small-button.secondary {
+      border: 1px solid var(--line);
+      color: #46566d;
+      background: white;
+    }
+
+    .small-button.primary {
+      border: 0;
+      color: white;
+      background: var(--primary);
     }
 
     .conversation {
       min-height: 0;
+      flex: 1 1 auto;
       overflow-y: auto;
+      overscroll-behavior: contain;
       padding: 28px clamp(18px, 4vw, 46px);
       background:
         linear-gradient(rgba(245, 248, 252, 0.88), rgba(245, 248, 252, 0.88)),
@@ -154,13 +270,21 @@
       scroll-behavior: smooth;
     }
 
+    .app-shell.is-start .conversation {
+      flex: 0 0 auto;
+      min-height: 0;
+      overflow: visible;
+      padding-top: 28px;
+      padding-bottom: 14px;
+    }
+
     .welcome {
-      max-width: 660px;
-      margin: 0 auto 26px;
-      padding: 20px 22px;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 22px;
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.86);
+      background: rgba(255, 255, 255, 0.90);
       text-align: center;
     }
 
@@ -170,10 +294,70 @@
       letter-spacing: -0.03em;
     }
 
-    .welcome p {
+    .welcome-lead {
       margin-top: 9px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.55;
+    }
+
+    .help-box {
+      margin-top: 16px;
+      border: 1px solid #d9e3ff;
+      border-radius: 13px;
+      background: #f7f9ff;
+      text-align: left;
+    }
+
+    .help-box summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      color: var(--primary-dark);
+      font-size: 0.86rem;
+      font-weight: 850;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .help-box summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .help-box summary::after {
+      content: "+";
+      flex: 0 0 auto;
+      font-size: 1.05rem;
+    }
+
+    .help-box[open] summary::after {
+      content: "−";
+    }
+
+    .help-content {
+      padding: 0 14px 14px;
+      color: #4e5f75;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .help-content p + p {
+      margin-top: 8px;
+    }
+
+    .help-examples {
+      display: grid;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .help-example {
+      padding: 8px 10px;
+      border-radius: 9px;
+      color: #3f5068;
+      background: white;
+      font-size: 0.80rem;
     }
 
     .message-row {
@@ -262,14 +446,22 @@
     }
 
     .composer {
-      padding: 16px 20px 18px;
+      flex: 0 0 auto;
+      padding: 16px 20px max(18px, env(safe-area-inset-bottom));
       border-top: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.99);
+    }
+
+    .app-shell.is-start .composer {
+      border-top: 0;
+      padding-top: 0;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
     }
 
     .composer-inner {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: end;
       gap: 12px;
       max-width: 980px;
@@ -331,6 +523,7 @@
       margin: 7px auto 0;
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
       gap: 14px;
       color: var(--muted);
       font-size: 0.76rem;
@@ -347,54 +540,135 @@
       background: var(--danger-bg);
     }
 
-    @media (max-width: 720px) {
-      .app-shell {
+    @media (max-width: 760px) {
+      body {
+        background: var(--surface);
+      }
+
+      .app-shell,
+      .app-shell.is-start {
         width: 100%;
-        height: 100vh;
         margin: 0;
         border: 0;
         border-radius: 0;
+        box-shadow: none;
+      }
+
+      .app-shell:not(.is-start) {
+        height: var(--app-height);
+        min-height: 0;
       }
 
       .topbar {
-        min-height: 68px;
-        padding: 10px 14px;
+        min-height: 64px;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 9px 12px;
       }
 
-      .brand-copy span,
-      .session-pill {
+      .brand-mark {
+        width: 41px;
+        height: 41px;
+        border-radius: 12px;
+      }
+
+      .brand-copy span {
         display: none;
       }
 
-      .conversation {
-        padding: 20px 12px;
+      .session-info {
+        max-width: 68%;
+        gap: 5px;
+      }
+
+      .session-pill,
+      .settings-button {
+        min-height: 29px;
+        padding: 5px 8px;
+        font-size: 0.69rem;
+      }
+
+      .settings-panel {
+        padding: 14px 12px;
+      }
+
+      .settings-grid {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .conversation,
+      .app-shell.is-start .conversation {
+        padding: 18px 12px 12px;
+      }
+
+      .welcome {
+        padding: 18px 14px;
+      }
+
+      .welcome h1 {
+        font-size: 1.48rem;
+      }
+
+      .welcome-lead {
+        font-size: 0.91rem;
       }
 
       .message {
-        max-width: 91%;
+        max-width: 92%;
       }
 
-      .composer {
-        padding: 12px;
+      .composer,
+      .app-shell.is-start .composer {
+        padding: 10px 10px max(10px, env(safe-area-inset-bottom));
       }
 
       .composer-inner {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr) 92px;
+        gap: 8px;
+      }
+
+      #besked {
+        min-height: 50px;
+        padding: 12px;
+        resize: none;
       }
 
       #sendKnap {
-        width: 100%;
+        min-width: 0;
+        min-height: 50px;
+        padding: 0 12px;
       }
 
       .composer-meta {
+        display: block;
+        min-height: 0;
+        margin-top: 5px;
+      }
+
+      .composer-meta > span {
         display: none;
+      }
+
+      #fejl:not(:empty) {
+        display: block;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .brand-copy {
+        display: none;
+      }
+
+      .session-info {
+        max-width: calc(100% - 52px);
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="app-shell">
+  <main class="app-shell is-start" id="appShell">
     <header class="topbar">
       <div class="brand">
         <div class="brand-mark">CDAI</div>
@@ -407,17 +681,90 @@
       <div class="session-info" aria-label="Aktuelle indstillinger">
         <span class="session-pill" id="rolleVisning"></span>
         <span class="session-pill" id="svarstilVisning"></span>
-        <a class="settings-link" href="/cda.html">Skift indstillinger</a>
+        <button
+          class="settings-button"
+          id="settingsToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="settingsPanel"
+        >
+          Skift indstillinger
+        </button>
       </div>
     </header>
+
+    <section class="settings-panel" id="settingsPanel" hidden>
+      <div class="settings-panel-inner">
+        <div class="settings-heading">Indstillinger for næste svar</div>
+
+        <div class="settings-grid">
+          <label class="field-label" for="sprogValg">
+            Sprog
+            <select id="sprogValg">
+              <option value="Dansk">Dansk</option>
+              <option value="English">English</option>
+            </select>
+          </label>
+
+          <label class="field-label" for="rolleValg">
+            Din rolle
+            <select id="rolleValg">
+              <option value="Lærer">Lærer</option>
+              <option value="Pædagog">Pædagog</option>
+              <option value="Forælder">Forælder</option>
+              <option value="Specialist">Psykolog / specialist</option>
+              <option value="Andet">Andet</option>
+            </select>
+          </label>
+
+          <label class="field-label" for="svarstilValg">
+            Svarlængde
+            <select id="svarstilValg">
+              <option value="Kort">Kort</option>
+              <option value="Mellem">Mellem</option>
+              <option value="Dyb">Dyb</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="settings-actions">
+          <button class="small-button secondary" id="settingsCancel" type="button">
+            Annuller
+          </button>
+          <button class="small-button primary" id="settingsSave" type="button">
+            Gem indstillinger
+          </button>
+        </div>
+      </div>
+    </section>
 
     <section id="chat" class="conversation" aria-live="polite">
       <div class="welcome" id="welcome">
         <h1>Hvad vil du gerne have hjælp til?</h1>
-        <p>
-          Beskriv en konkret situation, stil et spørgsmål eller bed CDA om en case,
-          skabelon eller et praksisnært næste skridt.
+        <p class="welcome-lead">
+          Beskriv situationen med dine egne ord. CDA hjælper med at skabe overblik
+          og finde et konkret næste skridt.
         </p>
+
+        <details class="help-box">
+          <summary>ⓘ Sådan bruger du CDA</summary>
+          <div class="help-content">
+            <p>
+              Skriv gerne, hvad du observerer, hvornår det sker, og hvad I allerede
+              har prøvet. Du behøver ikke bruge faglige ord.
+            </p>
+            <p>
+              Du kan spørge om adfærd, diagnoser, mulig komorbiditet, støtte i
+              hverdagen, skole-hjem-samarbejde, PBL, cases og skabeloner.
+            </p>
+
+            <div class="help-examples" aria-label="Eksempler på spørgsmål">
+              <div class="help-example">“En elev bliver meget vred ved skift. Hvad kan vi gøre?”</div>
+              <div class="help-example">“Barnet vil ikke længere i skole. Hvordan starter vi roligt?”</div>
+              <div class="help-example">“Lav en kort observationslog til skole og hjem.”</div>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -426,7 +773,7 @@
         <textarea
           id="besked"
           placeholder="Skriv dit spørgsmål eller din situation her..."
-          rows="3"
+          rows="2"
         ></textarea>
 
         <button id="sendKnap" type="button">Send</button>
@@ -441,10 +788,11 @@
 
   <script>
     const adgangskode = localStorage.getItem("cda_adgangskode");
-    const sprog = localStorage.getItem("cda_sprog");
-    const rolle = localStorage.getItem("cda_rolle");
-    const svarstil = localStorage.getItem("cda_response_style");
+    let sprog = localStorage.getItem("cda_sprog");
+    let rolle = localStorage.getItem("cda_rolle");
+    let svarstil = localStorage.getItem("cda_response_style");
 
+    const appShell = document.getElementById("appShell");
     const chat = document.getElementById("chat");
     const besked = document.getElementById("besked");
     const sendKnap = document.getElementById("sendKnap");
@@ -453,14 +801,83 @@
     const rolleVisning = document.getElementById("rolleVisning");
     const svarstilVisning = document.getElementById("svarstilVisning");
 
+    const settingsToggle = document.getElementById("settingsToggle");
+    const settingsPanel = document.getElementById("settingsPanel");
+    const settingsSave = document.getElementById("settingsSave");
+    const settingsCancel = document.getElementById("settingsCancel");
+    const sprogValg = document.getElementById("sprogValg");
+    const rolleValg = document.getElementById("rolleValg");
+    const svarstilValg = document.getElementById("svarstilValg");
+
     let pendingAction = sessionStorage.getItem("cda_pending_action");
 
     if (!adgangskode || !sprog || !rolle || !svarstil) {
       window.location.href = "/cda.html";
     }
 
-    rolleVisning.textContent = rolle || "";
-    svarstilVisning.textContent = svarstil ? `Svar: ${svarstil}` : "";
+    function syncViewportHeight() {
+      const viewportHeight = window.visualViewport?.height || window.innerHeight;
+      document.documentElement.style.setProperty("--app-height", `${viewportHeight}px`);
+    }
+
+    syncViewportHeight();
+    window.addEventListener("resize", syncViewportHeight);
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", syncViewportHeight);
+    }
+
+    function updateSessionDisplay() {
+      rolleVisning.textContent = rolle || "";
+      svarstilVisning.textContent = svarstil ? `Svar: ${svarstil}` : "";
+    }
+
+    function fillSettingsForm() {
+      sprogValg.value = sprog;
+      rolleValg.value = rolle;
+      svarstilValg.value = svarstil;
+    }
+
+    function setSettingsOpen(open) {
+      settingsPanel.hidden = !open;
+      settingsToggle.setAttribute("aria-expanded", String(open));
+
+      if (open) {
+        fillSettingsForm();
+      }
+    }
+
+    settingsToggle.addEventListener("click", () => {
+      setSettingsOpen(settingsPanel.hidden);
+    });
+
+    settingsCancel.addEventListener("click", () => {
+      setSettingsOpen(false);
+    });
+
+    settingsSave.addEventListener("click", () => {
+      sprog = sprogValg.value;
+      rolle = rolleValg.value;
+      svarstil = svarstilValg.value;
+
+      localStorage.setItem("cda_sprog", sprog);
+      localStorage.setItem("cda_rolle", rolle);
+      localStorage.setItem("cda_response_style", svarstil);
+
+      updateSessionDisplay();
+      setSettingsOpen(false);
+      besked.focus({ preventScroll: true });
+    });
+
+    updateSessionDisplay();
+    fillSettingsForm();
+
+    function activateConversationLayout() {
+      if (appShell.classList.contains("is-start")) {
+        appShell.classList.remove("is-start");
+        syncViewportHeight();
+      }
+    }
 
     function scrollToBottom() {
       chat.scrollTop = chat.scrollHeight;
@@ -585,15 +1002,21 @@
       fejl.textContent = "";
       sendKnap.disabled = true;
       sendKnap.textContent = "Arbejder...";
+      setSettingsOpen(false);
 
       if (welcome) {
         welcome.remove();
       }
 
+      activateConversationLayout();
       appendMessage("user", tekst);
       besked.value = "";
 
-      const typingRow = appendMessage("assistant", "CDA arbejder med dit spørgsmål...", "typing");
+      const typingRow = appendMessage(
+        "assistant",
+        "CDA arbejder med dit spørgsmål...",
+        "typing"
+      );
 
       try {
         const svar = await fetch("/api/cda-chat", {
@@ -635,7 +1058,8 @@
       } finally {
         sendKnap.disabled = false;
         sendKnap.textContent = "Send";
-        besked.focus();
+        besked.focus({ preventScroll: true });
+        scrollToBottom();
       }
     }
 
@@ -648,7 +1072,8 @@
       }
     });
 
-    besked.focus();
+    // Ingen automatisk fokus ved åbning. Det forhindrer, at mobilens tastatur
+    // straks åbner og skjuler dele af startskærmen.
   </script>
 </body>
 </html>
