@@ -182,6 +182,28 @@
       outline: none;
     }
 
+    .new-conversation-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 7px 11px;
+      border: 1px solid #cfd9ea;
+      border-radius: 999px;
+      color: #3f5068;
+      background: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .new-conversation-button:hover,
+    .new-conversation-button:focus-visible {
+      border-color: #b8c7df;
+      background: #f5f8fc;
+      outline: none;
+    }
+
     .settings-panel {
       flex: 0 0 auto;
       padding: 16px 22px;
@@ -308,7 +330,7 @@
       text-align: left;
     }
 
-    .help-box summary {
+    .help-box > summary {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -321,17 +343,17 @@
       list-style: none;
     }
 
-    .help-box summary::-webkit-details-marker {
+    .help-box > summary::-webkit-details-marker {
       display: none;
     }
 
-    .help-box summary::after {
+    .help-box > summary::after {
       content: "+";
       flex: 0 0 auto;
       font-size: 1.05rem;
     }
 
-    .help-box[open] summary::after {
+    .help-box[open] > summary::after {
       content: "−";
     }
 
@@ -770,6 +792,15 @@
         <span class="session-pill" id="rolleVisning"></span>
         <span class="session-pill" id="svarstilVisning"></span>
         <button
+          class="new-conversation-button"
+          id="newConversationButton"
+          type="button"
+          hidden
+        >
+          Ny samtale
+        </button>
+
+        <button
           class="settings-button"
           id="settingsToggle"
           type="button"
@@ -991,7 +1022,9 @@
     const besked = document.getElementById("besked");
     const sendKnap = document.getElementById("sendKnap");
     const fejl = document.getElementById("fejl");
-    const welcome = document.getElementById("welcome");
+    let welcome = document.getElementById("welcome");
+    const welcomeTemplate = welcome.outerHTML;
+    const newConversationButton = document.getElementById("newConversationButton");
     const rolleVisning = document.getElementById("rolleVisning");
     const svarstilVisning = document.getElementById("svarstilVisning");
 
@@ -1071,6 +1104,8 @@
         appShell.classList.remove("is-start");
         syncViewportHeight();
       }
+
+      newConversationButton.hidden = false;
     }
 
     function scrollToBottom() {
@@ -1257,15 +1292,38 @@
       }
     }
 
-    document.querySelectorAll(".faq-prompt").forEach((button) => {
-      button.addEventListener("click", () => {
-        const prompt = button.dataset.prompt || "";
-        besked.value = prompt;
-        besked.focus({ preventScroll: true });
-        besked.scrollIntoView({ behavior: "smooth", block: "center" });
+    function bindFaqPrompts() {
+      document.querySelectorAll(".faq-prompt").forEach((button) => {
+        button.addEventListener("click", () => {
+          const prompt = button.dataset.prompt || "";
+          besked.value = prompt;
+          besked.focus({ preventScroll: true });
+          besked.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
       });
-    });
+    }
 
+    function startNewConversation() {
+      pendingAction = null;
+      sessionStorage.removeItem("cda_pending_action");
+
+      chat.innerHTML = welcomeTemplate;
+      welcome = document.getElementById("welcome");
+
+      besked.value = "";
+      fejl.textContent = "";
+      setSettingsOpen(false);
+
+      appShell.classList.add("is-start");
+      newConversationButton.hidden = true;
+
+      bindFaqPrompts();
+      syncViewportHeight();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    bindFaqPrompts();
+    newConversationButton.addEventListener("click", startNewConversation);
     sendKnap.addEventListener("click", sendMessage);
 
     besked.addEventListener("keydown", (event) => {
