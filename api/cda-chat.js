@@ -3759,6 +3759,322 @@ function shouldUseSpecializedToolFlow(message) {
   return explicitPatterns.some((pattern) => text.includes(pattern));
 }
 
+
+
+const ROLEPLAY_STATE_PREFIX = "roleplay:";
+const ROLEPLAY_MAX_TURNS = 12;
+
+function encodeRoleplayState(data) {
+  return `${ROLEPLAY_STATE_PREFIX}${Buffer.from(
+    JSON.stringify(data),
+    "utf8"
+  ).toString("base64url")}`;
+}
+
+function decodeRoleplayState(value) {
+  const text = String(value || "");
+
+  if (!text.startsWith(ROLEPLAY_STATE_PREFIX)) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(
+      Buffer.from(
+        text.slice(ROLEPLAY_STATE_PREFIX.length),
+        "base64url"
+      ).toString("utf8")
+    );
+
+    if (!parsed || typeof parsed !== "object") {
+      return null;
+    }
+
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function isRoleplayStartRequest(message) {
+  const text = normalizeReplyIntent(message);
+  const patterns = [
+    "rollespil",
+    "rolleleg",
+    "start en samtaletræning",
+    "start samtaletræning",
+    "øv en samtale",
+    "ove en samtale",
+    "træn en samtale",
+    "traen en samtale",
+    "spil en elev",
+    "spil et barn",
+    "spil en forælder",
+    "spil en foraelder",
+    "spil læreren",
+    "spil laereren",
+    "beskedtjek",
+    "test denne besked",
+    "test min besked",
+    "hvad hører barnet",
+    "hvad horer barnet",
+    "hvad kan barnet høre",
+    "hvad kan barnet hore",
+    "vis barnets perspektiv",
+    "perspektivskifte",
+    "byt roller"
+  ];
+
+  return patterns.some((pattern) => text.includes(pattern));
+}
+
+function getRoleplayScenarioContext(message) {
+  const result = getRollespil();
+  const scenarios = Array.isArray(result?.data) ? result.data : [];
+
+  if (scenarios.length === 0) {
+    return null;
+  }
+
+  const queryWords = normalizeReplyIntent(message)
+    .split(" ")
+    .filter((word) => word.length >= 4);
+
+  const scoreScenario = (scenario) => {
+    const searchable = normalizeReplyIntent([
+      scenario?.id,
+      scenario?.titel,
+      scenario?.sted,
+      scenario?.tid,
+      ...(Array.isArray(scenario?.roller)
+        ? scenario.roller.flatMap((item) => [
+            item?.id,
+            item?.rolle,
+            item?.følelse,
+            item?.mål,
+          ])
+        : []),
+      ...(Array.isArray(scenario?.dialog)
+        ? scenario.dialog.map((item) => item?.tekst)
+        : []),
+    ].filter(Boolean).join(" "));
+
+    return queryWords.reduce(
+      (score, word) => score + (searchable.includes(word) ? 1 : 0),
+      0
+    );
+  };
+
+  const ranked = scenarios
+    .map((scenario) => ({ scenario, score: scoreScenario(scenario) }))
+    .sort((a, b) => b.score - a.score);
+
+  const best = ranked[0];
+
+  if (!best || best.score === 0) {
+    return {
+      available_scenarios: scenarios.slice(0, 8).map((scenario) => ({
+        id: scenario?.id || null,
+        title: scenario?.titel || null,
+      })),
+    };
+  }
+
+  return {
+    selected_scenario: best.scenario,
+  };
+}
+
+function trimRoleplayTranscript(turns) {
+  if (!Array.isArray(turns)) {
+    return [];
+  }
+
+  return turns
+    .filter(
+      (turn) =>
+        turn &&
+        ["user", "assistant"].includes(turn.role) &&
+        typeof turn.text === "string"
+    )
+    .slice(-ROLEPLAY_MAX_TURNS)
+    .map((turn) => ({
+      role: turn.role,
+      text: turn.text.slice(0, 1800),
+    }));
+}
+
+async function runRoleplayTurn({
+  message,
+  state,
+  language,
+  role,
+  responseStyle,
+  audienceInstructions,
+}) {
+  const isStarting = !state;
+  const scenarioContext = isStarting
+    ? getRoleplayScenarioContext(message)
+    : null;
+
+  const currentState = state || {
+    version: 1,
+    mode: "free_roleplay",
+    user_role: role,
+    cda_role: "",
+    participants: [],
+    situation: "",
+    feedback_mode: "at_end",
+    phase: "active",
+    scenario_id: null,
+    turns: [],
+  };
+
+  const instructions = [
+    "Du er CDA's dynamiske motor til perspektivtræning, rollespil og beskedtjek.",
+    audienceInstructions,
+    `AKTUEL SVARSTIL: ${responseStyle}`,
+    "Før samtalen én replik ad gangen. Skriv aldrig brugerens replik for brugeren, medmindre brugeren direkte beder om en demonstration.",
+    "Brug almindeligt, naturligt sprog. Start straks, når roller og situation er tydelige. Stil kun ét kort afklarende spørgsmål, hvis en nødvendig oplysning mangler.",
+    "Under aktivt rollespil skal du blive i den valgte rolle. Giv kun feedback undervejs, hvis feedback_mode er during eller brugeren beder om det.",
+    "Ved feedback skal du være konkret og ærlig om tydelighed, tone, samarbejde, grænsesætning og mulige misforståelser. Ros ikke automatisk.",
+    "Ved reverse-perspektiv skal du skelne mellem afsenderens hensigt, mulig oplevelse hos modtageren, risiko for misforståelse og en mulig justering.",
+    "Påstå aldrig med sikkerhed, hvad et bestemt barn tænker eller føler. Brug formuleringer som 'kan muligvis opleves som'.",
+    "Diagnoser er kun kontekst og må aldrig gøre en reaktion fast eller stereotyp.",
+    "Forstå naturlige styringsønsker som stop, giv feedback, byt roller, prøv igen, start forfra, gør situationen sværere, tilføj en deltager, ingen feedback endnu, giv valgmuligheder og lad mig svare frit.",
+    "Hvis brugeren stopper, skal du give en kort samlet vurdering og sætte status til ended.",
+    "Hvis brugeren beder om beskedtjek uden et egentligt rollespil, kan du gennemføre beskedtjekket i ét svar og afslutte, medmindre brugeren tydeligt vil træne videre.",
+    "Returnér kun gyldig JSON efter det krævede schema.",
+  ].join("\n");
+
+  const input = JSON.stringify({
+    action: isStarting ? "start" : "continue",
+    user_message: message,
+    current_state: {
+      ...currentState,
+      turns: trimRoleplayTranscript(currentState.turns),
+    },
+    scenario_context: scenarioContext,
+    output_language: language,
+  });
+
+  const response = await openai.responses.create({
+    model: "gpt-5.4-mini",
+    reasoning: {
+      effort: "low",
+    },
+    instructions,
+    input,
+    max_output_tokens: responseStyle === "Dyb" ? 900 : 650,
+    text: {
+      format: {
+        type: "json_schema",
+        name: "cda_roleplay_turn",
+        strict: true,
+        schema: {
+          type: "object",
+          properties: {
+            reply: { type: "string" },
+            status: {
+              type: "string",
+              enum: ["active", "ended"],
+            },
+            mode: {
+              type: "string",
+              enum: [
+                "free_roleplay",
+                "training",
+                "message_check",
+                "reverse_perspective"
+              ],
+            },
+            user_role: { type: "string" },
+            cda_role: { type: "string" },
+            participants: {
+              type: "array",
+              items: { type: "string" },
+              maxItems: 8,
+            },
+            situation: { type: "string" },
+            feedback_mode: {
+              type: "string",
+              enum: ["during", "at_end", "none"],
+            },
+            scenario_id: { type: ["string", "null"] },
+          },
+          required: [
+            "reply",
+            "status",
+            "mode",
+            "user_role",
+            "cda_role",
+            "participants",
+            "situation",
+            "feedback_mode",
+            "scenario_id"
+          ],
+          additionalProperties: false,
+        },
+      },
+    },
+  });
+
+  if (response.status === "incomplete") {
+    throw new Error("Ufuldstændigt svar fra CDA-rollespilsmotoren");
+  }
+
+  const result = JSON.parse(response.output_text || "{}");
+  const turns = trimRoleplayTranscript([
+    ...(currentState.turns || []),
+    { role: "user", text: message },
+    { role: "assistant", text: result.reply || "" },
+  ]);
+
+  return {
+    response,
+    result,
+    nextState: {
+      version: 1,
+      mode: result.mode,
+      user_role: result.user_role,
+      cda_role: result.cda_role,
+      participants: result.participants,
+      situation: result.situation,
+      feedback_mode: result.feedback_mode,
+      phase: result.status,
+      scenario_id: result.scenario_id,
+      turns,
+    },
+  };
+}
+
+async function saveRoleplayTokenUsage(adgangskode, response) {
+  if (!adgangskode) {
+    return;
+  }
+
+  const inputTokens = Number(response?.usage?.input_tokens || 0);
+  const outputTokens = Number(response?.usage?.output_tokens || 0);
+  const totalTokens = Number(
+    response?.usage?.total_tokens || inputTokens + outputTokens
+  );
+
+  const supabase = getSupabase();
+  const { error } = await supabase.from("token_forbrug").insert({
+    adgangskode: adgangskode.trim().toUpperCase(),
+    system: "cda",
+    udbyder: "openai",
+    model: "gpt-5.4-mini",
+    input_tokens: inputTokens,
+    output_tokens: outputTokens,
+    samlet_tokens: totalTokens,
+  });
+
+  if (error) {
+    console.error("Kunne ikke gemme tokenforbrug:", error);
+  }
+}
+
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -3843,6 +4159,77 @@ const audienceInstructions = [
 ].join("\n");
 
 try {
+  const activeRoleplayState = decodeRoleplayState(pending_action);
+
+  if (activeRoleplayState || isRoleplayStartRequest(message)) {
+    const roleplayTurn = await runRoleplayTurn({
+      message,
+      state: activeRoleplayState,
+      language,
+      role,
+      responseStyle: response_style,
+      audienceInstructions,
+    });
+
+    const inputTokens = Number(
+      roleplayTurn.response?.usage?.input_tokens || 0
+    );
+    const outputTokens = Number(
+      roleplayTurn.response?.usage?.output_tokens || 0
+    );
+    const totalTokens = Number(
+      roleplayTurn.response?.usage?.total_tokens ||
+        inputTokens + outputTokens
+    );
+
+    console.log("CDA rollespil:", {
+      action: activeRoleplayState ? "continue" : "start",
+      mode: roleplayTurn.result.mode,
+      status: roleplayTurn.result.status,
+      scenario_id: roleplayTurn.result.scenario_id,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [
+        {
+          call: 1,
+          phase: "roleplay",
+          tools_returned_to_model: [],
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          total_tokens: totalTokens,
+        },
+      ],
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    await saveRoleplayTokenUsage(adgangskode, roleplayTurn.response);
+
+    return res.status(200).json({
+      success: true,
+      reply: roleplayTurn.result.reply,
+      model: "gpt-5.4-mini",
+      tools_used: ["dynamicRoleplayFlow"],
+      tool_debug: [
+        {
+          name: "dynamicRoleplayFlow",
+          action: activeRoleplayState ? "continue" : "start",
+          mode: roleplayTurn.result.mode,
+          status: roleplayTurn.result.status,
+          scenario_id: roleplayTurn.result.scenario_id,
+        },
+      ],
+      pending_action:
+        roleplayTurn.result.status === "active"
+          ? encodeRoleplayState(roleplayTurn.nextState)
+          : null,
+    });
+  }
+
   if (pending_action === "pbl_profile") {
     if (isAffirmativeReply(message)) {
       const reply = getPblProfileTemplate();
