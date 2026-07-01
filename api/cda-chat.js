@@ -3798,7 +3798,7 @@ function decodeRoleplayState(value) {
 
 function isRoleplayStartRequest(message) {
   const text = normalizeReplyIntent(message);
-  const patterns = [
+  const directPatterns = [
     "rollespil",
     "rolleleg",
     "start en samtaletræning",
@@ -3825,7 +3825,49 @@ function isRoleplayStartRequest(message) {
     "byt roller"
   ];
 
-  return patterns.some((pattern) => text.includes(pattern));
+  if (directPatterns.some((pattern) => text.includes(pattern))) {
+    return true;
+  }
+
+  const preparationSignals = [
+    "jeg skal træne",
+    "jeg skal traene",
+    "jeg vil træne",
+    "jeg vil traene",
+    "jeg skal øve",
+    "jeg skal ove",
+    "jeg vil øve",
+    "jeg vil ove",
+    "træne til",
+    "traene til",
+    "øve mig til",
+    "ove mig til",
+    "forberede mig til",
+    "gøre mig klar til",
+    "gore mig klar til"
+  ];
+
+  const conversationSignals = [
+    "samtale",
+    "møde",
+    "mode",
+    "skole hjem",
+    "forældremøde",
+    "foraeldremode",
+    "forældresamtale",
+    "foraeldresamtale",
+    "elevsamtale",
+    "ppr møde",
+    "ppr mode",
+    "konfliktsamtale",
+    "dialog",
+    "besked"
+  ];
+
+  return (
+    preparationSignals.some((signal) => text.includes(signal)) &&
+    conversationSignals.some((signal) => text.includes(signal))
+  );
 }
 
 function isRoleplayStructureChangeRequest(message) {
@@ -3919,32 +3961,6 @@ function isRoleplayStructureChangeRequest(message) {
   );
 }
 
-function isExplicitExistingRoleplayCaseRequest(message) {
-  const text = normalizeReplyIntent(message);
-  const explicitPatterns = [
-    "brug en eksisterende case",
-    "brug eksisterende case",
-    "vælg en eksisterende case",
-    "vaelg en eksisterende case",
-    "hent en eksisterende case",
-    "hent eksisterende case",
-    "brug en case fra scenariebanken",
-    "hent fra scenariebanken",
-    "vælg fra scenariebanken",
-    "vaelg fra scenariebanken",
-    "brug case ",
-    "hent case ",
-    "vælg case ",
-    "vaelg case ",
-    "brug scenarie ",
-    "hent scenarie ",
-    "vælg scenarie ",
-    "vaelg scenarie "
-  ];
-
-  return explicitPatterns.some((pattern) => text.includes(pattern));
-}
-
 function isRoleplayDebriefRequest(message) {
   const text = normalizeReplyIntent(message);
   const patterns = [
@@ -3997,52 +4013,51 @@ function getRoleplayScenarioContext(message) {
     return null;
   }
 
-  const queryWords = normalizeReplyIntent(message)
-    .split(" ")
-    .filter((word) => word.length >= 4);
+  const text = normalizeReplyIntent(message);
+  const directBankSignals = [
+    "eksisterende rollespil",
+    "eksisterende scenarie",
+    "rollespilsbank",
+    "scenariebank",
+    "casebank",
+    "vælg scenarie",
+    "vaelg scenarie",
+    "brug scenarie",
+    "brug en case",
+    "hent scenarie",
+    "hent en case",
+    "vis scenarier",
+    "vis rollespilscases",
+    "liste over rollespil",
+    "scenarie id",
+    "case id"
+  ];
 
-  const scoreScenario = (scenario) => {
-    const searchable = normalizeReplyIntent([
-      scenario?.id,
-      scenario?.titel,
-      scenario?.sted,
-      scenario?.tid,
-      ...(Array.isArray(scenario?.roller)
-        ? scenario.roller.flatMap((item) => [
-            item?.id,
-            item?.rolle,
-            item?.følelse,
-            item?.mål,
-          ])
-        : []),
-      ...(Array.isArray(scenario?.dialog)
-        ? scenario.dialog.map((item) => item?.tekst)
-        : []),
-    ].filter(Boolean).join(" "));
+  const exactScenario = scenarios.find((scenario) => {
+    const id = normalizeReplyIntent(scenario?.id);
+    const title = normalizeReplyIntent(scenario?.titel);
 
-    return queryWords.reduce(
-      (score, word) => score + (searchable.includes(word) ? 1 : 0),
-      0
+    return (
+      (id && text.includes(id)) ||
+      (title && title.length >= 6 && text.includes(title))
     );
-  };
+  });
 
-  const ranked = scenarios
-    .map((scenario) => ({ scenario, score: scoreScenario(scenario) }))
-    .sort((a, b) => b.score - a.score);
-
-  const best = ranked[0];
-
-  if (!best || best.score === 0) {
+  if (exactScenario) {
     return {
-      available_scenarios: scenarios.slice(0, 8).map((scenario) => ({
-        id: scenario?.id || null,
-        title: scenario?.titel || null,
-      })),
+      selected_scenario: exactScenario,
     };
   }
 
+  if (!directBankSignals.some((signal) => text.includes(signal))) {
+    return null;
+  }
+
   return {
-    selected_scenario: best.scenario,
+    available_scenarios: scenarios.slice(0, 8).map((scenario) => ({
+      id: scenario?.id || null,
+      title: scenario?.titel || null,
+    })),
   };
 }
 
@@ -4086,10 +4101,9 @@ async function runRoleplayTurn({
     !isStarting &&
     !inDebrief &&
     isRoleplayStructureChangeRequest(message);
-  const scenarioContext =
-    isStarting && isExplicitExistingRoleplayCaseRequest(message)
-      ? getRoleplayScenarioContext(message)
-      : null;
+  const scenarioContext = isStarting
+    ? getRoleplayScenarioContext(message)
+    : null;
 
   const currentState = state || {
     version: 1,
@@ -4165,7 +4179,6 @@ async function runRoleplayTurn({
     "Før samtalen én replik ad gangen. Skriv aldrig brugerens replik for brugeren, medmindre brugeren direkte beder om en demonstration.",
     "Brug almindeligt, naturligt sprog. Start straks, når roller og situation er tydelige. Stil kun ét kort afklarende spørgsmål, hvis en nødvendig oplysning mangler.",
     "Under aktivt rollespil skal du blive i den valgte rolle. Giv kun feedback undervejs, hvis feedback_mode er during eller brugeren beder om det.",
-    "Feltet situation skal være en kort, kumulativ og faktuel opsummering af den aktuelle case. Tilføj nye konkrete oplysninger fra user_message, men fjern eller omskriv ikke tidligere kendte fakta. Brug ikke en scenariebank, medmindre scenario_context faktisk indeholder en direkte valgt eksisterende case.",
     "Ved feedback skal du være konkret og ærlig om tydelighed, tone, samarbejde, grænsesætning og mulige misforståelser. Ros ikke automatisk.",
     "Ved reverse-perspektiv skal du skelne mellem afsenderens hensigt, mulig oplevelse hos modtageren, risiko for misforståelse og en mulig justering.",
     "Påstå aldrig med sikkerhed, hvad et bestemt barn tænker eller føler. Brug formuleringer som 'kan muligvis opleves som'.",
@@ -4296,7 +4309,9 @@ async function runRoleplayTurn({
       participants: preserveRoleplayStructure
         ? currentState.participants
         : result.participants,
-      situation: String(result.situation || currentState.situation || "").trim(),
+      situation: preserveRoleplayStructure
+        ? currentState.situation
+        : result.situation,
       feedback_mode: result.feedback_mode,
       phase: finalEndRequested
         ? "ended"
