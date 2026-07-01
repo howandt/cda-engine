@@ -301,6 +301,11 @@
       color: #9aa6b6;
     }
 
+    #adgangskode {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
     .access-group {
       margin-top: 4px;
       padding-top: 20px;
@@ -526,6 +531,8 @@
               type="text"
               placeholder="F.eks. TEST-0001"
               autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
             />
             <p class="access-hint">Brug den kode, du har fået fra din skole eller CDAI Systems.</p>
           </div>
@@ -563,8 +570,19 @@
     svarstilInput.value = gemtSvarstil;
   }
 
+  adgangskodeInput.addEventListener("input", () => {
+    const start = adgangskodeInput.selectionStart;
+    const slut = adgangskodeInput.selectionEnd;
+    adgangskodeInput.value = adgangskodeInput.value.toUpperCase();
+
+    if (start !== null && slut !== null) {
+      adgangskodeInput.setSelectionRange(start, slut);
+    }
+  });
+
   loginKnap.addEventListener("click", async () => {
-    const kode = adgangskodeInput.value.trim();
+    const kode = adgangskodeInput.value.trim().toUpperCase();
+    adgangskodeInput.value = kode;
     const sprog = sprogInput.value;
     const rolle = rolleInput.value;
     const svarstil = svarstilInput.value;
@@ -600,7 +618,7 @@
         return;
       }
 
-      localStorage.setItem("cda_adgangskode", kode.toUpperCase());
+      localStorage.setItem("cda_adgangskode", kode);
       localStorage.setItem("cda_sprog", sprog);
       localStorage.setItem("cda_rolle", rolle);
       localStorage.setItem("cda_response_style", svarstil);
