@@ -3830,7 +3830,7 @@ function isRoleplayStartRequest(message) {
 
 function isRoleplayStructureChangeRequest(message) {
   const text = normalizeReplyIntent(message);
-  const patterns = [
+  const directPatterns = [
     "byt roller",
     "bytte roller",
     "skift rolle",
@@ -3838,21 +3838,85 @@ function isRoleplayStructureChangeRequest(message) {
     "skift perspektiv",
     "perspektivskifte",
     "reverse perspektiv",
-    "spil nu",
     "du spiller nu",
     "jeg spiller nu",
     "tilføj en deltager",
     "tilfoj en deltager",
     "inddrag en deltager",
-    "tag pigen med",
-    "tag drengen med",
-    "tag forælderen med",
-    "tag foraelderen med",
-    "tag læreren med",
-    "tag laereren med"
+    "hent hende ind",
+    "hent ham ind",
+    "hent pigen ind",
+    "hent drengen ind",
+    "hent forælderen ind",
+    "hent foraelderen ind",
+    "hent læreren ind",
+    "hent laereren ind"
   ];
 
-  return patterns.some((pattern) => text.includes(pattern));
+  if (directPatterns.some((pattern) => text.includes(pattern))) {
+    return true;
+  }
+
+  const roleControlSignals = [
+    "du spiller",
+    "du skal spille",
+    "skal du spille",
+    "spil en",
+    "spil som",
+    "spille en",
+    "spille som",
+    "vær en",
+    "vaer en",
+    "svar som",
+    "tal som",
+    "nu er du",
+    "fra nu af er du",
+    "jeg vil høre det fra",
+    "jeg vil hore det fra",
+    "jeg vil høre fra",
+    "jeg vil hore fra",
+    "hent",
+    "inddrag",
+    "tilføj",
+    "tilfoj",
+    "tag pigen",
+    "tag pigerne",
+    "tag drengen",
+    "tag barnet",
+    "tag eleven",
+    "tag læreren",
+    "tag laereren",
+    "tag forælderen",
+    "tag foraelderen"
+  ];
+
+  const roleWords = [
+    "pige",
+    "pigerne",
+    "dreng",
+    "drengen",
+    "barn",
+    "barnet",
+    "elev",
+    "eleven",
+    "lærer",
+    "laerer",
+    "forælder",
+    "foraelder",
+    "mor",
+    "far",
+    "pædagog",
+    "paedagog",
+    "gårdvagt",
+    "gaardvagt",
+    "hende",
+    "ham"
+  ];
+
+  return (
+    roleControlSignals.some((signal) => text.includes(signal)) &&
+    roleWords.some((roleWord) => text.includes(roleWord))
+  );
 }
 
 function getRoleplayScenarioContext(message) {
@@ -3980,7 +4044,16 @@ async function runRoleplayTurn({
         "Gentag, omskriv eller færdiggør aldrig brugerens replik. Reagér på den fra din låste rolle.",
         "Returnér user_role og cda_role uændret i JSON-resultatet.",
       ].join("\n")
-    : "Rolleskift eller ændring af deltagere må kun ske, når brugeren direkte har bedt om det.";
+    : structureChangeRequested
+      ? [
+          "BRUGEREN HAR DIREKTE BEDT OM ET ROLLE- ELLER PERSPEKTIVSKIFTE.",
+          "Udfør skiftet nu uden at forsvare eller fastholde den tidligere rolle.",
+          "Find den ønskede nye CDA-rolle i user_message, opdatér cda_role og participants, og svar straks som den nye rolle.",
+          "Bevar samme situation, hændelsesforløb, relationer og kendte fakta.",
+          "Hvis brugeren inddrager en ny deltager, må den tidligere rolle fortsat eksistere i casen, men CDA skal tale som den nye valgte rolle.",
+          "Spørg kun om afklaring, hvis den ønskede rolle reelt er uklar.",
+        ].join("\n")
+      : "Rolleskift eller ændring af deltagere må kun ske, når brugeren direkte har bedt om det.";
 
   const instructions = [
     "Du er CDA's dynamiske motor til perspektivtræning, rollespil og beskedtjek.",
