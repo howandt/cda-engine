@@ -4000,7 +4000,9 @@ async function runRoleplayTurn({
   audienceInstructions,
 }) {
   const isStarting = !state;
-  const scenarioContext = isStarting
+  const isSetupTurn = Boolean(state && state.phase === "setup");
+  const isSceneStart = isStarting || isSetupTurn;
+  const scenarioContext = isSceneStart
     ? getRoleplayScenarioContext(message)
     : null;
 
@@ -4015,6 +4017,7 @@ async function runRoleplayTurn({
     phase: "active",
     scenario_id: null,
     case_facts: [],
+    case_source_text: "",
     turns: [],
   };
 
@@ -4026,6 +4029,9 @@ async function runRoleplayTurn({
     "Brug almindeligt, naturligt sprog. Start straks, når roller og situation er tydelige. Stil kun ét kort afklarende spørgsmål, hvis en nødvendig oplysning mangler.",
     "Under aktivt rollespil skal du blive i den valgte rolle. Giv kun feedback undervejs, hvis feedback_mode er during eller brugeren beder om det.",
     "Bevar samme case og samme centrale fakta gennem hele scenen. Opfind aldrig konkrete hændelser, navne, steder eller involverede personer, som ikke er givet eller tydeligt etableret i scenen.",
+    "Brugerens oprindelige casebeskrivelse er den højeste autoritet. Læs den bogstaveligt og bevar hvem der sagde eller gjorde hvad, rækkefølgen og konfliktens betydning. Omskriv aldrig casen til en anden type situation.",
+    "Før den første replik skal du internt udlede få, konkrete kernefakta direkte fra case_source_text. Hvis formuleringen kan forstås på flere væsentligt forskellige måder, skal du stille ét kort afklarende spørgsmål i stedet for at vælge en fortolkning.",
+    "Eksempel på betydningslås: Hvis en elev siger, at læreren kun hørte elevens svar igen efter de andres provokation, handler casen om en mulig uretfærdig konfliktvurdering — ikke om elevens faglige bidrag i undervisningen.",
     "Hvis en central oplysning mangler, så spørg kort i stedet for at udfylde den selv. Små neutrale detaljer må kun bruges, når de ikke ændrer sagens indhold.",
     "Når brugeren siger, at vedkommende vil komme med en case, skal du gå i opsætning og vente på casen. Start ikke en tilfældig scene.",
     "Hvis brugeren vælger roller tydeligt, bekræft dem kort og start direkte med én replik i CDA-rollen.",
@@ -4040,11 +4046,20 @@ async function runRoleplayTurn({
     "Returnér kun gyldig JSON efter det krævede schema.",
   ].join("\n");
 
+  const caseSourceText = isSceneStart
+    ? String(message || "").trim()
+    : String(currentState.case_source_text || "").trim();
+
   const input = JSON.stringify({
-    action: isStarting ? "start" : "continue",
+    action: isSceneStart ? "start" : "continue",
     user_message: message,
+    case_source_text: caseSourceText,
+    locked_case_facts: Array.isArray(currentState.case_facts)
+      ? currentState.case_facts
+      : [],
     current_state: {
       ...currentState,
+      case_source_text: caseSourceText,
       turns: trimRoleplayTranscript(currentState.turns),
     },
     scenario_context: scenarioContext,
@@ -4147,6 +4162,7 @@ async function runRoleplayTurn({
         : Array.isArray(currentState.case_facts)
           ? currentState.case_facts
           : [],
+      case_source_text: caseSourceText,
       turns,
     },
   };
@@ -4300,6 +4316,7 @@ try {
       phase: "setup",
       scenario_id: null,
       case_facts: [],
+      case_source_text: "",
       turns: [],
     };
 
