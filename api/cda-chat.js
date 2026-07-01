@@ -3919,6 +3919,32 @@ function isRoleplayStructureChangeRequest(message) {
   );
 }
 
+function isExplicitExistingRoleplayCaseRequest(message) {
+  const text = normalizeReplyIntent(message);
+  const explicitPatterns = [
+    "brug en eksisterende case",
+    "brug eksisterende case",
+    "vælg en eksisterende case",
+    "vaelg en eksisterende case",
+    "hent en eksisterende case",
+    "hent eksisterende case",
+    "brug en case fra scenariebanken",
+    "hent fra scenariebanken",
+    "vælg fra scenariebanken",
+    "vaelg fra scenariebanken",
+    "brug case ",
+    "hent case ",
+    "vælg case ",
+    "vaelg case ",
+    "brug scenarie ",
+    "hent scenarie ",
+    "vælg scenarie ",
+    "vaelg scenarie "
+  ];
+
+  return explicitPatterns.some((pattern) => text.includes(pattern));
+}
+
 function isRoleplayDebriefRequest(message) {
   const text = normalizeReplyIntent(message);
   const patterns = [
@@ -4060,9 +4086,10 @@ async function runRoleplayTurn({
     !isStarting &&
     !inDebrief &&
     isRoleplayStructureChangeRequest(message);
-  const scenarioContext = isStarting
-    ? getRoleplayScenarioContext(message)
-    : null;
+  const scenarioContext =
+    isStarting && isExplicitExistingRoleplayCaseRequest(message)
+      ? getRoleplayScenarioContext(message)
+      : null;
 
   const currentState = state || {
     version: 1,
@@ -4138,6 +4165,7 @@ async function runRoleplayTurn({
     "Før samtalen én replik ad gangen. Skriv aldrig brugerens replik for brugeren, medmindre brugeren direkte beder om en demonstration.",
     "Brug almindeligt, naturligt sprog. Start straks, når roller og situation er tydelige. Stil kun ét kort afklarende spørgsmål, hvis en nødvendig oplysning mangler.",
     "Under aktivt rollespil skal du blive i den valgte rolle. Giv kun feedback undervejs, hvis feedback_mode er during eller brugeren beder om det.",
+    "Feltet situation skal være en kort, kumulativ og faktuel opsummering af den aktuelle case. Tilføj nye konkrete oplysninger fra user_message, men fjern eller omskriv ikke tidligere kendte fakta. Brug ikke en scenariebank, medmindre scenario_context faktisk indeholder en direkte valgt eksisterende case.",
     "Ved feedback skal du være konkret og ærlig om tydelighed, tone, samarbejde, grænsesætning og mulige misforståelser. Ros ikke automatisk.",
     "Ved reverse-perspektiv skal du skelne mellem afsenderens hensigt, mulig oplevelse hos modtageren, risiko for misforståelse og en mulig justering.",
     "Påstå aldrig med sikkerhed, hvad et bestemt barn tænker eller føler. Brug formuleringer som 'kan muligvis opleves som'.",
@@ -4268,9 +4296,7 @@ async function runRoleplayTurn({
       participants: preserveRoleplayStructure
         ? currentState.participants
         : result.participants,
-      situation: preserveRoleplayStructure
-        ? currentState.situation
-        : result.situation,
+      situation: String(result.situation || currentState.situation || "").trim(),
       feedback_mode: result.feedback_mode,
       phase: finalEndRequested
         ? "ended"
