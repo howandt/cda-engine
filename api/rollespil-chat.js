@@ -8,6 +8,7 @@ const MODEL = "gpt-5.4-mini";
 const MAX_HISTORY_ITEMS = 60;
 const MAX_HISTORY_CHARS = 40000;
 const MAX_MESSAGE_CHARS = 6000;
+const MAX_ROLE_EVENTS = 20;
 
 const VALID_STATUSES = new Set([
   "setup",
@@ -68,6 +69,33 @@ function sanitizeHistory(history) {
   return sanitized;
 }
 
+function sanitizeRoleEvents(rawEvents, historyLength, fallbackUserRole, fallbackCdaRole) {
+  const events = Array.isArray(rawEvents)
+    ? rawEvents
+        .map((event) => ({
+          history_index: Math.max(
+            0,
+            Math.min(historyLength, Number.parseInt(event?.history_index, 10) || 0)
+          ),
+          user_role: cleanText(event?.user_role, 160),
+          cda_role: cleanText(event?.cda_role, 160),
+        }))
+        .filter((event) => event.user_role && event.cda_role)
+        .sort((a, b) => a.history_index - b.history_index)
+        .slice(-MAX_ROLE_EVENTS)
+    : [];
+
+  if (events.length === 0 && fallbackUserRole && fallbackCdaRole) {
+    events.push({
+      history_index: 0,
+      user_role: fallbackUserRole,
+      cda_role: fallbackCdaRole,
+    });
+  }
+
+  return events;
+}
+
 function sanitizeState(rawState = {}) {
   const status = VALID_STATUSES.has(rawState.status)
     ? rawState.status
@@ -77,15 +105,25 @@ function sanitizeState(rawState = {}) {
     ? rawState.difficulty
     : "mellem";
 
+  const userRole = cleanText(rawState.user_role, 160);
+  const cdaRole = cleanText(rawState.cda_role, 160);
+  const history = sanitizeHistory(rawState.history);
+
   return {
     session_id: cleanText(rawState.session_id, 100) || createSessionId(),
     status,
-    user_role: cleanText(rawState.user_role, 160),
-    cda_role: cleanText(rawState.cda_role, 160),
+    user_role: userRole,
+    cda_role: cdaRole,
     training_type: cleanText(rawState.training_type, 180),
     difficulty,
     scene: cleanText(rawState.scene, 6000),
-    history: sanitizeHistory(rawState.history),
+    history,
+    role_events: sanitizeRoleEvents(
+      rawState.role_events,
+      history.length,
+      userRole,
+      cdaRole
+    ),
     last_feedback: cleanText(rawState.last_feedback, 6000),
   };
 }
@@ -268,7 +306,10 @@ function buildRoleplayInstructions(state, action) {
   const commonRules = [
     "Du er den separate CDA-rollespilsmotor.",
     "Dette modul er kun aktivt, fordi brugeren udtrykkeligt har startet eller fortsat et rollespil.",
-    "Spil kun den aftalte CDA-rolle. Svar aldrig som brugeren.",
+    `DEN AKTUELLE ROLLELÅS HAR ABSOLUT PRIORITET: Brugeren spiller ${state.user_role}, og CDA spiller ${state.cda_role}.`,
+    `Svar udelukkende som ${state.cda_role}. Svar aldrig som ${state.user_role}.`,
+    "Tidligere replikker kan være skrevet før et rolleskift. De viser kun forløbet og må aldrig få dig til at fortsætte den tidligere CDA-rolle.",
+    "Den oprindelige scenetekst kan indeholde gamle rolleangivelser. Aktuelle roller i rolle-låsen ovenfor gælder altid.",
     "Fasthold personer, relationer, roller og konkrete fakta fra hele det aktuelle forløb.",
     "Reagér dynamisk på brugerens faktiske ord. Brug ikke faste replikker, faste følelsesforløb eller et skjult facit.",
     "Giv én naturlig rolletur ad gangen.",
@@ -304,38 +345,89 @@ function buildRoleplayInstructions(state, action) {
   return commonRules.join("\n");
 }
 
-function formatHistory(history) {
-  if (!history.length) return "(Intet tidligere rollespilsforløb)";
+function getRolesAtHistoryIndex(state, index) {
+  let activeRoles = {
+    user_role: state.user_role,
+    cda_role: state.cda_role,
+  };
 
-  return history
-    .map((item, index) => {
-      const speaker = item.role === "user" ? "BRUGERENS ROLLE" : "CDA-ROLLEN";
-      return `${index + 1}. ${speaker}: ${item.content}`;
-    })
-    .join("\n");
+  for (const event of state.role_events || []) {
+    if (event.history_index <= index) {
+      activeRoles = {
+        user_role: event.user_role,
+        cda_role: event.cda_role,
+      };
+    } else {
+      break;
+    }
+  }
+
+  return activeRoles;
+}
+
+function formatHistory(state) {
+  if (!state.history.length) return "(Intet tidligere rollespilsforløb)";
+
+  const switchEvents = new Map(
+    (state.role_events || [])
+      .filter((event) => event.history_index > 0)
+      .map((event) => [event.history_index, event])
+  );
+
+  const lines = [];
+
+  state.history.forEach((item, index) => {
+    const switchEvent = switchEvents.get(index);
+    if (switchEvent) {
+      lines.push(
+        `--- ROLLESKIFT: Fra dette punkt spiller brugeren ${switchEvent.user_role}, og CDA spiller ${switchEvent.cda_role}. ---`
+      );
+    }
+
+    const roles = getRolesAtHistoryIndex(state, index);
+    const speaker =
+      item.role === "user"
+        ? `BRUGER SOM ${roles.user_role}`
+        : `CDA SOM ${roles.cda_role}`;
+
+    lines.push(`${index + 1}. ${speaker}: ${item.content}`);
+  });
+
+  const pendingSwitch = switchEvents.get(state.history.length);
+  if (pendingSwitch) {
+    lines.push(
+      `--- AKTUELT ROLLESKIFT: Den næste brugerreplik siges som ${pendingSwitch.user_role}, og CDA skal svare som ${pendingSwitch.cda_role}. ---`
+    );
+  }
+
+  return lines.join("\n");
 }
 
 function buildModelInput(state, action, message) {
   return [
+    "ABSOLUT AKTUEL ROLLELÅS — HØJESTE PRIORITET",
+    `BRUGEREN TALER NU SOM: ${state.user_role}`,
+    `CDA SKAL SVARE UDELUKKENDE SOM: ${state.cda_role}`,
+    "Gamle rolleangivelser i scene eller historik er kun historiske og må ikke overstyre denne rolle-lås.",
+    "",
     "AKTUEL ROLLESPILSTILSTAND",
     `Session: ${state.session_id}`,
     `Status: ${state.status}`,
     `Træningsform: ${state.training_type || "generelt rollespil"}`,
-    `Brugerens rolle: ${state.user_role}`,
-    `CDA's rolle: ${state.cda_role}`,
     `Sværhedsgrad: ${state.difficulty}`,
     "",
-    "SCENE OG KENDTE FAKTA",
+    "OPRINDELIG SCENE OG KENDTE FAKTA",
+    "Sceneteksten kan indeholde den første rollefordeling. Efter et rolleskift er den kun historisk.",
     state.scene || "Scenen udvikles ud fra brugerens egne oplysninger.",
     "",
-    "HELE DET AKTUELLE FORLØB",
-    formatHistory(state.history),
+    "HELE DET AKTUELLE FORLØB MED ROLLEGRÆNSER",
+    formatHistory(state),
     "",
     action === "feedback"
       ? "BRUGERENS ANMODNING OM FEEDBACK"
       : action === "hint"
         ? "BRUGERENS ANMODNING OM ET HINT"
-        : "BRUGERENS NYESTE REPLIK",
+        : `NYESTE REPLIK FRA BRUGEREN SOM ${state.user_role} — SVAR KUN SOM ${state.cda_role}`,
     message || "Fortsæt naturligt fra det seneste punkt.",
   ].join("\n");
 }
@@ -397,11 +489,27 @@ function roleplayHelpReply() {
 }
 
 function appendRoleplayTurn(state, userMessage, assistantReply) {
-  state.history = sanitizeHistory([
+  const combinedHistory = [
     ...state.history,
     { role: "user", content: userMessage },
     { role: "assistant", content: assistantReply },
-  ]);
+  ];
+  const sanitizedHistory = sanitizeHistory(combinedHistory);
+  const removedItems = Math.max(0, combinedHistory.length - sanitizedHistory.length);
+
+  state.history = sanitizedHistory;
+
+  if (removedItems > 0) {
+    state.role_events = sanitizeRoleEvents(
+      (state.role_events || []).map((event) => ({
+        ...event,
+        history_index: Math.max(0, event.history_index - removedItems),
+      })),
+      state.history.length,
+      state.user_role,
+      state.cda_role
+    );
+  }
 }
 
 export default async function handler(req, res) {
@@ -466,7 +574,16 @@ export default async function handler(req, res) {
         ),
         scene: cleanText(body.scene, 6000) || message,
         history: [],
+        role_events: [],
       });
+
+      state.role_events = [
+        {
+          history_index: 0,
+          user_role: state.user_role,
+          cda_role: state.cda_role,
+        },
+      ];
 
       if (!state.user_role || !state.cda_role) {
         const missingQuestion = !state.user_role && !state.cda_role
@@ -566,6 +683,20 @@ export default async function handler(req, res) {
         state.cda_role = previousUserRole;
       }
 
+      state.role_events = sanitizeRoleEvents(
+        [
+          ...(state.role_events || []),
+          {
+            history_index: state.history.length,
+            user_role: state.user_role,
+            cda_role: state.cda_role,
+          },
+        ],
+        state.history.length,
+        state.user_role,
+        state.cda_role
+      );
+
       state.status = "active";
       return res.status(200).json({
         success: true,
@@ -581,6 +712,16 @@ export default async function handler(req, res) {
       state.status = "setup";
       state.scene = cleanText(body.scene, 6000) || message;
       state.history = [];
+      state.role_events =
+        state.user_role && state.cda_role
+          ? [
+              {
+                history_index: 0,
+                user_role: state.user_role,
+                cda_role: state.cda_role,
+              },
+            ]
+          : [];
       state.last_feedback = "";
 
       return res.status(200).json({
