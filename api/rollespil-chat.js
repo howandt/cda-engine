@@ -9,6 +9,7 @@ const MAX_HISTORY_ITEMS = 60;
 const MAX_HISTORY_CHARS = 40000;
 const MAX_MESSAGE_CHARS = 6000;
 const MAX_ROLE_EVENTS = 20;
+const MAX_INCIDENT_CHARS = 16000;
 
 const VALID_STATUSES = new Set([
   "setup",
@@ -19,6 +20,7 @@ const VALID_STATUSES = new Set([
 ]);
 
 const VALID_DIFFICULTIES = new Set(["let", "mellem", "svær"]);
+const VALID_MODES = new Set(["roleplay", "incident_analysis"]);
 
 function cleanText(value, maxLength = MAX_MESSAGE_CHARS) {
   return String(value || "")
@@ -109,14 +111,25 @@ function sanitizeState(rawState = {}) {
   const cdaRole = cleanText(rawState.cda_role, 160);
   const history = sanitizeHistory(rawState.history);
 
+  const mode = VALID_MODES.has(rawState.mode)
+    ? rawState.mode
+    : "roleplay";
+
+  const previousMode = VALID_MODES.has(rawState.previous_mode)
+    ? rawState.previous_mode
+    : "";
+
   return {
     session_id: cleanText(rawState.session_id, 100) || createSessionId(),
     status,
+    mode,
+    previous_mode: previousMode,
     user_role: userRole,
     cda_role: cdaRole,
     training_type: cleanText(rawState.training_type, 180),
     difficulty,
     scene: cleanText(rawState.scene, 6000),
+    incident_case: cleanText(rawState.incident_case, MAX_INCIDENT_CHARS),
     history,
     role_events: sanitizeRoleEvents(
       rawState.role_events,
@@ -125,6 +138,7 @@ function sanitizeState(rawState = {}) {
       cdaRole
     ),
     last_feedback: cleanText(rawState.last_feedback, 6000),
+    last_analysis: cleanText(rawState.last_analysis, 10000),
   };
 }
 
@@ -210,9 +224,13 @@ function detectAction(message, state, explicitAction) {
     "stop",
     "reset",
     "help",
+    "analyze_incident",
   ]);
 
   if (allowed.has(explicit)) return explicit;
+  if (["incident_analysis", "analyse_incident", "haendelsesanalyse"].includes(explicit)) {
+    return "analyze_incident";
+  }
 
   const text = normalizeCommand(message);
   const wordCount = text ? text.split(" ").length : 0;
@@ -220,6 +238,18 @@ function detectAction(message, state, explicitAction) {
   if (!text) return state.status === "active" ? "turn" : "help";
 
   const isShortCommand = wordCount <= 12;
+
+  if (
+    /\b(?:analyser|analyserer|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
+    /\bhvad\s+sagde\s+jeg\s+forkert\b/.test(text) ||
+    /\bhvad\s+kunne\s+jeg\s+have\s+gjort\s+anderledes\b/.test(text) ||
+    /\bhvordan\s+kan\s+jeg\s+goere\s+det\s+bedre\s+naeste\s+gang\b/.test(text) ||
+    /\bhvordan\s+undgaar\s+jeg\s+at\s+det\s+sker\s+igen\b/.test(text) ||
+    /\bhjaelp\s+mig\s+med\s+at\s+forstaa\s+(?:haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
+    /\bjeg\s+vil\s+(?:gerne\s+)?analysere\s+(?:en\s+)?(?:haendelse|situation|konflikt)\b/.test(text)
+  ) {
+    return "analyze_incident";
+  }
 
   if (
     text.includes("feedback") ||
@@ -319,10 +349,56 @@ function detectAction(message, state, explicitAction) {
     }
   }
 
+  if (state.mode === "incident_analysis") {
+    return "analyze_incident";
+  }
+
   return "turn";
 }
 
+function isBareIncidentAnalysisCommand(message) {
+  const text = normalizeCommand(message);
+
+  return (
+    /^(?:analyser|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)$/.test(text) ||
+    /^hvad\s+sagde\s+jeg\s+forkert$/.test(text) ||
+    /^hvad\s+kunne\s+jeg\s+have\s+gjort\s+anderledes$/.test(text) ||
+    /^hjaelp\s+mig\s+med\s+at\s+forstaa\s+(?:haendelsen|situationen|konflikten|forloebet)$/.test(text)
+  );
+}
+
+function mergeIncidentCase(existingCase, message) {
+  const existing = cleanText(existingCase, MAX_INCIDENT_CHARS);
+  const addition = cleanText(message, MAX_MESSAGE_CHARS);
+
+  if (!addition || isBareIncidentAnalysisCommand(addition)) return existing;
+  if (!existing) return addition;
+
+  return cleanText(
+    `${existing}\n\nSupplerende oplysning:\n${addition}`,
+    MAX_INCIDENT_CHARS
+  );
+}
+
 function buildRoleplayInstructions(state, action) {
+  if (action === "analyze_incident") {
+    return [
+      "Du er CDA's dynamiske trænings-, refleksions- og konfliktløsningsmotor.",
+      "Du analyserer en konkret skole- eller elevhændelse for at hjælpe læreren eller pædagogen med at lære af forløbet.",
+      "Du må ikke placere skyld hos læreren eller barnet. Du skal være direkte, respektfuld og praksisnær.",
+      "Skeln tydeligt mellem det, der er observeret, og det, der kun er en mulig forklaring.",
+      "Beskriv aldrig barnets tanker eller følelser som sikre fakta. Brug formuleringer som 'kan have oplevet', 'kan have hørt' eller 'muligvis'.",
+      "Hvis en diagnose nævnes, må den bruges som relevant kontekst, men den må aldrig forklare hele barnet eller bruges til at stille en ny diagnose.",
+      "Ved tegn på noget ud over en kendt diagnose må du neutralt beskrive afvigelsen og pege på observationer eller faglig drøftelse som næste skridt. Påstå aldrig, at komorbiditet er fundet.",
+      "Undersøg dynamisk: hvad der skete før, lærerens konkrete ord eller handling, sted og timing, barnets reaktion og hvad der skete bagefter.",
+      "Peg især på mulige belastninger som uklarhed, for mange krav på én gang, offentligt pres, tab af kontrol, skift, ventetid, sansebelastning eller oplevet uretfærdighed, men kun når den konkrete hændelse giver grundlag for det.",
+      "Brug ikke en statisk diagnoseopskrift. Analysen skal udspringe af den konkrete hændelse.",
+      "Svar med fire korte dele: 1) Hvad der ser ud til at være vendepunktet, 2) Hvordan beskeden kan være blevet modtaget, 3) Hvad læreren kan prøve næste gang, 4) Hvilken vigtig oplysning der eventuelt mangler.",
+      "Giv mindst én færdig, konkret alternativ formulering, som læreren kan bruge næste gang.",
+      "Stil højst ét kort opklarende spørgsmål, og kun hvis det vil ændre vurderingen væsentligt.",
+    ].join("\n");
+  }
+
   const difficultyInstruction =
     state.difficulty === "let"
       ? "Vær samarbejdende og giv tydelige åbninger, men stadig realistisk."
@@ -437,6 +513,26 @@ function formatHistory(state) {
 }
 
 function buildModelInput(state, action, message) {
+  if (action === "analyze_incident") {
+    return [
+      "HÆNDELSESANALYSE — HØJESTE PRIORITET",
+      `Brugerens faglige rolle: ${state.user_role || "lærer/pædagog"}`,
+      "Formålet er læring, konfliktløsning og en bedre næste handling — ikke skyld eller diagnose.",
+      "",
+      "DEN BESKREVNE HÆNDELSE OG SUPPLERENDE OPLYSNINGER",
+      state.incident_case || "Ingen særskilt hændelsesbeskrivelse er gemt endnu.",
+      "",
+      "EVENTUELT TIDLIGERE TRÆNINGSFORLØB",
+      formatHistory(state),
+      "",
+      "BRUGERENS NYESTE ANMODNING ELLER OPLYSNING",
+      message || "Analysér den gemte hændelse.",
+      "",
+      "TIDLIGERE ANALYSE, HVIS DEN FINDES",
+      state.last_analysis || "Ingen tidligere analyse.",
+    ].join("\n");
+  }
+
   const roleHeader =
     action === "feedback" || action === "hint"
       ? [
@@ -485,7 +581,14 @@ async function runModel(state, action, message) {
     },
     instructions: buildRoleplayInstructions(state, action),
     input: buildModelInput(state, action, message),
-    max_output_tokens: action === "feedback" ? 700 : action === "hint" ? 180 : 500,
+    max_output_tokens:
+      action === "analyze_incident"
+        ? 900
+        : action === "feedback"
+          ? 700
+          : action === "hint"
+            ? 180
+            : 500,
   });
 
   if (response.status === "incomplete") {
@@ -523,13 +626,14 @@ async function runModel(state, action, message) {
 
 function roleplayHelpReply() {
   return [
-    "Rollespilmotoren er klar.",
+    "CDA's trænings- og refleksionsmotor er klar.",
+    "",
+    "Du kan træne en samtale, forberede et møde eller beskrive en hændelse fra fx klassen eller skolegården.",
     "",
     "Skriv fx: ‘Jeg er læreren. Du spiller en skeptisk forælder. Start mødet.’",
+    "Eller: ‘Analysér denne hændelse: Jeg sagde ..., barnet gjorde ...’",
     "",
-    "Kommandoer: Start rollespil, Pause, Fortsæt, Skift rolle, Ny scene, Hint, Feedback, Stop rollespil og Reset.",
-    "",
-    "Under scenen bliver CDA i den valgte rolle. Feedback gives først, når du beder om den.",
+    "Kommandoer: Start rollespil, Analysér hændelsen, Pause, Fortsæt, Skift rolle, Ny scene, Hint, Feedback, Stop og Nulstil.",
   ].join("\n");
 }
 
@@ -608,6 +712,8 @@ export default async function handler(req, res) {
       state = sanitizeState({
         session_id: createSessionId(),
         status: "setup",
+        mode: "roleplay",
+        previous_mode: "",
         user_role:
           cleanText(body.user_role, 160) || extractRole(message, "user"),
         cda_role:
@@ -619,8 +725,10 @@ export default async function handler(req, res) {
           "mellem"
         ),
         scene: cleanText(body.scene, 6000) || message,
+        incident_case: "",
         history: [],
         role_events: [],
+        last_analysis: "",
       });
 
       state.role_events = [
@@ -687,18 +795,39 @@ export default async function handler(req, res) {
     }
 
     if (action === "continue") {
+      if (state.mode === "incident_analysis" && state.previous_mode === "roleplay") {
+        state.mode = "roleplay";
+        state.previous_mode = "";
+        state.status = "active";
+
+        return res.status(200).json({
+          success: true,
+          reply: `Rollespillet fortsætter. Du er ${state.user_role}, og jeg er ${state.cda_role}. Din tur.`,
+          action,
+          model: null,
+          usage: null,
+          state,
+        });
+      }
+
       if (!["paused", "feedback"].includes(state.status)) {
         return res.status(409).json({
           success: false,
-          error: "Der er ikke et pauset rollespil at fortsætte",
+          error: state.mode === "incident_analysis"
+            ? "Hændelsesanalysen er allerede aktiv"
+            : "Der er ikke et pauset rollespil at fortsætte",
           state,
         });
       }
 
       state.status = "active";
+      const reply = state.mode === "incident_analysis"
+        ? "Hændelsesanalysen fortsætter. Tilføj den næste oplysning eller spørg ind til analysen."
+        : `Rollespillet fortsætter. Du er ${state.user_role}, og jeg er ${state.cda_role}. Din tur.`;
+
       return res.status(200).json({
         success: true,
-        reply: `Rollespillet fortsætter. Du er ${state.user_role}, og jeg er ${state.cda_role}. Din tur.`,
+        reply,
         action,
         model: null,
         usage: null,
@@ -764,6 +893,8 @@ export default async function handler(req, res) {
       state = sanitizeState({
         session_id: state.session_id || createSessionId(),
         status: "setup",
+        mode: "roleplay",
+        previous_mode: "",
         user_role: newUserRole,
         cda_role: newCdaRole,
         training_type:
@@ -775,9 +906,11 @@ export default async function handler(req, res) {
           state.difficulty || "mellem"
         ),
         scene: newScene,
+        incident_case: "",
         history: [],
         role_events: [],
         last_feedback: "",
+        last_analysis: "",
       });
 
       if (!state.user_role || !state.cda_role) {
@@ -827,6 +960,74 @@ export default async function handler(req, res) {
         action,
         model: null,
         usage: null,
+        state,
+      });
+    }
+
+    if (action === "analyze_incident") {
+      const wasRoleplay =
+        state.mode === "roleplay" &&
+        state.history.length > 0 &&
+        Boolean(state.user_role && state.cda_role);
+
+      const explicitIncident = cleanText(body.incident_case, MAX_INCIDENT_CHARS);
+      if (explicitIncident) {
+        state.incident_case = explicitIncident;
+      } else {
+        state.incident_case = mergeIncidentCase(state.incident_case, message);
+      }
+
+      if (!state.incident_case && state.history.length === 0) {
+        state.mode = "incident_analysis";
+        state.status = "active";
+        state.user_role =
+          cleanText(body.user_role, 160) || state.user_role || "lærer/pædagog";
+        state.cda_role = state.cda_role || "CDA træner";
+
+        return res.status(200).json({
+          success: true,
+          reply: [
+            "Beskriv den konkrete hændelse med dine egne ord.",
+            "",
+            "Skriv gerne: hvad der skete lige før, hvad du sagde eller gjorde, hvordan barnet reagerede, og hvad der skete bagefter.",
+          ].join("\n"),
+          action,
+          model: null,
+          usage: null,
+          state,
+        });
+      }
+
+      if (wasRoleplay) {
+        state.previous_mode = "roleplay";
+      }
+
+      state.mode = "incident_analysis";
+      state.status = "active";
+      state.training_type = state.training_type || "hændelsesanalyse";
+      state.user_role =
+        cleanText(body.user_role, 160) || state.user_role || "lærer/pædagog";
+      state.cda_role = state.cda_role || "CDA træner";
+
+      if (!state.role_events.length) {
+        state.role_events = [
+          {
+            history_index: 0,
+            user_role: state.user_role,
+            cda_role: state.cda_role,
+          },
+        ];
+      }
+
+      const result = await runModel(state, action, message);
+      state.last_analysis = result.reply;
+
+      return res.status(200).json({
+        success: true,
+        reply: result.reply,
+        action,
+        model: MODEL,
+        usage: result.usage,
         state,
       });
     }
