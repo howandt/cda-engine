@@ -1383,7 +1383,7 @@
 
       const startsRoleplay = !roleplayState && isExplicitRoleplayStart(tekst);
       const startsIncidentAnalysis =
-        !roleplayState && isExplicitIncidentAnalysisStart(tekst);
+        isExplicitIncidentAnalysisStart(tekst);
       const pausedRoleplayCommand =
         roleplayState?.status === "paused" && isPausedRoleplayCommand(tekst);
       const activeRoleplay =
