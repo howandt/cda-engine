@@ -139,6 +139,7 @@ function sanitizeState(rawState = {}) {
     ),
     last_feedback: cleanText(rawState.last_feedback, 6000),
     last_analysis: cleanText(rawState.last_analysis, 10000),
+    last_reverse: cleanText(rawState.last_reverse, 10000),
   };
 }
 
@@ -225,11 +226,15 @@ function detectAction(message, state, explicitAction) {
     "reset",
     "help",
     "analyze_incident",
+    "reverse_incident",
   ]);
 
   if (allowed.has(explicit)) return explicit;
   if (["incident_analysis", "analyse_incident", "haendelsesanalyse"].includes(explicit)) {
     return "analyze_incident";
+  }
+  if (["reverse", "reverse_incident", "vend_situationen", "perspektivskifte"].includes(explicit)) {
+    return "reverse_incident";
   }
 
   const text = normalizeCommand(message);
@@ -238,6 +243,16 @@ function detectAction(message, state, explicitAction) {
   if (!text) return state.status === "active" ? "turn" : "help";
 
   const isShortCommand = wordCount <= 12;
+
+  if (
+    /\breverse(?:r)?\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
+    /\bvend\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
+    /\bvis\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\s+fra\s+(?:barnets|elevens)\s+(?:side|perspektiv)\b/.test(text) ||
+    /\bse\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\s+fra\s+(?:barnets|elevens)\s+(?:side|perspektiv)\b/.test(text) ||
+    /\bhvordan\s+kan\s+(?:barnet|eleven)\s+have\s+(?:modtaget|hoert|oplevet)\s+(?:min|beskeden|situationen)\b/.test(text)
+  ) {
+    return "reverse_incident";
+  }
 
   if (
     /\b(?:analyser|analyserer|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
@@ -381,6 +396,22 @@ function mergeIncidentCase(existingCase, message) {
 }
 
 function buildRoleplayInstructions(state, action) {
+  if (action === "reverse_incident") {
+    return [
+      "Du er CDA's dynamiske kommunikations-, trænings- og refleksionsmotor.",
+      "Du skal reverse den KONKRETE gemte hændelse og vise, hvordan den kan være landet hos barnet eller eleven.",
+      "Brug hændelsens præcise sted, forløb, lærerens ord og barnets faktiske reaktion. Erstat aldrig hændelsen med et generelt eksempel, en anden scene eller en opdigtet formulering.",
+      "Start tydeligt med overskriften 'Muligt elevperspektiv'. Perspektivet er en faglig hypotese, ikke sikker viden om barnets tanker.",
+      "Du må gerne skrive et kort førstepersonsperspektiv som en mulig indre oplevelse, men markér det klart med formuleringer som 'Det kan have lydt sådan for eleven:' eller 'Et muligt indre perspektiv kan være:'.",
+      "Citer lærerens centrale ord ordret fra hændelsen og forklar kort, hvad netop hver del kan have signaleret til eleven.",
+      "Knyt perspektivet til det, der skete lige før, under og efter. Peg på det konkrete vendepunkt, hvor belastning kan være blevet til eskalation.",
+      "Beskriv ikke barnets tanker, følelser, motiv eller diagnose som sikre fakta. Brug 'kan have', 'muligvis' og 'kan være blevet oplevet som'.",
+      "Hvis en diagnose er nævnt, må den kun bruges som mulig kontekst. Den må ikke blive hele forklaringen og må ikke bruges til at stille ny diagnose eller påstå komorbiditet.",
+      "Slut med 'Hvad læreren kan lære af reverseringen' og én konkret alternativ formulering til samme øjeblik.",
+      "Svar praksisnært og konkret. Undgå generelle råd, der kunne passe på enhver situation.",
+    ].join("\n");
+  }
+
   if (action === "analyze_incident") {
     return [
       "Du er CDA's dynamiske trænings-, refleksions- og konfliktløsningsmotor.",
@@ -513,6 +544,28 @@ function formatHistory(state) {
 }
 
 function buildModelInput(state, action, message) {
+  if (action === "reverse_incident") {
+    return [
+      "REVERSE AF KONKRET HÆNDELSE — HØJESTE PRIORITET",
+      `Brugerens faglige rolle: ${state.user_role || "lærer/pædagog"}`,
+      "Reverse betyder her perspektivskifte og læring — ikke blot at bytte roller.",
+      "Brug kun oplysningerne nedenfor. Bevar lærerens ord og barnets observerede reaktion ordret, når de er tilgængelige.",
+      "Hvis noget om barnets indre oplevelse ikke kan vides, skal det fremstilles som en mulighed.",
+      "",
+      "DEN GEMTE KONKRETE HÆNDELSE",
+      state.incident_case || "Ingen særskilt hændelsesbeskrivelse er gemt.",
+      "",
+      "TIDLIGERE HÆNDELSESANALYSE",
+      state.last_analysis || "Ingen tidligere analyse.",
+      "",
+      "EVENTUELT TRÆNINGSFORLØB",
+      formatHistory(state),
+      "",
+      "BRUGERENS REVERSE-ANMODNING",
+      message || "Reverse situationen fra elevens mulige perspektiv.",
+    ].join("\n");
+  }
+
   if (action === "analyze_incident") {
     return [
       "HÆNDELSESANALYSE — HØJESTE PRIORITET",
@@ -582,8 +635,10 @@ async function runModel(state, action, message) {
     instructions: buildRoleplayInstructions(state, action),
     input: buildModelInput(state, action, message),
     max_output_tokens:
-      action === "analyze_incident"
-        ? 900
+      action === "reverse_incident"
+        ? 850
+        : action === "analyze_incident"
+          ? 900
         : action === "feedback"
           ? 700
           : action === "hint"
@@ -633,7 +688,7 @@ function roleplayHelpReply() {
     "Skriv fx: ‘Jeg er læreren. Du spiller en skeptisk forælder. Start mødet.’",
     "Eller: ‘Analysér denne hændelse: Jeg sagde ..., barnet gjorde ...’",
     "",
-    "Kommandoer: Start rollespil, Analysér hændelsen, Pause, Fortsæt, Skift rolle, Ny scene, Hint, Feedback, Stop og Nulstil.",
+    "Kommandoer: Start rollespil, Analysér hændelsen, Reverse situationen, Pause, Fortsæt, Skift rolle, Ny scene, Hint, Feedback, Stop og Nulstil.",
   ].join("\n");
 }
 
@@ -729,6 +784,7 @@ export default async function handler(req, res) {
         history: [],
         role_events: [],
         last_analysis: "",
+        last_reverse: "",
       });
 
       state.role_events = [
@@ -911,6 +967,7 @@ export default async function handler(req, res) {
         role_events: [],
         last_feedback: "",
         last_analysis: "",
+        last_reverse: "",
       });
 
       if (!state.user_role || !state.cda_role) {
@@ -1021,6 +1078,43 @@ export default async function handler(req, res) {
 
       const result = await runModel(state, action, message);
       state.last_analysis = result.reply;
+
+      return res.status(200).json({
+        success: true,
+        reply: result.reply,
+        action,
+        model: MODEL,
+        usage: result.usage,
+        state,
+      });
+    }
+
+    if (action === "reverse_incident") {
+      if (!state.incident_case && state.history.length === 0) {
+        return res.status(409).json({
+          success: false,
+          error: "Der er ingen konkret hændelse at reverse endnu. Beskriv eller analysér hændelsen først.",
+          state,
+        });
+      }
+
+      const explicitIncident = cleanText(body.incident_case, MAX_INCIDENT_CHARS);
+      if (explicitIncident) {
+        state.incident_case = explicitIncident;
+      }
+
+      if (state.mode === "roleplay" && state.history.length > 0) {
+        state.previous_mode = "roleplay";
+      }
+
+      state.mode = "incident_analysis";
+      state.status = "active";
+      state.training_type = state.training_type || "hændelsesanalyse";
+      state.user_role = cleanText(body.user_role, 160) || state.user_role || "lærer/pædagog";
+      state.cda_role = state.cda_role || "CDA træner";
+
+      const result = await runModel(state, action, message);
+      state.last_reverse = result.reply;
 
       return res.status(200).json({
         success: true,
