@@ -178,12 +178,21 @@ function inferTrainingType(message, userRole, cdaRole) {
   return "generelt rollespil";
 }
 
-function inferDifficulty(message, fallback = "mellem") {
-  const text = normalizeCommand(message);
+function inferDifficulty(message, explicitDifficulty = "", fallback = "mellem") {
+  const explicit = cleanText(explicitDifficulty, 20).toLowerCase();
+  if (VALID_DIFFICULTIES.has(explicit)) return explicit;
 
-  if (text.includes("svaer")) return "svær";
-  if (text.includes("let")) return "let";
-  if (text.includes("mellem")) return "mellem";
+  const text = normalizeCommand(message);
+  const statedDifficulty =
+    text.match(/\b(?:svaerhedsgrad|niveau)\s+(let|mellem|svaer)\b/)?.[1] ||
+    text.match(/\b(let|mellem|svaer)\s+(?:svaerhedsgrad|niveau)\b/)?.[1] ||
+    text.match(/\b(?:paa|med)\s+(let|mellem|svaer)\s+(?:svaerhedsgrad|niveau)\b/)?.[1] ||
+    "";
+
+  if (statedDifficulty === "svaer") return "svær";
+  if (statedDifficulty === "let") return "let";
+  if (statedDifficulty === "mellem") return "mellem";
+
   return VALID_DIFFICULTIES.has(fallback) ? fallback : "mellem";
 }
 
@@ -606,7 +615,8 @@ export default async function handler(req, res) {
         training_type: cleanText(body.training_type, 180),
         difficulty: inferDifficulty(
           message,
-          cleanText(body.difficulty, 20) || "mellem"
+          body.difficulty,
+          "mellem"
         ),
         scene: cleanText(body.scene, 6000) || message,
         history: [],
@@ -761,7 +771,8 @@ export default async function handler(req, res) {
           inferTrainingType(message, newUserRole, newCdaRole),
         difficulty: inferDifficulty(
           message,
-          cleanText(body.difficulty, 20) || state.difficulty || "mellem"
+          body.difficulty,
+          state.difficulty || "mellem"
         ),
         scene: newScene,
         history: [],
