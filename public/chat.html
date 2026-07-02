@@ -1158,6 +1158,17 @@
       );
     }
 
+    function isExplicitIncidentAnalysisStart(value) {
+      const text = normalizeRoleplayTrigger(value);
+      if (!text) return false;
+
+      return (
+        /\b(?:analyser|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
+        /\bjeg\s+vil\s+(?:gerne\s+)?analysere\s+(?:en\s+)?(?:haendelse|situation|konflikt)\b/.test(text) ||
+        /\bhjaelp\s+mig\s+med\s+at\s+analysere\s+(?:denne\s+)?(?:haendelse|situation|konflikt)\b/.test(text)
+      );
+    }
+
     function isPausedRoleplayCommand(value) {
       const text = normalizeRoleplayTrigger(value);
       if (!text) return false;
@@ -1167,12 +1178,14 @@
       }
 
       return (
-        /\b(?:fortsaet|genoptag|continue)\s+(?:rollespil(?:let)?|scenen|traeningen)\b/.test(text) ||
-        /\b(?:stop|afslut)\s+(?:rollespil(?:let)?|scenen|traeningen)\b/.test(text) ||
-        /\b(?:nulstil|reset)\s+(?:rollespil(?:let)?|scenen|traeningen)\b/.test(text) ||
+        /\b(?:fortsaet|genoptag|continue)\s+(?:rollespil(?:let)?|scenen|traeningen|analysen)\b/.test(text) ||
+        /\b(?:stop|afslut)\s+(?:rollespil(?:let)?|scenen|traeningen|analysen)\b/.test(text) ||
+        /\b(?:nulstil|reset)\s+(?:rollespil(?:let)?|scenen|traeningen|analysen)\b/.test(text) ||
         /\b(?:skift|byt)\s+(?:rolle|roller|rollerne)\b/.test(text) ||
         /\b(?:giv|vis)\s+(?:mig\s+)?(?:et\s+)?hint\b/.test(text) ||
         /\b(?:giv|vis)\s+(?:mig\s+)?feedback\b/.test(text) ||
+        /\breverse(?:r)?\s+(?:denne\s+)?(?:situation(?:en)?|haendelse(?:n)?|konflikt(?:en)?|forloeb(?:et)?)\b/.test(text) ||
+        /\bvis\s+(?:mig\s+)?(?:situationen|haendelsen|konflikten|forloebet)\s+fra\s+(?:barnets|elevens)\s+(?:perspektiv|side)\b/.test(text) ||
         /^ny\s+scene\b/.test(text)
       );
     }
@@ -1369,13 +1382,19 @@
       }
 
       const startsRoleplay = !roleplayState && isExplicitRoleplayStart(tekst);
+      const startsIncidentAnalysis =
+        !roleplayState && isExplicitIncidentAnalysisStart(tekst);
       const pausedRoleplayCommand =
         roleplayState?.status === "paused" && isPausedRoleplayCommand(tekst);
       const activeRoleplay =
         Boolean(roleplayState) && roleplayState.status !== "paused";
-      const useRoleplay = startsRoleplay || activeRoleplay || pausedRoleplayCommand;
+      const useRoleplay =
+        startsRoleplay ||
+        startsIncidentAnalysis ||
+        activeRoleplay ||
+        pausedRoleplayCommand;
 
-      if (startsRoleplay) {
+      if (startsRoleplay || startsIncidentAnalysis) {
         pendingAction = null;
         sessionStorage.removeItem("cda_pending_action");
       }
@@ -1408,7 +1427,11 @@
           ? {
               message: tekst,
               state: roleplayState,
-              ...(startsRoleplay ? { action: "start" } : {}),
+              ...(startsRoleplay
+                ? { action: "start" }
+                : startsIncidentAnalysis
+                  ? { action: "analyze_incident" }
+                  : {}),
             }
           : {
               message: tekst,
