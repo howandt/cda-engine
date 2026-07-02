@@ -30,11 +30,11 @@ function cleanText(value, maxLength = MAX_MESSAGE_CHARS) {
 function normalizeCommand(value) {
   return cleanText(value, 500)
     .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
     .replace(/æ/g, "ae")
     .replace(/ø/g, "o")
     .replace(/å/g, "aa")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9\s-]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -210,59 +210,76 @@ function detectAction(message, state, explicitAction) {
 
   if (!text) return state.status === "active" ? "turn" : "help";
 
+  const isShortCommand = wordCount <= 12;
+
   if (
     text.includes("feedback") ||
     text.includes("debrief") ||
     text.includes("evaluering") ||
     text.includes("vurder min") ||
     text.includes("giv mig en vurdering") ||
-    (text.includes("stop") && text.includes("rollespil") && text.includes("raad"))
+    (text.includes("stop") &&
+      /\brollespil(?:let)?\b/.test(text) &&
+      text.includes("raad"))
   ) {
     return "feedback";
   }
 
   if (
-    wordCount <= 8 &&
-    (text === "pause" || text === "pause rollespil" || text === "saet paa pause")
+    isShortCommand &&
+    (/^(?:pause|pauser)(?:\s+(?:rollespil(?:let)?|scenen?))?$/.test(text) ||
+      /^saet\s+(?:rollespil(?:let)?|scenen?)\s+paa\s+pause$/.test(text))
   ) {
     return "pause";
   }
 
   if (
-    wordCount <= 8 &&
-    (text === "fortsaet" ||
-      text === "fortsaet rollespil" ||
-      text === "fortsaet hvor vi slap")
+    isShortCommand &&
+    (/^fortsaet(?:\s+(?:rollespil(?:let)?|scenen?))?$/.test(text) ||
+      /^fortsaet\s+hvor\s+vi\s+slap$/.test(text))
   ) {
     return "continue";
   }
 
   if (
-    wordCount <= 12 &&
-    (text.includes("skift rolle") || text.includes("byt roller"))
+    isShortCommand &&
+    (/^skift\s+rolle(?:r|rne)?$/.test(text) ||
+      /^byt\s+rolle(?:r|rne)?$/.test(text) ||
+      /^lad\s+os\s+(?:skifte|bytte)\s+rolle(?:r|rne)?$/.test(text))
   ) {
     return "switch_role";
   }
 
-  if (wordCount <= 8 && (text === "hint" || text === "tip" || text === "giv et hint")) {
+  if (
+    isShortCommand &&
+    (/^(?:hint|tip)$/.test(text) ||
+      /^giv\s+(?:mig\s+)?et\s+(?:hint|tip)$/.test(text) ||
+      /^hjaelp\s+mig\s+lidt$/.test(text))
+  ) {
     return "hint";
   }
 
-  if (wordCount <= 10 && (text.includes("ny scene") || text.includes("nyt scenarie"))) {
+  if (
+    text.startsWith("ny scene") ||
+    text.startsWith("nyt scenarie") ||
+    text.startsWith("start en ny scene") ||
+    text.startsWith("start et nyt scenarie")
+  ) {
     return "new_scene";
   }
 
   if (
-    wordCount <= 10 &&
-    (text === "stop" ||
-      text === "stop rollespil" ||
-      text === "slut rollespil" ||
-      text === "afslut rollespil")
+    isShortCommand &&
+    (/^(?:stop|slut|afslut)(?:\s+(?:rollespil(?:let)?|scenen?))?$/.test(text) ||
+      /^stop\s+nu$/.test(text))
   ) {
     return "stop";
   }
 
-  if (wordCount <= 6 && (text === "reset" || text === "nulstil" || text === "nulstil rollespil")) {
+  if (
+    wordCount <= 8 &&
+    /^(?:reset|nulstil)(?:\s+(?:rollespil(?:let)?|scenen?))?$/.test(text)
+  ) {
     return "reset";
   }
 
@@ -282,6 +299,7 @@ function detectAction(message, state, explicitAction) {
   ) {
     if (
       text.includes("start rollespil") ||
+      text.includes("start rollespillet") ||
       text.includes("start rollespilmotor") ||
       text.includes("jeg vil traene") ||
       text.includes("jeg skal traene") ||
