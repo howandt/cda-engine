@@ -1484,6 +1484,8 @@ if (data.pending_action) {
   sessionStorage.removeItem("cda_pending_action");
 }
 
+appendMessage("assistant", data.reply);
+
         appendMessage("assistant", data.reply);
       } catch (error) {
         typingRow.remove();
