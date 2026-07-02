@@ -26,6 +26,7 @@ const VALID_RETRY_PHASES = new Set([
   "",
   "awaiting_teacher_rephrase",
   "active",
+  "feedback_complete",
 ]);
 
 function cleanText(value, maxLength = MAX_MESSAGE_CHARS) {
@@ -252,6 +253,7 @@ function detectAction(message, state, explicitAction) {
     "reverse_incident",
     "retry_incident",
     "retry_incident_turn",
+    "retry_required",
   ]);
 
   if (allowed.has(explicit)) return explicit;
@@ -397,6 +399,13 @@ function detectAction(message, state, explicitAction) {
     ) {
       return "start";
     }
+  }
+
+  if (
+    state.mode === "incident_analysis" &&
+    state.retry_phase === "feedback_complete"
+  ) {
+    return "retry_required";
   }
 
   if (
@@ -1278,6 +1287,17 @@ export default async function handler(req, res) {
       });
     }
 
+    if (action === "retry_required") {
+      return res.status(200).json({
+        success: true,
+        reply: "Skriv ‘Prøv igen’, hvis du vil afprøve en ny formulering i den samme hændelse.",
+        action,
+        model: null,
+        usage: null,
+        state,
+      });
+    }
+
     if (action === "retry_incident") {
       const hasAnalyzedIncident =
         Boolean(state.incident_case) &&
@@ -1382,6 +1402,7 @@ export default async function handler(req, res) {
         state.status = "feedback";
         state.last_feedback = result.reply;
         state.last_retry_feedback = result.reply;
+        state.retry_phase = "feedback_complete";
 
         return res.status(200).json({
           success: true,
