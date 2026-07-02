@@ -1076,7 +1076,92 @@
     const rolleValg = document.getElementById("rolleValg");
     const svarstilValg = document.getElementById("svarstilValg");
 
+    const ROLEPLAY_STATE_KEY = "cda_roleplay_state";
     let pendingAction = sessionStorage.getItem("cda_pending_action");
+    let roleplayState = loadRoleplayState();
+
+    function loadRoleplayState() {
+      try {
+        const raw = sessionStorage.getItem(ROLEPLAY_STATE_KEY);
+        if (!raw) return null;
+
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== "object" || parsed.status === "ended") {
+          sessionStorage.removeItem(ROLEPLAY_STATE_KEY);
+          return null;
+        }
+
+        return parsed;
+      } catch (error) {
+        sessionStorage.removeItem(ROLEPLAY_STATE_KEY);
+        return null;
+      }
+    }
+
+    function saveRoleplayState(state) {
+      if (!state || typeof state !== "object") return;
+
+      roleplayState = state;
+      sessionStorage.setItem(ROLEPLAY_STATE_KEY, JSON.stringify(state));
+    }
+
+    function clearRoleplayState() {
+      roleplayState = null;
+      sessionStorage.removeItem(ROLEPLAY_STATE_KEY);
+    }
+
+    function normalizeRoleplayTrigger(value) {
+      return String(value || "")
+        .toLowerCase()
+        .replace(/æ/g, "ae")
+        .replace(/ø/g, "o")
+        .replace(/å/g, "aa")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s-]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function isExplicitRoleplayStart(value) {
+      const text = normalizeRoleplayTrigger(value);
+      if (!text) return false;
+
+      if (
+        /\b(?:start|begynd)\s+(?:(?:et|en)\s+)?rollespil(?:let)?\b/.test(text) ||
+        /\b(?:start|aktiver)\s+(?:den\s+)?(?:separate\s+)?rollespilsmotor(?:en)?\b/.test(text) ||
+        /\b(?:start|begynd)\s+(?:(?:et|en)\s+)?(?:samtaletraening|moedetraening|konflikttraening)\b/.test(text) ||
+        /\bjeg\s+(?:vil|skal)\s+traene\s+(?:(?:en|et)\s+)?(?:samtale|moede|konflikt|rollespil)\b/.test(text)
+      ) {
+        return true;
+      }
+
+      const knownRole =
+        "(?:laerer(?:en)?|paedagog(?:en)?|foraelder(?:en)?|elev(?:en)?|barn(?:et)?|skoleleder(?:en)?|leder(?:en)?|psykolog(?:en)?|specialist(?:en)?|raadgiver(?:en)?|ppr-medarbejder(?:en)?|kollega(?:en)?|sagsbehandler(?:en)?|mentor(?:en)?|vejleder(?:en)?|socialraadgiver(?:en)?)";
+
+      const userPlaysFirst =
+        /\bjeg\s+spiller\s+.{1,120}\bdu\s+(?:spiller|er)\s+/.test(text);
+      const cdaPlaysFirst =
+        /\bdu\s+(?:spiller|er)\s+.{1,120}\bjeg\s+spiller\s+/.test(text);
+      const userIsKnownRoleFirst = new RegExp(
+        `\\bjeg\\s+er\\s+${knownRole}\\b.{0,100}\\bdu\\s+(?:spiller|er)\\s+`
+      ).test(text);
+      const cdaFirstUserIsKnownRole = new RegExp(
+        `\\bdu\\s+(?:spiller|er)\\s+.{1,120}\\bjeg\\s+er\\s+${knownRole}\\b`
+      ).test(text);
+
+      return (
+        userPlaysFirst ||
+        cdaPlaysFirst ||
+        userIsKnownRoleFirst ||
+        cdaFirstUserIsKnownRole
+      );
+    }
+
+    if (roleplayState) {
+      pendingAction = null;
+      sessionStorage.removeItem("cda_pending_action");
+    }
 
     if (!adgangskode || !sprog || !rolle || !svarstil) {
       window.location.href = "/cda.html";
@@ -1269,6 +1354,14 @@
         return;
       }
 
+      const startsRoleplay = !roleplayState && isExplicitRoleplayStart(tekst);
+      const useRoleplay = Boolean(roleplayState) || startsRoleplay;
+
+      if (startsRoleplay) {
+        pendingAction = null;
+        sessionStorage.removeItem("cda_pending_action");
+      }
+
       fejl.textContent = "";
       sendKnap.disabled = true;
       sendKnap.textContent = "Arbejder...";
@@ -1289,19 +1382,31 @@
       );
 
       try {
-        const svar = await fetch("/api/cda-chat", {
+        const requestUrl = useRoleplay
+          ? "/api/rollespil-chat"
+          : "/api/cda-chat";
+
+        const requestBody = useRoleplay
+          ? {
+              message: tekst,
+              state: roleplayState,
+              ...(startsRoleplay ? { action: "start" } : {}),
+            }
+          : {
+              message: tekst,
+              language: sprog,
+              role: rolle,
+              response_style: svarstil,
+              adgangskode,
+              pending_action: pendingAction,
+            };
+
+        const svar = await fetch(requestUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            message: tekst,
-            language: sprog,
-            role: rolle,
-            response_style: svarstil,
-            adgangskode,
-            pending_action: pendingAction,
-          }),
+          body: JSON.stringify(requestBody),
         });
 
         const data = await svar.json();
@@ -1309,11 +1414,26 @@
         typingRow.remove();
 
         if (!svar.ok) {
+          if (useRoleplay && data.state) {
+            saveRoleplayState(data.state);
+          }
+
           fejl.textContent = data.error || "CDA kunne ikke svare.";
           return;
         }
 
-        if (data.pending_action) {
+        if (useRoleplay) {
+          const leavesRoleplay =
+            data.action === "stop" ||
+            data.action === "reset" ||
+            data.state?.status === "ended";
+
+          if (leavesRoleplay) {
+            clearRoleplayState();
+          } else if (data.state) {
+            saveRoleplayState(data.state);
+          }
+        } else if (data.pending_action) {
           pendingAction = data.pending_action;
           sessionStorage.setItem("cda_pending_action", pendingAction);
         } else {
@@ -1347,6 +1467,7 @@
     function startNewConversation() {
       pendingAction = null;
       sessionStorage.removeItem("cda_pending_action");
+      clearRoleplayState();
 
       chat.innerHTML = welcomeTemplate;
       welcome = document.getElementById("welcome");
