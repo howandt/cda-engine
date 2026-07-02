@@ -1158,9 +1158,23 @@
       );
     }
 
-    if (roleplayState) {
-      pendingAction = null;
-      sessionStorage.removeItem("cda_pending_action");
+    function isPausedRoleplayCommand(value) {
+      const text = normalizeRoleplayTrigger(value);
+      if (!text) return false;
+
+      if (["fortsaet", "continue", "stop", "reset", "nulstil"].includes(text)) {
+        return true;
+      }
+
+      return (
+        /\b(?:fortsaet|genoptag|continue)\s+(?:rollespil(?:let)?|scenen|traeningen)\b/.test(text) ||
+        /\b(?:stop|afslut)\s+(?:rollespil(?:let)?|scenen|traeningen)\b/.test(text) ||
+        /\b(?:nulstil|reset)\s+(?:rollespil(?:let)?|scenen|traeningen)\b/.test(text) ||
+        /\b(?:skift|byt)\s+(?:rolle|roller|rollerne)\b/.test(text) ||
+        /\b(?:giv|vis)\s+(?:mig\s+)?(?:et\s+)?hint\b/.test(text) ||
+        /\b(?:giv|vis)\s+(?:mig\s+)?feedback\b/.test(text) ||
+        /^ny\s+scene\b/.test(text)
+      );
     }
 
     if (!adgangskode || !sprog || !rolle || !svarstil) {
@@ -1355,7 +1369,11 @@
       }
 
       const startsRoleplay = !roleplayState && isExplicitRoleplayStart(tekst);
-      const useRoleplay = Boolean(roleplayState) || startsRoleplay;
+      const pausedRoleplayCommand =
+        roleplayState?.status === "paused" && isPausedRoleplayCommand(tekst);
+      const activeRoleplay =
+        Boolean(roleplayState) && roleplayState.status !== "paused";
+      const useRoleplay = startsRoleplay || activeRoleplay || pausedRoleplayCommand;
 
       if (startsRoleplay) {
         pendingAction = null;
