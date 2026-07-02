@@ -10,6 +10,7 @@ const MAX_HISTORY_CHARS = 40000;
 const MAX_MESSAGE_CHARS = 6000;
 const MAX_ROLE_EVENTS = 20;
 const MAX_INCIDENT_CHARS = 16000;
+const MAX_RETRY_HISTORY_ITEMS = 20;
 
 const VALID_STATUSES = new Set([
   "setup",
@@ -21,6 +22,11 @@ const VALID_STATUSES = new Set([
 
 const VALID_DIFFICULTIES = new Set(["let", "mellem", "svær"]);
 const VALID_MODES = new Set(["roleplay", "incident_analysis"]);
+const VALID_RETRY_PHASES = new Set([
+  "",
+  "awaiting_teacher_rephrase",
+  "active",
+]);
 
 function cleanText(value, maxLength = MAX_MESSAGE_CHARS) {
   return String(value || "")
@@ -119,6 +125,19 @@ function sanitizeState(rawState = {}) {
     ? rawState.previous_mode
     : "";
 
+  const retryPhase = VALID_RETRY_PHASES.has(rawState.retry_phase)
+    ? rawState.retry_phase
+    : "";
+
+  const retryHistory = sanitizeHistory(rawState.retry_history).slice(
+    -MAX_RETRY_HISTORY_ITEMS
+  );
+
+  const retryAttempt = Math.max(
+    0,
+    Math.min(1000, Number.parseInt(rawState.retry_attempt, 10) || 0)
+  );
+
   return {
     session_id: cleanText(rawState.session_id, 100) || createSessionId(),
     status,
@@ -140,6 +159,10 @@ function sanitizeState(rawState = {}) {
     last_feedback: cleanText(rawState.last_feedback, 6000),
     last_analysis: cleanText(rawState.last_analysis, 10000),
     last_reverse: cleanText(rawState.last_reverse, 10000),
+    retry_phase: retryPhase,
+    retry_history: retryHistory,
+    retry_attempt: retryAttempt,
+    last_retry_feedback: cleanText(rawState.last_retry_feedback, 6000),
   };
 }
 
@@ -227,6 +250,8 @@ function detectAction(message, state, explicitAction) {
     "help",
     "analyze_incident",
     "reverse_incident",
+    "retry_incident",
+    "retry_incident_turn",
   ]);
 
   if (allowed.has(explicit)) return explicit;
@@ -236,6 +261,9 @@ function detectAction(message, state, explicitAction) {
   if (["reverse", "reverse_incident", "vend_situationen", "perspektivskifte"].includes(explicit)) {
     return "reverse_incident";
   }
+  if (["retry", "retry_incident", "prov_igen", "proev_igen"].includes(explicit)) {
+    return "retry_incident";
+  }
 
   const text = normalizeCommand(message);
   const wordCount = text ? text.split(" ").length : 0;
@@ -243,6 +271,13 @@ function detectAction(message, state, explicitAction) {
   if (!text) return state.status === "active" ? "turn" : "help";
 
   const isShortCommand = wordCount <= 12;
+
+  if (
+    isShortCommand &&
+    /^(?:prov igen|lad mig prove igen|jeg vil prove igen|nyt forsog)(?: med en ny formulering)?$/.test(text)
+  ) {
+    return "retry_incident";
+  }
 
   if (
     /\breverse(?:r)?\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
@@ -364,6 +399,13 @@ function detectAction(message, state, explicitAction) {
     }
   }
 
+  if (
+    state.mode === "incident_analysis" &&
+    ["awaiting_teacher_rephrase", "active"].includes(state.retry_phase)
+  ) {
+    return "retry_incident_turn";
+  }
+
   if (state.mode === "incident_analysis") {
     return "analyze_incident";
   }
@@ -427,6 +469,35 @@ function buildRoleplayInstructions(state, action) {
       "Svar med fire korte dele: 1) Hvad der ser ud til at være vendepunktet, 2) Hvordan beskeden kan være blevet modtaget, 3) Hvad læreren kan prøve næste gang, 4) Hvilken vigtig oplysning der eventuelt mangler.",
       "Giv mindst én færdig, konkret alternativ formulering, som læreren kan bruge næste gang.",
       "Stil højst ét kort opklarende spørgsmål, og kun hvis det vil ændre vurderingen væsentligt.",
+    ].join("\n");
+  }
+
+  if (action === "retry_incident_turn") {
+    return [
+      "Du er CDA's kommunikations-, trænings- og refleksionsmotor i funktionen 'Prøv igen'.",
+      "Brugeren er læreren eller pædagogen og afprøver en ny formulering i den samme konkrete hændelse.",
+      "Du skal svare UDELUKKENDE som barnet eller eleven i det konkrete øjeblik.",
+      "Giv ingen analyse, feedback, forklaring, overskrift, vurdering eller forslag til læreren i dette svar.",
+      "Reagér realistisk på lærerens præcise ord ud fra den gemte hændelse, den tidligere analyse og eventuelle reverse.",
+      "Barnet må gerne være vredt, afvisende, usikkert, mere roligt eller delvist samarbejdende, hvis formuleringen giver grund til det. Gør ikke en bedre formulering til en automatisk succes.",
+      "Fasthold sted, personer, konflikt, timing og barnets kendte reaktion. Opfind ikke nye alvorlige hændelser, diagnoser eller baggrundsfakta.",
+      "Hvis barnets indre oplevelse er usikker, skal du stadig spille en plausibel reaktion uden at fremstille dine antagelser som dokumenterede fakta.",
+      "Svar med én kort og naturlig rolletur. Direkte tale er hovedformen; kort kropssprog kan tilføjes, hvis det er relevant.",
+    ].join("\n");
+  }
+
+  if (
+    action === "feedback" &&
+    state.mode === "incident_analysis" &&
+    state.retry_history.length > 0
+  ) {
+    return [
+      "Du er ude af barnets rolle og giver faglig feedback på lærerens seneste 'Prøv igen'-forsøg i den konkrete hændelse.",
+      "Vurdér kun den formulering og de handlinger, læreren faktisk afprøvede, samt barnets efterfølgende reaktion.",
+      "Knyt feedbacken til den oprindelige hændelse, hændelsesanalysen og eventuel reverse. Bland ikke andre cases eller generelle standardsvar ind.",
+      "Skeln mellem det, der kan ses i replikken, og det, der kun er en mulig effekt hos barnet.",
+      "Svar kort i tre dele: 1) Hvad der hjalp, 2) Hvad der stadig kan skabe modstand eller uklarhed, 3) Én konkret forbedret formulering eller næste handling.",
+      "Brug ingen point, stjerner, overdreven ros eller facit-sprog.",
     ].join("\n");
   }
 
@@ -543,6 +614,23 @@ function formatHistory(state) {
   return lines.join("\n");
 }
 
+function formatIncidentRetryHistory(state) {
+  if (!state.retry_history.length) {
+    return "(Intet 'Prøv igen'-forløb endnu)";
+  }
+
+  return state.retry_history
+    .map((item, index) => {
+      const speaker =
+        item.role === "user"
+          ? "LÆRER/PÆDAGOG"
+          : "BARN/ELEV";
+
+      return `${index + 1}. ${speaker}: ${item.content}`;
+    })
+    .join("\n");
+}
+
 function buildModelInput(state, action, message) {
   if (action === "reverse_incident") {
     return [
@@ -583,6 +671,56 @@ function buildModelInput(state, action, message) {
       "",
       "TIDLIGERE ANALYSE, HVIS DEN FINDES",
       state.last_analysis || "Ingen tidligere analyse.",
+    ].join("\n");
+  }
+
+  if (action === "retry_incident_turn") {
+    return [
+      "PRØV IGEN — SAMME KONKRETE HÆNDELSE",
+      `Forsøg nummer: ${state.retry_attempt || 1}`,
+      "Brugeren afprøver en ny lærerformulering i præcis det øjeblik, hvor den oprindelige situation eskalerede.",
+      "Svar kun som barnet eller eleven. Giv ingen faglig forklaring i selve rolleturen.",
+      "",
+      "DEN OPRINDELIGE HÆNDELSE",
+      state.incident_case || "Ingen hændelse er gemt.",
+      "",
+      "DEN TIDLIGERE HÆNDELSESANALYSE",
+      state.last_analysis || "Ingen tidligere analyse.",
+      "",
+      "EVENTUEL REVERSE",
+      state.last_reverse || "Ingen tidligere reverse.",
+      "",
+      "DET AKTUELLE PRØV-IGEN-FORLØB",
+      formatIncidentRetryHistory(state),
+      "",
+      "LÆRERENS NYESTE REPLIK — SVAR NU KUN SOM BARNET/ELEVEN",
+      message || "Fortsæt naturligt som barnet eller eleven.",
+    ].join("\n");
+  }
+
+  if (
+    action === "feedback" &&
+    state.mode === "incident_analysis" &&
+    state.retry_history.length > 0
+  ) {
+    return [
+      "FEEDBACK PÅ 'PRØV IGEN'-FORSØG",
+      `Brugerens faglige rolle: ${state.user_role || "lærer/pædagog"}`,
+      "",
+      "DEN OPRINDELIGE HÆNDELSE",
+      state.incident_case || "Ingen hændelse er gemt.",
+      "",
+      "DEN TIDLIGERE HÆNDELSESANALYSE",
+      state.last_analysis || "Ingen tidligere analyse.",
+      "",
+      "EVENTUEL REVERSE",
+      state.last_reverse || "Ingen tidligere reverse.",
+      "",
+      "DET GENNEMFØRTE PRØV-IGEN-FORLØB",
+      formatIncidentRetryHistory(state),
+      "",
+      "BRUGERENS ANMODNING",
+      message || "Giv feedback på forsøget.",
     ].join("\n");
   }
 
@@ -639,6 +777,8 @@ async function runModel(state, action, message) {
         ? 850
         : action === "analyze_incident"
           ? 900
+        : action === "retry_incident_turn"
+          ? 350
         : action === "feedback"
           ? 700
           : action === "hint"
@@ -688,7 +828,7 @@ function roleplayHelpReply() {
     "Skriv fx: ‘Jeg er læreren. Du spiller en skeptisk forælder. Start mødet.’",
     "Eller: ‘Analysér denne hændelse: Jeg sagde ..., barnet gjorde ...’",
     "",
-    "Kommandoer: Start rollespil, Analysér hændelsen, Reverse situationen, Pause, Fortsæt, Skift rolle, Ny scene, Hint, Feedback, Stop og Nulstil.",
+    "Kommandoer: Start rollespil, Analysér hændelsen, Reverse situationen, Prøv igen, Pause, Fortsæt, Skift rolle, Ny scene, Hint, Feedback, Stop og Nulstil.",
   ].join("\n");
 }
 
@@ -714,6 +854,14 @@ function appendRoleplayTurn(state, userMessage, assistantReply) {
       state.cda_role
     );
   }
+}
+
+function appendIncidentRetryTurn(state, userMessage, assistantReply) {
+  state.retry_history = sanitizeHistory([
+    ...state.retry_history,
+    { role: "user", content: userMessage },
+    { role: "assistant", content: assistantReply },
+  ]).slice(-MAX_RETRY_HISTORY_ITEMS);
 }
 
 export default async function handler(req, res) {
@@ -1027,6 +1175,10 @@ export default async function handler(req, res) {
         state.history.length > 0 &&
         Boolean(state.user_role && state.cda_role);
 
+      state.retry_phase = "";
+      state.retry_history = [];
+      state.last_retry_feedback = "";
+
       const explicitIncident = cleanText(body.incident_case, MAX_INCIDENT_CHARS);
       if (explicitIncident) {
         state.incident_case = explicitIncident;
@@ -1126,7 +1278,121 @@ export default async function handler(req, res) {
       });
     }
 
+    if (action === "retry_incident") {
+      const hasAnalyzedIncident =
+        Boolean(state.incident_case) &&
+        Boolean(state.last_analysis || state.last_reverse);
+
+      if (!hasAnalyzedIncident) {
+        return res.status(200).json({
+          success: true,
+          reply: "Der er ingen analyseret hændelse at prøve igen. Analysér først en konkret hændelse.",
+          action,
+          model: null,
+          usage: null,
+          state,
+        });
+      }
+
+      state.mode = "incident_analysis";
+      state.status = "active";
+      state.training_type = state.training_type || "hændelsesanalyse";
+      state.user_role = state.user_role || "lærer/pædagog";
+      state.cda_role = state.cda_role || "CDA træner";
+      state.retry_phase = "awaiting_teacher_rephrase";
+      state.retry_history = [];
+      state.retry_attempt += 1;
+
+      return res.status(200).json({
+        success: true,
+        reply: "Skriv den nye formulering, du vil prøve over for barnet.",
+        action,
+        model: null,
+        usage: null,
+        state,
+      });
+    }
+
+    if (action === "retry_incident_turn") {
+      if (!state.incident_case || !(state.last_analysis || state.last_reverse)) {
+        return res.status(409).json({
+          success: false,
+          error: "Den analyserede hændelse mangler. Analysér hændelsen igen, før du bruger ‘Prøv igen’.",
+          state,
+        });
+      }
+
+      if (
+        !["awaiting_teacher_rephrase", "active"].includes(
+          state.retry_phase
+        )
+      ) {
+        return res.status(409).json({
+          success: false,
+          error: "Skriv ‘Prøv igen’, før du afprøver en ny formulering.",
+          state,
+        });
+      }
+
+      if (!message) {
+        return res.status(400).json({
+          success: false,
+          error: "Den nye formulering er tom",
+          state,
+        });
+      }
+
+      state.status = "active";
+      const result = await runModel(state, action, message);
+      appendIncidentRetryTurn(state, message, result.reply);
+      state.retry_phase = "active";
+
+      return res.status(200).json({
+        success: true,
+        reply: result.reply,
+        action,
+        model: MODEL,
+        usage: result.usage,
+        state,
+      });
+    }
+
     if (action === "feedback" || action === "hint") {
+      const hasIncidentRetry =
+        state.mode === "incident_analysis" &&
+        state.retry_history.some((item) => item.role === "user") &&
+        state.retry_history.some((item) => item.role === "assistant");
+
+      if (
+        action === "feedback" &&
+        state.retry_phase === "awaiting_teacher_rephrase"
+      ) {
+        return res.status(200).json({
+          success: true,
+          reply: "Skriv først den nye formulering, så reagerer barnet. Derefter kan du bede om feedback.",
+          action,
+          model: null,
+          usage: null,
+          state,
+        });
+      }
+
+      if (action === "feedback" && hasIncidentRetry) {
+        const result = await runModel(state, action, message);
+        state.status = "feedback";
+        state.last_feedback = result.reply;
+        state.last_retry_feedback = result.reply;
+
+        return res.status(200).json({
+          success: true,
+          reply: result.reply,
+          action,
+          model: MODEL,
+          usage: result.usage,
+          state,
+        });
+      }
+
       if (!state.user_role || !state.cda_role || state.history.length === 0) {
         return res.status(409).json({
           success: false,
