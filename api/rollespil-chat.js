@@ -709,27 +709,65 @@ export default async function handler(req, res) {
     }
 
     if (action === "new_scene") {
-      state.status = "setup";
-      state.scene = cleanText(body.scene, 6000) || message;
-      state.history = [];
-      state.role_events =
-        state.user_role && state.cda_role
-          ? [
-              {
-                history_index: 0,
-                user_role: state.user_role,
-                cda_role: state.cda_role,
-              },
-            ]
-          : [];
-      state.last_feedback = "";
+      const newUserRole =
+        cleanText(body.user_role, 160) || extractRole(message, "user");
+      const newCdaRole =
+        cleanText(body.cda_role, 160) || extractRole(message, "cda");
+      const newScene = cleanText(body.scene, 6000) || message;
+
+      state = sanitizeState({
+        session_id: state.session_id || createSessionId(),
+        status: "setup",
+        user_role: newUserRole,
+        cda_role: newCdaRole,
+        training_type:
+          cleanText(body.training_type, 180) ||
+          inferTrainingType(message, newUserRole, newCdaRole),
+        difficulty: inferDifficulty(
+          message,
+          cleanText(body.difficulty, 20) || state.difficulty || "mellem"
+        ),
+        scene: newScene,
+        history: [],
+        role_events: [],
+        last_feedback: "",
+      });
+
+      if (!state.user_role || !state.cda_role) {
+        const missingQuestion = !state.user_role && !state.cda_role
+          ? "Hvilken rolle vil du selv have, og hvilken rolle skal jeg spille i den nye scene?"
+          : !state.user_role
+            ? "Hvilken rolle vil du selv have i den nye scene?"
+            : "Hvilken rolle skal jeg spille i den nye scene?";
+
+        return res.status(200).json({
+          success: true,
+          reply: missingQuestion,
+          action,
+          model: null,
+          usage: null,
+          state,
+        });
+      }
+
+      state.role_events = [
+        {
+          history_index: 0,
+          user_role: state.user_role,
+          cda_role: state.cda_role,
+        },
+      ];
+      state.status = "active";
+
+      const result = await runModel(state, action, message);
+      appendRoleplayTurn(state, message, result.reply);
 
       return res.status(200).json({
         success: true,
-        reply: "Den tidligere scene er afsluttet. Beskriv den nye scene, eller skriv rollerne og startreplikken.",
+        reply: result.reply,
         action,
-        model: null,
-        usage: null,
+        model: MODEL,
+        usage: result.usage,
         state,
       });
     }
