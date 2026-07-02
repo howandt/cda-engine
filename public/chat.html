@@ -1464,23 +1464,25 @@
         }
 
         if (useRoleplay) {
-          const leavesRoleplay =
-            data.action === "stop" ||
-            data.action === "reset" ||
-            data.state?.status === "ended";
+  const leavesRoleplay =
+    data.action === "stop" ||
+    data.action === "reset" ||
+    data.state?.status === "ended";
 
-          if (leavesRoleplay) {
-            clearRoleplayState();
-          } else if (data.state) {
-            saveRoleplayState(data.state);
-          }
-        } else if (data.pending_action) {
-          pendingAction = data.pending_action;
-          sessionStorage.setItem("cda_pending_action", pendingAction);
-        } else {
-          pendingAction = null;
-          sessionStorage.removeItem("cda_pending_action");
-        }
+  if (leavesRoleplay) {
+    clearRoleplayState();
+  } else if (data.state) {
+    saveRoleplayState(data.state);
+  }
+}
+
+if (data.pending_action) {
+  pendingAction = data.pending_action;
+  sessionStorage.setItem("cda_pending_action", pendingAction);
+} else {
+  pendingAction = null;
+  sessionStorage.removeItem("cda_pending_action");
+}
 
         appendMessage("assistant", data.reply);
       } catch (error) {
