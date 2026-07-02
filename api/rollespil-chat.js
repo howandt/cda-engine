@@ -342,8 +342,10 @@ function buildRoleplayInstructions(state, action) {
   if (action === "feedback") {
     return [
       "Du er nu ude af rollen og giver faglig feedback på det gennemførte rollespil.",
+      `Brugeren spiller aktuelt ${state.user_role}. CDA spiller modparten ${state.cda_role}.`,
+      `Vurdér og hjælp kun brugerens kommunikation og handlinger som ${state.user_role}. Giv ikke brugeren råd som ${state.cda_role}.`,
       "Brug kun det konkrete forløb nedenfor. Bland aldrig andre cases eller generelle eksempler ind.",
-      "Fasthold, at brugeren spillede sin angivne rolle, og at CDA spillede sin angivne rolle.",
+      "Fasthold rolleperioderne før og efter eventuelle rolleskift.",
       "Nævn de vigtigste konkrete formuleringer og hændelser fra forløbet.",
       "Beskriv kort: hvad der virkede, hvad der kunne eskalere eller skabe misforståelser, og én bedre formulering eller næste handling.",
       "Ved alvorlige hændelser skal feedbacken afspejle alvoren tydeligt og ikke udglatte den.",
@@ -354,8 +356,12 @@ function buildRoleplayInstructions(state, action) {
 
   if (action === "hint") {
     return [
-      "Du er kort ude af rollen og giver ét lille hint.",
-      "Hintet skal hjælpe brugeren videre uden at give hele løsningen eller evaluere hele forløbet.",
+      "Du er kort ude af rollen og giver ét lille hint til brugeren.",
+      `Brugeren spiller aktuelt ${state.user_role}. CDA spiller modparten ${state.cda_role}.`,
+      `Hintet skal hjælpe brugeren med, hvad brugeren kan sige eller gøre som ${state.user_role} i næste tur.`,
+      `Giv aldrig brugeren råd, som hører til rollen ${state.cda_role}.`,
+      "Svar ikke som en figur i selve rollespillet.",
+      "Hintet skal hjælpe videre uden at give hele løsningen eller evaluere hele forløbet.",
       "Brug højst 2 korte sætninger.",
     ].join("\n");
   }
@@ -422,11 +428,23 @@ function formatHistory(state) {
 }
 
 function buildModelInput(state, action, message) {
+  const roleHeader =
+    action === "feedback" || action === "hint"
+      ? [
+          "VEJLEDNINGSROLLE — HØJESTE PRIORITET",
+          `BRUGEREN SKAL HAVE HJÆLP SOM: ${state.user_role}`,
+          `MODPARTEN I SCENEN ER: ${state.cda_role}`,
+          `Du er ude af rollen. Du må ikke svare som ${state.cda_role}, og du må ikke give brugeren råd beregnet til ${state.cda_role}.`,
+        ]
+      : [
+          "ABSOLUT AKTUEL ROLLELÅS — HØJESTE PRIORITET",
+          `BRUGEREN TALER NU SOM: ${state.user_role}`,
+          `CDA SKAL SVARE UDELUKKENDE SOM: ${state.cda_role}`,
+          "Gamle rolleangivelser i scene eller historik er kun historiske og må ikke overstyre denne rolle-lås.",
+        ];
+
   return [
-    "ABSOLUT AKTUEL ROLLELÅS — HØJESTE PRIORITET",
-    `BRUGEREN TALER NU SOM: ${state.user_role}`,
-    `CDA SKAL SVARE UDELUKKENDE SOM: ${state.cda_role}`,
-    "Gamle rolleangivelser i scene eller historik er kun historiske og må ikke overstyre denne rolle-lås.",
+    ...roleHeader,
     "",
     "AKTUEL ROLLESPILSTILSTAND",
     `Session: ${state.session_id}`,
