@@ -2159,6 +2159,69 @@ function getTemplates(args = {}) {
   };
 }
 
+function getTemplateFiles() {
+  const filePath = path.join(
+    process.cwd(),
+    "data",
+    "CDA_TemplateFiles.json"
+  );
+
+  const registry = readJsonFile(
+    filePath,
+    "data/CDA_TemplateFiles.json blev ikke fundet"
+  );
+
+  const categories = Array.isArray(registry?.categories)
+    ? registry.categories
+    : [];
+  const standalone = Array.isArray(registry?.standalone)
+    ? registry.standalone
+    : [];
+
+  const categoryTemplates = categories.flatMap((category) => {
+    const files = Array.isArray(category?.files) ? category.files : [];
+
+    return files.map((file) => ({
+      id: file?.id || null,
+      title: file?.title || null,
+      category: category?.title || null,
+      category_id: category?.id || null,
+      description: file?.description || category?.description || null,
+      content_file: file?.content_file || null,
+      search_keywords: [
+        ...(Array.isArray(category?.keywords) ? category.keywords : []),
+        ...(Array.isArray(file?.keywords) ? file.keywords : []),
+      ],
+      command_triggers: [file?.title, file?.id].filter(Boolean),
+      source: "template_files_registry",
+    }));
+  });
+
+  const standaloneTemplates = standalone.map((file) => ({
+    id: file?.id || null,
+    title: file?.title || null,
+    category: "Selvstændige skabeloner",
+    category_id: "standalone",
+    description: file?.description || null,
+    content_file: file?.content_file || null,
+    search_keywords: Array.isArray(file?.keywords) ? file.keywords : [],
+    command_triggers: [file?.title, file?.id].filter(Boolean),
+    source: "template_files_registry",
+  }));
+
+  const templates = [...categoryTemplates, ...standaloneTemplates]
+    .filter((template) => template.id && template.title && template.content_file);
+
+  return {
+    success: true,
+    source: "local",
+    templates,
+    categories,
+    standalone,
+    total: templates.length,
+  };
+}
+
 
 function normalizeTemplateSearch(value) {
   return normalizeDiagnosisPhrase(value);
@@ -2534,8 +2597,41 @@ function getDirectTemplateFileRequest(message, template) {
   };
 }
 
+function readLocalTemplateMarkdown(template) {
+  const contentFile = String(template?.content_file || "").trim();
+
+  if (!contentFile) {
+    return null;
+  }
+
+  const projectRoot = path.resolve(process.cwd());
+  const templatesRoot = path.resolve(projectRoot, "templates");
+  const resolvedPath = path.resolve(projectRoot, contentFile);
+
+  if (
+    resolvedPath !== templatesRoot &&
+    !resolvedPath.startsWith(`${templatesRoot}${path.sep}`)
+  ) {
+    throw new Error(
+      `Ugyldig templatefil uden for templates-mappen: ${contentFile}`
+    );
+  }
+
+  if (path.extname(resolvedPath).toLowerCase() !== ".md") {
+    throw new Error(`Ugyldig templatefiltype: ${contentFile}`);
+  }
+
+  if (!fs.existsSync(resolvedPath)) {
+    return null;
+  }
+
+  const markdown = fs.readFileSync(resolvedPath, "utf8").trim();
+  return markdown || null;
+}
+
 function buildLocalTemplateContext(template) {
   const content = template?.content || {};
+  const fileMarkdown = readLocalTemplateMarkdown(template);
 
   return {
     id: template?.id || null,
@@ -2554,6 +2650,7 @@ function buildLocalTemplateContext(template) {
       : [],
     variables: template?.variables || null,
     template_markdown:
+      fileMarkdown ||
       template?.template_markdown ||
       content?.template_markdown ||
       null,
@@ -2561,14 +2658,24 @@ function buildLocalTemplateContext(template) {
       ? template.steps
       : [],
     cda_synthesis: template?.cda_synthesis || null,
+    content_file: template?.content_file || null,
   };
 }
 
 function getLocalTemplateRequest(message) {
-  const templateResult = getTemplates();
-  const templates = Array.isArray(templateResult?.templates)
-    ? templateResult.templates
+  const fileTemplateResult = getTemplateFiles();
+  const legacyTemplateResult = getTemplates();
+
+  const fileTemplates = Array.isArray(fileTemplateResult?.templates)
+    ? fileTemplateResult.templates
     : [];
+  const legacyTemplates = Array.isArray(legacyTemplateResult?.templates)
+    ? legacyTemplateResult.templates
+    : [];
+
+  // Det nye Markdown-register prioriteres. Den gamle skabelonbank bevares
+  // som fallback, så eksisterende kommandoer fortsat virker.
+  const templates = [...fileTemplates, ...legacyTemplates];
 
   const signals = getTemplateRequestSignals(message, templates);
 
@@ -4529,9 +4636,13 @@ try {
   const localTemplateRequest = getLocalTemplateRequest(message);
 
   if (localTemplateRequest?.type === "list") {
-    const titles = localTemplateRequest.templates
-      .map((template) => String(template?.title || "").trim())
-      .filter(Boolean);
+    const titles = Array.from(
+      new Set(
+        localTemplateRequest.templates
+          .map((template) => String(template?.title || "").trim())
+          .filter(Boolean)
+      )
+    );
 
     const reply = [
       language === "English"
@@ -4577,9 +4688,13 @@ try {
   }
 
   if (localTemplateRequest?.type === "not_found") {
-    const titles = localTemplateRequest.templates
-      .map((template) => String(template?.title || "").trim())
-      .filter(Boolean);
+    const titles = Array.from(
+      new Set(
+        localTemplateRequest.templates
+          .map((template) => String(template?.title || "").trim())
+          .filter(Boolean)
+      )
+    );
 
     const reply = language === "English"
       ? [
