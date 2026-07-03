@@ -2271,6 +2271,27 @@ function getTemplateRequestSignals(message, templates) {
     text.includes(normalizeTemplateSearch(pattern))
   );
 
+  const indirectResourcePatterns = [
+    "har i noget jeg kan bruge",
+    "har du noget jeg kan bruge",
+    "findes der noget jeg kan bruge",
+    "er der noget jeg kan bruge",
+    "hvad kan jeg bruge",
+    "har i et vaerktoj",
+    "har du et vaerktoj",
+    "findes der et vaerktoj",
+    "har i en guide",
+    "har du en guide",
+    "findes der en guide",
+    "noget jeg kan bruge til",
+    "et redskab til",
+    "en ressource til",
+  ];
+
+  const indirectResourceRequest = indirectResourcePatterns.some((pattern) =>
+    text.includes(normalizeTemplateSearch(pattern))
+  );
+
   const knownTemplateMention = templates.some((template) => {
     const candidates = [
       template?.id,
@@ -2294,9 +2315,14 @@ function getTemplateRequestSignals(message, templates) {
   return {
     text,
     directBankRequest,
+    indirectResourceRequest,
     knownTemplateMention,
     listRequest,
     isDirectRequest: directBankRequest || knownTemplateMention,
+    isTemplateRequest:
+      directBankRequest ||
+      knownTemplateMention ||
+      indirectResourceRequest,
   };
 }
 
@@ -2415,28 +2441,33 @@ function findBestLocalTemplate(message, templates) {
       description.split(" ").filter(Boolean)
     );
 
+    const wordSetMatches = (wordSet, queryWord) =>
+      Array.from(wordSet).some((candidate) =>
+        searchWordMatches(queryWord, candidate)
+      );
+
     for (const queryWord of queryWords) {
-      if (titleWords.has(queryWord)) {
+      if (wordSetMatches(titleWords, queryWord)) {
         score += 35;
         matchedWords.add(queryWord);
         matchedFields.add("title_words");
-      } else if (triggerWords.has(queryWord)) {
+      } else if (wordSetMatches(triggerWords, queryWord)) {
         score += 28;
         matchedWords.add(queryWord);
         matchedFields.add("trigger_words");
-      } else if (keywordWords.has(queryWord)) {
+      } else if (wordSetMatches(keywordWords, queryWord)) {
         score += 20;
         matchedWords.add(queryWord);
         matchedFields.add("keyword_words");
-      } else if (tagWords.has(queryWord)) {
+      } else if (wordSetMatches(tagWords, queryWord)) {
         score += 14;
         matchedWords.add(queryWord);
         matchedFields.add("tag_words");
-      } else if (categoryWords.has(queryWord)) {
+      } else if (wordSetMatches(categoryWords, queryWord)) {
         score += 9;
         matchedWords.add(queryWord);
         matchedFields.add("category_words");
-      } else if (descriptionWords.has(queryWord)) {
+      } else if (wordSetMatches(descriptionWords, queryWord)) {
         score += 4;
         matchedWords.add(queryWord);
         matchedFields.add("description_words");
@@ -2469,7 +2500,7 @@ function findBestLocalTemplate(message, templates) {
 }
 
 
-function getDirectTemplateFileRequest(message, template) {
+function getDirectTemplateFileRequest(message, template, options = {}) {
   const text = normalizeTemplateSearch(message);
 
   const modificationPatterns = [
@@ -2552,7 +2583,11 @@ function getDirectTemplateFileRequest(message, template) {
 
   const exactTemplateRequest = exactCandidates.includes(text);
 
-  if (!hasDisplayIntent && !exactTemplateRequest) {
+  if (
+    !hasDisplayIntent &&
+    !exactTemplateRequest &&
+    !options.allowIndirectResourceDisplay
+  ) {
     return null;
   }
 
@@ -2679,7 +2714,7 @@ function getLocalTemplateRequest(message) {
 
   const signals = getTemplateRequestSignals(message, templates);
 
-  if (!signals.isDirectRequest) {
+  if (!signals.isTemplateRequest) {
     return null;
   }
 
@@ -2694,11 +2729,24 @@ function getLocalTemplateRequest(message) {
   const bestMatch = findBestLocalTemplate(message, templates);
 
   if (!bestMatch) {
-    return {
-      type: "not_found",
-      templates,
-      total: templates.length,
-    };
+    return signals.indirectResourceRequest
+      ? null
+      : {
+          type: "not_found",
+          templates,
+          total: templates.length,
+        };
+  }
+
+  if (
+    signals.indirectResourceRequest &&
+    !signals.isDirectRequest &&
+    (
+      bestMatch.score < 50 ||
+      bestMatch.matchedWords.length < 2
+    )
+  ) {
+    return null;
   }
 
   return {
@@ -2708,6 +2756,8 @@ function getLocalTemplateRequest(message) {
     score: bestMatch.score,
     matchedFields: bestMatch.matchedFields,
     matchedWords: bestMatch.matchedWords,
+    indirectResourceRequest:
+      signals.indirectResourceRequest && !signals.isDirectRequest,
   };
 }
 
@@ -4748,7 +4798,11 @@ try {
   if (localTemplateRequest?.type === "match") {
     const directTemplateFile = getDirectTemplateFileRequest(
       message,
-      localTemplateRequest.template
+      localTemplateRequest.template,
+      {
+        allowIndirectResourceDisplay:
+          localTemplateRequest.indirectResourceRequest === true,
+      }
     );
 
     if (directTemplateFile) {
