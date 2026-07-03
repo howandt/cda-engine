@@ -856,6 +856,156 @@
       background: var(--danger-bg);
     }
 
+    .landscape-template-toolbar {
+      display: none;
+    }
+
+    html.mobile-device.landscape-template-mode {
+      overflow: hidden;
+    }
+
+    html.mobile-device.landscape-template-mode body {
+      height: var(--app-height);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    html.mobile-device.landscape-template-mode .landscape-template-toolbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      height: 48px;
+      display: grid;
+      grid-template-columns: auto auto minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: 6px;
+      padding: 6px max(8px, env(safe-area-inset-right)) 6px max(8px, env(safe-area-inset-left));
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 4px 16px rgba(31, 50, 81, 0.10);
+    }
+
+    .landscape-template-toolbar button {
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 1px solid #d5deec;
+      border-radius: 9px;
+      color: var(--primary-dark);
+      background: #ffffff;
+      font-size: 0.74rem;
+      font-weight: 850;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .landscape-template-toolbar button.primary-action {
+      border-color: transparent;
+      color: #ffffff;
+      background: var(--secondary);
+    }
+
+    .landscape-template-title {
+      min-width: 0;
+      overflow: hidden;
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 850;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    html.mobile-device.landscape-template-mode .app-shell,
+    html.mobile-device.landscape-template-mode .app-shell.is-start {
+      width: 100%;
+      height: var(--app-height);
+      min-height: 0;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    html.mobile-device.landscape-template-mode .topbar,
+    html.mobile-device.landscape-template-mode .settings-panel,
+    html.mobile-device.landscape-template-mode .template-shortcut,
+    html.mobile-device.landscape-template-mode .composer,
+    html.mobile-device.landscape-template-mode .back-to-start-wrap {
+      display: none;
+    }
+
+    html.mobile-device.landscape-template-mode .conversation,
+    html.mobile-device.landscape-template-mode .app-shell.is-start .conversation {
+      height: var(--app-height);
+      min-height: 0;
+      padding: 56px 8px 8px;
+      overflow-y: auto;
+      background: var(--surface-soft);
+    }
+
+    html.mobile-device.landscape-template-mode .message-row {
+      display: none;
+      margin: 0;
+    }
+
+    html.mobile-device.landscape-template-mode .message-row.template-focus-target {
+      display: flex;
+      width: 100%;
+      justify-content: stretch;
+    }
+
+    html.mobile-device.landscape-template-mode .message-row.template-focus-target .message {
+      width: 100%;
+      max-width: none;
+      min-height: calc(var(--app-height) - 64px);
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: none;
+    }
+
+    html.mobile-device.landscape-template-mode .message-row.template-focus-target .message-label {
+      display: none;
+    }
+
+    html.mobile-device.landscape-template-mode.template-write-open .composer {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 1001;
+      display: block;
+      padding: 8px max(8px, env(safe-area-inset-right))
+        max(8px, env(safe-area-inset-bottom))
+        max(8px, env(safe-area-inset-left));
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.99);
+      box-shadow: 0 -5px 18px rgba(31, 50, 81, 0.13);
+    }
+
+    html.mobile-device.landscape-template-mode.template-write-open .template-shortcut,
+    html.mobile-device.landscape-template-mode.template-write-open .back-to-start-wrap,
+    html.mobile-device.landscape-template-mode.template-write-open .composer-meta > span {
+      display: none;
+    }
+
+    html.mobile-device.landscape-template-mode.template-write-open .composer-inner {
+      grid-template-columns: minmax(0, 1fr) 86px;
+      gap: 7px;
+    }
+
+    html.mobile-device.landscape-template-mode.template-write-open #besked {
+      min-height: 42px;
+      max-height: 92px;
+      padding: 9px 11px;
+    }
+
+    html.mobile-device.landscape-template-mode.template-write-open #sendKnap {
+      min-height: 42px;
+      padding: 0 10px;
+    }
+
+    html.mobile-device.landscape-template-mode.template-write-open .conversation {
+      padding-bottom: 72px;
+    }
+
     html.mobile-device body {
       background: var(--surface);
     }
@@ -1159,6 +1309,27 @@
 </head>
 
 <body>
+  <nav
+    class="landscape-template-toolbar"
+    id="landscapeTemplateToolbar"
+    aria-label="Skabelonvisning"
+  >
+    <button id="landscapeTemplateClose" type="button">Luk</button>
+    <button id="landscapeTemplateBack" type="button">Tilbage</button>
+    <div class="landscape-template-title" id="landscapeTemplateTitle">
+      Skabelon
+    </div>
+    <button id="landscapeTemplateChange" type="button">Skift</button>
+    <button
+      class="primary-action"
+      id="landscapeTemplateWrite"
+      type="button"
+      aria-expanded="false"
+    >
+      Skriv
+    </button>
+  </nav>
+
   <main class="app-shell is-start" id="appShell">
     <header class="topbar">
       <div class="brand">
@@ -1462,6 +1633,12 @@
     let svarstil = localStorage.getItem("cda_response_style");
 
     const appShell = document.getElementById("appShell");
+    const landscapeTemplateToolbar = document.getElementById("landscapeTemplateToolbar");
+    const landscapeTemplateClose = document.getElementById("landscapeTemplateClose");
+    const landscapeTemplateBack = document.getElementById("landscapeTemplateBack");
+    const landscapeTemplateTitle = document.getElementById("landscapeTemplateTitle");
+    const landscapeTemplateChange = document.getElementById("landscapeTemplateChange");
+    const landscapeTemplateWrite = document.getElementById("landscapeTemplateWrite");
     const chat = document.getElementById("chat");
     const besked = document.getElementById("besked");
     const sendKnap = document.getElementById("sendKnap");
@@ -1484,6 +1661,8 @@
     const templateShortcutStatus = document.getElementById("templateShortcutStatus");
     let templateRegistryGroups = [];
     let activeTemplateSelection = null;
+    let templateFocusPending = false;
+    let landscapeFocusDismissed = false;
 
     const settingsToggle = document.getElementById("settingsToggle");
     const settingsPanel = document.getElementById("settingsPanel");
@@ -1622,6 +1801,7 @@
     window.addEventListener("resize", () => {
       applyDeviceLayoutClass();
       syncViewportHeight();
+      syncLandscapeTemplateMode();
     });
 
     window.addEventListener("orientationchange", () => {
@@ -1629,7 +1809,8 @@
         applyDeviceLayoutClass();
         syncViewportHeight();
         setTemplateShortcutOpen(false);
-      }, 120);
+        syncLandscapeTemplateMode();
+      }, 180);
     });
 
     if (window.visualViewport) {
@@ -1712,6 +1893,80 @@
       return document.documentElement.classList.contains("mobile-device");
     }
 
+    function isLandscapeLayout() {
+      return window.matchMedia("(orientation: landscape)").matches;
+    }
+
+    function setLandscapeWriteOpen(open) {
+      document.documentElement.classList.toggle("template-write-open", open);
+      landscapeTemplateWrite.setAttribute("aria-expanded", String(open));
+      landscapeTemplateWrite.textContent = open ? "Skjul" : "Skriv";
+
+      if (open) {
+        window.setTimeout(() => {
+          besked.focus({ preventScroll: true });
+        }, 50);
+      } else {
+        besked.blur();
+      }
+    }
+
+    function enterLandscapeTemplateMode() {
+      if (
+        !isMobileLayout() ||
+        !isLandscapeLayout() ||
+        !activeTemplateSelection ||
+        landscapeFocusDismissed
+      ) {
+        return;
+      }
+
+      landscapeTemplateTitle.textContent =
+        activeTemplateSelection.templateTitle || "Skabelon";
+      document.documentElement.classList.add("landscape-template-mode");
+      setLandscapeWriteOpen(false);
+      scrollToBottom();
+    }
+
+    function exitLandscapeTemplateMode({ dismiss = true } = {}) {
+      document.documentElement.classList.remove(
+        "landscape-template-mode",
+        "template-write-open"
+      );
+      landscapeTemplateWrite.setAttribute("aria-expanded", "false");
+      landscapeTemplateWrite.textContent = "Skriv";
+
+      if (dismiss) {
+        landscapeFocusDismissed = true;
+      }
+    }
+
+    function syncLandscapeTemplateMode() {
+      if (!isMobileLayout() || !isLandscapeLayout()) {
+        exitLandscapeTemplateMode({ dismiss: false });
+
+        if (!isLandscapeLayout()) {
+          landscapeFocusDismissed = false;
+        }
+
+        return;
+      }
+
+      if (activeTemplateSelection && !landscapeFocusDismissed) {
+        enterLandscapeTemplateMode();
+      }
+    }
+
+    function markTemplateFocusTarget(row) {
+      document
+        .querySelectorAll(".message-row.template-focus-target")
+        .forEach((item) => item.classList.remove("template-focus-target"));
+
+      if (row) {
+        row.classList.add("template-focus-target");
+      }
+    }
+
     function setTemplateShortcutOpen(open) {
       templateShortcut.classList.toggle("is-open", open);
       templateShortcutToggle.setAttribute("aria-expanded", String(open));
@@ -1731,6 +1986,8 @@
 
       templateSelectedText.textContent =
         `${selection.categoryTitle} · ${selection.templateTitle}`;
+      landscapeTemplateTitle.textContent =
+        selection.templateTitle || "Skabelon";
     }
 
     function clearTemplateSelectionSummary() {
@@ -1863,6 +2120,8 @@
         categoryTitle: selectedGroup?.title || "Skabelon",
         templateTitle: selectedTemplate.title,
       });
+      landscapeFocusDismissed = false;
+      templateFocusPending = true;
       setTemplateShortcutOpen(false);
 
       besked.value =
@@ -2087,10 +2346,17 @@
 
     async function sendMessage() {
       const tekst = besked.value.trim();
+      const sentFromLandscapeTemplate =
+        document.documentElement.classList.contains("landscape-template-mode");
+
+      if (sentFromLandscapeTemplate) {
+        templateFocusPending = true;
+      }
 
       if (!tekst || sendKnap.disabled) {
         if (!tekst) {
           fejl.textContent = "Skriv en besked først.";
+          templateFocusPending = false;
         }
         return;
       }
@@ -2198,7 +2464,14 @@ if (data.pending_action) {
   sessionStorage.removeItem("cda_pending_action");
 }
 
-        appendMessage("assistant", data.reply);
+        const assistantRow = appendMessage("assistant", data.reply);
+
+        if (templateFocusPending || document.documentElement.classList.contains("landscape-template-mode")) {
+          markTemplateFocusTarget(assistantRow);
+          templateFocusPending = false;
+          enterLandscapeTemplateMode();
+          setLandscapeWriteOpen(false);
+        }
       } catch (error) {
         typingRow.remove();
         fejl.textContent = "Der opstod en forbindelsesfejl.";
@@ -2242,6 +2515,9 @@ if (data.pending_action) {
       backToStartWrap.hidden = true;
 
       clearTemplateSelectionSummary();
+      templateFocusPending = false;
+      landscapeFocusDismissed = false;
+      exitLandscapeTemplateMode({ dismiss: false });
       setTemplateShortcutOpen(false);
 
       bindFaqPrompts();
@@ -2253,6 +2529,31 @@ if (data.pending_action) {
     loadTemplateShortcut();
 
     setTemplateShortcutOpen(false);
+
+    landscapeTemplateClose.addEventListener("click", () => {
+      exitLandscapeTemplateMode({ dismiss: false });
+      startNewConversation();
+    });
+
+    landscapeTemplateBack.addEventListener("click", () => {
+      exitLandscapeTemplateMode({ dismiss: true });
+      scrollToBottom();
+    });
+
+    landscapeTemplateChange.addEventListener("click", () => {
+      exitLandscapeTemplateMode({ dismiss: true });
+      setTemplateShortcutOpen(true);
+      templateShortcut.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    });
+
+    landscapeTemplateWrite.addEventListener("click", () => {
+      const open =
+        document.documentElement.classList.contains("template-write-open");
+      setLandscapeWriteOpen(!open);
+    });
 
     templateShortcutToggle.addEventListener("click", () => {
       const isOpen = templateShortcut.classList.contains("is-open");
