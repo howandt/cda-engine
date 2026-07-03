@@ -569,6 +569,85 @@
       border-bottom-right-radius: 24px;
     }
 
+    .template-shortcut {
+      max-width: 980px;
+      margin: 0 auto 10px;
+      padding: 11px;
+      border: 1px solid #d9e3ff;
+      border-radius: 13px;
+      background: #f7f9ff;
+    }
+
+    .template-shortcut-heading {
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+      font-size: 0.80rem;
+      font-weight: 850;
+    }
+
+    .template-shortcut-grid {
+      display: grid;
+      grid-template-columns: minmax(170px, 0.9fr) minmax(220px, 1.4fr) auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .template-shortcut label {
+      display: grid;
+      gap: 5px;
+      color: #53647a;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .template-shortcut select {
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--text);
+      background: #ffffff;
+      outline: none;
+    }
+
+    .template-shortcut select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
+    }
+
+    #templateOpenButton {
+      min-height: 40px;
+      padding: 8px 14px;
+      border: 0;
+      border-radius: 10px;
+      color: #ffffff;
+      background: var(--secondary);
+      font-size: 0.80rem;
+      font-weight: 850;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    #templateOpenButton:hover:not(:disabled),
+    #templateOpenButton:focus-visible:not(:disabled) {
+      filter: brightness(0.96);
+      outline: none;
+    }
+
+    #templateOpenButton:disabled,
+    .template-shortcut select:disabled {
+      cursor: not-allowed;
+      opacity: 0.62;
+    }
+
+    .template-shortcut-status {
+      min-height: 16px;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.70rem;
+    }
+
     .composer-inner {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
@@ -755,6 +834,19 @@
       .composer,
       .app-shell.is-start .composer {
         padding: 10px 10px max(10px, env(safe-area-inset-bottom));
+      }
+
+      .template-shortcut {
+        margin-bottom: 8px;
+        padding: 9px;
+      }
+
+      .template-shortcut-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #templateOpenButton {
+        width: 100%;
       }
 
       .composer-inner {
@@ -1026,6 +1118,36 @@
     </section>
 
     <section class="composer" aria-label="Skriv til CDA">
+      <div class="template-shortcut" aria-label="Skabelongenvej">
+        <div class="template-shortcut-heading">Find en guide eller skabelon</div>
+
+        <div class="template-shortcut-grid">
+          <label for="templateCategorySelect">
+            Kategori
+            <select id="templateCategorySelect" disabled>
+              <option value="">Henter kategorier...</option>
+            </select>
+          </label>
+
+          <label for="templateFileSelect">
+            Skabelon
+            <select id="templateFileSelect" disabled>
+              <option value="">Vælg først en kategori</option>
+            </select>
+          </label>
+
+          <button id="templateOpenButton" type="button" disabled>
+            Vis skabelon
+          </button>
+        </div>
+
+        <div
+          class="template-shortcut-status"
+          id="templateShortcutStatus"
+          aria-live="polite"
+        ></div>
+      </div>
+
       <div class="composer-inner">
         <textarea
           id="besked"
@@ -1067,6 +1189,11 @@
     const backToStartButton = document.getElementById("backToStartButton");
     const rolleVisning = document.getElementById("rolleVisning");
     const svarstilVisning = document.getElementById("svarstilVisning");
+    const templateCategorySelect = document.getElementById("templateCategorySelect");
+    const templateFileSelect = document.getElementById("templateFileSelect");
+    const templateOpenButton = document.getElementById("templateOpenButton");
+    const templateShortcutStatus = document.getElementById("templateShortcutStatus");
+    let templateRegistryGroups = [];
 
     const settingsToggle = document.getElementById("settingsToggle");
     const settingsPanel = document.getElementById("settingsPanel");
@@ -1250,6 +1377,131 @@
 
     updateSessionDisplay();
     fillSettingsForm();
+
+    function setTemplateSelectOptions(selectElement, options, placeholder) {
+      selectElement.innerHTML = "";
+
+      const placeholderOption = document.createElement("option");
+      placeholderOption.value = "";
+      placeholderOption.textContent = placeholder;
+      selectElement.appendChild(placeholderOption);
+
+      options.forEach((optionData) => {
+        const option = document.createElement("option");
+        option.value = optionData.value;
+        option.textContent = optionData.label;
+        selectElement.appendChild(option);
+      });
+    }
+
+    function getSelectedTemplateGroup() {
+      return templateRegistryGroups.find(
+        (group) => group.id === templateCategorySelect.value
+      ) || null;
+    }
+
+    function populateTemplateFiles() {
+      const group = getSelectedTemplateGroup();
+      const files = Array.isArray(group?.files) ? group.files : [];
+
+      setTemplateSelectOptions(
+        templateFileSelect,
+        files.map((file) => ({
+          value: file.id,
+          label: file.title,
+        })),
+        group ? "Vælg skabelon" : "Vælg først en kategori"
+      );
+
+      templateFileSelect.disabled = files.length === 0;
+      templateOpenButton.disabled = true;
+      templateShortcutStatus.textContent = "";
+    }
+
+    async function loadTemplateShortcut() {
+      try {
+        templateShortcutStatus.textContent = "Henter skabelonoversigt...";
+
+        const response = await fetch("/api/templates?type=files", {
+          method: "GET",
+          headers: {
+            "Accept": "application/json",
+          },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || "Skabelonoversigten kunne ikke hentes.");
+        }
+
+        const categoryGroups = (Array.isArray(data.categories)
+          ? data.categories
+          : []
+        ).map((category) => ({
+          id: category.id,
+          title: category.title,
+          files: Array.isArray(category.files) ? category.files : [],
+        }));
+
+        const standaloneFiles = Array.isArray(data.standalone)
+          ? data.standalone
+          : [];
+
+        templateRegistryGroups = [...categoryGroups];
+
+        if (standaloneFiles.length > 0) {
+          templateRegistryGroups.push({
+            id: "standalone",
+            title: "Generelle skabeloner",
+            files: standaloneFiles,
+          });
+        }
+
+        setTemplateSelectOptions(
+          templateCategorySelect,
+          templateRegistryGroups.map((group) => ({
+            value: group.id,
+            label: group.title,
+          })),
+          "Vælg kategori"
+        );
+
+        templateCategorySelect.disabled = templateRegistryGroups.length === 0;
+        templateFileSelect.disabled = true;
+        templateOpenButton.disabled = true;
+        templateShortcutStatus.textContent =
+          `${data.total || 0} skabeloner klar`;
+      } catch (error) {
+        templateRegistryGroups = [];
+        templateCategorySelect.disabled = true;
+        templateFileSelect.disabled = true;
+        templateOpenButton.disabled = true;
+        templateShortcutStatus.textContent =
+          "Skabelongenvejen kunne ikke indlæses. Du kan stadig skrive dit behov med egne ord.";
+      }
+    }
+
+    function getSelectedTemplateFile() {
+      const group = getSelectedTemplateGroup();
+      const files = Array.isArray(group?.files) ? group.files : [];
+
+      return files.find(
+        (file) => file.id === templateFileSelect.value
+      ) || null;
+    }
+
+    async function openSelectedTemplate() {
+      const selectedTemplate = getSelectedTemplateFile();
+
+      if (!selectedTemplate || sendKnap.disabled) {
+        return;
+      }
+
+      besked.value =
+        `Hent ${selectedTemplate.title} fra CDA's skabelonbank.`;
+      await sendMessage();
+    }
 
     function activateConversationLayout() {
       if (appShell.classList.contains("is-start")) {
@@ -1529,6 +1781,16 @@ if (data.pending_action) {
     }
 
     bindFaqPrompts();
+    loadTemplateShortcut();
+
+    templateCategorySelect.addEventListener("change", populateTemplateFiles);
+
+    templateFileSelect.addEventListener("change", () => {
+      templateOpenButton.disabled = !getSelectedTemplateFile();
+      templateShortcutStatus.textContent = "";
+    });
+
+    templateOpenButton.addEventListener("click", openSelectedTemplate);
     newConversationButton.addEventListener("click", startNewConversation);
     backToStartButton.addEventListener("click", startNewConversation);
     sendKnap.addEventListener("click", sendMessage);
