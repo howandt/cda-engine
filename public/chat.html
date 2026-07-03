@@ -1801,7 +1801,7 @@
     window.addEventListener("resize", () => {
       applyDeviceLayoutClass();
       syncViewportHeight();
-      syncLandscapeTemplateMode();
+      syncLandscapeTemplateMode({ preserveWriteState: true });
     });
 
     window.addEventListener("orientationchange", () => {
@@ -1911,7 +1911,7 @@
       }
     }
 
-    function enterLandscapeTemplateMode() {
+    function enterLandscapeTemplateMode({ preserveWriteState = false } = {}) {
       if (
         !isMobileLayout() ||
         !isLandscapeLayout() ||
@@ -1921,10 +1921,17 @@
         return;
       }
 
+      const writeWasOpen =
+        document.documentElement.classList.contains("template-write-open");
+
       landscapeTemplateTitle.textContent =
         activeTemplateSelection.templateTitle || "Skabelon";
       document.documentElement.classList.add("landscape-template-mode");
-      setLandscapeWriteOpen(false);
+
+      if (!preserveWriteState || !writeWasOpen) {
+        setLandscapeWriteOpen(false);
+      }
+
       scrollToBottom();
     }
 
@@ -1941,7 +1948,7 @@
       }
     }
 
-    function syncLandscapeTemplateMode() {
+    function syncLandscapeTemplateMode({ preserveWriteState = false } = {}) {
       if (!isMobileLayout() || !isLandscapeLayout()) {
         exitLandscapeTemplateMode({ dismiss: false });
 
@@ -1953,7 +1960,7 @@
       }
 
       if (activeTemplateSelection && !landscapeFocusDismissed) {
-        enterLandscapeTemplateMode();
+        enterLandscapeTemplateMode({ preserveWriteState });
       }
     }
 
