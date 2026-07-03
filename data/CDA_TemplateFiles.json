@@ -1,0 +1,1071 @@
+{
+  "version": "1.0",
+  "name": "CDA Template Files",
+  "description": "Centralt register over statiske Markdown-ressourcer i templates-mappen.",
+  "direct_display_default": true,
+  "ai_required_for_direct_display": false,
+  "categories": [
+    {
+      "id": "anerkendelse-motivation-og-maal",
+      "title": "Anerkendelse, motivation og mål",
+      "description": "Mål, delmål, anerkendelse, progression og individuelle aftaler.",
+      "keywords": [
+        "anerkendelse",
+        "motivation",
+        "mål",
+        "delmål",
+        "ugeplan",
+        "point",
+        "belønning",
+        "progression"
+      ],
+      "files": [
+        {
+          "id": "anerkendelse-motivation-og-maal-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/anerkendelse-motivation-og-maal/00-overblik.md",
+          "keywords": [
+            "overblik",
+            "motivation",
+            "anerkendelse",
+            "mål"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "anerkendelse-motivation-og-maal-individuel-aftale",
+          "title": "Individuel aftale",
+          "content_file": "templates/anerkendelse-motivation-og-maal/01-individuel-aftale.md",
+          "keywords": [
+            "individuel aftale",
+            "mål",
+            "strategi",
+            "voksenstøtte"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "anerkendelse-motivation-og-maal-uge-og-delmaal",
+          "title": "Uge- og delmål",
+          "content_file": "templates/anerkendelse-motivation-og-maal/02-uge-og-delmaal.md",
+          "keywords": [
+            "ugemål",
+            "delmål",
+            "små skridt",
+            "ugeplan"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "anerkendelse-motivation-og-maal-progression",
+          "title": "Anerkendelse og progression",
+          "content_file": "templates/anerkendelse-motivation-og-maal/03-anerkendelse-og-progression.md",
+          "keywords": [
+            "progression",
+            "feedback",
+            "point",
+            "belønning"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "anerkendelse-motivation-og-maal-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/anerkendelse-motivation-og-maal/04-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "mål",
+            "progression",
+            "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "foelelser-og-regulering",
+      "title": "Følelser og regulering",
+      "description": "Støtte før, under og efter følelsesmæssig belastning.",
+      "keywords": [
+        "følelser",
+        "regulering",
+        "vrede",
+        "uro",
+        "belastning",
+        "pause",
+        "konflikt"
+      ],
+      "files": [
+        {
+          "id": "foelelser-og-regulering-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/foelelser-og-regulering/00-overblik.md",
+          "keywords": [
+            "følelser",
+            "regulering",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "foelelser-og-regulering-kort",
+          "title": "Individuelt reguleringskort",
+          "content_file": "templates/foelelser-og-regulering/01-individuelt-reguleringskort.md",
+          "keywords": [
+            "reguleringskort",
+            "hjælpesignal",
+            "pause",
+            "elevkort"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "foelelser-og-regulering-stoette-under-belastning",
+          "title": "Støtte under belastning",
+          "content_file": "templates/foelelser-og-regulering/02-stoette-under-belastning.md",
+          "keywords": [
+            "belastning",
+            "nedtrapning",
+            "voksenstøtte",
+            "ro"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "foelelser-og-regulering-refleksion",
+          "title": "Refleksion efter hændelse",
+          "content_file": "templates/foelelser-og-regulering/03-refleksion-efter-haendelse.md",
+          "keywords": [
+            "refleksion",
+            "hændelse",
+            "elevperspektiv",
+            "voksenperspektiv"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "foelelser-og-regulering-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/foelelser-og-regulering/04-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "regulering",
+            "strategier",
+            "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "laese-og-skrivestoette",
+      "title": "Læse- og skrivestøtte",
+      "description": "Støtte til læsning, skrivning, hjælpemidler og alternative svarformer.",
+      "keywords": [
+        "læsning",
+        "skrivning",
+        "ordblindhed",
+        "tekst til tale",
+        "tale til tekst",
+        "stavehjælp",
+        "læseforståelse"
+      ],
+      "files": [
+        {
+          "id": "laese-og-skrivestoette-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/laese-og-skrivestoette/00-overblik.md",
+          "keywords": [
+            "læsning",
+            "skrivning",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "laese-og-skrivestoette-individuel-profil",
+          "title": "Individuel profil",
+          "content_file": "templates/laese-og-skrivestoette/01-individuel-profil.md",
+          "keywords": [
+            "læseprofil",
+            "skriveprofil",
+            "hjælpemidler"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "laese-og-skrivestoette-undervisning",
+          "title": "Støtte i undervisningen",
+          "content_file": "templates/laese-og-skrivestoette/02-stoette-i-undervisningen.md",
+          "keywords": [
+            "undervisning",
+            "tekststøtte",
+            "skrivestøtte",
+            "svarform"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "laese-og-skrivestoette-evaluering",
+          "title": "Evaluering og næste skridt",
+          "content_file": "templates/laese-og-skrivestoette/03-evaluering-og-naeste-skridt.md",
+          "keywords": [
+            "evaluering",
+            "læseindsats",
+            "skriveindsats",
+            "næste skridt"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "mestrings-og-styrkeprofil",
+      "title": "Mestrings- og styrkeprofil",
+      "description": "Elevens styrker, interesser, fungerende strategier og tidligere succeser.",
+      "keywords": [
+        "styrker",
+        "mestring",
+        "interesser",
+        "ressourcer",
+        "strategier",
+        "elevprofil"
+      ],
+      "files": [
+        {
+          "id": "mestrings-og-styrkeprofil-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/mestrings-og-styrkeprofil/00-overblik.md",
+          "keywords": [
+            "styrker",
+            "mestring",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "mestrings-og-styrkeprofil-individuel",
+          "title": "Individuel profil",
+          "content_file": "templates/mestrings-og-styrkeprofil/01-individuel-profil.md",
+          "keywords": [
+            "individuel profil",
+            "styrker",
+            "interesser"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "mestrings-og-styrkeprofil-undervisning",
+          "title": "Brug i undervisningen",
+          "content_file": "templates/mestrings-og-styrkeprofil/02-brug-i-undervisningen.md",
+          "keywords": [
+            "undervisning",
+            "styrkebaseret",
+            "interesser",
+            "opgavestart"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "mestrings-og-styrkeprofil-evaluering",
+          "title": "Evaluering og næste skridt",
+          "content_file": "templates/mestrings-og-styrkeprofil/03-evaluering-og-naeste-skridt.md",
+          "keywords": [
+            "evaluering",
+            "styrker",
+            "progression"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "ny-elev-med-diagnose",
+      "title": "Ny elev med diagnose",
+      "description": "Forberedelse, opstart, elevprofil, skole-hjem og evaluering.",
+      "keywords": [
+        "ny elev",
+        "diagnose",
+        "opstart",
+        "modtagelse",
+        "elevprofil",
+        "skole hjem"
+      ],
+      "files": [
+        {
+          "id": "ny-elev-med-diagnose-overblik",
+          "title": "Overblik",
+          "content_file": "templates/ny-elev-med-diagnose/00-overblik.md",
+          "keywords": [
+            "ny elev",
+            "diagnose",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "ny-elev-med-diagnose-forberedelse",
+          "title": "Forberedelse før opstart",
+          "content_file": "templates/ny-elev-med-diagnose/01-forberedelse-foer-opstart.md",
+          "keywords": [
+            "forberedelse",
+            "opstart",
+            "overlevering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "ny-elev-med-diagnose-elevprofil",
+          "title": "Elevprofil og støttebehov",
+          "content_file": "templates/ny-elev-med-diagnose/02-elevprofil-og-stoettebehov.md",
+          "keywords": [
+            "elevprofil",
+            "støttebehov",
+            "styrker"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "ny-elev-med-diagnose-foerste-uge",
+          "title": "Første uge",
+          "content_file": "templates/ny-elev-med-diagnose/03-foerste-uge.md",
+          "keywords": [
+            "første uge",
+            "opstart",
+            "modtagelse"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "ny-elev-med-diagnose-skole-hjem",
+          "title": "Skole-hjem-kontakt",
+          "content_file": "templates/ny-elev-med-diagnose/04-skole-hjem-kontakt.md",
+          "keywords": [
+            "skole hjem",
+            "forældre",
+            "kontakt"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "ny-elev-med-diagnose-laeringsmiljoe",
+          "title": "Klasse og læringsmiljø",
+          "content_file": "templates/ny-elev-med-diagnose/05-klasse-og-laeringsmiljoe.md",
+          "keywords": [
+            "klasse",
+            "læringsmiljø",
+            "tilpasning"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "ny-elev-med-diagnose-evaluering",
+          "title": "Evaluering og næste skridt",
+          "content_file": "templates/ny-elev-med-diagnose/06-evaluering-og-naeste-skridt.md",
+          "keywords": [
+            "evaluering",
+            "opstart",
+            "næste skridt"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "overgange-og-skift",
+      "title": "Overgange og skift",
+      "description": "Støtte ved varslede og uventede overgange og ændringer.",
+      "keywords": [
+        "overgange",
+        "skift",
+        "ændringer",
+        "varsling",
+        "vikar",
+        "lokaleskift"
+      ],
+      "files": [
+        {
+          "id": "overgange-og-skift-overblik",
+          "title": "Overblik",
+          "content_file": "templates/overgange-og-skift/00-overblik.md",
+          "keywords": [
+            "overgange",
+            "skift",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "overgange-og-skift-aftale",
+          "title": "Individuel overgangsaftale",
+          "content_file": "templates/overgange-og-skift/01-individuel-overgangsaftale.md",
+          "keywords": [
+            "overgangsaftale",
+            "individuel aftale",
+            "skift"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "overgange-og-skift-varsling",
+          "title": "Varsling og visuel støtte",
+          "content_file": "templates/overgange-og-skift/02-varsling-og-visuel-stoette.md",
+          "keywords": [
+            "varsling",
+            "visuel støtte",
+            "nedtælling"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "overgange-og-skift-uventede",
+          "title": "Uventede ændringer",
+          "content_file": "templates/overgange-og-skift/03-uventede-aendringer.md",
+          "keywords": [
+            "uventede ændringer",
+            "vikar",
+            "aflysning",
+            "lokaleskift"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "overgange-og-skift-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/overgange-og-skift/04-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "overgange",
+            "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "sensorisk-behovsprofil",
+      "title": "Sensorisk behovsprofil",
+      "description": "Observation og støtte ved lyd, lys, berøring, bevægelse og andre sanseindtryk.",
+      "keywords": [
+        "sensorisk",
+        "sanser",
+        "lyd",
+        "lys",
+        "berøring",
+        "bevægelse",
+        "sanseprofil"
+      ],
+      "files": [
+        {
+          "id": "sensorisk-behovsprofil-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/sensorisk-behovsprofil/00-overblik.md",
+          "keywords": [
+            "sensorisk",
+            "sanser",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "sensorisk-behovsprofil-individuel",
+          "title": "Individuel profil",
+          "content_file": "templates/sensorisk-behovsprofil/01-individuel-profil.md",
+          "keywords": [
+            "sanseprofil",
+            "individuel profil",
+            "sensoriske behov"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "sensorisk-behovsprofil-afproevning",
+          "title": "Observation og afprøvning",
+          "content_file": "templates/sensorisk-behovsprofil/02-observation-og-afproevning.md",
+          "keywords": [
+            "observation",
+            "afprøvning",
+            "tilpasning"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "sensorisk-behovsprofil-evaluering",
+          "title": "Evaluering og justering",
+          "content_file": "templates/sensorisk-behovsprofil/03-evaluering-og-justering.md",
+          "keywords": [
+            "evaluering",
+            "sensorisk støtte",
+            "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "sociale-relationer-og-samarbejde",
+      "title": "Sociale relationer og samarbejde",
+      "description": "Venskaber, gruppearbejde, roller, konflikter og reparation.",
+      "keywords": [
+        "sociale relationer",
+        "venskab",
+        "gruppearbejde",
+        "samarbejde",
+        "konflikt",
+        "roller"
+      ],
+      "files": [
+        {
+          "id": "sociale-relationer-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/sociale-relationer-og-samarbejde/00-overblik.md",
+          "keywords": [
+            "sociale relationer",
+            "samarbejde",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "sociale-relationer-profil",
+          "title": "Individuel social profil",
+          "content_file": "templates/sociale-relationer-og-samarbejde/01-individuel-social-profil.md",
+          "keywords": [
+            "social profil",
+            "venskab",
+            "samarbejde"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "sociale-relationer-gruppearbejde",
+          "title": "Gruppearbejde og roller",
+          "content_file": "templates/sociale-relationer-og-samarbejde/02-gruppearbejde-og-roller.md",
+          "keywords": [
+            "gruppearbejde",
+            "roller",
+            "makker"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "sociale-relationer-konflikt",
+          "title": "Konflikt og reparation",
+          "content_file": "templates/sociale-relationer-og-samarbejde/03-konflikt-og-reparation.md",
+          "keywords": [
+            "konflikt",
+            "reparation",
+            "uenighed"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "sociale-relationer-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/sociale-relationer-og-samarbejde/04-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "social deltagelse",
+            "samarbejde"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "spisning-og-maaltider",
+      "title": "Spisning og måltider",
+      "description": "Værdig og systematisk støtte omkring spisning, måltidsmiljø og faglig sparring.",
+      "keywords": [
+        "spisning",
+        "måltider",
+        "mad",
+        "selektiv spisning",
+        "måltidsmiljø",
+        "sanser"
+      ],
+      "files": [
+        {
+          "id": "spisning-og-maaltider-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/spisning-og-maaltider/00-overblik.md",
+          "keywords": [
+            "spisning",
+            "måltider",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "spisning-og-maaltider-profil",
+          "title": "Individuel måltidsprofil",
+          "content_file": "templates/spisning-og-maaltider/01-individuel-maaltidsprofil.md",
+          "keywords": [
+            "måltidsprofil",
+            "mad",
+            "elevperspektiv"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "spisning-og-maaltider-afproevning",
+          "title": "Observation og afprøvning",
+          "content_file": "templates/spisning-og-maaltider/02-observation-og-afproevning.md",
+          "keywords": [
+            "observation",
+            "afprøvning",
+            "måltidsstøtte"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "spisning-og-maaltider-samarbejde",
+          "title": "Skole-hjem og faglig sparring",
+          "content_file": "templates/spisning-og-maaltider/03-skole-hjem-og-faglig-sparring.md",
+          "keywords": [
+            "skole hjem",
+            "faglig sparring",
+            "måltider"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "spisning-og-maaltider-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/spisning-og-maaltider/04-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "spisning",
+            "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "tal-til-ro-og-voksenkommunikation",
+      "title": "Tal til ro og voksenkommunikation",
+      "description": "Korte formuleringer, svære samtaler og neutral skole-hjem-kommunikation.",
+      "keywords": [
+        "tal til ro",
+        "voksenkommunikation",
+        "nedtrapning",
+        "svære samtaler",
+        "skole hjem",
+        "formuleringer"
+      ],
+      "files": [
+        {
+          "id": "tal-til-ro-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/tal-til-ro-og-voksenkommunikation/00-overblik.md",
+          "keywords": [
+            "tal til ro",
+            "voksenkommunikation",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "tal-til-ro-formuleringer",
+          "title": "Korte formuleringer",
+          "content_file": "templates/tal-til-ro-og-voksenkommunikation/01-korte-formuleringer.md",
+          "keywords": [
+            "korte formuleringer",
+            "ro",
+            "nedtrapning"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "tal-til-ro-svaere-samtaler",
+          "title": "Støtte i svære samtaler",
+          "content_file": "templates/tal-til-ro-og-voksenkommunikation/02-svaere-samtaler.md",
+          "keywords": [
+            "svære samtaler",
+            "elevsamtale",
+            "konflikt"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "tal-til-ro-skole-hjem",
+          "title": "Skole-hjem-formuleringer",
+          "content_file": "templates/tal-til-ro-og-voksenkommunikation/03-skole-hjem-formuleringer.md",
+          "keywords": [
+            "skole hjem",
+            "forældrekommunikation",
+            "neutral formulering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "tal-til-ro-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/tal-til-ro-og-voksenkommunikation/04-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "kommunikation",
+            "voksenpraksis"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "toilet-og-hygiejne",
+      "title": "Toilet og hygiejne",
+      "description": "Værdig, privat og systematisk støtte omkring toilet og personlig hygiejne.",
+      "keywords": [
+        "toilet",
+        "hygiejne",
+        "uheld",
+        "renlighed",
+        "selvstændighed",
+        "privatliv"
+      ],
+      "files": [
+        {
+          "id": "toilet-og-hygiejne-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/toilet-og-hygiejne/00-overblik.md",
+          "keywords": [
+            "toilet",
+            "hygiejne",
+            "overblik"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "toilet-og-hygiejne-profil",
+          "title": "Individuel støtteprofil",
+          "content_file": "templates/toilet-og-hygiejne/01-individuel-stoetteprofil.md",
+          "keywords": [
+            "støtteprofil",
+            "toilet",
+            "privatliv"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "toilet-og-hygiejne-rutine",
+          "title": "Rutine og visuel støtte",
+          "content_file": "templates/toilet-og-hygiejne/02-rutine-og-visuel-stoette.md",
+          "keywords": [
+            "toiletrutine",
+            "visuel støtte",
+            "håndvask"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "toilet-og-hygiejne-uheld",
+          "title": "Uheld og opfølgning",
+          "content_file": "templates/toilet-og-hygiejne/03-uheld-og-opfoelgning.md",
+          "keywords": [
+            "uheld",
+            "skiftetøj",
+            "opfølgning"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "toilet-og-hygiejne-samarbejde",
+          "title": "Skole-hjem og faglig sparring",
+          "content_file": "templates/toilet-og-hygiejne/04-skole-hjem-og-faglig-sparring.md",
+          "keywords": [
+            "skole hjem",
+            "faglig sparring",
+            "fortrolighed"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "toilet-og-hygiejne-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/toilet-og-hygiejne/05-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "toiletstøtte",
+            "selvstændighed"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "trafiklyskort",
+      "title": "Trafiklyskort",
+      "description": "Individuelle signaler, handlevejledning, træning, evaluering og point.",
+      "keywords": [
+        "trafiklyskort",
+        "grøn orange rød",
+        "signal",
+        "pause",
+        "hjælp",
+        "point"
+      ],
+      "files": [
+        {
+          "id": "trafiklyskort-overblik",
+          "title": "Overblik",
+          "content_file": "templates/trafiklyskort/00-overblik.md",
+          "keywords": [
+            "trafiklyskort",
+            "overblik",
+            "signal"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-aftale",
+          "title": "Individuel aftale",
+          "content_file": "templates/trafiklyskort/01-individuel-aftale.md",
+          "keywords": [
+            "individuel aftale",
+            "grøn",
+            "orange",
+            "rød"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-elevkort",
+          "title": "Elevens kort",
+          "content_file": "templates/trafiklyskort/02-elevens-kort.md",
+          "keywords": [
+            "elevkort",
+            "signal",
+            "hjælp"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-laerer",
+          "title": "Lærerens handlevejledning",
+          "content_file": "templates/trafiklyskort/03-laererens-handlevejledning.md",
+          "keywords": [
+            "lærer",
+            "handlevejledning",
+            "voksenstøtte"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-traening",
+          "title": "Træning og indkøring",
+          "content_file": "templates/trafiklyskort/04-traening-og-indkoering.md",
+          "keywords": [
+            "træning",
+            "indkøring",
+            "øvelse"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/trafiklyskort/05-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "trafiklys",
+            "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-point",
+          "title": "Anerkendelse og point",
+          "content_file": "templates/trafiklyskort/06-anerkendelse-og-point.md",
+          "keywords": [
+            "anerkendelse",
+            "point",
+            "belønning",
+            "progression"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "visuel-dagsplan",
+      "title": "Visuel dagsplan",
+      "description": "Dagsplaner, elevversion, ændringer, reserveplan og evaluering.",
+      "keywords": [
+        "visuel dagsplan",
+        "dagsskema",
+        "dagsplan",
+        "først så",
+        "ændringer",
+        "struktur"
+      ],
+      "files": [
+        {
+          "id": "visuel-dagsplan-overblik",
+          "title": "Overblik og inspiration",
+          "content_file": "templates/visuel-dagsplan/00-overblik.md",
+          "keywords": [
+            "visuel dagsplan",
+            "overblik",
+            "struktur"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "visuel-dagsplan-bygger",
+          "title": "Dagsplansbygger",
+          "content_file": "templates/visuel-dagsplan/01-dagplansbygger.md",
+          "keywords": [
+            "dagsplansbygger",
+            "dagsskema",
+            "plan"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "visuel-dagsplan-elev",
+          "title": "Elevens dagsplan",
+          "content_file": "templates/visuel-dagsplan/02-elevens-dagsplan.md",
+          "keywords": [
+            "elevens dagsplan",
+            "min dagsplan",
+            "elevplan"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "visuel-dagsplan-aendringer",
+          "title": "Ændringer og reserveplan",
+          "content_file": "templates/visuel-dagsplan/03-aendringer-og-reserveplan.md",
+          "keywords": [
+            "ændringer",
+            "reserveplan",
+            "vikar",
+            "aflysning"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "visuel-dagsplan-evaluering",
+          "title": "Evaluering",
+          "content_file": "templates/visuel-dagsplan/04-evaluering.md",
+          "keywords": [
+            "evaluering",
+            "dagsplan",
+            "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    }
+  ],
+  "standalone": [
+    {
+      "id": "kommunikationslog",
+      "title": "Kommunikationslog skole ↔ hjem",
+      "description": "Neutral og struktureret log til skole-hjem-kommunikation.",
+      "content_file": "templates/kommunikationslog.md",
+      "keywords": [
+        "kommunikationslog",
+        "skole hjem",
+        "forældre",
+        "kontaktlog",
+        "beskeder"
+      ]
+    },
+    {
+      "id": "observations-og-indsatslog",
+      "title": "Observations- og indsatslog",
+      "description": "Observation, belastning, afprøvede tiltag, elevreaktion og effekt.",
+      "content_file": "templates/observations-og-indsatslog.md",
+      "keywords": [
+        "observationslog",
+        "indsatslog",
+        "PPR",
+        "observation",
+        "tiltag",
+        "effekt"
+      ]
+    },
+    {
+      "id": "skolevaegering",
+      "title": "Trinvis skolevægringsguide",
+      "description": "Kort guide og notatark til skolevægring og tilbagevenden.",
+      "content_file": "templates/skolevaegering.md",
+      "keywords": [
+        "skolevægring",
+        "skolefravær",
+        "tilbagevenden",
+        "trinvis plan",
+        "fravær"
+      ]
+    }
+  ]
+}
