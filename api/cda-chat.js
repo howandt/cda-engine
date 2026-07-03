@@ -2373,6 +2373,148 @@ function findBestLocalTemplate(message, templates) {
         !ignoredWords.has(word)
     );
 
+  const includesAnyTemplatePhrase = (phrases) =>
+    phrases.some((phrase) =>
+      text.includes(normalizeTemplateSearch(phrase))
+    );
+
+  const hasPlanChangeNeed =
+    includesAnyTemplatePhrase([
+      "plan aendrer",
+      "planen aendrer",
+      "plan aendres",
+      "planen aendres",
+      "dagens plan aendrer",
+      "dagens plan aendres",
+      "aendring i planen",
+      "aendringer i planen",
+      "uventet aendring",
+      "uventede aendringer",
+      "planlaegning aendrer sig",
+    ]) ||
+    (
+      includesAnyTemplatePhrase([
+        "plan",
+        "dagsplan",
+        "dagsskema",
+      ]) &&
+      includesAnyTemplatePhrase([
+        "aendrer",
+        "aendres",
+        "aendring",
+        "aendringer",
+        "uventet",
+        "anderledes",
+      ])
+    );
+
+  const hasTransitionNeed = includesAnyTemplatePhrase([
+    "overgang",
+    "overgange",
+    "skift",
+    "skifte",
+    "aktivitetsskift",
+    "lokaleskift",
+    "vikar",
+    "aflysning",
+  ]);
+
+  const hasPredictabilityNeed = includesAnyTemplatePhrase([
+    "forudsigelig",
+    "forudsigelighed",
+    "utryg naar",
+    "utryg ved",
+    "ved ikke hvad der skal ske",
+  ]);
+
+  const hasSchoolAvoidanceNeed = includesAnyTemplatePhrase([
+    "skolevaeg",
+    "skolefravaer",
+    "fravaer",
+    "fremmoede",
+    "vil ikke i skole",
+    "kommer ikke i skole",
+    "tilbage til skole",
+    "tilbagevenden til skole",
+    "skoleundgaaelse",
+  ]);
+
+  const getSemanticTemplateAdjustment = (template) => {
+    const templateId = normalizeTemplateSearch(template?.id);
+    const title = normalizeTemplateSearch(template?.title);
+    const category = normalizeTemplateSearch(template?.category);
+    const searchableIdentity = `${templateId} ${title} ${category}`;
+
+    let adjustment = 0;
+    const semanticMatches = [];
+
+    if (hasPlanChangeNeed) {
+      if (
+        searchableIdentity.includes("aendringer og reserveplan") ||
+        templateId.includes("visuel dagsplan aendringer")
+      ) {
+        adjustment += 260;
+        semanticMatches.push("plan_change_primary");
+      } else if (
+        searchableIdentity.includes("uventede aendringer") ||
+        templateId.includes("overgange og skift uventede")
+      ) {
+        adjustment += 220;
+        semanticMatches.push("plan_change_secondary");
+      } else if (
+        category.includes("visuel dagsplan") ||
+        category.includes("overgange og skift")
+      ) {
+        adjustment += 70;
+        semanticMatches.push("plan_change_category");
+      }
+    }
+
+    if (hasTransitionNeed) {
+      if (
+        searchableIdentity.includes("uventede aendringer") ||
+        searchableIdentity.includes("individuel overgangsaftale") ||
+        searchableIdentity.includes("varsling og visuel stoette")
+      ) {
+        adjustment += 130;
+        semanticMatches.push("transition_specific");
+      } else if (category.includes("overgange og skift")) {
+        adjustment += 55;
+        semanticMatches.push("transition_category");
+      }
+    }
+
+    if (hasPredictabilityNeed) {
+      if (
+        category.includes("visuel dagsplan") ||
+        category.includes("overgange og skift")
+      ) {
+        adjustment += 45;
+        semanticMatches.push("predictability");
+      }
+    }
+
+    const isSchoolAvoidanceTemplate =
+      templateId.includes("skolevaegering") ||
+      title.includes("skolevaegering") ||
+      title.includes("skolevaeringsguide");
+
+    if (isSchoolAvoidanceTemplate) {
+      if (hasSchoolAvoidanceNeed) {
+        adjustment += 180;
+        semanticMatches.push("school_avoidance_present");
+      } else {
+        adjustment -= 220;
+        semanticMatches.push("school_avoidance_absent");
+      }
+    }
+
+    return {
+      adjustment,
+      semanticMatches,
+    };
+  };
+
   const scoreTemplate = (template) => {
     const title = normalizeTemplateSearch(template?.title);
     const id = normalizeTemplateSearch(
@@ -2476,6 +2618,13 @@ function findBestLocalTemplate(message, templates) {
 
     if (matchedWords.size > 1) {
       score += matchedWords.size * 8;
+    }
+
+    const semanticAdjustment = getSemanticTemplateAdjustment(template);
+    score += semanticAdjustment.adjustment;
+
+    for (const semanticMatch of semanticAdjustment.semanticMatches) {
+      matchedFields.add(semanticMatch);
     }
 
     return {
