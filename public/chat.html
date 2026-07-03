@@ -620,18 +620,72 @@
     }
 
     .template-shortcut-heading {
-      margin-bottom: 8px;
-      color: var(--primary-dark);
-      font-size: 0.80rem;
-      font-weight: 850;
-    }
-
-    .template-shortcut-toggle {
       display: none;
     }
 
+    .template-shortcut-toggle {
+      display: inline-flex;
+      width: 100%;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 10px;
+      color: var(--primary-dark);
+      background: #edf1ff;
+      font-size: 0.80rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
     .template-shortcut-panel {
+      display: none;
+      margin-top: 8px;
+    }
+
+    .template-shortcut.is-open .template-shortcut-panel {
       display: block;
+    }
+
+    .template-selected-summary {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 40px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: #39516b;
+      background: #eef5ff;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .template-shortcut.has-selection:not(.is-open) .template-shortcut-toggle {
+      display: none;
+    }
+
+    .template-shortcut.has-selection:not(.is-open) .template-selected-summary {
+      display: flex;
+    }
+
+    .template-selected-text {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .template-change-button {
+      flex: 0 0 auto;
+      border: 0;
+      padding: 6px 9px;
+      border-radius: 8px;
+      color: var(--primary-dark);
+      background: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 850;
+      cursor: pointer;
     }
 
     .template-shortcut-grid {
@@ -890,33 +944,6 @@
         padding: 9px;
       }
 
-      .template-shortcut-heading {
-        display: none;
-      }
-
-      .template-shortcut-toggle {
-        display: inline-flex;
-        width: 100%;
-        min-height: 40px;
-        align-items: center;
-        justify-content: center;
-        border: 0;
-        border-radius: 10px;
-        color: var(--primary-dark);
-        background: #edf1ff;
-        font-size: 0.80rem;
-        font-weight: 850;
-        cursor: pointer;
-      }
-
-      .template-shortcut-panel {
-        margin-top: 8px;
-      }
-
-      .template-shortcut:not(.is-open) .template-shortcut-panel {
-        display: none;
-      }
-
       .template-shortcut-grid {
         grid-template-columns: 1fr;
       }
@@ -954,6 +981,42 @@
 
       #fejl:not(:empty) {
         display: block;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .template-shortcut {
+        margin-bottom: 8px;
+        padding: 9px;
+      }
+
+      .template-shortcut-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #templateOpenButton {
+        width: 100%;
+      }
+    }
+
+    @media (max-height: 560px) and (orientation: landscape) {
+      .template-shortcut {
+        margin-bottom: 6px;
+        padding: 7px;
+      }
+
+      .template-shortcut-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #templateOpenButton {
+        width: 100%;
+      }
+
+      .composer,
+      .app-shell.is-start .composer {
+        padding-top: 8px;
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
       }
     }
 
@@ -1204,8 +1267,15 @@
           aria-expanded="false"
           aria-controls="templateShortcutPanel"
         >
-          Find skabelon
+          Find guide eller skabelon
         </button>
+
+        <div class="template-selected-summary" id="templateSelectedSummary">
+          <span class="template-selected-text" id="templateSelectedText"></span>
+          <button class="template-change-button" id="templateChangeButton" type="button">
+            Skift skabelon
+          </button>
+        </div>
 
         <div class="template-shortcut-panel" id="templateShortcutPanel">
           <div class="template-shortcut-grid">
@@ -1279,11 +1349,15 @@
     const svarstilVisning = document.getElementById("svarstilVisning");
     const templateShortcut = document.getElementById("templateShortcut");
     const templateShortcutToggle = document.getElementById("templateShortcutToggle");
+    const templateSelectedSummary = document.getElementById("templateSelectedSummary");
+    const templateSelectedText = document.getElementById("templateSelectedText");
+    const templateChangeButton = document.getElementById("templateChangeButton");
     const templateCategorySelect = document.getElementById("templateCategorySelect");
     const templateFileSelect = document.getElementById("templateFileSelect");
     const templateOpenButton = document.getElementById("templateOpenButton");
     const templateShortcutStatus = document.getElementById("templateShortcutStatus");
     let templateRegistryGroups = [];
+    let activeTemplateSelection = null;
 
     const settingsToggle = document.getElementById("settingsToggle");
     const settingsPanel = document.getElementById("settingsPanel");
@@ -1469,7 +1543,11 @@
     fillSettingsForm();
 
     function isMobileLayout() {
-      return window.matchMedia("(max-width: 760px)").matches;
+      return (
+        window.matchMedia("(max-width: 760px)").matches ||
+        window.matchMedia("(hover: none) and (pointer: coarse)").matches ||
+        window.matchMedia("(max-height: 560px) and (orientation: landscape)").matches
+      );
     }
 
     function setTemplateShortcutOpen(open) {
@@ -1477,7 +1555,24 @@
       templateShortcutToggle.setAttribute("aria-expanded", String(open));
       templateShortcutToggle.textContent = open
         ? "Luk skabelonmenu"
-        : "Find skabelon";
+        : "Find guide eller skabelon";
+    }
+
+    function updateTemplateSelectionSummary(selection) {
+      activeTemplateSelection = selection || null;
+      templateShortcut.classList.toggle("has-selection", Boolean(selection));
+
+      if (!selection) {
+        templateSelectedText.textContent = "";
+        return;
+      }
+
+      templateSelectedText.textContent =
+        `${selection.categoryTitle} · ${selection.templateTitle}`;
+    }
+
+    function clearTemplateSelectionSummary() {
+      updateTemplateSelectionSummary(null);
     }
 
     function setTemplateSelectOptions(selectElement, options, placeholder) {
@@ -1600,9 +1695,13 @@
         return;
       }
 
-      if (isMobileLayout()) {
-        setTemplateShortcutOpen(false);
-      }
+      const selectedGroup = getSelectedTemplateGroup();
+
+      updateTemplateSelectionSummary({
+        categoryTitle: selectedGroup?.title || "Skabelon",
+        templateTitle: selectedTemplate.title,
+      });
+      setTemplateShortcutOpen(false);
 
       besked.value =
         `Hent ${selectedTemplate.title} fra CDA's skabelonbank.`;
@@ -1980,9 +2079,8 @@ if (data.pending_action) {
       newConversationButton.hidden = true;
       backToStartWrap.hidden = true;
 
-      if (isMobileLayout()) {
-        setTemplateShortcutOpen(false);
-      }
+      clearTemplateSelectionSummary();
+      setTemplateShortcutOpen(false);
 
       bindFaqPrompts();
       syncViewportHeight();
@@ -1992,13 +2090,15 @@ if (data.pending_action) {
     bindFaqPrompts();
     loadTemplateShortcut();
 
-    if (isMobileLayout()) {
-      setTemplateShortcutOpen(false);
-    }
+    setTemplateShortcutOpen(false);
 
     templateShortcutToggle.addEventListener("click", () => {
       const isOpen = templateShortcut.classList.contains("is-open");
       setTemplateShortcutOpen(!isOpen);
+    });
+
+    templateChangeButton.addEventListener("click", () => {
+      setTemplateShortcutOpen(true);
     });
 
     templateCategorySelect.addEventListener("change", populateTemplateFiles);
