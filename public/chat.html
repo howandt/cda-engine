@@ -856,6 +856,132 @@
       background: var(--danger-bg);
     }
 
+    html.mobile-device body {
+      background: var(--surface);
+    }
+
+    html.mobile-device .app-shell,
+    html.mobile-device .app-shell.is-start {
+      width: 100%;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    html.mobile-device .app-shell:not(.is-start) {
+      height: var(--app-height);
+      min-height: 0;
+    }
+
+    html.mobile-device .topbar {
+      min-height: 64px;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 12px;
+    }
+
+    html.mobile-device .brand-mark {
+      width: 41px;
+      height: 41px;
+      border-radius: 12px;
+    }
+
+    html.mobile-device .brand-copy span {
+      display: none;
+    }
+
+    html.mobile-device .session-info {
+      max-width: 68%;
+      gap: 5px;
+    }
+
+    html.mobile-device .session-pill,
+    html.mobile-device .settings-button {
+      min-height: 29px;
+      padding: 5px 8px;
+      font-size: 0.69rem;
+    }
+
+    html.mobile-device .settings-panel {
+      padding: 14px 12px;
+    }
+
+    html.mobile-device .settings-grid {
+      grid-template-columns: 1fr;
+      gap: 9px;
+    }
+
+    html.mobile-device .conversation,
+    html.mobile-device .app-shell.is-start .conversation {
+      padding: 18px 12px 12px;
+    }
+
+    html.mobile-device .welcome {
+      padding: 18px 14px;
+    }
+
+    html.mobile-device .welcome h1 {
+      font-size: 1.48rem;
+    }
+
+    html.mobile-device .welcome-lead {
+      font-size: 0.91rem;
+    }
+
+    html.mobile-device .message {
+      max-width: 92%;
+    }
+
+    html.mobile-device .composer,
+    html.mobile-device .app-shell.is-start .composer {
+      padding: 10px 10px max(10px, env(safe-area-inset-bottom));
+    }
+
+    html.mobile-device .template-shortcut {
+      margin-bottom: 8px;
+      padding: 9px;
+    }
+
+    html.mobile-device .template-shortcut-grid {
+      grid-template-columns: 1fr;
+    }
+
+    html.mobile-device #templateOpenButton {
+      width: 100%;
+    }
+
+    html.mobile-device .composer-inner {
+      grid-template-columns: minmax(0, 1fr) 92px;
+      gap: 8px;
+    }
+
+    html.mobile-device #besked {
+      min-height: 50px;
+      padding: 12px;
+      resize: none;
+    }
+
+    html.mobile-device #sendKnap {
+      min-width: 0;
+      min-height: 50px;
+      padding: 0 12px;
+    }
+
+    html.mobile-device .composer-meta {
+      display: block;
+      min-height: 0;
+      margin-top: 5px;
+    }
+
+    html.mobile-device .composer-meta > span {
+      display: none;
+    }
+
+    html.mobile-device #fejl:not(:empty) {
+      display: block;
+    }
+
     @media (max-width: 760px) {
       body {
         background: var(--surface);
@@ -1490,8 +1616,21 @@
       document.documentElement.style.setProperty("--app-height", `${viewportHeight}px`);
     }
 
+    applyDeviceLayoutClass();
     syncViewportHeight();
-    window.addEventListener("resize", syncViewportHeight);
+
+    window.addEventListener("resize", () => {
+      applyDeviceLayoutClass();
+      syncViewportHeight();
+    });
+
+    window.addEventListener("orientationchange", () => {
+      window.setTimeout(() => {
+        applyDeviceLayoutClass();
+        syncViewportHeight();
+        setTemplateShortcutOpen(false);
+      }, 120);
+    });
 
     if (window.visualViewport) {
       window.visualViewport.addEventListener("resize", syncViewportHeight);
@@ -1542,12 +1681,35 @@
     updateSessionDisplay();
     fillSettingsForm();
 
-    function isMobileLayout() {
-      return (
-        window.matchMedia("(max-width: 760px)").matches ||
-        window.matchMedia("(hover: none) and (pointer: coarse)").matches ||
-        window.matchMedia("(max-height: 560px) and (orientation: landscape)").matches
+    function detectMobileDevice() {
+      const userAgent = navigator.userAgent || "";
+      const userAgentMobile =
+        /Android|iPhone|iPad|iPod|Mobile|IEMobile|Opera Mini/i.test(userAgent);
+
+      const touchDevice =
+        navigator.maxTouchPoints > 0 ||
+        "ontouchstart" in window;
+
+      const screenShortSide = Math.min(
+        Number(window.screen?.width || window.innerWidth),
+        Number(window.screen?.height || window.innerHeight)
       );
+
+      return (
+        userAgentMobile ||
+        (touchDevice && screenShortSide <= 900)
+      );
+    }
+
+    function applyDeviceLayoutClass() {
+      document.documentElement.classList.toggle(
+        "mobile-device",
+        detectMobileDevice()
+      );
+    }
+
+    function isMobileLayout() {
+      return document.documentElement.classList.contains("mobile-device");
     }
 
     function setTemplateShortcutOpen(open) {
