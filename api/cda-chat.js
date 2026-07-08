@@ -2910,6 +2910,197 @@ function getLocalTemplateRequest(message) {
   };
 }
 
+
+function isStudentProfileRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (!text) {
+    return false;
+  }
+
+  const blockedPatterns = [
+    "pbl profil",
+    "pbl profile",
+    "projektprofil",
+    "projekt profil",
+  ];
+
+  if (blockedPatterns.some((pattern) => text.includes(pattern))) {
+    return false;
+  }
+
+  const profilePatterns = [
+    "opret elevprofil",
+    "lav elevprofil",
+    "dan elevprofil",
+    "udfyld elevprofil",
+    "opret skoleprofil",
+    "lav skoleprofil",
+    "dan skoleprofil",
+    "udfyld skoleprofil",
+    "opret arbejdsprofil",
+    "lav arbejdsprofil",
+    "dan arbejdsprofil",
+    "udfyld arbejdsprofil",
+    "opret profil for",
+    "lav profil for",
+    "dan profil for",
+    "udfyld profil for",
+  ];
+
+  return profilePatterns.some((pattern) =>
+    text.includes(normalizeDiagnosisPhrase(pattern))
+  );
+}
+
+function getStudentProfileSchema() {
+  return {
+    type: "object",
+    properties: {
+      elev_arbejdsnavn: { type: "string" },
+      klassetrin_kontekst: { type: "string" },
+      primaere_observationer: { type: "string" },
+      laering_og_opgaver: { type: "string" },
+      koncentration_udholdenhed: { type: "string" },
+      socialt_samspil: { type: "string" },
+      gruppearbejde: { type: "string" },
+      skift_overgange: { type: "string" },
+      belastninger_triggere: { type: "string" },
+      det_der_virker: { type: "string" },
+      det_der_boer_observeres: { type: "string" },
+      keywords: {
+        type: "array",
+        items: { type: "string" },
+      },
+    },
+    required: [
+      "elev_arbejdsnavn",
+      "klassetrin_kontekst",
+      "primaere_observationer",
+      "laering_og_opgaver",
+      "koncentration_udholdenhed",
+      "socialt_samspil",
+      "gruppearbejde",
+      "skift_overgange",
+      "belastninger_triggere",
+      "det_der_virker",
+      "det_der_boer_observeres",
+      "keywords",
+    ],
+    additionalProperties: false,
+  };
+}
+
+function formatStudentProfile(profile, language = "Dansk") {
+  const missing = language === "English"
+    ? "Not stated yet."
+    : "Ikke oplyst endnu.";
+
+  const cleanField = (value) => {
+    const text = String(value || "").trim();
+    return text || missing;
+  };
+
+  const keywords = Array.isArray(profile?.keywords)
+    ? profile.keywords
+        .map((keyword) => String(keyword || "").trim())
+        .filter(Boolean)
+    : [];
+
+  const keywordText = keywords.length > 0
+    ? keywords.join(", ")
+    : missing;
+
+  if (language === "English") {
+    return [
+      "## Student profile v1",
+      "",
+      `**Student / working name:** ${cleanField(profile?.elev_arbejdsnavn)}`,
+      `**Grade / context:** ${cleanField(profile?.klassetrin_kontekst)}`,
+      `**Primary observations:** ${cleanField(profile?.primaere_observationer)}`,
+      `**Learning and tasks:** ${cleanField(profile?.laering_og_opgaver)}`,
+      `**Concentration / stamina:** ${cleanField(profile?.koncentration_udholdenhed)}`,
+      `**Social interaction:** ${cleanField(profile?.socialt_samspil)}`,
+      `**Group work:** ${cleanField(profile?.gruppearbejde)}`,
+      `**Transitions:** ${cleanField(profile?.skift_overgange)}`,
+      `**Load / triggers:** ${cleanField(profile?.belastninger_triggere)}`,
+      `**What works:** ${cleanField(profile?.det_der_virker)}`,
+      `**Should be observed:** ${cleanField(profile?.det_der_boer_observeres)}`,
+      `**Keywords:** ${keywordText}`,
+    ].join("\n\n");
+  }
+
+  return [
+    "## Elevprofil v1",
+    "",
+    `**Elev / arbejdsnavn:** ${cleanField(profile?.elev_arbejdsnavn)}`,
+    `**Klassetrin / kontekst:** ${cleanField(profile?.klassetrin_kontekst)}`,
+    `**Primære observationer:** ${cleanField(profile?.primaere_observationer)}`,
+    `**Læring og opgaver:** ${cleanField(profile?.laering_og_opgaver)}`,
+    `**Koncentration / udholdenhed:** ${cleanField(profile?.koncentration_udholdenhed)}`,
+    `**Socialt samspil:** ${cleanField(profile?.socialt_samspil)}`,
+    `**Gruppearbejde:** ${cleanField(profile?.gruppearbejde)}`,
+    `**Skift / overgange:** ${cleanField(profile?.skift_overgange)}`,
+    `**Belastninger og triggere:** ${cleanField(profile?.belastninger_triggere)}`,
+    `**Det der virker:** ${cleanField(profile?.det_der_virker)}`,
+    `**Det der bør observeres:** ${cleanField(profile?.det_der_boer_observeres)}`,
+    `**Keywords:** ${keywordText}`,
+  ].join("\n\n");
+}
+
+async function createStudentProfileFromText(message, language = "Dansk") {
+  const instructions = [
+    "Du er CDA Profilgenerator v1.",
+    "Din eneste opgave er at udtrække en kort skolefaglig elevprofil fra lærerens fritekst.",
+    "Profilen er arbejdsdata til skolebrug, ikke journal, ikke psykolograpport og ikke diagnosevurdering.",
+    "Brug kun oplysninger, som læreren faktisk har givet, eller som er direkte skolefagligt afledt af teksten.",
+    "Gæt ikke. Stil ikke diagnose. Skriv ikke lange forklaringer.",
+    "Hvis et felt mangler data, skriv præcist: Ikke oplyst endnu.",
+    "Keywords skal være korte arbejdsnøgler, fx koncentration, uro, skift, gruppearbejde, ventetid, korte trin, visuel støtte.",
+    "Keywords må ikke være hele sætninger.",
+    "Hold hvert felt kort. Rene facts. Ingen fyldtekst.",
+    language === "English"
+      ? "Return content in English, but keep schema keys unchanged."
+      : "Returnér indhold på dansk.",
+  ].join("\n");
+
+  const response = await openai.responses.create({
+    model: "gpt-5.4-mini",
+    reasoning: {
+      effort: "low",
+    },
+    instructions,
+    input: [
+      "LÆRERENS FRITEKST:",
+      message,
+      "",
+      "Udtræk profilen i de faste felter.",
+    ].join("\n"),
+    max_output_tokens: 850,
+    text: {
+      format: {
+        type: "json_schema",
+        name: "cda_student_profile_v1",
+        strict: true,
+        schema: getStudentProfileSchema(),
+      },
+    },
+  });
+
+  if (response.status === "incomplete") {
+    throw new Error("Ufuldstændigt svar fra profilgeneratoren");
+  }
+
+  const profile = JSON.parse(response.output_text || "{}");
+
+  return {
+    profile,
+    response,
+    reply: formatStudentProfile(profile, language),
+  };
+}
+
+
 const tools = [
   {
     type: "function",
@@ -4825,6 +5016,85 @@ try {
     return res.status(200).json({
       success: true,
       reply,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
+
+  if (isStudentProfileRequest(message)) {
+    const profileResult = await createStudentProfileFromText(message, language);
+    const response = profileResult.response;
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "student_profile_v1",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["studentProfileV1"];
+    const toolDebug = [
+      {
+        name: "studentProfileV1",
+        action: "create_profile_from_free_text",
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply: profileResult.reply,
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
