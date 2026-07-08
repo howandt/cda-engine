@@ -3215,7 +3215,7 @@ async function createReadableStudentProfileText(message, language = "Dansk") {
     "Brug kun oplysninger, der står i brugerens tekst. Gæt ikke. Opfind ikke progression.",
     "Ingen diagnosekonklusioner. Ingen psykolograpport. Ingen lange forklaringer.",
     "Undgå 'hvis eleven...' når data allerede siger, hvad der sker. Skriv konkret.",
-    "Hvis der mangler vigtige oplysninger, nævn det kort til sidst under 'Mangler at afklare'.",
+    "Hvis der mangler vigtige oplysninger, nævn det kort til sidst under 'Mangler at afklare'. Hvis der ikke mangler noget tydeligt, må du ikke skrive 'Ingen', 'Intet' eller lignende. Udelad i stedet hele afsnittet.",
     "Hold svaret kort og brugbart for lærerteamet.",
     intentRules[intent] || intentRules.readable_profile,
     language === "English"
