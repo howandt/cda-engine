@@ -3201,14 +3201,10 @@ async function createReadableStudentProfileText(message, language = "Dansk") {
   const intent = getReadableStudentProfileIntent(message);
 
   const intentRules = {
-    readable_profile:
-      "Skriv en neutral læsbar lærerprofil i 2-4 korte afsnit. Det skal være en profiltekst, ikke rådgivning.",
-    development_status:
-      "Skriv en kort udviklingsstatus med: aktuelt billede, det der virker, og hvad der bør følges videre. Skriv kun mulig udvikling ud fra data, ikke løfter.",
-    team_note:
-      "Skriv et kort teamnotat, som flere lærere/vikarer kan bruge som fælles arbejdsgrundlag. Det skal være et notat, ikke en handleplan.",
-    ppr_note:
-      "Skriv et kort neutralt PPR-egnet arbejdsnotat uden diagnosekonklusioner. Det skal være observationsnært og ikke rådgivende.",
+    readable_profile: "Skriv en kort læsbar lærerprofil i 2-4 korte afsnit.",
+    development_status: "Skriv en kort udviklingsstatus med: aktuelt billede, det der virker, muligt næste skolefaglige fokus. Skriv kun mulig udvikling ud fra data, ikke løfter.",
+    team_note: "Skriv et kort teamnotat, som flere lærere/vikarer kan bruge som fælles arbejdsgrundlag.",
+    ppr_note: "Skriv et kort neutralt PPR-egnet arbejdsnotat uden diagnosekonklusioner.",
   };
 
   const instructions = [
@@ -3218,17 +3214,13 @@ async function createReadableStudentProfileText(message, language = "Dansk") {
     "Skriv skolefagligt, konkret og neutralt.",
     "Brug kun oplysninger, der står i brugerens tekst. Gæt ikke. Opfind ikke progression.",
     "Ingen diagnosekonklusioner. Ingen psykolograpport. Ingen lange forklaringer.",
-    "Skriv ikke rådgivning, handleplan, punktliste med tiltag eller afsnit som 'Det kan du gøre nu'.",
-    "Skriv ikke vurderinger som 'det peger mest på' eller 'det ligner'. Omskriv kun profildata neutralt.",
-    "Ved læsbar lærerprofil: skriv sammenhængende tekst, ikke råd, ikke analyse og ikke anbefalinger.",
-    "Brug kun dansk, når sprog er dansk. Brug aldrig fremmede ord, fremmede tegn, blandede scripts eller oversættelsesrester i dansk output.",
     "Undgå 'hvis eleven...' når data allerede siger, hvad der sker. Skriv konkret.",
     "Hvis der mangler vigtige oplysninger, nævn det kort til sidst under 'Mangler at afklare'. Hvis der ikke mangler noget tydeligt, må du ikke skrive 'Ingen', 'Intet' eller lignende. Udelad i stedet hele afsnittet.",
     "Hold svaret kort og brugbart for lærerteamet.",
     intentRules[intent] || intentRules.readable_profile,
     language === "English"
       ? "Write in English."
-      : "Skriv på rent dansk.",
+      : "Skriv på dansk.",
   ].join("\n");
 
   const response = await openai.responses.create({
