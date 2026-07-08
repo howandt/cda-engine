@@ -3109,87 +3109,6 @@ function isReadableStudentProfileRequest(message) {
     return false;
   }
 
-
-  if (isReadableStudentProfileRequest(message)) {
-    const profileTextResult = await createReadableStudentProfileText(message, language);
-    const response = profileTextResult.response;
-
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
-    const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
-    );
-
-    const usageByCall = [
-      {
-        call: 1,
-        phase: "student_profile_text_v1",
-        intent: profileTextResult.intent,
-        tools_returned_to_model: [],
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    ];
-
-    const usedTools = ["studentProfileTextV1"];
-    const toolDebug = [
-      {
-        name: "studentProfileTextV1",
-        action: "create_readable_profile_text",
-        intent: profileTextResult.intent,
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
-
-    return res.status(200).json({
-      success: true,
-      reply: profileTextResult.reply,
-      model: "gpt-5.4-mini",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: null,
-    });
-  }
-
   if (isStudentProfileRequest(message)) {
     return false;
   }
@@ -3323,12 +3242,10 @@ async function createReadableStudentProfileText(message, language = "Dansk") {
     throw new Error("Ufuldstændigt svar fra profiltekst-generatoren");
   }
 
-  const reply = String(response.output_text || "").trim();
-
   return {
     intent,
     response,
-    reply,
+    reply: String(response.output_text || "").trim(),
   };
 }
 
@@ -5255,6 +5172,85 @@ try {
     });
   }
 
+
+
+  if (isReadableStudentProfileRequest(message)) {
+    const profileTextResult = await createReadableStudentProfileText(message, language);
+    const response = profileTextResult.response;
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usedTools = ["studentProfileTextV1"];
+    const toolDebug = [
+      {
+        name: "studentProfileTextV1",
+        action: "create_readable_profile_text",
+        intent: profileTextResult.intent,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [
+        {
+          call: 1,
+          phase: "student_profile_text_v1",
+          intent: profileTextResult.intent,
+          tools_returned_to_model: [],
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          total_tokens: totalTokens,
+        },
+      ],
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply: profileTextResult.reply,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
 
   if (isStudentProfileRequest(message)) {
     const profileResult = await createStudentProfileFromText(message, language);
