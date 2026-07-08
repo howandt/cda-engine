@@ -3114,6 +3114,10 @@ function isReadableStudentProfileRequest(message) {
   }
 
   const profileTextPatterns = [
+    "vis denne elevprofil som laesbar tekst",
+    "vis denne elevprofil",
+    "tekst til laererteamet",
+    "profil som laesbar tekst",
     "vis profil",
     "vis elevprofil",
     "vis skoleprofil",
@@ -3201,34 +3205,29 @@ async function createReadableStudentProfileText(message, language = "Dansk") {
   const intent = getReadableStudentProfileIntent(message);
 
   const intentRules = {
-    readable_profile:
-      "Skriv en neutral læsbar lærerprofil i 2-4 korte afsnit. Det skal være en profiltekst, ikke rådgivning.",
-    development_status:
-      "Skriv en kort udviklingsstatus med: aktuelt billede, det der virker, og hvad der bør følges videre. Skriv kun mulig udvikling ud fra data, ikke løfter.",
-    team_note:
-      "Skriv et kort teamnotat, som flere lærere/vikarer kan bruge som fælles arbejdsgrundlag. Det skal være et notat, ikke en handleplan.",
-    ppr_note:
-      "Skriv et kort neutralt PPR-egnet arbejdsnotat uden diagnosekonklusioner. Det skal være observationsnært og ikke rådgivende.",
+    readable_profile: "Skriv en neutral, sammenhængende elevprofil til lærerteamet i 2-4 korte afsnit.",
+    development_status: "Skriv en kort udviklingsstatus med neutralt aktuelt billede og hvad der bør observeres videre. Ingen handleplan.",
+    team_note: "Skriv et kort teamnotat, som flere lærere/vikarer kan bruge som fælles forståelsesgrundlag. Ingen rådsliste.",
+    ppr_note: "Skriv et kort neutralt PPR-egnet arbejdsnotat uden diagnosekonklusioner og uden handleplan.",
   };
 
   const instructions = [
     "Du er CDA Profiltekst v1.",
-    "Din eneste opgave er at omskrive en eksisterende elevprofil, keyword-profil eller skolefaglige nøgledata til en kort, læsbar tekst.",
-    "Du må ikke oprette en ny 12-felts profil her. Du skal skrive menneskesprog ud fra de oplysninger, brugeren giver.",
-    "Skriv skolefagligt, konkret og neutralt.",
-    "Brug kun oplysninger, der står i brugerens tekst. Gæt ikke. Opfind ikke progression.",
-    "Ingen diagnosekonklusioner. Ingen psykolograpport. Ingen lange forklaringer.",
-    "Skriv ikke rådgivning, handleplan, punktliste med tiltag eller afsnit som 'Det kan du gøre nu'.",
-    "Skriv ikke vurderinger som 'det peger mest på' eller 'det ligner'. Omskriv kun profildata neutralt.",
-    "Ved læsbar lærerprofil: skriv sammenhængende tekst, ikke råd, ikke analyse og ikke anbefalinger.",
-    "Brug kun dansk, når sprog er dansk. Brug aldrig fremmede ord, fremmede tegn, blandede scripts eller oversættelsesrester i dansk output.",
-    "Undgå 'hvis eleven...' når data allerede siger, hvad der sker. Skriv konkret.",
-    "Hvis der mangler vigtige oplysninger, nævn det kort til sidst under 'Mangler at afklare'. Hvis der ikke mangler noget tydeligt, må du ikke skrive 'Ingen', 'Intet' eller lignende. Udelad i stedet hele afsnittet.",
-    "Hold svaret kort og brugbart for lærerteamet.",
+    "Din eneste opgave er at omskrive en eksisterende elevprofil, keyword-profil eller skolefaglige nøgledata til en kort, læsbar profiltekst.",
+    "Dette er IKKE normal CDA-rådgivning. Du må ikke analysere sagen som et nyt spørgsmål.",
+    "Skriv en neutral tekst, der kan læses af lærerteamet som fælles arbejdsgrundlag.",
+    "Brug kun oplysninger, der står i brugerens tekst. Gæt ikke. Opfind ikke progression. Stil ikke diagnose.",
+    "Du må gerne samle beslægtede oplysninger, men du må ikke tilføje nye forklaringer eller anbefalinger.",
+    "Forbudt: rådsliste, handleplan, punktliste med handlinger, forslag til interventioner eller formuleringen 'Det kan du gøre nu'.",
+    "Forbudt: overskrifterne 'Det peger mest på', 'Det vigtigste her er', 'Det kan du gøre nu', 'Næste skridt', 'Anbefaling' og lignende rådgivningsrammer.",
+    "Forbudt: at skrive 'det ligner', 'det peger på', 'det vigtigste er' eller at vurdere barnets vilje/motivation ud over profildata.",
+    "Hvis der mangler vigtige oplysninger, nævn det kort til sidst under 'Mangler at afklare'. Hvis der ikke mangler noget tydeligt, udelad afsnittet helt. Skriv aldrig 'Ingen' eller 'Intet'.",
+    "Svar som ren profiltekst. Ingen indledning. Ingen afsluttende råd. Ingen bulletpoints, medmindre brugeren direkte beder om PPR-notat.",
+    "Sproget skal være rent dansk uden fremmede ord, blandede scripts, oversættelsesrester eller mærkelige tegn.",
     intentRules[intent] || intentRules.readable_profile,
     language === "English"
       ? "Write in English."
-      : "Skriv på rent dansk.",
+      : "Skriv på dansk.",
   ].join("\n");
 
   const response = await openai.responses.create({
@@ -3241,19 +3240,39 @@ async function createReadableStudentProfileText(message, language = "Dansk") {
       "BRUGERENS ØNSKE OG PROFILDATA:",
       message,
       "",
-      "Omskriv til kort, læsbar skolefaglig tekst.",
+      "Omskriv kun til kort, neutral, læsbar profiltekst. Giv ikke råd.",
     ].join("\n"),
-    max_output_tokens: 850,
+    max_output_tokens: 650,
+    text: {
+      format: {
+        type: "json_schema",
+        name: "cda_readable_student_profile_v1",
+        strict: true,
+        schema: {
+          type: "object",
+          properties: {
+            reply: {
+              type: "string",
+              description: "Den rene læsbare elevprofiltekst uden rådgivningsoverskrifter og uden rådsliste.",
+            },
+          },
+          required: ["reply"],
+          additionalProperties: false,
+        },
+      },
+    },
   });
 
   if (response.status === "incomplete") {
     throw new Error("Ufuldstændigt svar fra profiltekst-generatoren");
   }
 
+  const parsed = JSON.parse(response.output_text || "{}");
+
   return {
     intent,
     response,
-    reply: String(response.output_text || "").trim(),
+    reply: String(parsed.reply || "").trim(),
   };
 }
 
@@ -4874,6 +4893,88 @@ try {
     }
   }
 
+
+  // Elevprofil-tekst skal routes tidligt, så den ikke bliver behandlet som normal CDA-rådgivning.
+
+
+  if (isReadableStudentProfileRequest(message)) {
+    const profileTextResult = await createReadableStudentProfileText(message, language);
+    const response = profileTextResult.response;
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usedTools = ["studentProfileTextV1"];
+    const toolDebug = [
+      {
+        name: "studentProfileTextV1",
+        action: "create_readable_profile_text",
+        intent: profileTextResult.intent,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [
+        {
+          call: 1,
+          phase: "student_profile_text_v1",
+          intent: profileTextResult.intent,
+          tools_returned_to_model: [],
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          total_tokens: totalTokens,
+        },
+      ],
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply: profileTextResult.reply,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
   if (isConcreteStudentPblRequest(message)) {
     const usedTools = ["localPblProfileOffer"];
     const toolDebug = [
@@ -5180,85 +5281,6 @@ try {
     });
   }
 
-
-
-  if (isReadableStudentProfileRequest(message)) {
-    const profileTextResult = await createReadableStudentProfileText(message, language);
-    const response = profileTextResult.response;
-
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
-    const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
-    );
-
-    const usedTools = ["studentProfileTextV1"];
-    const toolDebug = [
-      {
-        name: "studentProfileTextV1",
-        action: "create_readable_profile_text",
-        intent: profileTextResult.intent,
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [
-        {
-          call: 1,
-          phase: "student_profile_text_v1",
-          intent: profileTextResult.intent,
-          tools_returned_to_model: [],
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          total_tokens: totalTokens,
-        },
-      ],
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
-
-    return res.status(200).json({
-      success: true,
-      reply: profileTextResult.reply,
-      model: "gpt-5.4-mini",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: null,
-    });
-  }
 
   if (isStudentProfileRequest(message)) {
     const profileResult = await createStudentProfileFromText(message, language);
