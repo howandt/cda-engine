@@ -2953,12 +2953,65 @@ function isStudentProfileRequest(message) {
   );
 }
 
+
+function extractLabeledStudentProfileValue(message, labels = []) {
+  const text = String(message || "");
+
+  for (const label of labels) {
+    const escapedLabel = String(label || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const match = text.match(new RegExp(`^\\s*${escapedLabel}\\s*:\\s*(.+?)\\s*$`, "im"));
+
+    if (match?.[1]) {
+      return match[1].trim();
+    }
+  }
+
+  return "";
+}
+
+function extractStudentProfileRegistration(message) {
+  return {
+    elev_arbejdsnavn: extractLabeledStudentProfileValue(message, [
+      "Navn / arbejdsnavn",
+      "Elev / arbejdsnavn",
+      "Elevnavn",
+      "Navn",
+    ]),
+    klasse_gruppe: extractLabeledStudentProfileValue(message, [
+      "Klasse / gruppe",
+      "Klasse",
+      "Gruppe",
+    ]),
+    oprettet_af_signatur: extractLabeledStudentProfileValue(message, [
+      "Oprettet af / signatur",
+      "Signatur",
+      "Skrevet af",
+    ]),
+  };
+}
+
+function stripStudentProfileRegistrationLines(message) {
+  return String(message || "")
+    .split(/\r?\n/)
+    .filter((line) => {
+      const trimmed = line.trim();
+
+      if (!trimmed) return true;
+
+      return !/^(?:opret\s+elevprofil|navn\s*\/\s*arbejdsnavn|elev\s*\/\s*arbejdsnavn|elevnavn|klasse\s*\/\s*gruppe|oprettet\s+af\s*\/\s*signatur|inds[æa]t\s+elevcase\s+her)\s*:?/i.test(trimmed);
+    })
+    .join("\n")
+    .replace(/\[\s*INDS[ÆA]T\s+ELEVCASE\s+HER\s*\]/gi, "")
+    .trim();
+}
+
 function getStudentProfileSchema() {
   return {
     type: "object",
     properties: {
       elev_arbejdsnavn: { type: "string" },
-      klassetrin_kontekst: { type: "string" },
+      klasse_gruppe: { type: "string" },
+      oprettet_af_signatur: { type: "string" },
       primaere_observationer: { type: "string" },
       laering_og_opgaver: { type: "string" },
       koncentration_udholdenhed: { type: "string" },
@@ -2975,7 +3028,8 @@ function getStudentProfileSchema() {
     },
     required: [
       "elev_arbejdsnavn",
-      "klassetrin_kontekst",
+      "klasse_gruppe",
+      "oprettet_af_signatur",
       "primaere_observationer",
       "laering_og_opgaver",
       "koncentration_udholdenhed",
@@ -3016,7 +3070,8 @@ function formatStudentProfile(profile, language = "Dansk") {
       "## Student profile v1",
       "",
       `**Student / working name:** ${cleanField(profile?.elev_arbejdsnavn)}`,
-      `**Grade / context:** ${cleanField(profile?.klassetrin_kontekst)}`,
+      `**Class / group:** ${cleanField(profile?.klasse_gruppe)}`,
+      `**Created by / signature:** ${cleanField(profile?.oprettet_af_signatur)}`,
       `**Primary observations:** ${cleanField(profile?.primaere_observationer)}`,
       `**Learning and tasks:** ${cleanField(profile?.laering_og_opgaver)}`,
       `**Concentration / stamina:** ${cleanField(profile?.koncentration_udholdenhed)}`,
@@ -3034,7 +3089,8 @@ function formatStudentProfile(profile, language = "Dansk") {
     "## Elevprofil v1",
     "",
     `**Elev / arbejdsnavn:** ${cleanField(profile?.elev_arbejdsnavn)}`,
-    `**Klassetrin / kontekst:** ${cleanField(profile?.klassetrin_kontekst)}`,
+    `**Klasse / gruppe:** ${cleanField(profile?.klasse_gruppe)}`,
+    `**Oprettet af / signatur:** ${cleanField(profile?.oprettet_af_signatur)}`,
     `**Primære observationer:** ${cleanField(profile?.primaere_observationer)}`,
     `**Læring og opgaver:** ${cleanField(profile?.laering_og_opgaver)}`,
     `**Koncentration / udholdenhed:** ${cleanField(profile?.koncentration_udholdenhed)}`,
@@ -3049,14 +3105,19 @@ function formatStudentProfile(profile, language = "Dansk") {
 }
 
 async function createStudentProfileFromText(message, language = "Dansk") {
+  const registration = extractStudentProfileRegistration(message);
+  const studentCaseText = stripStudentProfileRegistrationLines(message);
+  const missing = language === "English" ? "Not stated yet." : "Ikke oplyst endnu.";
+
   const instructions = [
     "Du er CDA Profilgenerator v1.",
     "Din eneste opgave er at udtrække en kort skolefaglig elevprofil fra lærerens fritekst.",
     "Profilen er arbejdsdata til skolebrug, ikke journal, ikke psykolograpport og ikke diagnosevurdering.",
     "Brug kun oplysninger, som læreren faktisk har givet, eller som er direkte skolefagligt afledt af teksten.",
     "Gæt ikke. Stil ikke diagnose. Skriv ikke lange forklaringer.",
+    "Brug registreringsfelterne præcist som metadata. Ændr ikke navn, klasse/gruppe eller signatur.",
     "Hvis et felt mangler data, skriv præcist: Ikke oplyst endnu.",
-    "Keywords skal være korte arbejdsnøgler, fx koncentration, uro, skift, gruppearbejde, ventetid, korte trin, visuel støtte.",
+    "Keywords skal være korte arbejdsnøgler udledt af elevcasen, ikke en fast liste.",
     "Keywords må ikke være hele sætninger.",
     "Hold hvert felt kort. Rene facts. Ingen fyldtekst.",
     language === "English"
@@ -3071,10 +3132,15 @@ async function createStudentProfileFromText(message, language = "Dansk") {
     },
     instructions,
     input: [
-      "LÆRERENS FRITEKST:",
-      message,
+      "REGISTRERINGSFELTER:",
+      `elev_arbejdsnavn: ${registration.elev_arbejdsnavn || missing}`,
+      `klasse_gruppe: ${registration.klasse_gruppe || missing}`,
+      `oprettet_af_signatur: ${registration.oprettet_af_signatur || missing}`,
       "",
-      "Udtræk profilen i de faste felter.",
+      "ELEVCASE:",
+      studentCaseText || message,
+      "",
+      "Udtræk profilen i de faste felter. Registreringsfelterne skal gengives præcist i de tilsvarende schemafelter.",
     ].join("\n"),
     max_output_tokens: 850,
     text: {
@@ -3092,6 +3158,10 @@ async function createStudentProfileFromText(message, language = "Dansk") {
   }
 
   const profile = JSON.parse(response.output_text || "{}");
+
+  profile.elev_arbejdsnavn = registration.elev_arbejdsnavn || profile.elev_arbejdsnavn || missing;
+  profile.klasse_gruppe = registration.klasse_gruppe || profile.klasse_gruppe || missing;
+  profile.oprettet_af_signatur = registration.oprettet_af_signatur || profile.oprettet_af_signatur || missing;
 
   return {
     profile,

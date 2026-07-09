@@ -1676,54 +1676,7 @@ Klasse / gruppe:
 Oprettet af / signatur:
 
 Indsæt elevcase her:
-[INDSÆT ELEVCASE HER]`,
-            promptInstruction: `Opgave til CDA:
-Du skal omsætte elevcasen til en neutral elevprofil i fast struktur.
-Du må ikke give almindelig rådgivning, analyse, forklaring eller “det kan du gøre nu”-svar.
-Du skal kun returnere selve profilen.
-
-Profilen skal bygges dynamisk ud fra den konkrete elevcase og de udfyldte registreringsfelter. Brug ikke faste elevtyper, diagnosegæt eller standardkonklusioner.
-
-Registreringsfelter:
-- Kopiér værdien efter “Navn / arbejdsnavn:” direkte til feltet “Elev / arbejdsnavn:”.
-- Kopiér værdien efter “Klasse / gruppe:” direkte til feltet “Klasse / gruppe:”. Brug ikke overskriften “Klassetrin / kontekst” eller “Klasse / gruppe / kontekst”.
-- Kopiér værdien efter “Oprettet af / signatur:” direkte til feltet “Oprettet af / signatur:”.
-- Hvis et registreringsfelt ikke er udfyldt, skriv: Ikke angivet.
-
-Returnér kun denne struktur og brug præcis disse overskrifter:
-
-Elevprofil v1
-Elev / arbejdsnavn:
-Klasse / gruppe:
-Oprettet af / signatur:
-
-Primære observationer:
-
-Læring og opgaver:
-
-Koncentration / udholdenhed:
-
-Socialt samspil:
-
-Gruppearbejde:
-
-Skift / overgange:
-
-Belastninger og triggere:
-
-Det der virker:
-
-Det der bør observeres:
-
-Keywords:
-
-Vigtigt:
-- Skriv kort og neutralt.
-- Brug kun oplysninger fra elevcasen og de udfyldte registreringsfelter.
-- Stil ikke diagnose.
-- Gæt ikke på årsager, der ikke fremgår af teksten.
-- Keywords skal være relevante nøgleord udledt af elevcasen, ikke en fast liste.
-- Hvis et profilfelt ikke kan udfyldes ud fra elevcasen, skriv: Ikke beskrevet.`
+[INDSÆT ELEVCASE HER]`
           },
           {
             id: "student-profile-readable",
@@ -2048,86 +2001,6 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         ]
       }
     ];
-    const STUDENT_PROFILE_STORAGE_KEY = "cda_student_profiles_v1";
-    const studentProfileDataModel = Object.freeze({
-      version: 1,
-      profileFields: [
-        "primaere_observationer",
-        "laering_og_opgaver",
-        "koncentration_udholdenhed",
-        "socialt_samspil",
-        "gruppearbejde",
-        "skift_overgange",
-        "belastninger_triggere",
-        "det_der_virker",
-        "det_der_boer_observeres"
-      ],
-      observationFields: [
-        "dato",
-        "skrevet_af",
-        "rolle",
-        "situation",
-        "kort_observation",
-        "hvad_blev_afproevet",
-        "barnets_elevens_reaktion",
-        "effekt",
-        "enkelthaendelse_eller_moenster",
-        "forslag_til_profilaendring",
-        "skal_profilansvarlig_vurdere",
-        "status"
-      ],
-      observationStatuses: [
-        "afventer_vurdering",
-        "afventer_teamdroeftelse",
-        "droeftet_i_team",
-        "afventer_flere_observationer",
-        "indarbejdet_i_profil",
-        "afvist"
-      ]
-    });
-
-    function createEmptyStudentProfileData({ id = "", navn = "", klasseGruppe = "", laererkodeSignatur = "", profilansvarlig = "" } = {}) {
-      return {
-        id,
-        navn,
-        klasse_gruppe: klasseGruppe,
-        laererkode_signatur: laererkodeSignatur,
-        profilansvarlig,
-        status: "aktiv",
-        arbejdsprofil: studentProfileDataModel.profileFields.reduce((fields, fieldName) => {
-          fields[fieldName] = [];
-          return fields;
-        }, {}),
-        laesbar_profil: "",
-        observationer: [],
-        aendringslog: [],
-        oprettet_dato: "",
-        opdateret_dato: ""
-      };
-    }
-
-    function loadStoredStudentProfiles() {
-      try {
-        const raw = localStorage.getItem(STUDENT_PROFILE_STORAGE_KEY);
-        if (!raw) return [];
-
-        const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (error) {
-        return [];
-      }
-    }
-
-    function saveStoredStudentProfiles(profiles) {
-      if (!Array.isArray(profiles)) return false;
-
-      localStorage.setItem(
-        STUDENT_PROFILE_STORAGE_KEY,
-        JSON.stringify(profiles)
-      );
-      return true;
-    }
-
     let activeTemplateSelection = null;
     let templateFocusPending = false;
     let landscapeFocusDismissed = false;
@@ -2641,7 +2514,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         besked.value = selectedTemplate.promptText;
         besked.focus({ preventScroll: true });
         templateShortcutStatus.textContent =
-          "Teksten er sat ind. Udfyld navn, klasse/gruppe og lærerkode, og indsæt elevcasen.";
+          "Teksten er sat ind. Udfyld navn, klasse/gruppe og signatur, og indsæt elevcasen.";
         return;
       }
 
@@ -2887,92 +2760,6 @@ Elevcase og registreringsfelter udfyldt af brugeren:
 ${userText}`;
     }
 
-    function extractLineValue(text, label) {
-      const escapedLabel = String(label || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const match = String(text || "").match(new RegExp(`^${escapedLabel}\\s*:\\s*(.*)$`, "im"));
-      return match ? match[1].trim() : "";
-    }
-
-    function removeLooseElevprofilRegistrationLines(text, values) {
-      const removableValues = new Set(
-        values
-          .map((value) => String(value || "").trim().toLowerCase())
-          .filter((value) => value && value !== "ikke angivet")
-      );
-
-      if (!removableValues.size) {
-        return String(text || "").trim();
-      }
-
-      const lines = String(text || "").split(/\r?\n/);
-
-      while (lines.length && !lines[0].trim()) {
-        lines.shift();
-      }
-
-      while (lines.length && removableValues.has(lines[0].trim().toLowerCase())) {
-        lines.shift();
-        while (lines.length && !lines[0].trim()) {
-          lines.shift();
-        }
-      }
-
-      return lines.join("\n").trim();
-    }
-
-    function ensureElevprofilRegistrationFields(replyText, sourceText) {
-      const source = String(sourceText || "");
-      const isStudentProfileCreate =
-        activeTemplateSelection?.templateId === "student-profile-create" ||
-        (/^Navn\s*\/\s*arbejdsnavn\s*:/im.test(source) &&
-          /^Oprettet af\s*\/\s*signatur\s*:/im.test(source));
-
-      if (!isStudentProfileCreate) {
-        return replyText;
-      }
-
-      const name = extractLineValue(source, "Navn / arbejdsnavn") || "Ikke angivet";
-      const classGroup =
-        extractLineValue(source, "Klasse / gruppe") ||
-        extractLineValue(source, "Klasse / gruppe / kontekst") ||
-        extractLineValue(source, "Klassetrin / kontekst") ||
-        "Ikke angivet";
-      const signature =
-        extractLineValue(source, "Oprettet af / signatur") ||
-        extractLineValue(source, "Lærerkode / signatur") ||
-        "Ikke angivet";
-      let text = String(replyText || "").trim();
-
-      if (!text) return text;
-
-      text = text
-        .replace(/^Elevprofil\s*·\s*Opret elevprofil\s*$/gim, "")
-        .replace(/^Elevprofil v1\s*/im, "")
-        .replace(
-          /^(?:Elev\s*\/\s*arbejdsnavn|Klassetrin\s*\/\s*kontekst|Klasse\s*\/\s*gruppe(?:\s*\/\s*kontekst)?|Oprettet af\s*\/\s*signatur)\s*:.*\n?/gim,
-          ""
-        )
-        .replace(/^\s+/, "")
-        .trim();
-
-      text = removeLooseElevprofilRegistrationLines(text, [name, classGroup, signature]);
-
-      const firstProfileSectionMatch = text.match(
-        /(?:^|\n)\s*(Primære observationer\s*:)/i
-      );
-
-      if (firstProfileSectionMatch && firstProfileSectionMatch.index > 0) {
-        text = text.slice(firstProfileSectionMatch.index).trim();
-      }
-
-      const header = `**Elevprofil v1**
-**Elev / arbejdsnavn:** ${name}
-**Klasse / gruppe:** ${classGroup}
-**Oprettet af / signatur:** ${signature}`;
-
-      return text ? `${header}\n\n${text}` : header;
-    }
-
     async function sendMessage() {
       const tekst = besked.value.trim();
       const apiMessage = buildTemplateMessage(tekst);
@@ -3094,8 +2881,7 @@ if (data.pending_action) {
   sessionStorage.removeItem("cda_pending_action");
 }
 
-        const assistantReply = ensureElevprofilRegistrationFields(data.reply, tekst);
-        const assistantRow = appendMessage("assistant", assistantReply);
+        const assistantRow = appendMessage("assistant", data.reply);
 
         if (templateFocusPending || document.documentElement.classList.contains("landscape-template-mode")) {
           markTemplateFocusTarget(assistantRow);
