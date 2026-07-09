@@ -3011,7 +3011,6 @@ function getStudentProfileSchema() {
     properties: {
       elev_arbejdsnavn: { type: "string" },
       klasse_gruppe: { type: "string" },
-      oprettet_af_signatur: { type: "string" },
       primaere_observationer: { type: "string" },
       laering_og_opgaver: { type: "string" },
       koncentration_udholdenhed: { type: "string" },
@@ -3029,7 +3028,6 @@ function getStudentProfileSchema() {
     required: [
       "elev_arbejdsnavn",
       "klasse_gruppe",
-      "oprettet_af_signatur",
       "primaere_observationer",
       "laering_og_opgaver",
       "koncentration_udholdenhed",
@@ -3071,7 +3069,6 @@ function formatStudentProfile(profile, language = "Dansk") {
       "",
       `**Student / working name:** ${cleanField(profile?.elev_arbejdsnavn)}`,
       `**Class / group:** ${cleanField(profile?.klasse_gruppe)}`,
-      `**Created by / signature:** ${cleanField(profile?.oprettet_af_signatur)}`,
       `**Primary observations:** ${cleanField(profile?.primaere_observationer)}`,
       `**Learning and tasks:** ${cleanField(profile?.laering_og_opgaver)}`,
       `**Concentration / stamina:** ${cleanField(profile?.koncentration_udholdenhed)}`,
@@ -3090,7 +3087,6 @@ function formatStudentProfile(profile, language = "Dansk") {
     "",
     `**Elev / arbejdsnavn:** ${cleanField(profile?.elev_arbejdsnavn)}`,
     `**Klasse / gruppe:** ${cleanField(profile?.klasse_gruppe)}`,
-    `**Oprettet af / signatur:** ${cleanField(profile?.oprettet_af_signatur)}`,
     `**Primære observationer:** ${cleanField(profile?.primaere_observationer)}`,
     `**Læring og opgaver:** ${cleanField(profile?.laering_og_opgaver)}`,
     `**Koncentration / udholdenhed:** ${cleanField(profile?.koncentration_udholdenhed)}`,
@@ -3115,7 +3111,7 @@ async function createStudentProfileFromText(message, language = "Dansk") {
     "Profilen er arbejdsdata til skolebrug, ikke journal, ikke psykolograpport og ikke diagnosevurdering.",
     "Brug kun oplysninger, som læreren faktisk har givet, eller som er direkte skolefagligt afledt af teksten.",
     "Gæt ikke. Stil ikke diagnose. Skriv ikke lange forklaringer.",
-    "Brug registreringsfelterne præcist som metadata. Ændr ikke navn, klasse/gruppe eller signatur.",
+    "Brug registreringsfelterne præcist som metadata. Ændr ikke navn eller klasse/gruppe.",
     "Hvis et felt mangler data, skriv præcist: Ikke oplyst endnu.",
     "Keywords skal være korte arbejdsnøgler udledt af elevcasen, ikke en fast liste.",
     "Keywords må ikke være hele sætninger.",
@@ -3135,12 +3131,11 @@ async function createStudentProfileFromText(message, language = "Dansk") {
       "REGISTRERINGSFELTER:",
       `elev_arbejdsnavn: ${registration.elev_arbejdsnavn || missing}`,
       `klasse_gruppe: ${registration.klasse_gruppe || missing}`,
-      `oprettet_af_signatur: ${registration.oprettet_af_signatur || missing}`,
       "",
       "ELEVCASE:",
       studentCaseText || message,
       "",
-      "Udtræk profilen i de faste felter. Registreringsfelterne skal gengives præcist i de tilsvarende schemafelter.",
+      "Udtræk profilen i de faste felter. Navn og klasse/gruppe skal gengives præcist i de tilsvarende schemafelter.",
     ].join("\n"),
     max_output_tokens: 850,
     text: {
@@ -3161,7 +3156,6 @@ async function createStudentProfileFromText(message, language = "Dansk") {
 
   profile.elev_arbejdsnavn = registration.elev_arbejdsnavn || profile.elev_arbejdsnavn || missing;
   profile.klasse_gruppe = registration.klasse_gruppe || profile.klasse_gruppe || missing;
-  profile.oprettet_af_signatur = registration.oprettet_af_signatur || profile.oprettet_af_signatur || missing;
 
   return {
     profile,
