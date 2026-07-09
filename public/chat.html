@@ -1672,8 +1672,8 @@
             promptText: `Opret elevprofil
 
 Navn / arbejdsnavn:
-Klasse / gruppe / kontekst:
-Lærerkode / signatur:
+Klasse / gruppe:
+Oprettet af / signatur:
 
 Indsæt elevcase her:
 [INDSÆT ELEVCASE HER]`,
@@ -1686,15 +1686,15 @@ Profilen skal bygges dynamisk ud fra den konkrete elevcase og de udfyldte regist
 
 Registreringsfelter:
 - Kopiér værdien efter “Navn / arbejdsnavn:” direkte til feltet “Elev / arbejdsnavn:”.
-- Kopiér værdien efter “Klasse / gruppe / kontekst:” direkte til feltet “Klasse / gruppe / kontekst:”. Brug ikke overskriften “Klassetrin / kontekst”.
-- Kopiér værdien efter “Lærerkode / signatur:” direkte til feltet “Oprettet af / signatur:”.
+- Kopiér værdien efter “Klasse / gruppe:” direkte til feltet “Klasse / gruppe:”. Brug ikke overskriften “Klassetrin / kontekst” eller “Klasse / gruppe / kontekst”.
+- Kopiér værdien efter “Oprettet af / signatur:” direkte til feltet “Oprettet af / signatur:”.
 - Hvis et registreringsfelt ikke er udfyldt, skriv: Ikke angivet.
 
 Returnér kun denne struktur og brug præcis disse overskrifter:
 
 Elevprofil v1
 Elev / arbejdsnavn:
-Klasse / gruppe / kontekst:
+Klasse / gruppe:
 Oprettet af / signatur:
 
 Primære observationer:
@@ -2880,10 +2880,63 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         return userText;
       }
 
-      return `${userText}
+      return `${instruction}
 
 ---
-${instruction}`;
+Elevcase og registreringsfelter udfyldt af brugeren:
+${userText}`;
+    }
+
+    function extractLineValue(text, label) {
+      const escapedLabel = String(label || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const match = String(text || "").match(new RegExp(`^${escapedLabel}\\s*:\\s*(.*)$`, "im"));
+      return match ? match[1].trim() : "";
+    }
+
+    function ensureElevprofilRegistrationFields(replyText, sourceText) {
+      if (activeTemplateSelection?.templateId !== "student-profile-create") {
+        return replyText;
+      }
+
+      const name = extractLineValue(sourceText, "Navn / arbejdsnavn") || "Ikke angivet";
+      const classGroup = extractLineValue(sourceText, "Klasse / gruppe") || extractLineValue(sourceText, "Klasse / gruppe / kontekst") || "Ikke angivet";
+      const signature = extractLineValue(sourceText, "Oprettet af / signatur") || extractLineValue(sourceText, "Lærerkode / signatur") || "Ikke angivet";
+      let text = String(replyText || "").trim();
+
+      if (!text) return text;
+
+      text = text.replace(/^Klassetrin\s*\/\s*kontekst\s*:/gim, "Klasse / gruppe:");
+      text = text.replace(/^Klasse\s*\/\s*gruppe\s*\/\s*kontekst\s*:/gim, "Klasse / gruppe:");
+
+      if (/^Klasse\s*\/\s*gruppe\s*:/im.test(text)) {
+        text = text.replace(/^Klasse\s*\/\s*gruppe\s*:.*/im, `Klasse / gruppe: ${classGroup}`);
+      } else if (/^Elev\s*\/\s*arbejdsnavn\s*:/im.test(text)) {
+        text = text.replace(
+          /^(Elev\s*\/\s*arbejdsnavn\s*:.*)$/im,
+          `$1
+Klasse / gruppe: ${classGroup}`
+        );
+      }
+
+      if (/^Elev\s*\/\s*arbejdsnavn\s*:/im.test(text)) {
+        text = text.replace(/^Elev\s*\/\s*arbejdsnavn\s*:.*/im, `Elev / arbejdsnavn: ${name}`);
+      } else if (/^Elevprofil v1/im.test(text)) {
+        text = text.replace(/^(Elevprofil v1\s*)/im, `$1
+Elev / arbejdsnavn: ${name}
+`);
+      }
+
+      if (/^Oprettet af\s*\/\s*signatur\s*:/im.test(text)) {
+        text = text.replace(/^Oprettet af\s*\/\s*signatur\s*:.*/im, `Oprettet af / signatur: ${signature}`);
+      } else if (/^Klasse\s*\/\s*gruppe\s*:/im.test(text)) {
+        text = text.replace(
+          /^(Klasse\s*\/\s*gruppe\s*:.*)$/im,
+          `$1
+Oprettet af / signatur: ${signature}`
+        );
+      }
+
+      return text;
     }
 
     async function sendMessage() {
@@ -3007,7 +3060,8 @@ if (data.pending_action) {
   sessionStorage.removeItem("cda_pending_action");
 }
 
-        const assistantRow = appendMessage("assistant", data.reply);
+        const assistantReply = ensureElevprofilRegistrationFields(data.reply, tekst);
+        const assistantRow = appendMessage("assistant", assistantReply);
 
         if (templateFocusPending || document.documentElement.classList.contains("landscape-template-mode")) {
           markTemplateFocusTarget(assistantRow);
