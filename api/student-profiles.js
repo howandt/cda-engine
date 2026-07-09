@@ -28,7 +28,7 @@ function parseProfileLine(text, labels = []) {
 
     if (match?.[1]) {
       return match[1]
-        .replace(/^\*+|\*+$/g, "")
+        .replace(/^\\*+|\\*+$/g, "")
         .trim();
     }
   }
@@ -43,8 +43,68 @@ function parseKeywords(value) {
     .filter(Boolean);
 }
 
-function parseStudentProfileText(profileText) {
-  const text = String(profileText || "").trim();
+function formatCreatorLabel(user) {
+  const displayCode = String(user?.display_code || "").trim();
+  const roleLabel = String(user?.role_label || "").trim();
+
+  if (displayCode && roleLabel) return `${displayCode} · ${roleLabel}`;
+  if (displayCode) return displayCode;
+  if (roleLabel) return roleLabel;
+
+  return "Profilansvarlig";
+}
+
+function cleanProfileText(profileText, creatorLabel) {
+  let text = String(profileText || "").trim();
+
+  text = text
+    .split(/\r?\n/)
+    .filter((line) => {
+      const normalized = line
+        .replace(/\*/g, "")
+        .trim()
+        .toLowerCase();
+
+      return !(
+        normalized.startsWith("oprettet af / signatur:") ||
+        normalized.startsWith("created by / signature:") ||
+        normalized.startsWith("lærerkode / signatur:") ||
+        normalized.startsWith("laererkode / signatur:")
+      );
+    })
+    .join("\n");
+
+  const creatorLine = `**Oprettet af:** ${creatorLabel}`;
+
+  if (!creatorLabel) {
+    return text.replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  const classLinePattern = new RegExp(
+    `(^\\s*(?:\\*\\*)?(?:${escapeRegExp("Klasse / gruppe")}|${escapeRegExp("Class / group")}|${escapeRegExp("Klasse / gruppe / kontekst")}|${escapeRegExp("Klassetrin / kontekst")})(?:\\*\\*)?\\s*:\\s*.+?$)`,
+    "im"
+  );
+
+  if (classLinePattern.test(text)) {
+    text = text.replace(classLinePattern, `$1\n\n${creatorLine}`);
+    return text.replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  const lines = text.split(/\r?\n/);
+  const titleIndex = lines.findIndex((line) =>
+    line.replace(/[#*_]/g, "").trim().toLowerCase() === "elevprofil v1"
+  );
+
+  if (titleIndex >= 0) {
+    lines.splice(titleIndex + 1, 0, "", creatorLine);
+    return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  return `${creatorLine}\n\n${text}`.replace(/\n{3,}/g, "\n\n").trim();
+}
+
+function parseStudentProfileText(profileText, creatorLabel = "") {
+  const text = cleanProfileText(profileText, creatorLabel);
 
   if (!text) {
     return null;
@@ -61,13 +121,6 @@ function parseStudentProfileText(profileText) {
     "Class / group",
     "Klasse / gruppe / kontekst",
     "Klassetrin / kontekst",
-  ]);
-
-  const createdBySignature = parseProfileLine(text, [
-    "Oprettet af / signatur",
-    "Created by / signature",
-    "Lærerkode / signatur",
-    "Laererkode / signatur",
   ]);
 
   const profileData = {
@@ -118,10 +171,25 @@ function parseStudentProfileText(profileText) {
   return {
     studentName,
     classGroup,
-    createdBySignature,
     profileData,
     readableProfile: text,
   };
+}
+
+async function getAccessUser(supabase, accessCode) {
+  const { data, error } = await supabase
+    .from("access_users")
+    .select("access_code, display_code, full_name, role_label, organization_ref, is_active")
+    .eq("access_code", accessCode)
+    .eq("is_active", true)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Kunne ikke hente bruger fra access_users:", error);
+    throw new Error("Brugeroplysninger kunne ikke hentes");
+  }
+
+  return data;
 }
 
 export default async function handler(req, res) {
@@ -145,7 +213,25 @@ export default async function handler(req, res) {
       });
     }
 
-    const parsed = parseStudentProfileText(profileText);
+    if (!profileText) {
+      return res.status(400).json({
+        success: false,
+        error: "Profiltekst mangler",
+      });
+    }
+
+    const supabase = getSupabase();
+    const accessUser = await getAccessUser(supabase, accessCode);
+
+    if (!accessUser?.display_code) {
+      return res.status(400).json({
+        success: false,
+        error: "Brugeren mangler i access_users eller mangler initialer/display_code",
+      });
+    }
+
+    const creatorLabel = formatCreatorLabel(accessUser);
+    const parsed = parseStudentProfileText(profileText, creatorLabel);
 
     if (!parsed) {
       return res.status(400).json({
@@ -161,21 +247,19 @@ export default async function handler(req, res) {
       });
     }
 
-    const supabase = getSupabase();
-
     const { data, error } = await supabase
       .from("student_profiles")
       .insert({
         access_code: accessCode,
         student_name: parsed.studentName,
         class_group: parsed.classGroup,
-        created_by_signature: parsed.createdBySignature || null,
-        profile_owner_signature: parsed.createdBySignature || null,
+        created_by_signature: accessUser.display_code,
+        profile_owner_signature: accessUser.display_code,
         profile_data: parsed.profileData,
         readable_profile: parsed.readableProfile,
         status: "active",
       })
-      .select("id, student_name, class_group")
+      .select("id, student_name, class_group, created_by_signature")
       .single();
 
     if (error) {
@@ -191,6 +275,8 @@ export default async function handler(req, res) {
       id: data.id,
       student_name: data.student_name,
       class_group: data.class_group,
+      created_by_display_code: data.created_by_signature,
+      created_by_label: creatorLabel,
     });
   } catch (error) {
     console.error("Fejl ved gem elevprofil:", error);
