@@ -1669,21 +1669,27 @@
           {
             id: "student-profile-create",
             title: "Opret elevprofil",
-            promptText: `Opret elevprofil for [navn]:
+            promptText: `Opret elevprofil
 
+Navn / arbejdsnavn:
+Klasse / gruppe / kontekst:
+Lærerkode / signatur:
+
+Indsæt elevcase her:
 [INDSÆT ELEVCASE HER]`,
             promptInstruction: `Opgave til CDA:
 Du skal omsætte elevcasen til en neutral elevprofil i fast struktur.
 Du må ikke give almindelig rådgivning, analyse, forklaring eller “det kan du gøre nu”-svar.
 Du skal kun returnere selve profilen.
 
-Profilen skal bygges dynamisk ud fra den konkrete elevcase. Brug ikke faste elevtyper, diagnosegæt eller standardkonklusioner.
+Profilen skal bygges dynamisk ud fra den konkrete elevcase og de udfyldte registreringsfelter. Brug ikke faste elevtyper, diagnosegæt eller standardkonklusioner.
 
 Returnér kun denne struktur:
 
 Elevprofil v1
 Elev / arbejdsnavn:
-Klassetrin / kontekst:
+Klasse / gruppe / kontekst:
+Oprettet af / signatur:
 
 Primære observationer:
 
@@ -1707,7 +1713,7 @@ Keywords:
 
 Vigtigt:
 - Skriv kort og neutralt.
-- Brug kun oplysninger fra elevcasen.
+- Brug kun oplysninger fra elevcasen og de udfyldte registreringsfelter.
 - Stil ikke diagnose.
 - Gæt ikke på årsager, der ikke fremgår af teksten.
 - Keywords skal være relevante nøgleord udledt af elevcasen, ikke en fast liste.
@@ -1882,7 +1888,7 @@ Et børnehavebarn trækker sig fra leg, bliver urolig ved skift og virker belast
 Når flere voksne skal have et kort fælles overblik over barnets/elevens behov, belastninger, støttegreb og det der virker.
 
 **Hvad skriver jeg?**
-Skriv navn, klasse/gruppe, alder/klassetrin, centrale udfordringer, triggere, styrker, hvad der virker, og hvad der bør observeres.
+Skriv navn/arbejdsnavn, klasse/gruppe/kontekst, lærerkode/signatur og elevcasen med almindelige ord.
 
 **Hvad giver CDA?**
 En kort arbejdsprofil, som lærere, pædagoger, vikarer og relevante fagpersoner kan bruge som fælles grundlag.
@@ -2074,11 +2080,12 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       ]
     });
 
-    function createEmptyStudentProfileData({ id = "", navn = "", klasseGruppe = "", profilansvarlig = "" } = {}) {
+    function createEmptyStudentProfileData({ id = "", navn = "", klasseGruppe = "", laererkodeSignatur = "", profilansvarlig = "" } = {}) {
       return {
         id,
         navn,
         klasse_gruppe: klasseGruppe,
+        laererkode_signatur: laererkodeSignatur,
         profilansvarlig,
         status: "aktiv",
         arbejdsprofil: studentProfileDataModel.profileFields.reduce((fields, fieldName) => {
