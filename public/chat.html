@@ -1671,13 +1671,13 @@
             title: "Opret elevprofil",
             promptText: `Opret elevprofil for [navn]:
 
-Indsæt lærerens korte beskrivelse af eleven her:
-[Beskriv eleven med almindelige ord]
+[INDSÆT ELEVCASE HER]`,
+            promptInstruction: `Opgave til CDA:
+Du skal omsætte elevcasen til en neutral elevprofil i fast struktur.
+Du må ikke give almindelig rådgivning, analyse, forklaring eller “det kan du gøre nu”-svar.
+Du skal kun returnere selve profilen.
 
-Opgave:
-Omsæt lærerens beskrivelse til en neutral elevprofil. Du må ikke give almindelige råd eller en analyse som svar. Du skal oprette selve profilen.
-
-Profilen skal bygges ud fra den konkrete tekst og må ikke bruge faste elevtyper, diagnosegæt eller standardkonklusioner.
+Profilen skal bygges dynamisk ud fra den konkrete elevcase. Brug ikke faste elevtyper, diagnosegæt eller standardkonklusioner.
 
 Returnér kun denne struktur:
 
@@ -1707,21 +1707,20 @@ Keywords:
 
 Vigtigt:
 - Skriv kort og neutralt.
-- Brug kun oplysninger fra lærerens beskrivelse.
+- Brug kun oplysninger fra elevcasen.
 - Stil ikke diagnose.
 - Gæt ikke på årsager, der ikke fremgår af teksten.
-- Keywords skal være relevante nøgleord udledt af elevbeskrivelsen, ikke en fast liste.`
+- Keywords skal være relevante nøgleord udledt af elevcasen, ikke en fast liste.
+- Hvis et felt ikke kan udfyldes ud fra elevcasen, skriv: Ikke beskrevet.`
           },
           {
             id: "student-profile-readable",
             title: "Vis læsbar elevprofil",
             promptText: `Vis [navns] profil som læsbar tekst:
 
-[Indsæt elevprofilen her]
-
-Opgave:
-Omskriv elevprofilen til en kort, neutral og læsbar tekst til lærer, pædagog, vikar eller team.
-
+[INDSÆT ELEVPROFIL HER]`,
+            promptInstruction: `Opgave til CDA:
+Omskriv den indsatte elevprofil til en kort, neutral og læsbar tekst til lærer, pædagog, vikar eller team.
 Du må ikke give en ny analyse, nye råd eller diagnosegæt. Brug kun indholdet fra elevprofilen.
 
 Teksten skal kort beskrive:
@@ -1730,7 +1729,7 @@ Teksten skal kort beskrive:
 - hvad der hjælper
 - hvad voksne især skal være opmærksomme på
 
-Hold teksten praksisnær og læsbar på under ét minut.`
+Returnér kun den læsbare profiltekst. Hold teksten praksisnær og læsbar på under ét minut.`
           },
           {
             id: "student-profile-observation-suggestion",
@@ -1748,7 +1747,11 @@ Effekt:
 Er dette en enkelthændelse eller noget du har set flere gange?
 Forslag til profilændring:
 Skal klasselærer/profilansvarlig vurdere dette? Ja/nej/usikkert
-Status: Afventer vurdering`
+Status: Afventer vurdering`,
+            promptInstruction: `Opgave til CDA:
+Bevar observationen som et kort neutralt notat/forslag til elevprofilen.
+Observationen må ikke automatisk ændre selve profilen.
+Returnér observationen i samme feltstruktur og hold den kort, konkret og uden diagnosegæt.`
           },
           {
             id: "student-profile-update",
@@ -1756,33 +1759,32 @@ Status: Afventer vurdering`
             promptText: `Opdater elevprofil for [navn]:
 
 Eksisterende profil:
-[Indsæt nuværende elevprofil]
+[INDSÆT NUVÆRENDE ELEVPROFIL HER]
 
 Nye observationer / ændringsforslag:
-[Indsæt observationer her]
+[INDSÆT OBSERVATIONER HER]`,
+            promptInstruction: `Opgave til CDA:
+Opdater profilen kort og neutralt. Bevar det der stadig gælder. Fjern ikke noget uden grund.
+Marker hvad der er nyt, ændret eller usikkert.
 
-Opgave:
-Opdater profilen kort og neutralt. Bevar det der stadig gælder. Fjern ikke noget uden grund. Marker hvad der er nyt, ændret eller usikkert.
-
-Vigtigt:
-Observationer er ikke automatisk sandhed. Vurder om der er tale om enkelthændelse, muligt mønster eller noget der bør indarbejdes i profilen.`
+Observationer er ikke automatisk sandhed. Vurder om der er tale om enkelthændelse, muligt mønster eller noget der bør indarbejdes i profilen.
+Returnér kun den opdaterede elevprofil.`
           },
           {
             id: "student-profile-substitute-day",
             title: "Lav vikarprofil / kort dagsprofil",
             promptText: `Lav kort vikarprofil for [navn]:
 
-Indsæt elevprofil:
-[Indsæt elevprofilen her]
+[INDSÆT ELEVPROFIL HER]`,
+            promptInstruction: `Opgave til CDA:
+Lav en meget kort praksisprofil til en vikar ud fra den indsatte elevprofil.
+Den skal fortælle:
+- hvad vikaren skal vide først
+- hvad der virker
+- hvad der skal undgås
+- hvad man gør ved uro, konflikt eller skift
 
-Opgave:
-Lav en meget kort praksisprofil til en vikar:
-- hvad skal vikaren vide først?
-- hvad virker?
-- hvad skal undgås?
-- hvad gør man ved uro, konflikt eller skift?
-
-Hold teksten kort, neutral og brugbar i klassen.`
+Returnér kun vikarprofilen. Hold teksten kort, neutral og brugbar i klassen.`
           }
         ]
       },
@@ -2616,7 +2618,9 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         updateTemplateSelectionSummary({
           categoryTitle: selectedGroup?.title || "Elevprofil",
           templateTitle: selectedTemplate.title,
+          templateId: selectedTemplate.id,
           promptOnly: true,
+          promptInstruction: selectedTemplate.promptInstruction || "",
         });
         landscapeFocusDismissed = true;
         templateFocusPending = false;
@@ -2624,7 +2628,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         besked.value = selectedTemplate.promptText;
         besked.focus({ preventScroll: true });
         templateShortcutStatus.textContent =
-          "Teksten er sat ind. Ret den til, før du sender.";
+          "Teksten er sat ind. Erstat klammerne med din tekst, før du sender.";
         return;
       }
 
@@ -2856,8 +2860,22 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       return row;
     }
 
+    function buildTemplateMessage(userText) {
+      const instruction = activeTemplateSelection?.promptInstruction;
+
+      if (!instruction) {
+        return userText;
+      }
+
+      return `${userText}
+
+---
+${instruction}`;
+    }
+
     async function sendMessage() {
       const tekst = besked.value.trim();
+      const apiMessage = buildTemplateMessage(tekst);
       const sentFromLandscapeTemplate =
         document.documentElement.classList.contains("landscape-template-mode");
 
@@ -2917,7 +2935,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
         const requestBody = useRoleplay
           ? {
-              message: tekst,
+              message: apiMessage,
               state: roleplayState,
               ...(startsRoleplay
                 ? { action: "start" }
@@ -2926,7 +2944,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
                   : {}),
             }
           : {
-              message: tekst,
+              message: apiMessage,
               language: sprog,
               role: rolle,
               response_style: svarstil,
