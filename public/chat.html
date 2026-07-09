@@ -2957,10 +2957,18 @@ ${userText}`;
 
       text = removeLooseElevprofilRegistrationLines(text, [name, classGroup, signature]);
 
-      const header = `Elevprofil v1
-Elev / arbejdsnavn: ${name}
-Klasse / gruppe: ${classGroup}
-Oprettet af / signatur: ${signature}`;
+      const firstProfileSectionMatch = text.match(
+        /(?:^|\n)\s*(Primære observationer\s*:)/i
+      );
+
+      if (firstProfileSectionMatch && firstProfileSectionMatch.index > 0) {
+        text = text.slice(firstProfileSectionMatch.index).trim();
+      }
+
+      const header = `**Elevprofil v1**
+**Elev / arbejdsnavn:** ${name}
+**Klasse / gruppe:** ${classGroup}
+**Oprettet af / signatur:** ${signature}`;
 
       return text ? `${header}\n\n${text}` : header;
     }
