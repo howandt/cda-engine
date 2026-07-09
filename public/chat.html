@@ -2894,49 +2894,46 @@ ${userText}`;
     }
 
     function ensureElevprofilRegistrationFields(replyText, sourceText) {
-      if (activeTemplateSelection?.templateId !== "student-profile-create") {
+      const source = String(sourceText || "");
+      const isStudentProfileCreate =
+        activeTemplateSelection?.templateId === "student-profile-create" ||
+        (/^Navn\s*\/\s*arbejdsnavn\s*:/im.test(source) &&
+          /^Oprettet af\s*\/\s*signatur\s*:/im.test(source));
+
+      if (!isStudentProfileCreate) {
         return replyText;
       }
 
-      const name = extractLineValue(sourceText, "Navn / arbejdsnavn") || "Ikke angivet";
-      const classGroup = extractLineValue(sourceText, "Klasse / gruppe") || extractLineValue(sourceText, "Klasse / gruppe / kontekst") || "Ikke angivet";
-      const signature = extractLineValue(sourceText, "Oprettet af / signatur") || extractLineValue(sourceText, "Lærerkode / signatur") || "Ikke angivet";
+      const name = extractLineValue(source, "Navn / arbejdsnavn") || "Ikke angivet";
+      const classGroup =
+        extractLineValue(source, "Klasse / gruppe") ||
+        extractLineValue(source, "Klasse / gruppe / kontekst") ||
+        extractLineValue(source, "Klassetrin / kontekst") ||
+        "Ikke angivet";
+      const signature =
+        extractLineValue(source, "Oprettet af / signatur") ||
+        extractLineValue(source, "Lærerkode / signatur") ||
+        "Ikke angivet";
       let text = String(replyText || "").trim();
 
       if (!text) return text;
 
-      text = text.replace(/^Klassetrin\s*\/\s*kontekst\s*:/gim, "Klasse / gruppe:");
-      text = text.replace(/^Klasse\s*\/\s*gruppe\s*\/\s*kontekst\s*:/gim, "Klasse / gruppe:");
+      text = text
+        .replace(/^Elevprofil\s*·\s*Opret elevprofil\s*$/gim, "")
+        .replace(/^Elevprofil v1\s*/im, "")
+        .replace(
+          /^(?:Elev\s*\/\s*arbejdsnavn|Klassetrin\s*\/\s*kontekst|Klasse\s*\/\s*gruppe(?:\s*\/\s*kontekst)?|Oprettet af\s*\/\s*signatur)\s*:.*\n?/gim,
+          ""
+        )
+        .replace(/^\s+/, "")
+        .trim();
 
-      if (/^Klasse\s*\/\s*gruppe\s*:/im.test(text)) {
-        text = text.replace(/^Klasse\s*\/\s*gruppe\s*:.*/im, `Klasse / gruppe: ${classGroup}`);
-      } else if (/^Elev\s*\/\s*arbejdsnavn\s*:/im.test(text)) {
-        text = text.replace(
-          /^(Elev\s*\/\s*arbejdsnavn\s*:.*)$/im,
-          `$1
-Klasse / gruppe: ${classGroup}`
-        );
-      }
-
-      if (/^Elev\s*\/\s*arbejdsnavn\s*:/im.test(text)) {
-        text = text.replace(/^Elev\s*\/\s*arbejdsnavn\s*:.*/im, `Elev / arbejdsnavn: ${name}`);
-      } else if (/^Elevprofil v1/im.test(text)) {
-        text = text.replace(/^(Elevprofil v1\s*)/im, `$1
+      const header = `Elevprofil v1
 Elev / arbejdsnavn: ${name}
-`);
-      }
+Klasse / gruppe: ${classGroup}
+Oprettet af / signatur: ${signature}`;
 
-      if (/^Oprettet af\s*\/\s*signatur\s*:/im.test(text)) {
-        text = text.replace(/^Oprettet af\s*\/\s*signatur\s*:.*/im, `Oprettet af / signatur: ${signature}`);
-      } else if (/^Klasse\s*\/\s*gruppe\s*:/im.test(text)) {
-        text = text.replace(
-          /^(Klasse\s*\/\s*gruppe\s*:.*)$/im,
-          `$1
-Oprettet af / signatur: ${signature}`
-        );
-      }
-
-      return text;
+      return text ? `${header}\n\n${text}` : header;
     }
 
     async function sendMessage() {
