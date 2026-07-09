@@ -1670,25 +1670,67 @@
             id: "student-profile-create",
             title: "Opret elevprofil",
             promptText: `Opret elevprofil for [navn]:
-Skriv kort hvad du observerer om eleven:
-- klassetrin / kontekst
-- hvad der er svært
-- hvornår det sker
-- læring og opgaver
-- koncentration / udholdenhed
-- socialt samspil
-- gruppearbejde
-- skift / overgange
-- belastninger og triggere
-- hvad der virker
-- hvad der bør observeres`
+
+Indsæt lærerens korte beskrivelse af eleven her:
+[Beskriv eleven med almindelige ord]
+
+Opgave:
+Omsæt lærerens beskrivelse til en neutral elevprofil. Du må ikke give almindelige råd eller en analyse som svar. Du skal oprette selve profilen.
+
+Profilen skal bygges ud fra den konkrete tekst og må ikke bruge faste elevtyper, diagnosegæt eller standardkonklusioner.
+
+Returnér kun denne struktur:
+
+Elevprofil v1
+Elev / arbejdsnavn:
+Klassetrin / kontekst:
+
+Primære observationer:
+
+Læring og opgaver:
+
+Koncentration / udholdenhed:
+
+Socialt samspil:
+
+Gruppearbejde:
+
+Skift / overgange:
+
+Belastninger og triggere:
+
+Det der virker:
+
+Det der bør observeres:
+
+Keywords:
+
+Vigtigt:
+- Skriv kort og neutralt.
+- Brug kun oplysninger fra lærerens beskrivelse.
+- Stil ikke diagnose.
+- Gæt ikke på årsager, der ikke fremgår af teksten.
+- Keywords skal være relevante nøgleord udledt af elevbeskrivelsen, ikke en fast liste.`
           },
           {
             id: "student-profile-readable",
             title: "Vis læsbar elevprofil",
             promptText: `Vis [navns] profil som læsbar tekst:
 
-[Indsæt elevprofilen her]`
+[Indsæt elevprofilen her]
+
+Opgave:
+Omskriv elevprofilen til en kort, neutral og læsbar tekst til lærer, pædagog, vikar eller team.
+
+Du må ikke give en ny analyse, nye råd eller diagnosegæt. Brug kun indholdet fra elevprofilen.
+
+Teksten skal kort beskrive:
+- hvordan eleven fungerer
+- hvad der bliver svært
+- hvad der hjælper
+- hvad voksne især skal være opmærksomme på
+
+Hold teksten praksisnær og læsbar på under ét minut.`
           },
           {
             id: "student-profile-observation-suggestion",
