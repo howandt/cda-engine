@@ -2893,6 +2893,33 @@ ${userText}`;
       return match ? match[1].trim() : "";
     }
 
+    function removeLooseElevprofilRegistrationLines(text, values) {
+      const removableValues = new Set(
+        values
+          .map((value) => String(value || "").trim().toLowerCase())
+          .filter((value) => value && value !== "ikke angivet")
+      );
+
+      if (!removableValues.size) {
+        return String(text || "").trim();
+      }
+
+      const lines = String(text || "").split(/\r?\n/);
+
+      while (lines.length && !lines[0].trim()) {
+        lines.shift();
+      }
+
+      while (lines.length && removableValues.has(lines[0].trim().toLowerCase())) {
+        lines.shift();
+        while (lines.length && !lines[0].trim()) {
+          lines.shift();
+        }
+      }
+
+      return lines.join("\n").trim();
+    }
+
     function ensureElevprofilRegistrationFields(replyText, sourceText) {
       const source = String(sourceText || "");
       const isStudentProfileCreate =
@@ -2927,6 +2954,8 @@ ${userText}`;
         )
         .replace(/^\s+/, "")
         .trim();
+
+      text = removeLooseElevprofilRegistrationLines(text, [name, classGroup, signature]);
 
       const header = `Elevprofil v1
 Elev / arbejdsnavn: ${name}
