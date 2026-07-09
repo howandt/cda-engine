@@ -28,7 +28,7 @@ function parseProfileLine(text, labels = []) {
 
     if (match?.[1]) {
       return match[1]
-        .replace(/^\\*+|\\*+$/g, "")
+        .replace(/^\*+|\*+$/g, "")
         .trim();
     }
   }
