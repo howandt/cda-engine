@@ -1684,7 +1684,13 @@ Du skal kun returnere selve profilen.
 
 Profilen skal bygges dynamisk ud fra den konkrete elevcase og de udfyldte registreringsfelter. Brug ikke faste elevtyper, diagnosegæt eller standardkonklusioner.
 
-Returnér kun denne struktur:
+Registreringsfelter:
+- Kopiér værdien efter “Navn / arbejdsnavn:” direkte til feltet “Elev / arbejdsnavn:”.
+- Kopiér værdien efter “Klasse / gruppe / kontekst:” direkte til feltet “Klasse / gruppe / kontekst:”. Brug ikke overskriften “Klassetrin / kontekst”.
+- Kopiér værdien efter “Lærerkode / signatur:” direkte til feltet “Oprettet af / signatur:”.
+- Hvis et registreringsfelt ikke er udfyldt, skriv: Ikke angivet.
+
+Returnér kun denne struktur og brug præcis disse overskrifter:
 
 Elevprofil v1
 Elev / arbejdsnavn:
@@ -1717,7 +1723,7 @@ Vigtigt:
 - Stil ikke diagnose.
 - Gæt ikke på årsager, der ikke fremgår af teksten.
 - Keywords skal være relevante nøgleord udledt af elevcasen, ikke en fast liste.
-- Hvis et felt ikke kan udfyldes ud fra elevcasen, skriv: Ikke beskrevet.`
+- Hvis et profilfelt ikke kan udfyldes ud fra elevcasen, skriv: Ikke beskrevet.`
           },
           {
             id: "student-profile-readable",
@@ -2635,7 +2641,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         besked.value = selectedTemplate.promptText;
         besked.focus({ preventScroll: true });
         templateShortcutStatus.textContent =
-          "Teksten er sat ind. Erstat klammerne med din tekst, før du sender.";
+          "Teksten er sat ind. Udfyld navn, klasse/gruppe og lærerkode, og indsæt elevcasen.";
         return;
       }
 
