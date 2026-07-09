@@ -1689,6 +1689,58 @@ Skriv kort hvad du observerer om eleven:
             promptText: `Vis [navns] profil som læsbar tekst:
 
 [Indsæt elevprofilen her]`
+          },
+          {
+            id: "student-profile-observation-suggestion",
+            title: "Tilføj observation / forslag til elevprofil",
+            promptText: `Tilføj observation / forslag til elevprofil for [navn]:
+
+Dato:
+Skrevet af:
+Rolle:
+Situation:
+Kort observation:
+Hvad blev afprøvet:
+Barnets/elevens reaktion:
+Effekt:
+Er dette en enkelthændelse eller noget du har set flere gange?
+Forslag til profilændring:
+Skal klasselærer/profilansvarlig vurdere dette? Ja/nej/usikkert
+Status: Afventer vurdering`
+          },
+          {
+            id: "student-profile-update",
+            title: "Opdater elevprofil",
+            promptText: `Opdater elevprofil for [navn]:
+
+Eksisterende profil:
+[Indsæt nuværende elevprofil]
+
+Nye observationer / ændringsforslag:
+[Indsæt observationer her]
+
+Opgave:
+Opdater profilen kort og neutralt. Bevar det der stadig gælder. Fjern ikke noget uden grund. Marker hvad der er nyt, ændret eller usikkert.
+
+Vigtigt:
+Observationer er ikke automatisk sandhed. Vurder om der er tale om enkelthændelse, muligt mønster eller noget der bør indarbejdes i profilen.`
+          },
+          {
+            id: "student-profile-substitute-day",
+            title: "Lav vikarprofil / kort dagsprofil",
+            promptText: `Lav kort vikarprofil for [navn]:
+
+Indsæt elevprofil:
+[Indsæt elevprofilen her]
+
+Opgave:
+Lav en meget kort praksisprofil til en vikar:
+- hvad skal vikaren vide først?
+- hvad virker?
+- hvad skal undgås?
+- hvad gør man ved uro, konflikt eller skift?
+
+Hold teksten kort, neutral og brugbar i klassen.`
           }
         ]
       },
@@ -1792,7 +1844,7 @@ Skriv navn, klasse/gruppe, alder/klassetrin, centrale udfordringer, triggere, st
 En kort arbejdsprofil, som lærere, pædagoger, vikarer og relevante fagpersoner kan bruge som fælles grundlag.
 
 **Relevante skabeloner:**
-Elevprofil, læsbar elevprofil, udviklingslog, observationslog.
+Opret elevprofil, læsbar elevprofil, observation / forslag til elevprofil, opdater elevprofil, vikarprofil / kort dagsprofil.
 
 **Eksempel:**
 Opret elevprofil for Noah: Noah går i 3. klasse. Han mister fokus efter 5-10 minutter og bliver vred ved skift.`
@@ -1812,7 +1864,7 @@ Indsæt elevprofilen og bed CDA vise den som læsbar tekst.
 En neutral, kort og praksisnær tekst uden diagnosekonklusioner og uden lange forklaringer.
 
 **Relevante skabeloner:**
-Læsbar elevprofil, elevprofil, teamoverblik.
+Læsbar elevprofil, elevprofil, vikarprofil / kort dagsprofil.
 
 **Eksempel:**
 Vis Noahs profil som læsbar tekst: [indsæt elevprofilen her]`
@@ -1940,6 +1992,85 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         ]
       }
     ];
+    const STUDENT_PROFILE_STORAGE_KEY = "cda_student_profiles_v1";
+    const studentProfileDataModel = Object.freeze({
+      version: 1,
+      profileFields: [
+        "primaere_observationer",
+        "laering_og_opgaver",
+        "koncentration_udholdenhed",
+        "socialt_samspil",
+        "gruppearbejde",
+        "skift_overgange",
+        "belastninger_triggere",
+        "det_der_virker",
+        "det_der_boer_observeres"
+      ],
+      observationFields: [
+        "dato",
+        "skrevet_af",
+        "rolle",
+        "situation",
+        "kort_observation",
+        "hvad_blev_afproevet",
+        "barnets_elevens_reaktion",
+        "effekt",
+        "enkelthaendelse_eller_moenster",
+        "forslag_til_profilaendring",
+        "skal_profilansvarlig_vurdere",
+        "status"
+      ],
+      observationStatuses: [
+        "afventer_vurdering",
+        "afventer_teamdroeftelse",
+        "droeftet_i_team",
+        "afventer_flere_observationer",
+        "indarbejdet_i_profil",
+        "afvist"
+      ]
+    });
+
+    function createEmptyStudentProfileData({ id = "", navn = "", klasseGruppe = "", profilansvarlig = "" } = {}) {
+      return {
+        id,
+        navn,
+        klasse_gruppe: klasseGruppe,
+        profilansvarlig,
+        status: "aktiv",
+        arbejdsprofil: studentProfileDataModel.profileFields.reduce((fields, fieldName) => {
+          fields[fieldName] = [];
+          return fields;
+        }, {}),
+        laesbar_profil: "",
+        observationer: [],
+        aendringslog: [],
+        oprettet_dato: "",
+        opdateret_dato: ""
+      };
+    }
+
+    function loadStoredStudentProfiles() {
+      try {
+        const raw = localStorage.getItem(STUDENT_PROFILE_STORAGE_KEY);
+        if (!raw) return [];
+
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveStoredStudentProfiles(profiles) {
+      if (!Array.isArray(profiles)) return false;
+
+      localStorage.setItem(
+        STUDENT_PROFILE_STORAGE_KEY,
+        JSON.stringify(profiles)
+      );
+      return true;
+    }
+
     let activeTemplateSelection = null;
     let templateFocusPending = false;
     let landscapeFocusDismissed = false;
