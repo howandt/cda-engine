@@ -1869,23 +1869,6 @@ Returnér observationen i samme feltstruktur og hold den kort, konkret og uden d
             promptText: `Opdater [navn] profil`
           },
           {
-            id: "student-profile-update",
-            title: "Opdater elevprofil",
-            promptText: `Opdater elevprofil for [navn]:
-
-Eksisterende profil:
-[INDSÆT NUVÆRENDE ELEVPROFIL HER]
-
-Nye observationer / ændringsforslag:
-[INDSÆT OBSERVATIONER HER]`,
-            promptInstruction: `Opgave til CDA:
-Opdater profilen kort og neutralt. Bevar det der stadig gælder. Fjern ikke noget uden grund.
-Marker hvad der er nyt, ændret eller usikkert.
-
-Observationer er ikke automatisk sandhed. Vurder om der er tale om enkelthændelse, muligt mønster eller noget der bør indarbejdes i profilen.
-Returnér kun den opdaterede elevprofil.`
-          },
-          {
             id: "student-profile-substitute-day",
             title: "Lav vikarprofil / kort dagsprofil",
             promptText: `Lav kort vikarprofil for [navn]:
@@ -3093,10 +3076,10 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
               item.review_status ? `Status: ${formatObservationStatus(item.review_status)}` : "",
             ].filter(Boolean).join("\n");
           }).join("\n\n---\n\n")
-        : "Der er ingen gemte observationer endnu.";
+        : "Der er ingen observationer valgt til profilen.";
 
       return `Opgave til CDA:
-Opdater elevprofilen kort og neutralt ud fra eksisterende profil og gemte observationer.
+Opdater elevprofilen kort og neutralt ud fra eksisterende profil og de observationer, som profilansvarlig har valgt til profilen.
 
 Vigtige regler:
 - Returnér kun en ny samlet elevprofil i fast feltstruktur.
@@ -3125,7 +3108,7 @@ Keywords:
 Eksisterende profil:
 ${profileText}
 
-Gemte observationer:
+Valgte observationer:
 ${observationText}`;
     }
 
@@ -3158,6 +3141,8 @@ ${observationText}`;
       if (classGroup) {
         params.set("class_group", classGroup);
       }
+
+      params.set("review_status", "valgt_til_profil");
 
       const response = await fetch(`/api/student-observations?${params.toString()}`);
       const result = await response.json();
@@ -3209,6 +3194,10 @@ ${observationText}`;
           profileResult?.profile?.student_name || updateRequest.studentName,
           classGroup
         );
+
+        if (!Array.isArray(observationResult?.observations) || observationResult.observations.length === 0) {
+          throw new Error("Der er ingen observationer markeret Brug i profil.");
+        }
 
         typingRow.querySelector(".message-content").textContent =
           "CDA laver forslag til opdateret profil...";
@@ -3486,9 +3475,9 @@ ${observationText}`;
       return [
         title,
         classLine,
-        `Afventer vurdering: ${observations.length}`,
+        `Observationer til gennemgang: ${observations.length}`,
         "",
-        "Vælg én handling for hver observation.",
+        "Vælg én handling for hver observation. Når mindst én er valgt til profilen, kan du lave opdateringsforslaget direkte herfra.",
       ].filter(Boolean).join("\n");
     }
 
@@ -3510,6 +3499,87 @@ ${observationText}`;
       ].filter(Boolean).join("\n");
     }
 
+    async function createProfileProposalFromSelectedObservations(result, selectedObservations, triggerButton, statusElement) {
+      if (!Array.isArray(selectedObservations) || selectedObservations.length === 0) {
+        statusElement.classList.add("error");
+        statusElement.textContent = "Vælg mindst én observation med Brug i profil.";
+        return;
+      }
+
+      triggerButton.disabled = true;
+      triggerButton.textContent = "Laver forslag...";
+      statusElement.classList.remove("error");
+      statusElement.textContent = "CDA henter den aktive profil og bruger kun de valgte observationer.";
+
+      const typingRow = appendMessage(
+        "assistant",
+        "CDA laver forslag til opdateret profil...",
+        "typing"
+      );
+
+      try {
+        const profileResult = await fetchStudentProfileForFlow(
+          result?.student_name || selectedObservations[0]?.student_name || "",
+          result?.class_group || selectedObservations[0]?.class_group || ""
+        );
+
+        const prompt = buildFullProfileUpdatePrompt(profileResult, {
+          observations: selectedObservations,
+        });
+
+        const response = await fetch("/api/cda-chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: prompt,
+            language: sprog,
+            role: rolle,
+            response_style: svarstil,
+            adgangskode,
+            pending_action: pendingAction,
+          }),
+        });
+
+        const data = await response.json();
+        typingRow.remove();
+
+        if (!response.ok) {
+          throw new Error(data.error || "CDA kunne ikke lave profilforslaget.");
+        }
+
+        if (data.pending_action) {
+          pendingAction = data.pending_action;
+          sessionStorage.setItem("cda_pending_action", pendingAction);
+        } else {
+          pendingAction = null;
+          sessionStorage.removeItem("cda_pending_action");
+        }
+
+        const assistantRow = appendMessage("assistant", data.reply);
+
+        if (!isStudentProfileAssistantReply(data.reply, data)) {
+          throw new Error("CDA returnerede ikke en gyldig elevprofil.");
+        }
+
+        attachUpdateProfileAction(assistantRow, data.reply);
+        statusElement.textContent = `Forslag lavet med ${selectedObservations.length} valgt${selectedObservations.length === 1 ? "" : "e"} observation${selectedObservations.length === 1 ? "" : "er"}.`;
+      } catch (error) {
+        if (typingRow.isConnected) {
+          typingRow.remove();
+        }
+
+        statusElement.classList.add("error");
+        statusElement.textContent = error.message || "Profilforslaget kunne ikke laves.";
+      } finally {
+        triggerButton.disabled = false;
+        triggerButton.textContent = "Lav opdateret profil med valgte observationer";
+        updateBackToStartVisibility();
+        scrollToBottom();
+      }
+    }
+
     function attachObservationReviewPanel(row, result) {
       if (!row) return;
 
@@ -3526,12 +3596,50 @@ ${observationText}`;
       list.className = "observation-review-list";
 
       const actions = [
-        { label: "Integrér", status: "valgt_til_profil" },
-        { label: "Dækket", status: "daekket_af_profil" },
+        { label: "Brug i profil", status: "valgt_til_profil" },
+        { label: "Allerede dækket", status: "daekket_af_profil" },
         { label: "Afvis", status: "afvist_ikke_aktuelt" },
         { label: "Afvent", status: "afventer_flere_observationer" },
         { label: "Drøft", status: "droeftes_i_team" },
       ];
+
+      const updateActions = document.createElement("div");
+      updateActions.className = "message-actions";
+
+      const updateButton = document.createElement("button");
+      updateButton.type = "button";
+      updateButton.className = "save-profile-button";
+      updateButton.textContent = "Lav opdateret profil med valgte observationer";
+
+      const updateStatus = document.createElement("span");
+      updateStatus.className = "save-profile-status";
+
+      function getSelectedObservations() {
+        return observations.filter(
+          (observation) => observation.review_status === "valgt_til_profil"
+        );
+      }
+
+      function refreshUpdateAction() {
+        const selectedCount = getSelectedObservations().length;
+        updateButton.disabled = selectedCount === 0;
+        updateStatus.classList.remove("error");
+        updateStatus.textContent = selectedCount === 0
+          ? "Vælg Brug i profil ved mindst én observation."
+          : `${selectedCount} observation${selectedCount === 1 ? "" : "er"} valgt til profilen.`;
+      }
+
+      updateButton.addEventListener("click", async () => {
+        await createProfileProposalFromSelectedObservations(
+          result,
+          getSelectedObservations(),
+          updateButton,
+          updateStatus
+        );
+      });
+
+      updateActions.appendChild(updateButton);
+      updateActions.appendChild(updateStatus);
 
       observations.forEach((item, index) => {
         const card = document.createElement("section");
@@ -3559,9 +3667,11 @@ ${observationText}`;
 
         const resultText = document.createElement("div");
         resultText.className = "observation-review-result";
-        resultText.textContent = item.profile_id
-          ? "Afventer dit valg."
-          : "Observationen skal først kobles til den rigtige elevprofil.";
+        resultText.textContent = !item.profile_id
+          ? "Observationen skal først kobles til den rigtige elevprofil."
+          : item.review_status === "valgt_til_profil"
+            ? "Valgt til den næste profilopdatering."
+            : "Afventer dit valg.";
 
         const linkRow = document.createElement("div");
         linkRow.className = "observation-review-actions";
@@ -3645,6 +3755,7 @@ ${observationText}`;
             linkRow.hidden = true;
             buttonRow.hidden = false;
             resultText.textContent = `Koblet til ${profileLabel}. Vælg nu handling.`;
+            refreshUpdateAction();
           } catch (error) {
             resultText.classList.add("error");
             resultText.textContent =
@@ -3664,6 +3775,10 @@ ${observationText}`;
           button.type = "button";
           button.className = "observation-review-button";
           button.textContent = action.label;
+
+          if (item.review_status === action.status) {
+            button.classList.add("is-selected");
+          }
 
           button.addEventListener("click", async () => {
             buttons.forEach((itemButton) => {
@@ -3703,10 +3818,12 @@ ${observationText}`;
               const savedStatus =
                 data?.observation?.review_status || action.status;
 
+              item.review_status = savedStatus;
               currentStatus.textContent = `Status: ${formatObservationStatus(
                 savedStatus
               )}`;
               resultText.textContent = `Gemt: ${action.label}.`;
+              refreshUpdateAction();
             } catch (error) {
               resultText.classList.add("error");
               resultText.textContent =
@@ -3732,6 +3849,8 @@ ${observationText}`;
       });
 
       bubble.appendChild(list);
+      bubble.appendChild(updateActions);
+      refreshUpdateAction();
       scrollToBottom();
     }
 
@@ -3770,10 +3889,6 @@ ${observationText}`;
           params.set("class_group", lookup.classGroup);
         }
 
-        if (lookup.reviewMode) {
-          params.set("review_status", "afventer_vurdering");
-        }
-
         const response = await fetch(`/api/student-observations?${params.toString()}`);
         const result = await response.json();
 
@@ -3784,11 +3899,18 @@ ${observationText}`;
         typingRow.remove();
 
         if (lookup.reviewMode) {
+          const reviewResult = {
+            ...result,
+            observations: (Array.isArray(result.observations) ? result.observations : []).filter(
+              (item) => ["afventer_vurdering", "valgt_til_profil"].includes(item.review_status)
+            ),
+          };
+
           const reviewRow = appendMessage(
             "assistant",
-            buildObservationReviewIntro(result)
+            buildObservationReviewIntro(reviewResult)
           );
-          attachObservationReviewPanel(reviewRow, result);
+          attachObservationReviewPanel(reviewRow, reviewResult);
         } else {
           appendMessage("assistant", buildObservationListReply(result));
         }
@@ -3821,7 +3943,7 @@ ${observationText}`;
       const button = document.createElement("button");
       button.className = "save-profile-button";
       button.type = "button";
-      button.textContent = "Gem opdateret profil";
+      button.textContent = "Godkend og gem";
 
       const status = document.createElement("span");
       status.className = "save-profile-status";
@@ -3860,17 +3982,30 @@ ${observationText}`;
             throw new Error(result?.error || "Profilen kunne ikke opdateres.");
           }
 
-          button.textContent = "Opdateret profil gemt";
+          button.textContent = "Godkendt og gemt";
           status.textContent = `Profil opdateret for ${result.student_name || "eleven"}.`;
         } catch (error) {
           button.disabled = false;
-          button.textContent = "Gem opdateret profil";
+          button.textContent = "Godkend og gem";
           status.classList.add("error");
           status.textContent = error.message || "Profilen kunne ikke opdateres.";
         }
       });
 
+      const cancelButton = document.createElement("button");
+      cancelButton.className = "observation-review-button";
+      cancelButton.type = "button";
+      cancelButton.textContent = "Annuller";
+
+      cancelButton.addEventListener("click", () => {
+        button.disabled = true;
+        cancelButton.disabled = true;
+        status.classList.remove("error");
+        status.textContent = "Forslaget blev ikke gemt.";
+      });
+
       actions.appendChild(button);
+      actions.appendChild(cancelButton);
       actions.appendChild(status);
       bubble.appendChild(actions);
       scrollToBottom();
