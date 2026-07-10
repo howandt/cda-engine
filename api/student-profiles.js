@@ -390,16 +390,13 @@ async function updateProfile(req, res) {
     });
   }
 
-  const { data: existingProfile, error: findError } = await supabase
+  const { data: activeProfiles, error: findError } = await supabase
     .from("student_profiles")
-    .select("id, student_name, class_group, profile_data, readable_profile, status, updated_at")
+    .select("id, student_name, class_group, profile_data, readable_profile, status, updated_at, created_at")
     .eq("access_code", accessCode)
     .ilike("student_name", parsed.studentName)
-    .eq("class_group", parsed.classGroup)
     .eq("status", "active")
-    .order("created_at", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .order("updated_at", { ascending: false });
 
   if (findError) {
     console.error("Kunne ikke finde aktiv elevprofil:", findError);
@@ -409,10 +406,24 @@ async function updateProfile(req, res) {
     });
   }
 
+  const profiles = Array.isArray(activeProfiles) ? activeProfiles : [];
+  const normalizedParsedClass = String(parsed.classGroup || "").trim().toLowerCase();
+
+  const classMatch = profiles.find((profile) =>
+    String(profile?.class_group || "").trim().toLowerCase() === normalizedParsedClass
+  );
+
+  const existingProfile =
+    classMatch ||
+    (profiles.length === 1 ? profiles[0] : null);
+
   if (!existingProfile?.id) {
     return res.status(404).json({
       success: false,
-      error: "Der blev ikke fundet en aktiv elevprofil med samme navn og klasse/gruppe",
+      error:
+        profiles.length > 1
+          ? "Der blev fundet flere aktive elevprofiler med samme navn. Skriv klasse/gruppe præcist."
+          : "Der blev ikke fundet en aktiv elevprofil med samme navn",
     });
   }
 
