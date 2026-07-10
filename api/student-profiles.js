@@ -16,18 +16,82 @@ function escapeRegExp(value) {
 }
 
 function parseProfileLine(text, labels = []) {
-  const source = String(text || "");
+  const source = String(text || "").replace(/\r\n/g, "\n");
+  const lines = source.split("\n");
 
-  for (const label of labels) {
-    const escaped = escapeRegExp(label);
-    const pattern = new RegExp(
-      `^\\s*(?:\\*\\*)?${escaped}(?:\\*\\*)?\\s*:\\s*(.+?)\\s*$`,
-      "im"
-    );
-    const match = source.match(pattern);
+  const allLabels = [
+    "Elev / arbejdsnavn",
+    "Student / working name",
+    "Navn / arbejdsnavn",
+    "Klasse / gruppe",
+    "Class / group",
+    "Klasse / gruppe / kontekst",
+    "Klassetrin / kontekst",
+    "Primære observationer",
+    "Primaere observationer",
+    "Primary observations",
+    "Læring og opgaver",
+    "Laering og opgaver",
+    "Learning and tasks",
+    "Koncentration / udholdenhed",
+    "Concentration / stamina",
+    "Socialt samspil",
+    "Social interaction",
+    "Gruppearbejde",
+    "Group work",
+    "Skift / overgange",
+    "Transitions",
+    "Belastninger og triggere",
+    "Load / triggers",
+    "Det der virker",
+    "What works",
+    "Det der bør observeres",
+    "Det der boer observeres",
+    "Should be observed",
+    "Keywords",
+    "Nøgleord",
+    "Noegleord",
+  ];
 
-    if (match?.[1]) {
-      return match[1]
+  const requestedPatterns = labels.map((label) =>
+    new RegExp(`^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:\\s*(.*)$`, "i")
+  );
+
+  const stopPatterns = allLabels.map((label) =>
+    new RegExp(`^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:`, "i")
+  );
+
+  for (let i = 0; i < lines.length; i += 1) {
+    for (const pattern of requestedPatterns) {
+      const match = lines[i].match(pattern);
+
+      if (!match) {
+        continue;
+      }
+
+      const parts = [];
+      const firstValue = String(match[1] || "").trim();
+
+      if (firstValue) {
+        parts.push(firstValue);
+      }
+
+      for (let j = i + 1; j < lines.length; j += 1) {
+        const nextLine = lines[j];
+
+        if (stopPatterns.some((stopPattern) => stopPattern.test(nextLine))) {
+          break;
+        }
+
+        const cleanedLine = nextLine.trim();
+
+        if (cleanedLine) {
+          parts.push(cleanedLine);
+        }
+      }
+
+      return parts
+        .join(" ")
         .replace(/^\*+|\*+$/g, "")
         .trim();
     }
