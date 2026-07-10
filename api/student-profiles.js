@@ -51,14 +51,26 @@ function parseProfileLine(text, labels = []) {
     "Keywords",
     "Nøgleord",
     "Noegleord",
+    "Oprettet af",
+    "Oprettet af / signatur",
+    "Created by",
+    "Created by / signature",
+    "Lærerkode / signatur",
+    "Laererkode / signatur",
   ];
 
   const requestedPatterns = labels.map((label) =>
-    new RegExp(`^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:\\s*(.*)$`, "i")
+    new RegExp(
+      `^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:\\s*(?:\\*\\*)?\\s*(.*)$`,
+      "i"
+    )
   );
 
   const stopPatterns = allLabels.map((label) =>
-    new RegExp(`^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:`, "i")
+    new RegExp(
+      `^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:\\s*(?:\\*\\*)?`,
+      "i"
+    )
   );
 
   for (let i = 0; i < lines.length; i += 1) {
