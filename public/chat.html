@@ -593,6 +593,88 @@
       color: var(--danger);
     }
 
+    .observation-review-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .observation-review-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--surface-soft);
+    }
+
+    .observation-review-heading {
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 900;
+    }
+
+    .observation-review-meta,
+    .observation-review-body {
+      margin-top: 7px;
+      color: #53647a;
+      font-size: 0.80rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .observation-review-body {
+      color: #334155;
+    }
+
+    .observation-review-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .observation-review-button {
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid #cfd9ea;
+      border-radius: 9px;
+      color: #3f5068;
+      background: #ffffff;
+      font-size: 0.74rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .observation-review-button:hover:not(:disabled),
+    .observation-review-button:focus-visible:not(:disabled) {
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      background: #edf1ff;
+      outline: none;
+    }
+
+    .observation-review-button.is-selected {
+      border-color: var(--secondary);
+      color: #ffffff;
+      background: var(--secondary);
+    }
+
+    .observation-review-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.62;
+    }
+
+    .observation-review-result {
+      min-height: 18px;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 750;
+    }
+
+    .observation-review-result.error {
+      color: var(--danger);
+    }
+
     .markdown-table-wrap {
       width: 100%;
       overflow-x: auto;
@@ -1775,6 +1857,11 @@ Returnér observationen i samme feltstruktur og hold den kort, konkret og uden d
             id: "student-profile-observations-view",
             title: "Vis observationer for elev",
             promptText: `Vis observationer for [navn]`
+          },
+          {
+            id: "student-profile-observations-review",
+            title: "Vurder observationer",
+            promptText: `Vurder observationer for [navn]`
           },
           {
             id: "student-profile-auto-update-flow",
@@ -3287,17 +3374,31 @@ ${observationText}`;
 
       if (!normalized) return null;
 
-      const match =
+      const reviewMatch =
+        normalized.match(/^vurder\s+observationer\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^gennemgå\s+observationer\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^vurder\s+(.+?)s\s+observationer(?:\s+i\s+(.+?))?$/i);
+
+      if (reviewMatch) {
+        return {
+          studentName: String(reviewMatch[1] || "").trim(),
+          classGroup: String(reviewMatch[2] || "").trim(),
+          reviewMode: true,
+        };
+      }
+
+      const viewMatch =
         normalized.match(/^vis\s+observationer\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
         normalized.match(/^hent\s+observationer\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
         normalized.match(/^vis\s+(.+?)s\s+observationer(?:\s+i\s+(.+?))?$/i) ||
         normalized.match(/^hent\s+(.+?)s\s+observationer(?:\s+i\s+(.+?))?$/i);
 
-      if (!match) return null;
+      if (!viewMatch) return null;
 
       return {
-        studentName: String(match[1] || "").trim(),
-        classGroup: String(match[2] || "").trim(),
+        studentName: String(viewMatch[1] || "").trim(),
+        classGroup: String(viewMatch[2] || "").trim(),
+        reviewMode: false,
       };
     }
 
@@ -3363,6 +3464,179 @@ ${observationText}`;
       return `${header}\n\n${blocks.join("\n\n---\n\n")}`;
     }
 
+    function buildObservationReviewIntro(result) {
+      const observations = Array.isArray(result?.observations)
+        ? result.observations
+        : [];
+
+      const title = `Vurder observationer for ${result?.student_name || "eleven"}`;
+      const classLine = result?.class_group
+        ? `Klasse / gruppe: ${result.class_group}`
+        : "";
+
+      if (observations.length === 0) {
+        return [
+          title,
+          classLine,
+          "",
+          "Der er ingen observationer, som afventer vurdering.",
+        ].filter(Boolean).join("\n");
+      }
+
+      return [
+        title,
+        classLine,
+        `Afventer vurdering: ${observations.length}`,
+        "",
+        "Vælg én handling for hver observation.",
+      ].filter(Boolean).join("\n");
+    }
+
+    function buildObservationReviewDetails(item) {
+      const writtenBy = [item.written_by_signature, item.role_function]
+        .filter(Boolean)
+        .join(" · ");
+
+      return [
+        item.situation ? `Situation: ${item.situation}` : "",
+        item.observation_text ? `Kort observation: ${item.observation_text}` : "",
+        item.tested_action ? `Hvad blev afprøvet: ${item.tested_action}` : "",
+        item.student_reaction ? `Elevens reaktion: ${item.student_reaction}` : "",
+        item.effect ? `Effekt: ${item.effect}` : "",
+        item.suggested_profile_change
+          ? `Forslag til profilændring: ${item.suggested_profile_change}`
+          : "",
+        writtenBy ? `Skrevet af: ${writtenBy}` : "",
+      ].filter(Boolean).join("\n");
+    }
+
+    function attachObservationReviewPanel(row, result) {
+      if (!row) return;
+
+      const observations = Array.isArray(result?.observations)
+        ? result.observations
+        : [];
+
+      if (observations.length === 0) return;
+
+      const bubble = row.querySelector(".message.assistant");
+      if (!bubble) return;
+
+      const list = document.createElement("div");
+      list.className = "observation-review-list";
+
+      const actions = [
+        { label: "Integrér", status: "valgt_til_profil" },
+        { label: "Dækket", status: "daekket_af_profil" },
+        { label: "Afvis", status: "afvist_ikke_aktuelt" },
+        { label: "Afvent", status: "afventer_flere_observationer" },
+        { label: "Drøft", status: "droeftes_i_team" },
+      ];
+
+      observations.forEach((item, index) => {
+        const card = document.createElement("section");
+        card.className = "observation-review-card";
+
+        const heading = document.createElement("div");
+        heading.className = "observation-review-heading";
+        heading.textContent = `Observation ${index + 1} · ${formatDateForDisplay(
+          item.observation_date || item.created_at
+        )}`;
+
+        const body = document.createElement("div");
+        body.className = "observation-review-body";
+        body.textContent = buildObservationReviewDetails(item);
+
+        const currentStatus = document.createElement("div");
+        currentStatus.className = "observation-review-meta";
+        currentStatus.textContent = `Status: ${formatObservationStatus(
+          item.review_status
+        )}`;
+
+        const buttonRow = document.createElement("div");
+        buttonRow.className = "observation-review-actions";
+
+        const resultText = document.createElement("div");
+        resultText.className = "observation-review-result";
+        resultText.textContent = "Afventer dit valg.";
+
+        const buttons = [];
+
+        actions.forEach((action) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "observation-review-button";
+          button.textContent = action.label;
+
+          button.addEventListener("click", async () => {
+            buttons.forEach((itemButton) => {
+              itemButton.disabled = true;
+            });
+
+            resultText.classList.remove("error");
+            resultText.textContent = "Gemmer vurdering...";
+
+            try {
+              const response = await fetch("/api/student-observations", {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  adgangskode,
+                  observation_id: item.id,
+                  review_status: action.status,
+                }),
+              });
+
+              const data = await response.json();
+
+              if (!response.ok || !data?.success) {
+                throw new Error(
+                  data?.error || "Observationen kunne ikke vurderes."
+                );
+              }
+
+              buttons.forEach((itemButton) => {
+                itemButton.classList.remove("is-selected");
+              });
+
+              button.classList.add("is-selected");
+
+              const savedStatus =
+                data?.observation?.review_status || action.status;
+
+              currentStatus.textContent = `Status: ${formatObservationStatus(
+                savedStatus
+              )}`;
+              resultText.textContent = `Gemt: ${action.label}.`;
+            } catch (error) {
+              resultText.classList.add("error");
+              resultText.textContent =
+                error.message || "Observationen kunne ikke vurderes.";
+            } finally {
+              buttons.forEach((itemButton) => {
+                itemButton.disabled = false;
+              });
+            }
+          });
+
+          buttons.push(button);
+          buttonRow.appendChild(button);
+        });
+
+        card.appendChild(heading);
+        card.appendChild(body);
+        card.appendChild(currentStatus);
+        card.appendChild(buttonRow);
+        card.appendChild(resultText);
+        list.appendChild(card);
+      });
+
+      bubble.appendChild(list);
+      scrollToBottom();
+    }
+
     async function handleObservationLookupIfNeeded(text) {
       const lookup = getObservationLookupRequest(text);
 
@@ -3398,6 +3672,10 @@ ${observationText}`;
           params.set("class_group", lookup.classGroup);
         }
 
+        if (lookup.reviewMode) {
+          params.set("review_status", "afventer_vurdering");
+        }
+
         const response = await fetch(`/api/student-observations?${params.toString()}`);
         const result = await response.json();
 
@@ -3406,7 +3684,16 @@ ${observationText}`;
         }
 
         typingRow.remove();
-        appendMessage("assistant", buildObservationListReply(result));
+
+        if (lookup.reviewMode) {
+          const reviewRow = appendMessage(
+            "assistant",
+            buildObservationReviewIntro(result)
+          );
+          attachObservationReviewPanel(reviewRow, result);
+        } else {
+          appendMessage("assistant", buildObservationListReply(result));
+        }
       } catch (error) {
         typingRow.remove();
         appendMessage(
