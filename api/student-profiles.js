@@ -11,6 +11,33 @@ function normalizeAccessCode(value) {
   return String(value || "").trim().toUpperCase();
 }
 
+function normalizeId(value) {
+  return String(value || "").trim();
+}
+
+function normalizeComparableText(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function normalizeObservationIds(value) {
+  const items = Array.isArray(value)
+    ? value
+    : value
+      ? [value]
+      : [];
+
+  return [...new Set(items.map(normalizeId).filter(Boolean))];
+}
+
+function isUuid(value) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+    String(value || "")
+  );
+}
+
 function escapeRegExp(value) {
   return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -51,6 +78,12 @@ function parseProfileLine(text, labels = []) {
     "Keywords",
     "Nøgleord",
     "Noegleord",
+    "Oprettet af",
+    "Created by",
+    "Oprettet af / signatur",
+    "Created by / signature",
+    "Lærerkode / signatur",
+    "Laererkode / signatur",
   ];
 
   const requestedPatterns = labels.map((label) =>
@@ -355,6 +388,14 @@ async function updateProfile(req, res) {
     req.body?.adgangskode || req.body?.access_code
   );
   const profileText = String(req.body?.profile_text || "").trim();
+  const requestedProfileId = normalizeId(req.body?.profile_id);
+  const hasObservationIds = Object.prototype.hasOwnProperty.call(
+    req.body || {},
+    "observation_ids"
+  );
+  const requestedObservationIds = normalizeObservationIds(
+    req.body?.observation_ids
+  );
 
   if (!accessCode) {
     return res.status(400).json({
@@ -367,6 +408,24 @@ async function updateProfile(req, res) {
     return res.status(400).json({
       success: false,
       error: "Profiltekst mangler",
+    });
+  }
+
+  if (requestedProfileId && !isUuid(requestedProfileId)) {
+    return res.status(400).json({
+      success: false,
+      error: "Profil-id er ugyldigt",
+    });
+  }
+
+  const invalidObservationId = requestedObservationIds.find(
+    (observationId) => !isUuid(observationId)
+  );
+
+  if (invalidObservationId) {
+    return res.status(400).json({
+      success: false,
+      error: "Mindst ét observations-id er ugyldigt",
     });
   }
 
@@ -390,45 +449,96 @@ async function updateProfile(req, res) {
     });
   }
 
-  const { data: activeProfiles, error: findError } = await supabase
-    .from("student_profiles")
-    .select("id, student_name, class_group, created_by_signature, profile_owner_signature, profile_data, readable_profile, status, updated_at, created_at")
-    .eq("access_code", accessCode)
-    .ilike("student_name", parsed.studentName)
-    .eq("status", "active")
-    .order("updated_at", { ascending: false });
+  let existingProfile = null;
 
-  if (findError) {
-    console.error("Kunne ikke finde aktiv elevprofil:", findError);
-    return res.status(500).json({
-      success: false,
-      error: "Aktiv elevprofil kunne ikke findes",
-    });
-  }
+  if (requestedProfileId) {
+    const { data: exactProfile, error: exactProfileError } = await supabase
+      .from("student_profiles")
+      .select(
+        "id, student_name, class_group, created_by_signature, profile_owner_signature, profile_data, readable_profile, status, updated_at, created_at"
+      )
+      .eq("id", requestedProfileId)
+      .eq("access_code", accessCode)
+      .eq("status", "active")
+      .maybeSingle();
 
-  const profiles = Array.isArray(activeProfiles) ? activeProfiles : [];
-  const normalizedParsedClass = String(parsed.classGroup || "").trim().toLowerCase();
+    if (exactProfileError) {
+      console.error("Kunne ikke hente den valgte elevprofil:", exactProfileError);
+      return res.status(500).json({
+        success: false,
+        error: "Den valgte elevprofil kunne ikke hentes",
+      });
+    }
 
-  const classMatch = profiles.find((profile) =>
-    String(profile?.class_group || "").trim().toLowerCase() === normalizedParsedClass
-  );
+    if (!exactProfile?.id) {
+      return res.status(404).json({
+        success: false,
+        error: "Den valgte aktive elevprofil blev ikke fundet",
+      });
+    }
 
-  const existingProfile =
-    classMatch ||
-    (profiles.length === 1 ? profiles[0] : null);
+    const sameStudent =
+      normalizeComparableText(exactProfile.student_name) ===
+      normalizeComparableText(parsed.studentName);
+    const sameClass =
+      normalizeComparableText(exactProfile.class_group) ===
+      normalizeComparableText(parsed.classGroup);
 
-  if (!existingProfile?.id) {
-    return res.status(404).json({
-      success: false,
-      error:
-        profiles.length > 1
-          ? "Der blev fundet flere aktive elevprofiler med samme navn. Skriv klasse/gruppe præcist."
-          : "Der blev ikke fundet en aktiv elevprofil med samme navn",
-    });
+    if (!sameStudent || !sameClass) {
+      return res.status(409).json({
+        success: false,
+        error:
+          "Profilteksten passer ikke til den valgte elevprofil. Opdateringen blev stoppet.",
+      });
+    }
+
+    existingProfile = exactProfile;
+  } else {
+    const { data: activeProfiles, error: findError } = await supabase
+      .from("student_profiles")
+      .select(
+        "id, student_name, class_group, created_by_signature, profile_owner_signature, profile_data, readable_profile, status, updated_at, created_at"
+      )
+      .eq("access_code", accessCode)
+      .ilike("student_name", parsed.studentName)
+      .eq("status", "active")
+      .order("updated_at", { ascending: false });
+
+    if (findError) {
+      console.error("Kunne ikke finde aktiv elevprofil:", findError);
+      return res.status(500).json({
+        success: false,
+        error: "Aktiv elevprofil kunne ikke findes",
+      });
+    }
+
+    const profiles = Array.isArray(activeProfiles) ? activeProfiles : [];
+    const normalizedParsedClass = normalizeComparableText(parsed.classGroup);
+
+    const classMatch = profiles.find(
+      (profile) =>
+        normalizeComparableText(profile?.class_group) === normalizedParsedClass
+    );
+
+    existingProfile =
+      classMatch ||
+      (profiles.length === 1 ? profiles[0] : null);
+
+    if (!existingProfile?.id) {
+      return res.status(404).json({
+        success: false,
+        error:
+          profiles.length > 1
+            ? "Der blev fundet flere aktive elevprofiler med samme navn. Skriv klasse/gruppe præcist."
+            : "Der blev ikke fundet en aktiv elevprofil med samme navn",
+      });
+    }
   }
 
   const profileOwner = String(
-    existingProfile.profile_owner_signature || existingProfile.created_by_signature || ""
+    existingProfile.profile_owner_signature ||
+      existingProfile.created_by_signature ||
+      ""
   ).trim();
 
   if (profileOwner && profileOwner !== accessUser.display_code) {
@@ -438,34 +548,91 @@ async function updateProfile(req, res) {
     });
   }
 
-  const { data: selectedObservations, error: observationFindError } = await supabase
-    .from("student_observations")
-    .select("id, observation_text, observation_date, written_by_signature")
-    .eq("access_code", accessCode)
-    .eq("profile_id", existingProfile.id)
-    .eq("review_status", "valgt_til_profil")
-    .order("created_at", { ascending: true });
+  let selectedObservations = [];
 
-  if (observationFindError) {
-    console.error("Kunne ikke hente valgte observationer:", observationFindError);
-    return res.status(500).json({
-      success: false,
-      error: "Valgte observationer kunne ikke hentes",
-    });
+  if (hasObservationIds) {
+    if (requestedObservationIds.length > 0) {
+      const { data: exactObservations, error: exactObservationError } =
+        await supabase
+          .from("student_observations")
+          .select(
+            "id, observation_text, observation_date, written_by_signature"
+          )
+          .eq("access_code", accessCode)
+          .eq("profile_id", existingProfile.id)
+          .eq("review_status", "valgt_til_profil")
+          .in("id", requestedObservationIds)
+          .order("created_at", { ascending: true });
+
+      if (exactObservationError) {
+        console.error(
+          "Kunne ikke hente de valgte observationer:",
+          exactObservationError
+        );
+        return res.status(500).json({
+          success: false,
+          error: "De valgte observationer kunne ikke hentes",
+        });
+      }
+
+      selectedObservations = Array.isArray(exactObservations)
+        ? exactObservations
+        : [];
+
+      const foundIds = new Set(
+        selectedObservations.map((observation) => observation.id)
+      );
+      const missingIds = requestedObservationIds.filter(
+        (observationId) => !foundIds.has(observationId)
+      );
+
+      if (missingIds.length > 0) {
+        return res.status(409).json({
+          success: false,
+          error:
+            "Mindst én valgt observation tilhører ikke profilen eller er ikke længere valgt til profilen. Opdateringen blev stoppet.",
+        });
+      }
+    }
+  } else {
+    const { data: fallbackObservations, error: observationFindError } =
+      await supabase
+        .from("student_observations")
+        .select("id, observation_text, observation_date, written_by_signature")
+        .eq("access_code", accessCode)
+        .eq("profile_id", existingProfile.id)
+        .eq("review_status", "valgt_til_profil")
+        .order("created_at", { ascending: true });
+
+    if (observationFindError) {
+      console.error(
+        "Kunne ikke hente valgte observationer:",
+        observationFindError
+      );
+      return res.status(500).json({
+        success: false,
+        error: "Valgte observationer kunne ikke hentes",
+      });
+    }
+
+    selectedObservations = Array.isArray(fallbackObservations)
+      ? fallbackObservations
+      : [];
   }
 
-  const observationsToIntegrate = Array.isArray(selectedObservations)
-    ? selectedObservations
-    : [];
+  const observationsToIntegrate = selectedObservations;
+  const updateTimestamp = new Date().toISOString();
 
   const { data, error } = await supabase
     .from("student_profiles")
     .update({
       profile_data: parsed.profileData,
       readable_profile: parsed.readableProfile,
-      updated_at: new Date().toISOString(),
+      updated_at: updateTimestamp,
     })
     .eq("id", existingProfile.id)
+    .eq("access_code", accessCode)
+    .eq("status", "active")
     .select("id, student_name, class_group, profile_owner_signature, updated_at")
     .single();
 
@@ -517,8 +684,10 @@ async function updateProfile(req, res) {
       .update({
         profile_data: existingProfile.profile_data || {},
         readable_profile: existingProfile.readable_profile || "",
+        updated_at: existingProfile.updated_at || existingProfile.created_at,
       })
-      .eq("id", existingProfile.id);
+      .eq("id", existingProfile.id)
+      .eq("access_code", accessCode);
 
     if (rollbackError) {
       console.error("Profilen kunne ikke rulles tilbage:", rollbackError);
@@ -538,31 +707,70 @@ async function updateProfile(req, res) {
     const observationIds = observationsToIntegrate.map((item) => item.id);
     const reviewedAt = new Date().toISOString();
 
-    const { error: observationUpdateError } = await supabase
-      .from("student_observations")
-      .update({
-        review_status: "indarbejdet_i_profil",
-        reviewed_by_signature: accessUser.display_code,
-        reviewed_at: reviewedAt,
-        review_note: "Indarbejdet i godkendt profilopdatering",
-      })
-      .in("id", observationIds)
-      .eq("profile_id", existingProfile.id)
-      .eq("review_status", "valgt_til_profil");
+    const { data: updatedObservations, error: observationUpdateError } =
+      await supabase
+        .from("student_observations")
+        .update({
+          review_status: "indarbejdet_i_profil",
+          reviewed_by_signature: accessUser.display_code,
+          reviewed_at: reviewedAt,
+          review_note: "Indarbejdet i godkendt profilopdatering",
+        })
+        .in("id", observationIds)
+        .eq("access_code", accessCode)
+        .eq("profile_id", existingProfile.id)
+        .eq("review_status", "valgt_til_profil")
+        .select("id");
 
-    if (observationUpdateError) {
-      console.error("Kunne ikke markere observationer som indarbejdet:", observationUpdateError);
+    const updatedObservationIds = Array.isArray(updatedObservations)
+      ? updatedObservations.map((item) => item.id)
+      : [];
+
+    if (
+      observationUpdateError ||
+      updatedObservationIds.length !== observationIds.length
+    ) {
+      console.error(
+        "Kunne ikke markere observationer som indarbejdet:",
+        observationUpdateError || {
+          expected: observationIds.length,
+          updated: updatedObservationIds.length,
+        }
+      );
 
       const { error: rollbackError } = await supabase
         .from("student_profiles")
         .update({
           profile_data: existingProfile.profile_data || {},
           readable_profile: existingProfile.readable_profile || "",
+          updated_at: existingProfile.updated_at || existingProfile.created_at,
         })
-        .eq("id", existingProfile.id);
+        .eq("id", existingProfile.id)
+        .eq("access_code", accessCode);
 
       if (rollbackError) {
         console.error("Profilen kunne ikke rulles tilbage:", rollbackError);
+      }
+
+      if (updatedObservationIds.length > 0) {
+        const { error: restoreObservationError } = await supabase
+          .from("student_observations")
+          .update({
+            review_status: "valgt_til_profil",
+            reviewed_by_signature: accessUser.display_code,
+            reviewed_at: null,
+            review_note: "Valgt til den næste profilopdatering",
+          })
+          .in("id", updatedObservationIds)
+          .eq("access_code", accessCode)
+          .eq("profile_id", existingProfile.id);
+
+        if (restoreObservationError) {
+          console.error(
+            "Observationer kunne ikke rulles tilbage:",
+            restoreObservationError
+          );
+        }
       }
 
       if (insertedChangeIds.length > 0) {
@@ -572,13 +780,17 @@ async function updateProfile(req, res) {
           .in("id", insertedChangeIds);
 
         if (deleteChangeError) {
-          console.error("Profilhistorik kunne ikke rulles tilbage:", deleteChangeError);
+          console.error(
+            "Profilhistorik kunne ikke rulles tilbage:",
+            deleteChangeError
+          );
         }
       }
 
       return res.status(500).json({
         success: false,
-        error: "Observationerne kunne ikke markeres som indarbejdet. Profilopdateringen blev stoppet.",
+        error:
+          "Observationerne kunne ikke markeres som indarbejdet. Profilopdateringen blev stoppet.",
       });
     }
   }
@@ -586,15 +798,20 @@ async function updateProfile(req, res) {
   return res.status(200).json({
     success: true,
     id: data.id,
+    profile_id: data.id,
     student_name: data.student_name,
     class_group: data.class_group,
     updated_by_display_code: accessUser.display_code,
     updated_by_label: creatorLabel,
     updated_at: data.updated_at,
     integrated_observation_count: observationsToIntegrate.length,
+    integrated_observation_ids: observationsToIntegrate.map(
+      (observation) => observation.id
+    ),
+    used_exact_profile_id: Boolean(requestedProfileId),
+    used_exact_observation_ids: hasObservationIds,
   });
 }
-
 
 async function getProfile(req, res) {
   const accessCode = normalizeAccessCode(
