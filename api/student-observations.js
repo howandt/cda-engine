@@ -356,21 +356,30 @@ async function getProfileById(supabase, profileId) {
   return data || null;
 }
 
-async function getProfileOrganization(supabase, profile) {
-  if (!profile?.access_code) return "";
+async function getOrganizationByAccessCode(supabase, accessCode) {
+  const normalizedCode = normalizeAccessCode(accessCode);
+
+  if (!normalizedCode) return "";
 
   const { data, error } = await supabase
     .from("access_users")
     .select("organization_ref")
-    .eq("access_code", profile.access_code)
+    .eq("access_code", normalizedCode)
     .maybeSingle();
 
   if (error) {
-    console.error("Kunne ikke hente profilens organisation:", error);
-    throw new Error("Profilens organisation kunne ikke kontrolleres");
+    console.error("Kunne ikke hente organisation:", error);
+    throw new Error("Organisationen kunne ikke kontrolleres");
   }
 
   return String(data?.organization_ref || "").trim();
+}
+
+async function getProfileOrganization(supabase, profile) {
+  return getOrganizationByAccessCode(
+    supabase,
+    profile?.access_code
+  );
 }
 
 async function canAccessProfile(supabase, accessUser, profile) {
@@ -740,6 +749,209 @@ async function handleGet(req, res) {
   });
 }
 
+async function linkObservationToProfile({
+  supabase,
+  accessUser,
+  observationId,
+  profileId,
+}) {
+  if (!profileId) {
+    return {
+      status: 400,
+      body: {
+        success: false,
+        error: "profile_id mangler",
+      },
+    };
+  }
+
+  const { data: observation, error: observationError } =
+    await supabase
+      .from("student_observations")
+      .select(`
+        id,
+        profile_id,
+        access_code,
+        student_name,
+        class_group,
+        review_status
+      `)
+      .eq("id", observationId)
+      .maybeSingle();
+
+  if (observationError) {
+    console.error("Kunne ikke hente observation:", observationError);
+
+    return {
+      status: 500,
+      body: {
+        success: false,
+        error: "Observationen kunne ikke hentes",
+      },
+    };
+  }
+
+  if (!observation?.id) {
+    return {
+      status: 404,
+      body: {
+        success: false,
+        error: "Observationen blev ikke fundet",
+      },
+    };
+  }
+
+  if (observation.profile_id) {
+    if (observation.profile_id === profileId) {
+      return {
+        status: 200,
+        body: {
+          success: true,
+          already_linked: true,
+          observation,
+        },
+      };
+    }
+
+    return {
+      status: 409,
+      body: {
+        success: false,
+        error:
+          "Observationen er allerede koblet til en anden elevprofil.",
+      },
+    };
+  }
+
+  const profile = await getProfileById(supabase, profileId);
+
+  if (!profile?.id) {
+    return {
+      status: 404,
+      body: {
+        success: false,
+        error: "Den valgte elevprofil blev ikke fundet",
+      },
+    };
+  }
+
+  const hasAccess = await canAccessProfile(
+    supabase,
+    accessUser,
+    profile
+  );
+
+  if (!hasAccess) {
+    return {
+      status: 403,
+      body: {
+        success: false,
+        error: "Du har ikke adgang til den valgte elevprofil",
+      },
+    };
+  }
+
+  if (!isProfileOwner(accessUser, profile)) {
+    return {
+      status: 403,
+      body: {
+        success: false,
+        error:
+          "Kun profilansvarlig kan koble observationen til profilen.",
+      },
+    };
+  }
+
+  const observationCode = normalizeAccessCode(
+    observation.access_code
+  );
+
+  const currentCode = normalizeAccessCode(
+    accessUser.access_code
+  );
+
+  const profileCode = normalizeAccessCode(
+    profile.access_code
+  );
+
+  const directCodeMatch =
+    observationCode === currentCode ||
+    observationCode === profileCode;
+
+  const observationOrganization =
+    await getOrganizationByAccessCode(
+      supabase,
+      observation.access_code
+    );
+
+  const profileOrganization =
+    await getProfileOrganization(supabase, profile);
+
+  const organizationMatch =
+    observationOrganization &&
+    profileOrganization &&
+    normalizeText(observationOrganization) ===
+      normalizeText(profileOrganization);
+
+  if (!directCodeMatch && !organizationMatch) {
+    return {
+      status: 403,
+      body: {
+        success: false,
+        error:
+          "Observationen og profilen tilhører ikke samme bruger eller organisation.",
+      },
+    };
+  }
+
+  const updatedAt = new Date().toISOString();
+
+  const { data, error } = await supabase
+    .from("student_observations")
+    .update({
+      profile_id: profile.id,
+      student_name: profile.student_name,
+      class_group: profile.class_group,
+      updated_at: updatedAt,
+    })
+    .eq("id", observationId)
+    .is("profile_id", null)
+    .select(`
+      id,
+      profile_id,
+      student_name,
+      class_group,
+      review_status,
+      updated_at
+    `)
+    .single();
+
+  if (error) {
+    console.error(
+      "Kunne ikke koble observation til profil:",
+      error
+    );
+
+    return {
+      status: 500,
+      body: {
+        success: false,
+        error:
+          "Observationen kunne ikke kobles til elevprofilen",
+      },
+    };
+  }
+
+  return {
+    status: 200,
+    body: {
+      success: true,
+      linked: true,
+      observation: data,
+    },
+  };
+}
+
 async function handlePatch(req, res) {
   const accessCode = normalizeAccessCode(
     req.body?.adgangskode || req.body?.access_code
@@ -749,11 +961,31 @@ async function handlePatch(req, res) {
     req.body?.observation_id || req.body?.id || ""
   ).trim();
 
+  const profileId = String(
+    req.body?.profile_id || ""
+  ).trim();
+
+  const rawAction = String(
+    req.body?.handling || req.body?.action || ""
+  ).trim();
+
+  const normalizedAction = normalizeText(rawAction)
+    .replace(/\s+/g, "_");
+
+  const wantsProfileLink = [
+    "kobl_til_profil",
+    "kobl_profil",
+    "link_profile",
+    "link_to_profile",
+  ].includes(normalizedAction);
+
   const reviewStatus = normalizeReviewDecision(
-    req.body?.review_status || req.body?.handling
+    req.body?.review_status || rawAction
   );
 
-  const reviewNote = String(req.body?.review_note || "").trim();
+  const reviewNote = String(
+    req.body?.review_note || ""
+  ).trim();
 
   if (!accessCode) {
     return res.status(400).json({
@@ -767,6 +999,31 @@ async function handlePatch(req, res) {
       success: false,
       error: "observation_id mangler",
     });
+  }
+
+  const supabase = getSupabase();
+  const accessUser = await getAccessUser(
+    supabase,
+    accessCode
+  );
+
+  if (!accessUser?.display_code) {
+    return res.status(400).json({
+      success: false,
+      error:
+        "Brugeren mangler i access_users eller mangler initialer/display_code",
+    });
+  }
+
+  if (wantsProfileLink) {
+    const result = await linkObservationToProfile({
+      supabase,
+      accessUser,
+      observationId,
+      profileId,
+    });
+
+    return res.status(result.status).json(result.body);
   }
 
   if (!reviewStatus) {
@@ -785,17 +1042,6 @@ async function handlePatch(req, res) {
     });
   }
 
-  const supabase = getSupabase();
-  const accessUser = await getAccessUser(supabase, accessCode);
-
-  if (!accessUser?.display_code) {
-    return res.status(400).json({
-      success: false,
-      error:
-        "Brugeren mangler i access_users eller mangler initialer/display_code",
-    });
-  }
-
   const { data: observation, error: observationError } =
     await supabase
       .from("student_observations")
@@ -804,7 +1050,10 @@ async function handlePatch(req, res) {
       .maybeSingle();
 
   if (observationError) {
-    console.error("Kunne ikke hente observation:", observationError);
+    console.error(
+      "Kunne ikke hente observation:",
+      observationError
+    );
 
     return res.status(500).json({
       success: false,
@@ -835,7 +1084,8 @@ async function handlePatch(req, res) {
   if (!profile?.id) {
     return res.status(404).json({
       success: false,
-      error: "Observationens aktive elevprofil blev ikke fundet",
+      error:
+        "Observationens aktive elevprofil blev ikke fundet",
     });
   }
 
@@ -853,7 +1103,8 @@ async function handlePatch(req, res) {
     .from("student_observations")
     .update({
       review_status: reviewStatus,
-      reviewed_by_signature: accessUser.display_code,
+      reviewed_by_signature:
+        accessUser.display_code,
       reviewed_at: reviewedAt,
       review_note: reviewNote || null,
       updated_at: reviewedAt,
@@ -872,11 +1123,15 @@ async function handlePatch(req, res) {
     .single();
 
   if (error) {
-    console.error("Kunne ikke opdatere observation:", error);
+    console.error(
+      "Kunne ikke opdatere observation:",
+      error
+    );
 
     return res.status(500).json({
       success: false,
-      error: "Observationens status kunne ikke opdateres",
+      error:
+        "Observationens status kunne ikke opdateres",
     });
   }
 
