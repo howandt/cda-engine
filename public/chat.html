@@ -3555,10 +3555,107 @@ ${observationText}`;
 
         const buttonRow = document.createElement("div");
         buttonRow.className = "observation-review-actions";
+        buttonRow.hidden = !item.profile_id;
 
         const resultText = document.createElement("div");
         resultText.className = "observation-review-result";
-        resultText.textContent = "Afventer dit valg.";
+        resultText.textContent = item.profile_id
+          ? "Afventer dit valg."
+          : "Observationen skal først kobles til den rigtige elevprofil.";
+
+        const linkRow = document.createElement("div");
+        linkRow.className = "observation-review-actions";
+        linkRow.hidden = Boolean(item.profile_id);
+
+        const linkButton = document.createElement("button");
+        linkButton.type = "button";
+        linkButton.className = "observation-review-button";
+        linkButton.textContent = "Kobl til profil";
+
+        linkButton.addEventListener("click", async () => {
+          if (linkButton.disabled) return;
+
+          linkButton.disabled = true;
+          resultText.classList.remove("error");
+          resultText.textContent = "Finder den relevante elevprofil...";
+
+          try {
+            const profileParams = new URLSearchParams({
+              student_name: result?.student_name || item.student_name || "",
+              adgangskode,
+            });
+
+            const profileClass =
+              result?.class_group || item.class_group || "";
+
+            if (profileClass) {
+              profileParams.set("class_group", profileClass);
+            }
+
+            const profileResponse = await fetch(
+              `/api/student-profiles?${profileParams.toString()}`
+            );
+            const profileResult = await profileResponse.json();
+
+            if (!profileResponse.ok || !profileResult?.success) {
+              throw new Error(
+                profileResult?.error || "Elevprofilen kunne ikke findes."
+              );
+            }
+
+            const profile = profileResult.profile;
+            const profileLabel = [profile.student_name, profile.class_group]
+              .filter(Boolean)
+              .join(" – ");
+
+            const confirmed = window.confirm(
+              `Kobl observationen til ${profileLabel}?`
+            );
+
+            if (!confirmed) {
+              resultText.textContent = "Koblingen blev ikke gennemført.";
+              return;
+            }
+
+            resultText.textContent = `Kobler til ${profileLabel}...`;
+
+            const linkResponse = await fetch("/api/student-observations", {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                adgangskode,
+                observation_id: item.id,
+                handling: "kobl_til_profil",
+                profile_id: profile.id,
+              }),
+            });
+
+            const linkResult = await linkResponse.json();
+
+            if (!linkResponse.ok || !linkResult?.success) {
+              throw new Error(
+                linkResult?.error ||
+                  "Observationen kunne ikke kobles til profilen."
+              );
+            }
+
+            item.profile_id = profile.id;
+            linkRow.hidden = true;
+            buttonRow.hidden = false;
+            resultText.textContent = `Koblet til ${profileLabel}. Vælg nu handling.`;
+          } catch (error) {
+            resultText.classList.add("error");
+            resultText.textContent =
+              error.message ||
+              "Observationen kunne ikke kobles til profilen.";
+          } finally {
+            linkButton.disabled = false;
+          }
+        });
+
+        linkRow.appendChild(linkButton);
 
         const buttons = [];
 
@@ -3628,6 +3725,7 @@ ${observationText}`;
         card.appendChild(heading);
         card.appendChild(body);
         card.appendChild(currentStatus);
+        card.appendChild(linkRow);
         card.appendChild(buttonRow);
         card.appendChild(resultText);
         list.appendChild(card);
