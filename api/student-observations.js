@@ -246,7 +246,7 @@ async function findStudentProfile(supabase, accessCode, parsed) {
     .from("student_profiles")
     .select("id, student_name, class_group, status, created_at")
     .eq("access_code", accessCode)
-    .eq("student_name", parsed.studentName)
+    .ilike("student_name", parsed.studentName)
     .eq("status", "active")
     .order("created_at", { ascending: false })
     .limit(1);
@@ -417,7 +417,7 @@ async function handleGet(req, res) {
       created_at
     `)
     .eq("access_code", accessCode)
-    .eq("student_name", studentName)
+    .ilike("student_name", studentName)
     .order("created_at", { ascending: false })
     .limit(20);
 

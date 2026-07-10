@@ -330,7 +330,7 @@ async function updateProfile(req, res) {
     .from("student_profiles")
     .select("id, student_name, class_group, profile_data, readable_profile, status, updated_at")
     .eq("access_code", accessCode)
-    .eq("student_name", parsed.studentName)
+    .ilike("student_name", parsed.studentName)
     .eq("class_group", parsed.classGroup)
     .eq("status", "active")
     .order("created_at", { ascending: false })
@@ -429,7 +429,7 @@ async function getProfile(req, res) {
       updated_at
     `)
     .eq("access_code", accessCode)
-    .eq("student_name", studentName)
+    .ilike("student_name", studentName)
     .eq("status", "active")
     .order("updated_at", { ascending: false })
     .limit(1);

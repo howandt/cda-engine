@@ -1777,6 +1777,11 @@ Returnér observationen i samme feltstruktur og hold den kort, konkret og uden d
             promptText: `Vis observationer for [navn]`
           },
           {
+            id: "student-profile-auto-update-flow",
+            title: "Opdater profil automatisk",
+            promptText: `Opdater [navn] profil`
+          },
+          {
             id: "student-profile-update",
             title: "Opdater elevprofil",
             promptText: `Opdater elevprofil for [navn]:
@@ -2961,6 +2966,227 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
 
 
+
+    function getFullProfileUpdateRequest(text) {
+      const normalized = String(text || "").trim();
+
+      if (!normalized) return null;
+
+      const match =
+        normalized.match(/^opdater\s+(.+?)\s+profil(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^opdater\s+elevprofil\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^lav\s+opdateret\s+profil\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i);
+
+      if (!match) return null;
+
+      return {
+        studentName: String(match[1] || "").trim(),
+        classGroup: String(match[2] || "").trim(),
+      };
+    }
+
+    function buildFullProfileUpdatePrompt(profileResult, observationResult) {
+      const profileText = profileResult?.profile?.readable_profile || "";
+      const observations = Array.isArray(observationResult?.observations)
+        ? observationResult.observations
+        : [];
+
+      const observationText = observations.length
+        ? observations.map((item, index) => {
+            return [
+              `Observation ${index + 1}`,
+              `Dato: ${formatDateForDisplay(item.observation_date || item.created_at)}`,
+              item.situation ? `Situation: ${item.situation}` : "",
+              item.observation_text ? `Kort observation: ${item.observation_text}` : "",
+              item.tested_action ? `Hvad blev afprøvet: ${item.tested_action}` : "",
+              item.student_reaction ? `Elevens reaktion: ${item.student_reaction}` : "",
+              item.effect ? `Effekt: ${item.effect}` : "",
+              item.observation_type ? `Observationstype: ${formatObservationStatus(item.observation_type)}` : "",
+              item.suggested_profile_change ? `Forslag til profilændring: ${item.suggested_profile_change}` : "",
+              item.review_status ? `Status: ${formatObservationStatus(item.review_status)}` : "",
+            ].filter(Boolean).join("\n");
+          }).join("\n\n---\n\n")
+        : "Der er ingen gemte observationer endnu.";
+
+      return `Opgave til CDA:
+Opdater elevprofilen kort og neutralt ud fra eksisterende profil og gemte observationer.
+
+Vigtige regler:
+- Returnér kun en ny samlet elevprofil i fast feltstruktur.
+- Brug overskriften "Elevprofil v2".
+- Bevar elevens navn og klasse/gruppe.
+- Observationer er ikke automatisk sandhed. Indarbejd kun det, der virker som gentaget mønster eller relevant præcisering.
+- Skriv ikke [Uændret], [Nyt] eller interne ændringsmarkeringer i den profil, der skal gemmes.
+- Stil ikke diagnose og giv ikke medicinråd.
+
+Fast feltstruktur:
+Elevprofil v2
+
+Elev / arbejdsnavn:
+Klasse / gruppe:
+Primære observationer:
+Læring og opgaver:
+Koncentration / udholdenhed:
+Socialt samspil:
+Gruppearbejde:
+Skift / overgange:
+Belastninger og triggere:
+Det der virker:
+Det der bør observeres:
+Keywords:
+
+Eksisterende profil:
+${profileText}
+
+Gemte observationer:
+${observationText}`;
+    }
+
+    async function fetchStudentProfileForFlow(studentName, classGroup = "") {
+      const params = new URLSearchParams({
+        student_name: studentName,
+        adgangskode,
+      });
+
+      if (classGroup) {
+        params.set("class_group", classGroup);
+      }
+
+      const response = await fetch(`/api/student-profiles?${params.toString()}`);
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Elevprofilen kunne ikke hentes.");
+      }
+
+      return result;
+    }
+
+    async function fetchStudentObservationsForFlow(studentName, classGroup = "") {
+      const params = new URLSearchParams({
+        student_name: studentName,
+        adgangskode,
+      });
+
+      if (classGroup) {
+        params.set("class_group", classGroup);
+      }
+
+      const response = await fetch(`/api/student-observations?${params.toString()}`);
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Observationer kunne ikke hentes.");
+      }
+
+      return result;
+    }
+
+    async function handleFullProfileUpdateIfNeeded(text) {
+      const updateRequest = getFullProfileUpdateRequest(text);
+
+      if (!updateRequest) return false;
+
+      if (!updateRequest.studentName) return false;
+
+      sendKnap.disabled = true;
+      sendKnap.textContent = "Arbejder...";
+      setSettingsOpen(false);
+
+      if (welcome) {
+        welcome.remove();
+      }
+
+      activateConversationLayout();
+      appendMessage("user", text);
+      besked.value = "";
+
+      const typingRow = appendMessage(
+        "assistant",
+        "CDA henter profil og observationer...",
+        "typing"
+      );
+
+      try {
+        const profileResult = await fetchStudentProfileForFlow(
+          updateRequest.studentName,
+          updateRequest.classGroup
+        );
+
+        const classGroup =
+          updateRequest.classGroup ||
+          profileResult?.profile?.class_group ||
+          "";
+
+        const observationResult = await fetchStudentObservationsForFlow(
+          profileResult?.profile?.student_name || updateRequest.studentName,
+          classGroup
+        );
+
+        typingRow.querySelector(".message-content").textContent =
+          "CDA laver forslag til opdateret profil...";
+
+        const prompt = buildFullProfileUpdatePrompt(profileResult, observationResult);
+
+        lastSentTemplateId = "student-profile-update";
+        lastSentWasProfileUpdate = true;
+
+        const response = await fetch("/api/cda-chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: prompt,
+            language: sprog,
+            role: rolle,
+            response_style: svarstil,
+            adgangskode,
+            pending_action: pendingAction,
+          }),
+        });
+
+        const data = await response.json();
+        typingRow.remove();
+
+        if (!response.ok) {
+          throw new Error(data.error || "CDA kunne ikke lave opdateret profil.");
+        }
+
+        if (data.pending_action) {
+          pendingAction = data.pending_action;
+          sessionStorage.setItem("cda_pending_action", pendingAction);
+        } else {
+          pendingAction = null;
+          sessionStorage.removeItem("cda_pending_action");
+        }
+
+        const assistantRow = appendMessage("assistant", data.reply);
+
+        if (isStudentProfileAssistantReply(data.reply, data)) {
+          attachUpdateProfileAction(assistantRow, data.reply);
+        }
+
+        lastSentTemplateId = null;
+        lastSentWasProfileUpdate = false;
+      } catch (error) {
+        typingRow.remove();
+        appendMessage(
+          "assistant",
+          error.message || "Profilopdateringen kunne ikke gennemføres."
+        );
+        lastSentTemplateId = null;
+        lastSentWasProfileUpdate = false;
+      } finally {
+        sendKnap.disabled = false;
+        sendKnap.textContent = "Send";
+        updateBackToStartVisibility();
+        scrollToBottom();
+      }
+
+      return true;
+    }
+
     function getProfileLookupRequest(text) {
       const normalized = String(text || "").trim();
 
@@ -3291,6 +3517,12 @@ ${userText}`;
         if (!tekst) {
           besked.focus();
         }
+        return;
+      }
+
+      const fullProfileUpdateHandled = await handleFullProfileUpdateIfNeeded(tekst);
+
+      if (fullProfileUpdateHandled) {
         return;
       }
 
