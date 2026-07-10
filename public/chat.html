@@ -1765,6 +1765,11 @@ Observationen må ikke automatisk ændre selve profilen.
 Returnér observationen i samme feltstruktur og hold den kort, konkret og uden diagnosegæt.`
           },
           {
+            id: "student-profile-observations-view",
+            title: "Vis observationer for elev",
+            promptText: `Vis observationer for [navn]`
+          },
+          {
             id: "student-profile-update",
             title: "Opdater elevprofil",
             promptText: `Opdater elevprofil for [navn]:
@@ -2944,6 +2949,148 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       scrollToBottom();
     }
 
+
+    function getObservationLookupRequest(text) {
+      const normalized = String(text || "").trim();
+
+      if (!normalized) return null;
+
+      const match =
+        normalized.match(/^vis\s+observationer\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^hent\s+observationer\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^vis\s+(.+?)s\s+observationer(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^hent\s+(.+?)s\s+observationer(?:\s+i\s+(.+?))?$/i);
+
+      if (!match) return null;
+
+      return {
+        studentName: String(match[1] || "").trim(),
+        classGroup: String(match[2] || "").trim(),
+      };
+    }
+
+    function formatDateForDisplay(value) {
+      const text = String(value || "").trim();
+
+      if (!text) return "Ikke oplyst";
+
+      const match = text.match(/^(\d{4})-(\d{2})-(\d{2})/);
+
+      if (match) {
+        return `${match[3]}-${match[2]}-${match[1]}`;
+      }
+
+      return text;
+    }
+
+    function formatObservationStatus(value) {
+      const status = String(value || "").trim();
+
+      if (!status) return "Ikke oplyst";
+
+      return status
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    }
+
+    function buildObservationListReply(result) {
+      const observations = Array.isArray(result?.observations)
+        ? result.observations
+        : [];
+
+      if (observations.length === 0) {
+        return `Observationer for ${result?.student_name || "eleven"}\n\nDer er ikke gemt observationer endnu.`;
+      }
+
+      const header = [
+        `Observationer for ${result.student_name || "eleven"}`,
+        result.class_group ? `Klasse / gruppe: ${result.class_group}` : "",
+        `Antal: ${observations.length}`,
+      ].filter(Boolean).join("\n");
+
+      const blocks = observations.map((item, index) => {
+        const writtenBy = [item.written_by_signature, item.role_function]
+          .filter(Boolean)
+          .join(" · ");
+
+        return [
+          `Observation ${index + 1}`,
+          `Dato: ${formatDateForDisplay(item.observation_date || item.created_at)}`,
+          writtenBy ? `Skrevet af: ${writtenBy}` : "",
+          item.situation ? `Situation: ${item.situation}` : "",
+          item.observation_text ? `Kort observation: ${item.observation_text}` : "",
+          item.tested_action ? `Hvad blev afprøvet: ${item.tested_action}` : "",
+          item.student_reaction ? `Elevens reaktion: ${item.student_reaction}` : "",
+          item.effect ? `Effekt: ${item.effect}` : "",
+          item.observation_type ? `Observationstype: ${formatObservationStatus(item.observation_type)}` : "",
+          item.suggested_profile_change ? `Forslag til profilændring: ${item.suggested_profile_change}` : "",
+          `Status: ${formatObservationStatus(item.review_status)}`,
+        ].filter(Boolean).join("\n");
+      });
+
+      return `${header}\n\n${blocks.join("\n\n---\n\n")}`;
+    }
+
+    async function handleObservationLookupIfNeeded(text) {
+      const lookup = getObservationLookupRequest(text);
+
+      if (!lookup) return false;
+
+      if (!lookup.studentName) return false;
+
+      sendKnap.disabled = true;
+      sendKnap.textContent = "Henter...";
+      setSettingsOpen(false);
+
+      if (welcome) {
+        welcome.remove();
+      }
+
+      activateConversationLayout();
+      appendMessage("user", text);
+      besked.value = "";
+
+      const typingRow = appendMessage(
+        "assistant",
+        "CDA henter observationer...",
+        "typing"
+      );
+
+      try {
+        const params = new URLSearchParams({
+          student_name: lookup.studentName,
+          adgangskode,
+        });
+
+        if (lookup.classGroup) {
+          params.set("class_group", lookup.classGroup);
+        }
+
+        const response = await fetch(`/api/student-observations?${params.toString()}`);
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || "Observationer kunne ikke hentes.");
+        }
+
+        typingRow.remove();
+        appendMessage("assistant", buildObservationListReply(result));
+      } catch (error) {
+        typingRow.remove();
+        appendMessage(
+          "assistant",
+          error.message || "Observationer kunne ikke hentes."
+        );
+      } finally {
+        sendKnap.disabled = false;
+        sendKnap.textContent = "Send";
+        updateBackToStartVisibility();
+        scrollToBottom();
+      }
+
+      return true;
+    }
+
     function buildTemplateMessage(userText) {
       const instruction = activeTemplateSelection?.promptInstruction;
 
@@ -2961,6 +3108,20 @@ ${userText}`;
     async function sendMessage() {
       const tekst = besked.value.trim();
       const apiMessage = buildTemplateMessage(tekst);
+
+      if (!tekst || sendKnap.disabled) {
+        if (!tekst) {
+          besked.focus();
+        }
+        return;
+      }
+
+      const observationHandled = await handleObservationLookupIfNeeded(tekst);
+
+      if (observationHandled) {
+        return;
+      }
+
       const sentFromLandscapeTemplate =
         document.documentElement.classList.contains("landscape-template-mode");
 

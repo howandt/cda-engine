@@ -265,115 +265,205 @@ async function findStudentProfile(supabase, accessCode, parsed) {
   return data || null;
 }
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({
+async function handlePost(req, res) {
+  const accessCode = normalizeAccessCode(
+    req.body?.adgangskode || req.body?.access_code
+  );
+  const observationText = String(req.body?.observation_text || "").trim();
+
+  if (!accessCode) {
+    return res.status(400).json({
       success: false,
-      error: "Kun POST er understøttet",
+      error: "Adgangskode mangler",
     });
   }
 
-  try {
-    const accessCode = normalizeAccessCode(
-      req.body?.adgangskode || req.body?.access_code
-    );
-    const observationText = String(req.body?.observation_text || "").trim();
-
-    if (!accessCode) {
-      return res.status(400).json({
-        success: false,
-        error: "Adgangskode mangler",
-      });
-    }
-
-    if (!observationText) {
-      return res.status(400).json({
-        success: false,
-        error: "Observationstekst mangler",
-      });
-    }
-
-    const supabase = getSupabase();
-    const accessUser = await getAccessUser(supabase, accessCode);
-
-    if (!accessUser?.display_code) {
-      return res.status(400).json({
-        success: false,
-        error: "Brugeren mangler i access_users eller mangler initialer/display_code",
-      });
-    }
-
-    const parsed = parseObservationText(observationText);
-
-    if (!parsed?.studentName) {
-      return res.status(400).json({
-        success: false,
-        error: "Observationen mangler elevnavn",
-      });
-    }
-
-    if (!parsed.observationText) {
-      return res.status(400).json({
-        success: false,
-        error: "Observationen mangler kort observation",
-      });
-    }
-
-    const profile = await findStudentProfile(supabase, accessCode, parsed);
-    const classGroup = parsed.classGroup || profile?.class_group || "";
-
-    if (!classGroup) {
-      return res.status(400).json({
-        success: false,
-        error: "Observationen mangler klasse/gruppe, og der blev ikke fundet en aktiv elevprofil at koble den til",
-      });
-    }
-
-    const { data, error } = await supabase
-      .from("student_observations")
-      .insert({
-        profile_id: profile?.id || null,
-        access_code: accessCode,
-        student_name: parsed.studentName,
-        class_group: classGroup,
-        written_by_signature: accessUser.display_code,
-        role_function: accessUser.role_label || null,
-        observation_date: parsed.observationDate,
-        situation: parsed.situation || null,
-        observation_text: parsed.observationText,
-        tested_action: parsed.testedAction || null,
-        student_reaction: parsed.studentReaction || null,
-        effect: parsed.effect || null,
-        observation_type: parsed.observationType,
-        suggested_profile_change: parsed.suggestedProfileChange || null,
-        review_status: parsed.reviewStatus,
-      })
-      .select("id, student_name, class_group, written_by_signature, role_function, review_status")
-      .single();
-
-    if (error) {
-      console.error("Kunne ikke gemme observation:", error);
-      return res.status(500).json({
-        success: false,
-        error: "Observationen kunne ikke gemmes",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      id: data.id,
-      student_name: data.student_name,
-      class_group: data.class_group,
-      written_by_display_code: data.written_by_signature,
-      role_function: data.role_function,
-      review_status: data.review_status,
+  if (!observationText) {
+    return res.status(400).json({
+      success: false,
+      error: "Observationstekst mangler",
     });
-  } catch (error) {
-    console.error("Fejl ved gem observation:", error);
+  }
 
+  const supabase = getSupabase();
+  const accessUser = await getAccessUser(supabase, accessCode);
+
+  if (!accessUser?.display_code) {
+    return res.status(400).json({
+      success: false,
+      error: "Brugeren mangler i access_users eller mangler initialer/display_code",
+    });
+  }
+
+  const parsed = parseObservationText(observationText);
+
+  if (!parsed?.studentName) {
+    return res.status(400).json({
+      success: false,
+      error: "Observationen mangler elevnavn",
+    });
+  }
+
+  if (!parsed.observationText) {
+    return res.status(400).json({
+      success: false,
+      error: "Observationen mangler kort observation",
+    });
+  }
+
+  const profile = await findStudentProfile(supabase, accessCode, parsed);
+  const classGroup = parsed.classGroup || profile?.class_group || "";
+
+  if (!classGroup) {
+    return res.status(400).json({
+      success: false,
+      error: "Observationen mangler klasse/gruppe, og der blev ikke fundet en aktiv elevprofil at koble den til",
+    });
+  }
+
+  const { data, error } = await supabase
+    .from("student_observations")
+    .insert({
+      profile_id: profile?.id || null,
+      access_code: accessCode,
+      student_name: parsed.studentName,
+      class_group: classGroup,
+      written_by_signature: accessUser.display_code,
+      role_function: accessUser.role_label || null,
+      observation_date: parsed.observationDate,
+      situation: parsed.situation || null,
+      observation_text: parsed.observationText,
+      tested_action: parsed.testedAction || null,
+      student_reaction: parsed.studentReaction || null,
+      effect: parsed.effect || null,
+      observation_type: parsed.observationType,
+      suggested_profile_change: parsed.suggestedProfileChange || null,
+      review_status: parsed.reviewStatus,
+    })
+    .select("id, student_name, class_group, written_by_signature, role_function, review_status")
+    .single();
+
+  if (error) {
+    console.error("Kunne ikke gemme observation:", error);
     return res.status(500).json({
       success: false,
       error: "Observationen kunne ikke gemmes",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    id: data.id,
+    student_name: data.student_name,
+    class_group: data.class_group,
+    written_by_display_code: data.written_by_signature,
+    role_function: data.role_function,
+    review_status: data.review_status,
+  });
+}
+
+async function handleGet(req, res) {
+  const accessCode = normalizeAccessCode(
+    req.query?.adgangskode || req.query?.access_code
+  );
+  const studentName = String(req.query?.student_name || req.query?.student || "").trim();
+  const classGroup = String(req.query?.class_group || "").trim();
+
+  if (!accessCode) {
+    return res.status(400).json({
+      success: false,
+      error: "Adgangskode mangler",
+    });
+  }
+
+  if (!studentName) {
+    return res.status(400).json({
+      success: false,
+      error: "Elevnavn mangler",
+    });
+  }
+
+  const supabase = getSupabase();
+  const accessUser = await getAccessUser(supabase, accessCode);
+
+  if (!accessUser?.display_code) {
+    return res.status(400).json({
+      success: false,
+      error: "Brugeren mangler i access_users eller mangler initialer/display_code",
+    });
+  }
+
+  let query = supabase
+    .from("student_observations")
+    .select(`
+      id,
+      profile_id,
+      student_name,
+      class_group,
+      written_by_signature,
+      role_function,
+      observation_date,
+      situation,
+      observation_text,
+      tested_action,
+      student_reaction,
+      effect,
+      observation_type,
+      suggested_profile_change,
+      review_status,
+      reviewed_by_signature,
+      reviewed_at,
+      review_note,
+      created_at
+    `)
+    .eq("access_code", accessCode)
+    .eq("student_name", studentName)
+    .order("created_at", { ascending: false })
+    .limit(20);
+
+  if (classGroup) {
+    query = query.eq("class_group", classGroup);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Kunne ikke hente observationer:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Observationer kunne ikke hentes",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    student_name: studentName,
+    class_group: classGroup || data?.[0]?.class_group || null,
+    count: Array.isArray(data) ? data.length : 0,
+    observations: Array.isArray(data) ? data : [],
+  });
+}
+
+export default async function handler(req, res) {
+  try {
+    if (req.method === "POST") {
+      return await handlePost(req, res);
+    }
+
+    if (req.method === "GET") {
+      return await handleGet(req, res);
+    }
+
+    return res.status(405).json({
+      success: false,
+      error: "Kun GET og POST er understøttet",
+    });
+  } catch (error) {
+    console.error("Fejl ved student-observations:", error);
+
+    return res.status(500).json({
+      success: false,
+      error: "Observationen kunne ikke behandles",
       details: error.message,
     });
   }
