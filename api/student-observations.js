@@ -11,6 +11,16 @@ function normalizeAccessCode(value) {
   return String(value || "").trim().toUpperCase();
 }
 
+function normalizeText(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "oe");
+}
+
 function escapeRegExp(value) {
   return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -38,7 +48,10 @@ function parseLine(text, labels = []) {
 
 function parseTitleStudentName(text) {
   const source = String(text || "");
-  const match = source.match(/tilføj observation\s*\/\s*forslag til elevprofil\s+for\s+(.+?)\s*:?\s*$/im);
+  const match = source.match(
+    /tilføj observation\s*\/\s*forslag til elevprofil\s+for\s+(.+?)\s*:?\s*$/im
+  );
+
   return match?.[1]?.trim() || "";
 }
 
@@ -46,12 +59,24 @@ function extractBlock(text, startLabels = [], stopLabels = []) {
   const source = String(text || "").replace(/\r\n/g, "\n");
   const lines = source.split("\n");
 
-  const startPatterns = startLabels.map((label) =>
-    new RegExp(`^\\s*(?:[-•]\\s*)?(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:\\s*(.*)$`, "i")
+  const startPatterns = startLabels.map(
+    (label) =>
+      new RegExp(
+        `^\\s*(?:[-•]\\s*)?(?:\\*\\*)?${escapeRegExp(
+          label
+        )}(?:\\*\\*)?\\s*:\\s*(.*)$`,
+        "i"
+      )
   );
 
-  const stopPatterns = stopLabels.map((label) =>
-    new RegExp(`^\\s*(?:[-•]\\s*)?(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:`, "i")
+  const stopPatterns = stopLabels.map(
+    (label) =>
+      new RegExp(
+        `^\\s*(?:[-•]\\s*)?(?:\\*\\*)?${escapeRegExp(
+          label
+        )}(?:\\*\\*)?\\s*:`,
+        "i"
+      )
   );
 
   let startIndex = -1;
@@ -60,6 +85,7 @@ function extractBlock(text, startLabels = [], stopLabels = []) {
   for (let i = 0; i < lines.length; i += 1) {
     for (const pattern of startPatterns) {
       const match = lines[i].match(pattern);
+
       if (match) {
         startIndex = i;
         firstLine = String(match[1] || "").trim();
@@ -73,7 +99,10 @@ function extractBlock(text, startLabels = [], stopLabels = []) {
   if (startIndex < 0) return "";
 
   const parts = [];
-  if (firstLine) parts.push(firstLine);
+
+  if (firstLine) {
+    parts.push(firstLine);
+  }
 
   for (let i = startIndex + 1; i < lines.length; i += 1) {
     const line = lines[i];
@@ -92,13 +121,17 @@ function extractBlock(text, startLabels = [], stopLabels = []) {
 }
 
 function normalizeObservationType(value) {
-  const text = String(value || "").toLowerCase();
+  const text = normalizeText(value);
 
-  if (text.includes("gentaget") || text.includes("flere gange") || text.includes("set flere")) {
+  if (
+    text.includes("gentaget") ||
+    text.includes("flere gange") ||
+    text.includes("set flere")
+  ) {
     return "gentaget_observation";
   }
 
-  if (text.includes("mønster") || text.includes("moenster")) {
+  if (text.includes("moenster")) {
     return "muligt_moenster";
   }
 
@@ -109,15 +142,67 @@ function normalizeObservationType(value) {
   return "usikkert";
 }
 
-function normalizeReviewStatus(value) {
-  const text = String(value || "").toLowerCase();
+function normalizeReviewDecision(value) {
+  const text = normalizeText(value).replace(/\s+/g, "_");
 
-  if (text.includes("indarbejdet")) return "indarbejdet_i_profil";
-  if (text.includes("afvist")) return "afvist_ikke_aktuelt";
-  if (text.includes("team") || text.includes("drøft") || text.includes("droeft")) return "droeftes_i_team";
-  if (text.includes("flere")) return "afventer_flere_observationer";
+  const exactStatuses = new Set([
+    "afventer_vurdering",
+    "valgt_til_profil",
+    "daekket_af_profil",
+    "afvist_ikke_aktuelt",
+    "afventer_flere_observationer",
+    "droeftes_i_team",
+    "indarbejdet_i_profil",
+  ]);
 
-  return "afventer_vurdering";
+  if (exactStatuses.has(text)) {
+    return text;
+  }
+
+  if (
+    text.includes("integrer") ||
+    text.includes("brug_i_profil") ||
+    text.includes("skal_indarbejdes") ||
+    text === "brug"
+  ) {
+    return "valgt_til_profil";
+  }
+
+  if (
+    text.includes("allerede_daekket") ||
+    text.includes("daekket") ||
+    text.includes("eksisterende_profil")
+  ) {
+    return "daekket_af_profil";
+  }
+
+  if (
+    text.includes("afvis") ||
+    text.includes("ikke_relevant") ||
+    text.includes("ikke_aktuelt")
+  ) {
+    return "afvist_ikke_aktuelt";
+  }
+
+  if (
+    text.includes("afvent") ||
+    text.includes("flere_observationer")
+  ) {
+    return "afventer_flere_observationer";
+  }
+
+  if (
+    text.includes("team") ||
+    text.includes("droeft")
+  ) {
+    return "droeftes_i_team";
+  }
+
+  if (text.includes("indarbejdet")) {
+    return "indarbejdet_i_profil";
+  }
+
+  return null;
 }
 
 function parseObservationDate(value) {
@@ -126,12 +211,18 @@ function parseObservationDate(value) {
   if (!text) return null;
 
   const danish = text.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$/);
+
   if (danish) {
     const [, day, month, year] = danish;
-    return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+    return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(
+      2,
+      "0"
+    )}`;
   }
 
   const iso = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
   if (iso) return text;
 
   return null;
@@ -162,16 +253,27 @@ function parseObservationText(observationText) {
     "Skal klasselærer/profilansvarlig vurdere dette? Ja/nej/usikkert",
     "Skal klasselærer/profilansvarlig vurdere dette?",
     "Vurdering ønskes",
-    "Status"
+    "Status",
   ];
 
   const studentName =
-    parseLine(text, ["Elev / arbejdsnavn", "Navn / arbejdsnavn", "Elev"]) ||
-    parseTitleStudentName(text);
+    parseLine(text, [
+      "Elev / arbejdsnavn",
+      "Navn / arbejdsnavn",
+      "Elev",
+    ]) || parseTitleStudentName(text);
 
-  const classGroup = parseLine(text, ["Klasse / gruppe", "Class / group"]);
-  const observationDate = parseObservationDate(parseLine(text, ["Dato", "Date"]));
+  const classGroup = parseLine(text, [
+    "Klasse / gruppe",
+    "Class / group",
+  ]);
+
+  const observationDate = parseObservationDate(
+    parseLine(text, ["Dato", "Date"])
+  );
+
   const situation = extractBlock(text, ["Situation"], stopLabels);
+
   const observation =
     extractBlock(text, ["Kort observation"], stopLabels) ||
     extractBlock(text, ["Observation"], stopLabels);
@@ -192,21 +294,15 @@ function parseObservationText(observationText) {
 
   const observationTypeRaw =
     extractBlock(text, ["Observationstype"], stopLabels) ||
-    parseLine(text, ["Er dette en enkelthændelse eller noget du har set flere gange?"]);
+    parseLine(text, [
+      "Er dette en enkelthændelse eller noget du har set flere gange?",
+    ]);
 
   const suggestedProfileChange = extractBlock(
     text,
     ["Forslag til profilændring", "Forslag til profilaendring"],
     stopLabels
   );
-
-  const reviewWish = parseLine(text, [
-    "Skal klasselærer/profilansvarlig vurdere dette? Ja/nej/usikkert",
-    "Skal klasselærer/profilansvarlig vurdere dette?",
-    "Vurdering ønskes"
-  ]);
-
-  const status = parseLine(text, ["Status"]);
 
   return {
     studentName,
@@ -217,16 +313,19 @@ function parseObservationText(observationText) {
     testedAction,
     studentReaction,
     effect,
-    observationType: normalizeObservationType(observationTypeRaw || observation),
+    observationType: normalizeObservationType(
+      observationTypeRaw || observation
+    ),
     suggestedProfileChange,
-    reviewStatus: normalizeReviewStatus(status || reviewWish),
   };
 }
 
 async function getAccessUser(supabase, accessCode) {
   const { data, error } = await supabase
     .from("access_users")
-    .select("access_code, display_code, full_name, role_label, organization_ref, is_active")
+    .select(
+      "access_code, display_code, full_name, role_label, organization_ref, is_active"
+    )
     .eq("access_code", accessCode)
     .eq("is_active", true)
     .maybeSingle();
@@ -239,12 +338,76 @@ async function getAccessUser(supabase, accessCode) {
   return data;
 }
 
+async function getProfileById(supabase, profileId) {
+  const { data, error } = await supabase
+    .from("student_profiles")
+    .select(
+      "id, access_code, student_name, class_group, profile_owner_signature, status, created_at"
+    )
+    .eq("id", profileId)
+    .eq("status", "active")
+    .maybeSingle();
+
+  if (error) {
+    console.error("Kunne ikke hente elevprofil via profile_id:", error);
+    throw new Error("Elevprofilen kunne ikke hentes");
+  }
+
+  return data || null;
+}
+
+async function getProfileOrganization(supabase, profile) {
+  if (!profile?.access_code) return "";
+
+  const { data, error } = await supabase
+    .from("access_users")
+    .select("organization_ref")
+    .eq("access_code", profile.access_code)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Kunne ikke hente profilens organisation:", error);
+    throw new Error("Profilens organisation kunne ikke kontrolleres");
+  }
+
+  return String(data?.organization_ref || "").trim();
+}
+
+async function canAccessProfile(supabase, accessUser, profile) {
+  if (!accessUser || !profile) return false;
+
+  if (
+    normalizeAccessCode(accessUser.access_code) ===
+    normalizeAccessCode(profile.access_code)
+  ) {
+    return true;
+  }
+
+  const userOrganization = String(
+    accessUser.organization_ref || ""
+  ).trim();
+
+  if (!userOrganization) return false;
+
+  const profileOrganization = await getProfileOrganization(
+    supabase,
+    profile
+  );
+
+  return (
+    profileOrganization &&
+    normalizeText(profileOrganization) === normalizeText(userOrganization)
+  );
+}
+
 async function findStudentProfile(supabase, accessCode, parsed) {
   if (!parsed?.studentName) return null;
 
   let query = supabase
     .from("student_profiles")
-    .select("id, student_name, class_group, status, created_at")
+    .select(
+      "id, access_code, student_name, class_group, profile_owner_signature, status, created_at"
+    )
     .eq("access_code", accessCode)
     .ilike("student_name", parsed.studentName)
     .eq("status", "active")
@@ -265,11 +428,31 @@ async function findStudentProfile(supabase, accessCode, parsed) {
   return data || null;
 }
 
+function isProfileOwner(accessUser, profile) {
+  const currentSignature = normalizeText(accessUser?.display_code);
+  const ownerSignature = normalizeText(
+    profile?.profile_owner_signature
+  );
+
+  if (ownerSignature && currentSignature === ownerSignature) {
+    return true;
+  }
+
+  return (
+    normalizeAccessCode(accessUser?.access_code) ===
+    normalizeAccessCode(profile?.access_code)
+  );
+}
+
 async function handlePost(req, res) {
   const accessCode = normalizeAccessCode(
     req.body?.adgangskode || req.body?.access_code
   );
-  const observationText = String(req.body?.observation_text || "").trim();
+
+  const profileId = String(req.body?.profile_id || "").trim();
+  const observationText = String(
+    req.body?.observation_text || ""
+  ).trim();
 
   if (!accessCode) {
     return res.status(400).json({
@@ -291,33 +474,77 @@ async function handlePost(req, res) {
   if (!accessUser?.display_code) {
     return res.status(400).json({
       success: false,
-      error: "Brugeren mangler i access_users eller mangler initialer/display_code",
+      error:
+        "Brugeren mangler i access_users eller mangler initialer/display_code",
     });
   }
 
   const parsed = parseObservationText(observationText);
 
-  if (!parsed?.studentName) {
-    return res.status(400).json({
-      success: false,
-      error: "Observationen mangler elevnavn",
-    });
-  }
-
-  if (!parsed.observationText) {
+  if (!parsed?.observationText) {
     return res.status(400).json({
       success: false,
       error: "Observationen mangler kort observation",
     });
   }
 
-  const profile = await findStudentProfile(supabase, accessCode, parsed);
-  const classGroup = parsed.classGroup || profile?.class_group || "";
+  let profile = null;
+
+  if (profileId) {
+    profile = await getProfileById(supabase, profileId);
+
+    if (!profile?.id) {
+      return res.status(404).json({
+        success: false,
+        error: "Den valgte elevprofil blev ikke fundet",
+      });
+    }
+
+    const hasAccess = await canAccessProfile(
+      supabase,
+      accessUser,
+      profile
+    );
+
+    if (!hasAccess) {
+      return res.status(403).json({
+        success: false,
+        error: "Du har ikke adgang til denne elevprofil",
+      });
+    }
+  } else {
+    if (!parsed?.studentName) {
+      return res.status(400).json({
+        success: false,
+        error: "Observationen mangler elevnavn",
+      });
+    }
+
+    profile = await findStudentProfile(
+      supabase,
+      accessCode,
+      parsed
+    );
+  }
+
+  const studentName =
+    profile?.student_name || parsed.studentName || "";
+
+  const classGroup =
+    profile?.class_group || parsed.classGroup || "";
+
+  if (!studentName) {
+    return res.status(400).json({
+      success: false,
+      error: "Observationen mangler elevnavn",
+    });
+  }
 
   if (!classGroup) {
     return res.status(400).json({
       success: false,
-      error: "Observationen mangler klasse/gruppe, og der blev ikke fundet en aktiv elevprofil at koble den til",
+      error:
+        "Observationen mangler klasse/gruppe, og der blev ikke fundet en aktiv elevprofil at koble den til",
     });
   }
 
@@ -326,7 +553,7 @@ async function handlePost(req, res) {
     .insert({
       profile_id: profile?.id || null,
       access_code: accessCode,
-      student_name: parsed.studentName,
+      student_name: studentName,
       class_group: classGroup,
       written_by_signature: accessUser.display_code,
       role_function: accessUser.role_label || null,
@@ -337,14 +564,21 @@ async function handlePost(req, res) {
       student_reaction: parsed.studentReaction || null,
       effect: parsed.effect || null,
       observation_type: parsed.observationType,
-      suggested_profile_change: parsed.suggestedProfileChange || null,
-      review_status: parsed.reviewStatus,
+      suggested_profile_change:
+        parsed.suggestedProfileChange || null,
+      review_status: "afventer_vurdering",
+      reviewed_by_signature: null,
+      reviewed_at: null,
+      review_note: null,
     })
-    .select("id, student_name, class_group, written_by_signature, role_function, review_status")
+    .select(
+      "id, profile_id, student_name, class_group, written_by_signature, role_function, review_status"
+    )
     .single();
 
   if (error) {
     console.error("Kunne ikke gemme observation:", error);
+
     return res.status(500).json({
       success: false,
       error: "Observationen kunne ikke gemmes",
@@ -354,6 +588,7 @@ async function handlePost(req, res) {
   return res.status(200).json({
     success: true,
     id: data.id,
+    profile_id: data.profile_id,
     student_name: data.student_name,
     class_group: data.class_group,
     written_by_display_code: data.written_by_signature,
@@ -366,8 +601,19 @@ async function handleGet(req, res) {
   const accessCode = normalizeAccessCode(
     req.query?.adgangskode || req.query?.access_code
   );
-  const studentName = String(req.query?.student_name || req.query?.student || "").trim();
-  const classGroup = String(req.query?.class_group || "").trim();
+
+  const profileId = String(req.query?.profile_id || "").trim();
+  const studentName = String(
+    req.query?.student_name || req.query?.student || ""
+  ).trim();
+
+  const classGroup = String(
+    req.query?.class_group || ""
+  ).trim();
+
+  const reviewStatus = normalizeReviewDecision(
+    req.query?.review_status
+  );
 
   if (!accessCode) {
     return res.status(400).json({
@@ -376,10 +622,10 @@ async function handleGet(req, res) {
     });
   }
 
-  if (!studentName) {
+  if (!profileId && !studentName) {
     return res.status(400).json({
       success: false,
-      error: "Elevnavn mangler",
+      error: "profile_id eller elevnavn mangler",
     });
   }
 
@@ -389,10 +635,12 @@ async function handleGet(req, res) {
   if (!accessUser?.display_code) {
     return res.status(400).json({
       success: false,
-      error: "Brugeren mangler i access_users eller mangler initialer/display_code",
+      error:
+        "Brugeren mangler i access_users eller mangler initialer/display_code",
     });
   }
 
+  let profile = null;
   let query = supabase
     .from("student_observations")
     .select(`
@@ -414,21 +662,63 @@ async function handleGet(req, res) {
       reviewed_by_signature,
       reviewed_at,
       review_note,
-      created_at
+      created_at,
+      updated_at
     `)
-    .eq("access_code", accessCode)
-    .ilike("student_name", studentName)
     .order("created_at", { ascending: false })
-    .limit(20);
+    .limit(100);
 
-  if (classGroup) {
-    query = query.eq("class_group", classGroup);
+  if (profileId) {
+    profile = await getProfileById(supabase, profileId);
+
+    if (!profile?.id) {
+      return res.status(404).json({
+        success: false,
+        error: "Den valgte elevprofil blev ikke fundet",
+      });
+    }
+
+    const hasAccess = await canAccessProfile(
+      supabase,
+      accessUser,
+      profile
+    );
+
+    if (!hasAccess) {
+      return res.status(403).json({
+        success: false,
+        error: "Du har ikke adgang til denne elevprofil",
+      });
+    }
+
+    query = query.eq("profile_id", profileId);
+  } else {
+    query = query
+      .eq("access_code", accessCode)
+      .ilike("student_name", studentName)
+      .limit(20);
+
+    if (classGroup) {
+      query = query.eq("class_group", classGroup);
+    }
+  }
+
+  if (req.query?.review_status && !reviewStatus) {
+    return res.status(400).json({
+      success: false,
+      error: "Ukendt observationsstatus",
+    });
+  }
+
+  if (reviewStatus) {
+    query = query.eq("review_status", reviewStatus);
   }
 
   const { data, error } = await query;
 
   if (error) {
     console.error("Kunne ikke hente observationer:", error);
+
     return res.status(500).json({
       success: false,
       error: "Observationer kunne ikke hentes",
@@ -437,10 +727,162 @@ async function handleGet(req, res) {
 
   return res.status(200).json({
     success: true,
-    student_name: studentName,
-    class_group: classGroup || data?.[0]?.class_group || null,
+    profile_id: profile?.id || null,
+    student_name:
+      profile?.student_name || studentName || data?.[0]?.student_name || null,
+    class_group:
+      profile?.class_group ||
+      classGroup ||
+      data?.[0]?.class_group ||
+      null,
     count: Array.isArray(data) ? data.length : 0,
     observations: Array.isArray(data) ? data : [],
+  });
+}
+
+async function handlePatch(req, res) {
+  const accessCode = normalizeAccessCode(
+    req.body?.adgangskode || req.body?.access_code
+  );
+
+  const observationId = String(
+    req.body?.observation_id || req.body?.id || ""
+  ).trim();
+
+  const reviewStatus = normalizeReviewDecision(
+    req.body?.review_status || req.body?.handling
+  );
+
+  const reviewNote = String(req.body?.review_note || "").trim();
+
+  if (!accessCode) {
+    return res.status(400).json({
+      success: false,
+      error: "Adgangskode mangler",
+    });
+  }
+
+  if (!observationId) {
+    return res.status(400).json({
+      success: false,
+      error: "observation_id mangler",
+    });
+  }
+
+  if (!reviewStatus) {
+    return res.status(400).json({
+      success: false,
+      error:
+        "Ukendt handling. Brug Integrér, Dækket, Afvis, Afvent eller Drøft.",
+    });
+  }
+
+  if (reviewStatus === "indarbejdet_i_profil") {
+    return res.status(400).json({
+      success: false,
+      error:
+        "Status indarbejdet_i_profil sættes først, når en ny profilversion er godkendt.",
+    });
+  }
+
+  const supabase = getSupabase();
+  const accessUser = await getAccessUser(supabase, accessCode);
+
+  if (!accessUser?.display_code) {
+    return res.status(400).json({
+      success: false,
+      error:
+        "Brugeren mangler i access_users eller mangler initialer/display_code",
+    });
+  }
+
+  const { data: observation, error: observationError } =
+    await supabase
+      .from("student_observations")
+      .select("id, profile_id, review_status")
+      .eq("id", observationId)
+      .maybeSingle();
+
+  if (observationError) {
+    console.error("Kunne ikke hente observation:", observationError);
+
+    return res.status(500).json({
+      success: false,
+      error: "Observationen kunne ikke hentes",
+    });
+  }
+
+  if (!observation?.id) {
+    return res.status(404).json({
+      success: false,
+      error: "Observationen blev ikke fundet",
+    });
+  }
+
+  if (!observation.profile_id) {
+    return res.status(400).json({
+      success: false,
+      error:
+        "Observationen er ikke koblet til en elevprofil og kan derfor ikke vurderes endnu.",
+    });
+  }
+
+  const profile = await getProfileById(
+    supabase,
+    observation.profile_id
+  );
+
+  if (!profile?.id) {
+    return res.status(404).json({
+      success: false,
+      error: "Observationens aktive elevprofil blev ikke fundet",
+    });
+  }
+
+  if (!isProfileOwner(accessUser, profile)) {
+    return res.status(403).json({
+      success: false,
+      error:
+        "Kun profilansvarlig kan vurdere denne observation.",
+    });
+  }
+
+  const reviewedAt = new Date().toISOString();
+
+  const { data, error } = await supabase
+    .from("student_observations")
+    .update({
+      review_status: reviewStatus,
+      reviewed_by_signature: accessUser.display_code,
+      reviewed_at: reviewedAt,
+      review_note: reviewNote || null,
+      updated_at: reviewedAt,
+    })
+    .eq("id", observationId)
+    .eq("profile_id", profile.id)
+    .select(`
+      id,
+      profile_id,
+      review_status,
+      reviewed_by_signature,
+      reviewed_at,
+      review_note,
+      updated_at
+    `)
+    .single();
+
+  if (error) {
+    console.error("Kunne ikke opdatere observation:", error);
+
+    return res.status(500).json({
+      success: false,
+      error: "Observationens status kunne ikke opdateres",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    observation: data,
   });
 }
 
@@ -454,9 +896,13 @@ export default async function handler(req, res) {
       return await handleGet(req, res);
     }
 
+    if (req.method === "PATCH") {
+      return await handlePatch(req, res);
+    }
+
     return res.status(405).json({
       success: false,
-      error: "Kun GET og POST er understøttet",
+      error: "Kun GET, POST og PATCH er understøttet",
     });
   } catch (error) {
     console.error("Fejl ved student-observations:", error);
