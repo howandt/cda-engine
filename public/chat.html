@@ -1723,6 +1723,11 @@ Indsæt elevcase her:
 [INDSÆT ELEVCASE HER]`
           },
           {
+            id: "student-profile-view-active",
+            title: "Hent / vis aktiv elevprofil",
+            promptText: `Vis profil for [navn]`
+          },
+          {
             id: "student-profile-readable",
             title: "Vis læsbar elevprofil",
             promptText: `Vis [navns] profil som læsbar tekst:
@@ -2955,6 +2960,102 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
     }
 
 
+
+    function getProfileLookupRequest(text) {
+      const normalized = String(text || "").trim();
+
+      if (!normalized) return null;
+
+      const match =
+        normalized.match(/^vis\s+profil\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^hent\s+profil\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^vis\s+elevprofil\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^hent\s+elevprofil\s+for\s+(.+?)(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^vis\s+(.+?)s\s+profil(?:\s+i\s+(.+?))?$/i) ||
+        normalized.match(/^hent\s+(.+?)s\s+profil(?:\s+i\s+(.+?))?$/i);
+
+      if (!match) return null;
+
+      return {
+        studentName: String(match[1] || "").trim(),
+        classGroup: String(match[2] || "").trim(),
+      };
+    }
+
+    function buildProfileDisplayReply(result) {
+      const profile = result?.profile || {};
+
+      if (!profile?.readable_profile) {
+        return `Profil for ${profile?.student_name || "eleven"}\n\nDer blev fundet en profil, men den mangler læsbar profiltekst.`;
+      }
+
+      const updatedAt = profile.updated_at
+        ? `\n\nSidst opdateret: ${formatDateForDisplay(profile.updated_at)}`
+        : "";
+
+      return `${profile.readable_profile}${updatedAt}`;
+    }
+
+    async function handleProfileLookupIfNeeded(text) {
+      const lookup = getProfileLookupRequest(text);
+
+      if (!lookup) return false;
+
+      if (!lookup.studentName) return false;
+
+      sendKnap.disabled = true;
+      sendKnap.textContent = "Henter...";
+      setSettingsOpen(false);
+
+      if (welcome) {
+        welcome.remove();
+      }
+
+      activateConversationLayout();
+      appendMessage("user", text);
+      besked.value = "";
+
+      const typingRow = appendMessage(
+        "assistant",
+        "CDA henter elevprofil...",
+        "typing"
+      );
+
+      try {
+        const params = new URLSearchParams({
+          student_name: lookup.studentName,
+          adgangskode,
+        });
+
+        if (lookup.classGroup) {
+          params.set("class_group", lookup.classGroup);
+        }
+
+        const response = await fetch(`/api/student-profiles?${params.toString()}`);
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || "Elevprofilen kunne ikke hentes.");
+        }
+
+        typingRow.remove();
+        appendMessage("assistant", buildProfileDisplayReply(result));
+      } catch (error) {
+        typingRow.remove();
+        appendMessage(
+          "assistant",
+          error.message || "Elevprofilen kunne ikke hentes."
+        );
+      } finally {
+        sendKnap.disabled = false;
+        sendKnap.textContent = "Send";
+        updateBackToStartVisibility();
+        scrollToBottom();
+      }
+
+      return true;
+    }
+
     function getObservationLookupRequest(text) {
       const normalized = String(text || "").trim();
 
@@ -3190,6 +3291,12 @@ ${userText}`;
         if (!tekst) {
           besked.focus();
         }
+        return;
+      }
+
+      const profileHandled = await handleProfileLookupIfNeeded(tekst);
+
+      if (profileHandled) {
         return;
       }
 

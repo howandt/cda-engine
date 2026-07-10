@@ -382,8 +382,92 @@ async function updateProfile(req, res) {
   });
 }
 
+
+async function getProfile(req, res) {
+  const accessCode = normalizeAccessCode(
+    req.query?.adgangskode || req.query?.access_code
+  );
+  const studentName = String(req.query?.student_name || req.query?.student || "").trim();
+  const classGroup = String(req.query?.class_group || "").trim();
+
+  if (!accessCode) {
+    return res.status(400).json({
+      success: false,
+      error: "Adgangskode mangler",
+    });
+  }
+
+  if (!studentName) {
+    return res.status(400).json({
+      success: false,
+      error: "Elevnavn mangler",
+    });
+  }
+
+  const supabase = getSupabase();
+  const accessUser = await getAccessUser(supabase, accessCode);
+
+  if (!accessUser?.display_code) {
+    return res.status(400).json({
+      success: false,
+      error: "Brugeren mangler i access_users eller mangler initialer/display_code",
+    });
+  }
+
+  let query = supabase
+    .from("student_profiles")
+    .select(`
+      id,
+      student_name,
+      class_group,
+      created_by_signature,
+      profile_owner_signature,
+      profile_data,
+      readable_profile,
+      status,
+      created_at,
+      updated_at
+    `)
+    .eq("access_code", accessCode)
+    .eq("student_name", studentName)
+    .eq("status", "active")
+    .order("updated_at", { ascending: false })
+    .limit(1);
+
+  if (classGroup) {
+    query = query.eq("class_group", classGroup);
+  }
+
+  const { data, error } = await query.maybeSingle();
+
+  if (error) {
+    console.error("Kunne ikke hente elevprofil:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Elevprofilen kunne ikke hentes",
+    });
+  }
+
+  if (!data?.id) {
+    return res.status(404).json({
+      success: false,
+      error: "Der blev ikke fundet en aktiv elevprofil",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    profile: data,
+  });
+}
+
+
 export default async function handler(req, res) {
   try {
+    if (req.method === "GET") {
+      return await getProfile(req, res);
+    }
+
     if (req.method === "POST") {
       return await createProfile(req, res);
     }
@@ -394,7 +478,7 @@ export default async function handler(req, res) {
 
     return res.status(405).json({
       success: false,
-      error: "Kun POST, PUT og PATCH er understøttet",
+      error: "Kun GET, POST, PUT og PATCH er understøttet",
     });
   } catch (error) {
     console.error("Fejl ved elevprofil:", error);
