@@ -1703,6 +1703,8 @@
     const templateOpenButton = document.getElementById("templateOpenButton");
     const templateShortcutStatus = document.getElementById("templateShortcutStatus");
     let templateRegistryGroups = [];
+    let lastSentTemplateId = null;
+    let lastSentWasProfileUpdate = false;
     const localTemplateGroups = [
       {
         id: "student-profile",
@@ -3091,6 +3093,74 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       return true;
     }
 
+
+    function attachUpdateProfileAction(row, profileText) {
+      if (!row || !profileText) return;
+
+      const bubble = row.querySelector(".message.assistant");
+      if (!bubble) return;
+
+      const actions = document.createElement("div");
+      actions.className = "message-actions";
+
+      const button = document.createElement("button");
+      button.className = "save-profile-button";
+      button.type = "button";
+      button.textContent = "Gem opdateret profil";
+
+      const status = document.createElement("span");
+      status.className = "save-profile-status";
+      status.textContent = "Gem kun, når den opdaterede profil er godkendt.";
+
+      button.addEventListener("click", async () => {
+        if (button.disabled) return;
+
+        button.disabled = true;
+        button.textContent = "Gemmer...";
+        status.classList.remove("error");
+        status.textContent = "Opdaterer profil...";
+
+        try {
+          const response = await fetch("/api/student-profiles", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              profile_text: profileText,
+              adgangskode,
+            }),
+          });
+
+          let result = null;
+          const raw = await response.text();
+
+          try {
+            result = raw ? JSON.parse(raw) : null;
+          } catch {
+            throw new Error(raw || "Profilen kunne ikke opdateres.");
+          }
+
+          if (!response.ok || !result?.success) {
+            throw new Error(result?.error || "Profilen kunne ikke opdateres.");
+          }
+
+          button.textContent = "Opdateret profil gemt";
+          status.textContent = `Profil opdateret for ${result.student_name || "eleven"}.`;
+        } catch (error) {
+          button.disabled = false;
+          button.textContent = "Gem opdateret profil";
+          status.classList.add("error");
+          status.textContent = error.message || "Profilen kunne ikke opdateres.";
+        }
+      });
+
+      actions.appendChild(button);
+      actions.appendChild(status);
+      bubble.appendChild(actions);
+      scrollToBottom();
+    }
+
     function buildTemplateMessage(userText) {
       const instruction = activeTemplateSelection?.promptInstruction;
 
@@ -3108,6 +3178,10 @@ ${userText}`;
     async function sendMessage() {
       const tekst = besked.value.trim();
       const apiMessage = buildTemplateMessage(tekst);
+      lastSentTemplateId = activeTemplateSelection?.templateId || null;
+      lastSentWasProfileUpdate =
+        lastSentTemplateId === "student-profile-update" ||
+        /^\s*opdater\s+elevprofil\s+for\s+/i.test(tekst);
 
       if (!tekst || sendKnap.disabled) {
         if (!tekst) {
@@ -3243,10 +3317,17 @@ if (data.pending_action) {
         const assistantRow = appendMessage("assistant", data.reply);
 
         if (isStudentProfileAssistantReply(data.reply, data)) {
-          attachSaveProfileAction(assistantRow, data.reply);
+          if (lastSentWasProfileUpdate) {
+            attachUpdateProfileAction(assistantRow, data.reply);
+          } else {
+            attachSaveProfileAction(assistantRow, data.reply);
+          }
         } else if (isStudentObservationAssistantReply(data.reply)) {
           attachSaveObservationAction(assistantRow, data.reply);
         }
+
+        lastSentTemplateId = null;
+        lastSentWasProfileUpdate = false;
 
         if (templateFocusPending || document.documentElement.classList.contains("landscape-template-mode")) {
           markTemplateFocusTarget(assistantRow);

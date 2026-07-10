@@ -69,7 +69,8 @@ function cleanProfileText(profileText, creatorLabel) {
         normalized.startsWith("oprettet af / signatur:") ||
         normalized.startsWith("created by / signature:") ||
         normalized.startsWith("lærerkode / signatur:") ||
-        normalized.startsWith("laererkode / signatur:")
+        normalized.startsWith("laererkode / signatur:") ||
+        normalized.startsWith("oprettet af:")
       );
     })
     .join("\n");
@@ -192,98 +193,202 @@ async function getAccessUser(supabase, accessCode) {
   return data;
 }
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({
+async function createProfile(req, res) {
+  const accessCode = normalizeAccessCode(
+    req.body?.adgangskode || req.body?.access_code
+  );
+  const profileText = String(req.body?.profile_text || "").trim();
+
+  if (!accessCode) {
+    return res.status(400).json({
       success: false,
-      error: "Kun POST er understøttet",
+      error: "Adgangskode mangler",
     });
   }
 
-  try {
-    const accessCode = normalizeAccessCode(
-      req.body?.adgangskode || req.body?.access_code
-    );
-    const profileText = String(req.body?.profile_text || "").trim();
-
-    if (!accessCode) {
-      return res.status(400).json({
-        success: false,
-        error: "Adgangskode mangler",
-      });
-    }
-
-    if (!profileText) {
-      return res.status(400).json({
-        success: false,
-        error: "Profiltekst mangler",
-      });
-    }
-
-    const supabase = getSupabase();
-    const accessUser = await getAccessUser(supabase, accessCode);
-
-    if (!accessUser?.display_code) {
-      return res.status(400).json({
-        success: false,
-        error: "Brugeren mangler i access_users eller mangler initialer/display_code",
-      });
-    }
-
-    const creatorLabel = formatCreatorLabel(accessUser);
-    const parsed = parseStudentProfileText(profileText, creatorLabel);
-
-    if (!parsed) {
-      return res.status(400).json({
-        success: false,
-        error: "Profiltekst mangler",
-      });
-    }
-
-    if (!parsed.studentName || !parsed.classGroup) {
-      return res.status(400).json({
-        success: false,
-        error: "Profilen mangler elevnavn eller klasse/gruppe",
-      });
-    }
-
-    const { data, error } = await supabase
-      .from("student_profiles")
-      .insert({
-        access_code: accessCode,
-        student_name: parsed.studentName,
-        class_group: parsed.classGroup,
-        created_by_signature: accessUser.display_code,
-        profile_owner_signature: accessUser.display_code,
-        profile_data: parsed.profileData,
-        readable_profile: parsed.readableProfile,
-        status: "active",
-      })
-      .select("id, student_name, class_group, created_by_signature")
-      .single();
-
-    if (error) {
-      console.error("Kunne ikke gemme elevprofil:", error);
-      return res.status(500).json({
-        success: false,
-        error: "Profilen kunne ikke gemmes",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      id: data.id,
-      student_name: data.student_name,
-      class_group: data.class_group,
-      created_by_display_code: data.created_by_signature,
-      created_by_label: creatorLabel,
+  if (!profileText) {
+    return res.status(400).json({
+      success: false,
+      error: "Profiltekst mangler",
     });
-  } catch (error) {
-    console.error("Fejl ved gem elevprofil:", error);
+  }
 
+  const supabase = getSupabase();
+  const accessUser = await getAccessUser(supabase, accessCode);
+
+  if (!accessUser?.display_code) {
+    return res.status(400).json({
+      success: false,
+      error: "Brugeren mangler i access_users eller mangler initialer/display_code",
+    });
+  }
+
+  const creatorLabel = formatCreatorLabel(accessUser);
+  const parsed = parseStudentProfileText(profileText, creatorLabel);
+
+  if (!parsed) {
+    return res.status(400).json({
+      success: false,
+      error: "Profiltekst mangler",
+    });
+  }
+
+  if (!parsed.studentName || !parsed.classGroup) {
+    return res.status(400).json({
+      success: false,
+      error: "Profilen mangler elevnavn eller klasse/gruppe",
+    });
+  }
+
+  const { data, error } = await supabase
+    .from("student_profiles")
+    .insert({
+      access_code: accessCode,
+      student_name: parsed.studentName,
+      class_group: parsed.classGroup,
+      created_by_signature: accessUser.display_code,
+      profile_owner_signature: accessUser.display_code,
+      profile_data: parsed.profileData,
+      readable_profile: parsed.readableProfile,
+      status: "active",
+    })
+    .select("id, student_name, class_group, created_by_signature")
+    .single();
+
+  if (error) {
+    console.error("Kunne ikke gemme elevprofil:", error);
     return res.status(500).json({
       success: false,
       error: "Profilen kunne ikke gemmes",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    id: data.id,
+    student_name: data.student_name,
+    class_group: data.class_group,
+    created_by_display_code: data.created_by_signature,
+    created_by_label: creatorLabel,
+  });
+}
+
+async function updateProfile(req, res) {
+  const accessCode = normalizeAccessCode(
+    req.body?.adgangskode || req.body?.access_code
+  );
+  const profileText = String(req.body?.profile_text || "").trim();
+
+  if (!accessCode) {
+    return res.status(400).json({
+      success: false,
+      error: "Adgangskode mangler",
+    });
+  }
+
+  if (!profileText) {
+    return res.status(400).json({
+      success: false,
+      error: "Profiltekst mangler",
+    });
+  }
+
+  const supabase = getSupabase();
+  const accessUser = await getAccessUser(supabase, accessCode);
+
+  if (!accessUser?.display_code) {
+    return res.status(400).json({
+      success: false,
+      error: "Brugeren mangler i access_users eller mangler initialer/display_code",
+    });
+  }
+
+  const creatorLabel = formatCreatorLabel(accessUser);
+  const parsed = parseStudentProfileText(profileText, creatorLabel);
+
+  if (!parsed?.studentName || !parsed?.classGroup) {
+    return res.status(400).json({
+      success: false,
+      error: "Profilen mangler elevnavn eller klasse/gruppe",
+    });
+  }
+
+  const { data: existingProfile, error: findError } = await supabase
+    .from("student_profiles")
+    .select("id, student_name, class_group, profile_data, readable_profile, status, updated_at")
+    .eq("access_code", accessCode)
+    .eq("student_name", parsed.studentName)
+    .eq("class_group", parsed.classGroup)
+    .eq("status", "active")
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (findError) {
+    console.error("Kunne ikke finde aktiv elevprofil:", findError);
+    return res.status(500).json({
+      success: false,
+      error: "Aktiv elevprofil kunne ikke findes",
+    });
+  }
+
+  if (!existingProfile?.id) {
+    return res.status(404).json({
+      success: false,
+      error: "Der blev ikke fundet en aktiv elevprofil med samme navn og klasse/gruppe",
+    });
+  }
+
+  const { data, error } = await supabase
+    .from("student_profiles")
+    .update({
+      profile_data: parsed.profileData,
+      readable_profile: parsed.readableProfile,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", existingProfile.id)
+    .select("id, student_name, class_group, profile_owner_signature, updated_at")
+    .single();
+
+  if (error) {
+    console.error("Kunne ikke opdatere elevprofil:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Profilen kunne ikke opdateres",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    id: data.id,
+    student_name: data.student_name,
+    class_group: data.class_group,
+    updated_by_display_code: accessUser.display_code,
+    updated_by_label: creatorLabel,
+    updated_at: data.updated_at,
+  });
+}
+
+export default async function handler(req, res) {
+  try {
+    if (req.method === "POST") {
+      return await createProfile(req, res);
+    }
+
+    if (req.method === "PUT" || req.method === "PATCH") {
+      return await updateProfile(req, res);
+    }
+
+    return res.status(405).json({
+      success: false,
+      error: "Kun POST, PUT og PATCH er understøttet",
+    });
+  } catch (error) {
+    console.error("Fejl ved elevprofil:", error);
+
+    return res.status(500).json({
+      success: false,
+      error: "Profilen kunne ikke behandles",
       details: error.message,
     });
   }
