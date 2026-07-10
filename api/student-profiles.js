@@ -51,26 +51,14 @@ function parseProfileLine(text, labels = []) {
     "Keywords",
     "Nøgleord",
     "Noegleord",
-    "Oprettet af",
-    "Oprettet af / signatur",
-    "Created by",
-    "Created by / signature",
-    "Lærerkode / signatur",
-    "Laererkode / signatur",
   ];
 
   const requestedPatterns = labels.map((label) =>
-    new RegExp(
-      `^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:\\s*(?:\\*\\*)?\\s*(.*)$`,
-      "i"
-    )
+    new RegExp(`^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:\\s*(.*)$`, "i")
   );
 
   const stopPatterns = allLabels.map((label) =>
-    new RegExp(
-      `^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:\\s*(?:\\*\\*)?`,
-      "i"
-    )
+    new RegExp(`^\\s*(?:\\*\\*)?${escapeRegExp(label)}(?:\\*\\*)?\\s*:`, "i")
   );
 
   for (let i = 0; i < lines.length; i += 1) {
@@ -404,7 +392,7 @@ async function updateProfile(req, res) {
 
   const { data: activeProfiles, error: findError } = await supabase
     .from("student_profiles")
-    .select("id, student_name, class_group, profile_data, readable_profile, status, updated_at, created_at")
+    .select("id, student_name, class_group, created_by_signature, profile_owner_signature, profile_data, readable_profile, status, updated_at, created_at")
     .eq("access_code", accessCode)
     .ilike("student_name", parsed.studentName)
     .eq("status", "active")
@@ -439,6 +427,37 @@ async function updateProfile(req, res) {
     });
   }
 
+  const profileOwner = String(
+    existingProfile.profile_owner_signature || existingProfile.created_by_signature || ""
+  ).trim();
+
+  if (profileOwner && profileOwner !== accessUser.display_code) {
+    return res.status(403).json({
+      success: false,
+      error: "Kun profilansvarlig kan godkende og gemme profilopdateringen",
+    });
+  }
+
+  const { data: selectedObservations, error: observationFindError } = await supabase
+    .from("student_observations")
+    .select("id, observation_text, observation_date, written_by_signature")
+    .eq("access_code", accessCode)
+    .eq("profile_id", existingProfile.id)
+    .eq("review_status", "valgt_til_profil")
+    .order("created_at", { ascending: true });
+
+  if (observationFindError) {
+    console.error("Kunne ikke hente valgte observationer:", observationFindError);
+    return res.status(500).json({
+      success: false,
+      error: "Valgte observationer kunne ikke hentes",
+    });
+  }
+
+  const observationsToIntegrate = Array.isArray(selectedObservations)
+    ? selectedObservations
+    : [];
+
   const { data, error } = await supabase
     .from("student_profiles")
     .update({
@@ -458,6 +477,112 @@ async function updateProfile(req, res) {
     });
   }
 
+  const changeRows = [
+    {
+      profile_id: existingProfile.id,
+      observation_id: null,
+      changed_by_signature: accessUser.display_code,
+      change_type: "profile_update",
+      change_note: observationsToIntegrate.length
+        ? `Godkendt profilopdatering med ${observationsToIntegrate.length} valgt${observationsToIntegrate.length === 1 ? "" : "e"} observation${observationsToIntegrate.length === 1 ? "" : "er"}`
+        : "Godkendt profilopdatering",
+      old_profile_data: existingProfile.profile_data || {},
+      new_profile_data: parsed.profileData || {},
+      old_readable_profile: existingProfile.readable_profile || "",
+      new_readable_profile: parsed.readableProfile || "",
+    },
+    ...observationsToIntegrate.map((observation) => ({
+      profile_id: existingProfile.id,
+      observation_id: observation.id,
+      changed_by_signature: accessUser.display_code,
+      change_type: "observation_indarbejdet",
+      change_note: "Observation indarbejdet i godkendt profilopdatering",
+      old_profile_data: null,
+      new_profile_data: null,
+      old_readable_profile: null,
+      new_readable_profile: null,
+    })),
+  ];
+
+  const { data: insertedChanges, error: changeLogError } = await supabase
+    .from("student_profile_changes")
+    .insert(changeRows)
+    .select("id");
+
+  if (changeLogError) {
+    console.error("Kunne ikke gemme profilhistorik:", changeLogError);
+
+    const { error: rollbackError } = await supabase
+      .from("student_profiles")
+      .update({
+        profile_data: existingProfile.profile_data || {},
+        readable_profile: existingProfile.readable_profile || "",
+      })
+      .eq("id", existingProfile.id);
+
+    if (rollbackError) {
+      console.error("Profilen kunne ikke rulles tilbage:", rollbackError);
+    }
+
+    return res.status(500).json({
+      success: false,
+      error: "Profilhistorikken kunne ikke gemmes. Profilopdateringen blev stoppet.",
+    });
+  }
+
+  const insertedChangeIds = Array.isArray(insertedChanges)
+    ? insertedChanges.map((item) => item.id).filter(Boolean)
+    : [];
+
+  if (observationsToIntegrate.length > 0) {
+    const observationIds = observationsToIntegrate.map((item) => item.id);
+    const reviewedAt = new Date().toISOString();
+
+    const { error: observationUpdateError } = await supabase
+      .from("student_observations")
+      .update({
+        review_status: "indarbejdet_i_profil",
+        reviewed_by_signature: accessUser.display_code,
+        reviewed_at: reviewedAt,
+        review_note: "Indarbejdet i godkendt profilopdatering",
+      })
+      .in("id", observationIds)
+      .eq("profile_id", existingProfile.id)
+      .eq("review_status", "valgt_til_profil");
+
+    if (observationUpdateError) {
+      console.error("Kunne ikke markere observationer som indarbejdet:", observationUpdateError);
+
+      const { error: rollbackError } = await supabase
+        .from("student_profiles")
+        .update({
+          profile_data: existingProfile.profile_data || {},
+          readable_profile: existingProfile.readable_profile || "",
+        })
+        .eq("id", existingProfile.id);
+
+      if (rollbackError) {
+        console.error("Profilen kunne ikke rulles tilbage:", rollbackError);
+      }
+
+      if (insertedChangeIds.length > 0) {
+        const { error: deleteChangeError } = await supabase
+          .from("student_profile_changes")
+          .delete()
+          .in("id", insertedChangeIds);
+
+        if (deleteChangeError) {
+          console.error("Profilhistorik kunne ikke rulles tilbage:", deleteChangeError);
+        }
+      }
+
+      return res.status(500).json({
+        success: false,
+        error: "Observationerne kunne ikke markeres som indarbejdet. Profilopdateringen blev stoppet.",
+      });
+    }
+  }
+
   return res.status(200).json({
     success: true,
     id: data.id,
@@ -466,6 +591,7 @@ async function updateProfile(req, res) {
     updated_by_display_code: accessUser.display_code,
     updated_by_label: creatorLabel,
     updated_at: data.updated_at,
+    integrated_observation_count: observationsToIntegrate.length,
   });
 }
 
