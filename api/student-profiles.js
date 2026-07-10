@@ -65,7 +65,20 @@ function cleanProfileText(profileText, creatorLabel) {
         .trim()
         .toLowerCase();
 
+      const isInternalChangeMarker =
+        normalized.startsWith("[") &&
+        normalized.endsWith("]") &&
+        (
+          normalized.includes("uændret") ||
+          normalized.includes("uaendret") ||
+          normalized.includes("nyt") ||
+          normalized.includes("ændret") ||
+          normalized.includes("aendret") ||
+          normalized.includes("fortsat usikkert")
+        );
+
       return !(
+        isInternalChangeMarker ||
         normalized.startsWith("oprettet af / signatur:") ||
         normalized.startsWith("created by / signature:") ||
         normalized.startsWith("lærerkode / signatur:") ||

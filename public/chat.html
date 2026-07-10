@@ -2804,7 +2804,10 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       const hasProfileTool = tools.includes("studentProfileV1");
       const normalized = String(text || "").trim().toLowerCase();
 
-      return hasProfileTool || normalized.startsWith("## elevprofil v1") || normalized.startsWith("elevprofil v1");
+      return (
+        hasProfileTool ||
+        /^#{0,2}\s*elevprofil\s+v\d+/i.test(String(text || "").trim())
+      );
     }
 
     function attachSaveProfileAction(row, profileText) {
