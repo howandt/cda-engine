@@ -1741,19 +1741,23 @@ Returnér kun den læsbare profiltekst. Hold teksten praksisnær og læsbar på 
           {
             id: "student-profile-observation-suggestion",
             title: "Tilføj observation / forslag til elevprofil",
-            promptText: `Tilføj observation / forslag til elevprofil for [navn]:
+            promptText: `Tilføj observation / forslag til elevprofil
 
+Elev / arbejdsnavn:
+Klasse / gruppe:
 Dato:
-Skrevet af:
-Rolle:
 Situation:
 Kort observation:
 Hvad blev afprøvet:
 Barnets/elevens reaktion:
 Effekt:
-Er dette en enkelthændelse eller noget du har set flere gange?
+Observationstype:
+- Enkelthændelse
+- Gentaget observation
+- Muligt mønster
+- Usikkert
 Forslag til profilændring:
-Skal klasselærer/profilansvarlig vurdere dette? Ja/nej/usikkert
+Vurdering ønskes: Ja/nej/usikkert
 Status: Afventer vurdering`,
             promptInstruction: `Opgave til CDA:
 Bevar observationen som et kort neutralt notat/forslag til elevprofilen.
@@ -2856,6 +2860,90 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       scrollToBottom();
     }
 
+
+    function isStudentObservationAssistantReply(text) {
+      const normalized = String(text || "").trim().toLowerCase();
+
+      if (!normalized) return false;
+
+      const hasObservationTitle =
+        normalized.startsWith("tilføj observation / forslag til elevprofil") ||
+        normalized.startsWith("## tilføj observation / forslag til elevprofil");
+
+      const hasObservationFields =
+        normalized.includes("forslag til profilændring") &&
+        normalized.includes("status: afventer vurdering");
+
+      return hasObservationTitle || hasObservationFields;
+    }
+
+    function attachSaveObservationAction(row, observationText) {
+      if (!row || !observationText) return;
+
+      const bubble = row.querySelector(".message.assistant");
+      if (!bubble) return;
+
+      const actions = document.createElement("div");
+      actions.className = "message-actions";
+
+      const button = document.createElement("button");
+      button.className = "save-profile-button";
+      button.type = "button";
+      button.textContent = "Gem observation";
+
+      const status = document.createElement("span");
+      status.className = "save-profile-status";
+      status.textContent = "Gem kun, når observationen er godkendt.";
+
+      button.addEventListener("click", async () => {
+        if (button.disabled) return;
+
+        button.disabled = true;
+        button.textContent = "Gemmer...";
+        status.classList.remove("error");
+        status.textContent = "Gemmer observation...";
+
+        try {
+          const response = await fetch("/api/student-observations", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              observation_text: observationText,
+              adgangskode,
+            }),
+          });
+
+          let result = null;
+          const raw = await response.text();
+
+          try {
+            result = raw ? JSON.parse(raw) : null;
+          } catch {
+            throw new Error(raw || "Observationen kunne ikke gemmes.");
+          }
+
+          if (!response.ok || !result?.success) {
+            throw new Error(result?.error || "Observationen kunne ikke gemmes.");
+          }
+
+          button.textContent = "Observation gemt";
+          status.textContent = `Gemt for ${result.student_name || "eleven"} (${result.review_status || "afventer vurdering"}).`;
+        } catch (error) {
+          button.disabled = false;
+          button.textContent = "Gem observation";
+          status.classList.add("error");
+          status.textContent = error.message || "Observationen kunne ikke gemmes.";
+        }
+      });
+
+      actions.appendChild(button);
+      actions.appendChild(status);
+      bubble.appendChild(actions);
+      scrollToBottom();
+    }
+
     function buildTemplateMessage(userText) {
       const instruction = activeTemplateSelection?.promptInstruction;
 
@@ -2995,6 +3083,8 @@ if (data.pending_action) {
 
         if (isStudentProfileAssistantReply(data.reply, data)) {
           attachSaveProfileAction(assistantRow, data.reply);
+        } else if (isStudentObservationAssistantReply(data.reply)) {
+          attachSaveObservationAction(assistantRow, data.reply);
         }
 
         if (templateFocusPending || document.documentElement.classList.contains("landscape-template-mode")) {
