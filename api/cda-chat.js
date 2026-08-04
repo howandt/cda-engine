@@ -1247,6 +1247,70 @@ function isLocalDiagnosisTheoryRequest(message) {
   );
 }
 
+function getStructuredDiagnosisMetaById(id) {
+  const normalizedId = normalizeDiagnosisPhrase(id);
+  if (!normalizedId) {
+    return null;
+  }
+
+  return (
+    getStructuredDiagnosisIndex().find((meta) => {
+      const candidates = [
+        meta?.id,
+        meta?.navn,
+        String(meta?.fil || "").replace(/\.json$/i, ""),
+      ]
+        .map((value) => normalizeDiagnosisPhrase(value))
+        .filter(Boolean);
+
+      return candidates.includes(normalizedId);
+    }) || null
+  );
+}
+
+function getLocalDiagnosisSessionMeta(pendingAction) {
+  const value = String(pendingAction || "").trim();
+
+  if (!value.startsWith("local_diagnosis_theory:")) {
+    return null;
+  }
+
+  const id = value.split(":").slice(1).join(":").trim();
+  return getStructuredDiagnosisMetaById(id);
+}
+
+function isLocalDiagnosisTheoryFollowup(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (!text) {
+    return false;
+  }
+
+  return [
+    "dyb",
+    "dybdegaaende",
+    "uddyb",
+    "uddybende",
+    "kort",
+    "kortere",
+    "kort svar",
+    "teori",
+    "diagnose information",
+    "diagnoseinfo",
+    "hvad er",
+  ].some((marker) => text === normalizeDiagnosisPhrase(marker) || text.includes(normalizeDiagnosisPhrase(marker)));
+}
+
+function isLocalDiagnosisStop(message) {
+  const text = normalizeDiagnosisPhrase(message);
+  return ["stop", "afslut", "tilbage"].includes(text);
+}
+
+function buildLocalDiagnosisSessionPrompt(meta, message) {
+  const diagnosisName = meta?.navn || meta?.id || "diagnose";
+  return `${diagnosisName} teori ${message}`;
+}
+
 function toLocalTextLines(value, depth = 0) {
   if (value === null || value === undefined) {
     return [];
@@ -5210,7 +5274,74 @@ try {
       model: "local",
       tools_used: usedTools,
       tool_debug: toolDebug,
+      pending_action: `local_diagnosis_theory:${localDiagnosisTheoryMeta.id}`,
+    });
+  }
+
+  const localDiagnosisSessionMeta = getLocalDiagnosisSessionMeta(pending_action);
+
+  if (localDiagnosisSessionMeta && isLocalDiagnosisStop(message)) {
+    return res.status(200).json({
+      success: true,
+      reply: "Du er ude af lokal diagnoseteori. Skriv en ny situation, case, PBL, rollespil eller et nyt diagnoseområde.",
+      model: "local",
+      tools_used: ["localDiagnosisTheorySession"],
+      tool_debug: [
+        {
+          name: "localDiagnosisTheorySession",
+          action: "stop",
+          previous_diagnosis_id: localDiagnosisSessionMeta.id,
+          token_policy: "0_tokens_local_response",
+        },
+      ],
       pending_action: null,
+    });
+  }
+
+  if (localDiagnosisSessionMeta && isLocalDiagnosisTheoryFollowup(message)) {
+    const structuredDiagnosis = loadStructuredDiagnosis(localDiagnosisSessionMeta);
+    const sessionPrompt = buildLocalDiagnosisSessionPrompt(localDiagnosisSessionMeta, message);
+    const reply = buildLocalDiagnosisTheoryReply(
+      structuredDiagnosis,
+      sessionPrompt,
+      role,
+      response_style
+    );
+
+    const usedTools = ["localDiagnosisTheorySession"];
+    const toolDebug = [
+      {
+        name: "localDiagnosisTheorySession",
+        diagnosis_id: localDiagnosisSessionMeta.id,
+        diagnosis_file: localDiagnosisSessionMeta.fil,
+        followup: message,
+        role,
+        response_style,
+        token_policy: "0_tokens_local_response",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: `local_diagnosis_theory:${localDiagnosisSessionMeta.id}`,
     });
   }
 
