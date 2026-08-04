@@ -1224,6 +1224,181 @@ function buildStructuredDiagnosisContext(entry, message, role) {
   };
 }
 
+
+function isLocalDiagnosisTheoryRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  const theoryMarkers = [
+    "teori",
+    "diagnose information",
+    "diagnoseinformation",
+    "diagnose info",
+    "diagnoseinfo",
+    "diagnose oplysninger",
+    "diagnoseoplysninger",
+    "information om",
+    "info om",
+    "forklar diagnose",
+    "hvad er",
+  ];
+
+  return theoryMarkers.some((marker) =>
+    text.includes(normalizeDiagnosisPhrase(marker))
+  );
+}
+
+function toLocalTextLines(value, depth = 0) {
+  if (value === null || value === undefined) {
+    return [];
+  }
+
+  if (typeof value === "string" || typeof value === "number") {
+    const text = String(value).trim();
+    return text ? [text] : [];
+  }
+
+  if (Array.isArray(value)) {
+    return value
+      .flatMap((item) => toLocalTextLines(item, depth + 1))
+      .filter(Boolean);
+  }
+
+  if (typeof value === "object") {
+    const lines = [];
+
+    for (const [key, item] of Object.entries(value)) {
+      const childLines = toLocalTextLines(item, depth + 1);
+
+      if (childLines.length === 0) {
+        continue;
+      }
+
+      if (depth <= 1) {
+        const label = String(key || "")
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (letter) => letter.toUpperCase());
+        lines.push(label);
+      }
+
+      lines.push(...childLines);
+    }
+
+    return lines;
+  }
+
+  return [];
+}
+
+function formatLocalDiagnosisBlock(title, value, bullet = false) {
+  const lines = toLocalTextLines(value);
+
+  if (lines.length === 0) {
+    return "";
+  }
+
+  return [
+    title,
+    ...lines.map((line) => (bullet ? `- ${line}` : line)),
+  ].join("\n");
+}
+
+function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
+  const shortView = entry?.kort_visning || {};
+  const longView = entry?.lang_visning || {};
+  const text = normalizeDiagnosisPhrase(message);
+  const wantsDeep =
+    responseStyle === "Dyb" ||
+    text.includes("dyb") ||
+    text.includes("uddyb") ||
+    text.includes("grundig");
+
+  const title = entry?.navn || entry?.fuld_navn || entry?.id || "Diagnose";
+  const audienceLine =
+    role === "Specialist"
+      ? "Fagligt niveau: specialist — præcist, datanært og uden diagnosekonklusion på enkeltsag."
+      : role === "Forælder"
+        ? "Fagligt niveau: forælder — roligt, konkret og hverdagsnært."
+        : "Fagligt niveau: lærer — praksisnært, direkte og anvendeligt i morgen.";
+
+  const blocks = [String(title).toUpperCase(), audienceLine, ""];
+
+  const what = formatLocalDiagnosisBlock(
+    "Hvad er det?",
+    shortView.hvad_er_det || entry?.hvad_er_det || entry?.beskrivelse,
+    false
+  );
+  if (what) blocks.push(what, "");
+
+  const signs = formatLocalDiagnosisBlock(
+    "Hvordan viser det sig?",
+    shortView.hvordan_viser_det_sig || entry?.hvordan_viser_det_sig || entry?.tegn,
+    true
+  );
+  if (signs) blocks.push(signs, "");
+
+  const misunderstandings = formatLocalDiagnosisBlock(
+    "Hvad misforstås ofte?",
+    shortView.hvad_misforstaas_ofte || entry?.hvad_misforstaas_ofte,
+    true
+  );
+  if (misunderstandings) blocks.push(misunderstandings, "");
+
+  const adult = formatLocalDiagnosisBlock(
+    role === "Forælder" ? "Hvad kan den voksne gøre?" : "Hvad kan læreren gøre?",
+    shortView.hvad_kan_den_voksne_gore || entry?.hvad_kan_den_voksne_gore,
+    true
+  );
+  if (adult) blocks.push(adult, "");
+
+  if (wantsDeep) {
+    const preferredKeys = [
+      "hvad_er",
+      "definition",
+      "typiske_symptomer",
+      "diagnoseprocessen",
+      "aarsager_og_risikofaktorer",
+      "behandling_og_stoette",
+    ];
+
+    const entries = Object.entries(longView);
+    const orderedEntries = [
+      ...preferredKeys
+        .map((key) => entries.find(([entryKey]) => diagnosisKeyMatches(entryKey, [key])))
+        .filter(Boolean),
+      ...entries,
+    ];
+
+    const used = new Set();
+    let added = 0;
+
+    for (const [key, value] of orderedEntries) {
+      if (used.has(key) || added >= 5) {
+        continue;
+      }
+
+      const block = formatLocalDiagnosisBlock(
+        String(key || "")
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (letter) => letter.toUpperCase()),
+        value,
+        Array.isArray(value)
+      );
+
+      if (block) {
+        blocks.push(block, "");
+        used.add(key);
+        added += 1;
+      }
+    }
+  }
+
+  blocks.push(
+    "Næste valg: Skriv kort, dybdegående eller stop. Skriver du en konkret situation, kan Heidi vurdere sagen med CDA-data."
+  );
+
+  return blocks.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 function analyzeEmotion(text, data) {
   let score = 0;
   const textLower = String(text || "").toLowerCase();
@@ -4782,6 +4957,60 @@ const activeCaseInstructions = buildActiveCaseInstructions(activeCaseContext, me
 const contextualInput = buildContextualInput(message, activeCaseContext);
 
 try {
+  const localDiagnosisTheoryMeta = getSingleStructuredDiagnosisMatch(message);
+
+  if (
+    localDiagnosisTheoryMeta &&
+    isLocalDiagnosisTheoryRequest(message) &&
+    !isConcreteKnownDiagnosisCase(message)
+  ) {
+    const structuredDiagnosis = loadStructuredDiagnosis(
+      localDiagnosisTheoryMeta
+    );
+
+    const reply = buildLocalDiagnosisTheoryReply(
+      structuredDiagnosis,
+      message,
+      role,
+      response_style
+    );
+
+    const usedTools = ["localDiagnosisTheoryRouting"];
+    const toolDebug = [
+      {
+        name: "localDiagnosisTheoryRouting",
+        diagnosis_id: localDiagnosisTheoryMeta.id,
+        diagnosis_file: localDiagnosisTheoryMeta.fil,
+        role,
+        response_style,
+        token_policy: "0_tokens_local_response",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
   if (pending_action === "pbl_profile") {
     if (isAffirmativeReply(message)) {
       const reply = getPblProfileTemplate();
