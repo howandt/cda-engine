@@ -1302,15 +1302,97 @@ function formatLocalDiagnosisBlock(title, value, bullet = false) {
   ].join("\n");
 }
 
+function getLocalDiagnosisTheoryIntent(message, responseStyle) {
+  const text = normalizeDiagnosisPhrase(message);
+  const includesAny = (phrases) =>
+    phrases.some((phrase) => text.includes(normalizeDiagnosisPhrase(phrase)));
+
+  const wantsDeep =
+    responseStyle === "Dyb" ||
+    includesAny(["dyb", "dybdegaaende", "uddyb", "grundig"]);
+
+  if (includesAny(["teori", "lokal teori"])) {
+    return wantsDeep ? "theory_deep" : "theory";
+  }
+
+  if (
+    includesAny([
+      "diagnose information",
+      "diagnoseinformation",
+      "diagnose info",
+      "diagnoseinfo",
+      "diagnose oplysninger",
+      "diagnoseoplysninger",
+      "information om",
+      "info om",
+    ])
+  ) {
+    return wantsDeep ? "diagnosis_info_deep" : "diagnosis_info";
+  }
+
+  if (includesAny(["hvad er", "forklar", "definition", "what is", "explain"])) {
+    return wantsDeep ? "definition_deep" : "definition";
+  }
+
+  return wantsDeep ? "theory_deep" : "theory";
+}
+
+function takeLocalTextLines(value, limit = 5) {
+  return toLocalTextLines(value).slice(0, limit);
+}
+
+function formatLimitedLocalDiagnosisBlock(title, value, bullet = false, limit = 5) {
+  const lines = takeLocalTextLines(value, limit);
+
+  if (lines.length === 0) {
+    return "";
+  }
+
+  return [
+    title,
+    ...lines.map((line) => (bullet ? `- ${line}` : line)),
+  ].join("\n");
+}
+
+function findLongDiagnosisValue(longView, patterns, usedKeys = new Set()) {
+  const entries = Object.entries(longView || {});
+  const match = entries.find(
+    ([key]) => !usedKeys.has(key) && diagnosisKeyMatches(key, patterns)
+  );
+
+  if (!match) {
+    return null;
+  }
+
+  usedKeys.add(match[0]);
+  return {
+    key: match[0],
+    value: match[1],
+  };
+}
+
+function pushPreferredLongBlock(blocks, longView, title, patterns, usedKeys, bullet = false, limit = 10) {
+  const match = findLongDiagnosisValue(longView, patterns, usedKeys);
+
+  if (!match) {
+    return false;
+  }
+
+  const block = formatLimitedLocalDiagnosisBlock(title, match.value, bullet, limit);
+
+  if (!block) {
+    return false;
+  }
+
+  blocks.push(block, "");
+  return true;
+}
+
 function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
   const shortView = entry?.kort_visning || {};
   const longView = entry?.lang_visning || {};
-  const text = normalizeDiagnosisPhrase(message);
-  const wantsDeep =
-    responseStyle === "Dyb" ||
-    text.includes("dyb") ||
-    text.includes("uddyb") ||
-    text.includes("grundig");
+  const localIntent = getLocalDiagnosisTheoryIntent(message, responseStyle);
+  const wantsDeep = localIntent.endsWith("_deep");
 
   const title = entry?.navn || entry?.fuld_navn || entry?.id || "Diagnose";
   const audienceLine =
@@ -1321,6 +1403,115 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
         : "Fagligt niveau: lærer — praksisnært, direkte og anvendeligt i morgen.";
 
   const blocks = [String(title).toUpperCase(), audienceLine, ""];
+
+  if (localIntent.startsWith("definition")) {
+    const what = formatLimitedLocalDiagnosisBlock(
+      "Kort forklaring",
+      shortView.hvad_er_det || entry?.hvad_er_det || entry?.beskrivelse,
+      false,
+      wantsDeep ? 5 : 2
+    );
+    if (what) blocks.push(what, "");
+
+    const signs = formatLimitedLocalDiagnosisBlock(
+      "I hverdagen kan det fx ses som",
+      shortView.hvordan_viser_det_sig || entry?.hvordan_viser_det_sig || entry?.tegn,
+      true,
+      wantsDeep ? 6 : 3
+    );
+    if (signs) blocks.push(signs, "");
+
+    const adult = formatLimitedLocalDiagnosisBlock(
+      role === "Forælder" ? "Det hjælper ofte at" : "I praksis hjælper det ofte at",
+      shortView.hvad_kan_den_voksne_gore || entry?.hvad_kan_den_voksne_gore,
+      true,
+      wantsDeep ? 6 : 3
+    );
+    if (adult) blocks.push(adult, "");
+
+    blocks.push(
+      "Kort sagt: Se vanskeligheden som et støttebehov, ikke som dovenskab eller dårlig vilje."
+    );
+
+    return blocks.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  if (localIntent.startsWith("diagnosis_info")) {
+    const usedKeys = new Set();
+
+    const what = formatLocalDiagnosisBlock(
+      "Hvad er det?",
+      shortView.hvad_er_det || entry?.hvad_er_det || entry?.beskrivelse,
+      false
+    );
+    if (what) blocks.push(what, "");
+
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Definition og typiske symptomer",
+      ["definition", "typiske symptomer", "symptom", "kendetegn", "hovedomraader"],
+      usedKeys,
+      false,
+      wantsDeep ? 18 : 10
+    );
+
+    if (!wantsDeep) {
+      const signs = formatLimitedLocalDiagnosisBlock(
+        "Typisk ser man fx",
+        shortView.hvordan_viser_det_sig || entry?.hvordan_viser_det_sig || entry?.tegn,
+        true,
+        5
+      );
+      if (signs) blocks.push(signs, "");
+    }
+
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Diagnoseprocessen",
+      ["diagnose", "diagnoseproces", "udredning", "vurdering", "dsm"],
+      usedKeys,
+      false,
+      wantsDeep ? 14 : 7
+    );
+
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Vigtigt at skille fra",
+      ["skille", "differential", "andet end", "komorbid", "overlap"],
+      usedKeys,
+      true,
+      wantsDeep ? 10 : 5
+    );
+
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Støtte og behandling",
+      ["behandling", "stoette", "hjaelp", "ressourcer", "strategi"],
+      usedKeys,
+      false,
+      wantsDeep ? 14 : 7
+    );
+
+    if (blocks.length <= 4) {
+      const adult = formatLimitedLocalDiagnosisBlock(
+        role === "Forælder" ? "Hvad kan den voksne gøre?" : "Hvad kan læreren gøre?",
+        shortView.hvad_kan_den_voksne_gore || entry?.hvad_kan_den_voksne_gore,
+        true,
+        wantsDeep ? 8 : 5
+      );
+      if (adult) blocks.push(adult, "");
+    }
+
+    blocks.push(
+      "Vigtigt: CDA kan forklare mønstre og støttebehov, men stiller ikke diagnose."
+    );
+
+    return blocks.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
 
   const what = formatLocalDiagnosisBlock(
     "Hvad er det?",
@@ -1351,45 +1542,57 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
   if (adult) blocks.push(adult, "");
 
   if (wantsDeep) {
-    const preferredKeys = [
-      "hvad_er",
-      "definition",
-      "typiske_symptomer",
-      "diagnoseprocessen",
-      "aarsager_og_risikofaktorer",
-      "behandling_og_stoette",
-    ];
+    const usedKeys = new Set();
 
-    const entries = Object.entries(longView);
-    const orderedEntries = [
-      ...preferredKeys
-        .map((key) => entries.find(([entryKey]) => diagnosisKeyMatches(entryKey, [key])))
-        .filter(Boolean),
-      ...entries,
-    ];
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Hvad er det fagligt?",
+      ["hvad er", "definition", "hovedomraader", "intro"],
+      usedKeys,
+      false,
+      14
+    );
 
-    const used = new Set();
-    let added = 0;
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Typiske symptomer og mønstre",
+      ["typiske symptomer", "symptom", "kendetegn", "viser sig"],
+      usedKeys,
+      false,
+      16
+    );
 
-    for (const [key, value] of orderedEntries) {
-      if (used.has(key) || added >= 5) {
-        continue;
-      }
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Når adfærden bliver misforstået",
+      ["misforstaa", "myter", "tolket forkert"],
+      usedKeys,
+      false,
+      12
+    );
 
-      const block = formatLocalDiagnosisBlock(
-        String(key || "")
-          .replace(/_/g, " ")
-          .replace(/\b\w/g, (letter) => letter.toUpperCase()),
-        value,
-        Array.isArray(value)
-      );
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Årsager og risikofaktorer",
+      ["aarsag", "risiko", "saarbarhed", "neurobiologi"],
+      usedKeys,
+      false,
+      12
+    );
 
-      if (block) {
-        blocks.push(block, "");
-        used.add(key);
-        added += 1;
-      }
-    }
+    pushPreferredLongBlock(
+      blocks,
+      longView,
+      "Behandling og støtte",
+      ["behandling", "stoette", "hjaelp", "ressourcer"],
+      usedKeys,
+      false,
+      14
+    );
   }
 
   blocks.push(
