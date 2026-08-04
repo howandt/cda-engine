@@ -5294,21 +5294,36 @@ try {
       throw new Error("Specialistpanelet indeholder ingen specialister");
     }
 
+    const specialistAngleInstructions = [
+      activeCaseInstructions,
+      hasActiveCaseContext(activeCaseContext)
+        ? "Svar på den aktive sag, ikke som et nyt generelt spørgsmål.": "",
+      "Når brugeren spørger 'hvad siger psykologen?', skal svaret være en psykologvinkel på den beskrevne sag — ikke en besked om, at psykologens vurdering mangler.",
+      "Brug ikke formuleringer som 'Hvis du beskriver barnet kort...' når active_case_context allerede indeholder sagen.",
+      "Giv en konkret, lærer-nær specialistvinkel i gammel Heidi-stil: hvad barnet prøver/kæmper med, hvad den voksne skal forstå, hvad der virker i praksis, hvad læreren kan gøre i morgen, og hvornår team/PPR bør observere mere.",
+      "Ved psykologvinkel skal du som udgangspunkt bruge overskrifterne 'Psykologens vurdering:' og 'Psykologens startforslag:'.",
+      "Brug korte punkter med praktiske formuleringer, fx ro, relation, forudsigelighed, følelseskort, konkret ros og relationel reparation efter konflikt, når det passer til den aktive sag.",
+      "Gør ikke svaret til diagnose. Beskriv støttebehov og hypoteser forsigtigt.",
+    ].filter(Boolean).join("\n");
+
     const specialistInstructions = [
       heidiPrompt,
       "",
       audienceInstructions,
       "",
+      specialistAngleInstructions,
+      "",
       "LOKALT CDA-SPECIALISTPANEL",
       "Specialistpanelet er kun aktiveret, fordi brugeren udtrykkeligt har bedt om det.",
       "Gennemgå hele det kompakte specialistindex og vælg 1-3 relevante specialister ud fra brugerens konkrete beskrivelse, specialisternes keywords og deres fagområder.",
+      "Hvis active_case_context er vedlagt, skal udvælgelsen baseres på både den aktive sag og brugerens nye besked.",
       "Vælg højst 3 specialister. Vælg komplementære faglige perspektiver, når det giver reel værdi, så barnet vurderes bredt og ikke kun gennem en kendt diagnose eller ét fagområde. Skab ikke kunstig bredde, hvis færre perspektiver er tilstrækkelige.",
       "Hver valgt specialist må kun bidrage inden for eget fagområde. CDA skal samle perspektiverne i én praktisk og sammenhængende vurdering frem for tre løsrevne svar.",
       "En kendt diagnose er kontekst, ikke facit. Beskriv relevante mønstre og alternative forklaringer forsigtigt, men sig aldrig, at en diagnose eller komorbiditet er fundet, og foreslå ikke en konkret ny diagnose ud fra en kort beskrivelse.",
       "Hvis observationerne ligger tydeligt uden for det kendte mønster eller kræver egentlig vurdering, anbefal relevante observationer og inddragelse af PPR, teamet eller en relevant specialist. Brug ikke formuleringen 'menneskelig fagperson'.",
       "Giv ingen medicinordination eller juridisk afgørelse.",
       "Svaret skal være dynamisk, rollebaseret og direkte anvendeligt. Vis ikke specialistindex, interne ids, keywords eller udvælgelseslogik.",
-      "I normal kort drift: giv højst 3 konkrete handlinger og undgå generiske tilbud om mere hjælp. Et konkret fagligt opfølgende spørgsmål er tilladt, hvis det er nødvendigt for at bringe sagen videre.",
+      "I normal kort drift: giv højst 3 konkrete handlinger og undgå generiske tilbud om mere hjælp. Et konkret fagligt opfølgende spørgsmål er kun tilladt, hvis active_case_context ikke rækker til at svare konkret.",
       `AKTUEL SVARSTIL: ${response_style}`,
       response_style === "Kort"
         ? "Svar kort og direkte."
@@ -5318,12 +5333,14 @@ try {
     ].join("\n");
 
     const specialistInput = [
-      "BRUGERENS SPØRGSMÅL:",
+      buildActiveCaseContextBlock(activeCaseContext),
+      "",
+      "BRUGERENS NYE BESKED:",
       message,
       "",
       "KOMPAKT SPECIALISTINDEX:",
       specialistPanel.indexText,
-    ].join("\n");
+    ].filter((part) => String(part || "").trim()).join("\n");
 
     const response = await openai.responses.create({
       model: "gpt-5.4-mini",
