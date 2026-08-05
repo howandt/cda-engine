@@ -2549,6 +2549,123 @@ function getRichestCaseById(caseId) {
   )[0];
 }
 
+
+function getAllRichestLocalCases() {
+  const casesDir = path.join(
+    process.cwd(),
+    "public",
+    "CDA",
+    "cases"
+  );
+
+  if (!fs.existsSync(casesDir)) return [];
+
+  const byId = new Map();
+  const files = fs
+    .readdirSync(casesDir)
+    .filter(
+      (file) =>
+        file.toLowerCase().endsWith(".json") &&
+        !file.toLowerCase().includes("index")
+    );
+
+  const richnessScore = (item) =>
+    [
+      item.problem,
+      item.løsning,
+      item.tiltag,
+      item.resultat,
+      item.refleksion,
+      item.barnets_oplevelse,
+    ].reduce(
+      (total, value) => total + String(value || "").trim().length,
+      0
+    );
+
+  for (const file of files) {
+    const parsed = readJsonFile(
+      path.join(casesDir, file),
+      `Casefil kunne ikke læses: ${file}`
+    );
+
+    const fileCases = Array.isArray(parsed)
+      ? parsed
+      : Array.isArray(parsed.cases)
+        ? parsed.cases
+        : [];
+
+    for (const item of fileCases) {
+      const id = String(item.id || "").toLowerCase().trim();
+      if (!id) continue;
+
+      const existing = byId.get(id);
+      if (!existing || richnessScore(item) > richnessScore(existing)) {
+        byId.set(id, item);
+      }
+    }
+  }
+
+  return Array.from(byId.values());
+}
+
+function getActiveLocalCaseFromContext(activeCaseContext) {
+  if (!hasActiveCaseContext(activeCaseContext)) return null;
+
+  const contextText = [
+    activeCaseContext.summary,
+    activeCaseContext.known_context,
+    activeCaseContext.last_user_message,
+    activeCaseContext.last_heidi_reply,
+    activeCaseContext.last_guidance_summary,
+    ...(Array.isArray(activeCaseContext.used_data_sources)
+      ? activeCaseContext.used_data_sources
+      : []),
+  ].filter(Boolean).join("\n");
+
+  const idMatch = contextText.match(/\bcase-[a-z0-9-]+\b/i);
+  if (idMatch?.[0]) {
+    const byId = getRichestCaseById(idMatch[0]);
+    if (byId) return byId;
+  }
+
+  const allCases = getAllRichestLocalCases();
+  const titleCandidates = [];
+  const boldMatches = [...String(contextText || "").matchAll(/\*\*([^*]{3,120})\*\*/g)];
+
+  for (const match of boldMatches) {
+    const value = String(match?.[1] || "").trim();
+    if (!value) continue;
+    if (/^(problem|tema|barnets oplevelse|typisk fejl|løsning|loesning|tiltag|resultat|refleksion|tilbage)/i.test(value)) continue;
+    titleCandidates.push(value);
+  }
+
+  for (const line of String(contextText || "").split(/\n+/)) {
+    const cleaned = line.replace(/^#+\s*/, "").replace(/^[-–|\s]+/, "").trim();
+    if (cleaned.length >= 4 && cleaned.length <= 120) titleCandidates.push(cleaned);
+  }
+
+  const normalizedCandidates = new Set(
+    titleCandidates.map((candidate) => normalizeDiagnosisPhrase(candidate)).filter(Boolean)
+  );
+
+  for (const caseItem of allCases) {
+    const title = normalizeDiagnosisPhrase(caseItem.titel || caseItem.title || "");
+    if (title && normalizedCandidates.has(title)) return caseItem;
+  }
+
+  const lastCaseSearch = String(activeCaseContext.last_user_message || "").trim();
+  if (lastCaseSearch && isDirectLocalCaseRequest(lastCaseSearch)) {
+    const reconstructed = findBestDirectLocalCase(lastCaseSearch);
+    if (reconstructed?.caseData) return reconstructed.caseData;
+  }
+
+  return null;
+}
+
+function resolveActiveLocalCase(pendingAction, activeCaseContext) {
+  return getActiveLocalCaseFromSession(pendingAction) || getActiveLocalCaseFromContext(activeCaseContext);
+}
+
 function findBestOtherExperienceCase(message) {
   const searchResult = getSemanticSearch({ search: message });
   const bestMatch = searchResult?.results?.[0];
@@ -2821,7 +2938,16 @@ function isReturnToActiveCaseRequest(message) {
     "ga tilbage til casen",
     "gå tilbage til casen",
     "vis casen igen",
+    "vis mig casen igen",
+    "vis den case igen",
+    "vis samme case igen",
+    "samme case igen",
     "vis aktiv case",
+    "vis aktive case",
+    "vis den aktive case",
+    "vis den aktive case igen",
+    "hent aktiv case",
+    "hent den aktive case",
     "aktiv case",
     "tilbage til sagen",
     "vis sagen igen",
@@ -6569,7 +6695,44 @@ try {
     });
   }
 
-  const activeLocalCaseBeforeDirectCaseSearch = getActiveLocalCaseFromSession(pending_action);
+  const activeLocalCaseBeforeDirectCaseSearch = resolveActiveLocalCase(pending_action, activeCaseContext);
+
+  if (activeLocalCaseBeforeDirectCaseSearch && isReturnToActiveCaseRequest(message)) {
+    const reply = buildReturnToActiveCaseReply(activeLocalCaseBeforeDirectCaseSearch, activeCaseContext);
+    const usedTools = ["localReturnToActiveCase"];
+    const toolDebug = [
+      {
+        name: "localReturnToActiveCase",
+        selected_case_id: activeLocalCaseBeforeDirectCaseSearch?.id || null,
+        source: "active_local_case_before_case_search",
+        token_policy: "0_tokens_local_response",
+        routing: "returned_before_direct_case_search",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCaseBeforeDirectCaseSearch, pending_action),
+    });
+  }
 
   if (activeLocalCaseBeforeDirectCaseSearch && isLocalCaseNavigationRequest(message)) {
     const navResult = buildLocalCaseNavigationResult(pending_action, message);
@@ -6681,7 +6844,7 @@ try {
     });
   }
 
-  const activeLocalCase = getActiveLocalCaseFromSession(pending_action);
+  const activeLocalCase = resolveActiveLocalCase(pending_action, activeCaseContext);
 
   if ((activeLocalCase || hasActiveCaseContext(activeCaseContext)) && isReturnToActiveCaseRequest(message)) {
     const reply = buildReturnToActiveCaseReply(activeLocalCase, activeCaseContext);
