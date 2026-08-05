@@ -3404,17 +3404,145 @@ function getTemplates(args = {}) {
   };
 }
 
+function humanizeTemplateSlug(value) {
+  return String(value || "")
+    .replace(/\.md$/i, "")
+    .replace(/^\d+[-_]/, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase())
+    .trim();
+}
+
+function collectMarkdownTemplateFiles(directory, templatesRoot, projectRoot) {
+  if (!fs.existsSync(directory)) {
+    return [];
+  }
+
+  const entries = fs.readdirSync(directory, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const entryPath = path.join(directory, entry.name);
+
+    if (entry.isDirectory()) {
+      files.push(...collectMarkdownTemplateFiles(entryPath, templatesRoot, projectRoot));
+      continue;
+    }
+
+    if (!entry.isFile() || path.extname(entry.name).toLowerCase() !== ".md") {
+      continue;
+    }
+
+    const relativeFromTemplates = path.relative(templatesRoot, entryPath);
+    const relativeFromProject = path.relative(projectRoot, entryPath).split(path.sep).join("/");
+    const parts = relativeFromTemplates.split(path.sep);
+    const folder = parts.length > 1 ? parts[0] : "standalone";
+    const fileBase = path.basename(entry.name, ".md");
+
+    let firstHeading = "";
+    try {
+      const markdown = fs.readFileSync(entryPath, "utf8");
+      const headingMatch = markdown.match(/^#\s+(.+)$/m);
+      firstHeading = headingMatch?.[1]?.trim() || "";
+    } catch {
+      firstHeading = "";
+    }
+
+    const title = firstHeading || humanizeTemplateSlug(fileBase);
+    const categoryTitle = folder === "standalone"
+      ? "Selvstændige skabeloner"
+      : humanizeTemplateSlug(folder);
+    const plainWords = [
+      folder,
+      fileBase,
+      title,
+      categoryTitle,
+      relativeFromProject,
+    ]
+      .join(" ")
+      .replace(/[-_/\.]+/g, " ")
+      .split(/\s+/)
+      .map((word) => word.trim())
+      .filter((word) => word.length >= 3);
+
+    const extraKeywords = [];
+    const normalizedIdentity = normalizeTemplateSearch(`${folder} ${fileBase} ${title}`);
+
+    if (normalizedIdentity.includes("observation") || normalizedIdentity.includes("indsatslog")) {
+      extraKeywords.push(
+        "observation",
+        "observationslog",
+        "indsatslog",
+        "skabelon til observation",
+        "vis skabelon til observation",
+        "PPR dokumentation",
+        "dokumentation",
+        "før under efter",
+        "foer under efter"
+      );
+    }
+
+    if (normalizedIdentity.includes("kommunikationslog")) {
+      extraKeywords.push(
+        "kommunikationslog",
+        "skole hjem",
+        "skole hjem log",
+        "kontaktbog",
+        "hjem skole"
+      );
+    }
+
+    if (normalizedIdentity.includes("skolevaegering")) {
+      extraKeywords.push(
+        "skolevægring",
+        "skolevaegering",
+        "skolefravær",
+        "skolefravaer",
+        "fravær",
+        "fremmøde",
+        "tilbage til skole"
+      );
+    }
+
+    files.push({
+      id: relativeFromProject.replace(/\.md$/i, ""),
+      title,
+      category: categoryTitle,
+      category_id: folder,
+      description: title,
+      content_file: relativeFromProject,
+      search_keywords: Array.from(new Set([...plainWords, ...extraKeywords])),
+      command_triggers: [title, fileBase, relativeFromProject],
+      source: "templates_folder_scan",
+    });
+  }
+
+  return files;
+}
+
 function getTemplateFiles() {
+  const projectRoot = path.resolve(process.cwd());
+  const templatesRoot = path.join(projectRoot, "templates");
+  const scannedTemplates = collectMarkdownTemplateFiles(
+    templatesRoot,
+    templatesRoot,
+    projectRoot
+  );
+
   const filePath = path.join(
     process.cwd(),
     "data",
     "CDA_TemplateFiles.json"
   );
 
-  const registry = readJsonFile(
-    filePath,
-    "data/CDA_TemplateFiles.json blev ikke fundet"
-  );
+  let registry = {};
+
+  if (fs.existsSync(filePath)) {
+    registry = readJsonFile(
+      filePath,
+      "data/CDA_TemplateFiles.json blev ikke fundet"
+    );
+  }
 
   const categories = Array.isArray(registry?.categories)
     ? registry.categories
@@ -3454,8 +3582,25 @@ function getTemplateFiles() {
     source: "template_files_registry",
   }));
 
-  const templates = [...categoryTemplates, ...standaloneTemplates]
+  const registryTemplates = [...categoryTemplates, ...standaloneTemplates]
     .filter((template) => template.id && template.title && template.content_file);
+
+  const seenContentFiles = new Set();
+  const templates = [...scannedTemplates, ...registryTemplates]
+    .filter((template) => {
+      const contentFile = String(template?.content_file || "").trim();
+
+      if (!template?.id || !template?.title || !contentFile) {
+        return false;
+      }
+
+      if (seenContentFiles.has(contentFile)) {
+        return false;
+      }
+
+      seenContentFiles.add(contentFile);
+      return true;
+    });
 
   return {
     success: true,
