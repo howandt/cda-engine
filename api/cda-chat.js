@@ -2826,6 +2826,164 @@ function isDirectSpecialistPanelRequest(message) {
   );
 }
 
+function limitSpecialistText(value, max = 260) {
+  const text = formatLocalCaseValue(value)
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (text.length <= max) {
+    return text;
+  }
+
+  return `${text.slice(0, max).trim()}…`;
+}
+
+function getRequestedSpecialistAngle(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (text.includes("psykolog")) {
+    return "psychologist";
+  }
+
+  if (text.includes("ppr")) {
+    return "ppr";
+  }
+
+  return "specialists";
+}
+
+function buildCompactSpecialistCaseContext(caseData, activeContext) {
+  if (caseData) {
+    const lines = [
+      "AKTIV CASE — KORT GRUNDLAG",
+      `id: ${limitSpecialistText(caseData.id, 80) || "-"}`,
+      `titel: ${limitSpecialistText(caseData.titel || caseData.title, 120) || "-"}`,
+    ];
+
+    const fields = [
+      ["alder", caseData.alder || caseData.age, 40],
+      ["diagnose/spor", caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser, 120],
+      ["tema", caseData.tema || caseData.theme || caseData.kategori, 160],
+      ["problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse, 360],
+      ["barnets oplevelse", caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice, 220],
+      ["typisk fejl", caseData.typisk_fejl || caseData.mistakes, 220],
+      ["løsning", caseData.løsning || caseData.loesning || caseData.solution, 300],
+      ["tiltag", caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer || caseData.tools, 300],
+    ];
+
+    for (const [label, value, max] of fields) {
+      const text = limitSpecialistText(value, max);
+      if (text) {
+        lines.push(`${label}: ${text}`);
+      }
+    }
+
+    return lines.join("\n");
+  }
+
+  if (hasActiveCaseContext(activeContext)) {
+    return [
+      "AKTIV SAG — KORT GRUNDLAG",
+      activeContext.summary ? `sag: ${limitSpecialistText(activeContext.summary, 420)}` : "",
+      activeContext.known_context ? `kontekst: ${limitSpecialistText(activeContext.known_context, 220)}` : "",
+      activeContext.last_user_message ? `sidste brugerbesked: ${limitSpecialistText(activeContext.last_user_message, 260)}` : "",
+      activeContext.last_guidance_summary ? `seneste råd: ${limitSpecialistText(activeContext.last_guidance_summary, 260)}` : "",
+    ].filter(Boolean).join("\n");
+  }
+
+  return "";
+}
+
+function getTargetedSpecialistPanel(angle, message) {
+  const panelResult = getSpecialistPanel();
+  const specialists = Array.isArray(panelResult?.data?.specialists)
+    ? panelResult.data.specialists
+    : [];
+
+  const text = normalizeDiagnosisPhrase(message);
+  const words = new Set(text.split(" ").filter((word) => word.length >= 4));
+
+  const anglePatterns = {
+    psychologist: ["psykolog", "psykologisk", "psykologi", "ppr"],
+    ppr: ["ppr", "skolepsykolog", "raadgivning", "rådgivning", "observation", "indstilling"],
+    specialists: [],
+  };
+
+  const specialistText = (specialist) => normalizeDiagnosisPhrase([
+    specialist?.id,
+    specialist?.name,
+    specialist?.category,
+    specialist?.group,
+    specialist?.function,
+    specialist?.disclaimer,
+    ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+  ].filter(Boolean).join(" "));
+
+  const scored = specialists.map((specialist, index) => {
+    const haystack = specialistText(specialist);
+    let score = 0;
+
+    for (const pattern of anglePatterns[angle] || []) {
+      if (haystack.includes(normalizeDiagnosisPhrase(pattern))) {
+        score += 40;
+      }
+    }
+
+    for (const word of words) {
+      if (haystack.includes(word)) {
+        score += 3;
+      }
+    }
+
+    return { specialist, score, index };
+  }).sort((a, b) => b.score - a.score || a.index - b.index);
+
+  const maxCount = angle === "specialists" ? 3 : 1;
+  let selected = scored.filter((item) => item.score > 0).slice(0, maxCount);
+
+  if (selected.length === 0 && specialists.length > 0) {
+    selected = scored.slice(0, maxCount);
+  }
+
+  const cleanValue = (value, max = 160) =>
+    limitSpecialistText(value, max)
+      .replace(/[|\r\n]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const rows = selected.map(({ specialist }) => {
+    const keywords = Array.isArray(specialist?.keywords)
+      ? specialist.keywords.slice(0, 8).join(", ")
+      : "";
+
+    return [
+      cleanValue(specialist?.id, 80),
+      cleanValue(specialist?.name, 120),
+      cleanValue(specialist?.group, 120),
+      cleanValue(specialist?.function, 220),
+      cleanValue(keywords, 180),
+    ].join("|");
+  });
+
+  return {
+    specialistIds: selected
+      .map(({ specialist }) => String(specialist?.id || ""))
+      .filter(Boolean),
+    specialistSummaries: selected
+      .map(({ specialist }) => ({
+        id: String(specialist?.id || ""),
+        name: String(specialist?.name || ""),
+        group: String(specialist?.group || ""),
+        function: String(specialist?.function || ""),
+      }))
+      .filter((specialist) => specialist.id),
+    indexText: [
+      "KOLONNER:id|navn|gruppe|funktion|keywords",
+      ...rows,
+    ].join("\n"),
+  };
+}
+
 function getCompactSpecialistPanelIndex() {
   const panelResult = getSpecialistPanel();
   const specialists = Array.isArray(panelResult?.data?.specialists)
@@ -6265,65 +6423,40 @@ try {
   const heidiPrompt = readHeidiPrompt();
 
   if (isDirectSpecialistPanelRequest(message)) {
-    const specialistPanel = getCompactSpecialistPanelIndex();
-    const activeLocalCaseContextBlock = activeLocalCase
-      ? buildLocalCaseSpecialistContextBlock(activeLocalCase)
-      : "";
-    const specialistCaseContextBlock = activeLocalCaseContextBlock || buildActiveCaseContextBlock(activeCaseContext);
+    const requestedAngle = getRequestedSpecialistAngle(message);
+    const specialistPanel = getTargetedSpecialistPanel(requestedAngle, message);
+    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
 
     if (specialistPanel.specialistIds.length === 0) {
       throw new Error("Specialistpanelet indeholder ingen specialister");
     }
 
-    const specialistAngleInstructions = [
-      activeCaseInstructions,
-      activeLocalCase
-        ? "Svar på den aktive lokale case, ikke som et nyt generelt spørgsmål. Brug casefelterne som konkret datagrundlag."
-        : "",
-      !activeLocalCase && hasActiveCaseContext(activeCaseContext)
-        ? "Svar på den aktive sag, ikke som et nyt generelt spørgsmål."
-        : "",
-      "Når brugeren spørger 'hvad siger psykologen?', skal svaret være en psykologvinkel på den beskrevne sag — ikke en besked om, at psykologens vurdering mangler.",
-      "Brug ikke formuleringer som 'Hvis du beskriver barnet kort...' når active_case_context allerede indeholder sagen.",
-      "Giv en konkret, lærer-nær specialistvinkel i gammel Heidi-stil: hvad barnet prøver/kæmper med, hvad den voksne skal forstå, hvad der virker i praksis, hvad læreren kan gøre i morgen, og hvornår team/PPR bør observere mere.",
-      "Ved psykologvinkel skal du som udgangspunkt bruge overskrifterne 'Psykologens vurdering:' og 'Psykologens startforslag:'.",
-      "Brug korte punkter med praktiske formuleringer, fx ro, relation, forudsigelighed, følelseskort, konkret ros og relationel reparation efter konflikt, når det passer til den aktive sag.",
-      "Gør ikke svaret til diagnose. Beskriv støttebehov og hypoteser forsigtigt.",
-    ].filter(Boolean).join("\n");
+    const headingInstruction =
+      requestedAngle === "psychologist"
+        ? "Brug præcis disse markdown-overskrifter: **Psykologens vurdering** og **Psykologens startforslag**."
+        : requestedAngle === "ppr"
+          ? "Brug præcis disse markdown-overskrifter: **PPR-vinkel** og **Næste observationer**."
+          : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **Næste skridt**.";
 
     const specialistInstructions = [
-      heidiPrompt,
-      "",
-      audienceInstructions,
-      "",
-      specialistAngleInstructions,
-      "",
-      "LOKALT CDA-SPECIALISTPANEL",
-      "Specialistpanelet er kun aktiveret, fordi brugeren udtrykkeligt har bedt om det.",
-      "Gennemgå hele det kompakte specialistindex og vælg 1-3 relevante specialister ud fra brugerens konkrete beskrivelse, specialisternes keywords og deres fagområder.",
-      "Hvis en aktiv lokal case eller active_case_context er vedlagt, skal udvælgelsen baseres på både den aktive sag og brugerens nye besked.",
-      "Vælg højst 3 specialister. Vælg komplementære faglige perspektiver, når det giver reel værdi, så barnet vurderes bredt og ikke kun gennem en kendt diagnose eller ét fagområde. Skab ikke kunstig bredde, hvis færre perspektiver er tilstrækkelige.",
-      "Hver valgt specialist må kun bidrage inden for eget fagområde. CDA skal samle perspektiverne i én praktisk og sammenhængende vurdering frem for tre løsrevne svar.",
-      "En kendt diagnose er kontekst, ikke facit. Beskriv relevante mønstre og alternative forklaringer forsigtigt, men sig aldrig, at en diagnose eller komorbiditet er fundet, og foreslå ikke en konkret ny diagnose ud fra en kort beskrivelse.",
-      "Hvis observationerne ligger tydeligt uden for det kendte mønster eller kræver egentlig vurdering, anbefal relevante observationer og inddragelse af PPR, teamet eller en relevant specialist. Brug ikke formuleringen 'menneskelig fagperson'.",
-      "Giv ingen medicinordination eller juridisk afgørelse.",
-      "Svaret skal være dynamisk, rollebaseret og direkte anvendeligt. Vis ikke specialistindex, interne ids, keywords eller udvælgelseslogik.",
-      "I normal kort drift: giv højst 3 konkrete handlinger og undgå generiske tilbud om mere hjælp. Et konkret fagligt opfølgende spørgsmål er kun tilladt, hvis active_case_context ikke rækker til at svare konkret.",
-      `AKTUEL SVARSTIL: ${response_style}`,
-      response_style === "Kort"
-        ? "Svar kort og direkte."
-        : response_style === "Dyb"
-          ? "Uddyb de relevante specialistperspektiver og deres fælles faglige betydning uden unødvendig gentagelse."
-          : "Giv en kort tværfaglig forklaring og konkrete næste skridt.",
+      "Du er Heidi i CDA Engine.",
+      "Svar kun, fordi brugeren selv har bedt om specialistvinkel på den aktive case/sag.",
+      "Brug den aktive case/sag som konkret grundlag. Opfind ikke manglende casefelter.",
+      "Stil ikke diagnose. Giv ikke medicinråd. Beskriv kun støttebehov, mønstre og næste faglige skridt.",
+      "Svar lærer-nært, praktisk og kort. Højst 3 konkrete handlinger.",
+      headingInstruction,
+      response_style === "Dyb"
+        ? "Svar lidt mere udførligt, men uden lange forklaringer."
+        : "Svar kort og direkte.",
     ].join("\n");
 
     const specialistInput = [
       specialistCaseContextBlock,
       "",
-      "BRUGERENS NYE BESKED:",
+      "BRUGERENS BESKED:",
       message,
       "",
-      "KOMPAKT SPECIALISTINDEX:",
+      "RELEVANT LOKAL SPECIALISTDATA:",
       specialistPanel.indexText,
     ].filter((part) => String(part || "").trim()).join("\n");
 
@@ -6336,14 +6469,14 @@ try {
       input: specialistInput,
       max_output_tokens:
         response_style === "Dyb"
-          ? 1100
+          ? 650
           : response_style === "Kort"
-            ? 650
-            : 850,
+            ? 320
+            : 450,
       text: {
         format: {
           type: "json_schema",
-          name: "cda_specialist_panel_response",
+          name: "cda_targeted_specialist_response",
           strict: true,
           schema: {
             type: "object",
@@ -6381,7 +6514,7 @@ try {
           : []
         ).filter((id) => validSpecialistIds.has(String(id)))
       )
-    ).slice(0, 3);
+    ).slice(0, requestedAngle === "specialists" ? 3 : 1);
 
     const reply = String(panelResponse.reply || "").trim();
 
@@ -6398,7 +6531,7 @@ try {
     const usageByCall = [
       {
         call: 1,
-        phase: "specialist_panel_local_routing",
+        phase: "targeted_specialist_on_active_case",
         tools_returned_to_model: [],
         input_tokens: inputTokens,
         output_tokens: outputTokens,
@@ -6406,10 +6539,11 @@ try {
       },
     ];
 
-    const usedTools = ["localSpecialistPanelRouting"];
+    const usedTools = ["targetedLocalSpecialistRouting"];
     const toolDebug = [
       {
-        name: "localSpecialistPanelRouting",
+        name: "targetedLocalSpecialistRouting",
+        requested_angle: requestedAngle,
         selected_specialists: selectedSpecialistIds.map((id) =>
           specialistPanel.specialistSummaries.find(
             (specialist) => specialist.id === id
