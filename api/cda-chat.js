@@ -2648,6 +2648,9 @@ function isLocalCaseFollowupRequest(message) {
     "hvad kan man goere",
     "hvad kan man gøre",
     "hvad blev resultatet",
+    "hvad skete bagefter",
+    "skete der bagefter",
+    "bagefter",
     "resultat",
     "refleksion",
     "hvad kan jeg laere",
@@ -2675,10 +2678,17 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
   const text = normalizeDiagnosisPhrase(message);
   const title = formatLocalCaseValue(caseData.titel || caseData.title || caseData.id || "Aktiv case");
   const lines = [title];
+  let addedLocalData = false;
 
   const add = (heading, value) => {
     const block = buildLocalCaseFieldBlock(heading, value);
-    if (block) lines.push("", block);
+    if (!block) {
+      return false;
+    }
+
+    lines.push("", block);
+    addedLocalData = true;
+    return true;
   };
 
   const problem = caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse;
@@ -2695,13 +2705,10 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
     add("Barnets oplevelse", childExperience);
   } else if (text.includes("fejl") || text.includes("gik galt")) {
     add("Typisk fejl", typicalMistake);
-  } else if (text.includes("resultat")) {
+  } else if (text.includes("resultat") || text.includes("bagefter")) {
     add("Resultat", result);
   } else if (text.includes("refleksion") || text.includes("laere") || text.includes("lære")) {
     add("Refleksion", reflection);
-    if (!reflection) {
-      add("Hvad kan du lære af casen", [problem, typicalMistake, solution, actions].filter(Boolean).join(" "));
-    }
   } else if (
     text.includes("laereren") ||
     text.includes("læreren") ||
@@ -2726,6 +2733,10 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
     add("Tiltag", actions);
     add("Resultat", result);
     add("Refleksion", reflection);
+  }
+
+  if (!addedLocalData) {
+    lines.push("", "Ingen data");
   }
 
   lines.push(
