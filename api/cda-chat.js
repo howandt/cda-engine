@@ -3689,6 +3689,9 @@ function getTemplateRequestSignals(message, templates) {
       ...(Array.isArray(template?.command_triggers)
         ? template.command_triggers
         : []),
+      ...(Array.isArray(template?.search_keywords)
+        ? template.search_keywords
+        : []),
     ];
 
     return candidates.some((candidate) =>
