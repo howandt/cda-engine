@@ -2852,6 +2852,47 @@ function getRequestedSpecialistAngle(message) {
   return "specialists";
 }
 
+
+function buildLocalPprAngleReply(caseData, activeContext) {
+  const title = formatLocalCaseValue(
+    caseData?.titel || caseData?.title || caseData?.id || "Aktiv sag"
+  );
+  const problem = limitSpecialistText(
+    caseData?.problem ||
+      caseData?.kort_beskrivelse ||
+      caseData?.description ||
+      caseData?.beskrivelse ||
+      activeContext?.summary ||
+      activeContext?.last_user_message,
+    240
+  );
+
+  const lines = [];
+
+  if (title) {
+    lines.push(`**PPR-vinkel**`, `Ud fra ${title}${problem ? `: ${problem}` : ""}`);
+  } else {
+    lines.push("**PPR-vinkel**");
+  }
+
+  lines.push(
+    "",
+    "PPR ville især se på:",
+    "- Hvad sker lige før reaktionen?",
+    "- Hvor hurtigt eskalerer det, og hvad hjælper ned igen?",
+    "- Sker mønstret hos flere voksne/timer, eller kun i én situation?",
+    "- Hvornår lykkes barnet bedre?",
+    "",
+    "**Hav klar til PPR**",
+    "- 2-3 konkrete episoder med før-under-efter.",
+    "- Hvad de voksne gjorde.",
+    "- Hvad der virkede lidt.",
+    "- Hvor ofte og hvor det sker."
+  );
+
+  return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 function buildCompactSpecialistCaseContext(caseData, activeContext) {
   if (caseData) {
     const lines = [
@@ -6424,6 +6465,35 @@ try {
 
   if (isDirectSpecialistPanelRequest(message)) {
     const requestedAngle = getRequestedSpecialistAngle(message);
+
+    if (requestedAngle === "ppr" && (activeLocalCase || hasActiveCaseContext(activeCaseContext))) {
+      const reply = buildLocalPprAngleReply(activeLocalCase, activeCaseContext);
+      const usedTools = ["localPprAngleOnActiveCase"];
+      const toolDebug = [
+        {
+          name: "localPprAngleOnActiveCase",
+          active_local_case_id: activeLocalCase?.id || null,
+          source: activeLocalCase ? "active_local_case" : "active_case_context",
+          role,
+          response_style,
+        },
+      ];
+
+      console.log("CDA værktøjskald:", {
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+      });
+
+      return res.status(200).json({
+        success: true,
+        reply,
+        model: "local",
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+        pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
+      });
+    }
+
     const specialistPanel = getTargetedSpecialistPanel(requestedAngle, message);
     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
 
