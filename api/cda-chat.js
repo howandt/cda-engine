@@ -3586,7 +3586,11 @@ function getTemplateFiles() {
     .filter((template) => template.id && template.title && template.content_file);
 
   const seenContentFiles = new Set();
-  const templates = [...scannedTemplates, ...registryTemplates]
+  // 23B.6C: Brug det samme statiske template-register som dropdownen som
+  // primær kilde. Folder-scan bevares kun som fallback for filer, der endnu
+  // ikke er registreret. Det sikrer bl.a. at kategori-keywords som
+  // "visuel dagsplan" peger på 00-overblik lokalt før OpenAI.
+  const templates = [...registryTemplates, ...scannedTemplates]
     .filter((template) => {
       const contentFile = String(template?.content_file || "").trim();
 
