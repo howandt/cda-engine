@@ -4645,6 +4645,156 @@ function buildPracticalDayPlanReply(message, language = "Dansk") {
   return [intro, "", "```text", body, "```", "", note].join("\n");
 }
 
+function isParentDayPlanMessageRequest(message) {
+  const text = normalizeTemplateSearch(message);
+
+  if (!text) {
+    return false;
+  }
+
+  const hasParentMessage = [
+    "besked til foraeldre",
+    "besked til foraeldrene",
+    "skriv til foraeldre",
+    "skriv til foraeldrene",
+    "mail til foraeldre",
+    "mail til foraeldrene",
+    "forældrebesked",
+    "foraeldrebesked",
+    "kort besked",
+    "kort skrivelse",
+    "tekst til hjemmet",
+    "skole hjem besked",
+    "skole-hjem besked",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  const hasHomeRecipient = [
+    "foraeldre",
+    "foraeldrene",
+    "forældre",
+    "forældrene",
+    "hjemmet",
+    "hjem",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  const hasDayPlan = [
+    "dagsplan",
+    "dagplan",
+    "dagsskema",
+    "visuel dagsplan",
+    "morgenrutine",
+    "aftenrutine",
+    "skole hjem dagsplan",
+    "skole-hjem dagsplan",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  return hasDayPlan && (hasParentMessage || hasHomeRecipient);
+}
+
+function getLocalCaseDisplayName(caseData) {
+  const title = formatLocalCaseValue(caseData?.titel || caseData?.title || "");
+
+  if (!title) {
+    return "eleven";
+  }
+
+  const firstWord = title.split(/\s+/).find(Boolean);
+  return firstWord || "eleven";
+}
+
+function buildParentDayPlanMessageReply(activeLocalCase = null, language = "Dansk") {
+  const studentName = getLocalCaseDisplayName(activeLocalCase);
+
+  if (language === "English") {
+    return [
+      "Here is a short copy-ready message for the parents:",
+      "",
+      "```text",
+      "Hi",
+      "",
+      `We have made a simple visual day plan for ${studentName}, so the day becomes more predictable and easier to follow.`,
+      "",
+      "At school we use short steps and small icons, for example:",
+      "👋 Arrive",
+      "🎒 Unpack bag",
+      "📚 Short task",
+      "☕ Break",
+      "📚 Work again",
+      "🍽️ Lunch",
+      "😌 Calm pause",
+      "🏁 Finish the day",
+      "",
+      "It may help to use the same type of short steps at home:",
+      "",
+      "🏠 Morning:",
+      "🛏️ Get up",
+      "🦷 Brush teeth",
+      "👕 Get dressed",
+      "🥣 Breakfast",
+      "🎒 Bag ready",
+      "🚗 Leave for school",
+      "",
+      "🏠 After school/evening:",
+      "🍎 Snack",
+      "🎮 Screen time by agreement",
+      "📚 Homework for a short time if agreed",
+      "🛁 Bath / hygiene",
+      "📖 Story or calm activity",
+      "😴 Sleep",
+      "",
+      `The aim is not to control ${studentName}, but to make transitions clearer and reduce pressure during the day.`,
+      "",
+      "Kind regards",
+      "[name]",
+      "```",
+    ].join("\n");
+  }
+
+  return [
+    "Her er en kort kopierbar besked til forældrene:",
+    "",
+    "```text",
+    "Hej",
+    "",
+    `Vi har lavet en enkel visuel dagsplan for ${studentName}, så dagen bliver mere tydelig og forudsigelig.`,
+    "",
+    "I skolen bruger vi korte trin og små ikoner, fx:",
+    "👋 Kom ind",
+    "🎒 Pakke ud",
+    "📚 Kort opgave",
+    "☕ Pause",
+    "📚 Arbejde igen",
+    "🍽️ Frokost",
+    "😌 Rolig pause",
+    "🏁 Afslutning",
+    "",
+    "Det kan måske hjælpe, hvis I bruger samme type korte trin hjemme:",
+    "",
+    "🏠 Morgen:",
+    "🛏️ Stå op",
+    "🦷 Børste tænder",
+    "👕 Tøj på",
+    "🥣 Morgenmad",
+    "🎒 Taske klar",
+    "🚗 Afsted til skole",
+    "",
+    "🏠 Efter skole/aften:",
+    "🍎 Snack",
+    "🎮 Skærmtid efter aftale",
+    "📚 Lektier i kort tid, hvis det er aftalt",
+    "🛁 Bad / hygiejne",
+    "📖 Godnathistorie eller rolig aktivitet",
+    "😴 Sove",
+    "",
+    `Formålet er ikke at styre ${studentName}, men at gøre skift mere overskuelige og mindske pres i løbet af dagen.`,
+    "",
+    "Venlig hilsen",
+    "[navn]",
+    "```",
+  ].join("\n");
+}
+
+
 function getLocalTemplateRequest(message) {
   const fileTemplateResult = getTemplateFiles();
   const legacyTemplateResult = getTemplates();
@@ -6954,6 +7104,43 @@ try {
       tools_used: usedTools,
       tool_debug: toolDebug,
       pending_action: pending_action,
+    });
+  }
+
+  if (isParentDayPlanMessageRequest(message)) {
+    const reply = buildParentDayPlanMessageReply(activeLocalCase, language);
+    const usedTools = ["localParentDayPlanMessage"];
+    const toolDebug = [
+      {
+        name: "localParentDayPlanMessage",
+        action: "build_copy_ready_parent_message_with_home_day_plan",
+        selected_case_id: activeLocalCase?.id || null,
+        token_policy: "0_tokens_local_response",
+        routing: "returned_before_local_case_followup",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
     });
   }
 
