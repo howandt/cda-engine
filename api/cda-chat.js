@@ -2852,6 +2852,35 @@ function getRequestedSpecialistAngle(message) {
   return "specialists";
 }
 
+function isLocalPprCaseAngleRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (!text.includes("ppr")) {
+    return false;
+  }
+
+  const pprPatterns = [
+    "ppr",
+    "hvad siger ppr",
+    "hvad ville ppr",
+    "hvad vil ppr",
+    "hvad ser ppr",
+    "hvad ville ppr se",
+    "hvad ville ppr kigge paa",
+    "hvad ville ppr kigge på",
+    "ppr vinkel",
+    "ppr-vinkel",
+    "ppr se",
+    "ppr spoerge",
+    "ppr spørge",
+  ];
+
+  return pprPatterns.some((pattern) => {
+    const normalizedPattern = normalizeDiagnosisPhrase(pattern);
+    return text === normalizedPattern || text.includes(normalizedPattern);
+  });
+}
+
 
 function buildLocalPprAngleReply(caseData, activeContext) {
   const title = formatLocalCaseValue(
@@ -5921,6 +5950,43 @@ try {
   }
 
   const activeLocalCase = getActiveLocalCaseFromSession(pending_action);
+
+  if (activeLocalCase && isLocalPprCaseAngleRequest(message)) {
+    const reply = buildLocalPprAngleReply(activeLocalCase, active_case_context);
+    const usedTools = ["localActiveCasePprAngle"];
+    const toolDebug = [
+      {
+        name: "localActiveCasePprAngle",
+        selected_case_id: activeLocalCase.id || null,
+        followup: message,
+        token_policy: "0_tokens_local_response",
+        routing: "returned_before_openai",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: `local_case:${activeLocalCase.id}`,
+    });
+  }
 
   if (activeLocalCase && isLocalCaseFollowupRequest(message)) {
     const reply = buildActiveLocalCaseFollowupReply(activeLocalCase, message);
