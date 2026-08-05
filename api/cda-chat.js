@@ -2598,7 +2598,7 @@ function buildDirectLocalCaseReply(caseData, bestMatch, searchText) {
 
   lines.push(
     "",
-    "Du kan spørge videre til casen, fx: hvad gjorde læreren, hvad oplevede barnet, hvad gik typisk galt, eller hvad kan jeg lære af den."
+    "Du kan skrive: næste, forrige, ny case, hvad gjorde læreren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
   );
 
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -2608,6 +2608,15 @@ function buildDirectLocalCaseReply(caseData, bestMatch, searchText) {
 function getLocalCaseSessionId(pendingAction) {
   const value = String(pendingAction || "").trim();
 
+  if (value.startsWith("local_case_nav:")) {
+    try {
+      const parsed = JSON.parse(decodeURIComponent(value.slice("local_case_nav:".length)));
+      return parsed?.id || null;
+    } catch (error) {
+      return null;
+    }
+  }
+
   if (!value.startsWith("local_case:")) {
     return null;
   }
@@ -2615,10 +2624,156 @@ function getLocalCaseSessionId(pendingAction) {
   return value.split(":").slice(1).join(":").trim() || null;
 }
 
-function getActiveLocalCaseFromSession(pendingAction) {
-  const caseId = getLocalCaseSessionId(pendingAction);
-  return caseId ? getRichestCaseById(caseId) : null;
+function encodeLocalCaseNavState(state = {}) {
+  const safeState = {
+    id: state.id || null,
+    searchText: state.searchText || "",
+    ids: Array.isArray(state.ids) ? state.ids.filter(Boolean).slice(0, 5) : [],
+    index: Number.isFinite(Number(state.index)) ? Number(state.index) : 0,
+  };
+
+  try {
+    return `local_case_nav:${encodeURIComponent(JSON.stringify(safeState))}`;
+  } catch (error) {
+    return safeState.id ? `local_case:${safeState.id}` : null;
+  }
 }
+
+function decodeLocalCaseNavState(pendingAction) {
+  const value = String(pendingAction || "").trim();
+
+  if (!value.startsWith("local_case_nav:")) {
+    const caseId = getLocalCaseSessionId(value);
+    return caseId
+      ? {
+          id: caseId,
+          searchText: "",
+          ids: [caseId],
+          index: 0,
+        }
+      : null;
+  }
+
+  try {
+    const parsed = JSON.parse(decodeURIComponent(value.slice("local_case_nav:".length)));
+    const ids = Array.isArray(parsed?.ids) ? parsed.ids.filter(Boolean).slice(0, 5) : [];
+    const id = parsed?.id || ids[0] || null;
+    const index = Math.max(0, Math.min(Number(parsed?.index || 0), Math.max(ids.length - 1, 0)));
+
+    return id
+      ? {
+          id,
+          searchText: String(parsed?.searchText || ""),
+          ids: ids.length ? ids : [id],
+          index,
+        }
+      : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function buildLocalCaseNavState(caseData, searchText, searchResult, index = 0) {
+  const ids = Array.isArray(searchResult?.results)
+    ? searchResult.results.map((item) => item?.id).filter(Boolean).slice(0, 5)
+    : [];
+
+  const caseId = caseData?.id || ids[index] || null;
+  const normalizedIds = ids.includes(caseId) ? ids : [caseId, ...ids].filter(Boolean).slice(0, 5);
+  const safeIndex = Math.max(0, normalizedIds.indexOf(caseId));
+
+  return {
+    id: caseId,
+    searchText: searchText || "",
+    ids: normalizedIds,
+    index: safeIndex,
+  };
+}
+
+function getActiveLocalCaseFromSession(pendingAction) {
+  const state = decodeLocalCaseNavState(pendingAction);
+  return state?.id ? getRichestCaseById(state.id) : null;
+}
+
+function isLocalCaseNavigationRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  return [
+    "naeste",
+    "næste",
+    "neste",
+    "forrige",
+    "tilbage",
+    "ny case",
+    "anden case",
+    "find en anden case",
+    "vis en anden case",
+  ].some((pattern) => text === normalizeDiagnosisPhrase(pattern));
+}
+
+function getLocalCaseNavigationDirection(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (text === "forrige" || text === "tilbage") {
+    return -1;
+  }
+
+  return 1;
+}
+
+function buildLocalCaseNavigationResult(pendingAction, message) {
+  const state = decodeLocalCaseNavState(pendingAction);
+
+  if (!state || !Array.isArray(state.ids) || state.ids.length <= 1) {
+    return {
+      caseData: null,
+      pendingAction,
+      reply: "Ingen flere cases i denne søgning.",
+      index: state?.index || 0,
+      total: state?.ids?.length || 0,
+    };
+  }
+
+  const direction = getLocalCaseNavigationDirection(message);
+  const nextIndex = state.index + direction;
+
+  if (nextIndex < 0 || nextIndex >= state.ids.length) {
+    return {
+      caseData: null,
+      pendingAction,
+      reply: direction > 0 ? "Ingen flere cases i denne søgning." : "Du er ved første case i denne søgning.",
+      index: state.index,
+      total: state.ids.length,
+    };
+  }
+
+  const caseId = state.ids[nextIndex];
+  const caseData = getRichestCaseById(caseId);
+  const nextState = {
+    ...state,
+    id: caseId,
+    index: nextIndex,
+  };
+
+  if (!caseData) {
+    return {
+      caseData: null,
+      pendingAction: encodeLocalCaseNavState(nextState),
+      reply: "Ingen data",
+      index: nextIndex,
+      total: state.ids.length,
+    };
+  }
+
+  return {
+    caseData,
+    pendingAction: encodeLocalCaseNavState(nextState),
+    reply: buildDirectLocalCaseReply(caseData, null, state.searchText),
+    index: nextIndex,
+    total: state.ids.length,
+  };
+}
+
 
 function isLocalCaseFollowupRequest(message) {
   const text = normalizeDiagnosisPhrase(message);
@@ -2741,7 +2896,7 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
 
   lines.push(
     "",
-    "Casen er stadig aktiv. Du kan spørge videre, fx: hvad oplevede barnet, hvad gik typisk galt, hvad gjorde læreren, eller find en anden case."
+    "Du kan skrive: næste, forrige, ny case, hvad gjorde læreren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
   );
 
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -5885,6 +6040,47 @@ try {
     });
   }
 
+  const activeLocalCaseBeforeDirectCaseSearch = getActiveLocalCaseFromSession(pending_action);
+
+  if (activeLocalCaseBeforeDirectCaseSearch && isLocalCaseNavigationRequest(message)) {
+    const navResult = buildLocalCaseNavigationResult(pending_action, message);
+    const usedTools = ["localActiveCaseNavigation"];
+    const toolDebug = [
+      {
+        name: "localActiveCaseNavigation",
+        selected_case_id: navResult.caseData?.id || null,
+        navigation: normalizeDiagnosisPhrase(message),
+        index: navResult.index,
+        total: navResult.total,
+        token_policy: "0_tokens_local_response",
+        routing: "returned_before_direct_case_search",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply: navResult.reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: navResult.pendingAction,
+    });
+  }
+
   if (isDirectLocalCaseRequest(message)) {
     const directCaseResult = findBestDirectLocalCase(message);
     const selectedCase = directCaseResult.caseData;
@@ -5928,7 +6124,14 @@ try {
         model: "local",
         tools_used: usedTools,
         tool_debug: toolDebug,
-        pending_action: `local_case:${selectedCase.id}`,
+        pending_action: encodeLocalCaseNavState(
+          buildLocalCaseNavState(
+            selectedCase,
+            directCaseResult.searchText,
+            directCaseResult.searchResult,
+            0
+          )
+        ),
       });
     }
 
@@ -5950,6 +6153,44 @@ try {
   }
 
   const activeLocalCase = getActiveLocalCaseFromSession(pending_action);
+
+  if (activeLocalCase && isLocalCaseNavigationRequest(message)) {
+    const navResult = buildLocalCaseNavigationResult(pending_action, message);
+    const usedTools = ["localActiveCaseNavigation"];
+    const toolDebug = [
+      {
+        name: "localActiveCaseNavigation",
+        selected_case_id: navResult.caseData?.id || null,
+        navigation: normalizeDiagnosisPhrase(message),
+        index: navResult.index,
+        total: navResult.total,
+        token_policy: "0_tokens_local_response",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply: navResult.reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: navResult.pendingAction,
+    });
+  }
 
   if (activeLocalCase && isLocalPprCaseAngleRequest(message)) {
     const reply = buildLocalPprAngleReply(activeLocalCase, active_case_context);
@@ -5984,7 +6225,7 @@ try {
       model: "local",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: `local_case:${activeLocalCase.id}`,
+      pending_action: pending_action,
     });
   }
 
@@ -6020,7 +6261,7 @@ try {
       model: "local",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: `local_case:${activeLocalCase.id}`,
+      pending_action: pending_action,
     });
   }
 
