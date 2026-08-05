@@ -4243,6 +4243,231 @@ function buildLocalTemplateContext(template) {
   };
 }
 
+
+function isPracticalDayPlanRequest(message) {
+  const text = normalizeTemplateSearch(message);
+
+  if (!text) {
+    return false;
+  }
+
+  const hasDayPlanWord = [
+    "dagsplan",
+    "dagplan",
+    "dagsskema",
+    "visuel dagsplan",
+    "skole hjem dagsplan",
+    "morgenrutine",
+    "aftenrutine",
+    "rutinekort",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  if (!hasDayPlanWord) {
+    return false;
+  }
+
+  const practicalIntent = [
+    "lav",
+    "byg",
+    "opret",
+    "hjælp mig med",
+    "hjaelp mig med",
+    "jeg skal bruge",
+    "brugbar",
+    "praktisk",
+    "kopier",
+    "udskriv",
+    "print",
+    "med emojis",
+    "med emoji",
+    "med ikoner",
+    "med skift",
+    "med timer",
+    "frokost",
+    "morgenmad",
+    "godnathistorie",
+    "sove",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  const pureDisplayIntent = [
+    "vis skabelon til",
+    "vis guide til",
+    "vis overblik",
+    "vis information",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  return practicalIntent && !pureDisplayIntent;
+}
+
+function getPracticalDayPlanMode(message) {
+  const text = normalizeTemplateSearch(message);
+
+  const hasHomeSchool = [
+    "skole hjem",
+    "skole-hjem",
+    "hjem skole",
+    "hjemme",
+    "forældre",
+    "foraeldre",
+    "før skole",
+    "foer skole",
+    "efter skole",
+    "morgenmad",
+    "ud til bil",
+    "bil",
+    "tv",
+    "spil",
+    "godnathistorie",
+    "sove",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  const hasEveningOnly = [
+    "aftenrutine",
+    "godnat",
+    "godnathistorie",
+    "sove",
+    "sengetid",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  const hasMorningOnly = [
+    "morgenrutine",
+    "morgenmad",
+    "stå op",
+    "staa op",
+    "før skole",
+    "foer skole",
+  ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
+
+  if (hasHomeSchool) return "home_school";
+  if (hasEveningOnly) return "evening";
+  if (hasMorningOnly) return "morning";
+  return "school";
+}
+
+function buildPracticalDayPlanReply(message, language = "Dansk") {
+  const mode = getPracticalDayPlanMode(message);
+
+  const intro = language === "English"
+    ? "Here is a copy-ready visual day plan with icons/emojis:"
+    : "Her er en kopierbar visuel dagsplan med ikoner/emojis:";
+
+  const note = language === "English"
+    ? "Adjust times and activities to the child. Keep one fixed order and one calm backup plan."
+    : "Tilpas tider og aktiviteter til barnet. Behold fast rækkefølge og én rolig reserveplan.";
+
+  const schoolPlan = [
+    "📅 VISUEL SKOLEDAGSPLAN",
+    "",
+    "🕗 08.00  👋 Kom ind / sig godmorgen",
+    "🕘 08.10  🎒 Pak tasken ud",
+    "🕤 08.20  🪑 Find plads / se dagens plan",
+    "📚 08.30  Første opgave",
+    "☕ 09.00  Kort pause",
+    "📚 09.10  Arbejd videre",
+    "🏃 09.45  Frikvarter",
+    "🔢 10.15  Næste fag / aktivitet",
+    "🔁 11.00  Forbered skift til frokost",
+    "🍽️ 11.10  Frokost",
+    "😌 11.35  Rolig pause",
+    "🎨 12.00  Praktisk/kreativ aktivitet",
+    "🧩 12.40  Kort opgave eller valgaktivitet",
+    "🏁 13.00  Pak sammen / afslutning",
+    "🏠 13.15  SFO / hjem",
+    "",
+    "🟡 HVIS PLANEN ÆNDRER SIG",
+    "1. Den voksne fortæller det kort.",
+    "2. Barnet får vist den nye rækkefølge.",
+    "3. Barnet kan få en kort pause før næste skift.",
+  ].join("\n");
+
+  const homeSchoolPlan = [
+    "📅 FÆLLES SKOLE-HJEM DAGSPLAN",
+    "",
+    "🏠 MORGEN HJEMME",
+    "🛏️  Stå op",
+    "🦷  Børste tænder",
+    "👕  Tøj på",
+    "🥣  Morgenmad",
+    "🎒  Taske klar",
+    "🚗  Ud til bil / afsted mod skole",
+    "",
+    "🏫 SKOLESTART",
+    "👋  Modtagelse af kendt voksen",
+    "🎒  Pak tasken ud",
+    "🪑  Find plads / se dagens plan",
+    "📚  Første korte opgave",
+    "",
+    "🏫 SKOLEDAG",
+    "☕  Kort pause",
+    "📚  Arbejd videre",
+    "🏃  Frikvarter",
+    "🍽️  Frokost",
+    "😌  Rolig pause",
+    "🏁  Afslutning / pak sammen",
+    "",
+    "🏠 EFTER SKOLE HJEMME",
+    "🍎  Mad/snack",
+    "😌  Pause uden krav",
+    "🎮  Spil / skærmtid efter aftale",
+    "📚  Lektier kun hvis aftalt",
+    "🍽️  Aftensmad",
+    "🛁  Bad / hygiejne",
+    "📖  Godnathistorie / rolig aktivitet",
+    "😴  Sove",
+    "",
+    "📝 KORT SKOLE-HJEM AFTALE",
+    "- Hvad hjalp i morges? ____________________",
+    "- Hvordan startede skoledagen? _____________",
+    "- Hvad skal gentages i morgen? _____________",
+  ].join("\n");
+
+  const morningPlan = [
+    "🌅 MORGENRUTINE FØR SKOLE",
+    "",
+    "🛏️  Stå op",
+    "🚽  Toilet",
+    "🦷  Børste tænder",
+    "👕  Tøj på",
+    "🥣  Morgenmad",
+    "🎒  Taske klar",
+    "👟  Sko og overtøj",
+    "🚗  Ud til bil / afsted",
+    "",
+    "🟡 HVIS DET BLIVER SVÆRT",
+    "☐ Kort pause",
+    "☐ Voksen viser næste trin",
+    "☐ Én besked ad gangen",
+  ].join("\n");
+
+  const eveningPlan = [
+    "🌙 AFTENRUTINE",
+    "",
+    "🍽️  Aftensmad",
+    "🎮  Spil / skærmtid efter aftale",
+    "🛁  Bad / hygiejne",
+    "👕  Nattøj",
+    "🎒  Gør taske klar til i morgen",
+    "📖  Godnathistorie / rolig aktivitet",
+    "💡  Lys ned / rolig stemme",
+    "😴  Sove",
+    "",
+    "🟡 HVIS DET BLIVER SVÆRT",
+    "☐ Kort pause",
+    "☐ Voksen gentager planen roligt",
+    "☐ Samme rækkefølge i morgen",
+  ].join("\n");
+
+  const body = mode === "home_school"
+    ? homeSchoolPlan
+    : mode === "morning"
+      ? morningPlan
+      : mode === "evening"
+        ? eveningPlan
+        : schoolPlan;
+
+  return [intro, "", "```text", body, "```", "", note].join("\n");
+}
+
 function getLocalTemplateRequest(message) {
   const fileTemplateResult = getTemplateFiles();
   const legacyTemplateResult = getTemplates();
@@ -7384,6 +7609,44 @@ try {
       success: true,
       reply: profileResult.reply,
       model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: null,
+    });
+  }
+
+
+  if (isPracticalDayPlanRequest(message)) {
+    const reply = buildPracticalDayPlanReply(message, language);
+    const usedTools = ["localPracticalDayPlan"];
+    const toolDebug = [
+      {
+        name: "localPracticalDayPlan",
+        action: "build_copy_ready_visual_day_plan",
+        mode: getPracticalDayPlanMode(message),
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
       tools_used: usedTools,
       tool_debug: toolDebug,
       pending_action: null,
