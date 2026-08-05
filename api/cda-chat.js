@@ -2796,6 +2796,57 @@ function getActiveLocalCaseFromSession(pendingAction) {
   return state?.id ? getRichestCaseById(state.id) : null;
 }
 
+function preserveActiveLocalCasePendingAction(activeLocalCase, pendingAction) {
+  if (!activeLocalCase?.id) {
+    return pendingAction || null;
+  }
+
+  const current = String(pendingAction || "").trim();
+
+  if (current.startsWith("local_case_nav:") || current.startsWith("local_case:")) {
+    return pendingAction;
+  }
+
+  return `local_case:${activeLocalCase.id}`;
+}
+
+function isReturnToActiveCaseRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  return [
+    "tilbage til case",
+    "tilbage til casen",
+    "ga tilbage til case",
+    "gå tilbage til case",
+    "ga tilbage til casen",
+    "gå tilbage til casen",
+    "vis casen igen",
+    "vis aktiv case",
+    "aktiv case",
+    "tilbage til sagen",
+    "vis sagen igen",
+  ].some((pattern) => text === normalizeDiagnosisPhrase(pattern));
+}
+
+function buildReturnToActiveCaseReply(activeLocalCase, activeCaseContext = null) {
+  if (activeLocalCase) {
+    return buildDirectLocalCaseReply(activeLocalCase, null, "");
+  }
+
+  if (hasActiveCaseContext(activeCaseContext)) {
+    const lines = [
+      "**Tilbage til den aktive sag**",
+      activeCaseContext.summary || activeCaseContext.known_context || activeCaseContext.last_user_message || "Den aktive sag er stadig åben.",
+      "",
+      "Du kan skrive: lav dagsplan, vis observationslog, PPR, eller fortsætte med samme elev.",
+    ];
+
+    return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  return "Ingen aktiv case fundet. Skriv fx: case ADHD dreng 10 år koncentrationsproblemer.";
+}
+
 function isLocalCaseNavigationRequest(message) {
   const text = normalizeDiagnosisPhrase(message);
 
@@ -6632,6 +6683,42 @@ try {
 
   const activeLocalCase = getActiveLocalCaseFromSession(pending_action);
 
+  if ((activeLocalCase || hasActiveCaseContext(activeCaseContext)) && isReturnToActiveCaseRequest(message)) {
+    const reply = buildReturnToActiveCaseReply(activeLocalCase, activeCaseContext);
+    const usedTools = ["localReturnToActiveCase"];
+    const toolDebug = [
+      {
+        name: "localReturnToActiveCase",
+        selected_case_id: activeLocalCase?.id || null,
+        source: activeLocalCase ? "active_local_case" : "active_case_context",
+        token_policy: "0_tokens_local_response",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
+    });
+  }
+
   if (activeLocalCase && isLocalCaseNavigationRequest(message)) {
     const navResult = buildLocalCaseNavigationResult(pending_action, message);
     const usedTools = ["localActiveCaseNavigation"];
@@ -7649,7 +7736,7 @@ try {
       model: "local",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: null,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
     });
   }
 
@@ -7703,7 +7790,7 @@ try {
       model: "local",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: null,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
     });
   }
 
@@ -7761,7 +7848,7 @@ try {
       model: "local",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: null,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
     });
   }
 
@@ -7814,7 +7901,7 @@ try {
         model: "local",
         tools_used: usedTools,
         tool_debug: toolDebug,
-        pending_action: null,
+        pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
       });
     }
 
