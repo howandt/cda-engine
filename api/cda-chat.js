@@ -2747,6 +2747,43 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
+function buildLocalCaseSpecialistContextBlock(caseData) {
+  if (!caseData) {
+    return "";
+  }
+
+  const title = formatLocalCaseValue(caseData.titel || caseData.title || caseData.id || "Aktiv case");
+  const lines = [
+    "AKTIV LOKAL CASE",
+    "Denne case er valgt fra den lokale CDA-casebank. Brug den som konkret grundlag for specialistvinklen. Stil ikke diagnose, giv ikke medicinråd, og opfind ikke manglende casefelter.",
+    `case_id: ${formatLocalCaseValue(caseData.id) || "-"}`,
+    `titel: ${title}`,
+  ];
+
+  const fields = [
+    ["alder", caseData.alder || caseData.age],
+    ["diagnoser_i_casen", caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser],
+    ["miljø", caseData.miljø || caseData.contexts || caseData.kontekst],
+    ["tema", caseData.tema || caseData.theme || caseData.kategori],
+    ["problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse],
+    ["barnets_oplevelse", caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice],
+    ["typisk_fejl", caseData.typisk_fejl || caseData.mistakes],
+    ["løsning", caseData.løsning || caseData.loesning || caseData.solution],
+    ["tiltag", caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer || caseData.tools],
+    ["resultat", caseData.resultat || caseData.result],
+    ["refleksion", caseData.refleksion || caseData.reflection],
+  ];
+
+  for (const [label, value] of fields) {
+    const text = formatLocalCaseValue(value);
+    if (text) {
+      lines.push(`${label}: ${text}`);
+    }
+  }
+
+  return lines.join("\n");
+}
+
 function getSpecialistPanel() {
   const filePath = path.join(
     process.cwd(),
@@ -6229,6 +6266,10 @@ try {
 
   if (isDirectSpecialistPanelRequest(message)) {
     const specialistPanel = getCompactSpecialistPanelIndex();
+    const activeLocalCaseContextBlock = activeLocalCase
+      ? buildLocalCaseSpecialistContextBlock(activeLocalCase)
+      : "";
+    const specialistCaseContextBlock = activeLocalCaseContextBlock || buildActiveCaseContextBlock(activeCaseContext);
 
     if (specialistPanel.specialistIds.length === 0) {
       throw new Error("Specialistpanelet indeholder ingen specialister");
@@ -6236,8 +6277,12 @@ try {
 
     const specialistAngleInstructions = [
       activeCaseInstructions,
-      hasActiveCaseContext(activeCaseContext)
-        ? "Svar på den aktive sag, ikke som et nyt generelt spørgsmål.": "",
+      activeLocalCase
+        ? "Svar på den aktive lokale case, ikke som et nyt generelt spørgsmål. Brug casefelterne som konkret datagrundlag."
+        : "",
+      !activeLocalCase && hasActiveCaseContext(activeCaseContext)
+        ? "Svar på den aktive sag, ikke som et nyt generelt spørgsmål."
+        : "",
       "Når brugeren spørger 'hvad siger psykologen?', skal svaret være en psykologvinkel på den beskrevne sag — ikke en besked om, at psykologens vurdering mangler.",
       "Brug ikke formuleringer som 'Hvis du beskriver barnet kort...' når active_case_context allerede indeholder sagen.",
       "Giv en konkret, lærer-nær specialistvinkel i gammel Heidi-stil: hvad barnet prøver/kæmper med, hvad den voksne skal forstå, hvad der virker i praksis, hvad læreren kan gøre i morgen, og hvornår team/PPR bør observere mere.",
@@ -6256,7 +6301,7 @@ try {
       "LOKALT CDA-SPECIALISTPANEL",
       "Specialistpanelet er kun aktiveret, fordi brugeren udtrykkeligt har bedt om det.",
       "Gennemgå hele det kompakte specialistindex og vælg 1-3 relevante specialister ud fra brugerens konkrete beskrivelse, specialisternes keywords og deres fagområder.",
-      "Hvis active_case_context er vedlagt, skal udvælgelsen baseres på både den aktive sag og brugerens nye besked.",
+      "Hvis en aktiv lokal case eller active_case_context er vedlagt, skal udvælgelsen baseres på både den aktive sag og brugerens nye besked.",
       "Vælg højst 3 specialister. Vælg komplementære faglige perspektiver, når det giver reel værdi, så barnet vurderes bredt og ikke kun gennem en kendt diagnose eller ét fagområde. Skab ikke kunstig bredde, hvis færre perspektiver er tilstrækkelige.",
       "Hver valgt specialist må kun bidrage inden for eget fagområde. CDA skal samle perspektiverne i én praktisk og sammenhængende vurdering frem for tre løsrevne svar.",
       "En kendt diagnose er kontekst, ikke facit. Beskriv relevante mønstre og alternative forklaringer forsigtigt, men sig aldrig, at en diagnose eller komorbiditet er fundet, og foreslå ikke en konkret ny diagnose ud fra en kort beskrivelse.",
@@ -6273,7 +6318,7 @@ try {
     ].join("\n");
 
     const specialistInput = [
-      buildActiveCaseContextBlock(activeCaseContext),
+      specialistCaseContextBlock,
       "",
       "BRUGERENS NYE BESKED:",
       message,
@@ -6370,6 +6415,7 @@ try {
             (specialist) => specialist.id === id
           )
         ).filter(Boolean),
+        active_local_case_id: activeLocalCase?.id || null,
         role,
         response_style,
       },
@@ -6418,7 +6464,7 @@ try {
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: null,
+      pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : null,
     });
   }
 
