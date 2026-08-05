@@ -2057,6 +2057,72 @@ function getRollespil(args = {}) {
     data: scenarios,
   };
 }
+
+function normalizeCaseAge(value) {
+  const raw = String(value ?? "").trim();
+  const match = raw.match(/\d{1,2}/);
+  return match ? Number(match[0]) : null;
+}
+
+function extractRequestedCaseAge(value) {
+  const text = String(value || "").toLowerCase();
+  const match = text.match(/\b(\d{1,2})\s*(?:år|aar|yo|y\/o)?\b/);
+  if (!match) return null;
+  const age = Number(match[1]);
+  return age >= 2 && age <= 25 ? age : null;
+}
+
+function extractRequestedCaseGender(value) {
+  const text = normalizeDiagnosisPhrase(value);
+  if (["pige", "hun", "hende", "girl"].some((word) => containsDiagnosisPhrase(text, word))) {
+    return "female";
+  }
+  if (["dreng", "han", "ham", "boy"].some((word) => containsDiagnosisPhrase(text, word))) {
+    return "male";
+  }
+  return null;
+}
+
+function inferCaseGender(caseItem = {}) {
+  const explicit = normalizeDiagnosisPhrase(
+    caseItem.køn || caseItem.koen || caseItem.gender || caseItem.sex
+  );
+
+  if (["pige", "kvinde", "female", "girl"].some((word) => explicit.includes(word))) {
+    return "female";
+  }
+
+  if (["dreng", "mand", "male", "boy"].some((word) => explicit.includes(word))) {
+    return "male";
+  }
+
+  const nameText = normalizeDiagnosisPhrase([
+    caseItem.titel,
+    caseItem.title,
+    caseItem.navn,
+    caseItem.name,
+    caseItem.childVoice,
+  ].filter(Boolean).join(" "));
+
+  const femaleNames = [
+    "mia", "emma", "sophie", "sofie", "nora", "lea", "sofia", "maya", "anna", "ida", "maja", "sara", "freja", "amalie", "clara", "laura"
+  ];
+
+  const maleNames = [
+    "alex", "noah", "emil", "marcus", "oliver", "ethan", "jonathan", "lucas", "villads", "oscar", "william", "malthe", "magnus", "jens"
+  ];
+
+  if (femaleNames.some((name) => containsDiagnosisPhrase(nameText, name))) {
+    return "female";
+  }
+
+  if (maleNames.some((name) => containsDiagnosisPhrase(nameText, name))) {
+    return "male";
+  }
+
+  return null;
+}
+
 function getSemanticSearch(args = {}) {
   const searchText = String(args.search || "").trim();
 
@@ -2189,9 +2255,14 @@ function getSemanticSearch(args = {}) {
     (term) => term.length >= 2
   );
 
+  const requestedAge = extractRequestedCaseAge(searchText);
+  const requestedGender = extractRequestedCaseGender(searchText);
+
   const getFields = (caseItem) => ({
     id: normalizeSemantic(caseItem.id),
     title: normalizeSemantic(caseItem.titel || caseItem.title),
+    age: normalizeCaseAge(caseItem.alder || caseItem.age),
+    gender: inferCaseGender(caseItem),
     theme: normalizeSemantic(
       semanticSafeText(
         caseItem.tema || caseItem.theme || caseItem.kategori
@@ -2223,7 +2294,7 @@ function getSemanticSearch(args = {}) {
     ),
     childPerspective: normalizeSemantic(
       semanticSafeText(
-        caseItem.barnets_oplevelse || caseItem.barnets_perspektiv
+        caseItem.barnets_oplevelse || caseItem.barnets_perspektiv || caseItem.childVoice
       )
     ),
     solution: normalizeSemantic(
@@ -2231,7 +2302,9 @@ function getSemanticSearch(args = {}) {
         caseItem.løsning ||
           caseItem.tiltag ||
           caseItem.cda_guiding ||
-          caseItem.værktøjer
+          caseItem.værktøjer ||
+          caseItem.solution ||
+          caseItem.tools
       )
     ),
   });
@@ -2303,6 +2376,34 @@ function getSemanticSearch(args = {}) {
       }
 
       if (termMatched) matchedTerms.add(term);
+    }
+
+    if (requestedAge !== null) {
+      if (fields.age !== null) {
+        const ageDiff = Math.abs(fields.age - requestedAge);
+
+        if (ageDiff === 0) {
+          score += 250;
+          matchedTerms.add(`${requestedAge} år`);
+        } else if (ageDiff === 1) {
+          score += 90;
+        } else if (ageDiff === 2) {
+          score -= 40;
+        } else {
+          score -= 100;
+        }
+      } else {
+        score -= 10;
+      }
+    }
+
+    if (requestedGender) {
+      if (fields.gender === requestedGender) {
+        score += 80;
+        matchedTerms.add(requestedGender === "female" ? "pige" : "dreng");
+      } else if (fields.gender && fields.gender !== requestedGender) {
+        score -= 40;
+      }
     }
 
     if (matchedTerms.size > 1) {
@@ -2562,7 +2663,7 @@ function formatLocalCaseValue(value) {
 
 function buildDirectLocalCaseReply(caseData, bestMatch, searchText) {
   const title = formatLocalCaseValue(caseData.titel || caseData.title || caseData.id || "Case");
-  const lines = [title];
+  const lines = [`**${title}**`];
 
   const meta = [];
   const age = formatLocalCaseValue(caseData.alder || caseData.age);
@@ -2579,7 +2680,7 @@ function buildDirectLocalCaseReply(caseData, bestMatch, searchText) {
   if (meta.length > 0) lines.push(meta.join(" · "));
 
   const theme = formatLocalCaseValue(caseData.tema || caseData.theme || caseData.kategori);
-  if (theme) lines.push("", `Tema: ${theme}`);
+  if (theme) lines.push("", `**Tema:** ${theme}`);
 
   const sections = [
     ["Problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse],
@@ -2593,12 +2694,12 @@ function buildDirectLocalCaseReply(caseData, bestMatch, searchText) {
 
   for (const [heading, value] of sections) {
     const text = formatLocalCaseValue(value);
-    if (text) lines.push("", heading, text);
+    if (text) lines.push("", `**${heading}**`, text);
   }
 
   lines.push(
     "",
-    "Du kan skrive: næste, forrige, ny case, hvad gjorde læreren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
+    "**Du kan skrive:** næste, forrige, ny case, hvad gjorde læreren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
   );
 
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -2832,7 +2933,7 @@ function buildLocalCaseFieldBlock(heading, value) {
 function buildActiveLocalCaseFollowupReply(caseData, message) {
   const text = normalizeDiagnosisPhrase(message);
   const title = formatLocalCaseValue(caseData.titel || caseData.title || caseData.id || "Aktiv case");
-  const lines = [title];
+  const lines = [`**${title}**`];
   let addedLocalData = false;
 
   const add = (heading, value) => {
@@ -2896,7 +2997,7 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
 
   lines.push(
     "",
-    "Du kan skrive: næste, forrige, ny case, hvad gjorde læreren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
+    "**Du kan skrive:** næste, forrige, ny case, hvad gjorde læreren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
   );
 
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
