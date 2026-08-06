@@ -9272,6 +9272,8 @@ try {
         : [
             "NORMAL RÅDGIVNING UDEN EKSTRA MODULER",
             "Giv en direkte faglig vurdering, en kort forklaring og højst 3 konkrete handlinger.",
+            "Ved kort lærer-/pædagogspørgsmål: svar kompakt med 1 kort vurdering, højst 3 handlinger og højst 2 observationspunkter.",
+            "Bevar kvalitet og konkrethed. Udelad generelle forklaringer, gentagelser og ekstra afslutninger.",
           ];
 
     const normalInstructions = [
@@ -9304,7 +9306,8 @@ try {
       },
       instructions: normalInstructions,
       input: contextualInput,
-      max_output_tokens: response_style === "Dyb" ? 900 : 700,
+      max_output_tokens:
+        response_style === "Dyb" ? 900 : response_style === "Kort" ? 520 : 650,
     });
 
     const normalReplyData = extractPendingAction(response.output_text);
