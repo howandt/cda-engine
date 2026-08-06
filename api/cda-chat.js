@@ -3908,6 +3908,20 @@ function getLocalTeacherPracticeSignals(message, role) {
     "kedeligt",
     "motivation",
     "modstand",
+    "skift",
+    "skifte",
+    "aktivitetsskift",
+    "overgang",
+    "overgange",
+    "stoppe en aktivitet",
+    "begynde pa noget nyt",
+    "begynde på noget nyt",
+    "pakke sammen",
+    "bliver vred",
+    "vred",
+    "eksplodere",
+    "eksploderer",
+    "mister kontrol",
   ]);
 
   const asksForHelp = includesAnyLocalPracticePhrase(text, [
@@ -3950,6 +3964,10 @@ function buildLocalTeacherPracticeReply(message, language = "Dansk") {
     tracks.push("niveau_mening_status");
   }
 
+  if (includesAny(["skift", "skifte", "aktivitetsskift", "overgang", "overgange", "stoppe en aktivitet", "begynde pa noget nyt", "begynde på noget nyt", "pakke sammen", "bliver vred", "eksplodere", "eksploderer", "mister kontrol"])) {
+    tracks.push("overgang_frustration");
+  }
+
   if (includesAny(["gider ikke", "vil ikke", "naegter", "nægter", "modstand", "deltager ikke", "ikke vaere med", "ikke være med"])) {
     tracks.push("deltagelsesmodstand");
   }
@@ -3966,9 +3984,11 @@ function buildLocalTeacherPracticeReply(message, language = "Dansk") {
 
   const opening = uniqueTracks.includes("niveau_mening_status")
     ? "Det peger mest på, at han enten oplever undervisningen som for let, for lidt meningsfuld, eller bruger \"jeg ved det allerede\" til at beskytte status foran de andre. Gå ikke ind i en diskussion om, om det er babyundervisning."
-    : uniqueTracks.includes("opmaerksomhed_uro")
-      ? "Det peger mest på, at han har svært ved at regulere krop, energi og opmærksomhed i den måde undervisningen er sat op på. Start med at ændre rammen, ikke med at skælde ud."
-      : "Det peger mest på en deltagelsesmodstand, hvor han har brug for en tydeligere vej ind i opgaven. Hold fast i deltagelse, men giv ham en mere konkret og meningsfuld rolle.";
+    : uniqueTracks.includes("overgang_frustration")
+      ? "Det peger mest på, at selve skiftet er sværere end aktiviteten. Han vil gerne være med, men mister kontrol eller overblik i overgangene."
+      : uniqueTracks.includes("opmaerksomhed_uro")
+        ? "Det peger mest på, at han har svært ved at regulere krop, energi og opmærksomhed i den måde undervisningen er sat op på. Start med at ændre rammen, ikke med at skælde ud."
+        : "Det peger mest på en deltagelsesmodstand, hvor han har brug for en tydeligere vej ind i opgaven. Hold fast i deltagelse, men giv ham en mere konkret og meningsfuld rolle.";
 
   const actions = [];
 
@@ -3977,6 +3997,12 @@ function buildLocalTeacherPracticeReply(message, language = "Dansk") {
       "Sig roligt: “Jeg hører, du synes det er for let. Du skal stadig være med. Vis mig først på 5 minutter, hvad du kan.”",
       "Giv ham et valg mellem almindelig opgave, sværere niveau eller en ansvarlig rolle, hvor han skal forklare løsningen kort.",
       "Lav en hurtig aftale: første del løses nu, og hvis den er sikker, får han næste niveau eller et selvstændigt spor."
+    );
+  } else if (uniqueTracks.includes("overgang_frustration")) {
+    actions.push(
+      "Varsl skiftet tidligt og ens hver gang: “Om 2 minutter stopper vi.”",
+      "Gør overgangen konkret: vis næste trin, næste sted eller næste opgave.",
+      "Giv en kort bro: “Først stop, så hjælper jeg dig i gang med næste.”"
     );
   } else if (uniqueTracks.includes("opmaerksomhed_uro")) {
     actions.push(
@@ -4002,6 +4028,14 @@ function buildLocalTeacherPracticeReply(message, language = "Dansk") {
     );
   }
 
+  if (uniqueTracks.includes("overgang_frustration")) {
+    observations.push(
+      "Hvornår går skiftet galt: før besked, under oprydning eller ved næste krav?",
+      "Hjælper varsel, visuel støtte, voksen tæt på eller en lille rolle bedst?",
+      "Reagerer han mest på stop, tempo, uvished eller krav om at afbryde noget rart?"
+    );
+  }
+
   if (uniqueTracks.includes("deltagelsesmodstand")) {
     observations.push(
       "Hvornår opstår modstanden: ved start, skift, skriftlige krav eller fælles instruktion?",
@@ -4018,6 +4052,10 @@ function buildLocalTeacherPracticeReply(message, language = "Dansk") {
 
   const trimmedObservations = Array.from(new Set(observations)).slice(0, 4);
 
+  const closing = uniqueTracks.includes("overgang_frustration")
+    ? "Kort sagt: Gør skiftet mindre, tydeligere og mere forudsigeligt, før du forventer selvregulering."
+    : "Kort sagt: Anerkend hans oplevelse, men lad ham ikke slippe for deltagelse. Giv ham en konkret vej ind, et tydeligt niveau og en rolle, hvor han kan lykkes uden at tabe ansigt.";
+
   const reply = [
     opening,
     "",
@@ -4027,7 +4065,7 @@ function buildLocalTeacherPracticeReply(message, language = "Dansk") {
     "Hold øje med:",
     ...trimmedObservations.map((item) => `- ${item}`),
     "",
-    "Kort sagt: Anerkend hans oplevelse, men lad ham ikke slippe for deltagelse. Giv ham en konkret vej ind, et tydeligt niveau og en rolle, hvor han kan lykkes uden at tabe ansigt.",
+    closing,
   ].join("\n");
 
   return language === "English"
