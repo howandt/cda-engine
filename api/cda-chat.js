@@ -3838,7 +3838,74 @@ function getTemplateRequestSignals(message, templates) {
     "list templates",
   ];
 
+  const directTemplateCommandPatterns = [
+    "vis guide",
+    "vis en guide",
+    "vis guide til",
+    "hent guide",
+    "hent en guide",
+    "find guide",
+    "find en guide",
+    "aabn guide",
+    "åbn guide",
+    "vis skabelon",
+    "vis en skabelon",
+    "vis skabelon til",
+    "hent skabelon",
+    "hent en skabelon",
+    "find skabelon",
+    "find en skabelon",
+    "aabn skabelon",
+    "åbn skabelon",
+    "vis template",
+    "hent template",
+    "find template",
+    "aabn template",
+    "åbn template",
+    "find skema",
+    "find et skema",
+    "hent skema",
+    "hent et skema",
+    "vis skema",
+    "vis et skema",
+    "lav et skema",
+    "lav en skabelon",
+  ];
+
+  const livePracticePatterns = [
+    "jeg har en dreng",
+    "jeg har en pige",
+    "jeg har et barn",
+    "jeg har en elev",
+    "vi har en dreng",
+    "vi har en pige",
+    "vi har et barn",
+    "vi har en elev",
+    "en dreng",
+    "en pige",
+    "en elev",
+    "et barn",
+    "han siger",
+    "hun siger",
+    "han kan ikke",
+    "hun kan ikke",
+    "han gider ikke",
+    "hun gider ikke",
+    "hvad gor jeg",
+    "hvad gør jeg",
+    "hvad kan jeg gore",
+    "hvad kan jeg gøre",
+  ];
+
   const directBankRequest = bankPatterns.some((pattern) =>
+    text.includes(normalizeTemplateSearch(pattern))
+  );
+
+  const directTemplateCommand = directTemplateCommandPatterns.some((pattern) =>
+    text.includes(normalizeTemplateSearch(pattern))
+  );
+
+  const livePracticeSituation = livePracticePatterns.some((pattern) =>
     text.includes(normalizeTemplateSearch(pattern))
   );
 
@@ -3859,7 +3926,7 @@ function getTemplateRequestSignals(message, templates) {
     "en ressource til",
   ];
 
-  const indirectResourceRequest = indirectResourcePatterns.some((pattern) =>
+  const indirectResourceRequest = !livePracticeSituation && indirectResourcePatterns.some((pattern) =>
     text.includes(normalizeTemplateSearch(pattern))
   );
 
@@ -3880,6 +3947,9 @@ function getTemplateRequestSignals(message, templates) {
     );
   });
 
+  const explicitTemplateRequest = directBankRequest || directTemplateCommand;
+  const allowedKnownTemplateMention = knownTemplateMention && !livePracticeSituation;
+
   const listRequest =
     directBankRequest &&
     listPatterns.some((pattern) =>
@@ -3889,13 +3959,15 @@ function getTemplateRequestSignals(message, templates) {
   return {
     text,
     directBankRequest,
+    directTemplateCommand,
+    livePracticeSituation,
     indirectResourceRequest,
     knownTemplateMention,
     listRequest,
-    isDirectRequest: directBankRequest || knownTemplateMention,
+    isDirectRequest: explicitTemplateRequest || allowedKnownTemplateMention,
     isTemplateRequest:
-      directBankRequest ||
-      knownTemplateMention ||
+      explicitTemplateRequest ||
+      allowedKnownTemplateMention ||
       indirectResourceRequest,
   };
 }
