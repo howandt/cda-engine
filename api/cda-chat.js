@@ -5104,6 +5104,245 @@ function buildParentDayPlanMessageReply(activeLocalCase = null, language = "Dans
 }
 
 
+function getActiveCaseText(activeLocalCase = null, activeCaseContext = null) {
+  const caseText = activeLocalCase
+    ? [
+        activeLocalCase.titel,
+        activeLocalCase.title,
+        activeLocalCase.problem,
+        activeLocalCase.kort_beskrivelse,
+        activeLocalCase.description,
+        activeLocalCase.barnets_oplevelse,
+        activeLocalCase.barnets_perspektiv,
+        activeLocalCase.typisk_fejl,
+        activeLocalCase.løsning,
+        activeLocalCase.loesning,
+        activeLocalCase.tiltag,
+        activeLocalCase.værktøjer,
+        activeLocalCase.vaerktoejer,
+      ].map(safeString).join(" ")
+    : "";
+
+  const contextText = activeCaseContext
+    ? [
+        activeCaseContext.summary,
+        activeCaseContext.known_context,
+        activeCaseContext.last_user_message,
+        activeCaseContext.last_heidi_reply,
+        activeCaseContext.last_guidance_summary,
+        activeCaseContext.open_question_or_next_step,
+      ].map(safeString).join(" ")
+    : "";
+
+  return normalizeDiagnosisPhrase(`${caseText} ${contextText}`);
+}
+
+function getActiveCaseFocus(activeLocalCase = null, activeCaseContext = null) {
+  const text = getActiveCaseText(activeLocalCase, activeCaseContext);
+
+  const hasTransition = [
+    "skift",
+    "skifte",
+    "skifter",
+    "overgang",
+    "overgange",
+    "aktivitet",
+    "aktiviteter",
+    "pakke sammen",
+    "stoppe",
+    "stopper",
+    "begynde paa noget nyt",
+    "begynde pa noget nyt",
+    "naeste aktivitet",
+    "frikvarter",
+    "kommer ind",
+  ].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)));
+
+  const hasRegulation = [
+    "vred",
+    "vrede",
+    "frustration",
+    "frustreret",
+    "eksploderer",
+    "eksplosion",
+    "uro",
+    "konflikt",
+    "mister kontrol",
+    "regulere",
+    "regulering",
+  ].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)));
+
+  const hasParticipation = [
+    "deltage",
+    "deltagelse",
+    "vil ikke",
+    "naegter",
+    "nægter",
+    "modstand",
+    "opgaven",
+    "opgave",
+  ].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)));
+
+  if (hasTransition && hasRegulation) return "transition_regulation";
+  if (hasTransition) return "transition";
+  if (hasRegulation) return "regulation";
+  if (hasParticipation) return "participation";
+  return "general";
+}
+
+function isLocalObservationPointsRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (!text) return false;
+
+  if (["vis observationslog", "observationslog", "gem observation"].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)))) {
+    return false;
+  }
+
+  return [
+    "lav observationspunkter",
+    "observationspunkter",
+    "observere i morgen",
+    "observer i morgen",
+    "hvad skal jeg observere",
+    "hvad skal vi observere",
+    "observationsliste",
+    "observationer til i morgen",
+  ].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)));
+}
+
+function buildLocalObservationPointsReply(activeLocalCase = null, activeCaseContext = null, language = "Dansk") {
+  const focus = getActiveCaseFocus(activeLocalCase, activeCaseContext);
+
+  if (language === "English") {
+    return [
+      "Yes — here are simple observation points for tomorrow:",
+      "",
+      "- When does the reaction start: before, during, or after the transition/task?",
+      "- What is the first sign: body unrest, refusal, shouting, withdrawal, or leaving?",
+      "- What helps most: warning, visual support, adult close by, small choice, or concrete role?",
+      "- What makes it worse: too many words, rushing, several adults, noise, or unclear demands?",
+      "- How long does it last, and how does the child return to calm?",
+      "",
+      "Write briefly: before, during, after — and what helped."
+    ].join("\n");
+  }
+
+  if (focus === "transition_regulation" || focus === "transition") {
+    return [
+      "Ja — her er enkle observationspunkter til i morgen:",
+      "",
+      "- Hvornår opstår vreden: lige før skiftet, under oprydning eller når næste aktivitet starter?",
+      "- Hvad ser du først: uro i kroppen, protest, råb, går væk eller siger nej?",
+      "- Hvad hjælper lidt: varsel, voksen tæt på, fast sætning, visuel støtte eller en lille rolle?",
+      "- Hvad gør det værre: mange ord, skynden, flere voksne, høje krav eller uro i klassen?",
+      "- Hvor længe varer det, og hvor hurtigt falder han til ro igen?",
+      "- Hvilke skift går bedst: fra hvilke aktiviteter til hvilke andre?",
+      "",
+      "Skriv helt kort: før, under, efter — og hvad der hjalp."
+    ].join("\n");
+  }
+
+  return [
+    "Ja — her er enkle observationspunkter til i morgen:",
+    "",
+    "- Hvornår opstår situationen?",
+    "- Hvad sker lige før barnet reagerer?",
+    "- Hvad er barnets første tegn på belastning?",
+    "- Hvad hjælper barnet hurtigst tilbage i ro eller deltagelse?",
+    "- Hvad gør situationen sværere?",
+    "- Hvad gør den voksne lige før det lykkes eller går galt?",
+    "",
+    "Skriv helt kort: tidspunkt, situation, reaktion, voksenrespons og hvad der virkede."
+  ].join("\n");
+}
+
+function isLocalParentMessageRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (!text) return false;
+
+  const hasParent = [
+    "foraeldre",
+    "foraeldrene",
+    "forældre",
+    "forældrene",
+    "hjemmet",
+    "hjem",
+  ].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)));
+
+  const hasMessageIntent = [
+    "skriv",
+    "lav",
+    "formuler",
+    "kort besked",
+    "besked",
+    "mail",
+    "tekst",
+    "sende",
+  ].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)));
+
+  const asksForAnalysis = [
+    "hvorfor",
+    "analyse",
+    "vurder",
+    "forklar",
+  ].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)));
+
+  return hasParent && hasMessageIntent && !asksForAnalysis;
+}
+
+function buildLocalParentMessageReply(activeLocalCase = null, activeCaseContext = null, language = "Dansk") {
+  const focus = getActiveCaseFocus(activeLocalCase, activeCaseContext);
+
+  if (language === "English") {
+    return [
+      "Here is a short message you can send:",
+      "",
+      "```text",
+      "Hi",
+      "",
+      "Tomorrow we will try to make the situation more predictable and calm for your child. We will use short messages, clear preparation, and close adult support, so it becomes easier to move on without too much pressure.",
+      "",
+      "At home, you can support this by giving a calm warning before changes and using short, clear steps.",
+      "",
+      "We will follow up on how it goes.",
+      "```",
+    ].join("\n");
+  }
+
+  if (focus === "transition_regulation" || focus === "transition") {
+    return [
+      "Ja — her er en kort besked, du kan sende:",
+      "",
+      "```text",
+      "Hej",
+      "",
+      "I morgen vil vi prøve en mere tydelig og rolig overgang mellem aktiviteterne, så det bliver lettere for jeres barn at komme videre uden at blive så vred.",
+      "",
+      "Vi bruger faste beskeder, lidt forberedelse før skift og en konkret lille rolle i overgangen. Hvis I vil støtte op hjemme, kan I bruge rolige varsler før skift, fx “om 5 minutter stopper vi” og derefter én kort besked om næste trin.",
+      "",
+      "Vi følger op på, hvordan det går.",
+      "```",
+    ].join("\n");
+  }
+
+  return [
+    "Ja — her er en kort besked, du kan sende:",
+    "",
+    "```text",
+    "Hej",
+    "",
+    "I morgen vil vi prøve at gøre situationen mere tydelig og overskuelig for jeres barn. Vi bruger korte beskeder, tydelig struktur og voksenstøtte tæt på, så barnet får bedre mulighed for at lykkes.",
+    "",
+    "I kan støtte op hjemme ved at bruge samme rolige og korte beskeder, når noget bliver svært eller skal skifte.",
+    "",
+    "Vi følger op på, hvordan det går.",
+    "```",
+  ].join("\n");
+}
+
+
 function getLocalTemplateRequest(message) {
   const fileTemplateResult = getTemplateFiles();
   const legacyTemplateResult = getTemplates();
@@ -7413,6 +7652,82 @@ try {
       tools_used: usedTools,
       tool_debug: toolDebug,
       pending_action: pending_action,
+    });
+  }
+
+  if ((activeLocalCase || hasActiveCaseContext(activeCaseContext)) && isLocalObservationPointsRequest(message)) {
+    const reply = buildLocalObservationPointsReply(activeLocalCase, activeCaseContext, language);
+    const usedTools = ["localActiveCaseObservationPoints"];
+    const toolDebug = [
+      {
+        name: "localActiveCaseObservationPoints",
+        selected_case_id: activeLocalCase?.id || null,
+        source: activeLocalCase ? "active_local_case" : "active_case_context",
+        followup: message,
+        token_policy: "0_tokens_local_response",
+        routing: "returned_before_openai",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
+    });
+  }
+
+  if ((activeLocalCase || hasActiveCaseContext(activeCaseContext)) && isLocalParentMessageRequest(message)) {
+    const reply = buildLocalParentMessageReply(activeLocalCase, activeCaseContext, language);
+    const usedTools = ["localActiveCaseParentMessage"];
+    const toolDebug = [
+      {
+        name: "localActiveCaseParentMessage",
+        selected_case_id: activeLocalCase?.id || null,
+        source: activeLocalCase ? "active_local_case" : "active_case_context",
+        followup: message,
+        token_policy: "0_tokens_local_response",
+        routing: "returned_before_openai",
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
     });
   }
 
