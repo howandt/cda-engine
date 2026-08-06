@@ -3964,7 +3964,9 @@ function buildLocalTeacherPracticeReply(message, language = "Dansk") {
     tracks.push("niveau_mening_status");
   }
 
-  if (includesAny(["skift", "skifte", "aktivitetsskift", "overgang", "overgange", "stoppe en aktivitet", "begynde pa noget nyt", "begynde på noget nyt", "pakke sammen", "bliver vred", "eksplodere", "eksploderer", "mister kontrol"])) {
+  // 23B.8C: Overgang må kun vælges ved reelle overgangs-/skiftmarkører.
+  // Generelle affektord som "vred", "eksploderer" og "mister kontrol" er ikke nok alene.
+  if (includesAny(["skift", "skifte", "aktivitetsskift", "overgang", "overgange", "stoppe en aktivitet", "begynde pa noget nyt", "begynde på noget nyt", "pakke sammen"])) {
     tracks.push("overgang_frustration");
   }
 
@@ -4054,7 +4056,9 @@ function buildLocalTeacherPracticeReply(message, language = "Dansk") {
 
   const closing = uniqueTracks.includes("overgang_frustration")
     ? "Kort sagt: Gør skiftet mindre, tydeligere og mere forudsigeligt, før du forventer selvregulering."
-    : "Kort sagt: Anerkend hans oplevelse, men lad ham ikke slippe for deltagelse. Giv ham en konkret vej ind, et tydeligt niveau og en rolle, hvor han kan lykkes uden at tabe ansigt.";
+    : uniqueTracks.includes("opmaerksomhed_uro")
+      ? "Kort sagt: Gør rammen mere bevægelsesvenlig, tydelig og kort, før du forventer ro på stolen."
+      : "Kort sagt: Anerkend hans oplevelse, men lad ham ikke slippe for deltagelse. Giv ham en konkret vej ind, et tydeligt niveau og en rolle, hvor han kan lykkes uden at tabe ansigt.";
 
   const reply = [
     opening,
