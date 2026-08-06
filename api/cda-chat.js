@@ -3798,6 +3798,243 @@ function normalizeTemplateSearch(value) {
   return normalizeDiagnosisPhrase(value);
 }
 
+
+function isExplicitTemplateOrGuideCommand(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (!text) {
+    return false;
+  }
+
+  return [
+    "vis guide",
+    "vis en guide",
+    "vis guide til",
+    "hent guide",
+    "hent en guide",
+    "find guide",
+    "find en guide",
+    "aabn guide",
+    "abn guide",
+    "åbn guide",
+    "vis skabelon",
+    "vis en skabelon",
+    "vis skabelon til",
+    "hent skabelon",
+    "hent en skabelon",
+    "find skabelon",
+    "find en skabelon",
+    "aabn skabelon",
+    "abn skabelon",
+    "åbn skabelon",
+    "vis template",
+    "hent template",
+    "find template",
+    "aabn template",
+    "abn template",
+    "åbn template",
+    "find skema",
+    "find et skema",
+    "hent skema",
+    "hent et skema",
+    "vis skema",
+    "vis et skema",
+    "lav et skema",
+    "lav en skabelon",
+  ].some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)));
+}
+
+function includesAnyLocalPracticePhrase(text, phrases) {
+  return phrases.some((phrase) => text.includes(normalizeDiagnosisPhrase(phrase)));
+}
+
+function getLocalTeacherPracticeSignals(message, role) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  const hasTeacherContext =
+    role === "Lærer" ||
+    includesAnyLocalPracticePhrase(text, [
+      "klasse",
+      "klassen",
+      "undervisning",
+      "undervisningen",
+      "lektier",
+      "laering",
+      "læring",
+      "elev",
+      "skole",
+    ]);
+
+  const hasChildSubject = includesAnyLocalPracticePhrase(text, [
+    "jeg har en dreng",
+    "jeg har en pige",
+    "jeg har et barn",
+    "jeg har en elev",
+    "vi har en dreng",
+    "vi har en pige",
+    "vi har et barn",
+    "vi har en elev",
+    "en dreng",
+    "en pige",
+    "et barn",
+    "en elev",
+    "han",
+    "hun",
+  ]);
+
+  const hasProblemSignal = includesAnyLocalPracticePhrase(text, [
+    "gider ikke",
+    "vil ikke",
+    "kan ikke",
+    "naegter",
+    "nægter",
+    "forstyrrer",
+    "uro",
+    "urolig",
+    "loebe rundt",
+    "løbe rundt",
+    "loebet rundt",
+    "løber rundt",
+    "sidde stille",
+    "koncentrere",
+    "koncentration",
+    "deltager ikke",
+    "ikke vaere med",
+    "ikke være med",
+    "babyundervisning",
+    "baby undervisning",
+    "allerede ved alt",
+    "keder sig",
+    "kedeligt",
+    "motivation",
+    "modstand",
+  ]);
+
+  const asksForHelp = includesAnyLocalPracticePhrase(text, [
+    "hvad gor jeg",
+    "hvad gør jeg",
+    "hvad kan jeg gore",
+    "hvad kan jeg gøre",
+    "hvordan kan jeg",
+    "hvad skal jeg",
+    "hjaelp",
+    "hjælp",
+  ]);
+
+  return {
+    text,
+    hasTeacherContext,
+    hasChildSubject,
+    hasProblemSignal,
+    asksForHelp,
+    isPracticeProblem:
+      hasTeacherContext &&
+      hasChildSubject &&
+      hasProblemSignal &&
+      (asksForHelp || text.length >= 80) &&
+      !isExplicitTemplateOrGuideCommand(message),
+  };
+}
+
+function isLocalTeacherPracticeProblem(message, role) {
+  return getLocalTeacherPracticeSignals(message, role).isPracticeProblem;
+}
+
+function buildLocalTeacherPracticeReply(message, language = "Dansk") {
+  const text = normalizeDiagnosisPhrase(message);
+  const includesAny = (phrases) => includesAnyLocalPracticePhrase(text, phrases);
+
+  const tracks = [];
+
+  if (includesAny(["babyundervisning", "baby undervisning", "allerede ved alt", "for let", "keder sig", "kedeligt"])) {
+    tracks.push("niveau_mening_status");
+  }
+
+  if (includesAny(["gider ikke", "vil ikke", "naegter", "nægter", "modstand", "deltager ikke", "ikke vaere med", "ikke være med"])) {
+    tracks.push("deltagelsesmodstand");
+  }
+
+  if (includesAny(["koncentrere", "koncentration", "uro", "urolig", "loebe rundt", "løbe rundt", "løber rundt", "sidde stille", "forstyrrer"])) {
+    tracks.push("opmaerksomhed_uro");
+  }
+
+  if (tracks.length === 0) {
+    tracks.push("generel_praksis");
+  }
+
+  const uniqueTracks = Array.from(new Set(tracks));
+
+  const opening = uniqueTracks.includes("niveau_mening_status")
+    ? "Det peger mest på, at han enten oplever undervisningen som for let, for lidt meningsfuld, eller bruger \"jeg ved det allerede\" til at beskytte status foran de andre. Gå ikke ind i en diskussion om, om det er babyundervisning."
+    : uniqueTracks.includes("opmaerksomhed_uro")
+      ? "Det peger mest på, at han har svært ved at regulere krop, energi og opmærksomhed i den måde undervisningen er sat op på. Start med at ændre rammen, ikke med at skælde ud."
+      : "Det peger mest på en deltagelsesmodstand, hvor han har brug for en tydeligere vej ind i opgaven. Hold fast i deltagelse, men giv ham en mere konkret og meningsfuld rolle.";
+
+  const actions = [];
+
+  if (uniqueTracks.includes("niveau_mening_status")) {
+    actions.push(
+      "Sig roligt: “Jeg hører, du synes det er for let. Du skal stadig være med. Vis mig først på 5 minutter, hvad du kan.”",
+      "Giv ham et valg mellem almindelig opgave, sværere niveau eller en ansvarlig rolle, hvor han skal forklare løsningen kort.",
+      "Lav en hurtig aftale: første del løses nu, og hvis den er sikker, får han næste niveau eller et selvstændigt spor."
+    );
+  } else if (uniqueTracks.includes("opmaerksomhed_uro")) {
+    actions.push(
+      "Del arbejdet i 5-10 minutters bidder med tydelig start og slut.",
+      "Giv ham en lovlig bevægelsesrolle: hente, aflevere, stå ved bordet eller kort aftalt pause.",
+      "Giv én konkret opgave ad gangen og hurtig feedback på det, der lykkes."
+    );
+  } else {
+    actions.push(
+      "Start med en lavkonflikt-sætning: “Du skal være med, men vi finder en måde, der virker.”",
+      "Gør første trin meget konkret og kort, så han kommer i gang uden lang forhandling.",
+      "Giv ham et afgrænset valg, ikke frit valg: A eller B."
+    );
+  }
+
+  const observations = [];
+
+  if (uniqueTracks.includes("niveau_mening_status")) {
+    observations.push(
+      "Er opgaven faktisk for let, eller undgår han risikoen for at fejle?",
+      "Kommer kommentaren mest foran andre elever?",
+      "Deltager han bedre, når han får højere niveau, ansvar eller valgmulighed?"
+    );
+  }
+
+  if (uniqueTracks.includes("deltagelsesmodstand")) {
+    observations.push(
+      "Hvornår opstår modstanden: ved start, skift, skriftlige krav eller fælles instruktion?",
+      "Hvad hjælper ham hurtigst i gang uden magtkamp?"
+    );
+  }
+
+  if (uniqueTracks.includes("opmaerksomhed_uro")) {
+    observations.push(
+      "Hvor længe kan han arbejde, før kroppen overtager?",
+      "Virker kort opgave, tydelig pause eller voksen tæt på bedst?"
+    );
+  }
+
+  const trimmedObservations = Array.from(new Set(observations)).slice(0, 4);
+
+  const reply = [
+    opening,
+    "",
+    "Det kan du gøre nu:",
+    ...actions.slice(0, 3).map((action, index) => `${index + 1}. ${action}`),
+    "",
+    "Hold øje med:",
+    ...trimmedObservations.map((item) => `- ${item}`),
+    "",
+    "Kort sagt: Anerkend hans oplevelse, men lad ham ikke slippe for deltagelse. Giv ham en konkret vej ind, et tydeligt niveau og en rolle, hvor han kan lykkes uden at tabe ansigt.",
+  ].join("\n");
+
+  return language === "English"
+    ? reply
+    : reply;
+}
+
 function templatePhraseIsPresent(messageText, value) {
   const phrase = normalizeTemplateSearch(value);
 
@@ -8135,6 +8372,44 @@ try {
         mode: getPracticalDayPlanMode(message),
         role,
         response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [],
+      totals: {
+        input_tokens: 0,
+        output_tokens: 0,
+        total_tokens: 0,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
+    });
+  }
+
+  if (isLocalTeacherPracticeProblem(message, role)) {
+    const reply = buildLocalTeacherPracticeReply(message, language);
+    const usedTools = ["localTeacherPracticeMotor"];
+    const toolDebug = [
+      {
+        name: "localTeacherPracticeMotor",
+        action: "free_teacher_problem_before_ai",
+        role,
+        response_style,
+        token_policy: "0_tokens_local_response",
+        routing: "returned_before_template_and_openai",
       },
     ];
 
