@@ -7818,7 +7818,7 @@ try {
 
     const headingInstruction =
       requestedAngle === "psychologist"
-        ? "Brug præcis disse markdown-overskrifter: **Psykologens vurdering** og **Psykologens startforslag**."
+        ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun 'Psykologens vurdering'/'Psykologens startforslag', hvis intet navn findes i data."
         : requestedAngle === "ppr"
           ? "Brug præcis disse markdown-overskrifter: **PPR-vinkel** og **Næste observationer**."
           : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **Næste skridt**.";
