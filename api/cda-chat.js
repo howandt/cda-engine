@@ -3259,6 +3259,26 @@ function isDirectSpecialistPanelRequest(message) {
   );
 }
 
+function isCaseSpecialistsInvolvedRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+  const directPatterns = [
+    "hvilke specialister har været inde over",
+    "hvilke specialister har set på",
+    "hvilke specialister har været involveret",
+    "hvilke specialister er relevante for denne case",
+    "hvilke specialister er relevante for denne sag",
+    "hvem har kigget på denne case",
+    "hvem har kigget på denne sag",
+    "specialister involveret i denne sag",
+    "specialister involveret i denne case",
+    "hvilket specialistteam",
+  ];
+
+  return directPatterns.some((pattern) =>
+    text.includes(normalizeDiagnosisPhrase(pattern))
+  );
+}
+
 function limitSpecialistText(value, max = 260) {
   const text = formatLocalCaseValue(value)
     .replace(/\s+/g, " ")
@@ -3397,19 +3417,20 @@ function buildCompactSpecialistCaseContext(caseData, activeContext) {
   return "";
 }
 
-function getTargetedSpecialistPanel(angle, message) {
+function getTargetedSpecialistPanel(angle, message, extraText = "") {
   const panelResult = getSpecialistPanel();
   const specialists = Array.isArray(panelResult?.data?.specialists)
     ? panelResult.data.specialists
     : [];
 
-  const text = normalizeDiagnosisPhrase(message);
+  const text = normalizeDiagnosisPhrase(`${message} ${extraText}`);
   const words = new Set(text.split(" ").filter((word) => word.length >= 4));
 
   const anglePatterns = {
     psychologist: ["psykolog", "psykologisk", "psykologi", "ppr"],
     ppr: ["ppr", "skolepsykolog", "raadgivning", "rådgivning", "observation", "indstilling"],
     specialists: [],
+    case_team: [],
   };
 
   const specialistText = (specialist) => normalizeDiagnosisPhrase([
@@ -3441,7 +3462,7 @@ function getTargetedSpecialistPanel(angle, message) {
     return { specialist, score, index };
   }).sort((a, b) => b.score - a.score || a.index - b.index);
 
-  const maxCount = angle === "specialists" ? 3 : 1;
+  const maxCount = angle === "case_team" ? 5 : angle === "specialists" ? 3 : 1;
   let selected = scored.filter((item) => item.score > 0).slice(0, maxCount);
 
   if (selected.length === 0 && specialists.length > 0) {
@@ -7966,7 +7987,208 @@ try {
     });
   }
 
+  if (isCaseSpecialistsInvolvedRequest(message)) {
+    if (!activeLocalCase && !hasActiveCaseContext(activeCaseContext)) {
+      const reply =
+        "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gå tilbage til en tidligere case, så kan jeg pege på hvilke CDA-specialister der er relevante.";
+      const usedTools = ["caseSpecialistsInvolvedNoActiveCase"];
+      const toolDebug = [
+        {
+          name: "caseSpecialistsInvolvedNoActiveCase",
+          role,
+          response_style,
+        },
+      ];
 
+      console.log("CDA værktøjskald:", {
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+      });
+
+      return res.status(200).json({
+        success: true,
+        reply,
+        model: "local",
+        tools_used: usedTools,
+        tool_debug: toolDebug,
+        pending_action: null,
+      });
+    }
+
+    const caseText = [
+      activeLocalCase?.titel,
+      activeLocalCase?.title,
+      activeLocalCase?.problem,
+      activeLocalCase?.kort_beskrivelse,
+      activeLocalCase?.description,
+      activeLocalCase?.beskrivelse,
+      activeCaseContext?.summary,
+      activeCaseContext?.known_context,
+      activeCaseContext?.last_user_message,
+    ].filter(Boolean).join(" ");
+
+    const specialistPanel = getTargetedSpecialistPanel("case_team", message, caseText);
+    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+
+    if (specialistPanel.specialistIds.length === 0) {
+      throw new Error("Specialistpanelet indeholder ingen specialister");
+    }
+
+    const caseTeamInstructions = [
+      "Du er Heidi i CDA Engine.",
+      "Brugeren spørger, hvilke CDA-specialister der har været relevante for den aktive case/sag.",
+      "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
+      "Stil ikke diagnose. Giv ikke medicinråd.",
+      "Vis hver relevant specialist på egen linje: **[specialistens fulde navn fra data]** efterfulgt af ét kort, case-specifikt fokuspunkt (1 linje).",
+      "Nævn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
+      "Afslut altid med én linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
+      "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
+    ].join("\n");
+
+    const caseTeamInput = [
+      specialistCaseContextBlock,
+      "",
+      "BRUGERENS BESKED:",
+      message,
+      "",
+      "RELEVANT LOKAL SPECIALISTDATA:",
+      specialistPanel.indexText,
+    ].filter((part) => String(part || "").trim()).join("\n");
+
+    const response = await openai.responses.create({
+      model: "gpt-5.4-mini",
+      reasoning: {
+        effort: "low",
+      },
+      instructions: caseTeamInstructions,
+      input: caseTeamInput,
+      max_output_tokens:
+        response_style === "Dyb" ? 750 : response_style === "Kort" ? 400 : 550,
+      text: {
+        format: {
+          type: "json_schema",
+          name: "cda_case_team_response",
+          strict: true,
+          schema: {
+            type: "object",
+            properties: {
+              selected_specialist_ids: {
+                type: "array",
+                items: {
+                  type: "string",
+                  enum: specialistPanel.specialistIds,
+                },
+              },
+              reply: {
+                type: "string",
+              },
+            },
+            required: ["selected_specialist_ids", "reply"],
+            additionalProperties: false,
+          },
+        },
+      },
+    });
+
+    if (response.status === "incomplete") {
+      throw new Error("Ufuldstændigt svar fra specialistpanelet");
+    }
+
+    const panelResponse = JSON.parse(response.output_text || "{}");
+    const validSpecialistIds = new Set(specialistPanel.specialistIds);
+    const selectedSpecialistIds = Array.from(
+      new Set(
+        (Array.isArray(panelResponse.selected_specialist_ids)
+          ? panelResponse.selected_specialist_ids
+          : []
+        ).filter((id) => validSpecialistIds.has(String(id)))
+      )
+    ).slice(0, 5);
+
+    const reply = String(panelResponse.reply || "").trim();
+
+    if (!reply) {
+      throw new Error("Specialistpanelet returnerede intet svar");
+    }
+
+    const inputTokens = Number(response?.usage?.input_tokens || 0);
+    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "case_specialists_involved",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["caseSpecialistsInvolvedRouting"];
+    const toolDebug = [
+      {
+        name: "caseSpecialistsInvolvedRouting",
+        selected_specialists: selectedSpecialistIds.map((id) =>
+          specialistPanel.specialistSummaries.find(
+            (specialist) => specialist.id === id
+          )
+        ).filter(Boolean),
+        active_local_case_id: activeLocalCase?.id || null,
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error(
+          "Kunne ikke gemme tokenforbrug:",
+          forbrugsFejl
+        );
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : null,
+    });
+  }
 
   if (isReadableStudentProfileRequest(message)) {
     const profileTextResult = await createReadableStudentProfileText(message, language);
