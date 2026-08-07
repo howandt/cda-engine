@@ -2268,8 +2268,25 @@ function getSemanticSearch(args = {}) {
     }
   }
 
+  // 23B.9I: Danske stopord fjernes, saa scoringen ikke fyldes med
+  // grammatiske fyldord ("han", "er", "paa"), som findes i naesten alle cases
+  // uanset emne, og som ellers overdoever de faktisk betydningsbaerende ord.
+  // OBS: skriv ordene med rigtige æ/ø/å-tegn her — normalizeSemantic()
+  // konverterer dem til samme normaliserede form som søgeteksten (fx "på" -> "pa"),
+  // så en manuel ascii-tilnærmelse (fx "paa") IKKE ville matche korrekt.
+  const stopwordList = [
+    "han", "hun", "den", "det", "de", "vi", "jeg", "du", "man", "ham", "hende",
+    "er", "var", "være", "blive", "bliver", "blev", "har", "havde", "kan",
+    "kunne", "skal", "skulle", "vil", "ville", "må", "måtte",
+    "en", "et", "år", "og", "i", "på", "med", "som", "til", "for", "af", "der",
+    "men", "eller", "hvis", "når", "også", "ikke", "kun", "bare", "så",
+    "her", "nu", "op", "ned", "ud", "ind", "om", "over", "under",
+    "case", "elev", "barn", "barnet", "eleven", "dreng", "pige",
+  ];
+  const stopwords = new Set(stopwordList.map((word) => normalizeSemantic(word)));
+
   const searchTerms = Array.from(terms).filter(
-    (term) => term.length >= 2
+    (term) => term.length >= 2 && !stopwords.has(term)
   );
 
   const requestedAge = extractRequestedCaseAge(searchText);
@@ -2395,19 +2412,22 @@ function getSemanticSearch(args = {}) {
       if (termMatched) matchedTerms.add(term);
     }
 
+    // 23B.9H: Alder er en bløddig tiebreaker, ikke en dominerende faktor.
+    // Indhold (adfærd, tema, triggers, diagnose) skal afgøre matchet;
+    // alder må kun udslagsgivende, når to cases ellers er indholdsmæssigt lige gode.
     if (requestedAge !== null) {
       if (fields.age !== null) {
         const ageDiff = Math.abs(fields.age - requestedAge);
 
         if (ageDiff === 0) {
-          score += 250;
+          score += 50;
           matchedTerms.add(`${requestedAge} år`);
         } else if (ageDiff === 1) {
-          score += 90;
+          score += 20;
         } else if (ageDiff === 2) {
-          score -= 40;
+          score += 0;
         } else {
-          score -= 100;
+          score -= 20;
         }
       } else {
         score -= 10;
