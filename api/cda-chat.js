@@ -5446,14 +5446,14 @@ const tools = [
     type: "function",
     name: "getPromptRules",
     description:
-      "Henter dynamiske prompt-regler til CDA. Bruges ved behov for styrende systemregler, mode-styring, rollespil, konfliktflow eller anden CDA-logik.",
+      "Henter dynamiske prompt-regler til CDA. response_style_rules og mode_switch_rules er allerede indlæst og skal ikke hentes igen. Øvrige tilgængelige sektioner: domain_scope, specialist_trigger_rules, template_trigger_rules, case_trigger_rules, diagnosis_trigger_rules, roleplay_rules, emotion_trigger_rules, bornehave_trigger_rules, cda_training_rules, roleplay_learning_rules, general_rule, source_priority_rules, action_rules, practice_situations, roleplay_emotion_rules, conflict_mediator_rules, comorbidity_rules, school_home_dialogue_rules. Hent den sektion der matcher situationen, fx source_priority_rules ved tvivl om CDA-data vs. generel viden, comorbidity_rules ved mulig komorbiditet, school_home_dialogue_rules ved skole-hjem-kommunikation, eller specialist_trigger_rules/template_trigger_rules før specialister eller skabeloner bruges.",
     parameters: {
       type: "object",
       properties: {
         section: {
           type: "string",
           description:
-            "Valgfri sektion, fx comorbidity_rules, practice_situations eller conflict_mediator_rules.",
+            "Præcist sektionsnavn fra listen ovenfor, fx comorbidity_rules, source_priority_rules eller conflict_mediator_rules.",
         },
       },
       additionalProperties: false,
