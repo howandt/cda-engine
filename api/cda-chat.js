@@ -3236,6 +3236,85 @@ function getSpecialistPanel() {
   };
 }
 
+function findNamedSpecialistInMessage(message) {
+  const panelResult = getSpecialistPanel();
+  const specialists = Array.isArray(panelResult?.data?.specialists)
+    ? panelResult.data.specialists
+    : [];
+
+  const text = normalizeDiagnosisPhrase(message);
+  if (!text) {
+    return null;
+  }
+
+  const withPersonalName = specialists
+    .map((specialist) => {
+      const fullName = String(specialist?.name || "").trim();
+      const parts = fullName.split(/\s+/).filter(Boolean);
+      const personalName = parts.slice(-2).join(" ");
+      const lastName = parts.slice(-1).join(" ");
+      return { specialist, personalName, lastName };
+    })
+    .filter((item) => item.personalName);
+
+  const fullNameMatch = withPersonalName.find(
+    (item) =>
+      normalizeDiagnosisPhrase(item.personalName).length > 0 &&
+      text.includes(normalizeDiagnosisPhrase(item.personalName))
+  );
+  if (fullNameMatch) {
+    return fullNameMatch.specialist;
+  }
+
+  const lastNameMatches = withPersonalName.filter(
+    (item) =>
+      item.lastName.length >= 4 &&
+      text.includes(normalizeDiagnosisPhrase(item.lastName))
+  );
+  if (lastNameMatches.length === 1) {
+    return lastNameMatches[0].specialist;
+  }
+
+  return null;
+}
+
+function buildSingleSpecialistPanel(specialist) {
+  if (!specialist) {
+    return { specialistIds: [], specialistSummaries: [], indexText: "" };
+  }
+
+  const cleanValue = (value, max = 160) =>
+    limitSpecialistText(value, max)
+      .replace(/[|\r\n]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const keywords = Array.isArray(specialist?.keywords)
+    ? specialist.keywords.slice(0, 8).join(", ")
+    : "";
+
+  const row = [
+    cleanValue(specialist?.id, 80),
+    cleanValue(specialist?.name, 120),
+    cleanValue(specialist?.group, 120),
+    cleanValue(specialist?.function, 220),
+    cleanValue(keywords, 180),
+  ].join("|");
+
+  return {
+    specialistIds: [String(specialist?.id || "")].filter(Boolean),
+    specialistSummaries: [
+      {
+        id: String(specialist?.id || ""),
+        name: String(specialist?.name || ""),
+        group: String(specialist?.group || ""),
+        function: String(specialist?.function || ""),
+      },
+    ],
+    indexText: ["KOLONNER:id|navn|gruppe|funktion|keywords", row].join("\n"),
+  };
+}
+
 function isDirectSpecialistPanelRequest(message) {
   const text = normalizeDiagnosisPhrase(message);
   const directPatterns = [
@@ -3254,9 +3333,11 @@ function isDirectSpecialistPanelRequest(message) {
     "ppr-vinkel",
   ];
 
-  return directPatterns.some((pattern) =>
-    text.includes(normalizeDiagnosisPhrase(pattern))
-  );
+  if (directPatterns.some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)))) {
+    return true;
+  }
+
+  return Boolean(findNamedSpecialistInMessage(message));
 }
 
 function isCaseSpecialistsInvolvedRequest(message) {
@@ -3293,6 +3374,10 @@ function limitSpecialistText(value, max = 260) {
 
 function getRequestedSpecialistAngle(message) {
   const text = normalizeDiagnosisPhrase(message);
+
+  if (findNamedSpecialistInMessage(message)) {
+    return "named";
+  }
 
   if (text.includes("psykolog")) {
     return "psychologist";
@@ -7809,7 +7894,10 @@ try {
       });
     }
 
-    const specialistPanel = getTargetedSpecialistPanel(requestedAngle, message);
+    const specialistPanel =
+      requestedAngle === "named"
+        ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
+        : getTargetedSpecialistPanel(requestedAngle, message);
     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
 
     if (specialistPanel.specialistIds.length === 0) {
@@ -7817,8 +7905,8 @@ try {
     }
 
     const headingInstruction =
-      requestedAngle === "psychologist"
-        ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun 'Psykologens vurdering'/'Psykologens startforslag', hvis intet navn findes i data."
+      requestedAngle === "named" || requestedAngle === "psychologist"
+        ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
         : requestedAngle === "ppr"
           ? "Brug præcis disse markdown-overskrifter: **PPR-vinkel** og **Næste observationer**."
           : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **Næste skridt**.";
