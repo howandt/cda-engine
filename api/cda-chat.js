@@ -53,11 +53,19 @@ function readHeidiPrompt() {
   const modeSwitchRules =
     rulesData?.system_rules?.mode_switch_rules || {};
 
+  const sourcePriorityRules =
+    rulesData?.system_rules?.source_priority_rules || {};
+
+  const generalRule = rulesData?.system_rules?.general_rule || "";
+
+  const practiceSituations =
+    rulesData?.system_rules?.practice_situations || {};
+
   return [
     heidiPrompt,
     "",
     "CENTRALE DYNAMISKE SYSTEMREGLER",
-"Disse regler er allerede indlæst. Kald ikke getPromptRules for response_style_rules eller mode_switch_rules.",
+"Disse regler er allerede indlæst. Kald ikke getPromptRules for response_style_rules, mode_switch_rules, source_priority_rules, general_rule eller practice_situations.",
 "I normal drift må 'Det kan du gøre nu' højst indeholde 3 konkrete handlinger.",
 "",
 "response_style_rules:",
@@ -65,6 +73,15 @@ function readHeidiPrompt() {
     "",
     "mode_switch_rules:",
     JSON.stringify(modeSwitchRules, null, 2),
+    "",
+    "general_rule:",
+    generalRule,
+    "",
+    "source_priority_rules:",
+    JSON.stringify(sourcePriorityRules, null, 2),
+    "",
+    "practice_situations:",
+    JSON.stringify(practiceSituations, null, 2),
   ].join("\n");
 }
 
@@ -5446,7 +5463,7 @@ const tools = [
     type: "function",
     name: "getPromptRules",
     description:
-      "Henter dynamiske prompt-regler til CDA. response_style_rules og mode_switch_rules er allerede indlæst og skal ikke hentes igen. Øvrige tilgængelige sektioner: domain_scope, specialist_trigger_rules, template_trigger_rules, case_trigger_rules, diagnosis_trigger_rules, roleplay_rules, emotion_trigger_rules, bornehave_trigger_rules, cda_training_rules, roleplay_learning_rules, general_rule, source_priority_rules, action_rules, practice_situations, roleplay_emotion_rules, conflict_mediator_rules, comorbidity_rules, school_home_dialogue_rules. Hent den sektion der matcher situationen, fx source_priority_rules ved tvivl om CDA-data vs. generel viden, comorbidity_rules ved mulig komorbiditet, school_home_dialogue_rules ved skole-hjem-kommunikation, eller specialist_trigger_rules/template_trigger_rules før specialister eller skabeloner bruges.",
+      "Henter dynamiske prompt-regler til CDA. response_style_rules, mode_switch_rules, source_priority_rules, general_rule og practice_situations er allerede indlæst og skal ikke hentes igen. Øvrige tilgængelige sektioner: domain_scope, specialist_trigger_rules, template_trigger_rules, case_trigger_rules, diagnosis_trigger_rules, roleplay_rules, emotion_trigger_rules, bornehave_trigger_rules, cda_training_rules, roleplay_learning_rules, action_rules, roleplay_emotion_rules, conflict_mediator_rules, comorbidity_rules, school_home_dialogue_rules. Hent den sektion der matcher situationen, fx comorbidity_rules ved mulig komorbiditet, school_home_dialogue_rules ved skole-hjem-kommunikation, eller specialist_trigger_rules/template_trigger_rules før specialister eller skabeloner bruges.",
     parameters: {
       type: "object",
       properties: {
