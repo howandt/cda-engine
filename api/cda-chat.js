@@ -5696,7 +5696,7 @@ const tools = [
   type: "function",
   name: "getRollespil",
   description:
-    "Henter eksisterende CDA-rollespilsscenarier. Kald altid dette værktøj, når brugeren beder om rollespil, en liste over eksisterende rollespilsscenarier, perspektivskifte, træning eller et bestemt scenarie. Uden caseId returneres hele listen.",
+    "Henter eksisterende, faste CDA-rollespilsscenarier (kun et par stykker – et lille referencebibliotek, ikke selve rollespilsmotoren). Kald KUN dette værktøj, når brugeren tydeligt vil browse eller genbruge et eksisterende, navngivet scenarie, eller har givet en konkret nok situation til at der er noget at matche mod. Hvis brugerens ønske om rollespil er uklart, generelt eller kun nævner selve funktionen (fx 'rollespil', 'rollespilsmotor', 'vis mig rollespil'), skal du IKKE kalde dette værktøj — spørg i stedet kort, hvilken indgang brugeren vil bruge (kør en hændelse / træn en situation / øv en samtale), jf. roleplay_learning_rules. De fleste rollespil bygges bedst direkte ud fra brugerens egen beskrivelse, ikke ud fra dette lille bibliotek.",
   parameters: {
     type: "object",
     properties: {
