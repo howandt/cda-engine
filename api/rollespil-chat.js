@@ -383,22 +383,18 @@ function detectAction(message, state, explicitAction) {
     return "help";
   }
 
+  // 23B.9R: Saa laenge status er "setup" (dvs. opstarten reelt ikke er
+  // fuldfoert, typisk fordi roller mangler), skal ENHVER almindelig besked
+  // tolkes som et forsoeg paa at fuldfoere opstarten -- ikke kun de faste
+  // vendinger herunder. Mere specifikke kommandoer (stop/pause/reset/hjaelp
+  // m.fl.) er allerede tjekket og returneret tidligere i denne funktion,
+  // saa de rammes stadig korrekt uanset denne regel.
   if (
     state.status === "setup" ||
     state.status === "ended" ||
     (!state.user_role && !state.cda_role)
   ) {
-    if (
-      text.includes("start rollespil") ||
-      text.includes("start rollespillet") ||
-      text.includes("start rollespilmotor") ||
-      text.includes("jeg vil traene") ||
-      text.includes("jeg skal traene") ||
-      text.includes("du spiller") ||
-      text.includes("min rolle er")
-    ) {
-      return "start";
-    }
+    return "start";
   }
 
   if (
