@@ -3352,6 +3352,55 @@ function buildSingleSpecialistPanel(specialist) {
   };
 }
 
+function isRoleplayTriggerMessage(message) {
+  const text = normalizeDiagnosisPhrase(message);
+  const triggerPatterns = [
+    "rollespil",
+    "rollespil start",
+    "kor en haendelse",
+    "kor haendelse",
+    "traen en situation",
+    "traen situation",
+    "ov en samtale",
+    "ov samtale",
+    "ppr mode",
+    "skole hjem samtale",
+  ];
+
+  return triggerPatterns.some((pattern) =>
+    text.includes(normalizeDiagnosisPhrase(pattern))
+  );
+}
+
+function isRoleplayContextActive(message, pendingActionValue) {
+  return (
+    isRoleplayTriggerMessage(message) || pendingActionValue === "roleplay_active"
+  );
+}
+
+function buildRoleplayRuleInjection() {
+  const rulesData = readJsonFile(
+    path.join(process.cwd(), "data", "prompt_rules.json"),
+    "data/prompt_rules.json blev ikke fundet"
+  );
+
+  const roleplayRules = rulesData?.system_rules?.roleplay_rules || {};
+  const roleplayLearningRules =
+    rulesData?.system_rules?.roleplay_learning_rules || {};
+
+  return [
+    "",
+    "ROLLESPIL ER AKTIVT I DENNE SAMTALE — disse regler er allerede indlæst, kald ikke getPromptRules for roleplay_rules eller roleplay_learning_rules.",
+    "roleplay_rules:",
+    JSON.stringify(roleplayRules, null, 2),
+    "",
+    "roleplay_learning_rules:",
+    JSON.stringify(roleplayLearningRules, null, 2),
+    "",
+    "Så længe rollespillet/træningen fortsætter (brugeren er midt i en hændelse, en trænet situation eller en samtaleøvelse), skal du afslutte dit svar med [[PENDING_ACTION:ROLEPLAY_ACTIVE]] som allersidste tegn. Markøren vises ikke til brugeren. Udelad markøren, når rollespillet/træningen er afsluttet, eller brugeren tydeligt skifter emne.",
+  ].join("\n");
+}
+
 function isDirectSpecialistPanelRequest(message) {
   const text = normalizeDiagnosisPhrase(message);
   const directPatterns = [
@@ -5867,19 +5916,27 @@ function getPblProfileTemplate() {
 }
 
 function extractPendingAction(replyText) {
-  const marker = "[[PENDING_ACTION:PBL_PROFILE]]";
+  const pblMarker = "[[PENDING_ACTION:PBL_PROFILE]]";
+  const roleplayMarker = "[[PENDING_ACTION:ROLEPLAY_ACTIVE]]";
   const text = String(replyText || "");
 
-  if (!text.includes(marker)) {
+  if (text.includes(pblMarker)) {
     return {
-      reply: text.trim(),
-      pendingAction: null,
+      reply: text.replace(pblMarker, "").trim(),
+      pendingAction: "pbl_profile",
+    };
+  }
+
+  if (text.includes(roleplayMarker)) {
+    return {
+      reply: text.replace(roleplayMarker, "").trim(),
+      pendingAction: "roleplay_active",
     };
   }
 
   return {
-    reply: text.replace(marker, "").trim(),
-    pendingAction: "pbl_profile",
+    reply: text.trim(),
+    pendingAction: null,
   };
 }
 
@@ -7898,7 +7955,11 @@ try {
     }
   }
 
-  const heidiPrompt = readHeidiPrompt();
+  const roleplayContextActive = isRoleplayContextActive(message, pending_action);
+
+  const heidiPrompt = roleplayContextActive
+    ? readHeidiPrompt() + buildRoleplayRuleInjection()
+    : readHeidiPrompt();
 
   if (isDirectSpecialistPanelRequest(message)) {
     const requestedAngle = getRequestedSpecialistAngle(message);
@@ -9516,13 +9577,15 @@ try {
     }
   }
 
+  const runtimeReplyData = extractPendingAction(response.output_text);
+
   return res.status(200).json({
   success: true,
-  reply: response.output_text,
+  reply: runtimeReplyData.reply,
   model: "gpt-5.4-mini",
   tools_used: usedTools,
   tool_debug: toolDebug,
-  pending_action: null,
+  pending_action: runtimeReplyData.pendingAction,
 });
 } catch (error) {
   console.error("CDA chatfejl:", error);
