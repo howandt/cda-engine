@@ -7002,6 +7002,153 @@ const activeCaseInstructions = buildActiveCaseInstructions(activeCaseContext, me
 const contextualInput = buildContextualInput(message, activeCaseContext);
 
 try {
+  // 23B.9O: Rollespil har forrang over ALT andet lokalt routing (case-søgning,
+  // skabeloner, diagnose, specialister, PBL, børnehave osv.), jf. roleplay_rules'
+  // egen priority_rule. Tjekkes derfor allerførst, før noget andet får chancen
+  // for at kapre en igangværende rollespil-samtale.
+  const roleplayContextActive = isRoleplayContextActive(message, pending_action);
+
+  if (roleplayContextActive) {
+    const roleplayHeidiPrompt = readHeidiPrompt() + buildRoleplayRuleInjection();
+
+    const roleplayInstructions = [
+      roleplayHeidiPrompt,
+      "",
+      audienceInstructions,
+      "",
+      activeCaseInstructions,
+      "",
+      `AKTUEL SVARSTIL: ${response_style}`,
+    ].filter(Boolean).join("\n");
+
+    let roleplayResponse = await openai.responses.create({
+      model: "gpt-5.4-mini",
+      reasoning: {
+        effort: "low",
+      },
+      instructions: roleplayInstructions,
+      input: contextualInput,
+      tools,
+      max_output_tokens: 1200,
+    });
+
+    let rpInputTokens = 0;
+    let rpOutputTokens = 0;
+    let rpTotalTokens = 0;
+    const rpUsageByCall = [];
+
+    function addRoleplayUsage(responseData, callNumber, phase, toolNames = []) {
+      const callInputTokens = Number(responseData?.usage?.input_tokens || 0);
+      const callOutputTokens = Number(responseData?.usage?.output_tokens || 0);
+      const callTotalTokens = Number(
+        responseData?.usage?.total_tokens || callInputTokens + callOutputTokens
+      );
+      rpInputTokens += callInputTokens;
+      rpOutputTokens += callOutputTokens;
+      rpTotalTokens += callTotalTokens;
+      rpUsageByCall.push({
+        call: callNumber,
+        phase,
+        tools_returned_to_model: toolNames,
+        input_tokens: callInputTokens,
+        output_tokens: callOutputTokens,
+        total_tokens: callTotalTokens,
+      });
+    }
+
+    addRoleplayUsage(roleplayResponse, 1, "roleplay_initial");
+
+    const roleplayUsedTools = [];
+    const roleplayToolDebug = [];
+
+    for (let round = 0; round < 3; round += 1) {
+      const toolCalls = roleplayResponse.output.filter(
+        (item) => item.type === "function_call"
+      );
+
+      if (toolCalls.length === 0) {
+        break;
+      }
+
+      const toolOutputs = toolCalls.map((toolCall) => {
+        const parsedArguments = JSON.parse(toolCall.arguments || "{}");
+        roleplayUsedTools.push(toolCall.name);
+        roleplayToolDebug.push({
+          name: toolCall.name,
+          arguments: parsedArguments,
+        });
+        return {
+          type: "function_call_output",
+          call_id: toolCall.call_id,
+          output: JSON.stringify(executeTool(toolCall)),
+        };
+      });
+
+      roleplayResponse = await openai.responses.create({
+        model: "gpt-5.4-mini",
+        reasoning: {
+          effort: "low",
+        },
+        instructions: roleplayInstructions,
+        previous_response_id: roleplayResponse.id,
+        input: toolOutputs,
+        tools,
+        max_output_tokens: 1200,
+      });
+
+      addRoleplayUsage(
+        roleplayResponse,
+        round + 2,
+        "roleplay_after_tool_output",
+        toolCalls.map((toolCall) => toolCall.name)
+      );
+    }
+
+    const roleplayReplyData = extractPendingAction(roleplayResponse.output_text);
+
+    console.log("CDA værktøjskald:", {
+      tools_used: roleplayUsedTools,
+      tool_debug: roleplayToolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: rpUsageByCall,
+      totals: {
+        input_tokens: rpInputTokens,
+        output_tokens: rpOutputTokens,
+        total_tokens: rpTotalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: rpInputTokens,
+          output_tokens: rpOutputTokens,
+          samlet_tokens: rpTotalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply: roleplayReplyData.reply,
+      model: "gpt-5.4-mini",
+      tools_used: roleplayUsedTools,
+      tool_debug: roleplayToolDebug,
+      pending_action: roleplayReplyData.pendingAction,
+    });
+  }
+
   const localDiagnosisTheoryMeta = getSingleStructuredDiagnosisMatch(message);
 
   if (
@@ -7961,11 +8108,9 @@ try {
     }
   }
 
-  const roleplayContextActive = isRoleplayContextActive(message, pending_action);
-
-  const heidiPrompt = roleplayContextActive
-    ? readHeidiPrompt() + buildRoleplayRuleInjection()
-    : readHeidiPrompt();
+  // Rollespil er allerede håndteret og returneret tidligere i denne funktion,
+  // hvis det var aktivt — herfra er roleplayContextActive altid false.
+  const heidiPrompt = readHeidiPrompt();
 
   if (isDirectSpecialistPanelRequest(message)) {
     const requestedAngle = getRequestedSpecialistAngle(message);
