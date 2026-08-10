@@ -3403,7 +3403,8 @@ function buildRoleplayRuleInjection() {
     "roleplay_learning_rules (allerede indlæst, kald ikke getPromptRules for denne):",
     JSON.stringify(roleplayLearningRules, null, 2),
     "",
-    "Så længe rollespillet/træningen fortsætter (brugeren er midt i en hændelse, en trænet situation eller en samtaleøvelse), skal du afslutte dit svar med [[PENDING_ACTION:ROLEPLAY_ACTIVE]] som allersidste tegn. Markøren vises ikke til brugeren. Udelad markøren, når rollespillet/træningen er afsluttet, eller brugeren tydeligt skifter emne.",
+    "Marker-regel: skal du afslutte dit svar med [[PENDING_ACTION:ROLEPLAY_ACTIVE]] som allersidste tegn i ALLE svar i dette spor — inklusive dette allerførste svar, under afklaring/forberedelse, og under selve øvelsen. Der findes ingen 'opstartsfase' uden markøren; fra første rollespil-relaterede svar og indtil det er helt slut, skal markøren altid med. Markøren vises ikke til brugeren. Udelad KUN markøren i det svar, hvor rollespillet/træningen reelt afsluttes, eller hvis brugeren tydeligt skifter emne til noget der intet har med rollespillet at gøre.",
+    "Opfind aldrig egne kommandoer, motornavne eller statusbeskeder (fx 'rollespillet er ikke aktivt'). Brug kun de kommandoer og den struktur, der faktisk er beskrevet i roleplay_rules og roleplay_learning_rules herover.",
   ].join("\n");
 }
 
