@@ -189,6 +189,67 @@ function extractRole(message, subject) {
   return "";
 }
 
+// 23B.9S: Dynamisk, AI-baseret rollegenkendelse. Erstatter den stive
+// regex-tilgang, som kraevede ordret "jeg"/"du" og fejlede paa almindelige
+// tastefejl (fx "jer" i stedet for "jeg"). AI'en forstaar naturligt sprog,
+// tastefejl og omvendt raekkefoelge, i stedet for at kraeve et fast moenster.
+async function extractRolesWithAI(message) {
+  const text = cleanText(message, 1200);
+
+  if (!text) {
+    return { user_role: "", cda_role: "" };
+  }
+
+  try {
+    const response = await openai.responses.create({
+      model: MODEL,
+      reasoning: {
+        effort: "low",
+      },
+      instructions: [
+        "Du udtrækker rollefordeling til et rollespil ud fra en dansk besked.",
+        "user_role: den rolle brugeren selv vil have (fx 'lærer', 'forælder').",
+        "cda_role: den rolle AI'en/CDA skal spille (fx 'PPR', 'en skeptisk forælder', 'eleven').",
+        "Forstå naturligt sprog, tastefejl (fx 'jer' for 'jeg') og vendt rækkefølge.",
+        "Hvis en rolle slet ikke nævnes eller er uklar, returnér tom streng for den.",
+        "Opfind aldrig en rolle, der ikke er antydet i beskeden.",
+      ].join("\n"),
+      input: text,
+      max_output_tokens: 150,
+      text: {
+        format: {
+          type: "json_schema",
+          name: "roleplay_role_extraction",
+          strict: true,
+          schema: {
+            type: "object",
+            properties: {
+              user_role: { type: "string" },
+              cda_role: { type: "string" },
+            },
+            required: ["user_role", "cda_role"],
+            additionalProperties: false,
+          },
+        },
+      },
+    });
+
+    if (response.status === "incomplete") {
+      return { user_role: "", cda_role: "" };
+    }
+
+    const parsed = JSON.parse(response.output_text || "{}");
+
+    return {
+      user_role: cleanText(parsed.user_role, 160),
+      cda_role: cleanText(parsed.cda_role, 160),
+    };
+  } catch (error) {
+    console.error("CDA rollespil rolleudtræk fejlede:", error);
+    return { user_role: "", cda_role: "" };
+  }
+}
+
 function inferTrainingType(message, userRole, cdaRole) {
   const text = normalizeCommand(
     `${message} ${userRole || ""} ${cdaRole || ""}`
@@ -917,15 +978,22 @@ export default async function handler(req, res) {
     }
 
     if (action === "start") {
+      let startUserRole = cleanText(body.user_role, 160) || extractRole(message, "user");
+      let startCdaRole = cleanText(body.cda_role, 160) || extractRole(message, "cda");
+
+      if (!startUserRole || !startCdaRole) {
+        const aiRoles = await extractRolesWithAI(message);
+        startUserRole = startUserRole || aiRoles.user_role;
+        startCdaRole = startCdaRole || aiRoles.cda_role;
+      }
+
       state = sanitizeState({
         session_id: createSessionId(),
         status: "setup",
         mode: "roleplay",
         previous_mode: "",
-        user_role:
-          cleanText(body.user_role, 160) || extractRole(message, "user"),
-        cda_role:
-          cleanText(body.cda_role, 160) || extractRole(message, "cda"),
+        user_role: startUserRole,
+        cda_role: startCdaRole,
         training_type: cleanText(body.training_type, 180),
         difficulty: inferDifficulty(
           message,
