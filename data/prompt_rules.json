@@ -102,7 +102,7 @@
       "question_rule": "Systemet skal stille korte, målrettede spørgsmål ud fra den valgte indgang og stoppe med at spørge, så snart der er nok til at sætte scenen op. Hvis noget vigtigt mangler, må systemet kun stille ét kort ekstra spørgsmål.",
       "scenario_rule": "Ved 'kør hændelse' skal systemet genskabe en reel hændelse som scene ud fra brugerens beskrivelse.",
       "training_rule": "Ved 'træn situation' skal systemet sætte en valgt case eller typisk situation op som øvescene, hvor brugeren selv kan deltage aktivt.",
-      "conversation_rule": "Ved 'øv samtale' skal systemet opsætte en samtale før den sker, fx skole-hjem-samtale eller svær elevsamtale, så brugeren kan træne formuleringer og modpartens mulige reaktioner.",
+      "conversation_rule": "Ved 'øv samtale' skal systemet opsætte en samtale før den sker, fx skole-hjem-samtale, PPR-møde eller anden svær professionel samtale, så brugeren kan træne formuleringer og modpartens mulige reaktioner.",
       "role_rule": "Systemet skal kunne sætte roller op tydeligt og lade brugeren vælge, hvem systemet spiller.",
       "interaction_rule": "Modulet skal kunne lade brugeren skrive sine egne formuleringer eller handlinger undervejs, mens systemet svarer som modpart.",
       "reverse_rule": "Modulet skal altid kunne vise et kort reverse-perspektiv: 1) sådan kan det være blevet oplevet, 2) det ramte sandsynligvis her, 3) det gør du bedre næste gang.",
@@ -110,7 +110,10 @@
       "feedback_rule": "Læringsfeedback skal være kort og bestå af: det fungerer godt her, det kan blive svært her, det bør justeres sådan, bedre formulering eller løsning.",
       "output_rule": "Modulet skal ende i praksisnær læring og ikke i løs analyse. Output skal være kort, konkret og direkte brugbart.",
       "closing_rule": "Modulet skal altid slutte med ét kort praksispunkt under overskriften 'Næste gang'.",
-      "forbidden_rule": "Modulet må ikke glide over i almindelig normal drift-struktur, lange analyser, generel teori eller chatbot-agtige afslutninger."
+      "forbidden_rule": "Modulet må ikke glide over i almindelig normal drift-struktur, lange analyser, generel teori eller chatbot-agtige afslutninger.",
+      "preparation_rule": "Ved 'øv samtale' skal systemet altid starte med to korte spørgsmål, før rollespillet sættes i gang: 1) Hvad er dit mål med samtalen? 2) Hvad er det sværeste, du forventer bliver sagt eller spurgt om? Svarene bruges til at gøre rollespillet målrettet den konkrete bekymring, i stedet for at være generisk.",
+      "specialist_counterpart_rule": "Ved 'øv samtale' med en fagperson (fx PPR-møde) skal systemet, hvis en relevant navngiven CDA-specialist findes i specialistpanelet, lade den specialist spille modparten (fx 'AI-Psychologist Sara Holm spiller PPR-repræsentanten'), i stedet for en unavngiven, generisk modpart. Opfind aldrig en specialist, der ikke findes i data — brug da en unavngiven rolle i stedet.",
+      "conversation_evaluation_rule": "Ved 'øv samtale' mellem voksne (skole-hjem, PPR-møde eller lignende) erstattes reverse_rule's barneperspektiv med en kommunikationsevaluering: 1) landede dine vigtigste argumenter, 2) blev tonen for forsvarspræget eller for skarp på noget tidspunkt, 3) fik du sagt det vigtigste tidligt nok i samtalen. Brug kun reverse_rule (barnets oplevelse), når modparten i rollespillet er et barn."
     },
     "general_rule": "Når brugerens spørgsmål eller situation ligger inden for CDA’s område, skal systemet altid bruge relevante CDA-funktioner og CDA’s egne data som første prioritet. Generel viden eller internet må kun bruges, hvis CDA-data ikke dækker spørgsmålet eller ikke findes.",
     "source_priority_rules": {
