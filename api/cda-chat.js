@@ -8845,7 +8845,8 @@ try {
       }
     }
 
-    const reply = String(response.output_text || "")
+    const templateReplyData = extractPendingAction(response.output_text);
+    const reply = String(templateReplyData.reply || "")
       .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
@@ -8855,7 +8856,7 @@ try {
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: null,
+      pending_action: templateReplyData.pendingAction,
     });
   }
 
@@ -9004,13 +9005,14 @@ try {
       }
     }
 
+    const comorbidityReplyData = extractPendingAction(response.output_text);
     return res.status(200).json({
       success: true,
-      reply: String(response.output_text || "").trim(),
+      reply: String(comorbidityReplyData.reply || "").trim(),
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: null,
+      pending_action: comorbidityReplyData.pendingAction,
     });
   }
 
@@ -9143,7 +9145,8 @@ try {
       }
     }
 
-    const reply = String(response.output_text || "")
+    const bornehaveReplyData = extractPendingAction(response.output_text);
+    const reply = String(bornehaveReplyData.reply || "")
       .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
@@ -9153,7 +9156,7 @@ try {
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: null,
+      pending_action: bornehaveReplyData.pendingAction,
     });
   }
 
@@ -9284,7 +9287,8 @@ try {
       }
     }
 
-    const diagnosisReply = String(response.output_text || "")
+    const diagnosisReplyData = extractPendingAction(response.output_text);
+    const diagnosisReply = String(diagnosisReplyData.reply || "")
       .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
@@ -9294,7 +9298,7 @@ try {
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: null,
+      pending_action: diagnosisReplyData.pendingAction,
     });
   }
 
