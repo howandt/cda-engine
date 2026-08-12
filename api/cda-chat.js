@@ -3,6 +3,11 @@ import path from "path";
 import OpenAI from "openai";
 import { createClient } from "@supabase/supabase-js";
 import { routeBornehaveInput } from "../lib/bornehaveRouter.js";
+import {
+  isContextualDiagnosisFollowup,
+  runHeidiFlow,
+  shouldBlockTemplateAutoRouting,
+} from "../lib/heidiFlow.js";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -7003,6 +7008,8 @@ const activeCaseInstructions = buildActiveCaseInstructions(activeCaseContext, me
 const contextualInput = buildContextualInput(message, activeCaseContext);
 
 try {
+  const heidiPrompt = readHeidiPrompt();
+
   // 23B.9O: Rollespil har forrang over ALT andet lokalt routing (case-søgning,
   // skabeloner, diagnose, specialister, PBL, børnehave osv.), jf. roleplay_rules'
   // egen priority_rule. Tjekkes derfor allerførst, før noget andet får chancen
@@ -7010,7 +7017,7 @@ try {
   const roleplayContextActive = isRoleplayContextActive(message, pending_action);
 
   if (roleplayContextActive) {
-    const roleplayHeidiPrompt = readHeidiPrompt() + buildRoleplayRuleInjection();
+    const roleplayHeidiPrompt = heidiPrompt + buildRoleplayRuleInjection();
 
     const roleplayInstructions = [
       roleplayHeidiPrompt,
@@ -7147,6 +7154,99 @@ try {
       tools_used: roleplayUsedTools,
       tool_debug: roleplayToolDebug,
       pending_action: roleplayReplyData.pendingAction,
+    });
+  }
+
+  if (isContextualDiagnosisFollowup({ message, activeCaseContext })) {
+    const heidiFlowResult = await runHeidiFlow({
+      openai,
+      model: "gpt-5.4-mini",
+      heidiPrompt,
+      audienceInstructions,
+      activeCaseInstructions,
+      contextualInput,
+      message,
+      language,
+      role,
+      responseStyle: response_style,
+      activeCaseContext,
+      mode: "contextual_diagnosis_followup",
+    });
+
+    const heidiFlowReplyData = extractPendingAction(heidiFlowResult.outputText);
+    const reply = String(heidiFlowReplyData.reply || "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .trim();
+
+    const inputTokens = Number(heidiFlowResult.response?.usage?.input_tokens || 0);
+    const outputTokens = Number(heidiFlowResult.response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      heidiFlowResult.response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "heidi_flow_contextual_diagnosis",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+
+    const usedTools = ["heidiFlowV1"];
+    const toolDebug = [
+      {
+        name: "heidiFlowV1",
+        action: "contextual_diagnosis_followup",
+        ...heidiFlowResult.debug,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      used_data_sources: heidiFlowResult.usedDataSources,
+      conversation_mode: "heidi_case",
+      pending_action: heidiFlowReplyData.pendingAction,
     });
   }
 
@@ -8111,7 +8211,6 @@ try {
 
   // Rollespil er allerede håndteret og returneret tidligere i denne funktion,
   // hvis det var aktivt — herfra er roleplayContextActive altid false.
-  const heidiPrompt = readHeidiPrompt();
 
   if (isDirectSpecialistPanelRequest(message)) {
     const requestedAngle = getRequestedSpecialistAngle(message);
@@ -8722,7 +8821,9 @@ try {
     });
   }
 
-  const localTemplateRequest = getLocalTemplateRequest(message);
+  const localTemplateRequest = shouldBlockTemplateAutoRouting({ message, activeCaseContext })
+    ? null
+    : getLocalTemplateRequest(message);
 
   if (localTemplateRequest?.type === "list") {
     const titles = Array.from(
@@ -9449,75 +9550,36 @@ try {
   }
 
   if (!shouldUseSpecializedToolFlow(message)) {
-    const normalModeInstructions =
-      role === "Specialist"
-        ? [
-            "CDA-SPECIALISTSPOR UDEN ANALYSEMODUL",
-            "Disse specialistregler har forrang over HeidiPromptens normale lærer- og forældreformat.",
-            "Svar fagperson til fagperson. Brug ikke overskriften 'Det kan du gøre nu' og tal ikke til brugeren som klasselærer eller forælder.",
-            "Brug denne kompakte disposition: Foreløbig faglig forståelse; Datamangler; Mulige alternative forklaringer; Bør afdækkes; Fagligt næste skridt.",
-            "Skeln tydeligt mellem observation, hypotese og konklusion. Peg ikke sikkert på diagnose ud fra en kort case.",
-            "Formulér eventuelle skoleindsatser som anbefalinger, specialisten kan give videre til skolen — ikke som direkte instruktioner til specialisten.",
-            "Under 'Fagligt næste skridt' skal handlingerne være specialistens egne faglige handlinger, fx at indhente oplysninger, afklare mønstre, aftale en afprøvning med skolen eller evaluere effekten — ikke lærerens direkte klassehandlinger.",
-            "Henvis ikke brugeren til PPR, da brugeren selv kan være PPR, psykolog eller skolekonsulent.",
-            "Afslut ikke med generiske tilbud som 'Hvis du vil, kan jeg hjælpe'. Stil højst ét konkret fagligt opfølgende spørgsmål, hvis casen kræver det.",
-            "Udfør ikke en fuld Analyse-vurdering og opfind ikke oplysninger, der mangler.",
-          ]
-        : [
-            "NORMAL RÅDGIVNING UDEN EKSTRA MODULER",
-            "Giv en direkte faglig vurdering, en kort forklaring og højst 3 konkrete handlinger.",
-          ];
-
-    const normalInstructions = [
-      heidiPrompt,
-      "",
-      audienceInstructions,
-      "",
-      activeCaseInstructions,
-      "",
-      ...normalModeInstructions,
-      "Svar ud fra CDA's interne faglige prompt og regler.",
-      "Brug ikke cases, PBL, specialistpanel, rollespil, skabeloner eller komorbiditet, medmindre brugeren udtrykkeligt beder om det.",
-      "Foretag ingen internetsøgning og påstå ikke, at oplysninger er hentet på nettet.",
-      "PBL må ikke præsenteres som et elevprojekt uden en udfyldt elevprofil.",
-      "Hvis PBL efter din faglige vurdering kan være en relevant senere mulighed, må du højst nævne det kort og spørge præcist: 'PBL kunne være relevant her. Vil du have en kort elevprofilskabelon?'",
-      "Når du stiller netop dette spørgsmål, skal du til sidst tilføje maskinmarkøren [[PENDING_ACTION:PBL_PROFILE]]. Markøren vises ikke til brugeren.",
-      "Hvis PBL ikke er relevant, må du ikke nævne det eller tilføje markøren.",
-      `AKTUEL SVARSTIL: ${response_style}`,
-      response_style === "Kort"
-        ? "Svar kort og direkte."
-        : response_style === "Dyb"
-          ? "Forklar relevante faglige sammenhænge, men hold fokus på brugerens konkrete problem."
-          : "Giv en kort forklaring og konkrete næste skridt.",
-    ].join("\n");
-
-    const response = await openai.responses.create({
+    const heidiFlowResult = await runHeidiFlow({
+      openai,
       model: "gpt-5.4-mini",
-      reasoning: {
-        effort: "low",
-      },
-      instructions: normalInstructions,
-      input: contextualInput,
-      max_output_tokens: response_style === "Dyb" ? 900 : 700,
+      heidiPrompt,
+      audienceInstructions,
+      activeCaseInstructions,
+      contextualInput,
+      message,
+      language,
+      role,
+      responseStyle: response_style,
+      activeCaseContext,
+      mode: role === "Specialist" ? "specialist_without_analysis_module" : "normal",
     });
 
-    const normalReplyData = extractPendingAction(response.output_text);
-    const normalReply = normalReplyData.pendingAction
-      ? normalReplyData.reply
-      : normalReplyData.reply
-          .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
-          .trim();
+    const heidiFlowReplyData = extractPendingAction(heidiFlowResult.outputText);
+    const normalReply = String(heidiFlowReplyData.reply || "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .trim();
 
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
+    const inputTokens = Number(heidiFlowResult.response?.usage?.input_tokens || 0);
+    const outputTokens = Number(heidiFlowResult.response?.usage?.output_tokens || 0);
     const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
+      heidiFlowResult.response?.usage?.total_tokens || inputTokens + outputTokens
     );
 
     const usageByCall = [
       {
         call: 1,
-        phase: "normal_advice_local_routing",
+        phase: "heidi_flow_v1_normal",
         tools_returned_to_model: [],
         input_tokens: inputTokens,
         output_tokens: outputTokens,
@@ -9525,15 +9587,12 @@ try {
       },
     ];
 
-    const usedTools = ["localNormalAdviceRouting"];
+    const usedTools = ["heidiFlowV1"];
     const toolDebug = [
       {
-        name: "localNormalAdviceRouting",
-        arguments: {
-          language,
-          role,
-          response_style,
-        },
+        name: "heidiFlowV1",
+        action: role === "Specialist" ? "specialist_without_analysis_module" : "normal",
+        ...heidiFlowResult.debug,
       },
     ];
 
@@ -9580,7 +9639,9 @@ try {
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: normalReplyData.pendingAction,
+      used_data_sources: heidiFlowResult.usedDataSources,
+      conversation_mode: "heidi_case",
+      pending_action: heidiFlowReplyData.pendingAction,
     });
   }
 
