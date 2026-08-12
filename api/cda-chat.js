@@ -1,9 +1,8 @@
-﻿import fs from "fs";
+import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 import { createClient } from "@supabase/supabase-js";
 import { routeBornehaveInput } from "../lib/bornehaveRouter.js";
-import { specialistEngineHealthcheck } from "../lib/specialistEngine.js";
 import {
   isContextualDiagnosisFollowup,
   runHeidiFlow,
@@ -71,8 +70,8 @@ function readHeidiPrompt() {
     heidiPrompt,
     "",
     "CENTRALE DYNAMISKE SYSTEMREGLER",
-"Disse regler er allerede indlÃ¦st. Kald ikke getPromptRules for response_style_rules, mode_switch_rules, source_priority_rules, general_rule eller practice_situations.",
-"I normal drift mÃ¥ 'Det kan du gÃ¸re nu' hÃ¸jst indeholde 3 konkrete handlinger.",
+"Disse regler er allerede indlæst. Kald ikke getPromptRules for response_style_rules, mode_switch_rules, source_priority_rules, general_rule eller practice_situations.",
+"I normal drift må 'Det kan du gøre nu' højst indeholde 3 konkrete handlinger.",
 "",
 "response_style_rules:",
     JSON.stringify(responseStyleRules, null, 2),
@@ -128,7 +127,7 @@ function normalizeSearchWord(value) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9Ã¦Ã¸Ã¥]/g, "");
+    .replace(/[^a-z0-9æøå]/g, "");
 }
 
 function levenshteinDistance(a, b) {
@@ -365,7 +364,7 @@ function getCases(args = {}) {
     const filePath = path.join(casesDir, file);
     const parsed = readJsonFile(
       filePath,
-      `Casefil kunne ikke lÃ¦ses: ${file}`
+      `Casefil kunne ikke læses: ${file}`
     );
 
     const fileCases = Array.isArray(parsed)
@@ -426,13 +425,13 @@ function getCases(args = {}) {
         item.problem,
         item.barnets_oplevelse,
         item.typisk_fejl,
-        item.lÃ¸sning,
+        item.løsning,
         item.tiltag,
-        item.vÃ¦rktÃ¸jer,
+        item.værktøjer,
         item.kategori,
         item.kort_beskrivelse,
         item.diagnoser,
-        item.miljÃ¸,
+        item.miljø,
       ].some((value) =>
         safeString(value).toLowerCase().includes(query)
       )
@@ -713,8 +712,8 @@ function normalizeDiagnosisPhrase(value) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/Ã¦/g, "ae")
-    .replace(/Ã¸/g, "o")
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "o")
     .replace(/[^a-z0-9]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -886,8 +885,8 @@ function getDiagnosisIntent(message, role) {
       "manifest",
     ]),
     school:
-      role === "LÃ¦rer" ||
-      (role !== "ForÃ¦lder" &&
+      role === "Lærer" ||
+      (role !== "Forælder" &&
         includesAny([
           "skole",
           "elev",
@@ -901,7 +900,7 @@ function getDiagnosisIntent(message, role) {
           "classroom",
         ])),
     home:
-      role === "ForÃ¦lder" ||
+      role === "Forælder" ||
       includesAny([
         "hjem",
         "familie",
@@ -1052,11 +1051,11 @@ function scoreDiagnosisSection(key, message, role, intent) {
     }
   }
 
-  if (role === "LÃ¦rer" && diagnosisKeyMatches(normalizedKey, groups.school)) {
+  if (role === "Lærer" && diagnosisKeyMatches(normalizedKey, groups.school)) {
     score += 5;
   }
 
-  if (role === "ForÃ¦lder" && diagnosisKeyMatches(normalizedKey, groups.home)) {
+  if (role === "Forælder" && diagnosisKeyMatches(normalizedKey, groups.home)) {
     score += 5;
   }
 
@@ -1485,10 +1484,10 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
   const title = entry?.navn || entry?.fuld_navn || entry?.id || "Diagnose";
   const audienceLine =
     role === "Specialist"
-      ? "Fagligt niveau: specialist â€” prÃ¦cist, datanÃ¦rt og uden diagnosekonklusion pÃ¥ enkeltsag."
-      : role === "ForÃ¦lder"
-        ? "Fagligt niveau: forÃ¦lder â€” roligt, konkret og hverdagsnÃ¦rt."
-        : "Fagligt niveau: lÃ¦rer â€” praksisnÃ¦rt, direkte og anvendeligt i morgen.";
+      ? "Fagligt niveau: specialist — præcist, datanært og uden diagnosekonklusion på enkeltsag."
+      : role === "Forælder"
+        ? "Fagligt niveau: forælder — roligt, konkret og hverdagsnært."
+        : "Fagligt niveau: lærer — praksisnært, direkte og anvendeligt i morgen.";
 
   const blocks = [String(title).toUpperCase(), audienceLine, ""];
 
@@ -1510,7 +1509,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
     if (signs) blocks.push(signs, "");
 
     const adult = formatLimitedLocalDiagnosisBlock(
-      role === "ForÃ¦lder" ? "Det hjÃ¦lper ofte at" : "I praksis hjÃ¦lper det ofte at",
+      role === "Forælder" ? "Det hjælper ofte at" : "I praksis hjælper det ofte at",
       shortView.hvad_kan_den_voksne_gore || entry?.hvad_kan_den_voksne_gore,
       true,
       wantsDeep ? 6 : 3
@@ -1518,7 +1517,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
     if (adult) blocks.push(adult, "");
 
     blocks.push(
-      "Kort sagt: Se vanskeligheden som et stÃ¸ttebehov, ikke som dovenskab eller dÃ¥rlig vilje."
+      "Kort sagt: Se vanskeligheden som et støttebehov, ikke som dovenskab eller dårlig vilje."
     );
 
     return blocks.join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -1577,7 +1576,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
     pushPreferredLongBlock(
       blocks,
       longView,
-      "StÃ¸tte og behandling",
+      "Støtte og behandling",
       ["behandling", "stoette", "hjaelp", "ressourcer", "strategi"],
       usedKeys,
       false,
@@ -1586,7 +1585,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
 
     if (blocks.length <= 4) {
       const adult = formatLimitedLocalDiagnosisBlock(
-        role === "ForÃ¦lder" ? "Hvad kan den voksne gÃ¸re?" : "Hvad kan lÃ¦reren gÃ¸re?",
+        role === "Forælder" ? "Hvad kan den voksne gøre?" : "Hvad kan læreren gøre?",
         shortView.hvad_kan_den_voksne_gore || entry?.hvad_kan_den_voksne_gore,
         true,
         wantsDeep ? 8 : 5
@@ -1595,7 +1594,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
     }
 
     blocks.push(
-      "Vigtigt: CDA kan forklare mÃ¸nstre og stÃ¸ttebehov, men stiller ikke diagnose."
+      "Vigtigt: CDA kan forklare mønstre og støttebehov, men stiller ikke diagnose."
     );
 
     return blocks.join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -1616,14 +1615,14 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
   if (signs) blocks.push(signs, "");
 
   const misunderstandings = formatLocalDiagnosisBlock(
-    "Hvad misforstÃ¥s ofte?",
+    "Hvad misforstås ofte?",
     shortView.hvad_misforstaas_ofte || entry?.hvad_misforstaas_ofte,
     true
   );
   if (misunderstandings) blocks.push(misunderstandings, "");
 
   const adult = formatLocalDiagnosisBlock(
-    role === "ForÃ¦lder" ? "Hvad kan den voksne gÃ¸re?" : "Hvad kan lÃ¦reren gÃ¸re?",
+    role === "Forælder" ? "Hvad kan den voksne gøre?" : "Hvad kan læreren gøre?",
     shortView.hvad_kan_den_voksne_gore || entry?.hvad_kan_den_voksne_gore,
     true
   );
@@ -1645,7 +1644,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
     pushPreferredLongBlock(
       blocks,
       longView,
-      "Typiske symptomer og mÃ¸nstre",
+      "Typiske symptomer og mønstre",
       ["typiske symptomer", "symptom", "kendetegn", "viser sig"],
       usedKeys,
       false,
@@ -1655,7 +1654,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
     pushPreferredLongBlock(
       blocks,
       longView,
-      "NÃ¥r adfÃ¦rden bliver misforstÃ¥et",
+      "Når adfærden bliver misforstået",
       ["misforstaa", "myter", "tolket forkert"],
       usedKeys,
       false,
@@ -1665,7 +1664,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
     pushPreferredLongBlock(
       blocks,
       longView,
-      "Ã…rsager og risikofaktorer",
+      "Årsager og risikofaktorer",
       ["aarsag", "risiko", "saarbarhed", "neurobiologi"],
       usedKeys,
       false,
@@ -1675,7 +1674,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
     pushPreferredLongBlock(
       blocks,
       longView,
-      "Behandling og stÃ¸tte",
+      "Behandling og støtte",
       ["behandling", "stoette", "hjaelp", "ressourcer"],
       usedKeys,
       false,
@@ -1684,7 +1683,7 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
   }
 
   blocks.push(
-    "NÃ¦ste valg: Skriv kort, dybdegÃ¥ende eller stop. Skriver du en konkret situation, kan Heidi vurdere sagen med CDA-data."
+    "Næste valg: Skriv kort, dybdegående eller stop. Skriver du en konkret situation, kan Heidi vurdere sagen med CDA-data."
   );
 
   return blocks.join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -1753,8 +1752,8 @@ function analyzeEmotion(text, data) {
   let moodData = data.mood_levels?.neutral || {};
 
   if (score >= 3) {
-    mood = "stÃ¸ttende";
-    moodData = data.mood_levels?.stÃ¸ttende || {};
+    mood = "støttende";
+    moodData = data.mood_levels?.støttende || {};
   } else if (score >= 1) {
     mood = "rolig";
     moodData = data.mood_levels?.rolig || {};
@@ -1762,8 +1761,8 @@ function analyzeEmotion(text, data) {
     mood = "pres";
     moodData = data.mood_levels?.pres || {};
   } else if (score < 0) {
-    mood = "spÃ¦ndt";
-    moodData = data.mood_levels?.spÃ¦ndt || {};
+    mood = "spændt";
+    moodData = data.mood_levels?.spændt || {};
   }
 
   return {
@@ -1861,7 +1860,7 @@ function getKomorbiditet(args = {}) {
 
     if (!primaryMatch) {
       return {
-        error: `PrimÃ¦r diagnose ikke fundet: ${args.primary}`,
+        error: `Primær diagnose ikke fundet: ${args.primary}`,
       };
     }
 
@@ -1893,7 +1892,7 @@ function getKomorbiditet(args = {}) {
           data: match,
         }
       : {
-          error: `PrimÃ¦r diagnose ikke fundet: ${args.primary}`,
+          error: `Primær diagnose ikke fundet: ${args.primary}`,
         };
   }
 
@@ -2089,7 +2088,7 @@ function normalizeCaseAge(value) {
 
 function extractRequestedCaseAge(value) {
   const text = String(value || "").toLowerCase();
-  const match = text.match(/\b(\d{1,2})\s*(?:Ã¥r|aar|yo|y\/o)?\b/);
+  const match = text.match(/\b(\d{1,2})\s*(?:år|aar|yo|y\/o)?\b/);
   if (!match) return null;
   const age = Number(match[1]);
   return age >= 2 && age <= 25 ? age : null;
@@ -2108,7 +2107,7 @@ function extractRequestedCaseGender(value) {
 
 function inferCaseGender(caseItem = {}) {
   const explicit = normalizeDiagnosisPhrase(
-    caseItem.kÃ¸n || caseItem.koen || caseItem.gender || caseItem.sex
+    caseItem.køn || caseItem.koen || caseItem.gender || caseItem.sex
   );
 
   if (["pige", "kvinde", "female", "girl"].some((word) => explicit.includes(word))) {
@@ -2152,7 +2151,7 @@ function getSemanticSearch(args = {}) {
   if (!searchText) {
     return {
       success: false,
-      error: "Ingen sÃ¸getekst angivet",
+      error: "Ingen søgetekst angivet",
     };
   }
 
@@ -2218,7 +2217,7 @@ function getSemanticSearch(args = {}) {
     const filePath = path.join(casesDir, file);
     const parsed = readJsonFile(
       filePath,
-      `Casefil kunne ikke lÃ¦ses: ${file}`
+      `Casefil kunne ikke læses: ${file}`
     );
 
     const fileCases = Array.isArray(parsed)
@@ -2246,7 +2245,7 @@ function getSemanticSearch(args = {}) {
   const semantic = fs.existsSync(semanticPath)
     ? readJsonFile(
         semanticPath,
-        "public/data/semantic_engine.json kunne ikke lÃ¦ses"
+        "public/data/semantic_engine.json kunne ikke læses"
       )
     : {};
 
@@ -2277,15 +2276,15 @@ function getSemanticSearch(args = {}) {
   // 23B.9I: Danske stopord fjernes, saa scoringen ikke fyldes med
   // grammatiske fyldord ("han", "er", "paa"), som findes i naesten alle cases
   // uanset emne, og som ellers overdoever de faktisk betydningsbaerende ord.
-  // OBS: skriv ordene med rigtige Ã¦/Ã¸/Ã¥-tegn her â€” normalizeSemantic()
-  // konverterer dem til samme normaliserede form som sÃ¸geteksten (fx "pÃ¥" -> "pa"),
-  // sÃ¥ en manuel ascii-tilnÃ¦rmelse (fx "paa") IKKE ville matche korrekt.
+  // OBS: skriv ordene med rigtige æ/ø/å-tegn her — normalizeSemantic()
+  // konverterer dem til samme normaliserede form som søgeteksten (fx "på" -> "pa"),
+  // så en manuel ascii-tilnærmelse (fx "paa") IKKE ville matche korrekt.
   const stopwordList = [
     "han", "hun", "den", "det", "de", "vi", "jeg", "du", "man", "ham", "hende",
-    "er", "var", "vÃ¦re", "blive", "bliver", "blev", "har", "havde", "kan",
-    "kunne", "skal", "skulle", "vil", "ville", "mÃ¥", "mÃ¥tte",
-    "en", "et", "Ã¥r", "og", "i", "pÃ¥", "med", "som", "til", "for", "af", "der",
-    "men", "eller", "hvis", "nÃ¥r", "ogsÃ¥", "ikke", "kun", "bare", "sÃ¥",
+    "er", "var", "være", "blive", "bliver", "blev", "har", "havde", "kan",
+    "kunne", "skal", "skulle", "vil", "ville", "må", "måtte",
+    "en", "et", "år", "og", "i", "på", "med", "som", "til", "for", "af", "der",
+    "men", "eller", "hvis", "når", "også", "ikke", "kun", "bare", "så",
     "her", "nu", "op", "ned", "ud", "ind", "om", "over", "under",
     "case", "elev", "barn", "barnet", "eleven", "dreng", "pige",
   ];
@@ -2315,12 +2314,12 @@ function getSemanticSearch(args = {}) {
     ),
     environment: normalizeSemantic(
       semanticSafeText(
-        caseItem.miljÃ¸ || caseItem.contexts || caseItem.kontekst
+        caseItem.miljø || caseItem.contexts || caseItem.kontekst
       )
     ),
     behavior: normalizeSemantic(
       semanticSafeText(
-        caseItem.adfÃ¦rd ||
+        caseItem.adfærd ||
           caseItem.problem ||
           caseItem.kort_beskrivelse ||
           caseItem.description ||
@@ -2329,7 +2328,7 @@ function getSemanticSearch(args = {}) {
     ),
     triggers: normalizeSemantic(
       semanticSafeText(
-        caseItem.triggers || caseItem.trigger || caseItem.udlÃ¸sere
+        caseItem.triggers || caseItem.trigger || caseItem.udløsere
       )
     ),
     childPerspective: normalizeSemantic(
@@ -2339,10 +2338,10 @@ function getSemanticSearch(args = {}) {
     ),
     solution: normalizeSemantic(
       semanticSafeText(
-        caseItem.lÃ¸sning ||
+        caseItem.løsning ||
           caseItem.tiltag ||
           caseItem.cda_guiding ||
-          caseItem.vÃ¦rktÃ¸jer ||
+          caseItem.værktøjer ||
           caseItem.solution ||
           caseItem.tools
       )
@@ -2418,16 +2417,16 @@ function getSemanticSearch(args = {}) {
       if (termMatched) matchedTerms.add(term);
     }
 
-    // 23B.9H: Alder er en blÃ¸ddig tiebreaker, ikke en dominerende faktor.
-    // Indhold (adfÃ¦rd, tema, triggers, diagnose) skal afgÃ¸re matchet;
-    // alder mÃ¥ kun udslagsgivende, nÃ¥r to cases ellers er indholdsmÃ¦ssigt lige gode.
+    // 23B.9H: Alder er en bløddig tiebreaker, ikke en dominerende faktor.
+    // Indhold (adfærd, tema, triggers, diagnose) skal afgøre matchet;
+    // alder må kun udslagsgivende, når to cases ellers er indholdsmæssigt lige gode.
     if (requestedAge !== null) {
       if (fields.age !== null) {
         const ageDiff = Math.abs(fields.age - requestedAge);
 
         if (ageDiff === 0) {
           score += 50;
-          matchedTerms.add(`${requestedAge} Ã¥r`);
+          matchedTerms.add(`${requestedAge} år`);
         } else if (ageDiff === 1) {
           score += 20;
         } else if (ageDiff === 2) {
@@ -2480,8 +2479,8 @@ function getSemanticSearch(args = {}) {
         caseItem.diagnoses ||
         caseItem.relevante_diagnoser ||
         [],
-      miljÃ¸:
-        caseItem.miljÃ¸ ||
+      miljø:
+        caseItem.miljø ||
         caseItem.contexts ||
         caseItem.kontekst ||
         [],
@@ -2517,14 +2516,14 @@ function isOtherExperienceCaseRequest(message) {
     "hvad gjorde andre",
     "hvad har andre gjort",
     "hvad gjorde en anden",
-    "hvad gjorde andre lÃ¦rere",
-    "hvad gjorde en anden lÃ¦rer",
-    "har andre prÃ¸vet",
-    "har en anden prÃ¸vet",
-    "har andre lÃ¦rere prÃ¸vet",
-    "har en anden lÃ¦rer prÃ¸vet",
-    "er der andre der har prÃ¸vet",
-    "er der en lÃ¦rer der har prÃ¸vet"
+    "hvad gjorde andre lærere",
+    "hvad gjorde en anden lærer",
+    "har andre prøvet",
+    "har en anden prøvet",
+    "har andre lærere prøvet",
+    "har en anden lærer prøvet",
+    "er der andre der har prøvet",
+    "er der en lærer der har prøvet"
   ];
 
   return patterns.some((pattern) => text.includes(pattern));
@@ -2556,7 +2555,7 @@ function getRichestCaseById(caseId) {
   for (const file of files) {
     const parsed = readJsonFile(
       path.join(casesDir, file),
-      `Casefil kunne ikke lÃ¦ses: ${file}`
+      `Casefil kunne ikke læses: ${file}`
     );
 
     const fileCases = Array.isArray(parsed)
@@ -2577,7 +2576,7 @@ function getRichestCaseById(caseId) {
   const richnessScore = (item) =>
     [
       item.problem,
-      item.lÃ¸sning,
+      item.løsning,
       item.tiltag,
       item.resultat,
       item.refleksion,
@@ -2615,7 +2614,7 @@ function getAllRichestLocalCases() {
   const richnessScore = (item) =>
     [
       item.problem,
-      item.lÃ¸sning,
+      item.løsning,
       item.tiltag,
       item.resultat,
       item.refleksion,
@@ -2628,7 +2627,7 @@ function getAllRichestLocalCases() {
   for (const file of files) {
     const parsed = readJsonFile(
       path.join(casesDir, file),
-      `Casefil kunne ikke lÃ¦ses: ${file}`
+      `Casefil kunne ikke læses: ${file}`
     );
 
     const fileCases = Array.isArray(parsed)
@@ -2678,12 +2677,12 @@ function getActiveLocalCaseFromContext(activeCaseContext) {
   for (const match of boldMatches) {
     const value = String(match?.[1] || "").trim();
     if (!value) continue;
-    if (/^(problem|tema|barnets oplevelse|typisk fejl|lÃ¸sning|loesning|tiltag|resultat|refleksion|tilbage)/i.test(value)) continue;
+    if (/^(problem|tema|barnets oplevelse|typisk fejl|løsning|loesning|tiltag|resultat|refleksion|tilbage)/i.test(value)) continue;
     titleCandidates.push(value);
   }
 
   for (const line of String(contextText || "").split(/\n+/)) {
-    const cleaned = line.replace(/^#+\s*/, "").replace(/^[-â€“|\s]+/, "").trim();
+    const cleaned = line.replace(/^#+\s*/, "").replace(/^[-–|\s]+/, "").trim();
     if (cleaned.length >= 4 && cleaned.length <= 120) titleCandidates.push(cleaned);
   }
 
@@ -2726,7 +2725,7 @@ function findBestOtherExperienceCase(message) {
     titel: fullCase.titel || fullCase.title || null,
     alder: fullCase.alder || fullCase.age || null,
     problem: fullCase.problem || fullCase.kort_beskrivelse || null,
-    lÃ¸sning: fullCase.lÃ¸sning || null,
+    løsning: fullCase.løsning || null,
     tiltag: fullCase.tiltag || null,
     resultat: fullCase.resultat || null,
     score: bestMatch.score,
@@ -2831,13 +2830,13 @@ function buildDirectLocalCaseReply(caseData, bestMatch, searchText) {
     caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser
   );
   const environment = formatLocalCaseValue(
-    caseData.miljÃ¸ || caseData.contexts || caseData.kontekst
+    caseData.miljø || caseData.contexts || caseData.kontekst
   );
 
-  if (age) meta.push(`${age} Ã¥r`);
+  if (age) meta.push(`${age} år`);
   if (diagnoses) meta.push(diagnoses);
   if (environment) meta.push(environment);
-  if (meta.length > 0) lines.push(meta.join(" Â· "));
+  if (meta.length > 0) lines.push(meta.join(" · "));
 
   const theme = formatLocalCaseValue(caseData.tema || caseData.theme || caseData.kategori);
   if (theme) lines.push("", `**Tema:** ${theme}`);
@@ -2846,8 +2845,8 @@ function buildDirectLocalCaseReply(caseData, bestMatch, searchText) {
     ["Problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse],
     ["Barnets oplevelse", caseData.barnets_oplevelse || caseData.barnets_perspektiv],
     ["Typisk fejl", caseData.typisk_fejl],
-    ["LÃ¸sning", caseData.lÃ¸sning || caseData.loesning],
-    ["Tiltag", caseData.tiltag || caseData.vÃ¦rktÃ¸jer || caseData.vaerktoejer],
+    ["Løsning", caseData.løsning || caseData.loesning],
+    ["Tiltag", caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer],
     ["Resultat", caseData.resultat],
     ["Refleksion", caseData.refleksion],
   ];
@@ -2859,7 +2858,7 @@ function buildDirectLocalCaseReply(caseData, bestMatch, searchText) {
 
   lines.push(
     "",
-    "**Du kan skrive:** nÃ¦ste, forrige, ny case, hvad gjorde lÃ¦reren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
+    "**Du kan skrive:** næste, forrige, ny case, hvad gjorde læreren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
   );
 
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -2977,9 +2976,9 @@ function isReturnToActiveCaseRequest(message) {
     "tilbage til case",
     "tilbage til casen",
     "ga tilbage til case",
-    "gÃ¥ tilbage til case",
+    "gå tilbage til case",
     "ga tilbage til casen",
-    "gÃ¥ tilbage til casen",
+    "gå tilbage til casen",
     "vis casen igen",
     "vis mig casen igen",
     "vis den case igen",
@@ -3005,15 +3004,15 @@ function buildReturnToActiveCaseReply(activeLocalCase, activeCaseContext = null)
   if (hasActiveCaseContext(activeCaseContext)) {
     const lines = [
       "**Tilbage til den aktive sag**",
-      activeCaseContext.summary || activeCaseContext.known_context || activeCaseContext.last_user_message || "Den aktive sag er stadig Ã¥ben.",
+      activeCaseContext.summary || activeCaseContext.known_context || activeCaseContext.last_user_message || "Den aktive sag er stadig åben.",
       "",
-      "Du kan skrive: lav dagsplan, vis observationslog, PPR, eller fortsÃ¦tte med samme elev.",
+      "Du kan skrive: lav dagsplan, vis observationslog, PPR, eller fortsætte med samme elev.",
     ];
 
     return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
   }
 
-  return "Ingen aktiv case fundet. Skriv fx: case ADHD dreng 10 Ã¥r koncentrationsproblemer.";
+  return "Ingen aktiv case fundet. Skriv fx: case ADHD dreng 10 år koncentrationsproblemer.";
 }
 
 function isLocalCaseNavigationRequest(message) {
@@ -3021,7 +3020,7 @@ function isLocalCaseNavigationRequest(message) {
 
   return [
     "naeste",
-    "nÃ¦ste",
+    "næste",
     "neste",
     "forrige",
     "tilbage",
@@ -3049,7 +3048,7 @@ function buildLocalCaseNavigationResult(pendingAction, message) {
     return {
       caseData: null,
       pendingAction,
-      reply: "Ingen flere cases i denne sÃ¸gning.",
+      reply: "Ingen flere cases i denne søgning.",
       index: state?.index || 0,
       total: state?.ids?.length || 0,
     };
@@ -3062,7 +3061,7 @@ function buildLocalCaseNavigationResult(pendingAction, message) {
     return {
       caseData: null,
       pendingAction,
-      reply: direction > 0 ? "Ingen flere cases i denne sÃ¸gning." : "Du er ved fÃ¸rste case i denne sÃ¸gning.",
+      reply: direction > 0 ? "Ingen flere cases i denne søgning." : "Du er ved første case i denne søgning.",
       index: state.index,
       total: state.ids.length,
     };
@@ -3105,7 +3104,7 @@ function isLocalCaseFollowupRequest(message) {
 
   const patterns = [
     "hvad gjorde laereren",
-    "hvad gjorde lÃ¦reren",
+    "hvad gjorde læreren",
     "hvad gjorde den voksne",
     "hvad gjorde de voksne",
     "hvad var problemet",
@@ -3117,12 +3116,12 @@ function isLocalCaseFollowupRequest(message) {
     "hvad gik galt",
     "fejl",
     "loesning",
-    "lÃ¸sning",
+    "løsning",
     "hvad var loesningen",
-    "hvad var lÃ¸sningen",
+    "hvad var løsningen",
     "tiltag",
     "hvad kan man goere",
-    "hvad kan man gÃ¸re",
+    "hvad kan man gøre",
     "hvad blev resultatet",
     "hvad skete bagefter",
     "skete der bagefter",
@@ -3130,9 +3129,9 @@ function isLocalCaseFollowupRequest(message) {
     "resultat",
     "refleksion",
     "hvad kan jeg laere",
-    "hvad kan jeg lÃ¦re",
+    "hvad kan jeg lære",
     "hvad kan vi laere",
-    "hvad kan vi lÃ¦re",
+    "hvad kan vi lære",
     "uddyb",
     "forklar mere",
     "kort",
@@ -3170,8 +3169,8 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
   const problem = caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse;
   const childExperience = caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice;
   const typicalMistake = caseData.typisk_fejl || caseData.mistakes;
-  const solution = caseData.lÃ¸sning || caseData.loesning || caseData.solution;
-  const actions = caseData.tiltag || caseData.vÃ¦rktÃ¸jer || caseData.vaerktoejer || caseData.tools;
+  const solution = caseData.løsning || caseData.loesning || caseData.solution;
+  const actions = caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer || caseData.tools;
   const result = caseData.resultat || caseData.result;
   const reflection = caseData.refleksion || caseData.reflection;
 
@@ -3183,29 +3182,29 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
     add("Typisk fejl", typicalMistake);
   } else if (text.includes("resultat") || text.includes("bagefter")) {
     add("Resultat", result);
-  } else if (text.includes("refleksion") || text.includes("laere") || text.includes("lÃ¦re")) {
+  } else if (text.includes("refleksion") || text.includes("laere") || text.includes("lære")) {
     add("Refleksion", reflection);
   } else if (
     text.includes("laereren") ||
-    text.includes("lÃ¦reren") ||
+    text.includes("læreren") ||
     text.includes("voksne") ||
     text.includes("voksen") ||
     text.includes("loesning") ||
-    text.includes("lÃ¸sning") ||
+    text.includes("løsning") ||
     text.includes("tiltag") ||
     text.includes("goere") ||
-    text.includes("gÃ¸re")
+    text.includes("gøre")
   ) {
-    add("LÃ¸sning", solution);
+    add("Løsning", solution);
     add("Tiltag", actions);
   } else if (text.includes("kort")) {
     add("Kort om casen", problem);
-    add("LÃ¸sning", solution);
+    add("Løsning", solution);
   } else {
     add("Problem", problem);
     add("Barnets oplevelse", childExperience);
     add("Typisk fejl", typicalMistake);
-    add("LÃ¸sning", solution);
+    add("Løsning", solution);
     add("Tiltag", actions);
     add("Resultat", result);
     add("Refleksion", reflection);
@@ -3217,7 +3216,7 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
 
   lines.push(
     "",
-    "**Du kan skrive:** nÃ¦ste, forrige, ny case, hvad gjorde lÃ¦reren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
+    "**Du kan skrive:** næste, forrige, ny case, hvad gjorde læreren?, hvad oplevede barnet?, hvad gik typisk galt?, PPR."
   );
 
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
@@ -3231,7 +3230,7 @@ function buildLocalCaseSpecialistContextBlock(caseData) {
   const title = formatLocalCaseValue(caseData.titel || caseData.title || caseData.id || "Aktiv case");
   const lines = [
     "AKTIV LOKAL CASE",
-    "Denne case er valgt fra den lokale CDA-casebank. Brug den som konkret grundlag for specialistvinklen. Stil ikke diagnose, giv ikke medicinrÃ¥d, og opfind ikke manglende casefelter.",
+    "Denne case er valgt fra den lokale CDA-casebank. Brug den som konkret grundlag for specialistvinklen. Stil ikke diagnose, giv ikke medicinråd, og opfind ikke manglende casefelter.",
     `case_id: ${formatLocalCaseValue(caseData.id) || "-"}`,
     `titel: ${title}`,
   ];
@@ -3239,13 +3238,13 @@ function buildLocalCaseSpecialistContextBlock(caseData) {
   const fields = [
     ["alder", caseData.alder || caseData.age],
     ["diagnoser_i_casen", caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser],
-    ["miljÃ¸", caseData.miljÃ¸ || caseData.contexts || caseData.kontekst],
+    ["miljø", caseData.miljø || caseData.contexts || caseData.kontekst],
     ["tema", caseData.tema || caseData.theme || caseData.kategori],
     ["problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse],
     ["barnets_oplevelse", caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice],
     ["typisk_fejl", caseData.typisk_fejl || caseData.mistakes],
-    ["lÃ¸sning", caseData.lÃ¸sning || caseData.loesning || caseData.solution],
-    ["tiltag", caseData.tiltag || caseData.vÃ¦rktÃ¸jer || caseData.vaerktoejer || caseData.tools],
+    ["løsning", caseData.løsning || caseData.loesning || caseData.solution],
+    ["tiltag", caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer || caseData.tools],
     ["resultat", caseData.resultat || caseData.result],
     ["refleksion", caseData.refleksion || caseData.reflection],
   ];
@@ -3396,20 +3395,20 @@ function buildRoleplayRuleInjection() {
 
   return [
     "",
-    "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•",
-    "VIGTIGT â€” ROLLESPIL/TRÃ†NING ER AKTIVT I DENNE SAMTALE.",
-    "Dette svar er IKKE normal rÃ¥dgivning, selvom resten af denne prompt beskriver den normale CDA-stil.",
-    "DU MÃ… ALDRIG bruge overskrifterne 'Det peger mest pÃ¥', 'Det vigtigste her er' eller 'Det kan du gÃ¸re nu' i dette svar â€” uanset hvor naturligt det ellers ville fÃ¸les. De hÃ¸rer til normal drift, ikke rollespil.",
+    "════════════════════════════════════════",
+    "VIGTIGT — ROLLESPIL/TRÆNING ER AKTIVT I DENNE SAMTALE.",
+    "Dette svar er IKKE normal rådgivning, selvom resten af denne prompt beskriver den normale CDA-stil.",
+    "DU MÅ ALDRIG bruge overskrifterne 'Det peger mest på', 'Det vigtigste her er' eller 'Det kan du gøre nu' i dette svar — uanset hvor naturligt det ellers ville føles. De hører til normal drift, ikke rollespil.",
     "Brug i stedet KUN rollespillets egen struktur, beskrevet i roleplay_rules og roleplay_learning_rules herunder.",
-    "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•",
+    "════════════════════════════════════════",
     "",
-    "roleplay_rules (allerede indlÃ¦st, kald ikke getPromptRules for denne):",
+    "roleplay_rules (allerede indlæst, kald ikke getPromptRules for denne):",
     JSON.stringify(roleplayRules, null, 2),
     "",
-    "roleplay_learning_rules (allerede indlÃ¦st, kald ikke getPromptRules for denne):",
+    "roleplay_learning_rules (allerede indlæst, kald ikke getPromptRules for denne):",
     JSON.stringify(roleplayLearningRules, null, 2),
     "",
-    "Marker-regel: skal du afslutte dit svar med [[PENDING_ACTION:ROLEPLAY_ACTIVE]] som allersidste tegn i ALLE svar i dette spor â€” inklusive dette allerfÃ¸rste svar, under afklaring/forberedelse, og under selve Ã¸velsen. Der findes ingen 'opstartsfase' uden markÃ¸ren; fra fÃ¸rste rollespil-relaterede svar og indtil det er helt slut, skal markÃ¸ren altid med. MarkÃ¸ren vises ikke til brugeren. Udelad KUN markÃ¸ren i det svar, hvor rollespillet/trÃ¦ningen reelt afsluttes, eller hvis brugeren tydeligt skifter emne til noget der intet har med rollespillet at gÃ¸re.",
+    "Marker-regel: skal du afslutte dit svar med [[PENDING_ACTION:ROLEPLAY_ACTIVE]] som allersidste tegn i ALLE svar i dette spor — inklusive dette allerførste svar, under afklaring/forberedelse, og under selve øvelsen. Der findes ingen 'opstartsfase' uden markøren; fra første rollespil-relaterede svar og indtil det er helt slut, skal markøren altid med. Markøren vises ikke til brugeren. Udelad KUN markøren i det svar, hvor rollespillet/træningen reelt afsluttes, eller hvis brugeren tydeligt skifter emne til noget der intet har med rollespillet at gøre.",
     "Opfind aldrig egne kommandoer, motornavne eller statusbeskeder (fx 'rollespillet er ikke aktivt'). Brug kun de kommandoer og den struktur, der faktisk er beskrevet i roleplay_rules og roleplay_learning_rules herover.",
   ].join("\n");
 }
@@ -3421,7 +3420,7 @@ function isDirectSpecialistPanelRequest(message) {
     "specialist panel",
     "hvad siger specialisterne",
     "specialistperspektiv",
-    "tvÃ¦rfaglig vurdering",
+    "tværfaglig vurdering",
     "tvaerfaglig vurdering",
     "hvad siger psykologen",
     "psykologens vinkel",
@@ -3442,13 +3441,13 @@ function isDirectSpecialistPanelRequest(message) {
 function isCaseSpecialistsInvolvedRequest(message) {
   const text = normalizeDiagnosisPhrase(message);
   const directPatterns = [
-    "hvilke specialister har vÃ¦ret inde over",
-    "hvilke specialister har set pÃ¥",
-    "hvilke specialister har vÃ¦ret involveret",
+    "hvilke specialister har været inde over",
+    "hvilke specialister har set på",
+    "hvilke specialister har været involveret",
     "hvilke specialister er relevante for denne case",
     "hvilke specialister er relevante for denne sag",
-    "hvem har kigget pÃ¥ denne case",
-    "hvem har kigget pÃ¥ denne sag",
+    "hvem har kigget på denne case",
+    "hvem har kigget på denne sag",
     "specialister involveret i denne sag",
     "specialister involveret i denne case",
     "hvilket specialistteam",
@@ -3468,7 +3467,7 @@ function limitSpecialistText(value, max = 260) {
     return text;
   }
 
-  return `${text.slice(0, max).trim()}â€¦`;
+  return `${text.slice(0, max).trim()}…`;
 }
 
 function getRequestedSpecialistAngle(message) {
@@ -3504,12 +3503,12 @@ function isLocalPprCaseAngleRequest(message) {
     "hvad ser ppr",
     "hvad ville ppr se",
     "hvad ville ppr kigge paa",
-    "hvad ville ppr kigge pÃ¥",
+    "hvad ville ppr kigge på",
     "ppr vinkel",
     "ppr-vinkel",
     "ppr se",
     "ppr spoerge",
-    "ppr spÃ¸rge",
+    "ppr spørge",
   ];
 
   return pprPatterns.some((pattern) => {
@@ -3543,14 +3542,14 @@ function buildLocalPprAngleReply(caseData, activeContext) {
 
   lines.push(
     "",
-    "PPR ville isÃ¦r se pÃ¥:",
-    "- Hvad sker lige fÃ¸r reaktionen?",
-    "- Hvor hurtigt eskalerer det, og hvad hjÃ¦lper ned igen?",
-    "- Sker mÃ¸nstret hos flere voksne/timer, eller kun i Ã©n situation?",
-    "- HvornÃ¥r lykkes barnet bedre?",
+    "PPR ville især se på:",
+    "- Hvad sker lige før reaktionen?",
+    "- Hvor hurtigt eskalerer det, og hvad hjælper ned igen?",
+    "- Sker mønstret hos flere voksne/timer, eller kun i én situation?",
+    "- Hvornår lykkes barnet bedre?",
     "",
     "**Hav klar til PPR**",
-    "- 2-3 konkrete episoder med fÃ¸r-under-efter.",
+    "- 2-3 konkrete episoder med før-under-efter.",
     "- Hvad de voksne gjorde.",
     "- Hvad der virkede lidt.",
     "- Hvor ofte og hvor det sker."
@@ -3562,7 +3561,7 @@ function buildLocalPprAngleReply(caseData, activeContext) {
 function buildCompactSpecialistCaseContext(caseData, activeContext) {
   if (caseData) {
     const lines = [
-      "AKTIV CASE â€” KORT GRUNDLAG",
+      "AKTIV CASE — KORT GRUNDLAG",
       `id: ${limitSpecialistText(caseData.id, 80) || "-"}`,
       `titel: ${limitSpecialistText(caseData.titel || caseData.title, 120) || "-"}`,
     ];
@@ -3574,8 +3573,8 @@ function buildCompactSpecialistCaseContext(caseData, activeContext) {
       ["problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse, 360],
       ["barnets oplevelse", caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice, 220],
       ["typisk fejl", caseData.typisk_fejl || caseData.mistakes, 220],
-      ["lÃ¸sning", caseData.lÃ¸sning || caseData.loesning || caseData.solution, 300],
-      ["tiltag", caseData.tiltag || caseData.vÃ¦rktÃ¸jer || caseData.vaerktoejer || caseData.tools, 300],
+      ["løsning", caseData.løsning || caseData.loesning || caseData.solution, 300],
+      ["tiltag", caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer || caseData.tools, 300],
     ];
 
     for (const [label, value, max] of fields) {
@@ -3590,11 +3589,11 @@ function buildCompactSpecialistCaseContext(caseData, activeContext) {
 
   if (hasActiveCaseContext(activeContext)) {
     return [
-      "AKTIV SAG â€” KORT GRUNDLAG",
+      "AKTIV SAG — KORT GRUNDLAG",
       activeContext.summary ? `sag: ${limitSpecialistText(activeContext.summary, 420)}` : "",
       activeContext.known_context ? `kontekst: ${limitSpecialistText(activeContext.known_context, 220)}` : "",
       activeContext.last_user_message ? `sidste brugerbesked: ${limitSpecialistText(activeContext.last_user_message, 260)}` : "",
-      activeContext.last_guidance_summary ? `seneste rÃ¥d: ${limitSpecialistText(activeContext.last_guidance_summary, 260)}` : "",
+      activeContext.last_guidance_summary ? `seneste råd: ${limitSpecialistText(activeContext.last_guidance_summary, 260)}` : "",
     ].filter(Boolean).join("\n");
   }
 
@@ -3612,7 +3611,7 @@ function getTargetedSpecialistPanel(angle, message, extraText = "") {
 
   const anglePatterns = {
     psychologist: ["psykolog", "psykologisk", "psykologi", "ppr"],
-    ppr: ["ppr", "skolepsykolog", "raadgivning", "rÃ¥dgivning", "observation", "indstilling"],
+    ppr: ["ppr", "skolepsykolog", "raadgivning", "rådgivning", "observation", "indstilling"],
     specialists: [],
     case_team: [],
   };
@@ -3832,7 +3831,7 @@ function collectMarkdownTemplateFiles(directory, templatesRoot, projectRoot) {
 
     const title = firstHeading || humanizeTemplateSlug(fileBase);
     const categoryTitle = folder === "standalone"
-      ? "SelvstÃ¦ndige skabeloner"
+      ? "Selvstændige skabeloner"
       : humanizeTemplateSlug(folder);
     const plainWords = [
       folder,
@@ -3859,7 +3858,7 @@ function collectMarkdownTemplateFiles(directory, templatesRoot, projectRoot) {
         "vis skabelon til observation",
         "PPR dokumentation",
         "dokumentation",
-        "fÃ¸r under efter",
+        "før under efter",
         "foer under efter"
       );
     }
@@ -3876,12 +3875,12 @@ function collectMarkdownTemplateFiles(directory, templatesRoot, projectRoot) {
 
     if (normalizedIdentity.includes("skolevaegering")) {
       extraKeywords.push(
-        "skolevÃ¦gring",
+        "skolevægring",
         "skolevaegering",
-        "skolefravÃ¦r",
+        "skolefravær",
         "skolefravaer",
-        "fravÃ¦r",
-        "fremmÃ¸de",
+        "fravær",
+        "fremmøde",
         "tilbage til skole"
       );
     }
@@ -3955,7 +3954,7 @@ function getTemplateFiles() {
   const standaloneTemplates = standalone.map((file) => ({
     id: file?.id || null,
     title: file?.title || null,
-    category: "SelvstÃ¦ndige skabeloner",
+    category: "Selvstændige skabeloner",
     category_id: "standalone",
     description: file?.description || null,
     content_file: file?.content_file || null,
@@ -3969,9 +3968,9 @@ function getTemplateFiles() {
 
   const seenContentFiles = new Set();
   // 23B.6C: Brug det samme statiske template-register som dropdownen som
-  // primÃ¦r kilde. Folder-scan bevares kun som fallback for filer, der endnu
+  // primær kilde. Folder-scan bevares kun som fallback for filer, der endnu
   // ikke er registreret. Det sikrer bl.a. at kategori-keywords som
-  // "visuel dagsplan" peger pÃ¥ 00-overblik lokalt fÃ¸r OpenAI.
+  // "visuel dagsplan" peger på 00-overblik lokalt før OpenAI.
   const templates = [...registryTemplates, ...scannedTemplates]
     .filter((template) => {
       const contentFile = String(template?.content_file || "").trim();
@@ -4052,7 +4051,7 @@ function getTemplateRequestSignals(message, templates) {
     "find guide",
     "find en guide",
     "aabn guide",
-    "Ã¥bn guide",
+    "åbn guide",
     "vis skabelon",
     "vis en skabelon",
     "vis skabelon til",
@@ -4061,12 +4060,12 @@ function getTemplateRequestSignals(message, templates) {
     "find skabelon",
     "find en skabelon",
     "aabn skabelon",
-    "Ã¥bn skabelon",
+    "åbn skabelon",
     "vis template",
     "hent template",
     "find template",
     "aabn template",
-    "Ã¥bn template",
+    "åbn template",
     "find skema",
     "find et skema",
     "hent skema",
@@ -4097,9 +4096,9 @@ function getTemplateRequestSignals(message, templates) {
     "han gider ikke",
     "hun gider ikke",
     "hvad gor jeg",
-    "hvad gÃ¸r jeg",
+    "hvad gør jeg",
     "hvad kan jeg gore",
-    "hvad kan jeg gÃ¸re",
+    "hvad kan jeg gøre",
   ];
 
   const directBankRequest = bankPatterns.some((pattern) =>
@@ -4519,7 +4518,7 @@ function getDirectTemplateFileRequest(message, template, options = {}) {
     "opsummer",
     "forklar",
     "oversaet",
-    "indsÃ¦t",
+    "indsæt",
     "indsaet",
     "brug den til",
     "lav den til",
@@ -4555,7 +4554,7 @@ function getDirectTemplateFileRequest(message, template, options = {}) {
     "hent",
     "vis",
     "gengiv",
-    "Ã¥bn",
+    "åbn",
     "send",
     "uden aendringer",
     "opfind ikke",
@@ -4724,7 +4723,7 @@ function isPracticalDayPlanRequest(message) {
     "lav",
     "byg",
     "opret",
-    "hjÃ¦lp mig med",
+    "hjælp mig med",
     "hjaelp mig med",
     "jeg skal bruge",
     "brugbar",
@@ -4761,9 +4760,9 @@ function getPracticalDayPlanMode(message) {
     "skole-hjem",
     "hjem skole",
     "hjemme",
-    "forÃ¦ldre",
+    "forældre",
     "foraeldre",
-    "fÃ¸r skole",
+    "før skole",
     "foer skole",
     "efter skole",
     "morgenmad",
@@ -4786,9 +4785,9 @@ function getPracticalDayPlanMode(message) {
   const hasMorningOnly = [
     "morgenrutine",
     "morgenmad",
-    "stÃ¥ op",
+    "stå op",
     "staa op",
-    "fÃ¸r skole",
+    "før skole",
     "foer skole",
   ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
 
@@ -4807,108 +4806,108 @@ function buildPracticalDayPlanReply(message, language = "Dansk") {
 
   const note = language === "English"
     ? "Adjust times and activities to the child. Keep one fixed order and one calm backup plan."
-    : "Tilpas tider og aktiviteter til barnet. Behold fast rÃ¦kkefÃ¸lge og Ã©n rolig reserveplan.";
+    : "Tilpas tider og aktiviteter til barnet. Behold fast rækkefølge og én rolig reserveplan.";
 
   const schoolPlan = [
-    "ðŸ“… VISUEL SKOLEDAGSPLAN",
+    "📅 VISUEL SKOLEDAGSPLAN",
     "",
-    "ðŸ•— 08.00  ðŸ‘‹ Kom ind / sig godmorgen",
-    "ðŸ•˜ 08.10  ðŸŽ’ Pak tasken ud",
-    "ðŸ•¤ 08.20  ðŸª‘ Find plads / se dagens plan",
-    "ðŸ“š 08.30  FÃ¸rste opgave",
-    "â˜• 09.00  Kort pause",
-    "ðŸ“š 09.10  Arbejd videre",
-    "ðŸƒ 09.45  Frikvarter",
-    "ðŸ”¢ 10.15  NÃ¦ste fag / aktivitet",
-    "ðŸ” 11.00  Forbered skift til frokost",
-    "ðŸ½ï¸ 11.10  Frokost",
-    "ðŸ˜Œ 11.35  Rolig pause",
-    "ðŸŽ¨ 12.00  Praktisk/kreativ aktivitet",
-    "ðŸ§© 12.40  Kort opgave eller valgaktivitet",
-    "ðŸ 13.00  Pak sammen / afslutning",
-    "ðŸ  13.15  SFO / hjem",
+    "🕗 08.00  👋 Kom ind / sig godmorgen",
+    "🕘 08.10  🎒 Pak tasken ud",
+    "🕤 08.20  🪑 Find plads / se dagens plan",
+    "📚 08.30  Første opgave",
+    "☕ 09.00  Kort pause",
+    "📚 09.10  Arbejd videre",
+    "🏃 09.45  Frikvarter",
+    "🔢 10.15  Næste fag / aktivitet",
+    "🔁 11.00  Forbered skift til frokost",
+    "🍽️ 11.10  Frokost",
+    "😌 11.35  Rolig pause",
+    "🎨 12.00  Praktisk/kreativ aktivitet",
+    "🧩 12.40  Kort opgave eller valgaktivitet",
+    "🏁 13.00  Pak sammen / afslutning",
+    "🏠 13.15  SFO / hjem",
     "",
-    "ðŸŸ¡ HVIS PLANEN Ã†NDRER SIG",
-    "1. Den voksne fortÃ¦ller det kort.",
-    "2. Barnet fÃ¥r vist den nye rÃ¦kkefÃ¸lge.",
-    "3. Barnet kan fÃ¥ en kort pause fÃ¸r nÃ¦ste skift.",
+    "🟡 HVIS PLANEN ÆNDRER SIG",
+    "1. Den voksne fortæller det kort.",
+    "2. Barnet får vist den nye rækkefølge.",
+    "3. Barnet kan få en kort pause før næste skift.",
   ].join("\n");
 
   const homeSchoolPlan = [
-    "ðŸ“… FÃ†LLES SKOLE-HJEM DAGSPLAN",
+    "📅 FÆLLES SKOLE-HJEM DAGSPLAN",
     "",
-    "ðŸ  MORGEN HJEMME",
-    "ðŸ›ï¸  StÃ¥ op",
-    "ðŸ¦·  BÃ¸rste tÃ¦nder",
-    "ðŸ‘•  TÃ¸j pÃ¥",
-    "ðŸ¥£  Morgenmad",
-    "ðŸŽ’  Taske klar",
-    "ðŸš—  Ud til bil / afsted mod skole",
+    "🏠 MORGEN HJEMME",
+    "🛏️  Stå op",
+    "🦷  Børste tænder",
+    "👕  Tøj på",
+    "🥣  Morgenmad",
+    "🎒  Taske klar",
+    "🚗  Ud til bil / afsted mod skole",
     "",
-    "ðŸ« SKOLESTART",
-    "ðŸ‘‹  Modtagelse af kendt voksen",
-    "ðŸŽ’  Pak tasken ud",
-    "ðŸª‘  Find plads / se dagens plan",
-    "ðŸ“š  FÃ¸rste korte opgave",
+    "🏫 SKOLESTART",
+    "👋  Modtagelse af kendt voksen",
+    "🎒  Pak tasken ud",
+    "🪑  Find plads / se dagens plan",
+    "📚  Første korte opgave",
     "",
-    "ðŸ« SKOLEDAG",
-    "â˜•  Kort pause",
-    "ðŸ“š  Arbejd videre",
-    "ðŸƒ  Frikvarter",
-    "ðŸ½ï¸  Frokost",
-    "ðŸ˜Œ  Rolig pause",
-    "ðŸ  Afslutning / pak sammen",
+    "🏫 SKOLEDAG",
+    "☕  Kort pause",
+    "📚  Arbejd videre",
+    "🏃  Frikvarter",
+    "🍽️  Frokost",
+    "😌  Rolig pause",
+    "🏁  Afslutning / pak sammen",
     "",
-    "ðŸ  EFTER SKOLE HJEMME",
-    "ðŸŽ  Mad/snack",
-    "ðŸ˜Œ  Pause uden krav",
-    "ðŸŽ®  Spil / skÃ¦rmtid efter aftale",
-    "ðŸ“š  Lektier kun hvis aftalt",
-    "ðŸ½ï¸  Aftensmad",
-    "ðŸ›  Bad / hygiejne",
-    "ðŸ“–  Godnathistorie / rolig aktivitet",
-    "ðŸ˜´  Sove",
+    "🏠 EFTER SKOLE HJEMME",
+    "🍎  Mad/snack",
+    "😌  Pause uden krav",
+    "🎮  Spil / skærmtid efter aftale",
+    "📚  Lektier kun hvis aftalt",
+    "🍽️  Aftensmad",
+    "🛁  Bad / hygiejne",
+    "📖  Godnathistorie / rolig aktivitet",
+    "😴  Sove",
     "",
-    "ðŸ“ KORT SKOLE-HJEM AFTALE",
+    "📝 KORT SKOLE-HJEM AFTALE",
     "- Hvad hjalp i morges? ____________________",
     "- Hvordan startede skoledagen? _____________",
     "- Hvad skal gentages i morgen? _____________",
   ].join("\n");
 
   const morningPlan = [
-    "ðŸŒ… MORGENRUTINE FÃ˜R SKOLE",
+    "🌅 MORGENRUTINE FØR SKOLE",
     "",
-    "ðŸ›ï¸  StÃ¥ op",
-    "ðŸš½  Toilet",
-    "ðŸ¦·  BÃ¸rste tÃ¦nder",
-    "ðŸ‘•  TÃ¸j pÃ¥",
-    "ðŸ¥£  Morgenmad",
-    "ðŸŽ’  Taske klar",
-    "ðŸ‘Ÿ  Sko og overtÃ¸j",
-    "ðŸš—  Ud til bil / afsted",
+    "🛏️  Stå op",
+    "🚽  Toilet",
+    "🦷  Børste tænder",
+    "👕  Tøj på",
+    "🥣  Morgenmad",
+    "🎒  Taske klar",
+    "👟  Sko og overtøj",
+    "🚗  Ud til bil / afsted",
     "",
-    "ðŸŸ¡ HVIS DET BLIVER SVÃ†RT",
-    "â˜ Kort pause",
-    "â˜ Voksen viser nÃ¦ste trin",
-    "â˜ Ã‰n besked ad gangen",
+    "🟡 HVIS DET BLIVER SVÆRT",
+    "☐ Kort pause",
+    "☐ Voksen viser næste trin",
+    "☐ Én besked ad gangen",
   ].join("\n");
 
   const eveningPlan = [
-    "ðŸŒ™ AFTENRUTINE",
+    "🌙 AFTENRUTINE",
     "",
-    "ðŸ½ï¸  Aftensmad",
-    "ðŸŽ®  Spil / skÃ¦rmtid efter aftale",
-    "ðŸ›  Bad / hygiejne",
-    "ðŸ‘•  NattÃ¸j",
-    "ðŸŽ’  GÃ¸r taske klar til i morgen",
-    "ðŸ“–  Godnathistorie / rolig aktivitet",
-    "ðŸ’¡  Lys ned / rolig stemme",
-    "ðŸ˜´  Sove",
+    "🍽️  Aftensmad",
+    "🎮  Spil / skærmtid efter aftale",
+    "🛁  Bad / hygiejne",
+    "👕  Nattøj",
+    "🎒  Gør taske klar til i morgen",
+    "📖  Godnathistorie / rolig aktivitet",
+    "💡  Lys ned / rolig stemme",
+    "😴  Sove",
     "",
-    "ðŸŸ¡ HVIS DET BLIVER SVÃ†RT",
-    "â˜ Kort pause",
-    "â˜ Voksen gentager planen roligt",
-    "â˜ Samme rÃ¦kkefÃ¸lge i morgen",
+    "🟡 HVIS DET BLIVER SVÆRT",
+    "☐ Kort pause",
+    "☐ Voksen gentager planen roligt",
+    "☐ Samme rækkefølge i morgen",
   ].join("\n");
 
   const body = mode === "home_school"
@@ -4936,7 +4935,7 @@ function isParentDayPlanMessageRequest(message) {
     "skriv til foraeldrene",
     "mail til foraeldre",
     "mail til foraeldrene",
-    "forÃ¦ldrebesked",
+    "forældrebesked",
     "foraeldrebesked",
     "kort besked",
     "kort skrivelse",
@@ -4948,8 +4947,8 @@ function isParentDayPlanMessageRequest(message) {
   const hasHomeRecipient = [
     "foraeldre",
     "foraeldrene",
-    "forÃ¦ldre",
-    "forÃ¦ldrene",
+    "forældre",
+    "forældrene",
     "hjemmet",
     "hjem",
   ].some((pattern) => text.includes(normalizeTemplateSearch(pattern)));
@@ -4992,32 +4991,32 @@ function buildParentDayPlanMessageReply(activeLocalCase = null, language = "Dans
       `We have made a simple visual day plan for ${studentName}, so the day becomes more predictable and easier to follow.`,
       "",
       "At school we use short steps and small icons, for example:",
-      "ðŸ‘‹ Arrive",
-      "ðŸŽ’ Unpack bag",
-      "ðŸ“š Short task",
-      "â˜• Break",
-      "ðŸ“š Work again",
-      "ðŸ½ï¸ Lunch",
-      "ðŸ˜Œ Calm pause",
-      "ðŸ Finish the day",
+      "👋 Arrive",
+      "🎒 Unpack bag",
+      "📚 Short task",
+      "☕ Break",
+      "📚 Work again",
+      "🍽️ Lunch",
+      "😌 Calm pause",
+      "🏁 Finish the day",
       "",
       "It may help to use the same type of short steps at home:",
       "",
-      "ðŸ  Morning:",
-      "ðŸ›ï¸ Get up",
-      "ðŸ¦· Brush teeth",
-      "ðŸ‘• Get dressed",
-      "ðŸ¥£ Breakfast",
-      "ðŸŽ’ Bag ready",
-      "ðŸš— Leave for school",
+      "🏠 Morning:",
+      "🛏️ Get up",
+      "🦷 Brush teeth",
+      "👕 Get dressed",
+      "🥣 Breakfast",
+      "🎒 Bag ready",
+      "🚗 Leave for school",
       "",
-      "ðŸ  After school/evening:",
-      "ðŸŽ Snack",
-      "ðŸŽ® Screen time by agreement",
-      "ðŸ“š Homework for a short time if agreed",
-      "ðŸ› Bath / hygiene",
-      "ðŸ“– Story or calm activity",
-      "ðŸ˜´ Sleep",
+      "🏠 After school/evening:",
+      "🍎 Snack",
+      "🎮 Screen time by agreement",
+      "📚 Homework for a short time if agreed",
+      "🛁 Bath / hygiene",
+      "📖 Story or calm activity",
+      "😴 Sleep",
       "",
       `The aim is not to control ${studentName}, but to make transitions clearer and reduce pressure during the day.`,
       "",
@@ -5028,42 +5027,42 @@ function buildParentDayPlanMessageReply(activeLocalCase = null, language = "Dans
   }
 
   return [
-    "Her er en kort kopierbar besked til forÃ¦ldrene:",
+    "Her er en kort kopierbar besked til forældrene:",
     "",
     "```text",
     "Hej",
     "",
-    `Vi har lavet en enkel visuel dagsplan for ${studentName}, sÃ¥ dagen bliver mere tydelig og forudsigelig.`,
+    `Vi har lavet en enkel visuel dagsplan for ${studentName}, så dagen bliver mere tydelig og forudsigelig.`,
     "",
-    "I skolen bruger vi korte trin og smÃ¥ ikoner, fx:",
-    "ðŸ‘‹ Kom ind",
-    "ðŸŽ’ Pakke ud",
-    "ðŸ“š Kort opgave",
-    "â˜• Pause",
-    "ðŸ“š Arbejde igen",
-    "ðŸ½ï¸ Frokost",
-    "ðŸ˜Œ Rolig pause",
-    "ðŸ Afslutning",
+    "I skolen bruger vi korte trin og små ikoner, fx:",
+    "👋 Kom ind",
+    "🎒 Pakke ud",
+    "📚 Kort opgave",
+    "☕ Pause",
+    "📚 Arbejde igen",
+    "🍽️ Frokost",
+    "😌 Rolig pause",
+    "🏁 Afslutning",
     "",
-    "Det kan mÃ¥ske hjÃ¦lpe, hvis I bruger samme type korte trin hjemme:",
+    "Det kan måske hjælpe, hvis I bruger samme type korte trin hjemme:",
     "",
-    "ðŸ  Morgen:",
-    "ðŸ›ï¸ StÃ¥ op",
-    "ðŸ¦· BÃ¸rste tÃ¦nder",
-    "ðŸ‘• TÃ¸j pÃ¥",
-    "ðŸ¥£ Morgenmad",
-    "ðŸŽ’ Taske klar",
-    "ðŸš— Afsted til skole",
+    "🏠 Morgen:",
+    "🛏️ Stå op",
+    "🦷 Børste tænder",
+    "👕 Tøj på",
+    "🥣 Morgenmad",
+    "🎒 Taske klar",
+    "🚗 Afsted til skole",
     "",
-    "ðŸ  Efter skole/aften:",
-    "ðŸŽ Snack",
-    "ðŸŽ® SkÃ¦rmtid efter aftale",
-    "ðŸ“š Lektier i kort tid, hvis det er aftalt",
-    "ðŸ› Bad / hygiejne",
-    "ðŸ“– Godnathistorie eller rolig aktivitet",
-    "ðŸ˜´ Sove",
+    "🏠 Efter skole/aften:",
+    "🍎 Snack",
+    "🎮 Skærmtid efter aftale",
+    "📚 Lektier i kort tid, hvis det er aftalt",
+    "🛁 Bad / hygiejne",
+    "📖 Godnathistorie eller rolig aktivitet",
+    "😴 Sove",
     "",
-    `FormÃ¥let er ikke at styre ${studentName}, men at gÃ¸re skift mere overskuelige og mindske pres i lÃ¸bet af dagen.`,
+    `Formålet er ikke at styre ${studentName}, men at gøre skift mere overskuelige og mindske pres i løbet af dagen.`,
     "",
     "Venlig hilsen",
     "[navn]",
@@ -5084,7 +5083,7 @@ function getLocalTemplateRequest(message) {
     : [];
 
   // Det nye Markdown-register prioriteres. Den gamle skabelonbank bevares
-  // som fallback, sÃ¥ eksisterende kommandoer fortsat virker.
+  // som fallback, så eksisterende kommandoer fortsat virker.
   const templates = [...fileTemplates, ...legacyTemplates];
 
   const signals = getTemplateRequestSignals(message, templates);
@@ -5224,10 +5223,10 @@ function stripStudentProfileRegistrationLines(message) {
 
       if (!trimmed) return true;
 
-      return !/^(?:opret\s+elevprofil|navn\s*\/\s*arbejdsnavn|elev\s*\/\s*arbejdsnavn|elevnavn|klasse\s*\/\s*gruppe|oprettet\s+af\s*\/\s*signatur|inds[Ã¦a]t\s+elevcase\s+her)\s*:?/i.test(trimmed);
+      return !/^(?:opret\s+elevprofil|navn\s*\/\s*arbejdsnavn|elev\s*\/\s*arbejdsnavn|elevnavn|klasse\s*\/\s*gruppe|oprettet\s+af\s*\/\s*signatur|inds[æa]t\s+elevcase\s+her)\s*:?/i.test(trimmed);
     })
     .join("\n")
-    .replace(/\[\s*INDS[Ã†A]T\s+ELEVCASE\s+HER\s*\]/gi, "")
+    .replace(/\[\s*INDS[ÆA]T\s+ELEVCASE\s+HER\s*\]/gi, "")
     .trim();
 }
 
@@ -5313,15 +5312,15 @@ function formatStudentProfile(profile, language = "Dansk") {
     "",
     `**Elev / arbejdsnavn:** ${cleanField(profile?.elev_arbejdsnavn)}`,
     `**Klasse / gruppe:** ${cleanField(profile?.klasse_gruppe)}`,
-    `**PrimÃ¦re observationer:** ${cleanField(profile?.primaere_observationer)}`,
-    `**LÃ¦ring og opgaver:** ${cleanField(profile?.laering_og_opgaver)}`,
+    `**Primære observationer:** ${cleanField(profile?.primaere_observationer)}`,
+    `**Læring og opgaver:** ${cleanField(profile?.laering_og_opgaver)}`,
     `**Koncentration / udholdenhed:** ${cleanField(profile?.koncentration_udholdenhed)}`,
     `**Socialt samspil:** ${cleanField(profile?.socialt_samspil)}`,
     `**Gruppearbejde:** ${cleanField(profile?.gruppearbejde)}`,
     `**Skift / overgange:** ${cleanField(profile?.skift_overgange)}`,
     `**Belastninger og triggere:** ${cleanField(profile?.belastninger_triggere)}`,
     `**Det der virker:** ${cleanField(profile?.det_der_virker)}`,
-    `**Det der bÃ¸r observeres:** ${cleanField(profile?.det_der_boer_observeres)}`,
+    `**Det der bør observeres:** ${cleanField(profile?.det_der_boer_observeres)}`,
     `**Keywords:** ${keywordText}`,
   ].join("\n\n");
 }
@@ -5333,18 +5332,18 @@ async function createStudentProfileFromText(message, language = "Dansk") {
 
   const instructions = [
     "Du er CDA Profilgenerator v1.",
-    "Din eneste opgave er at udtrÃ¦kke en kort skolefaglig elevprofil fra lÃ¦rerens fritekst.",
+    "Din eneste opgave er at udtrække en kort skolefaglig elevprofil fra lærerens fritekst.",
     "Profilen er arbejdsdata til skolebrug, ikke journal, ikke psykolograpport og ikke diagnosevurdering.",
-    "Brug kun oplysninger, som lÃ¦reren faktisk har givet, eller som er direkte skolefagligt afledt af teksten.",
-    "GÃ¦t ikke. Stil ikke diagnose. Skriv ikke lange forklaringer.",
-    "Brug registreringsfelterne prÃ¦cist som metadata. Ã†ndr ikke navn eller klasse/gruppe.",
-    "Hvis et felt mangler data, skriv prÃ¦cist: Ikke oplyst endnu.",
-    "Keywords skal vÃ¦re korte arbejdsnÃ¸gler udledt af elevcasen, ikke en fast liste.",
-    "Keywords mÃ¥ ikke vÃ¦re hele sÃ¦tninger.",
+    "Brug kun oplysninger, som læreren faktisk har givet, eller som er direkte skolefagligt afledt af teksten.",
+    "Gæt ikke. Stil ikke diagnose. Skriv ikke lange forklaringer.",
+    "Brug registreringsfelterne præcist som metadata. Ændr ikke navn eller klasse/gruppe.",
+    "Hvis et felt mangler data, skriv præcist: Ikke oplyst endnu.",
+    "Keywords skal være korte arbejdsnøgler udledt af elevcasen, ikke en fast liste.",
+    "Keywords må ikke være hele sætninger.",
     "Hold hvert felt kort. Rene facts. Ingen fyldtekst.",
     language === "English"
       ? "Return content in English, but keep schema keys unchanged."
-      : "ReturnÃ©r indhold pÃ¥ dansk.",
+      : "Returnér indhold på dansk.",
   ].join("\n");
 
   const response = await openai.responses.create({
@@ -5361,7 +5360,7 @@ async function createStudentProfileFromText(message, language = "Dansk") {
       "ELEVCASE:",
       studentCaseText || message,
       "",
-      "UdtrÃ¦k profilen i de faste felter. Navn og klasse/gruppe skal gengives prÃ¦cist i de tilsvarende schemafelter.",
+      "Udtræk profilen i de faste felter. Navn og klasse/gruppe skal gengives præcist i de tilsvarende schemafelter.",
     ].join("\n"),
     max_output_tokens: 850,
     text: {
@@ -5375,7 +5374,7 @@ async function createStudentProfileFromText(message, language = "Dansk") {
   });
 
   if (response.status === "incomplete") {
-    throw new Error("UfuldstÃ¦ndigt svar fra profilgeneratoren");
+    throw new Error("Ufuldstændigt svar fra profilgeneratoren");
   }
 
   const profile = JSON.parse(response.output_text || "{}");
@@ -5491,26 +5490,26 @@ async function createReadableStudentProfileText(message, language = "Dansk") {
   const intent = getReadableStudentProfileIntent(message);
 
   const intentRules = {
-    readable_profile: "Skriv en kort lÃ¦sbar lÃ¦rerprofil i 2-4 korte afsnit.",
-    development_status: "Skriv en kort udviklingsstatus med: aktuelt billede, det der virker, muligt nÃ¦ste skolefaglige fokus. Skriv kun mulig udvikling ud fra data, ikke lÃ¸fter.",
-    team_note: "Skriv et kort teamnotat, som flere lÃ¦rere/vikarer kan bruge som fÃ¦lles arbejdsgrundlag.",
+    readable_profile: "Skriv en kort læsbar lærerprofil i 2-4 korte afsnit.",
+    development_status: "Skriv en kort udviklingsstatus med: aktuelt billede, det der virker, muligt næste skolefaglige fokus. Skriv kun mulig udvikling ud fra data, ikke løfter.",
+    team_note: "Skriv et kort teamnotat, som flere lærere/vikarer kan bruge som fælles arbejdsgrundlag.",
     ppr_note: "Skriv et kort neutralt PPR-egnet arbejdsnotat uden diagnosekonklusioner.",
   };
 
   const instructions = [
     "Du er CDA Profiltekst v1.",
-    "Din eneste opgave er at omskrive en eksisterende elevprofil, keyword-profil eller skolefaglige nÃ¸gledata til en kort, lÃ¦sbar tekst.",
-    "Du mÃ¥ ikke oprette en ny 12-felts profil her. Du skal skrive menneskesprog ud fra de oplysninger, brugeren giver.",
+    "Din eneste opgave er at omskrive en eksisterende elevprofil, keyword-profil eller skolefaglige nøgledata til en kort, læsbar tekst.",
+    "Du må ikke oprette en ny 12-felts profil her. Du skal skrive menneskesprog ud fra de oplysninger, brugeren giver.",
     "Skriv skolefagligt, konkret og neutralt.",
-    "Brug kun oplysninger, der stÃ¥r i brugerens tekst. GÃ¦t ikke. Opfind ikke progression.",
+    "Brug kun oplysninger, der står i brugerens tekst. Gæt ikke. Opfind ikke progression.",
     "Ingen diagnosekonklusioner. Ingen psykolograpport. Ingen lange forklaringer.",
-    "UndgÃ¥ 'hvis eleven...' nÃ¥r data allerede siger, hvad der sker. Skriv konkret.",
-    "Hvis der mangler vigtige oplysninger, nÃ¦vn det kort til sidst under 'Mangler at afklare'. Hvis der ikke mangler noget tydeligt, mÃ¥ du ikke skrive 'Ingen', 'Intet' eller lignende. Udelad i stedet hele afsnittet.",
-    "Hold svaret kort og brugbart for lÃ¦rerteamet.",
+    "Undgå 'hvis eleven...' når data allerede siger, hvad der sker. Skriv konkret.",
+    "Hvis der mangler vigtige oplysninger, nævn det kort til sidst under 'Mangler at afklare'. Hvis der ikke mangler noget tydeligt, må du ikke skrive 'Ingen', 'Intet' eller lignende. Udelad i stedet hele afsnittet.",
+    "Hold svaret kort og brugbart for lærerteamet.",
     intentRules[intent] || intentRules.readable_profile,
     language === "English"
       ? "Write in English."
-      : "Skriv pÃ¥ dansk.",
+      : "Skriv på dansk.",
   ].join("\n");
 
   const response = await openai.responses.create({
@@ -5520,16 +5519,16 @@ async function createReadableStudentProfileText(message, language = "Dansk") {
     },
     instructions,
     input: [
-      "BRUGERENS Ã˜NSKE OG PROFILDATA:",
+      "BRUGERENS ØNSKE OG PROFILDATA:",
       message,
       "",
-      "Omskriv til kort, lÃ¦sbar skolefaglig tekst.",
+      "Omskriv til kort, læsbar skolefaglig tekst.",
     ].join("\n"),
     max_output_tokens: 850,
   });
 
   if (response.status === "incomplete") {
-    throw new Error("UfuldstÃ¦ndigt svar fra profiltekst-generatoren");
+    throw new Error("Ufuldstændigt svar fra profiltekst-generatoren");
   }
 
   return {
@@ -5545,14 +5544,14 @@ const tools = [
     type: "function",
     name: "getPromptRules",
     description:
-      "Henter dynamiske prompt-regler til CDA. response_style_rules, mode_switch_rules, source_priority_rules, general_rule og practice_situations er allerede indlÃ¦st og skal ikke hentes igen. Ã˜vrige tilgÃ¦ngelige sektioner: domain_scope, specialist_trigger_rules, template_trigger_rules, case_trigger_rules, diagnosis_trigger_rules, roleplay_rules, emotion_trigger_rules, bornehave_trigger_rules, cda_training_rules, roleplay_learning_rules, action_rules, roleplay_emotion_rules, conflict_mediator_rules, comorbidity_rules, school_home_dialogue_rules. Hent den sektion der matcher situationen, fx comorbidity_rules ved mulig komorbiditet, school_home_dialogue_rules ved skole-hjem-kommunikation, eller specialist_trigger_rules/template_trigger_rules fÃ¸r specialister eller skabeloner bruges.",
+      "Henter dynamiske prompt-regler til CDA. response_style_rules, mode_switch_rules, source_priority_rules, general_rule og practice_situations er allerede indlæst og skal ikke hentes igen. Øvrige tilgængelige sektioner: domain_scope, specialist_trigger_rules, template_trigger_rules, case_trigger_rules, diagnosis_trigger_rules, roleplay_rules, emotion_trigger_rules, bornehave_trigger_rules, cda_training_rules, roleplay_learning_rules, action_rules, roleplay_emotion_rules, conflict_mediator_rules, comorbidity_rules, school_home_dialogue_rules. Hent den sektion der matcher situationen, fx comorbidity_rules ved mulig komorbiditet, school_home_dialogue_rules ved skole-hjem-kommunikation, eller specialist_trigger_rules/template_trigger_rules før specialister eller skabeloner bruges.",
     parameters: {
       type: "object",
       properties: {
         section: {
           type: "string",
           description:
-            "PrÃ¦cist sektionsnavn fra listen ovenfor, fx comorbidity_rules, source_priority_rules eller conflict_mediator_rules.",
+            "Præcist sektionsnavn fra listen ovenfor, fx comorbidity_rules, source_priority_rules eller conflict_mediator_rules.",
         },
       },
       additionalProperties: false,
@@ -5570,7 +5569,7 @@ const tools = [
         search: {
           type: "string",
           description:
-            "Direkte elevinteresse eller fritekstsÃ¸gning, fx cykel, dyr, Minecraft eller trÃ¦arbejde.",
+            "Direkte elevinteresse eller fritekstsøgning, fx cykel, dyr, Minecraft eller træarbejde.",
         },
         diagnosis: {
           type: "string",
@@ -5590,12 +5589,12 @@ const tools = [
         structure: {
           type: "string",
           description:
-            "Behov for struktur, fx Lav, Moderat eller HÃ¸j.",
+            "Behov for struktur, fx Lav, Moderat eller Høj.",
         },
         stimuli: {
           type: "string",
           description:
-            "Foretrukken stimulustype, fx Taktil, Visuel eller KinÃ¦stetisk.",
+            "Foretrukken stimulustype, fx Taktil, Visuel eller Kinæstetisk.",
         },
         id: {
           type: "string",
@@ -5611,7 +5610,7 @@ const tools = [
   type: "function",
   name: "getCases",
   description:
-    "Henter eksisterende CDA-cases. Brug ved forespÃ¸rgsler om cases, trÃ¦ningscases, konkrete skolesituationer, diagnoser, temaer eller kategorier.",
+    "Henter eksisterende CDA-cases. Brug ved forespørgsler om cases, træningscases, konkrete skolesituationer, diagnoser, temaer eller kategorier.",
   parameters: {
     type: "object",
     properties: {
@@ -5622,19 +5621,19 @@ const tools = [
       search: {
         type: "string",
         description:
-          "FritekstsÃ¸gning i casebiblioteket, fx uro, konflikt, skolevÃ¦gring eller gruppearbejde.",
+          "Fritekstsøgning i casebiblioteket, fx uro, konflikt, skolevægring eller gruppearbejde.",
       },
       tema: {
         type: "string",
-        description: "FiltrÃ©r cases efter tema.",
+        description: "Filtrér cases efter tema.",
       },
       diagnose: {
         type: "string",
-        description: "FiltrÃ©r cases efter diagnose.",
+        description: "Filtrér cases efter diagnose.",
       },
       kategori: {
         type: "string",
-        description: "FiltrÃ©r cases efter kategori.",
+        description: "Filtrér cases efter kategori.",
       },
     },
     additionalProperties: false,
@@ -5645,7 +5644,7 @@ const tools = [
   type: "function",
   name: "getBornehaveRouting",
   description:
-    "Henter eksisterende CDA-bÃ¸rnehaverouting. Brug ved bÃ¸rn i bÃ¸rnehave, observation, adfÃ¦rd, overlevering til skole eller valg af bÃ¸rnehaveskabelon.",
+    "Henter eksisterende CDA-børnehaverouting. Brug ved børn i børnehave, observation, adfærd, overlevering til skole eller valg af børnehaveskabelon.",
   parameters: {
     type: "object",
     properties: {
@@ -5677,7 +5676,7 @@ const tools = [
   type: "function",
   name: "getDiagnoser",
   description:
-    "Henter eksisterende CDA-diagnosedata. Brug ved spÃ¸rgsmÃ¥l om diagnoser, symptombilleder, kategorier eller komorbiditet.",
+    "Henter eksisterende CDA-diagnosedata. Brug ved spørgsmål om diagnoser, symptombilleder, kategorier eller komorbiditet.",
   parameters: {
     type: "object",
     properties: {
@@ -5688,16 +5687,16 @@ const tools = [
       search: {
         type: "string",
         description:
-          "SÃ¸g efter diagnose via navn, fuldt navn, nÃ¸gleord eller kategori.",
+          "Søg efter diagnose via navn, fuldt navn, nøgleord eller kategori.",
       },
       kategori: {
         type: "string",
-        description: "FiltrÃ©r diagnoser efter kategori.",
+        description: "Filtrér diagnoser efter kategori.",
       },
       komorbiditet: {
         type: "string",
         description:
-          "FiltrÃ©r diagnoser efter kobling til en mulig komorbiditet.",
+          "Filtrér diagnoser efter kobling til en mulig komorbiditet.",
       },
     },
     additionalProperties: false,
@@ -5730,14 +5729,14 @@ const tools = [
   type: "function",
   name: "getKomorbiditet",
   description:
-    "Henter eksisterende CDA-komorbiditetsdata. Brug ved spÃ¸rgsmÃ¥l om mulig komorbiditet, primÃ¦r diagnose eller konkrete triggertegn.",
+    "Henter eksisterende CDA-komorbiditetsdata. Brug ved spørgsmål om mulig komorbiditet, primær diagnose eller konkrete triggertegn.",
   parameters: {
     type: "object",
     properties: {
       primary: {
         type: "string",
         description:
-          "PrimÃ¦r diagnose, fx ADHD eller autisme.",
+          "Primær diagnose, fx ADHD eller autisme.",
       },
       id: {
         type: "string",
@@ -5747,7 +5746,7 @@ const tools = [
       trigger: {
         type: "string",
         description:
-          "SÃ¸g efter komorbiditet ud fra et konkret triggertegn.",
+          "Søg efter komorbiditet ud fra et konkret triggertegn.",
       },
     },
     additionalProperties: false,
@@ -5758,7 +5757,7 @@ const tools = [
   type: "function",
   name: "getRollespil",
   description:
-    "Henter eksisterende, faste CDA-rollespilsscenarier (kun et par stykker â€“ et lille referencebibliotek, ikke selve rollespilsmotoren). Kald KUN dette vÃ¦rktÃ¸j, nÃ¥r brugeren tydeligt vil browse eller genbruge et eksisterende, navngivet scenarie, eller har givet en konkret nok situation til at der er noget at matche mod. Hvis brugerens Ã¸nske om rollespil er uklart, generelt eller kun nÃ¦vner selve funktionen (fx 'rollespil', 'rollespilsmotor', 'vis mig rollespil'), skal du IKKE kalde dette vÃ¦rktÃ¸j â€” spÃ¸rg i stedet kort, hvilken indgang brugeren vil bruge (kÃ¸r en hÃ¦ndelse / trÃ¦n en situation / Ã¸v en samtale), jf. roleplay_learning_rules. De fleste rollespil bygges bedst direkte ud fra brugerens egen beskrivelse, ikke ud fra dette lille bibliotek.",
+    "Henter eksisterende, faste CDA-rollespilsscenarier (kun et par stykker – et lille referencebibliotek, ikke selve rollespilsmotoren). Kald KUN dette værktøj, når brugeren tydeligt vil browse eller genbruge et eksisterende, navngivet scenarie, eller har givet en konkret nok situation til at der er noget at matche mod. Hvis brugerens ønske om rollespil er uklart, generelt eller kun nævner selve funktionen (fx 'rollespil', 'rollespilsmotor', 'vis mig rollespil'), skal du IKKE kalde dette værktøj — spørg i stedet kort, hvilken indgang brugeren vil bruge (kør en hændelse / træn en situation / øv en samtale), jf. roleplay_learning_rules. De fleste rollespil bygges bedst direkte ud fra brugerens egen beskrivelse, ikke ud fra dette lille bibliotek.",
   parameters: {
     type: "object",
     properties: {
@@ -5776,14 +5775,14 @@ const tools = [
   type: "function",
   name: "getSemanticSearch",
   description:
-    "SÃ¸ger semantisk i det eksisterende CDA-casearkiv og skelner mellem primÃ¦r diagnose, komorbid diagnose og tekstmatch.",
+    "Søger semantisk i det eksisterende CDA-casearkiv og skelner mellem primær diagnose, komorbid diagnose og tekstmatch.",
   parameters: {
     type: "object",
     properties: {
       search: {
         type: "string",
         description:
-          "SÃ¸getekst, diagnose, tema eller problemstilling.",
+          "Søgetekst, diagnose, tema eller problemstilling.",
       },
     },
     required: ["search"],
@@ -5795,14 +5794,14 @@ const tools = [
   type: "function",
   name: "getTemplates",
   description:
-    "Henter eksisterende CDA-skabeloner og sÃ¸geindeks. Brug ved forespÃ¸rgsler om skabeloner, rapporter, skole-hjem-kommunikation, mÃ¸der eller overlevering.",
+    "Henter eksisterende CDA-skabeloner og søgeindeks. Brug ved forespørgsler om skabeloner, rapporter, skole-hjem-kommunikation, møder eller overlevering.",
   parameters: {
     type: "object",
     properties: {
       type: {
         type: "string",
         description:
-          "Brug vÃ¦rdien index for kun at hente skabelonernes sÃ¸geindeks.",
+          "Brug værdien index for kun at hente skabelonernes søgeindeks.",
       },
     },
     additionalProperties: false,
@@ -5864,7 +5863,7 @@ if (toolCall.name === "getTemplates") {
     };
   } catch (error) {
     return {
-      error: "Funktionen kunne ikke udfÃ¸res",
+      error: "Funktionen kunne ikke udføres",
       details: error.message,
     };
   }
@@ -5876,7 +5875,7 @@ function normalizeReplyIntent(value) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9Ã¦Ã¸Ã¥ ]/g, " ")
+    .replace(/[^a-z0-9æøå ]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -5891,7 +5890,7 @@ function isAffirmativeReply(value) {
     "vis den",
     "send den",
     "lav den",
-    "lad os gÃ¸re det",
+    "lad os gøre det",
     "lad os gore det"
   ].includes(text);
 }
@@ -5904,27 +5903,27 @@ function isNegativeReply(value) {
     "ikke nu",
     "ellers tak",
     "det vil jeg ikke",
-    "gÃ¥ videre",
+    "gå videre",
     "ga videre"
   ].includes(text);
 }
 
 function getPblProfileTemplate() {
   return [
-    "Udfyld kort det, du ved. Du behÃ¸ver ikke have svar pÃ¥ alt:",
+    "Udfyld kort det, du ved. Du behøver ikke have svar på alt:",
     "",
     "1. Alder og klassetrin:",
-    "2. Interesser og det eleven selv opsÃ¸ger:",
+    "2. Interesser og det eleven selv opsøger:",
     "3. Praktiske, kreative eller faglige styrker:",
-    "4. Hvor lÃ¦nge kan eleven typisk holde fokus?",
-    "5. Behov for struktur, pauser og bevÃ¦gelse:",
-    "6. Arbejder eleven bedst alene, med Ã©n eller i en lille gruppe?",
+    "4. Hvor længe kan eleven typisk holde fokus?",
+    "5. Behov for struktur, pauser og bevægelse:",
+    "6. Arbejder eleven bedst alene, med én eller i en lille gruppe?",
     "7. Sanser eller belastninger, vi skal tage hensyn til:",
-    "8. Modenhed og sikkerhed ved materialer eller vÃ¦rktÃ¸j:",
-    "9. Hvor meget voksenstÃ¸tte krÃ¦ves?",
-    "10. Hvilket fagligt mÃ¥l skal projektet stÃ¸tte?",
-    "11. Hvad er allerede prÃ¸vet, og hvad virkede eller virkede ikke?",
-    "12. Din vurdering: Er PBL relevant nu â€” ja, nej eller usikkert?"
+    "8. Modenhed og sikkerhed ved materialer eller værktøj:",
+    "9. Hvor meget voksenstøtte kræves?",
+    "10. Hvilket fagligt mål skal projektet støtte?",
+    "11. Hvad er allerede prøvet, og hvad virkede eller virkede ikke?",
+    "12. Din vurdering: Er PBL relevant nu — ja, nej eller usikkert?"
   ].join("\n");
 }
 
@@ -5988,17 +5987,17 @@ function getPblProjectById(projectId) {
 function extractProfileField(profileText, fieldNumber) {
   const profileLabels = {
     1: "Alder og klassetrin:",
-    2: "Interesser og det eleven selv opsÃ¸ger:",
+    2: "Interesser og det eleven selv opsøger:",
     3: "Praktiske, kreative eller faglige styrker:",
-    4: "Hvor lÃ¦nge kan eleven typisk holde fokus?",
-    5: "Behov for struktur, pauser og bevÃ¦gelse:",
-    6: "Arbejder eleven bedst alene, med Ã©n eller i en lille gruppe?",
+    4: "Hvor længe kan eleven typisk holde fokus?",
+    5: "Behov for struktur, pauser og bevægelse:",
+    6: "Arbejder eleven bedst alene, med én eller i en lille gruppe?",
     7: "Sanser eller belastninger, vi skal tage hensyn til:",
-    8: "Modenhed og sikkerhed ved materialer eller vÃ¦rktÃ¸j:",
-    9: "Hvor meget voksenstÃ¸tte krÃ¦ves?",
-    10: "Hvilket fagligt mÃ¥l skal projektet stÃ¸tte?",
-    11: "Hvad er allerede prÃ¸vet, og hvad virkede eller virkede ikke?",
-    12: "Din vurdering: Er PBL relevant nu â€” ja, nej eller usikkert?",
+    8: "Modenhed og sikkerhed ved materialer eller værktøj:",
+    9: "Hvor meget voksenstøtte kræves?",
+    10: "Hvilket fagligt mål skal projektet støtte?",
+    11: "Hvad er allerede prøvet, og hvad virkede eller virkede ikke?",
+    12: "Din vurdering: Er PBL relevant nu — ja, nej eller usikkert?",
   };
 
   const label = profileLabels[fieldNumber];
@@ -6103,7 +6102,7 @@ function getPblProjectsForDynamicAssessment() {
     indexText: [
       `VERSION:${cleanIndexValue(data.version)}`,
       "KOLONNER:id|titel|kort tema|kompetencer|diagnosematch|stimuli|social|struktur|niveau",
-      "KODER:social L=lav M=moderat G=gruppe; struktur L=lav M=moderat H=hÃ¸j; niveau J=junior I=intermediate A=advanced",
+      "KODER:social L=lav M=moderat G=gruppe; struktur L=lav M=moderat H=høj; niveau J=junior I=intermediate A=advanced",
       ...rows,
     ].join("\n"),
   };
@@ -6115,14 +6114,14 @@ async function assessPblProfileDynamically(profileText) {
   const instructions = [
     "Du er CDA's dynamiske PBL-fagmotor.",
     "Foretag en samlet faglig vurdering af elevprofilen og det kompakte projektindex.",
-    "Brug ingen point, vÃ¦gte, faste sÃ¦rord, skjult facitliste eller diagnose som automatisk konklusion.",
-    "Vurder isÃ¦r elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, stÃ¸ttebehov, social belastning, faglige mÃ¥l og mulighed for realistiske microsteps.",
+    "Brug ingen point, vægte, faste særord, skjult facitliste eller diagnose som automatisk konklusion.",
+    "Vurder især elevens egeninteresse, koncentration, arbejdsform, alder og modenhed, sikkerhed, støttebehov, social belastning, faglige mål og mulighed for realistiske microsteps.",
     "Et direkte interessematch er vigtigt, men skal altid vurderes sammen med resten af profilen.",
-    "VÃ¦lg kun projekt-id'er, der findes i det vedlagte projektindex.",
-    "VÃ¦lg to forskellige eksisterende projekter, hvis begge er reelt fagligt egnede.",
-    "Hvis projektindexet ikke indeholder to forsvarlige muligheder, skal status vÃ¦re no_suitable_match. VÃ¦lg ikke et tilfÃ¦ldigt projekt for at udfylde felterne.",
-    "Begrundelserne skal vÃ¦re korte, konkrete og baseret pÃ¥ bÃ¥de elevprofilen og projektdata.",
-    "CDA foreslÃ¥r. LÃ¦reren guider. Eleven vÃ¦lger med.",
+    "Vælg kun projekt-id'er, der findes i det vedlagte projektindex.",
+    "Vælg to forskellige eksisterende projekter, hvis begge er reelt fagligt egnede.",
+    "Hvis projektindexet ikke indeholder to forsvarlige muligheder, skal status være no_suitable_match. Vælg ikke et tilfældigt projekt for at udfylde felterne.",
+    "Begrundelserne skal være korte, konkrete og baseret på både elevprofilen og projektdata.",
+    "CDA foreslår. Læreren guider. Eleven vælger med.",
   ].join("\n");
 
   const projectIndex = projectData.indexText;
@@ -6135,7 +6134,7 @@ async function assessPblProfileDynamically(profileText) {
     projectIndex,
   ].join("\n");
 
-  console.log("CDA PBL inputmÃ¥ling:", {
+  console.log("CDA PBL inputmåling:", {
     project_count: projectData.projectCount,
     profile_chars: profileText.length,
     profile_bytes: Buffer.byteLength(profileText, "utf8"),
@@ -6198,7 +6197,7 @@ async function assessPblProfileDynamically(profileText) {
   });
 
   if (response.status === "incomplete") {
-    throw new Error("UfuldstÃ¦ndig dynamisk PBL-vurdering");
+    throw new Error("Ufuldstændig dynamisk PBL-vurdering");
   }
 
   const assessment = JSON.parse(response.output_text || "{}");
@@ -6284,11 +6283,11 @@ async function createTailoredPblProject(
   const instructions = [
     "Du er CDA's dynamiske PBL-fagmotor.",
     "Begge eksisterende forslag er afvist.",
-    "Skab Ã©t nyt og tydeligt anderledes PBL-projekt ud fra elevprofilen som helhed.",
-    "Brug ingen point, vÃ¦gte, sÃ¦rord eller skjult facitliste.",
-    "Tag hensyn til interesse, koncentration, arbejdsform, alder, sikkerhed, stÃ¸ttebehov, social belastning og faglige mÃ¥l.",
-    "Projektet skal kunne gennemfÃ¸res i korte microsteps og give eleven medejerskab.",
-    "Hold titel og tekstfelter korte. Skriv prÃ¦cis 3 aktiviteter og 3 microsteps. Hvert listepunkt mÃ¥ hÃ¸jst vÃ¦re 12 ord.",
+    "Skab ét nyt og tydeligt anderledes PBL-projekt ud fra elevprofilen som helhed.",
+    "Brug ingen point, vægte, særord eller skjult facitliste.",
+    "Tag hensyn til interesse, koncentration, arbejdsform, alder, sikkerhed, støttebehov, social belastning og faglige mål.",
+    "Projektet skal kunne gennemføres i korte microsteps og give eleven medejerskab.",
+    "Hold titel og tekstfelter korte. Skriv præcis 3 aktiviteter og 3 microsteps. Hvert listepunkt må højst være 12 ord.",
   ].join("\n");
 
   const input = JSON.stringify({
@@ -6347,7 +6346,7 @@ async function createTailoredPblProject(
   });
 
   if (response.status === "incomplete") {
-    console.error("CDA tilpasset PBL-kald ufuldstÃ¦ndigt:", {
+    console.error("CDA tilpasset PBL-kald ufuldstændigt:", {
       status: response.status,
       incomplete_details: response.incomplete_details || null,
       output_item_types: Array.isArray(response.output)
@@ -6357,7 +6356,7 @@ async function createTailoredPblProject(
       usage: response.usage || null,
     });
 
-    throw new Error("UfuldstÃ¦ndigt tilpasset PBL-projekt");
+    throw new Error("Ufuldstændigt tilpasset PBL-projekt");
   }
 
   const generatedProject = JSON.parse(
@@ -6394,18 +6393,18 @@ function formatTailoredPblProject(project) {
       : "",
     "",
     activities ? `Projektet kan begynde med:\n${activities}` : "",
-    microsteps ? `\nFÃ¸rste microsteps:\n${microsteps}` : "",
+    microsteps ? `\nFørste microsteps:\n${microsteps}` : "",
     project.learning_integration
-      ? `\nDe faglige mÃ¥l indbygges sÃ¥dan: ${project.learning_integration}`
+      ? `\nDe faglige mål indbygges sådan: ${project.learning_integration}`
       : "",
     project.safety_framework
       ? `\nSikkerhedsramme: ${project.safety_framework}`
       : "",
     project.adult_support
-      ? `\nVoksenstÃ¸tte: ${project.adult_support}`
+      ? `\nVoksenstøtte: ${project.adult_support}`
       : "",
     "",
-    "Projektet er skabt ud fra elevprofilen, men lÃ¦reren og eleven skal stadig tilpasse og vÃ¦lge det sammen.",
+    "Projektet er skabt ud fra elevprofilen, men læreren og eleven skal stadig tilpasse og vælge det sammen.",
   ].filter(Boolean).join("\n");
 }
 
@@ -6427,16 +6426,16 @@ function formatPblChoice(project, choiceNumber, profileText, reason = "") {
     "",
     activities ? `Projektet kan begynde med:\n${activities}` : "",
     learningGoals
-      ? `\nDe faglige mÃ¥l kan indbygges sÃ¥dan: ${learningGoals}`
+      ? `\nDe faglige mål kan indbygges sådan: ${learningGoals}`
       : "",
     safety
       ? `\nSikkerhedsramme: ${safety}`
       : "",
     "",
-    "Det er et forslag, ikke en beslutning. Tal med eleven om, hvad der virker spÃ¦ndende ved projektet.",
+    "Det er et forslag, ikke en beslutning. Tal med eleven om, hvad der virker spændende ved projektet.",
     choiceNumber === 1
-      ? "Vil I vÃ¦lge dette projekt, se forslag 2 eller tale om projektet fÃ¸rst?"
-      : "Vil I vÃ¦lge dette projekt, gÃ¥ tilbage til forslag 1 eller have CDA til at skabe et nyt projekt sammen med jer?"
+      ? "Vil I vælge dette projekt, se forslag 2 eller tale om projektet først?"
+      : "Vil I vælge dette projekt, gå tilbage til forslag 1 eller have CDA til at skabe et nyt projekt sammen med jer?"
   ].filter(Boolean).join("\n");
 }
 
@@ -6470,9 +6469,9 @@ function isConcreteStudentPblRequest(message) {
   const requestsProject = [
     "pbl",
     "projektbaseret laering",
-    "projektbaseret lÃ¦ring",
+    "projektbaseret læring",
     "foresla et projekt",
-    "foreslÃ¥ et projekt",
+    "foreslå et projekt",
     "find et projekt",
     "lav et projekt"
   ].some((phrase) => text.includes(phrase));
@@ -6487,7 +6486,7 @@ function isConcreteStudentPblRequest(message) {
 
 function extractBornehaveAge(message) {
   const match = String(message || "").match(
-    /\b([3-6])\s*(?:Ã¥r|aar)\b/i
+    /\b([3-6])\s*(?:år|aar)\b/i
   );
 
   return match ? Number(match[1]) : null;
@@ -6667,16 +6666,16 @@ function shouldUseSpecializedToolFlow(message) {
     "case om",
     "case med",
     "ga i dybden med en case",
-    "gÃ¥ i dybden med en case",
+    "gå i dybden med en case",
     "pbl",
-    "projektbaseret lÃ¦ring",
+    "projektbaseret læring",
     "lav et projekt",
     "find et projekt",
     "specialistpanel",
     "specialist panel",
     "hvad siger specialisterne",
     "specialistperspektiv",
-    "tvÃ¦rfaglig vurdering",
+    "tværfaglig vurdering",
     "tvaerfaglig vurdering",
     "rollespil",
     "rolleleg",
@@ -6685,17 +6684,17 @@ function shouldUseSpecializedToolFlow(message) {
     "lav en skabelon",
     "vis en skabelon",
     "handleplan",
-    "stÃ¸tteplan",
+    "støtteplan",
     "stoetteplan",
     "komorbiditet",
-    "kan der vÃ¦re andet end",
+    "kan der være andet end",
     "kan der vaere andet end",
     "forklar diagnosen",
     "hvad er adhd",
     "hvad er autisme",
     "hvad er angst",
     "diagnoseopslag",
-    "bÃ¸rnehaveoverlevering",
+    "børnehaveoverlevering",
     "bornehaveoverlevering",
     "overlevering til skole"
   ];
@@ -6837,9 +6836,9 @@ function isShortContinuationRequest(message) {
     "uddyb",
     "forklar mere",
     "mere",
-    "gÃ¸r det dybere",
+    "gør det dybere",
     "gor det dybere",
-    "skriv samme svar lÃ¦ngere",
+    "skriv samme svar længere",
     "skriv samme svar laengere",
     "hvorfor",
     "hvorfor virker det",
@@ -6847,9 +6846,9 @@ function isShortContinuationRequest(message) {
     "det virkede ikke",
     "det virker ikke",
     "hvad nu",
-    "hvad gÃ¸r jeg sÃ¥",
+    "hvad gør jeg så",
     "hvad gor jeg sa",
-    "fortsÃ¦t",
+    "fortsæt",
     "fortsaet",
   ];
 
@@ -6870,7 +6869,7 @@ function buildActiveCaseContextBlock(context) {
 
   const lines = [
     "AKTIV HEIDI-SAG",
-    "Denne kontekst kommer fra samme igangvÃ¦rende samtale. Brug den kun som arbejdshukommelse, ikke som journal eller endelig konklusion.",
+    "Denne kontekst kommer fra samme igangværende samtale. Brug den kun som arbejdshukommelse, ikke som journal eller endelig konklusion.",
     `conversation_mode: ${context.conversation_mode}`,
   ];
 
@@ -6897,13 +6896,13 @@ function buildActiveCaseInstructions(context, message) {
 
   return [
     "AKTIV SAGSHUKOMMELSE",
-    "Brug active_case_context til at holde samme barn/situation Ã¥ben pÃ¥ tvÃ¦rs af beskeder.",
-    "Korte opfÃ¸lgninger som 'uddyb', 'forklar mere', 'hvad nu' eller 'det virkede ikke' handler som udgangspunkt om samme aktive sag.",
-    "Hvis brugeren spÃ¸rger 'hvad siger psykologen?', 'hvad siger PPR?' eller lignende, skal du give en faglig specialistvinkel pÃ¥ samme aktive sag â€” ikke bede om en ekstern psykolograpport, medmindre brugeren specifikt henviser til en konkret rapport.",
-    "Gentag ikke lokale dataopslag, hvis used_data_sources allerede viser, at samme spor er dÃ¦kket, medmindre brugerens nye besked Ã¥bner et reelt nyt fagligt spor.",
-    "Ved 'uddyb' skal du uddybe samme sag og samme rÃ¥d, ikke spÃ¸rge hvad der skal uddybes.",
-    continuation ? "DEN NYE BESKED ER EN FORTSÃ†TTELSE AF SAMME SAG." : "",
-    specialistAngle ? "DEN NYE BESKED BEDER OM SPECIALISTVINKEL PÃ… SAMME SAG." : "",
+    "Brug active_case_context til at holde samme barn/situation åben på tværs af beskeder.",
+    "Korte opfølgninger som 'uddyb', 'forklar mere', 'hvad nu' eller 'det virkede ikke' handler som udgangspunkt om samme aktive sag.",
+    "Hvis brugeren spørger 'hvad siger psykologen?', 'hvad siger PPR?' eller lignende, skal du give en faglig specialistvinkel på samme aktive sag — ikke bede om en ekstern psykolograpport, medmindre brugeren specifikt henviser til en konkret rapport.",
+    "Gentag ikke lokale dataopslag, hvis used_data_sources allerede viser, at samme spor er dækket, medmindre brugerens nye besked åbner et reelt nyt fagligt spor.",
+    "Ved 'uddyb' skal du uddybe samme sag og samme råd, ikke spørge hvad der skal uddybes.",
+    continuation ? "DEN NYE BESKED ER EN FORTSÆTTELSE AF SAMME SAG." : "",
+    specialistAngle ? "DEN NYE BESKED BEDER OM SPECIALISTVINKEL PÅ SAMME SAG." : "",
   ].filter(Boolean).join("\n");
 }
 
@@ -6944,7 +6943,7 @@ export default async function handler(req, res) {
   const {
   message,
   language = "Dansk",
-  role = "LÃ¦rer",
+  role = "Lærer",
   response_style = "Mellem",
   adgangskode,
   pending_action = null,
@@ -6958,43 +6957,43 @@ if (!message || typeof message !== "string") {
 }
 
 const allowedLanguages = ["Dansk", "English"];
-const allowedRoles = ["LÃ¦rer", "PÃ¦dagog", "ForÃ¦lder", "Specialist", "Andet"];
+const allowedRoles = ["Lærer", "Pædagog", "Forælder", "Specialist", "Andet"];
 const allowedResponseStyles = ["Kort", "Mellem", "Dyb"];
 
 if (!allowedLanguages.includes(language)) {
   return res.status(400).json({
-    error: "language skal vÃ¦re Dansk eller English",
+    error: "language skal være Dansk eller English",
   });
 }
 
 if (!allowedRoles.includes(role)) {
   return res.status(400).json({
-    error: "role skal vÃ¦re LÃ¦rer, PÃ¦dagog, ForÃ¦lder, Specialist eller Andet",
+    error: "role skal være Lærer, Pædagog, Forælder, Specialist eller Andet",
   });
 }
 
 if (!allowedResponseStyles.includes(response_style)) {
   return res.status(400).json({
-    error: "response_style skal vÃ¦re Kort, Mellem eller Dyb",
+    error: "response_style skal være Kort, Mellem eller Dyb",
   });
 }
 
 const languageInstruction =
   language === "English"
     ? "Answer in English unless the user clearly asks for another language."
-    : "Svar pÃ¥ dansk, medmindre brugeren tydeligt beder om et andet sprog.";
+    : "Svar på dansk, medmindre brugeren tydeligt beder om et andet sprog.";
 
 const roleInstructions = {
-  LÃ¦rer:
-    "Tilpas svaret til en lÃ¦rer: fokusÃ©r pÃ¥ forstÃ¥else, klassepraksis, observation og realistiske handlinger i skoledagen.",
-  PÃ¦dagog:
-    "Tilpas svaret til en pÃ¦dagog: fokusÃ©r pÃ¥ observation, relationer, miljÃ¸, struktur og realistiske pÃ¦dagogiske handlinger. Antag ikke automatisk bÃ¸rnehave; lad brugerens konkrete spÃ¸rgsmÃ¥l afgÃ¸re, om konteksten er dagtilbud, SFO, skole eller andet.",
-  ForÃ¦lder:
-    "Tilpas svaret til en forÃ¦lder: fokusÃ©r pÃ¥ observationer i hverdagen, stÃ¸tte hjemme og samarbejde med skole eller relevante fagpersoner.",
+  Lærer:
+    "Tilpas svaret til en lærer: fokusér på forståelse, klassepraksis, observation og realistiske handlinger i skoledagen.",
+  Pædagog:
+    "Tilpas svaret til en pædagog: fokusér på observation, relationer, miljø, struktur og realistiske pædagogiske handlinger. Antag ikke automatisk børnehave; lad brugerens konkrete spørgsmål afgøre, om konteksten er dagtilbud, SFO, skole eller andet.",
+  Forælder:
+    "Tilpas svaret til en forælder: fokusér på observationer i hverdagen, støtte hjemme og samarbejde med skole eller relevante fagpersoner.",
   Specialist:
-    "Tilpas svaret til en psykolog, PPR-medarbejder, skolekonsulent eller anden specialist. Brug specialistfagligt sprog og fokusÃ©r pÃ¥ bÃ¦rende mÃ¸nstre, forelÃ¸bige faglige hypoteser, datamangler, kontekstforskelle, relevante observationer og nÃ¦ste faglige skridt. Skeln tydeligt mellem observation, hypotese og konklusion. Giv ikke almindelige lÃ¦rer- eller forÃ¦ldrerÃ¥d, medmindre specialisten direkte beder om konkrete tiltag til skole eller hjem. UdfÃ¸r ikke en fuld Analyse-vurdering og stil ikke diagnose.",
+    "Tilpas svaret til en psykolog, PPR-medarbejder, skolekonsulent eller anden specialist. Brug specialistfagligt sprog og fokusér på bærende mønstre, foreløbige faglige hypoteser, datamangler, kontekstforskelle, relevante observationer og næste faglige skridt. Skeln tydeligt mellem observation, hypotese og konklusion. Giv ikke almindelige lærer- eller forældreråd, medmindre specialisten direkte beder om konkrete tiltag til skole eller hjem. Udfør ikke en fuld Analyse-vurdering og stil ikke diagnose.",
   Andet:
-    "Tilpas svaret til den konkrete situation uden at antage, at brugeren er lÃ¦rer, forÃ¦lder eller specialist.",
+    "Tilpas svaret til den konkrete situation uden at antage, at brugeren er lærer, forælder eller specialist.",
 };
 
 const audienceInstructions = [
@@ -7011,10 +7010,10 @@ const contextualInput = buildContextualInput(message, activeCaseContext);
 try {
   const heidiPrompt = readHeidiPrompt();
 
-  // 23B.9O: Rollespil har forrang over ALT andet lokalt routing (case-sÃ¸gning,
-  // skabeloner, diagnose, specialister, PBL, bÃ¸rnehave osv.), jf. roleplay_rules'
-  // egen priority_rule. Tjekkes derfor allerfÃ¸rst, fÃ¸r noget andet fÃ¥r chancen
-  // for at kapre en igangvÃ¦rende rollespil-samtale.
+  // 23B.9O: Rollespil har forrang over ALT andet lokalt routing (case-søgning,
+  // skabeloner, diagnose, specialister, PBL, børnehave osv.), jf. roleplay_rules'
+  // egen priority_rule. Tjekkes derfor allerførst, før noget andet får chancen
+  // for at kapre en igangværende rollespil-samtale.
   const roleplayContextActive = isRoleplayContextActive(message, pending_action);
 
   if (roleplayContextActive) {
@@ -7115,12 +7114,12 @@ try {
 
     const roleplayReplyData = extractPendingAction(roleplayResponse.output_text);
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: roleplayUsedTools,
       tool_debug: roleplayToolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: rpUsageByCall,
       totals: {
         input_tokens: rpInputTokens,
@@ -7176,7 +7175,7 @@ try {
 
     const heidiFlowReplyData = extractPendingAction(heidiFlowResult.outputText);
     const reply = String(heidiFlowReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: ogsÃ¥)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
     const inputTokens = Number(heidiFlowResult.response?.usage?.input_tokens || 0);
@@ -7205,12 +7204,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -7281,12 +7280,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7310,7 +7309,7 @@ try {
   if (localDiagnosisSessionMeta && isLocalDiagnosisStop(message)) {
     return res.status(200).json({
       success: true,
-      reply: "Du er ude af lokal diagnoseteori. Skriv en ny situation, case, PBL, rollespil eller et nyt diagnoseomrÃ¥de.",
+      reply: "Du er ude af lokal diagnoseteori. Skriv en ny situation, case, PBL, rollespil eller et nyt diagnoseområde.",
       model: "local",
       tools_used: ["localDiagnosisTheorySession"],
       tool_debug: [
@@ -7348,12 +7347,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7387,12 +7386,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7426,12 +7425,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7473,12 +7472,12 @@ try {
         },
       ];
 
-      console.log("CDA vÃ¦rktÃ¸jskald:", {
+      console.log("CDA værktøjskald:", {
         tools_used: usedTools,
         tool_debug: toolDebug,
       });
 
-      console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
         usage_by_call: [],
         totals: {
           input_tokens: 0,
@@ -7506,7 +7505,7 @@ try {
 
     return res.status(200).json({
       success: true,
-      reply: `Jeg fandt ikke en prÃ¦cis lokal case pÃ¥ â€œ${directCaseResult.searchText}â€. PrÃ¸v med diagnose, alder eller tema, fx: case ADHD uro i klassen, case angst pige eller case autisme overgang.`,
+      reply: `Jeg fandt ikke en præcis lokal case på “${directCaseResult.searchText}”. Prøv med diagnose, alder eller tema, fx: case ADHD uro i klassen, case angst pige eller case autisme overgang.`,
       model: "local",
       tools_used: ["localDirectCaseSearch"],
       tool_debug: [
@@ -7535,12 +7534,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7573,12 +7572,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7610,12 +7609,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7647,12 +7646,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7683,12 +7682,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -7718,12 +7717,12 @@ try {
         },
       ];
 
-      console.log("CDA vÃ¦rktÃ¸jskald:", {
+      console.log("CDA værktøjskald:", {
         tools_used: usedTools,
         tool_debug: toolDebug,
       });
 
-      console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
         usage_by_call: [],
         totals: {
           input_tokens: 0,
@@ -7753,7 +7752,7 @@ try {
 
       return res.status(200).json({
         success: true,
-        reply: "Helt fint. SÃ¥ gÃ¥r vi videre uden PBL-profilen.",
+        reply: "Helt fint. Så går vi videre uden PBL-profilen.",
         model: "local",
         tools_used: usedTools,
         tool_debug: toolDebug,
@@ -7815,12 +7814,12 @@ try {
         },
       ];
 
-      console.log("CDA vÃ¦rktÃ¸jskald:", {
+      console.log("CDA værktøjskald:", {
         tools_used: usedTools,
         tool_debug: toolDebug,
       });
 
-      console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
         usage_by_call: usageByCall,
         totals: {
           input_tokens: inputTokens,
@@ -7833,7 +7832,7 @@ try {
         success: true,
         reply: assessment.no_match_reason
           ? `Ingen af de eksisterende projekter passer godt nok til elevprofilen. ${assessment.no_match_reason}`
-          : "Ingen af de eksisterende projekter passer godt nok til elevprofilen. CDA vÃ¦lger derfor ikke et tilfÃ¦ldigt projekt.",
+          : "Ingen af de eksisterende projekter passer godt nok til elevprofilen. CDA vælger derfor ikke et tilfældigt projekt.",
         model: "gpt-5.4-mini",
         tools_used: usedTools,
         tool_debug: toolDebug,
@@ -7860,12 +7859,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -7900,7 +7899,7 @@ try {
       normalizedMessage.includes("valg 1") ||
       normalizedMessage.includes("forslag 1") ||
       normalizedMessage.includes("forste") ||
-      normalizedMessage.includes("fÃ¸rste") ||
+      normalizedMessage.includes("første") ||
       normalizedMessage.includes("tilbage") ||
       (firstProject &&
         normalizeReplyIntent(message).includes(
@@ -7962,12 +7961,12 @@ try {
         },
       ];
 
-      console.log("CDA vÃ¦rktÃ¸jskald:", {
+      console.log("CDA værktøjskald:", {
         tools_used: usedTools,
         tool_debug: toolDebug,
       });
 
-      console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
         usage_by_call: usageByCall,
         totals: {
           input_tokens: inputTokens,
@@ -8068,7 +8067,7 @@ try {
       return res.status(200).json({
         success: true,
         reply: selectedProject
-          ? `Godt. I har valgt **${selectedProject.title}**. NÃ¦ste skridt er, at lÃ¦reren og eleven sammen aftaler fÃ¸rste lille delmÃ¥l og sikkerhedsrammen.`
+          ? `Godt. I har valgt **${selectedProject.title}**. Næste skridt er, at læreren og eleven sammen aftaler første lille delmål og sikkerhedsrammen.`
           : "Godt. Projektet er valgt.",
         model: "local",
         tools_used: ["localPblChoiceFlow"],
@@ -8095,7 +8094,7 @@ try {
 
     return res.status(200).json({
       success: true,
-      reply: "PBL kunne vÃ¦re relevant her, men jeg vil ikke foreslÃ¥ et konkret projekt uden en kort elevprofil. Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, stÃ¸ttebehov, arbejdsform, sikkerhed og fagligt mÃ¥l. Vil du have den korte elevprofilskabelon?",
+      reply: "PBL kunne være relevant her, men jeg vil ikke foreslå et konkret projekt uden en kort elevprofil. Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, støttebehov, arbejdsform, sikkerhed og fagligt mål. Vil du have den korte elevprofilskabelon?",
       model: "local",
       tools_used: usedTools,
       tool_debug: toolDebug,
@@ -8110,16 +8109,16 @@ try {
       const caseInstructions = [
         "Du er Heidi, CDA's faglige skolekonsulent.",
         audienceInstructions,
-        "Brugeren spÃ¸rger, hvad andre har gjort i en lignende situation.",
-        "Svar kort og naturligt pÃ¥ det valgte sprog ud fra den ene vedlagte case.",
-        "FortÃ¦l kun: den lignende situation, hvad den voksne gjorde, hvad der virkede, og Ã©n enkel reference brugeren kan overveje.",
-        "Lav ikke en fuld analyse. Brug ikke standardoverskrifter som 'Det peger mest pÃ¥'.",
-        "TilfÃ¸j ikke generelle rÃ¥d, diagnoser eller oplysninger, som ikke stÃ¥r i casen.",
-        "Skriv hÃ¸jst 120 ord."
+        "Brugeren spørger, hvad andre har gjort i en lignende situation.",
+        "Svar kort og naturligt på det valgte sprog ud fra den ene vedlagte case.",
+        "Fortæl kun: den lignende situation, hvad den voksne gjorde, hvad der virkede, og én enkel reference brugeren kan overveje.",
+        "Lav ikke en fuld analyse. Brug ikke standardoverskrifter som 'Det peger mest på'.",
+        "Tilføj ikke generelle råd, diagnoser eller oplysninger, som ikke står i casen.",
+        "Skriv højst 120 ord."
       ].join("\n");
 
       const caseInput = [
-        `BRUGERENS SPÃ˜RGSMÃ…L:\n${message}`,
+        `BRUGERENS SPØRGSMÅL:\n${message}`,
         "",
         "VALGT LIGNENDE CASE:",
         JSON.stringify(selectedCase, null, 2),
@@ -8162,12 +8161,12 @@ try {
         },
       ];
 
-      console.log("CDA vÃ¦rktÃ¸jskald:", {
+      console.log("CDA værktøjskald:", {
         tools_used: usedTools,
         tool_debug: toolDebug,
       });
 
-      console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
         usage_by_call: usageByCall,
         totals: {
           input_tokens: inputTokens,
@@ -8210,8 +8209,8 @@ try {
     }
   }
 
-  // Rollespil er allerede hÃ¥ndteret og returneret tidligere i denne funktion,
-  // hvis det var aktivt â€” herfra er roleplayContextActive altid false.
+  // Rollespil er allerede håndteret og returneret tidligere i denne funktion,
+  // hvis det var aktivt — herfra er roleplayContextActive altid false.
 
   if (isDirectSpecialistPanelRequest(message)) {
     const requestedAngle = getRequestedSpecialistAngle(message);
@@ -8229,7 +8228,7 @@ try {
         },
       ];
 
-      console.log("CDA vÃ¦rktÃ¸jskald:", {
+      console.log("CDA værktøjskald:", {
         tools_used: usedTools,
         tool_debug: toolDebug,
       });
@@ -8258,18 +8257,18 @@ try {
       requestedAngle === "named" || requestedAngle === "psychologist"
         ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
         : requestedAngle === "ppr"
-          ? "Brug prÃ¦cis disse markdown-overskrifter: **PPR-vinkel** og **NÃ¦ste observationer**."
-          : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **NÃ¦ste skridt**.";
+          ? "Brug præcis disse markdown-overskrifter: **PPR-vinkel** og **Næste observationer**."
+          : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **Næste skridt**.";
 
     const specialistInstructions = [
       "Du er Heidi i CDA Engine.",
-      "Svar kun, fordi brugeren selv har bedt om specialistvinkel pÃ¥ den aktive case/sag.",
+      "Svar kun, fordi brugeren selv har bedt om specialistvinkel på den aktive case/sag.",
       "Brug den aktive case/sag som konkret grundlag. Opfind ikke manglende casefelter.",
-      "Stil ikke diagnose. Giv ikke medicinrÃ¥d. Beskriv kun stÃ¸ttebehov, mÃ¸nstre og nÃ¦ste faglige skridt.",
-      "Svar lÃ¦rer-nÃ¦rt, praktisk og kort. HÃ¸jst 3 konkrete handlinger.",
+      "Stil ikke diagnose. Giv ikke medicinråd. Beskriv kun støttebehov, mønstre og næste faglige skridt.",
+      "Svar lærer-nært, praktisk og kort. Højst 3 konkrete handlinger.",
       headingInstruction,
       response_style === "Dyb"
-        ? "Svar lidt mere udfÃ¸rligt, men uden lange forklaringer."
+        ? "Svar lidt mere udførligt, men uden lange forklaringer."
         : "Svar kort og direkte.",
     ].join("\n");
 
@@ -8323,7 +8322,7 @@ try {
     });
 
     if (response.status === "incomplete") {
-      throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+      throw new Error("Ufuldstændigt svar fra specialistpanelet");
     }
 
     const panelResponse = JSON.parse(response.output_text || "{}");
@@ -8378,12 +8377,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -8428,7 +8427,7 @@ try {
   if (isCaseSpecialistsInvolvedRequest(message)) {
     if (!activeLocalCase && !hasActiveCaseContext(activeCaseContext)) {
       const reply =
-        "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gÃ¥ tilbage til en tidligere case, sÃ¥ kan jeg pege pÃ¥ hvilke CDA-specialister der er relevante.";
+        "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gå tilbage til en tidligere case, så kan jeg pege på hvilke CDA-specialister der er relevante.";
       const usedTools = ["caseSpecialistsInvolvedNoActiveCase"];
       const toolDebug = [
         {
@@ -8438,7 +8437,7 @@ try {
         },
       ];
 
-      console.log("CDA vÃ¦rktÃ¸jskald:", {
+      console.log("CDA værktøjskald:", {
         tools_used: usedTools,
         tool_debug: toolDebug,
       });
@@ -8474,12 +8473,12 @@ try {
 
     const caseTeamInstructions = [
       "Du er Heidi i CDA Engine.",
-      "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+      "Brugeren spørger, hvilke CDA-specialister der har været relevante for den aktive case/sag.",
       "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
-      "Stil ikke diagnose. Giv ikke medicinrÃ¥d.",
-      "Vis hver relevant specialist pÃ¥ egen linje: **[specialistens fulde navn fra data]** efterfulgt af Ã©t kort, case-specifikt fokuspunkt (1 linje).",
-      "NÃ¦vn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
-      "Afslut altid med Ã©n linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
+      "Stil ikke diagnose. Giv ikke medicinråd.",
+      "Vis hver relevant specialist på egen linje: **[specialistens fulde navn fra data]** efterfulgt af ét kort, case-specifikt fokuspunkt (1 linje).",
+      "Nævn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
+      "Afslut altid med én linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
       "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
     ].join("\n");
 
@@ -8529,7 +8528,7 @@ try {
     });
 
     if (response.status === "incomplete") {
-      throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+      throw new Error("Ufuldstændigt svar fra specialistpanelet");
     }
 
     const panelResponse = JSON.parse(response.output_text || "{}");
@@ -8581,12 +8580,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -8649,12 +8648,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [
         {
           call: 1,
@@ -8737,12 +8736,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -8798,12 +8797,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -8854,12 +8853,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -8895,7 +8894,7 @@ try {
             : "The template bank contains no templates.",
         ].join("\n\n")
       : [
-          "Jeg fandt ingen eksisterende skabelon i CDA's templatebank, der matcher din forespÃ¸rgsel.",
+          "Jeg fandt ingen eksisterende skabelon i CDA's templatebank, der matcher din forespørgsel.",
           titles.length > 0
             ? `Templatebanken indeholder blandt andet: ${titles.slice(0, 6).join(", ")}.`
             : "Templatebanken indeholder ingen skabeloner.",
@@ -8912,12 +8911,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: [],
       totals: {
         input_tokens: 0,
@@ -8965,12 +8964,12 @@ try {
 
       const reply = directTemplateFile.content;
 
-      console.log("CDA vÃ¦rktÃ¸jskald:", {
+      console.log("CDA værktøjskald:", {
         tools_used: usedTools,
         tool_debug: toolDebug,
       });
 
-      console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+      console.log("CDA tokenmåling pr. OpenAI-kald:", {
         usage_by_call: [],
         totals: {
           input_tokens: 0,
@@ -8996,18 +8995,18 @@ try {
       "",
       "LOKAL CDA-TEMPLATEROUTING",
       "Brug kun den ene vedlagte eksisterende CDA-skabelon som grundlag for svaret.",
-      "Brugeren har udtrykkeligt bedt om en eksisterende skabelon fra CDA's templatebank. Sig derfor ikke, at templatebanken er utilgÃ¦ngelig.",
-      "Opfind ikke en ny skabelon, nye afsnit, nye faglige pÃ¥stande eller manglende personoplysninger.",
-      "NÃ¥r brugeren beder om at fÃ¥ skabelonen vist, skal du gengive dens praktiske indhold trovÃ¦rdigt og komplet.",
-      "Bevar tomme felter og pladsholdere, nÃ¥r brugeren ikke har givet vÃ¦rdier. Teknisk betingelsessyntaks mÃ¥ omskrives til tydelige valgfrie felter uden at Ã¦ndre indholdet.",
-      "Vis ikke interne ids, matchscore, sÃ¸geord eller datastruktur.",
-      "Svar kort fÃ¸r selve skabelonen. Afslut uden et generisk tilbud om mere hjÃ¦lp.",
-      "Svarstilen mÃ¥ ikke fÃ¥ dig til at udelade centrale dele af den eksisterende skabelon.",
+      "Brugeren har udtrykkeligt bedt om en eksisterende skabelon fra CDA's templatebank. Sig derfor ikke, at templatebanken er utilgængelig.",
+      "Opfind ikke en ny skabelon, nye afsnit, nye faglige påstande eller manglende personoplysninger.",
+      "Når brugeren beder om at få skabelonen vist, skal du gengive dens praktiske indhold troværdigt og komplet.",
+      "Bevar tomme felter og pladsholdere, når brugeren ikke har givet værdier. Teknisk betingelsessyntaks må omskrives til tydelige valgfrie felter uden at ændre indholdet.",
+      "Vis ikke interne ids, matchscore, søgeord eller datastruktur.",
+      "Svar kort før selve skabelonen. Afslut uden et generisk tilbud om mere hjælp.",
+      "Svarstilen må ikke få dig til at udelade centrale dele af den eksisterende skabelon.",
       `AKTUEL SVARSTIL: ${response_style}`,
     ].join("\n");
 
     const templateInput = [
-      "BRUGERENS SPÃ˜RGSMÃ…L:",
+      "BRUGERENS SPØRGSMÅL:",
       message,
       "",
       "DEN ENE MATCHENDE EKSISTERENDE CDA-SKABELON:",
@@ -9056,12 +9055,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -9095,7 +9094,7 @@ try {
 
     const templateReplyData = extractPendingAction(response.output_text);
     const reply = String(templateReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: ogsÃ¥)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
     return res.status(200).json({
@@ -9137,29 +9136,29 @@ try {
       "",
       "AUTOMATISK CDA-SAMMENLIGNING VED KENDT DIAGNOSE",
       "Dette flow bruges kun, fordi brugeren beskriver en konkret elev eller et konkret barn med en kendt diagnose.",
-      "Sammenhold observationerne med den kendte diagnose og de vedlagte komorbiditetsdata i Ã©t samlet fagligt svar.",
-      "Vurder fÃ¸rst, om observationerne kan forklares rimeligt inden for den kendte diagnose. Hvis de kan, skal du ikke gÃ¸re komorbiditet til et tema.",
-      "Brug kun komorbiditetsdata, nÃ¥r observationerne tydeligt ligger ud over eller afviger fra det forventede billede ved den kendte diagnose.",
-      "Sig aldrig, at CDA eller brugeren har fundet eller pÃ¥vist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'mÃ¥ske autisme', 'mÃ¥ske depression' eller tilsvarende pÃ¥ baggrund af en kort beskrivelse.",
-      "OmsÃ¦t de interne spor til neutrale observationsomrÃ¥der som fx bekymring og undgÃ¥else, social belastning, energifald og funktionsÃ¦ndring, rigiditet, sansning eller vedvarende konfliktmÃ¸nstre.",
-      "NÃ¥r noget ligger tydeligt uden for den kendte diagnose, beskriv afvigelsen forsigtigt og anbefal konkrete observationer samt drÃ¸ftelse med relevante lÃ¦rere/team, PPR eller en relevant specialist. Pres ikke pÃ¥ for udredning; formÃ¥let er bedre forstÃ¥else og stÃ¸tte.",
-      "Brug ikke specialistpanelet i dette flow. UdfÃ¸r ikke Analyse-systemets fulde analyse.",
+      "Sammenhold observationerne med den kendte diagnose og de vedlagte komorbiditetsdata i ét samlet fagligt svar.",
+      "Vurder først, om observationerne kan forklares rimeligt inden for den kendte diagnose. Hvis de kan, skal du ikke gøre komorbiditet til et tema.",
+      "Brug kun komorbiditetsdata, når observationerne tydeligt ligger ud over eller afviger fra det forventede billede ved den kendte diagnose.",
+      "Sig aldrig, at CDA eller brugeren har fundet eller påvist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'måske autisme', 'måske depression' eller tilsvarende på baggrund af en kort beskrivelse.",
+      "Omsæt de interne spor til neutrale observationsområder som fx bekymring og undgåelse, social belastning, energifald og funktionsændring, rigiditet, sansning eller vedvarende konfliktmønstre.",
+      "Når noget ligger tydeligt uden for den kendte diagnose, beskriv afvigelsen forsigtigt og anbefal konkrete observationer samt drøftelse med relevante lærere/team, PPR eller en relevant specialist. Pres ikke på for udredning; formålet er bedre forståelse og støtte.",
+      "Brug ikke specialistpanelet i dette flow. Udfør ikke Analyse-systemets fulde analyse.",
       role === "Specialist"
         ? "Svar fagperson til fagperson. Skeln tydeligt mellem observation, hypotese og konklusion, og henvis ikke automatisk brugeren til PPR."
-        : role === "ForÃ¦lder"
-          ? "Svar i forÃ¦ldrevenligt sprog. Antag ikke, at barnet viser det samme hjemme og i skole, og respekter bekymring for stempling eller udredning."
-          : "Svar praksisnÃ¦rt til lÃ¦reren og gÃ¸r nÃ¦ste observation eller handling tydelig.",
-      "I kort normal drift: giv hÃ¸jst 3 konkrete handlinger. UndgÃ¥ generiske tilbud om mere hjÃ¦lp. Ã‰t konkret opklarende spÃ¸rgsmÃ¥l er tilladt, hvis svaret er nÃ¸dvendigt for at bringe sagen fagligt videre.",
+        : role === "Forælder"
+          ? "Svar i forældrevenligt sprog. Antag ikke, at barnet viser det samme hjemme og i skole, og respekter bekymring for stempling eller udredning."
+          : "Svar praksisnært til læreren og gør næste observation eller handling tydelig.",
+      "I kort normal drift: giv højst 3 konkrete handlinger. Undgå generiske tilbud om mere hjælp. Ét konkret opklarende spørgsmål er tilladt, hvis svaret er nødvendigt for at bringe sagen fagligt videre.",
       `AKTUEL SVARSTIL: ${response_style}`,
       response_style === "Kort"
         ? "Svar kort og direkte."
         : response_style === "Dyb"
-          ? "Uddyb de relevante forskelle mellem kendt diagnose, afvigende observationer og nÃ¸dvendige nÃ¦ste skridt uden at diagnosticere."
-          : "Giv en kort faglig forklaring og konkrete nÃ¦ste skridt.",
+          ? "Uddyb de relevante forskelle mellem kendt diagnose, afvigende observationer og nødvendige næste skridt uden at diagnosticere."
+          : "Giv en kort faglig forklaring og konkrete næste skridt.",
     ].join("\n");
 
     const automaticComorbidityInput = [
-      "BRUGERENS SPÃ˜RGSMÃ…L:",
+      "BRUGERENS SPØRGSMÅL:",
       message,
       "",
       "RELEVANTE STRUKTUREREDE DATA OM DEN KENDTE DIAGNOSE:",
@@ -9216,12 +9215,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -9278,30 +9277,30 @@ try {
       "",
       audienceInstructions,
       "",
-      "LOKALT CDA-BÃ˜RNEHAVESPOR",
-      "Disse regler har forrang, nÃ¥r de kolliderer med almindelige lÃ¦rer- eller forÃ¦ldreregler.",
-      "Brug den vedlagte bÃ¸rnehaveskabelon og de udvalgte praksisafsnit som fagligt grundlag. Brug kun de dele, der er relevante for spÃ¸rgsmÃ¥let.",
-      "Svar naturligt og praksisnÃ¦rt. Vis ikke filnavne, interne ids, tags, scores eller datastruktur.",
-      "BÃ¸rnehavesporet observerer og stÃ¸tter; det diagnosticerer ikke. Beskriv konkrete mÃ¸nstre, barnets mulige oplevelse, hvad der kan afprÃ¸ves, og hvornÃ¥r observationerne bÃ¸r lÃ¸ftes videre.",
-      "Skeln mellem almindelig udviklingsvariation og vedvarende mÃ¸nstre, der pÃ¥virker trivsel, deltagelse, relationer eller sikkerhed. KonkludÃ©r aldrig diagnose ud fra en kort beskrivelse.",
-      "NÃ¥r brugeren arbejder i bÃ¸rnehaven, skal svaret rettes til pÃ¦dagogen eller bÃ¸rnehavepersonalet â€” ikke til en klasselÃ¦rer.",
-      "Ved spÃ¸rgsmÃ¥l om skolestart eller overlevering skal styrker, triggere, det der virker, det der ikke virker, relationer, kommunikation og stÃ¸ttebehov fremgÃ¥ tydeligt, sÃ¥ skolen kan starte rigtigt fra fÃ¸rste dag.",
-      "Ved spÃ¸rgsmÃ¥l om forÃ¦ldresamtaler skal observationer deles neutralt og samarbejdende uden etiketter eller skjulte diagnoselignende konklusioner.",
-      "Giv hÃ¸jst 3 konkrete handlinger i normal kort drift. Ã‰t mÃ¥lrettet fagligt opfÃ¸lgende spÃ¸rgsmÃ¥l er tilladt, nÃ¥r det er nÃ¸dvendigt; afslut ikke med et generisk tilbud om mere hjÃ¦lp.",
-      "Brug ikke cases, PBL, specialistpanel, rollespil eller komorbiditet i dette flow, medmindre brugeren udtrykkeligt har bedt om det â€” sÃ¥danne forespÃ¸rgsler hÃ¥ndteres i andre flows.",
+      "LOKALT CDA-BØRNEHAVESPOR",
+      "Disse regler har forrang, når de kolliderer med almindelige lærer- eller forældreregler.",
+      "Brug den vedlagte børnehaveskabelon og de udvalgte praksisafsnit som fagligt grundlag. Brug kun de dele, der er relevante for spørgsmålet.",
+      "Svar naturligt og praksisnært. Vis ikke filnavne, interne ids, tags, scores eller datastruktur.",
+      "Børnehavesporet observerer og støtter; det diagnosticerer ikke. Beskriv konkrete mønstre, barnets mulige oplevelse, hvad der kan afprøves, og hvornår observationerne bør løftes videre.",
+      "Skeln mellem almindelig udviklingsvariation og vedvarende mønstre, der påvirker trivsel, deltagelse, relationer eller sikkerhed. Konkludér aldrig diagnose ud fra en kort beskrivelse.",
+      "Når brugeren arbejder i børnehaven, skal svaret rettes til pædagogen eller børnehavepersonalet — ikke til en klasselærer.",
+      "Ved spørgsmål om skolestart eller overlevering skal styrker, triggere, det der virker, det der ikke virker, relationer, kommunikation og støttebehov fremgå tydeligt, så skolen kan starte rigtigt fra første dag.",
+      "Ved spørgsmål om forældresamtaler skal observationer deles neutralt og samarbejdende uden etiketter eller skjulte diagnoselignende konklusioner.",
+      "Giv højst 3 konkrete handlinger i normal kort drift. Ét målrettet fagligt opfølgende spørgsmål er tilladt, når det er nødvendigt; afslut ikke med et generisk tilbud om mere hjælp.",
+      "Brug ikke cases, PBL, specialistpanel, rollespil eller komorbiditet i dette flow, medmindre brugeren udtrykkeligt har bedt om det — sådanne forespørgsler håndteres i andre flows.",
       `AKTUEL SVARSTIL: ${response_style}`,
       response_style === "Kort"
         ? "Svar kort og direkte."
         : response_style === "Dyb"
-          ? "Uddyb de relevante pÃ¦dagogiske sammenhÃ¦nge uden unÃ¸dvendig teori eller gentagelser."
-          : "Giv en kort faglig forklaring og konkrete nÃ¦ste skridt.",
+          ? "Uddyb de relevante pædagogiske sammenhænge uden unødvendig teori eller gentagelser."
+          : "Giv en kort faglig forklaring og konkrete næste skridt.",
     ].join("\n");
 
     const bornehaveInput = [
-      "BRUGERENS SPÃ˜RGSMÃ…L:",
+      "BRUGERENS SPØRGSMÅL:",
       message,
       "",
-      "RELEVANTE CDA-DATA FRA BÃ˜RNEHAVESPOR:",
+      "RELEVANTE CDA-DATA FRA BØRNEHAVESPOR:",
       JSON.stringify(bornehaveContext, null, 2),
     ].join("\n");
 
@@ -9356,12 +9355,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -9395,7 +9394,7 @@ try {
 
     const bornehaveReplyData = extractPendingAction(response.output_text);
     const reply = String(bornehaveReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: ogsÃ¥)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
     return res.status(200).json({
@@ -9429,25 +9428,25 @@ try {
       "",
       "STRUKTURERET CDA-DIAGNOSEFLOW",
       "Brug de vedlagte strukturerede CDA-diagnosedata som det faglige grundlag for svaret.",
-      "Besvar brugerens konkrete spÃ¸rgsmÃ¥l dynamisk. Gengiv ikke data mekanisk, og vis ikke interne feltnavne eller datastruktur.",
-      "Brug kun de dele af datagrundlaget, der er relevante for spÃ¸rgsmÃ¥let og rollen.",
-      "Kobl ikke en konkret elev til en diagnose uden formel udredning. Ved en kendt diagnose mÃ¥ du forklare relevante mÃ¸nstre og hensyn uden at genvurdere diagnosen.",
-      "UdfÃ¸r ikke Analyse-systemets fulde caseanalyse og foretag ikke komorbiditetstest i dette flow.",
+      "Besvar brugerens konkrete spørgsmål dynamisk. Gengiv ikke data mekanisk, og vis ikke interne feltnavne eller datastruktur.",
+      "Brug kun de dele af datagrundlaget, der er relevante for spørgsmålet og rollen.",
+      "Kobl ikke en konkret elev til en diagnose uden formel udredning. Ved en kendt diagnose må du forklare relevante mønstre og hensyn uden at genvurdere diagnosen.",
+      "Udfør ikke Analyse-systemets fulde caseanalyse og foretag ikke komorbiditetstest i dette flow.",
       role === "Specialist"
-        ? "Svar fagperson til fagperson med prÃ¦cist specialistsprog, men hold dig til det konkrete spÃ¸rgsmÃ¥l og lav ikke en fuld Analyse-vurdering."
-        : role === "ForÃ¦lder"
-          ? "ForÃ¦ldresvaret skal tage udgangspunkt i hjemmet og familiens hverdag. Antag aldrig, at barnet viser samme adfÃ¦rd hjemme og i skolen. Skolen mÃ¥ kun nÃ¦vnes kort som en mulig sammenligning, fx at spÃ¸rge lÃ¦reren, hvad lÃ¦reren ser. Forskelle mellem hjem og skole kan have mange forklaringer og mÃ¥ ikke tolkes sikkert. Giv hÃ¸jst 3 konkrete rÃ¥d og afslut uden et generisk tilbud eller et automatisk spÃ¸rgsmÃ¥l."
-          : "Hold svaret praksisnÃ¦rt og direkte anvendeligt for den valgte rolle.",
+        ? "Svar fagperson til fagperson med præcist specialistsprog, men hold dig til det konkrete spørgsmål og lav ikke en fuld Analyse-vurdering."
+        : role === "Forælder"
+          ? "Forældresvaret skal tage udgangspunkt i hjemmet og familiens hverdag. Antag aldrig, at barnet viser samme adfærd hjemme og i skolen. Skolen må kun nævnes kort som en mulig sammenligning, fx at spørge læreren, hvad læreren ser. Forskelle mellem hjem og skole kan have mange forklaringer og må ikke tolkes sikkert. Giv højst 3 konkrete råd og afslut uden et generisk tilbud eller et automatisk spørgsmål."
+          : "Hold svaret praksisnært og direkte anvendeligt for den valgte rolle.",
       `AKTUEL SVARSTIL: ${response_style}`,
       response_style === "Kort"
         ? "Svar kort og direkte."
         : response_style === "Dyb"
-          ? "Uddyb relevante faglige sammenhÃ¦nge, men undgÃ¥ unÃ¸dvendig teori og gentagelser."
+          ? "Uddyb relevante faglige sammenhænge, men undgå unødvendig teori og gentagelser."
           : "Giv en kort forklaring og konkrete relevante hensyn.",
     ].join("\n");
 
     const diagnosisInput = [
-      "BRUGERENS SPÃ˜RGSMÃ…L:",
+      "BRUGERENS SPØRGSMÅL:",
       message,
       "",
       "RELEVANTE STRUKTUREREDE CDA-DIAGNOSEDATA:",
@@ -9498,12 +9497,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -9537,7 +9536,7 @@ try {
 
     const diagnosisReplyData = extractPendingAction(response.output_text);
     const diagnosisReply = String(diagnosisReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: ogsÃ¥)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
     return res.status(200).json({
@@ -9568,7 +9567,7 @@ try {
 
     const heidiFlowReplyData = extractPendingAction(heidiFlowResult.outputText);
     const normalReply = String(heidiFlowReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: ogsÃ¥)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
       .trim();
 
     const inputTokens = Number(heidiFlowResult.response?.usage?.input_tokens || 0);
@@ -9597,12 +9596,12 @@ try {
       },
     ];
 
-    console.log("CDA vÃ¦rktÃ¸jskald:", {
+    console.log("CDA værktøjskald:", {
       tools_used: usedTools,
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
       usage_by_call: usageByCall,
       totals: {
         input_tokens: inputTokens,
@@ -9657,8 +9656,8 @@ try {
     response_style === "Kort"
       ? "Svar meget kort og direkte."
       : response_style === "Dyb"
-        ? "Forklar ogsÃ¥ hvorfor, faglige sammenhÃ¦nge og begrundelser, men behold den relevante CDA-struktur."
-        : "Giv en kort forklaring og konkrete nÃ¦ste skridt.",
+        ? "Forklar også hvorfor, faglige sammenhænge og begrundelser, men behold den relevante CDA-struktur."
+        : "Giv en kort forklaring og konkrete næste skridt.",
   ].join("\n");
 
   let inputTokens = 0;
@@ -9758,12 +9757,12 @@ try {
     );
   }
 
-  console.log("CDA vÃ¦rktÃ¸jskald:", {
+  console.log("CDA værktøjskald:", {
     tools_used: usedTools,
     tool_debug: toolDebug,
   });
 
-  console.log("CDA tokenmÃ¥ling pr. OpenAI-kald:", {
+  console.log("CDA tokenmåling pr. OpenAI-kald:", {
     usage_by_call: usageByCall,
     totals: {
       input_tokens: inputTokens,
@@ -9815,4 +9814,3 @@ try {
   });
 }
 }
-
