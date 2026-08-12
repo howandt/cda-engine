@@ -3,7 +3,11 @@ import path from "path";
 import OpenAI from "openai";
 import { createClient } from "@supabase/supabase-js";
 import { routeBornehaveInput } from "../lib/bornehaveRouter.js";
-import { specialistEngineHealthcheck } from "../lib/specialistEngine.js";
+import {
+  specialistEngineHealthcheck,
+  isDirectSpecialistPanelRequestFromEngine,
+  isCaseSpecialistsInvolvedRequestFromEngine,
+} from "../lib/specialistEngine.js";
 import {
   isContextualDiagnosisFollowup,
   runHeidiFlow,
@@ -3415,24 +3419,7 @@ function buildRoleplayRuleInjection() {
 }
 
 function isDirectSpecialistPanelRequest(message) {
-  const text = normalizeDiagnosisPhrase(message);
-  const directPatterns = [
-    "specialistpanel",
-    "specialist panel",
-    "hvad siger specialisterne",
-    "specialistperspektiv",
-    "tvÃ¦rfaglig vurdering",
-    "tvaerfaglig vurdering",
-    "hvad siger psykologen",
-    "psykologens vinkel",
-    "psykologvinkel",
-    "hvad ville psykologen sige",
-    "hvad siger ppr",
-    "ppr vinkel",
-    "ppr-vinkel",
-  ];
-
-  if (directPatterns.some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)))) {
+  if (isDirectSpecialistPanelRequestFromEngine(message)) {
     return true;
   }
 
@@ -3440,23 +3427,7 @@ function isDirectSpecialistPanelRequest(message) {
 }
 
 function isCaseSpecialistsInvolvedRequest(message) {
-  const text = normalizeDiagnosisPhrase(message);
-  const directPatterns = [
-    "hvilke specialister har vÃ¦ret inde over",
-    "hvilke specialister har set pÃ¥",
-    "hvilke specialister har vÃ¦ret involveret",
-    "hvilke specialister er relevante for denne case",
-    "hvilke specialister er relevante for denne sag",
-    "hvem har kigget pÃ¥ denne case",
-    "hvem har kigget pÃ¥ denne sag",
-    "specialister involveret i denne sag",
-    "specialister involveret i denne case",
-    "hvilket specialistteam",
-  ];
-
-  return directPatterns.some((pattern) =>
-    text.includes(normalizeDiagnosisPhrase(pattern))
-  );
+  return isCaseSpecialistsInvolvedRequestFromEngine(message);
 }
 
 function limitSpecialistText(value, max = 260) {
@@ -9815,4 +9786,5 @@ try {
   });
 }
 }
+
 
