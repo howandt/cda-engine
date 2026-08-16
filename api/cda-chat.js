@@ -3488,6 +3488,16 @@ function getRequestedSpecialistAngle(message) {
   return "specialists";
 }
 
+const DEFAULT_SPECIALIST_PANEL_EXCLUDED_IDS = new Set([
+  "ai_child_psychiatrist_elias_strand",
+  "ai_crisis_specialist_anna_rydell",
+]);
+
+function isExcludedFromDefaultSpecialistPanel(specialist) {
+  const id = String(specialist?.id || "").trim();
+  return DEFAULT_SPECIALIST_PANEL_EXCLUDED_IDS.has(id);
+}
+
 function isLocalPprCaseAngleRequest(message) {
   const text = normalizeDiagnosisPhrase(message);
 
@@ -3605,6 +3615,12 @@ function getTargetedSpecialistPanel(angle, message, extraText = "") {
   const specialists = Array.isArray(panelResult?.data?.specialists)
     ? panelResult.data.specialists
     : [];
+  const candidateSpecialists =
+    angle === "specialists"
+      ? specialists.filter(
+          (specialist) => !isExcludedFromDefaultSpecialistPanel(specialist)
+        )
+      : specialists;
 
   const text = normalizeDiagnosisPhrase(`${message} ${extraText}`);
   const words = new Set(text.split(" ").filter((word) => word.length >= 4));
@@ -3626,7 +3642,7 @@ function getTargetedSpecialistPanel(angle, message, extraText = "") {
     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
   ].filter(Boolean).join(" "));
 
-  const scored = specialists.map((specialist, index) => {
+  const scored = candidateSpecialists.map((specialist, index) => {
     const haystack = specialistText(specialist);
     let score = 0;
 
@@ -3648,7 +3664,7 @@ function getTargetedSpecialistPanel(angle, message, extraText = "") {
   const maxCount = angle === "case_team" ? 5 : angle === "specialists" ? 3 : 1;
   let selected = scored.filter((item) => item.score > 0).slice(0, maxCount);
 
-  if (selected.length === 0 && specialists.length > 0) {
+  if (selected.length === 0 && candidateSpecialists.length > 0) {
     selected = scored.slice(0, maxCount);
   }
 
@@ -8295,11 +8311,11 @@ try {
       instructions: specialistInstructions,
       input: specialistInput,
       max_output_tokens:
-  response_style === "Dyb"
-    ? 3000
-    : response_style === "Kort"
-      ? 1600
-      : 2200,
+        response_style === "Dyb"
+          ? 3000
+          : response_style === "Kort"
+            ? 1600
+            : 2200,
       text: {
         format: {
           type: "json_schema",
