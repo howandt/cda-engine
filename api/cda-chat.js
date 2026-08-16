@@ -3605,6 +3605,112 @@ function getCompactSpecialistPanelIndex() {
     ].join("\n"),
   };
 }
+
+function isCdaInternalDataSourceQuestion(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (!text) {
+    return false;
+  }
+
+  const sourceQuestionPatterns = [
+    "hvor far du dine data fra",
+    "hvor faar du dine data fra",
+    "hvor får du dine data fra",
+    "far du data fra interne filer",
+    "faar du data fra interne filer",
+    "får du data fra interne filer",
+    "bruger du interne filer",
+    "henter du data fra interne filer",
+    "bruger du cda data",
+    "bruger du cda-data",
+    "bruger du internet",
+    "henter du fra internet",
+    "hvilke data bruger du",
+    "hvilke kilder bruger du",
+  ].map((pattern) => normalizeDiagnosisPhrase(pattern));
+
+  return sourceQuestionPatterns.some((pattern) => text.includes(pattern));
+}
+
+function buildCdaInternalDataSourceReply() {
+  return [
+    "Ja — CDA Engine bruger interne CDA-datafiler og regler, når de er relevante for spørgsmålet.",
+    "",
+    "Det er ikke det samme som dine private filer eller dokumenter på din computer. Dem kan CDA ikke åbne, medmindre du selv deler indholdet i samtalen.",
+    "",
+    "I CDA-flowet kan systemet bruge fx:",
+    "- aktiv case og samtalekontekst",
+    "- CDA_HeidiPrompt.md",
+    "- data/prompt_rules.json",
+    "- specialistdata fra data/CDA_SpecialistPanel.json",
+    "- relevante CDA-data om diagnoser, cases, skabeloner, komorbiditet, PBL, emotion og børnehavespor",
+    "",
+    "Internet eller generel viden er sekundært og må ikke være første valg inden for CDA’s eget område.",
+  ].join("\n");
+}
+
+function isSpecialistPanelOverviewRequest(message) {
+  const text = normalizeDiagnosisPhrase(message);
+
+  if (!text) {
+    return false;
+  }
+
+  const overviewPatterns = [
+    "hvilke specialister sidder i specialistpanelet",
+    "hvem sidder i specialistpanelet",
+    "hvilke specialister er i specialistpanelet",
+    "hvem er i specialistpanelet",
+    "vis specialistpanelet",
+    "vis specialist panel",
+    "liste over specialister",
+    "list specialister",
+    "hvilke specialister har du",
+    "hvilke cda specialister",
+  ].map((pattern) => normalizeDiagnosisPhrase(pattern));
+
+  return overviewPatterns.some((pattern) => text.includes(pattern));
+}
+
+function buildLocalSpecialistPanelOverviewReply() {
+  const panelResult = getSpecialistPanel();
+  const specialists = Array.isArray(panelResult?.data?.specialists)
+    ? panelResult.data.specialists
+    : [];
+
+  if (specialists.length === 0) {
+    return "Jeg kan ikke finde specialistpanelet i de interne CDA-data lige nu.";
+  }
+
+  const byGroup = new Map();
+
+  for (const specialist of specialists) {
+    const group = String(specialist?.group || "Øvrige").trim() || "Øvrige";
+    const name = String(specialist?.name || "Ukendt specialist").trim();
+    const focus = String(specialist?.function || "Faglig specialistvinkel").trim();
+
+    if (!byGroup.has(group)) {
+      byGroup.set(group, []);
+    }
+
+    byGroup.get(group).push(`- ${name}: ${focus}`);
+  }
+
+  const lines = [
+    "Ja. Specialistpanelet ligger i CDA’s interne specialistdata.",
+    "",
+    `Der er ${specialists.length} specialister i panelet:`,
+  ];
+
+  for (const [group, rows] of byGroup.entries()) {
+    lines.push("", `**${group}**`, ...rows);
+  }
+
+  lines.push("", "Ved en konkret case vælger CDA normalt højst 3 relevante specialistvinkler.");
+
+  return lines.join("\n");
+}
 function getTemplates(args = {}) {
   const filePath = path.join(
     process.cwd(),
@@ -8073,6 +8179,60 @@ try {
 
   // Rollespil er allerede håndteret og returneret tidligere i denne funktion,
   // hvis det var aktivt — herfra er roleplayContextActive altid false.
+
+  if (isCdaInternalDataSourceQuestion(message)) {
+    const reply = buildCdaInternalDataSourceReply();
+    const usedTools = ["localCdaSourceContract"];
+    const toolDebug = [
+      {
+        name: "localCdaSourceContract",
+        source: "cda_internal_runtime_contract",
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
+    });
+  }
+
+  if (isSpecialistPanelOverviewRequest(message)) {
+    const reply = buildLocalSpecialistPanelOverviewReply();
+    const usedTools = ["localSpecialistPanelOverview"];
+    const toolDebug = [
+      {
+        name: "localSpecialistPanelOverview",
+        source: "data/CDA_SpecialistPanel.json",
+        role,
+        response_style,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "local",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
+    });
+  }
 
   if (isDirectSpecialistPanelRequest(message)) {
     const requestedAngle = getRequestedSpecialistAngle(message);
