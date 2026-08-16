@@ -8255,17 +8255,22 @@ try {
 
     const headingInstruction =
       requestedAngle === "named" || requestedAngle === "psychologist"
-        ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
+        ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i specialistafsnittets overskrift. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
         : requestedAngle === "ppr"
-          ? "Brug præcis disse markdown-overskrifter: **PPR-vinkel** og **Næste observationer**."
-          : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **Næste skridt**.";
+          ? "Brug PPR-vinklen som særskilt specialistvinkel, men afslut stadig med fælles evaluering og Heidi/CDA-samling."
+          : "Brug specialistpanelets 360-graders struktur: først kort fælles retning, derefter op til 3 specialistvinkler, derefter fælles evaluering og til sidst Heidi/CDA-samling.";
 
     const specialistInstructions = [
       "Du er Heidi i CDA Engine.",
       "Svar kun, fordi brugeren selv har bedt om specialistvinkel på den aktive case/sag.",
       "Brug den aktive case/sag som konkret grundlag. Opfind ikke manglende casefelter.",
       "Stil ikke diagnose. Giv ikke medicinråd. Beskriv kun støttebehov, mønstre og næste faglige skridt.",
-      "Svar lærer-nært, praktisk og kort. Højst 3 konkrete handlinger.",
+      "Brug kun specialister, navne, grupper og funktioner fra RELEVANT LOKAL SPECIALISTDATA. Opfind ikke specialister.",
+      "Udvælg højst 3 specialistvinkler. Hver specialist skal bidrage med sin egen faglige vinkel på netop denne case.",
+      "Skriv ikke faste specialisttekster. Formulér hvert afsnit ud fra specialistens funktion, de lokale data og den aktive case.",
+      "Svar med denne struktur: **Kort samlet specialistretning**, derefter ét afsnit pr. specialist med navn, fagligt fokus, hvad specialisten opdager i casen og 1 kort anbefaling, derefter **Fælles evaluering**, og til sidst **Heidis CDA-samling**.",
+      "Den fælles evaluering skal samle specialisternes opdagelser til et 360-graders blik. Heidi/CDA-samlingen skal gøre det praktisk for brugeren uden at overtage specialistrollerne.",
+      "Hold svaret lærer-nært og praktisk. Samlet må der højst være 3 konkrete næste handlinger.",
       headingInstruction,
       response_style === "Dyb"
         ? "Svar lidt mere udførligt, men uden lange forklaringer."
@@ -8290,11 +8295,11 @@ try {
       instructions: specialistInstructions,
       input: specialistInput,
       max_output_tokens:
-  response_style === "Dyb"
-    ? 1200
-    : response_style === "Kort"
-      ? 700
-      : 950,
+        response_style === "Dyb"
+          ? 1200
+          : response_style === "Kort"
+            ? 700
+            : 950,
       text: {
         format: {
           type: "json_schema",
