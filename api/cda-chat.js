@@ -3610,6 +3610,37 @@ function buildCompactSpecialistCaseContext(caseData, activeContext) {
   return "";
 }
 
+function buildSpecialistSelectionContext(caseData, activeContext) {
+  const parts = [];
+
+  if (caseData) {
+    parts.push(
+      caseData.titel || caseData.title,
+      caseData.alder || caseData.age,
+      caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser,
+      caseData.tema || caseData.theme || caseData.kategori,
+      caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse,
+      caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice,
+      caseData.typisk_fejl || caseData.mistakes,
+      caseData.løsning || caseData.loesning || caseData.solution,
+      caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer || caseData.tools
+    );
+  }
+
+  if (hasActiveCaseContext(activeContext)) {
+    parts.push(
+      activeContext.summary,
+      activeContext.known_context,
+      activeContext.last_user_message
+    );
+  }
+
+  return parts
+    .map((part) => limitSpecialistText(part, 360))
+    .filter(Boolean)
+    .join(" ");
+}
+
 function getTargetedSpecialistPanel(angle, message, extraText = "") {
   const panelResult = getSpecialistPanel();
   const specialists = Array.isArray(panelResult?.data?.specialists)
@@ -3632,23 +3663,25 @@ function getTargetedSpecialistPanel(angle, message, extraText = "") {
     case_team: [],
   };
 
-  const specialistText = (specialist) => normalizeDiagnosisPhrase([
-    specialist?.id,
-    specialist?.name,
-    specialist?.category,
-    specialist?.group,
-    specialist?.function,
-    specialist?.disclaimer,
-    ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
-  ].filter(Boolean).join(" "));
+  const specialistKeywords = (specialist) =>
+    Array.isArray(specialist?.keywords)
+      ? specialist.keywords.map((keyword) => normalizeDiagnosisPhrase(keyword)).filter(Boolean)
+      : [];
 
   const scored = candidateSpecialists.map((specialist, index) => {
-    const haystack = specialistText(specialist);
+    const keywords = specialistKeywords(specialist);
+    const haystack = keywords.join(" ");
     let score = 0;
 
     for (const pattern of anglePatterns[angle] || []) {
       if (haystack.includes(normalizeDiagnosisPhrase(pattern))) {
         score += 40;
+      }
+    }
+
+    for (const keyword of keywords) {
+      if (keyword.length >= 4 && text.includes(keyword)) {
+        score += 12;
       }
     }
 
@@ -8259,11 +8292,12 @@ try {
       });
     }
 
+    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+    const specialistSelectionContext = buildSpecialistSelectionContext(activeLocalCase, activeCaseContext);
     const specialistPanel =
       requestedAngle === "named"
         ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
-        : getTargetedSpecialistPanel(requestedAngle, message);
-    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+        : getTargetedSpecialistPanel(requestedAngle, message, specialistSelectionContext);
 
     if (specialistPanel.specialistIds.length === 0) {
       throw new Error("Specialistpanelet indeholder ingen specialister");
