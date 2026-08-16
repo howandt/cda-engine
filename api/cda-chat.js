@@ -8290,11 +8290,11 @@ try {
       instructions: specialistInstructions,
       input: specialistInput,
       max_output_tokens:
-        response_style === "Dyb"
-          ? 650
-          : response_style === "Kort"
-            ? 320
-            : 450,
+  response_style === "Dyb"
+    ? 1200
+    : response_style === "Kort"
+      ? 700
+      : 950,
       text: {
         format: {
           type: "json_schema",
