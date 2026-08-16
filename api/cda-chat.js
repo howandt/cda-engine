@@ -3654,7 +3654,6 @@ function getTargetedSpecialistPanel(angle, message, extraText = "") {
       : specialists;
 
   const text = normalizeDiagnosisPhrase(`${message} ${extraText}`);
-  const words = new Set(text.split(" ").filter((word) => word.length >= 4));
 
   const anglePatterns = {
     psychologist: ["psykolog", "psykologisk", "psykologi", "ppr"],
@@ -3670,24 +3669,17 @@ function getTargetedSpecialistPanel(angle, message, extraText = "") {
 
   const scored = candidateSpecialists.map((specialist, index) => {
     const keywords = specialistKeywords(specialist);
-    const haystack = keywords.join(" ");
     let score = 0;
 
     for (const pattern of anglePatterns[angle] || []) {
-      if (haystack.includes(normalizeDiagnosisPhrase(pattern))) {
+      if (keywords.some((keyword) => keyword === normalizeDiagnosisPhrase(pattern))) {
         score += 40;
       }
     }
 
     for (const keyword of keywords) {
-      if (keyword.length >= 4 && text.includes(keyword)) {
-        score += 12;
-      }
-    }
-
-    for (const word of words) {
-      if (haystack.includes(word)) {
-        score += 3;
+      if (keyword.length >= 4 && containsDiagnosisPhrase(text, keyword)) {
+        score += keyword.includes(" ") ? 16 : 10;
       }
     }
 
@@ -3697,9 +3689,6 @@ function getTargetedSpecialistPanel(angle, message, extraText = "") {
   const maxCount = angle === "case_team" ? 5 : angle === "specialists" ? 3 : 1;
   let selected = scored.filter((item) => item.score > 0).slice(0, maxCount);
 
-  if (selected.length === 0 && candidateSpecialists.length > 0) {
-    selected = scored.slice(0, maxCount);
-  }
 
   const cleanValue = (value, max = 160) =>
     limitSpecialistText(value, max)
@@ -8300,7 +8289,32 @@ try {
         : getTargetedSpecialistPanel(requestedAngle, message, specialistSelectionContext);
 
     if (specialistPanel.specialistIds.length === 0) {
-      throw new Error("Specialistpanelet indeholder ingen specialister");
+      const reply = [
+        "**Heidis CDA-samling**",
+        "",
+        "Jeg finder ikke et sikkert specialistmatch ud fra de aktive specialist-keywords i denne case.",
+        "",
+        "Derfor vælger jeg ikke specialister som gæt. Specialistpanelet er sekundært og skal kun kobles på, når de lokale keywords peger tydeligt på relevante fagvinkler.",
+        "",
+        "Heidi/CDA kan stadig arbejde videre med casen i det almindelige rådgivningsflow."
+      ].join("\n");
+
+      return res.status(200).json({
+        success: true,
+        reply,
+        model: "local",
+        tools_used: ["specialistPanelNoKeywordMatch"],
+        tool_debug: [
+          {
+            name: "specialistPanelNoKeywordMatch",
+            reason: "no_precise_keyword_match",
+            requestedAngle,
+            role,
+            response_style,
+          },
+        ],
+        pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
+      });
     }
 
     const headingInstruction =
