@@ -9,10 +9,13 @@ import {
   shouldBlockTemplateAutoRouting,
 } from "../lib/heidiFlow.js";
 import {
+  buildSpecialistSelectionContextFromEngine,
   findNamedSpecialistInMessageFromEngine,
   getRequestedSpecialistAngleFromEngine,
+  getTargetedSpecialistPanelFromEngine,
   isCaseSpecialistsInvolvedRequestFromEngine,
   isDirectSpecialistPanelRequestFromEngine,
+  isExcludedFromDefaultSpecialistPanelFromEngine,
 } from "../lib/specialistEngine.js";
 
 const openai = new OpenAI({
@@ -3421,14 +3424,8 @@ function getRequestedSpecialistAngle(message) {
   );
 }
 
-const DEFAULT_SPECIALIST_PANEL_EXCLUDED_IDS = new Set([
-  "ai_child_psychiatrist_elias_strand",
-  "ai_crisis_specialist_anna_rydell",
-]);
-
 function isExcludedFromDefaultSpecialistPanel(specialist) {
-  const id = String(specialist?.id || "").trim();
-  return DEFAULT_SPECIALIST_PANEL_EXCLUDED_IDS.has(id);
+  return isExcludedFromDefaultSpecialistPanelFromEngine(specialist);
 }
 
 function isLocalPprCaseAngleRequest(message) {
@@ -3544,122 +3541,16 @@ function buildCompactSpecialistCaseContext(caseData, activeContext) {
 }
 
 function buildSpecialistSelectionContext(caseData, activeContext) {
-  const parts = [];
-
-  if (caseData) {
-    parts.push(
-      caseData.titel || caseData.title,
-      caseData.alder || caseData.age,
-      caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser,
-      caseData.tema || caseData.theme || caseData.kategori,
-      caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse,
-      caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice,
-      caseData.typisk_fejl || caseData.mistakes,
-      caseData.løsning || caseData.loesning || caseData.solution,
-      caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer || caseData.tools
-    );
-  }
-
-  if (hasActiveCaseContext(activeContext)) {
-    parts.push(
-      activeContext.summary,
-      activeContext.known_context,
-      activeContext.last_user_message
-    );
-  }
-
-  return parts
-    .map((part) => limitSpecialistText(part, 360))
-    .filter(Boolean)
-    .join(" ");
+  return buildSpecialistSelectionContextFromEngine(caseData, activeContext);
 }
 
 function getTargetedSpecialistPanel(angle, message, extraText = "") {
-  const panelResult = getSpecialistPanel();
-  const specialists = Array.isArray(panelResult?.data?.specialists)
-    ? panelResult.data.specialists
-    : [];
-  const candidateSpecialists =
-    angle === "specialists"
-      ? specialists.filter(
-          (specialist) => !isExcludedFromDefaultSpecialistPanel(specialist)
-        )
-      : specialists;
-
-  const text = normalizeDiagnosisPhrase(`${message} ${extraText}`);
-
-  const anglePatterns = {
-    psychologist: ["psykolog", "psykologisk", "psykologi", "ppr"],
-    ppr: ["ppr", "skolepsykolog", "raadgivning", "rådgivning", "observation", "indstilling"],
-    specialists: [],
-    case_team: [],
-  };
-
-  const specialistKeywords = (specialist) =>
-    Array.isArray(specialist?.keywords)
-      ? specialist.keywords.map((keyword) => normalizeDiagnosisPhrase(keyword)).filter(Boolean)
-      : [];
-
-  const scored = candidateSpecialists.map((specialist, index) => {
-    const keywords = specialistKeywords(specialist);
-    let score = 0;
-
-    for (const pattern of anglePatterns[angle] || []) {
-      if (keywords.some((keyword) => keyword === normalizeDiagnosisPhrase(pattern))) {
-        score += 40;
-      }
-    }
-
-    for (const keyword of keywords) {
-      if (keyword.length >= 4 && containsDiagnosisPhrase(text, keyword)) {
-        score += keyword.includes(" ") ? 16 : 10;
-      }
-    }
-
-    return { specialist, score, index };
-  }).sort((a, b) => b.score - a.score || a.index - b.index);
-
-  const maxCount = angle === "case_team" ? 5 : angle === "specialists" ? 3 : 1;
-  let selected = scored.filter((item) => item.score > 0).slice(0, maxCount);
-
-
-  const cleanValue = (value, max = 160) =>
-    limitSpecialistText(value, max)
-      .replace(/[|\r\n]+/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-  const rows = selected.map(({ specialist }) => {
-    const keywords = Array.isArray(specialist?.keywords)
-      ? specialist.keywords.slice(0, 8).join(", ")
-      : "";
-
-    return [
-      cleanValue(specialist?.id, 80),
-      cleanValue(specialist?.name, 120),
-      cleanValue(specialist?.group, 120),
-      cleanValue(specialist?.function, 220),
-      cleanValue(keywords, 180),
-    ].join("|");
+  return getTargetedSpecialistPanelFromEngine({
+    angle,
+    message,
+    extraText,
+    specialists: getSpecialistsForEngine(),
   });
-
-  return {
-    specialistIds: selected
-      .map(({ specialist }) => String(specialist?.id || ""))
-      .filter(Boolean),
-    specialistSummaries: selected
-      .map(({ specialist }) => ({
-        id: String(specialist?.id || ""),
-        name: String(specialist?.name || ""),
-        group: String(specialist?.group || ""),
-        function: String(specialist?.function || ""),
-      }))
-      .filter((specialist) => specialist.id),
-    indexText: [
-      "KOLONNER:id|navn|gruppe|funktion|keywords",
-      ...rows,
-    ].join("\n"),
-  };
 }
 
 function getCompactSpecialistPanelIndex() {
