@@ -8,6 +8,12 @@ import {
   runHeidiFlow,
   shouldBlockTemplateAutoRouting,
 } from "../lib/heidiFlow.js";
+import {
+  findNamedSpecialistInMessageFromEngine,
+  getRequestedSpecialistAngleFromEngine,
+  isCaseSpecialistsInvolvedRequestFromEngine,
+  isDirectSpecialistPanelRequestFromEngine,
+} from "../lib/specialistEngine.js";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -3278,46 +3284,18 @@ function getSpecialistPanel() {
   };
 }
 
-function findNamedSpecialistInMessage(message) {
+function getSpecialistsForEngine() {
   const panelResult = getSpecialistPanel();
-  const specialists = Array.isArray(panelResult?.data?.specialists)
+  return Array.isArray(panelResult?.data?.specialists)
     ? panelResult.data.specialists
     : [];
+}
 
-  const text = normalizeDiagnosisPhrase(message);
-  if (!text) {
-    return null;
-  }
-
-  const withPersonalName = specialists
-    .map((specialist) => {
-      const fullName = String(specialist?.name || "").trim();
-      const parts = fullName.split(/\s+/).filter(Boolean);
-      const personalName = parts.slice(-2).join(" ");
-      const lastName = parts.slice(-1).join(" ");
-      return { specialist, personalName, lastName };
-    })
-    .filter((item) => item.personalName);
-
-  const fullNameMatch = withPersonalName.find(
-    (item) =>
-      normalizeDiagnosisPhrase(item.personalName).length > 0 &&
-      text.includes(normalizeDiagnosisPhrase(item.personalName))
+function findNamedSpecialistInMessage(message) {
+  return findNamedSpecialistInMessageFromEngine(
+    message,
+    getSpecialistsForEngine()
   );
-  if (fullNameMatch) {
-    return fullNameMatch.specialist;
-  }
-
-  const lastNameMatches = withPersonalName.filter(
-    (item) =>
-      item.lastName.length >= 4 &&
-      text.includes(normalizeDiagnosisPhrase(item.lastName))
-  );
-  if (lastNameMatches.length === 1) {
-    return lastNameMatches[0].specialist;
-  }
-
-  return null;
 }
 
 function buildSingleSpecialistPanel(specialist) {
@@ -3414,48 +3392,14 @@ function buildRoleplayRuleInjection() {
 }
 
 function isDirectSpecialistPanelRequest(message) {
-  const text = normalizeDiagnosisPhrase(message);
-  const directPatterns = [
-    "specialistpanel",
-    "specialist panel",
-    "hvad siger specialisterne",
-    "specialistperspektiv",
-    "tværfaglig vurdering",
-    "tvaerfaglig vurdering",
-    "hvad siger psykologen",
-    "psykologens vinkel",
-    "psykologvinkel",
-    "hvad ville psykologen sige",
-    "hvad siger ppr",
-    "ppr vinkel",
-    "ppr-vinkel",
-  ];
-
-  if (directPatterns.some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)))) {
-    return true;
-  }
-
-  return Boolean(findNamedSpecialistInMessage(message));
+  return isDirectSpecialistPanelRequestFromEngine(
+    message,
+    getSpecialistsForEngine()
+  );
 }
 
 function isCaseSpecialistsInvolvedRequest(message) {
-  const text = normalizeDiagnosisPhrase(message);
-  const directPatterns = [
-    "hvilke specialister har været inde over",
-    "hvilke specialister har set på",
-    "hvilke specialister har været involveret",
-    "hvilke specialister er relevante for denne case",
-    "hvilke specialister er relevante for denne sag",
-    "hvem har kigget på denne case",
-    "hvem har kigget på denne sag",
-    "specialister involveret i denne sag",
-    "specialister involveret i denne case",
-    "hvilket specialistteam",
-  ];
-
-  return directPatterns.some((pattern) =>
-    text.includes(normalizeDiagnosisPhrase(pattern))
-  );
+  return isCaseSpecialistsInvolvedRequestFromEngine(message);
 }
 
 function limitSpecialistText(value, max = 260) {
@@ -3471,21 +3415,10 @@ function limitSpecialistText(value, max = 260) {
 }
 
 function getRequestedSpecialistAngle(message) {
-  const text = normalizeDiagnosisPhrase(message);
-
-  if (findNamedSpecialistInMessage(message)) {
-    return "named";
-  }
-
-  if (text.includes("psykolog")) {
-    return "psychologist";
-  }
-
-  if (text.includes("ppr")) {
-    return "ppr";
-  }
-
-  return "specialists";
+  return getRequestedSpecialistAngleFromEngine(
+    message,
+    getSpecialistsForEngine()
+  );
 }
 
 const DEFAULT_SPECIALIST_PANEL_EXCLUDED_IDS = new Set([
