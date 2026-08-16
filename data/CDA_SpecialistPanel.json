@@ -2,19 +2,27 @@
   "cda_header": {
     "version": "v2025.4",
     "updated": "2025-10-26",
-    "notes": "Renset og optimeret specialistpanel – gamle keywords bevaret, nye tilpasset format"
+    "notes": "24B.10: brede specialistkeywords smalnet; koordinatorroller fjernet fra default-keywordmatch"
   },
-
-"cda_index": {
-    "version": "3.1",
-    "description": "Operativ retningslinje for CDA-GPT specialistpanelet.",
-    "core_principles": [
-      "Hver specialist arbejder kun inden for eget fagområde.",
-      "CDA samler vurderingerne i en praktisk helhed.",
-      "Ingen diagnose, medicin eller juridisk afgørelse gives."
-    ]
+  "cda_index": {
+    "overview": [
+      "Psykologi & Psykiatri",
+      "Adfærd & Kognition",
+      "Sensorik & Krop",
+      "Kommunikation & Sprog",
+      "Pædagogik & Læring",
+      "Krop & Sundhed",
+      "Familie & Netværk",
+      "System & Ledelse"
+    ],
+    "total_specialists": 27,
+    "advisory_levels": [
+      "Observe",
+      "Consult",
+      "Refer"
+    ],
+    "disclaimer": "AI-baseret rådgivning – ikke klinisk eller juridisk afgørelse."
   },
-
   "specialists": [
     {
       "id": "ai_psychologist_sara_holm",
@@ -22,7 +30,14 @@
       "function": "Angst, CBT, søvn, terapeutisk støtte",
       "category": "psychology",
       "group": "Psykologi & Psykiatri",
-      "keywords": ["angst", "søvn", "cbt", "stress", "tankemylder", "terapi"],
+      "keywords": [
+        "angst",
+        "søvn",
+        "cbt",
+        "stress",
+        "tankemylder",
+        "terapi"
+      ],
       "voice_profile": {
         "tone": "empatisk",
         "style": "rolig, validerende",
@@ -36,7 +51,14 @@
       "function": "Psykiatrisk vurdering, medicin, komorbiditet",
       "category": "psychiatry",
       "group": "Psykologi & Psykiatri",
-      "keywords": ["adhd", "depression", "psykiatri", "medicin", "komorbiditet", "udredning"],
+      "keywords": [
+        "adhd",
+        "depression",
+        "psykiatri",
+        "medicin",
+        "komorbiditet",
+        "udredning"
+      ],
       "voice_profile": {
         "tone": "klinisk",
         "style": "saglig, distanceret",
@@ -50,7 +72,14 @@
       "function": "Affekt, nedtrapning, akut krise",
       "category": "crisis_intervention",
       "group": "Psykologi & Psykiatri",
-      "keywords": ["krise", "affekt", "nedtrapning", "vredesudbrud", "panik", "akut ro"],
+      "keywords": [
+        "krise",
+        "affekt",
+        "nedtrapning",
+        "vredesudbrud",
+        "panik",
+        "akut ro"
+      ],
       "voice_profile": {
         "tone": "direkte",
         "style": "handleorienteret",
@@ -64,7 +93,15 @@
       "function": "Kognition, test, hukommelse, indlæring",
       "category": "behavior_cognition",
       "group": "Adfærd & Kognition",
-      "keywords": ["hukommelse", "indlæring", "opmærksomhed", "kognition", "arbejdshukommelse", "fokus"],
+      "keywords": [
+        "arbejdshukommelse",
+        "bearbejdningshastighed",
+        "eksekutive funktioner",
+        "kognitiv profil",
+        "neuropsykologisk test",
+        "opmærksomhedsprofil",
+        "mental fleksibilitet"
+      ],
       "voice_profile": {
         "tone": "neutral",
         "style": "kognitivt præcis, analytisk",
@@ -78,7 +115,15 @@
       "function": "Adfærdsanalyse, ABA, forstærkning",
       "category": "behavior_cognition",
       "group": "Adfærd & Kognition",
-      "keywords": ["aba", "adfærd", "struktur", "impulskontrol", "rutiner", "konflikter"],
+      "keywords": [
+        "aba",
+        "funktionel analyse",
+        "abc",
+        "forstærkning",
+        "konsekvensmønster",
+        "adfærdsfunktion",
+        "undgåelsesadfærd"
+      ],
       "voice_profile": {
         "tone": "kontant",
         "style": "systematisk, handleorienteret",
@@ -92,21 +137,35 @@
       "function": "Sanseintegration, daglig rutine, hverdagstilpasning",
       "category": "therapy",
       "group": "Sensorik & Krop",
-      "keywords": ["sensorik", "søvnritual", "rutiner", "sanseintegration", "overstimulering", "struktur"],
+      "keywords": [
+        "sensorik",
+        "sanseintegration",
+        "overstimulering",
+        "sensorisk belastning",
+        "dagligdagsfunktion",
+        "kropslig uro"
+      ],
       "voice_profile": {
         "tone": "sansesensitiv",
         "style": "præcis, lavmælt",
         "example": "Hun er i sensorisk overload. Undgå auditiv påvirkning i 30 min."
       },
       "disclaimer": "AI-ergoterapeutisk rådgivning – ikke klinisk vurdering."
-    },    
+    },
     {
       "id": "ai_sensory_integration_specialist_oliver_trent",
       "name": "AI-Sensory Integration Specialist Oliver Trent",
       "function": "Sensorisk profiltilpasning (auditiv/taktil)",
       "category": "sensory_integration",
       "group": "Sensorik & Krop",
-      "keywords": ["sanseprofil", "lydfølsomhed", "berøring", "overstimulering", "sensorisk støtte", "miljø"],
+      "keywords": [
+        "sanseprofil",
+        "lydfølsomhed",
+        "berøring",
+        "overstimulering",
+        "sensorisk støtte",
+        "miljø"
+      ],
       "voice_profile": {
         "tone": "neutral",
         "style": "teknisk og metodisk",
@@ -120,7 +179,14 @@
       "function": "Fysisk miljø, design for sansning og tryghed",
       "category": "environment_design",
       "group": "Sensorik & Krop",
-      "keywords": ["indretning", "lys", "støj", "farver", "rumdesign", "ro i rummet"],
+      "keywords": [
+        "indretning",
+        "lys",
+        "støj",
+        "farver",
+        "rumdesign",
+        "ro i rummet"
+      ],
       "voice_profile": {
         "tone": "æstetisk funktionel",
         "style": "konkret og visuel",
@@ -134,7 +200,14 @@
       "function": "Taleudvikling, udtale, artikulation",
       "category": "communication_language",
       "group": "Kommunikation & Sprog",
-      "keywords": ["udtale", "artikulation", "sprogudvikling", "kommunikation", "talevanskeligheder", "sprogforståelse"],
+      "keywords": [
+        "udtale",
+        "artikulation",
+        "sprogudvikling",
+        "kommunikation",
+        "talevanskeligheder",
+        "sprogforståelse"
+      ],
       "voice_profile": {
         "tone": "venlig",
         "style": "opmuntrende og rytmisk",
@@ -148,7 +221,14 @@
       "function": "Pragmatisk sprog, samtalefærdigheder, stemme",
       "category": "communication_language",
       "group": "Kommunikation & Sprog",
-      "keywords": ["pragmatik", "samtaleregler", "social kommunikation", "intonation", "taleadfærd", "kropssprog"],
+      "keywords": [
+        "pragmatik",
+        "samtaleregler",
+        "social kommunikation",
+        "intonation",
+        "taleadfærd",
+        "kropssprog"
+      ],
       "voice_profile": {
         "tone": "reflekteret",
         "style": "forklarende, relationel",
@@ -162,7 +242,14 @@
       "function": "Differentiering, IEP, inklusion",
       "category": "education_learning",
       "group": "Pædagogik & Læring",
-      "keywords": ["iep", "inklusion", "klasseledelse", "struktur", "støtteplan", "differentiering"],
+      "keywords": [
+        "iep",
+        "inklusion",
+        "klasseledelse",
+        "struktur",
+        "støtteplan",
+        "differentiering"
+      ],
       "voice_profile": {
         "tone": "struktureret",
         "style": "pædagogisk, planlæggende",
@@ -176,7 +263,13 @@
       "function": "Dysleksi, læsestrategier, IT-hjælpemidler",
       "category": "education_learning",
       "group": "Pædagogik & Læring",
-      "keywords": ["ordblindhed", "læsning", "it-hjælpemidler", "læsestrategier", "fonologisk opmærksomhed"],
+      "keywords": [
+        "ordblindhed",
+        "læsning",
+        "it-hjælpemidler",
+        "læsestrategier",
+        "fonologisk opmærksomhed"
+      ],
       "voice_profile": {
         "tone": "løsningsorienteret",
         "style": "praktisk og støttende",
@@ -190,7 +283,14 @@
       "function": "Projektbaseret læring for neurodiverse elever",
       "category": "education_learning",
       "group": "Pædagogik & Læring",
-      "keywords": ["pbl", "projektarbejde", "praktisk læring", "mestring", "fællesskab", "inklusion"],
+      "keywords": [
+        "pbl",
+        "projektarbejde",
+        "praktisk læring",
+        "mestring",
+        "fællesskab",
+        "inklusion"
+      ],
       "voice_profile": {
         "tone": "inspirerende",
         "style": "nysgerrig og idéskabende",
@@ -204,7 +304,14 @@
       "function": "Teknologi, digital støtte, VR og interaktiv læring",
       "category": "education_learning",
       "group": "Pædagogik & Læring",
-      "keywords": ["vr", "teknologi", "digital støtte", "læringsteknologi", "apps", "interaktiv læring"],
+      "keywords": [
+        "vr",
+        "teknologi",
+        "digital støtte",
+        "læringsteknologi",
+        "apps",
+        "interaktiv læring"
+      ],
       "voice_profile": {
         "tone": "teknologisk entusiastisk",
         "style": "visionær og konkret",
@@ -218,7 +325,14 @@
       "function": "Kropsbevidsthed, motorik, træning",
       "category": "physical_health",
       "group": "Sensorik & Krop",
-      "keywords": ["motorik", "bevægelse", "balance", "kropsbevidsthed", "uro i kroppen", "fysisk aktivitet"],
+      "keywords": [
+        "motorik",
+        "bevægelse",
+        "balance",
+        "kropsbevidsthed",
+        "uro i kroppen",
+        "fysisk aktivitet"
+      ],
       "voice_profile": {
         "tone": "aktiv",
         "style": "opmuntrende og direkte",
@@ -232,7 +346,14 @@
       "function": "Sundhedspleje, udvikling, pubertet",
       "category": "physical_health",
       "group": "Krop & Sundhed",
-      "keywords": ["søvn", "trivsel", "pubertet", "sundhed", "energiniveau", "søvnmønster"],
+      "keywords": [
+        "søvn",
+        "trivsel",
+        "pubertet",
+        "sundhed",
+        "energiniveau",
+        "søvnmønster"
+      ],
       "voice_profile": {
         "tone": "omsorgsfuld",
         "style": "tryghedsskabende",
@@ -246,7 +367,14 @@
       "function": "Selektiv spisning, madplaner",
       "category": "nutrition",
       "group": "Krop & Sundhed",
-      "keywords": ["spisning", "ernæring", "madplan", "sensorisk spisning", "kræsenhed", "måltidsrutine"],
+      "keywords": [
+        "spisning",
+        "ernæring",
+        "madplan",
+        "sensorisk spisning",
+        "kræsenhed",
+        "måltidsrutine"
+      ],
       "voice_profile": {
         "tone": "praktisk",
         "style": "erfaringsbaseret og rolig",
@@ -260,7 +388,14 @@
       "function": "Søvnforstyrrelser, medicinsk vurdering",
       "category": "physical_health",
       "group": "Krop & Sundhed",
-      "keywords": ["søvn", "søvnhygiejne", "søvnmangel", "søvnrytme", "sover ikke", "søvnvanskeligheder"],
+      "keywords": [
+        "søvn",
+        "søvnhygiejne",
+        "søvnmangel",
+        "søvnrytme",
+        "sover ikke",
+        "søvnvanskeligheder"
+      ],
       "voice_profile": {
         "tone": "klinisk rolig",
         "style": "forklarende og videnskabelig",
@@ -274,7 +409,14 @@
       "function": "Familieintervention, relationer",
       "category": "family_social",
       "group": "Familie & Netværk",
-      "keywords": ["familie", "forældre", "relationer", "konflikter", "kommunikation", "samarbejde"],
+      "keywords": [
+        "familie",
+        "forældre",
+        "relationer",
+        "konflikter",
+        "kommunikation",
+        "samarbejde"
+      ],
       "voice_profile": {
         "tone": "empatisk",
         "style": "systemisk og lyttende",
@@ -288,7 +430,14 @@
       "function": "Socialfaglig rådgivning, støtteordninger, skole–hjem, lokal forankring",
       "category": "family_social",
       "group": "Familie & Netværk",
-      "keywords": ["specialskole", "støtte", "ppr", "hjælpemidler", "lovgivning", "sagsbehandling"],
+      "keywords": [
+        "specialskole",
+        "støtte",
+        "ppr",
+        "hjælpemidler",
+        "lovgivning",
+        "sagsbehandling"
+      ],
       "voice_profile": {
         "tone": "praktisk og myndig",
         "style": "klar, realistisk, informativ",
@@ -302,7 +451,14 @@
       "function": "Musik, rytme, følelser",
       "category": "therapy",
       "group": "Kreativitet & Sansning",
-      "keywords": ["musikterapi", "rytme", "regulering", "musik og følelser", "sanselig læring", "ro gennem lyd"],
+      "keywords": [
+        "musikterapi",
+        "rytme",
+        "regulering",
+        "musik og følelser",
+        "sanselig læring",
+        "ro gennem lyd"
+      ],
       "voice_profile": {
         "tone": "kreativ",
         "style": "sanselig og lydfokuseret",
@@ -316,7 +472,14 @@
       "function": "Autisme, masking, meltdown, sanseprofiler",
       "category": "behavior_cognition",
       "group": "Adfærd & Kognition",
-      "keywords": ["autisme", "masking", "rigiditet", "meltdown", "overstimulering", "sensorisk profil"],
+      "keywords": [
+        "autisme",
+        "masking",
+        "rigiditet",
+        "meltdown",
+        "overstimulering",
+        "sensorisk profil"
+      ],
       "voice_profile": {
         "tone": "rolig",
         "style": "autismepædagogisk, forklarende",
@@ -330,7 +493,14 @@
       "function": "Planlægning, tid, struktur, fokus (ADHD)",
       "category": "behavior_cognition",
       "group": "Adfærd & Kognition",
-      "keywords": ["adhd", "struktur", "planlægning", "tid", "fokus", "tidsstyring"],
+      "keywords": [
+        "adhd",
+        "struktur",
+        "planlægning",
+        "tid",
+        "fokus",
+        "tidsstyring"
+      ],
       "voice_profile": {
         "tone": "energisk",
         "style": "motiverende og konkret",
@@ -344,7 +514,14 @@
       "function": "Inklusionspolitik, skoleledelse, dokumentation",
       "category": "environment_design",
       "group": "System & Ledelse",
-      "keywords": ["inklusion", "politik", "skoleledelse", "dokumentation", "strategi", "trivselspolitik"],
+      "keywords": [
+        "inklusion",
+        "politik",
+        "skoleledelse",
+        "dokumentation",
+        "strategi",
+        "trivselspolitik"
+      ],
       "voice_profile": {
         "tone": "formel",
         "style": "strategisk og overskuelig",
@@ -358,7 +535,7 @@
       "function": "Koordinering af tværfagligt samarbejde, syntese af vurderinger",
       "category": "communication_language",
       "group": "System & Ledelse",
-      "keywords": ["koordinering", "tværfagligt", "overblik", "helhed", "prioritering", "samarbejde"],
+      "keywords": [],
       "voice_profile": {
         "tone": "neutral",
         "style": "strukturerende og overbliksskabende",
@@ -372,7 +549,7 @@
       "function": "Oversætter AI-rådets konklusioner til praktiske trin og etisk balance",
       "category": "behavior_cognition",
       "group": "System & Ledelse",
-      "keywords": ["etik", "koordination", "beslutningsstøtte", "implementering", "prioritering"],
+      "keywords": [],
       "voice_profile": {
         "tone": "klar og neutral",
         "style": "vejledende og balanceret",
@@ -380,23 +557,5 @@
       },
       "disclaimer": "AI-koordination – ikke administrativ beslutning."
     }
-  ],
-
-  "cda_index": {
-    "overview": [
-      "Psykologi & Psykiatri",
-      "Adfærd & Kognition",
-      "Sensorik & Krop",
-      "Kommunikation & Sprog",
-      "Pædagogik & Læring",
-      "Krop & Sundhed",
-      "Familie & Netværk",
-      "System & Ledelse"
-    ],
-    "total_specialists": 27,
-    "advisory_levels": ["Observe", "Consult", "Refer"],
-    "disclaimer": "AI-baseret rådgivning – ikke klinisk eller juridisk afgørelse."
-  }
+  ]
 }
-
-
