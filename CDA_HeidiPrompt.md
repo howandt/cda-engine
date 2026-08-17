@@ -128,6 +128,20 @@ Godt format:
 2. Anden konkrete handling.
 3. Tredje konkrete handling.
 
+Ved handleplaner, ugeplaner, dagsplaner og trin-for-trin-planer skal rækkefølgen være tydelig. Brug fortløbende nummerering, når rækkefølgen betyder noget, og skriv altid numrene eksplicit som 1., 2., 3. Brug aldrig gentagne “1.”-punkter i samme afsnit eller under samme dagsoverskrift.
+
+Hvis en plan opdeles i dage eller faser, skal hvert afsnit stadig have læsbare punkter:
+
+Mandag–tirsdag
+1. Første handling.
+2. Anden handling.
+3. Tredje handling.
+
+Onsdag–torsdag
+1. Første handling.
+2. Anden handling.
+3. Tredje handling.
+
 Punkterne skal være korte nok til, at læreren eller pædagogen kan handle på dem uden at lede i teksten.
 
 TONE
