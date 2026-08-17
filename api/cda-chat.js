@@ -2801,70 +2801,6 @@ function getPendingActionForSpecialistResponse(activeLocalCase, activeCaseContex
 }
 
 
-function debugPreviewText(value, max = 320) {
-  const text = String(value || "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  if (!text) {
-    return "";
-  }
-
-  return text.length <= max ? text : `${text.slice(0, max).trim()}…`;
-}
-
-function buildSpecialistCaseDebugSnapshot({
-  name,
-  requestedAngle,
-  pendingAction,
-  activeCaseContext,
-  activeLocalCase,
-  specialistContextSource,
-  specialistSelectionContext,
-  role,
-  responseStyle,
-}) {
-  return {
-    name,
-    requested_angle: requestedAngle || null,
-    role,
-    response_style: responseStyle,
-    pending_action_in: pendingAction || null,
-    active_local_case_id: activeLocalCase?.id || null,
-    active_local_case_title: activeLocalCase?.titel || activeLocalCase?.title || null,
-    specialist_context_source: specialistContextSource || null,
-    should_prefer_active_case_context: shouldPreferActiveCaseContextForSpecialist(activeCaseContext),
-    active_case_summary_preview: debugPreviewText(activeCaseContext?.summary, 280),
-    active_case_known_context_preview: debugPreviewText(activeCaseContext?.known_context, 280),
-    active_case_last_user_message_preview: debugPreviewText(activeCaseContext?.last_user_message, 360),
-    active_case_last_heidi_reply_preview: debugPreviewText(activeCaseContext?.last_heidi_reply, 280),
-    active_case_last_guidance_summary_preview: debugPreviewText(activeCaseContext?.last_guidance_summary, 280),
-    specialist_selection_context_preview: debugPreviewText(specialistSelectionContext, 420),
-  };
-}
-
-function formatSpecialistCaseDebugBlock(debugSnapshot) {
-  if (!debugSnapshot) {
-    return "";
-  }
-
-  const lines = [
-    "",
-    "---",
-    "**MIDLERTIDIG DEBUG 24B.18D — specialist-case-source**",
-    `pending_action_in: ${debugSnapshot.pending_action_in || "null"}`,
-    `active_local_case_id: ${debugSnapshot.active_local_case_id || "null"}`,
-    `active_local_case_title: ${debugSnapshot.active_local_case_title || "null"}`,
-    `specialist_context_source: ${debugSnapshot.specialist_context_source || "null"}`,
-    `should_prefer_active_case_context: ${debugSnapshot.should_prefer_active_case_context ? "true" : "false"}`,
-    `active_case.last_user_message: ${debugSnapshot.active_case_last_user_message_preview || ""}`,
-    `active_case.summary: ${debugSnapshot.active_case_summary_preview || ""}`,
-    `specialistSelectionContext: ${debugSnapshot.specialist_selection_context_preview || ""}`,
-    "---",
-  ];
-
-  return lines.join("\n");
-}
 
 function findBestOtherExperienceCase(message) {
   const searchResult = getSemanticSearch({ search: message });
@@ -7357,7 +7293,7 @@ try {
 
     return res.status(200).json({
       success: true,
-      reply: reply + formatSpecialistCaseDebugBlock(specialistCaseDebug),
+      reply,
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
@@ -8449,33 +8385,18 @@ try {
 
       return res.status(200).json({
         success: true,
-        reply: reply + formatSpecialistCaseDebugBlock(
-          buildSpecialistCaseDebugSnapshot({
-            name: "specialistPanelNoKeywordMatch",
-            requestedAngle,
-            pendingAction: pending_action,
-            activeCaseContext,
-            activeLocalCase: specialistActiveLocalCase,
-            specialistContextSource,
-            specialistSelectionContext,
-            role,
-            responseStyle: response_style,
-          })
-        ),
+        reply,
         model: "local",
         tools_used: ["specialistPanelNoKeywordMatch"],
         tool_debug: [
-          buildSpecialistCaseDebugSnapshot({
+          {
             name: "specialistPanelNoKeywordMatch",
-            requestedAngle,
-            pendingAction: pending_action,
-            activeCaseContext,
-            activeLocalCase: specialistActiveLocalCase,
-            specialistContextSource,
-            specialistSelectionContext,
+            requested_angle: requestedAngle || null,
+            active_local_case_id: specialistActiveLocalCase?.id || null,
+            specialist_context_source: specialistContextSource,
             role,
-            responseStyle: response_style,
-          }),
+            response_style,
+          },
         ],
         pending_action: specialistPendingAction,
       });
@@ -8595,21 +8516,14 @@ try {
     ];
 
     const usedTools = ["targetedLocalSpecialistRouting"];
-    const specialistCaseDebug = buildSpecialistCaseDebugSnapshot({
-      name: "targetedLocalSpecialistRouting",
-      requestedAngle,
-      pendingAction: pending_action,
-      activeCaseContext,
-      activeLocalCase: specialistActiveLocalCase,
-      specialistContextSource,
-      specialistSelectionContext,
-      role,
-      responseStyle: response_style,
-    });
-
     const toolDebug = [
       {
-        ...specialistCaseDebug,
+        name: "targetedLocalSpecialistRouting",
+        requested_angle: requestedAngle || null,
+        active_local_case_id: specialistActiveLocalCase?.id || null,
+        specialist_context_source: specialistContextSource,
+        role,
+        response_style,
         selected_specialists: selectedSpecialistIds.map((id) =>
           specialistPanel.specialistSummaries.find(
             (specialist) => specialist.id === id
