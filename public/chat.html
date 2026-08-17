@@ -2193,6 +2193,76 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         .slice(0, maxLength);
     }
 
+    function normalizeCaseStateText(value) {
+      return compactCaseText(value, 2400)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "")
+        .replace(/æ/g, "ae")
+        .replace(/ø/g, "o")
+        .replace(/å/g, "a")
+        .replace(/[^a-z0-9]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function textIncludesAny(text, patterns) {
+      return patterns.some((pattern) => text.includes(normalizeCaseStateText(pattern)));
+    }
+
+    function isLikelyNewConcreteCase(userText) {
+      const raw = compactCaseText(userText, 2400);
+      const text = normalizeCaseStateText(raw);
+
+      if (!text) return false;
+
+      if (textIncludesAny(text, ["ny sag", "ny case", "anden sag", "anden case"])) {
+        return true;
+      }
+
+      if (raw.length < 90) {
+        return false;
+      }
+
+      const hasPersonOrRole = textIncludesAny(text, [
+        "jeg har en", "vi har en", "der er en", "en dreng", "en pige", "et barn", "barnet",
+        "en elev", "eleven", "min son", "min datter", "mit barn", "i klassen", "i bornehaven",
+        "i sfo", "i skolen", "i dagtilbud", "forældrene", "foraeldrene",
+      ]);
+
+      const hasObservedProblem = textIncludesAny(text, [
+        "uro", "urolig", "driller", "konflikt", "vred", "vrede", "raseri", "slår", "slar",
+        "skubber", "tavs", "stille", "trækker sig", "traekker sig", "lukker ned", "græder", "graeder",
+        "forstyrrer", "kan ikke", "vil ikke", "reagerer", "låser", "laser", "mavepine",
+        "aflevering", "frikvarter", "overgang", "skift", "søvn", "soevn", "angst", "bekymrer",
+      ]);
+
+      const hasCaseQuestion = textIncludesAny(text, [
+        "hvad kan det skyldes", "hvad kan vi gøre", "hvad kan jeg gøre", "hvad gor vi", "hvad gor jeg",
+        "hvad ligger bag", "hvad skal vi gøre", "hvad skal jeg gøre",
+      ]);
+
+      return hasPersonOrRole && (hasObservedProblem || hasCaseQuestion);
+    }
+
+    function isCaseReferenceFollowup(userText) {
+      const text = normalizeCaseStateText(userText);
+      if (!text) return false;
+
+      return textIncludesAny(text, [
+        "hvad siger specialisterne", "hvad siger specialistpanelet", "specialisterne til denne sag",
+        "denne sag", "den her sag", "samme sag", "barnet", "eleven", "ppr", "akt", "komorbiditet",
+        "diagnose", "hvad skal jeg observere", "hvilke observationer", "uddyb", "forklar mere",
+        "lav en forældresamtale", "lav en foraeldresamtale", "skriv til forældre", "skriv til foraeldre",
+      ]);
+    }
+
+    function shouldPreserveActiveCaseForMessage(userText) {
+      return Boolean(activeCaseContext.active || activeCaseContext.summary || activeCaseContext.last_user_message)
+        && !isLikelyNewConcreteCase(userText)
+        && isCaseReferenceFollowup(userText);
+    }
+
     function saveActiveCaseContext(context) {
       activeCaseContext = {
         ...createEmptyActiveCaseContext(),
@@ -2214,24 +2284,40 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
     }
 
     function buildActiveCaseContextForRequest(userText) {
+      const userSummary = compactCaseText(userText, 700);
+      const preserveActiveCase = shouldPreserveActiveCaseForMessage(userText);
+      const startsNewCase = isLikelyNewConcreteCase(userText);
+      const baseContext = startsNewCase ? createEmptyActiveCaseContext() : activeCaseContext;
+
       return {
-        ...activeCaseContext,
+        ...baseContext,
         active: Boolean(
-          activeCaseContext.active ||
-          activeCaseContext.summary ||
-          activeCaseContext.last_user_message ||
-          userText
+          startsNewCase ||
+          baseContext.active ||
+          baseContext.summary ||
+          baseContext.last_user_message ||
+          userSummary
         ),
-        last_user_message: compactCaseText(userText, 700),
-        conversation_mode: activeCaseContext.conversation_mode || "heidi_case",
+        summary: startsNewCase ? compactCaseText(userText, 900) : baseContext.summary,
+        last_user_message: preserveActiveCase
+          ? compactCaseText(baseContext.last_user_message || baseContext.summary, 700)
+          : userSummary,
+        current_user_message: userSummary,
+        message_is_new_case: startsNewCase,
+        message_preserves_active_case: preserveActiveCase,
+        conversation_mode: baseContext.conversation_mode || "heidi_case",
       };
     }
 
     function updateActiveCaseContextAfterReply(userText, heidiReply, data = {}) {
       if (!userText && !heidiReply) return;
 
-      const existingSources = Array.isArray(activeCaseContext.used_data_sources)
-        ? activeCaseContext.used_data_sources
+      const startsNewCase = isLikelyNewConcreteCase(userText);
+      const preserveActiveCase = shouldPreserveActiveCaseForMessage(userText);
+      const existingContext = startsNewCase ? createEmptyActiveCaseContext() : activeCaseContext;
+
+      const existingSources = Array.isArray(existingContext.used_data_sources)
+        ? existingContext.used_data_sources
         : [];
       const returnedSources = Array.isArray(data.used_data_sources)
         ? data.used_data_sources
@@ -2243,20 +2329,26 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         new Set([...existingSources, ...returnedSources, ...returnedTools])
       ).slice(0, 12);
 
-      const currentSummary = compactCaseText(activeCaseContext.summary, 650);
-      const userSummary = compactCaseText(userText, 500);
-      const nextSummary = currentSummary
-        ? compactCaseText(`${currentSummary} | Seneste nyt: ${userSummary}`, 900)
-        : userSummary;
+      const currentSummary = compactCaseText(existingContext.summary, 650);
+      const userSummary = compactCaseText(userText, 700);
+      const nextSummary = startsNewCase
+        ? compactCaseText(userText, 900)
+        : preserveActiveCase
+          ? currentSummary
+          : currentSummary
+            ? compactCaseText(`${currentSummary} | Seneste nyt: ${userSummary}`, 900)
+            : userSummary;
 
       saveActiveCaseContext({
-        ...activeCaseContext,
+        ...existingContext,
         active: true,
         summary: nextSummary,
-        last_user_message: compactCaseText(userText, 700),
+        last_user_message: preserveActiveCase
+          ? compactCaseText(existingContext.last_user_message || existingContext.summary, 700)
+          : userSummary,
         last_heidi_reply: compactCaseText(heidiReply, 700),
         used_data_sources: usedDataSources,
-        conversation_mode: data.conversation_mode || activeCaseContext.conversation_mode || "heidi_case",
+        conversation_mode: data.conversation_mode || existingContext.conversation_mode || "heidi_case",
       });
     }
 
