@@ -3210,6 +3210,7 @@ function isLocalCaseFollowupRequest(message) {
     "hvad var problemet",
     "problem",
     "barnets oplevelse",
+    "hvad oplevede barnet",
     "hvordan oplevede barnet",
     "barnets stemme",
     "typisk fejl",
@@ -3282,8 +3283,6 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
     add("Typisk fejl", typicalMistake);
   } else if (text.includes("resultat") || text.includes("bagefter")) {
     add("Resultat", result);
-  } else if (text.includes("refleksion") || text.includes("laere") || text.includes("lære")) {
-    add("Refleksion", reflection);
   } else if (
     text.includes("laereren") ||
     text.includes("læreren") ||
@@ -3297,6 +3296,8 @@ function buildActiveLocalCaseFollowupReply(caseData, message) {
   ) {
     add("Løsning", solution);
     add("Tiltag", actions);
+  } else if (text.includes("refleksion") || text.includes("laere") || text.includes("lære")) {
+    add("Refleksion", reflection);
   } else if (text.includes("kort")) {
     add("Kort om casen", problem);
     add("Løsning", solution);
