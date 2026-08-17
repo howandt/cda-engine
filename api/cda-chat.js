@@ -6227,8 +6227,17 @@ try {
     });
   }
 
+  const activeLocalCaseBeforeContextualFollowup = resolveActiveLocalCase(
+    pending_action,
+    activeCaseContext
+  );
+
   if (
     !isDirectLocalCaseRequest(message) &&
+    !(
+      activeLocalCaseBeforeContextualFollowup &&
+      isLocalCaseFollowupRequest(message)
+    ) &&
     isContextualDiagnosisFollowup({ message, activeCaseContext })
   ) {
     const heidiFlowResult = await runHeidiFlow({
