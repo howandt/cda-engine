@@ -13,16 +13,16 @@
 
 | Felt | Oplysning |
 |---|---|
-| Elev | {student_name} |
-| Alder, hvis relevant | {student_age} |
-| Skole | {school_name} |
-| Klasse eller tilbud | {class_name} |
-| Primær kontaktperson i skolen | {school_contact} |
-| Primær kontaktperson i hjemmet | {home_contact} |
-| Andre deltagere | {additional_participants} |
-| Dokumentationsperiode | {documentation_start} til {review_date} |
-| Aftalt kommunikationsform | {communication_channel} |
-| Dato for næste fælles evaluering | {review_date} |
+| Elev | ___________________________________________ |
+| Alder, hvis relevant | _____________________________ |
+| Skole | ___________________________________________ |
+| Klasse eller tilbud | ___________________________________________ |
+| Primær kontaktperson i skolen | ___________________________________________ |
+| Primær kontaktperson i hjemmet | ___________________________________________ |
+| Andre deltagere | ___________________________________________ |
+| Dokumentationsperiode | ________________ til ________________ |
+| Aftalt kommunikationsform | ___________________________________________ |
+| Dato for næste fælles evaluering | ________________ |
 
 ### Formål med dokumentationsperioden
 
