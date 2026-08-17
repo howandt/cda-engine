@@ -5980,6 +5980,36 @@ function getPblProfileTemplate() {
   ].join("\n");
 }
 
+
+function cleanCdaReplyTail(replyText) {
+  let text = String(replyText || "").trim();
+
+  if (!text) return "";
+
+  const terminalOfferPatterns = [
+    /\s*(?:Hvis du vil|Hvis du ønsker det),?\s+kan jeg(?:\s+også)?[\s\S]*?[.!?]\s*$/i,
+    /\s*Jeg kan(?:\s+også)?\s+(?:lave|hjælpe|hjælpe dig|omsætte|sætte|skrive|formulere)[\s\S]*?[.!?]\s*$/i,
+    /\s*Vil du have,?\s+at jeg[\s\S]*?[.!?]\s*$/i,
+    /\s*Sig til,?\s+hvis[\s\S]*?[.!?]\s*$/i,
+    /\s*(?:If you want|If you'd like),?\s+I can(?:\s+also)?[\s\S]*?[.!?]\s*$/i,
+  ];
+
+  let changed = true;
+  while (changed) {
+    changed = false;
+
+    for (const pattern of terminalOfferPatterns) {
+      const next = text.replace(pattern, "").trim();
+      if (next !== text) {
+        text = next;
+        changed = true;
+      }
+    }
+  }
+
+  return text;
+}
+
 function extractPendingAction(replyText) {
   const pblMarker = "[[PENDING_ACTION:PBL_PROFILE]]";
   const roleplayMarker = "[[PENDING_ACTION:ROLEPLAY_ACTIVE]]";
@@ -7227,9 +7257,7 @@ try {
     });
 
     const heidiFlowReplyData = extractPendingAction(heidiFlowResult.outputText);
-    const reply = String(heidiFlowReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
-      .trim();
+    const reply = cleanCdaReplyTail(heidiFlowReplyData.reply);
 
     const inputTokens = Number(heidiFlowResult.response?.usage?.input_tokens || 0);
     const outputTokens = Number(heidiFlowResult.response?.usage?.output_tokens || 0);
@@ -8253,7 +8281,7 @@ try {
 
       return res.status(200).json({
         success: true,
-        reply: response.output_text,
+        reply: cleanCdaReplyTail(response.output_text),
         model: "gpt-5.4-mini",
         tools_used: usedTools,
         tool_debug: toolDebug,
@@ -8492,7 +8520,7 @@ try {
       )
     ).slice(0, requestedAngle === "specialists" ? 3 : 1);
 
-    const reply = String(panelResponse.reply || "").trim();
+    const reply = cleanCdaReplyTail(panelResponse.reply);
 
     if (!reply) {
       throw new Error("Specialistpanelet returnerede intet svar");
@@ -8707,7 +8735,7 @@ try {
       )
     ).slice(0, 5);
 
-    const reply = String(panelResponse.reply || "").trim();
+    const reply = cleanCdaReplyTail(panelResponse.reply);
 
     if (!reply) {
       throw new Error("Specialistpanelet returnerede intet svar");
@@ -9263,9 +9291,7 @@ try {
     }
 
     const templateReplyData = extractPendingAction(response.output_text);
-    const reply = String(templateReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
-      .trim();
+    const reply = cleanCdaReplyTail(templateReplyData.reply);
 
     return res.status(200).json({
       success: true,
@@ -9425,7 +9451,7 @@ try {
     const comorbidityReplyData = extractPendingAction(response.output_text);
     return res.status(200).json({
       success: true,
-      reply: String(comorbidityReplyData.reply || "").trim(),
+      reply: cleanCdaReplyTail(comorbidityReplyData.reply),
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
@@ -9563,9 +9589,7 @@ try {
     }
 
     const bornehaveReplyData = extractPendingAction(response.output_text);
-    const reply = String(bornehaveReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
-      .trim();
+    const reply = cleanCdaReplyTail(bornehaveReplyData.reply);
 
     return res.status(200).json({
       success: true,
@@ -9705,9 +9729,7 @@ try {
     }
 
     const diagnosisReplyData = extractPendingAction(response.output_text);
-    const diagnosisReply = String(diagnosisReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
-      .trim();
+    const diagnosisReply = cleanCdaReplyTail(diagnosisReplyData.reply);
 
     return res.status(200).json({
       success: true,
@@ -9736,9 +9758,7 @@ try {
     });
 
     const heidiFlowReplyData = extractPendingAction(heidiFlowResult.outputText);
-    const normalReply = String(heidiFlowReplyData.reply || "")
-      .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: også)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
-      .trim();
+    const normalReply = cleanCdaReplyTail(heidiFlowReplyData.reply);
 
     const inputTokens = Number(heidiFlowResult.response?.usage?.input_tokens || 0);
     const outputTokens = Number(heidiFlowResult.response?.usage?.output_tokens || 0);
@@ -9967,13 +9987,13 @@ try {
   const runtimeReplyData = extractPendingAction(response.output_text);
 
   return res.status(200).json({
-  success: true,
-  reply: runtimeReplyData.reply,
-  model: "gpt-5.4-mini",
-  tools_used: usedTools,
-  tool_debug: toolDebug,
-  pending_action: runtimeReplyData.pendingAction,
-});
+    success: true,
+    reply: cleanCdaReplyTail(runtimeReplyData.reply),
+    model: "gpt-5.4-mini",
+    tools_used: usedTools,
+    tool_debug: toolDebug,
+    pending_action: runtimeReplyData.pendingAction,
+  });
 } catch (error) {
   console.error("CDA chatfejl:", error);
 
