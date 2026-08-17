@@ -1,252 +1,139 @@
-# Kommunikationslog Skole ↔ Hjem
+# Kommunikationslog skole ↔ hjem
 
-**Elev:** ______________________________  
-**Skole:** _____________________________  
-**Klasse:** ____________________________  
-**Kontaktperson på skolen:** ___________  
-**Kontaktperson i hjemmet:** ___________  
-**Uge:** _______________________________
+**Barn:** ___________________________________________
 
-> **Formål**  
-> Loggen bruges til korte, konkrete oplysninger mellem skole og hjem.  
-> Skriv observationer frem for vurderinger. Loggen stiller ikke diagnose og lover ikke et bestemt resultat.
+**Skole:** __________________________________________
 
----
+**Lærer/pædagog:** __________________________________
 
-## Fælles fokus for ugen
+**Forælder/værge:** _________________________________
 
-**Det vil vi især være opmærksomme på:**  
-____________________________________________________
+**Særligt fokus denne uge, hvis relevant:**
 
-**Det ser ud til at hjælpe eleven:**  
 ____________________________________________________
 
 ---
 
-## Mandag
+## Uge af: ______________________________
 
-**Dato:** __________________
+### Mandag ___/___
 
-### Fra skolen
+**Fra skole/børnehave:**
 
-**Kort observation:**  
+- Humør: 😄 😊 😐 😟 😢
+- Aktiviteter: _________________________________
+- Sociale interaktioner: ________________________
+- Udfordringer: ________________________________
+- Succeser: ____________________________________
+- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
+
+**Fra hjemmet:**
+
+- Nat/morgen: _________________________________
+- Særlige hændelser: ___________________________
+- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
+- Fokus i morgen: _____________________________
+
+### Tirsdag ___/___
+
+**Fra skole/børnehave:**
+
+- Humør: 😄 😊 😐 😟 😢
+- Aktiviteter: _________________________________
+- Sociale interaktioner: ________________________
+- Udfordringer: ________________________________
+- Succeser: ____________________________________
+- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
+
+**Fra hjemmet:**
+
+- Nat/morgen: _________________________________
+- Særlige hændelser: ___________________________
+- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
+- Fokus i morgen: _____________________________
+
+### Onsdag ___/___
+
+**Fra skole/børnehave:**
+
+- Humør: 😄 😊 😐 😟 😢
+- Aktiviteter: _________________________________
+- Sociale interaktioner: ________________________
+- Udfordringer: ________________________________
+- Succeser: ____________________________________
+- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
+
+**Fra hjemmet:**
+
+- Nat/morgen: _________________________________
+- Særlige hændelser: ___________________________
+- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
+- Fokus i morgen: _____________________________
+
+### Torsdag ___/___
+
+**Fra skole/børnehave:**
+
+- Humør: 😄 😊 😐 😟 😢
+- Aktiviteter: _________________________________
+- Sociale interaktioner: ________________________
+- Udfordringer: ________________________________
+- Succeser: ____________________________________
+- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
+
+**Fra hjemmet:**
+
+- Nat/morgen: _________________________________
+- Særlige hændelser: ___________________________
+- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
+- Fokus i morgen: _____________________________
+
+### Fredag ___/___
+
+**Fra skole/børnehave:**
+
+- Humør: 😄 😊 😐 😟 😢
+- Aktiviteter: _________________________________
+- Sociale interaktioner: ________________________
+- Udfordringer: ________________________________
+- Succeser: ____________________________________
+- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
+
+**Fra hjemmet:**
+
+- Nat/morgen: _________________________________
+- Særlige hændelser: ___________________________
+- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
+- Fokus i morgen: _____________________________
+
+---
+
+## Ugemøde/opfølgning
+
+**Dato:** _________________________________________
+
+**Deltagere:** ____________________________________
+
+**Hvad ser ud til at hjælpe barnet?**
+
 ____________________________________________________
 
-**Hvad skete umiddelbart før?**  
+**Hvad ser ud til at øge belastningen?**
+
 ____________________________________________________
 
-**Hvilken støtte blev afprøvet?**  
+**Hvad skal gentages næste uge?**
+
 ____________________________________________________
 
-**Elevens reaktion:**  
+**Hvad skal justeres næste uge?**
+
 ____________________________________________________
 
-**Observeret effekt:**  
-☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring
+**Aftaler:**
 
-### Fra hjemmet
-
-**Morgen, søvn eller andre relevante forhold:**  
-____________________________________________________
-
-**Elevens egne ord eller signaler:**  
-____________________________________________________
-
-**Noget skolen bør vide til næste dag:**  
-____________________________________________________
-
-**Næste aftale:**  
 ____________________________________________________
 
 ---
 
-## Tirsdag
-
-**Dato:** __________________
-
-### Fra skolen
-
-**Kort observation:**  
-____________________________________________________
-
-**Hvad skete umiddelbart før?**  
-____________________________________________________
-
-**Hvilken støtte blev afprøvet?**  
-____________________________________________________
-
-**Elevens reaktion:**  
-____________________________________________________
-
-**Observeret effekt:**  
-☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring
-
-### Fra hjemmet
-
-**Morgen, søvn eller andre relevante forhold:**  
-____________________________________________________
-
-**Elevens egne ord eller signaler:**  
-____________________________________________________
-
-**Noget skolen bør vide til næste dag:**  
-____________________________________________________
-
-**Næste aftale:**  
-____________________________________________________
-
----
-
-## Onsdag
-
-**Dato:** __________________
-
-### Fra skolen
-
-**Kort observation:**  
-____________________________________________________
-
-**Hvad skete umiddelbart før?**  
-____________________________________________________
-
-**Hvilken støtte blev afprøvet?**  
-____________________________________________________
-
-**Elevens reaktion:**  
-____________________________________________________
-
-**Observeret effekt:**  
-☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring
-
-### Fra hjemmet
-
-**Morgen, søvn eller andre relevante forhold:**  
-____________________________________________________
-
-**Elevens egne ord eller signaler:**  
-____________________________________________________
-
-**Noget skolen bør vide til næste dag:**  
-____________________________________________________
-
-**Næste aftale:**  
-____________________________________________________
-
----
-
-## Torsdag
-
-**Dato:** __________________
-
-### Fra skolen
-
-**Kort observation:**  
-____________________________________________________
-
-**Hvad skete umiddelbart før?**  
-____________________________________________________
-
-**Hvilken støtte blev afprøvet?**  
-____________________________________________________
-
-**Elevens reaktion:**  
-____________________________________________________
-
-**Observeret effekt:**  
-☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring
-
-### Fra hjemmet
-
-**Morgen, søvn eller andre relevante forhold:**  
-____________________________________________________
-
-**Elevens egne ord eller signaler:**  
-____________________________________________________
-
-**Noget skolen bør vide til næste dag:**  
-____________________________________________________
-
-**Næste aftale:**  
-____________________________________________________
-
----
-
-## Fredag
-
-**Dato:** __________________
-
-### Fra skolen
-
-**Kort observation:**  
-____________________________________________________
-
-**Hvad skete umiddelbart før?**  
-____________________________________________________
-
-**Hvilken støtte blev afprøvet?**  
-____________________________________________________
-
-**Elevens reaktion:**  
-____________________________________________________
-
-**Observeret effekt:**  
-☐ Ikke vurderbar ☐ Ingen tydelig ændring ☐ Delvis ændring ☐ Tydelig ændring
-
-### Fra hjemmet
-
-**Morgen, søvn eller andre relevante forhold:**  
-____________________________________________________
-
-**Elevens egne ord eller signaler:**  
-____________________________________________________
-
-**Noget skolen bør vide til næste uge:**  
-____________________________________________________
-
-**Næste aftale:**  
-____________________________________________________
-
----
-
-## Ugens fælles opsamling
-
-**Hvad gik igen i løbet af ugen?**  
-____________________________________________________
-
-**Hvad så ud til at mindske belastningen?**  
-____________________________________________________
-
-**Hvad så ud til at øge belastningen?**  
-____________________________________________________
-
-**Hvad er fortsat usikkert?**  
-____________________________________________________
-
-**Hvad fortsætter vi med?**  
-____________________________________________________
-
-**Hvad ændrer vi?**  
-____________________________________________________
-
-**Ansvarlig:** __________________________  
-**Næste evaluering:** ___________________
-
----
-
-## Kort påmindelse
-
-Skriv så konkret som muligt:
-
-- hvad der blev observeret
-- hvad der skete før
-- hvad den voksne gjorde
-- hvordan eleven reagerede
-- hvilken effekt der blev set
-- hvad næste aftale er
-
-Undgå:
-
-- antagelser om elevens hensigt
-- skyldplacering mellem skole og hjem
-- diagnoselignende konklusioner
-- løfter om, at et bestemt tiltag vil virke
+> Kommunikationsloggen skal skabe fælles overblik og færre misforståelser mellem skole/børnehave og hjem. Den skal ikke bruges til skyldplacering eller som daglig karakterbog for barnet.
