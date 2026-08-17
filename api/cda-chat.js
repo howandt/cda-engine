@@ -6227,7 +6227,10 @@ try {
     });
   }
 
-  if (isContextualDiagnosisFollowup({ message, activeCaseContext })) {
+  if (
+    !isDirectLocalCaseRequest(message) &&
+    isContextualDiagnosisFollowup({ message, activeCaseContext })
+  ) {
     const heidiFlowResult = await runHeidiFlow({
       openai,
       model: "gpt-5.4-mini",
