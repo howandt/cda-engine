@@ -2861,8 +2861,12 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       templateFocusPending = true;
       setTemplateShortcutOpen(false);
 
+      const templateRequestTitle = selectedGroup?.title
+        ? `${selectedGroup.title} – ${selectedTemplate.title}`
+        : selectedTemplate.title;
+
       besked.value =
-        `Hent ${selectedTemplate.title} fra CDA's skabelonbank.`;
+        `Hent ${templateRequestTitle} fra CDA's skabelonbank.`;
       await sendMessage();
     }
 
