@@ -2717,6 +2717,89 @@ function resolveActiveLocalCase(pendingAction, activeCaseContext) {
   return getActiveLocalCaseFromSession(pendingAction) || getActiveLocalCaseFromContext(activeCaseContext);
 }
 
+function isLikelyFreeTextCaseMessage(value) {
+  const original = String(value || "").trim();
+  const text = normalizeDiagnosisPhrase(original);
+
+  if (original.length < 120 || !text) {
+    return false;
+  }
+
+  if (isDirectLocalCaseRequest(original)) {
+    return false;
+  }
+
+  const personMarkers = [
+    "jeg har",
+    "vi har",
+    "barn",
+    "dreng",
+    "pige",
+    "elev",
+    "klasse",
+    "bornehave",
+    "skole",
+    "foralder",
+    "foraelder",
+  ];
+
+  const challengeMarkers = [
+    "hvad kan det skyldes",
+    "hvad kan jeg",
+    "hvad kan vi",
+    "tavs",
+    "uro",
+    "driller",
+    "konflikt",
+    "vred",
+    "laaser",
+    "laser",
+    "overgang",
+    "skift",
+    "frikvarter",
+    "mave",
+    "fremlaeg",
+    "aflever",
+    "hente",
+    "hjemme",
+  ];
+
+  const hasPersonMarker = personMarkers.some((marker) => text.includes(marker));
+  const hasChallengeMarker = challengeMarkers.some((marker) => text.includes(marker));
+
+  return hasPersonMarker && hasChallengeMarker;
+}
+
+function shouldPreferActiveCaseContextForSpecialist(activeCaseContext) {
+  if (!hasActiveCaseContext(activeCaseContext)) {
+    return false;
+  }
+
+  return isLikelyFreeTextCaseMessage(activeCaseContext.last_user_message);
+}
+
+function resolveActiveLocalCaseForSpecialistRequest(pendingAction, activeCaseContext) {
+  const contextCase = getActiveLocalCaseFromContext(activeCaseContext);
+
+  if (shouldPreferActiveCaseContextForSpecialist(activeCaseContext)) {
+    return contextCase;
+  }
+
+  return getActiveLocalCaseFromSession(pendingAction) || contextCase;
+}
+
+function getPendingActionForSpecialistResponse(activeLocalCase, activeCaseContext, fallbackPendingAction) {
+  if (activeLocalCase?.id) {
+    return `local_case:${activeLocalCase.id}`;
+  }
+
+  if (shouldPreferActiveCaseContextForSpecialist(activeCaseContext)) {
+    return null;
+  }
+
+  return fallbackPendingAction || null;
+}
+
 function findBestOtherExperienceCase(message) {
   const searchResult = getSemanticSearch({ search: message });
   const bestMatch = searchResult?.results?.[0];
@@ -8236,15 +8319,30 @@ try {
 
   if (isDirectSpecialistPanelRequest(message)) {
     const requestedAngle = getRequestedSpecialistAngle(message);
+    const specialistActiveLocalCase = resolveActiveLocalCaseForSpecialistRequest(
+      pending_action,
+      activeCaseContext
+    );
+    const specialistPendingAction = getPendingActionForSpecialistResponse(
+      specialistActiveLocalCase,
+      activeCaseContext,
+      pending_action
+    );
+    const specialistContextSource = specialistActiveLocalCase
+      ? "active_local_case"
+      : shouldPreferActiveCaseContextForSpecialist(activeCaseContext)
+        ? "active_case_context_preferred"
+        : "active_case_context";
 
-    if (requestedAngle === "ppr" && (activeLocalCase || hasActiveCaseContext(activeCaseContext))) {
-      const reply = buildLocalPprAngleReply(activeLocalCase, activeCaseContext);
+    if (requestedAngle === "ppr" && (specialistActiveLocalCase || hasActiveCaseContext(activeCaseContext))) {
+      const reply = buildLocalPprAngleReply(specialistActiveLocalCase, activeCaseContext);
       const usedTools = ["localPprAngleOnActiveCase"];
       const toolDebug = [
         {
           name: "localPprAngleOnActiveCase",
-          active_local_case_id: activeLocalCase?.id || null,
-          source: activeLocalCase ? "active_local_case" : "active_case_context",
+          active_local_case_id: specialistActiveLocalCase?.id || null,
+          specialist_context_source: specialistContextSource,
+          source: specialistContextSource,
           role,
           response_style,
         },
@@ -8261,12 +8359,12 @@ try {
         model: "local",
         tools_used: usedTools,
         tool_debug: toolDebug,
-        pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
+        pending_action: specialistPendingAction,
       });
     }
 
-    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
-    const specialistSelectionContext = buildSpecialistSelectionContext(activeLocalCase, activeCaseContext);
+    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(specialistActiveLocalCase, activeCaseContext);
+    const specialistSelectionContext = buildSpecialistSelectionContext(specialistActiveLocalCase, activeCaseContext);
     const specialistPanel =
       requestedAngle === "named"
         ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
@@ -8297,7 +8395,7 @@ try {
             response_style,
           },
         ],
-        pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
+        pending_action: specialistPendingAction,
       });
     }
 
@@ -8424,7 +8522,8 @@ try {
             (specialist) => specialist.id === id
           )
         ).filter(Boolean),
-        active_local_case_id: activeLocalCase?.id || null,
+        active_local_case_id: specialistActiveLocalCase?.id || null,
+        specialist_context_source: specialistContextSource,
         role,
         response_style,
       },
@@ -8473,12 +8572,22 @@ try {
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : null,
+      pending_action: specialistPendingAction,
     });
   }
 
   if (isCaseSpecialistsInvolvedRequest(message)) {
-    if (!activeLocalCase && !hasActiveCaseContext(activeCaseContext)) {
+    const specialistActiveLocalCase = resolveActiveLocalCaseForSpecialistRequest(
+      pending_action,
+      activeCaseContext
+    );
+    const specialistPendingAction = getPendingActionForSpecialistResponse(
+      specialistActiveLocalCase,
+      activeCaseContext,
+      pending_action
+    );
+
+    if (!specialistActiveLocalCase && !hasActiveCaseContext(activeCaseContext)) {
       const reply =
         "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gå tilbage til en tidligere case, så kan jeg pege på hvilke CDA-specialister der er relevante.";
       const usedTools = ["caseSpecialistsInvolvedNoActiveCase"];
@@ -8506,19 +8615,19 @@ try {
     }
 
     const caseText = [
-      activeLocalCase?.titel,
-      activeLocalCase?.title,
-      activeLocalCase?.problem,
-      activeLocalCase?.kort_beskrivelse,
-      activeLocalCase?.description,
-      activeLocalCase?.beskrivelse,
+      specialistActiveLocalCase?.titel,
+      specialistActiveLocalCase?.title,
+      specialistActiveLocalCase?.problem,
+      specialistActiveLocalCase?.kort_beskrivelse,
+      specialistActiveLocalCase?.description,
+      specialistActiveLocalCase?.beskrivelse,
       activeCaseContext?.summary,
       activeCaseContext?.known_context,
       activeCaseContext?.last_user_message,
     ].filter(Boolean).join(" ");
 
     const specialistPanel = getTargetedSpecialistPanel("case_team", message, caseText);
-    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(specialistActiveLocalCase, activeCaseContext);
 
     if (specialistPanel.specialistIds.length === 0) {
       throw new Error("Specialistpanelet indeholder ingen specialister");
@@ -8627,7 +8736,12 @@ try {
             (specialist) => specialist.id === id
           )
         ).filter(Boolean),
-        active_local_case_id: activeLocalCase?.id || null,
+        active_local_case_id: specialistActiveLocalCase?.id || null,
+        specialist_context_source: specialistActiveLocalCase
+          ? "active_local_case"
+          : shouldPreferActiveCaseContextForSpecialist(activeCaseContext)
+            ? "active_case_context_preferred"
+            : "active_case_context",
         role,
         response_style,
       },
@@ -8676,7 +8790,7 @@ try {
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
-      pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : null,
+      pending_action: specialistPendingAction,
     });
   }
 
