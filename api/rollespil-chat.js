@@ -178,6 +178,7 @@ function extractRole(message, subject) {
         ]
       : [
           /\bdu\s+(?:spiller|er)\s+(?:rollen\s+som\s+)?([^,.!?]+?)(?=\s+(?:og|mens|jeg\s+spiller|jeg\s+er)\b|[,.!?]|$)/i,
+          /\bcda\s+(?:spiller|er)\s+(?:rollen\s+som\s+)?([^,.!?]+?)(?=\s+(?:og|mens|jeg\s+spiller|jeg\s+er)\b|[,.!?]|$)/i,
           /\bdin\s+rolle\s+er\s+([^,.!?]+)/i,
         ];
 
@@ -339,6 +340,17 @@ function detectAction(message, state, explicitAction) {
   const isShortCommand = wordCount <= 12;
 
   if (
+    /\b(?:reverse|revers|byt|bytte|skift|skifte)\b/.test(text) &&
+    (
+      /\b(?:du|cda)\s+(?:er|spiller)\b/.test(text) ||
+      /\bjeg\s+(?:er|spiller)\b/.test(text) ||
+      /\brolle(?:r|rne)?\b/.test(text)
+    )
+  ) {
+    return "switch_role";
+  }
+
+  if (
     isShortCommand &&
     /^(?:prov igen|lad mig prove igen|jeg vil prove igen|nyt forsog)(?: med en ny formulering)?$/.test(text)
   ) {
@@ -346,22 +358,23 @@ function detectAction(message, state, explicitAction) {
   }
 
   if (
-    /\breverse(?:r)?\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
-    /\bvend\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
-    /\bvis\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\s+fra\s+(?:barnets|elevens)\s+(?:side|perspektiv)\b/.test(text) ||
-    /\bse\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\s+fra\s+(?:barnets|elevens)\s+(?:side|perspektiv)\b/.test(text) ||
+    /\breverse(?:r)?\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forlobet|case)\b/.test(text) ||
+    /\brevers\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forlobet|case)\b/.test(text) ||
+    /\bvend\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forlobet|case)\b/.test(text) ||
+    /\bvis\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forlobet)\s+fra\s+(?:barnets|elevens)\s+(?:side|perspektiv)\b/.test(text) ||
+    /\bse\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forlobet)\s+fra\s+(?:barnets|elevens)\s+(?:side|perspektiv)\b/.test(text) ||
     /\bhvordan\s+kan\s+(?:barnet|eleven)\s+have\s+(?:modtaget|hoert|oplevet)\s+(?:min|beskeden|situationen)\b/.test(text)
   ) {
     return "reverse_incident";
   }
 
   if (
-    /\b(?:analyser|analyserer|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
+    /\b(?:analyser|analyserer|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forlobet)\b/.test(text) ||
     /\bhvad\s+sagde\s+jeg\s+forkert\b/.test(text) ||
     /\bhvad\s+kunne\s+jeg\s+have\s+gjort\s+anderledes\b/.test(text) ||
     /\bhvordan\s+kan\s+jeg\s+goere\s+det\s+bedre\s+naeste\s+gang\b/.test(text) ||
     /\bhvordan\s+undgaar\s+jeg\s+at\s+det\s+sker\s+igen\b/.test(text) ||
-    /\bhjaelp\s+mig\s+med\s+at\s+forstaa\s+(?:haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
+    /\bhjaelp\s+mig\s+med\s+at\s+forstaa\s+(?:haendelsen|situationen|konflikten|forlobet)\b/.test(text) ||
     /\bjeg\s+vil\s+(?:gerne\s+)?analysere\s+(?:en\s+)?(?:haendelse|situation|konflikt)\b/.test(text)
   ) {
     return "analyze_incident";
@@ -486,10 +499,10 @@ function isBareIncidentAnalysisCommand(message) {
   const text = normalizeCommand(message);
 
   return (
-    /^(?:analyser|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)$/.test(text) ||
+    /^(?:analyser|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forlobet)$/.test(text) ||
     /^hvad\s+sagde\s+jeg\s+forkert$/.test(text) ||
     /^hvad\s+kunne\s+jeg\s+have\s+gjort\s+anderledes$/.test(text) ||
-    /^hjaelp\s+mig\s+med\s+at\s+forstaa\s+(?:haendelsen|situationen|konflikten|forloebet)$/.test(text)
+    /^hjaelp\s+mig\s+med\s+at\s+forstaa\s+(?:haendelsen|situationen|konflikten|forlobet)$/.test(text)
   );
 }
 
