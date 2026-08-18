@@ -4518,6 +4518,14 @@ if (data.pending_action) {
         }
 
         const assistantRow = appendMessage("assistant", data.reply);
+        const shouldAttachTemplateWorkspace =
+          activeTemplateSelection &&
+          !activeTemplateSelection.promptOnly &&
+          isFillableTemplateAssistantReply(data.reply);
+
+        if (shouldAttachTemplateWorkspace) {
+          attachTemplateWorkspaceAction(assistantRow, data.reply);
+        }
 
         if (isStudentProfileAssistantReply(data.reply, data)) {
           if (lastSentWasProfileUpdate) {
