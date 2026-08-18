@@ -62,6 +62,11 @@ import {
   getRollespil,
   isRoleplayContextActive,
 } from "../lib/roleplayEngine.js";
+import {
+  getEmotionAnalysis,
+  isEmotionAnalysisRequest,
+  runEmotionFlow,
+} from "../lib/emotionEngine.js";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -1529,128 +1534,6 @@ function buildLocalDiagnosisTheoryReply(entry, message, role, responseStyle) {
   return blocks.join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
-function analyzeEmotion(text, data) {
-  let score = 0;
-  const textLower = String(text || "").toLowerCase();
-
-  const foundWords = {
-    positive: [],
-    negative: [],
-    empathy: [],
-    commands: [],
-    validating: [],
-  };
-
-  const wordCategories = data.word_categories || {};
-
-  if (wordCategories.positive?.words) {
-    wordCategories.positive.words.forEach((word) => {
-      if (textLower.includes(String(word).toLowerCase())) {
-        score += Number(wordCategories.positive.score_value || 0);
-        foundWords.positive.push(word);
-      }
-    });
-  }
-
-  if (wordCategories.negative?.words) {
-    wordCategories.negative.words.forEach((word) => {
-      if (textLower.includes(String(word).toLowerCase())) {
-        score += Number(wordCategories.negative.score_value || 0);
-        foundWords.negative.push(word);
-      }
-    });
-  }
-
-  if (wordCategories.empathy?.phrases) {
-    wordCategories.empathy.phrases.forEach((phrase) => {
-      if (textLower.includes(String(phrase).toLowerCase())) {
-        score += Number(wordCategories.empathy.score_value || 0);
-        foundWords.empathy.push(phrase);
-      }
-    });
-  }
-
-  if (wordCategories.commands?.phrases) {
-    wordCategories.commands.phrases.forEach((phrase) => {
-      if (textLower.includes(String(phrase).toLowerCase())) {
-        score += Number(wordCategories.commands.score_value || 0);
-        foundWords.commands.push(phrase);
-      }
-    });
-  }
-
-  if (wordCategories.validating?.phrases) {
-    wordCategories.validating.phrases.forEach((phrase) => {
-      if (textLower.includes(String(phrase).toLowerCase())) {
-        score += Number(wordCategories.validating.score_value || 0);
-        foundWords.validating.push(phrase);
-      }
-    });
-  }
-
-  let mood = "neutral";
-  let moodData = data.mood_levels?.neutral || {};
-
-  if (score >= 3) {
-    mood = "støttende";
-    moodData = data.mood_levels?.støttende || {};
-  } else if (score >= 1) {
-    mood = "rolig";
-    moodData = data.mood_levels?.rolig || {};
-  } else if (score <= -2) {
-    mood = "pres";
-    moodData = data.mood_levels?.pres || {};
-  } else if (score < 0) {
-    mood = "spændt";
-    moodData = data.mood_levels?.spændt || {};
-  }
-
-  return {
-    score,
-    mood,
-    emoji: moodData.emoji || null,
-    description: moodData.description || null,
-    effect_on_child: moodData.effect_on_child || null,
-    characteristics: moodData.characteristics || [],
-    found_elements: foundWords,
-    word_count: {
-      positive: foundWords.positive.length,
-      negative: foundWords.negative.length,
-      empathy: foundWords.empathy.length,
-      commands: foundWords.commands.length,
-      validating: foundWords.validating.length,
-    },
-  };
-}
-function getEmotionAnalysis(args = {}) {
-  const filePath = path.join(
-    process.cwd(),
-    "data",
-    "CDA_Emotionengine.json"
-  );
-
-  const data = readJsonFile(
-    filePath,
-    "data/CDA_Emotionengine.json blev ikke fundet"
-  );
-
-  const text = String(args.text || "");
-
-  if (!text) {
-    return {
-      error: "Tekst mangler",
-    };
-  }
-
-  return {
-    input: {
-      text,
-      context: args.context || null,
-    },
-    analysis: analyzeEmotion(text, data),
-    communication_tips: data.communication_tips || [],
-  };
-}
 function getKomorbiditet(args = {}) {
   const filePath = path.join(
     process.cwd(),
@@ -4141,6 +4024,95 @@ try {
       tools_used: roleplayUsedTools,
       tool_debug: roleplayToolDebug,
       pending_action: roleplayReplyData.pendingAction,
+    });
+  }
+
+  if (isEmotionAnalysisRequest(message)) {
+    const emotionResult = await runEmotionFlow({
+      openai,
+      model: "gpt-5.4-mini",
+      heidiPrompt,
+      audienceInstructions,
+      activeCaseInstructions,
+      message,
+      language,
+      role,
+      responseStyle: response_style,
+    });
+
+    const emotionReplyData = extractPendingAction(emotionResult.outputText);
+    const reply = cleanCdaReplyTail(emotionReplyData.reply);
+    const inputTokens = Number(
+      emotionResult.response?.usage?.input_tokens || 0
+    );
+    const outputTokens = Number(
+      emotionResult.response?.usage?.output_tokens || 0
+    );
+    const totalTokens = Number(
+      emotionResult.response?.usage?.total_tokens ||
+        inputTokens + outputTokens
+    );
+
+    const usedTools = ["emotionEngineV2"];
+    const toolDebug = [
+      {
+        name: "emotionEngineV2",
+        action: "analyze_adult_communication",
+        ...emotionResult.debug,
+      },
+    ];
+
+    console.log("CDA værktøjskald:", {
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: [
+        {
+          call: 1,
+          phase: "emotion_engine_v2",
+          tools_returned_to_model: [],
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          total_tokens: totalTokens,
+        },
+      ],
+      totals: {
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    });
+
+    if (adgangskode) {
+      const supabase = getSupabase();
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: "gpt-5.4-mini",
+          input_tokens: inputTokens,
+          output_tokens: outputTokens,
+          samlet_tokens: totalTokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply,
+      model: "gpt-5.4-mini",
+      tools_used: usedTools,
+      tool_debug: toolDebug,
+      used_data_sources: emotionResult.usedDataSources,
+      conversation_mode: "emotion_analysis",
+      pending_action: emotionReplyData.pendingAction,
     });
   }
 
