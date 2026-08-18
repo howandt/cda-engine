@@ -593,6 +593,33 @@
       color: var(--danger);
     }
 
+    .template-workspace {
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px solid #d9e3ff;
+      border-radius: 10px;
+      background: #f7f9ff;
+    }
+
+    .template-workspace textarea {
+      width: 100%;
+      min-height: 260px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.45;
+      resize: vertical;
+      outline: none;
+      white-space: pre-wrap;
+    }
+
+    .template-workspace textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
+    }
+
     .observation-review-list {
       display: grid;
       gap: 12px;
@@ -2856,6 +2883,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       updateTemplateSelectionSummary({
         categoryTitle: selectedGroup?.title || "Skabelon",
         templateTitle: selectedTemplate.title,
+        templateId: selectedTemplate.id,
       });
       landscapeFocusDismissed = false;
       templateFocusPending = true;
@@ -3083,6 +3111,100 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
       scrollToBottom();
       return row;
+    }
+
+    function isFillableTemplateAssistantReply(text) {
+      const source = String(text || "");
+      const underlineFields = source.match(/_{8,}/g) || [];
+      const placeholderFields = source.match(/\{[a-zA-Z0-9_]+\}/g) || [];
+
+      return underlineFields.length >= 3 || placeholderFields.length >= 2;
+    }
+
+    function attachTemplateWorkspaceAction(row, templateText) {
+      if (!row || !isFillableTemplateAssistantReply(templateText)) return;
+
+      const bubble = row.querySelector(".message.assistant");
+      if (!bubble) return;
+
+      const actions = document.createElement("div");
+      actions.className = "message-actions";
+
+      const button = document.createElement("button");
+      button.className = "save-profile-button";
+      button.type = "button";
+      button.textContent = "Åbn arbejdsark";
+
+      const status = document.createElement("span");
+      status.className = "save-profile-status";
+      status.textContent = "Udfyldes lokalt. Gemmes ikke.";
+
+      button.addEventListener("click", () => {
+        if (bubble.querySelector(".template-workspace")) {
+          return;
+        }
+
+        const workspace = document.createElement("div");
+        workspace.className = "template-workspace";
+
+        const textarea = document.createElement("textarea");
+        textarea.value = String(templateText || "").trim();
+        textarea.setAttribute(
+          "aria-label",
+          "Udfyld skabelon lokalt"
+        );
+
+        const workspaceActions = document.createElement("div");
+        workspaceActions.className = "message-actions";
+
+        const copyButton = document.createElement("button");
+        copyButton.className = "save-profile-button";
+        copyButton.type = "button";
+        copyButton.textContent = "Kopiér udfyldt skabelon";
+
+        const copyStatus = document.createElement("span");
+        copyStatus.className = "save-profile-status";
+        copyStatus.textContent = "Intet sendes eller gemmes.";
+
+        copyButton.addEventListener("click", async () => {
+          const value = textarea.value.trim();
+
+          if (!value) {
+            copyStatus.classList.add("error");
+            copyStatus.textContent = "Der er ingen tekst at kopiere.";
+            textarea.focus();
+            return;
+          }
+
+          try {
+            await navigator.clipboard.writeText(value);
+            copyStatus.classList.remove("error");
+            copyStatus.textContent = "Kopieret.";
+          } catch {
+            textarea.focus();
+            textarea.select();
+            copyStatus.classList.add("error");
+            copyStatus.textContent = "Markeret. Kopiér med Ctrl+C.";
+          }
+        });
+
+        workspaceActions.appendChild(copyButton);
+        workspaceActions.appendChild(copyStatus);
+        workspace.appendChild(textarea);
+        workspace.appendChild(workspaceActions);
+        bubble.appendChild(workspace);
+
+        button.disabled = true;
+        button.textContent = "Arbejdsark åbnet";
+        status.textContent = "Ret teksten direkte og kopiér bagefter.";
+        textarea.focus({ preventScroll: true });
+        scrollToBottom();
+      });
+
+      actions.appendChild(button);
+      actions.appendChild(status);
+      bubble.appendChild(actions);
+      scrollToBottom();
     }
 
     function isStudentProfileAssistantReply(text, data) {
@@ -3444,6 +3566,14 @@ ${observationText}`;
         }
 
         const assistantRow = appendMessage("assistant", data.reply);
+        const shouldAttachTemplateWorkspace =
+          Boolean(lastSentTemplateId) &&
+          activeTemplateSelection &&
+          !activeTemplateSelection.promptOnly;
+
+        if (shouldAttachTemplateWorkspace) {
+          attachTemplateWorkspaceAction(assistantRow, data.reply);
+        }
 
         if (isStudentProfileAssistantReply(data.reply, data)) {
           attachUpdateProfileAction(assistantRow, data.reply);
