@@ -46,16 +46,8 @@ import {
   shouldPreferActiveCaseContextForSpecialist,
 } from "../lib/localCaseEngine.js";
 import {
-  assessPblProfileDynamically,
-  createTailoredPblProject,
-  decodePblChoiceState,
-  encodePblChoiceState,
-  formatPblChoice,
-  formatTailoredPblProject,
-  getPblProfileTemplate,
-  getPblProjectById,
   getPblProjects,
-  isConcreteStudentPblRequest,
+  runPblFlow,
 } from "../lib/pblEngine.js";
 import {
   buildRoleplayRuleInjection,
@@ -3327,16 +3319,8 @@ function cleanCdaReplyTail(replyText) {
 }
 
 function extractPendingAction(replyText) {
-  const pblMarker = "[[PENDING_ACTION:PBL_PROFILE]]";
   const roleplayMarker = "[[PENDING_ACTION:ROLEPLAY_ACTIVE]]";
   const text = String(replyText || "");
-
-  if (text.includes(pblMarker)) {
-    return {
-      reply: text.replace(pblMarker, "").trim(),
-      pendingAction: "pbl_profile",
-    };
-  }
 
   if (text.includes(roleplayMarker)) {
     return {
@@ -4675,400 +4659,62 @@ try {
     });
   }
 
-  if (pending_action === "pbl_profile") {
-    if (isAffirmativeReply(message)) {
-      const reply = getPblProfileTemplate();
-      const usedTools = ["localPblProfileFlow"];
-      const toolDebug = [
-        {
-          name: "localPblProfileFlow",
-          action: "show_profile_template",
-        },
-      ];
+  const pblResult = await runPblFlow({
+    openai,
+    message,
+    pendingAction: pending_action,
+    activeCaseContext,
+  });
 
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      console.log("CDA tokenmåling pr. OpenAI-kald:", {
-        usage_by_call: [],
-        totals: {
-          input_tokens: 0,
-          output_tokens: 0,
-          total_tokens: 0,
-        },
-      });
-
-      return res.status(200).json({
-        success: true,
-        reply,
-        model: "local",
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-        pending_action: "pbl_profile_input",
-      });
-    }
-
-    if (isNegativeReply(message)) {
-      const usedTools = ["localPblProfileFlow"];
-      const toolDebug = [
-        {
-          name: "localPblProfileFlow",
-          action: "decline_profile_template",
-        },
-      ];
-
-      return res.status(200).json({
-        success: true,
-        reply: "Helt fint. Så går vi videre uden PBL-profilen.",
-        model: "local",
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-        pending_action: null,
-      });
-    }
-  }
-
-  if (pending_action === "pbl_profile_input") {
-    const dynamicResult = await assessPblProfileDynamically(message, { openai });
-    const { assessment, response, first, second } = dynamicResult;
-
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
-    const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
+  if (pblResult) {
+    const usageByCall = pblResult.usage || [];
+    const totals = usageByCall.reduce(
+      (sum, item) => ({
+        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
+        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
+        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
+      }),
+      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
     );
 
-    const usageByCall = [
-      {
-        call: 1,
-        phase: "dynamic_pbl_assessment",
-        tools_returned_to_model: [],
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    ];
+    console.log("CDA værktøjskald:", {
+      tools_used: pblResult.usedTools,
+      tool_debug: pblResult.toolDebug,
+    });
 
-    if (adgangskode) {
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals,
+    });
+
+    if (adgangskode && totals.total_tokens > 0) {
       const supabase = getSupabase();
-
       const { error: forbrugsFejl } = await supabase
         .from("token_forbrug")
         .insert({
           adgangskode: adgangskode.trim().toUpperCase(),
           system: "cda",
           udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
+          model: pblResult.model,
+          input_tokens: totals.input_tokens,
+          output_tokens: totals.output_tokens,
+          samlet_tokens: totals.total_tokens,
         });
 
       if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
+        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
       }
     }
 
-    if (assessment.status === "no_suitable_match") {
-      const usedTools = ["dynamicPblAssessment"];
-      const toolDebug = [
-        {
-          name: "dynamicPblAssessment",
-          action: "no_suitable_existing_project",
-        },
-      ];
-
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      console.log("CDA tokenmåling pr. OpenAI-kald:", {
-        usage_by_call: usageByCall,
-        totals: {
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          total_tokens: totalTokens,
-        },
-      });
-
-      return res.status(200).json({
-        success: true,
-        reply: assessment.no_match_reason
-          ? `Ingen af de eksisterende projekter passer godt nok til elevprofilen. ${assessment.no_match_reason}`
-          : "Ingen af de eksisterende projekter passer godt nok til elevprofilen. CDA vælger derfor ikke et tilfældigt projekt.",
-        model: "gpt-5.4-mini",
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-        pending_action: null,
-      });
-    }
-
-    const state = encodePblChoiceState({
-      firstId: first.id,
-      secondId: second.id,
-      firstReason: assessment.first_reason,
-      secondReason: assessment.second_reason,
-      profile: message,
-      shown: 1,
-    });
-
-    const usedTools = ["dynamicPblAssessment"];
-    const toolDebug = [
-      {
-        name: "dynamicPblAssessment",
-        action: "whole_profile_assessment",
-        first_choice: first.id,
-        second_choice: second.id,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
     return res.status(200).json({
       success: true,
-      reply: formatPblChoice(
-        first,
-        1,
-        message,
-        assessment.first_reason
-      ),
-      model: "gpt-5.4-mini",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: state,
-    });
-  }
-
-  const pblChoiceState = decodePblChoiceState(pending_action);
-
-  if (pblChoiceState) {
-    const normalizedMessage = normalizeReplyIntent(message);
-    const firstProject = getPblProjectById(pblChoiceState.firstId);
-    const secondProject = getPblProjectById(pblChoiceState.secondId);
-
-    const wantsFirst =
-      normalizedMessage.includes("valg 1") ||
-      normalizedMessage.includes("forslag 1") ||
-      normalizedMessage.includes("forste") ||
-      normalizedMessage.includes("første") ||
-      normalizedMessage.includes("tilbage") ||
-      (firstProject &&
-        normalizeReplyIntent(message).includes(
-          normalizeReplyIntent(firstProject.title)
-        ));
-
-    const wantsTailoredProject =
-      pblChoiceState.shown === 2 &&
-      (
-        isNegativeReply(message) ||
-        normalizedMessage.includes("nyt projekt") ||
-        normalizedMessage.includes("skab et nyt") ||
-        normalizedMessage.includes("tilpasset projekt")
-      );
-
-    const wantsSecond =
-      normalizedMessage.includes("valg 2") ||
-      normalizedMessage.includes("forslag 2") ||
-      normalizedMessage.includes("nummer 2") ||
-      normalizedMessage.includes("andet projekt") ||
-      (
-        pblChoiceState.shown !== 2 &&
-        (normalizedMessage === "nej" || normalizedMessage === "nej tak")
-      );
-
-    if (wantsTailoredProject) {
-      const tailoredResult = await createTailoredPblProject(
-        pblChoiceState.profile,
-        [firstProject, secondProject],
-        { openai }
-      );
-
-      const { project, response } = tailoredResult;
-      const inputTokens = Number(response?.usage?.input_tokens || 0);
-      const outputTokens = Number(response?.usage?.output_tokens || 0);
-      const totalTokens = Number(
-        response?.usage?.total_tokens || inputTokens + outputTokens
-      );
-
-      const usageByCall = [
-        {
-          call: 1,
-          phase: "dynamic_tailored_pbl_project",
-          tools_returned_to_model: [],
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          total_tokens: totalTokens,
-        },
-      ];
-
-      const usedTools = ["dynamicTailoredPblProject"];
-      const toolDebug = [
-        {
-          name: "dynamicTailoredPblProject",
-          action: "create_after_two_rejections",
-          rejected_project_ids: [
-            firstProject?.id || null,
-            secondProject?.id || null,
-          ],
-        },
-      ];
-
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      console.log("CDA tokenmåling pr. OpenAI-kald:", {
-        usage_by_call: usageByCall,
-        totals: {
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          total_tokens: totalTokens,
-        },
-      });
-
-      if (adgangskode) {
-        const supabase = getSupabase();
-
-        const { error: forbrugsFejl } = await supabase
-          .from("token_forbrug")
-          .insert({
-            adgangskode: adgangskode.trim().toUpperCase(),
-            system: "cda",
-            udbyder: "openai",
-            model: "gpt-5.4-mini",
-            input_tokens: inputTokens,
-            output_tokens: outputTokens,
-            samlet_tokens: totalTokens,
-          });
-
-        if (forbrugsFejl) {
-          console.error(
-            "Kunne ikke gemme tokenforbrug:",
-            forbrugsFejl
-          );
-        }
-      }
-
-      return res.status(200).json({
-        success: true,
-        reply: formatTailoredPblProject(project),
-        model: "gpt-5.4-mini",
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-        pending_action: null,
-      });
-    }
-
-    if (wantsFirst && firstProject) {
-      return res.status(200).json({
-        success: true,
-        reply: formatPblChoice(
-          firstProject,
-          1,
-          pblChoiceState.profile,
-          pblChoiceState.firstReason || ""
-        ),
-        model: "local",
-        tools_used: ["localPblChoiceFlow"],
-        tool_debug: [
-          {
-            name: "localPblChoiceFlow",
-            action: "return_to_first_choice",
-            project_id: firstProject.id,
-          },
-        ],
-        pending_action: encodePblChoiceState({
-          ...pblChoiceState,
-          shown: 1,
-        }),
-      });
-    }
-
-    if (wantsSecond && secondProject) {
-      return res.status(200).json({
-        success: true,
-        reply: formatPblChoice(
-          secondProject,
-          2,
-          pblChoiceState.profile,
-          pblChoiceState.secondReason || ""
-        ),
-        model: "local",
-        tools_used: ["localPblChoiceFlow"],
-        tool_debug: [
-          {
-            name: "localPblChoiceFlow",
-            action: "show_second_choice",
-            project_id: secondProject.id,
-          },
-        ],
-        pending_action: encodePblChoiceState({
-          ...pblChoiceState,
-          shown: 2,
-        }),
-      });
-    }
-
-    if (isAffirmativeReply(message)) {
-      const selectedProject =
-        pblChoiceState.shown === 2 && secondProject
-          ? secondProject
-          : firstProject;
-
-      return res.status(200).json({
-        success: true,
-        reply: selectedProject
-          ? `Godt. I har valgt **${selectedProject.title}**. Næste skridt er, at læreren og eleven sammen aftaler første lille delmål og sikkerhedsrammen.`
-          : "Godt. Projektet er valgt.",
-        model: "local",
-        tools_used: ["localPblChoiceFlow"],
-        tool_debug: [
-          {
-            name: "localPblChoiceFlow",
-            action: "confirm_choice",
-            project_id: selectedProject?.id || null,
-          },
-        ],
-        pending_action: null,
-      });
-    }
-  }
-
-  if (isConcreteStudentPblRequest(message)) {
-    const usedTools = ["localPblProfileOffer"];
-    const toolDebug = [
-      {
-        name: "localPblProfileOffer",
-        action: "offer_profile_before_project_matching",
-      },
-    ];
-
-    return res.status(200).json({
-      success: true,
-      reply: "PBL kunne være relevant her, men jeg vil ikke foreslå et konkret projekt uden en kort elevprofil. Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, støttebehov, arbejdsform, sikkerhed og fagligt mål. Vil du have den korte elevprofilskabelon?",
-      model: "local",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: "pbl_profile",
+      reply: pblResult.reply,
+      model: pblResult.model,
+      tools_used: pblResult.usedTools,
+      tool_debug: pblResult.toolDebug,
+      used_data_sources: pblResult.usedDataSources,
+      conversation_mode: "pbl",
+      pending_action: pblResult.pendingAction,
     });
   }
 
