@@ -92,6 +92,14 @@
     "situation": {
       "label": "træn situation",
       "action": "start",
+      "preparation_questions": {
+        "Dansk": [
+          "Hvilken situation vil du træne, hvilken rolle vil du selv have, og hvilken rolle skal CDA spille?"
+        ],
+        "English": [
+          "Which situation would you like to practise, which role will you have, and which role should CDA play?"
+        ]
+      },
       "phrases": [
         "træn en situation",
         "træne en situation",
@@ -106,6 +114,16 @@
     "conversation": {
       "label": "øv samtale",
       "action": "start",
+      "preparation_questions": {
+        "Dansk": [
+          "Hvad er dit mål med samtalen?",
+          "Hvad er det sværeste, du forventer bliver sagt eller spurgt om?"
+        ],
+        "English": [
+          "What is your goal for the conversation?",
+          "What is the hardest thing you expect may be said or asked?"
+        ]
+      },
       "phrases": [
         "øve en samtale",
         "øv en samtale",
@@ -132,16 +150,6 @@
     "encoded_prefix": "roleplay_chat_v1:",
     "max_saved_turns": 6,
     "preparation_pending_action": "roleplay_conversation_preparation",
-    "preparation_questions": {
-      "Dansk": [
-        "Hvad er dit mål med samtalen?",
-        "Hvad er det sværeste, du forventer bliver sagt eller spurgt om?"
-      ],
-      "English": [
-        "What is your goal for the conversation?",
-        "What is the hardest thing you expect may be said or asked?"
-      ]
-    },
     "skip_preparation_phrases": [
       "start nu",
       "gå i gang",
