@@ -4100,6 +4100,65 @@ try {
     });
   }
 
+  const pblResult = await runPblFlow({
+    openai,
+    message,
+    pendingAction: pending_action,
+    activeCaseContext,
+  });
+
+  if (pblResult) {
+    const usageByCall = pblResult.usage || [];
+    const totals = usageByCall.reduce(
+      (sum, item) => ({
+        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
+        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
+        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
+      }),
+      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
+    );
+
+    console.log("CDA værktøjskald:", {
+      tools_used: pblResult.usedTools,
+      tool_debug: pblResult.toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals,
+    });
+
+    if (adgangskode && totals.total_tokens > 0) {
+      const supabase = getSupabase();
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: pblResult.model,
+          input_tokens: totals.input_tokens,
+          output_tokens: totals.output_tokens,
+          samlet_tokens: totals.total_tokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      reply: pblResult.reply,
+      model: pblResult.model,
+      tools_used: pblResult.usedTools,
+      tool_debug: pblResult.toolDebug,
+      used_data_sources: pblResult.usedDataSources,
+      conversation_mode: "pbl",
+      pending_action: pblResult.pendingAction,
+    });
+  }
+
   const activeLocalCaseBeforeContextualFollowup = resolveActiveLocalCase(
     pending_action,
     activeCaseContext
@@ -4656,65 +4715,6 @@ try {
       tools_used: usedTools,
       tool_debug: toolDebug,
       pending_action: pending_action,
-    });
-  }
-
-  const pblResult = await runPblFlow({
-    openai,
-    message,
-    pendingAction: pending_action,
-    activeCaseContext,
-  });
-
-  if (pblResult) {
-    const usageByCall = pblResult.usage || [];
-    const totals = usageByCall.reduce(
-      (sum, item) => ({
-        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
-        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
-        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
-      }),
-      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
-    );
-
-    console.log("CDA værktøjskald:", {
-      tools_used: pblResult.usedTools,
-      tool_debug: pblResult.toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals,
-    });
-
-    if (adgangskode && totals.total_tokens > 0) {
-      const supabase = getSupabase();
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: pblResult.model,
-          input_tokens: totals.input_tokens,
-          output_tokens: totals.output_tokens,
-          samlet_tokens: totals.total_tokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
-      }
-    }
-
-    return res.status(200).json({
-      success: true,
-      reply: pblResult.reply,
-      model: pblResult.model,
-      tools_used: pblResult.usedTools,
-      tool_debug: pblResult.toolDebug,
-      used_data_sources: pblResult.usedDataSources,
-      conversation_mode: "pbl",
-      pending_action: pblResult.pendingAction,
     });
   }
 
