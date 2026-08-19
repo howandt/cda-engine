@@ -3,6 +3,12 @@
   "name": "CDA Roleplay Engine",
   "pending_action": "roleplay_active",
   "activation": {
+    "menu_phrases": [
+      "rollespil",
+      "rolleleg",
+      "roleplay",
+      "role play"
+    ],
     "direct_phrases": [
       "rollespil",
       "rolleleg",
@@ -120,7 +126,7 @@
   },
   "state": {
     "marker": "[[PENDING_ACTION:ROLEPLAY_ACTIVE]]",
-    "encoded_prefix": "roleplay_v2:",
+    "encoded_prefix": "roleplay_chat_v1:",
     "max_saved_turns": 6,
     "preparation_pending_action": "roleplay_conversation_preparation",
     "preparation_questions": {

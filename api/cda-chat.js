@@ -3852,6 +3852,8 @@ try {
     contextualInput,
     message,
     pendingAction: pending_action,
+    role,
+    language,
     responseStyle: response_style,
     tools,
     executeTool,
