@@ -1549,97 +1549,39 @@
     "structure_need": ["Lav", "Moderat", "Høj"],
     "level": ["Junior", "Intermediate", "Advanced", "Expert"]
   },
-  "opstartsplan": {
-  "title": "PBL Opstartsplan",
-  "fields": [
-    "Projektnavn",
-    "Periode",
-    "Elevprofil (alder, diagnose, funktionsniveau, interesser, styrker)",
-    "Kort begrundelse for hvorfor dette projekt er valgt",
-    "Mål for fokus, ro, deltagelse og trivsel",
-    "Mål for læring (fx dansk, sprog, regning, rækkefølge, ansvar)",
-    "Barnets startniveau",
-    "Ugeopdeling / forløbsstruktur",
-    "Hvad læreren skal observere undervejs",
-    "Støttebehov ved opstart (lav / middel / høj)",
-    "Hvad forældre kan støtte med hjemme",
-    "Tegn på at forløbet virker",
-    "Tegn på at forløbet skal justeres eller stoppes",
-    "Foreløbig plan for næste skridt efter forløbet"
-  ]
-},
-  "logbog": {
-  "title": "PBL Logbog (daglig/ugentlig)",
-  "fields": [
-    "Dato",
-    "Aktivitet/projektopgave",
-    "Deltagelse (lav / middel / høj)",
-    "Fokus og koncentration (lav / middel / høj)",
-    "Trivsel og ro (lav / middel / høj)",
-    "Hvad barnet arbejdede med fagligt eller praktisk",
-    "Hvad barnet lykkedes med",
-    "Hvad der var svært eller skabte uro",
-    "Støttebehov (lav / middel / høj)",
-    "Justering til næste gang",
-    "Kort note til forældre eller næste lærer"
-  ]
-},
-  "progressionsskema": {
-  "title": "PBL Progressionsskema",
-  "fields": [
-    "Projektnavn",
-    "Periode",
-    "Barnets startniveau",
-    "Deltagelse ved opstart (lav / middel / høj)",
-    "Fokus og koncentration ved opstart (lav / middel / høj)",
-    "Trivsel og ro ved opstart (lav / middel / høj)",
-    "Hvad barnet kunne ved opstart",
-    "Hvad barnet begyndte at mestre undervejs",
-    "Hvad barnet kan ved afslutning",
-    "Udvikling i læring (lav / middel / høj)",
-    "Støttebehov ved opstart (lav / middel / høj)",
-    "Støttebehov ved afslutning (lav / middel / høj)",
-    "Tegn på øget selvstændighed",
-    "Anbefalet næste skridt"
-  ]
-},
-  "evalueringsrapport": {
-  "title": "PBL Evalueringsrapport",
-  "fields": [
-    "Projektnavn",
-    "Periode",
-    "Kort beskrivelse af forløbet",
-    "Mål med forløbet",
-    "Hvad fungerede godt for barnet?",
-    "Hvad styrkede fokus, ro og deltagelse?",
-    "Hvad lærte barnet undervejs?",
-    "Hvad var svært eller hæmmede udviklingen?",
-    "Støttebehov under forløbet (lav / middel / høj)",
-    "Trivsel under forløbet (lav / middel / høj)",
-    "Barnets egen oplevelse af forløbet",
-    "Forældresamtale-noter",
-    "Samlet vurdering: fortsætte, justere eller afslutte",
-    "Anbefalet næste skridt",
-    "Anbefalinger til næste lærer eller fagperson"
-  ]
-},
-  "foraeldre_kommunikation": {
-  "title": "PBL Forældre-kommunikation",
-  "fields": [
-    "Projektnavn",
-    "Periode",
-    "Kort beskrivelse af hvorfor dette forløb er valgt",
-    "Hvad barnet arbejder med i praksis",
-    "Hvad barnet forventes at lære undervejs",
-    "Hvordan forløbet støtter fokus, ro og trivsel",
-    "Hvad skolen holder øje med undervejs",
-    "Hvad forældre kan støtte med hjemme",
-    "Hvornår og hvordan der følges op",
-    "Tegn på at forløbet virker",
-    "Tegn på at forløbet skal justeres",
-    "Kontaktperson i skolen"
-  ]
-},
+  "teacher_resources": {
+    "canonical_source": "data/CDA_TemplateFiles.json",
+    "category_id": "pbl-interesse-og-progression",
+    "purpose": "Tokenfri lærermappe fra interesse og projektvalg til pilot, observation, evaluering og næste trin.",
+    "files": [
+      {
+        "id": "pbl-interesse-og-progression-overblik",
+        "title": "Overblik og arbejdsgang",
+        "content_file": "templates/pbl-interesse-og-progression/00-overblik.md"
+      },
+      {
+        "id": "pbl-interesse-og-progression-opstart",
+        "title": "Opstartsplan og treugers pilot",
+        "content_file": "templates/pbl-interesse-og-progression/01-opstart-og-treugers-pilot.md"
+      },
+      {
+        "id": "pbl-interesse-og-progression-log",
+        "title": "Ugentlig PBL-log",
+        "content_file": "templates/pbl-interesse-og-progression/02-ugentlig-pbl-log.md"
+      },
+      {
+        "id": "pbl-interesse-og-progression-evaluering",
+        "title": "PBL-evaluering",
+        "content_file": "templates/pbl-interesse-og-progression/03-evaluering-og-naeste-trin.md"
+      },
+      {
+        "id": "pbl-interesse-og-progression-skole-hjem",
+        "title": "PBL skole-hjem-overblik",
+        "content_file": "templates/pbl-interesse-og-progression/04-skole-hjem-overblik.md"
+      }
+    ],
+    "content_rule": "Markdown-filerne er den eneste indholdskilde. PBL-projektdata må kun henvise til dem og må ikke indeholde parallelle skemaudkast."
+  },
   "rollespil_motor": {
     "enabled": true,
     "activation_keyword": "rollespil_start",

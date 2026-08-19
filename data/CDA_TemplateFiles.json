@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "name": "CDA Template Files",
   "description": "Centralt register over statiske Markdown-ressourcer i templates-mappen.",
   "direct_display_default": true,
@@ -466,6 +466,95 @@
             "evaluering",
             "overgange",
             "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
+    },
+    {
+      "id": "pbl-interesse-og-progression",
+      "title": "PBL – interesse og progression",
+      "description": "Lærermappe fra elevens interesse og projektvalg til treugers pilot, log og næste trin.",
+      "keywords": [
+        "PBL",
+        "projektbaseret læring",
+        "projektforløb",
+        "elevinteresse",
+        "treugers pilot",
+        "microsteps",
+        "PBL log",
+        "PBL evaluering",
+        "progression"
+      ],
+      "files": [
+        {
+          "id": "pbl-interesse-og-progression-overblik",
+          "title": "Overblik og arbejdsgang",
+          "content_file": "templates/pbl-interesse-og-progression/00-overblik.md",
+          "keywords": [
+            "PBL guide",
+            "PBL arbejdsgang",
+            "interesse til progression",
+            "lærervejledning"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "pbl-interesse-og-progression-opstart",
+          "title": "Opstartsplan og treugers pilot",
+          "content_file": "templates/pbl-interesse-og-progression/01-opstart-og-treugers-pilot.md",
+          "keywords": [
+            "PBL opstartsplan",
+            "3 ugers PBL",
+            "treugers pilot",
+            "elevprofil",
+            "faglige mål",
+            "sikkerhed"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "pbl-interesse-og-progression-log",
+          "title": "Ugentlig PBL-log",
+          "content_file": "templates/pbl-interesse-og-progression/02-ugentlig-pbl-log.md",
+          "keywords": [
+            "PBL log",
+            "PBL logbog",
+            "ugentlig observation",
+            "engagement",
+            "læring",
+            "vedholdenhed"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "pbl-interesse-og-progression-evaluering",
+          "title": "PBL-evaluering",
+          "content_file": "templates/pbl-interesse-og-progression/03-evaluering-og-naeste-trin.md",
+          "keywords": [
+            "PBL evaluering",
+            "PBL progression",
+            "næste projekt",
+            "næste trin",
+            "justering"
+          ],
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "pbl-interesse-og-progression-skole-hjem",
+          "title": "PBL skole-hjem-overblik",
+          "content_file": "templates/pbl-interesse-og-progression/04-skole-hjem-overblik.md",
+          "keywords": [
+            "PBL skole-hjem-overblik",
+            "PBL skole hjem",
+            "PBL forældre",
+            "forældreinformation",
+            "projektorientering"
           ],
           "direct_display": true,
           "ai_required": false
