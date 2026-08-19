@@ -2175,6 +2175,18 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
     const ROLEPLAY_STATE_KEY = "cda_roleplay_state";
     const ACTIVE_CASE_CONTEXT_KEY = "cda_active_case_context";
+
+    const navigationEntry = performance.getEntriesByType("navigation")[0];
+    const pageWasReloaded =
+      navigationEntry?.type === "reload" ||
+      performance.navigation?.type === 1;
+
+    if (pageWasReloaded) {
+      sessionStorage.removeItem("cda_pending_action");
+      sessionStorage.removeItem(ROLEPLAY_STATE_KEY);
+      sessionStorage.removeItem(ACTIVE_CASE_CONTEXT_KEY);
+    }
+
     let pendingAction = sessionStorage.getItem("cda_pending_action");
     let roleplayState = loadRoleplayState();
     let activeCaseContext = loadActiveCaseContext();
