@@ -76,6 +76,7 @@
   "entry_modes": {
     "incident": {
       "label": "kør hændelse",
+      "action": "analyze_incident",
       "phrases": [
         "kør en hændelse",
         "kør hændelsen",
@@ -90,6 +91,7 @@
     },
     "situation": {
       "label": "træn situation",
+      "action": "start",
       "phrases": [
         "træn en situation",
         "træne en situation",
@@ -103,6 +105,7 @@
     },
     "conversation": {
       "label": "øv samtale",
+      "action": "start",
       "phrases": [
         "øve en samtale",
         "øv en samtale",
