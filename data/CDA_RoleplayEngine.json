@@ -20,7 +20,19 @@
       "øve en samtale",
       "øv en samtale",
       "øve samtalen",
-      "øv samtalen"
+      "øv samtalen",
+      "roleplay",
+      "role play",
+      "dialogue between",
+      "conversation between",
+      "scene between",
+      "between me and",
+      "run an incident",
+      "replay an incident",
+      "practice a situation",
+      "practise a situation",
+      "practice a conversation",
+      "practise a conversation"
     ],
     "practice_verbs": [
       "jeg vil øve",
@@ -29,7 +41,13 @@
       "lad os øve",
       "lad os træne",
       "hjælp mig med at øve",
-      "hjælp mig med at træne"
+      "hjælp mig med at træne",
+      "i want to practice",
+      "i want to practise",
+      "i want to rehearse",
+      "let us practice",
+      "let's practice",
+      "help me practice"
     ],
     "practice_objects": [
       "dialog",
@@ -39,7 +57,14 @@
       "scene",
       "skole hjem samtale",
       "ppr møde",
-      "forældresamtale"
+      "forældresamtale",
+      "dialogue",
+      "conversation",
+      "situation",
+      "incident",
+      "scene",
+      "parent meeting",
+      "school home meeting"
     ]
   },
   "entry_modes": {
@@ -51,7 +76,10 @@
         "gennemgå en hændelse",
         "gennemgå hændelsen",
         "det skete",
-        "der skete"
+        "der skete",
+        "run an incident",
+        "replay an incident",
+        "this happened"
       ]
     },
     "situation": {
@@ -62,7 +90,9 @@
         "træn situationen",
         "træne situationen",
         "øve en situation",
-        "øv en situation"
+        "øv en situation",
+        "practice a situation",
+        "practise a situation"
       ]
     },
     "conversation": {
@@ -77,18 +107,89 @@
         "mellem mig og",
         "skole hjem samtale",
         "ppr møde",
-        "forældresamtale"
+        "forældresamtale",
+        "practice a conversation",
+        "practise a conversation",
+        "dialogue between",
+        "conversation between",
+        "between me and",
+        "parent meeting",
+        "school home meeting"
       ]
     }
   },
   "state": {
     "marker": "[[PENDING_ACTION:ROLEPLAY_ACTIVE]]",
+    "encoded_prefix": "roleplay_v2:",
+    "max_saved_turns": 6,
+    "preparation_pending_action": "roleplay_conversation_preparation",
+    "preparation_questions": {
+      "Dansk": [
+        "Hvad er dit mål med samtalen?",
+        "Hvad er det sværeste, du forventer bliver sagt eller spurgt om?"
+      ],
+      "English": [
+        "What is your goal for the conversation?",
+        "What is the hardest thing you expect may be said or asked?"
+      ]
+    },
+    "skip_preparation_phrases": [
+      "start nu",
+      "gå i gang",
+      "kom i gang",
+      "spring spørgsmålene over",
+      "spring videre",
+      "lad os begynde",
+      "start rollespillet",
+      "start now",
+      "let's begin",
+      "skip the questions",
+      "start the roleplay"
+    ],
     "exit_phrases": [
       "afslut rollespillet",
       "stop rollespillet",
       "slut rollespillet",
       "gå ud af rollespillet",
-      "tilbage til normal drift"
+      "tilbage til normal drift",
+      "end the roleplay",
+      "stop the roleplay",
+      "return to normal mode"
+    ]
+  },
+  "output_contract": {
+    "structured_headings": {
+      "Dansk": [
+        "Situation",
+        "Roller",
+        "Rollespil – typisk eskalation",
+        "Rollespil – bedre tilgang",
+        "Kort læringspointe"
+      ],
+      "English": [
+        "Situation",
+        "Roles",
+        "Roleplay – typical escalation",
+        "Roleplay – better approach",
+        "Brief learning point"
+      ]
+    },
+    "heading_rule": "Når et struktureret rollespil vises, skal overskrifterne skrives som H2 med de eksplicitte numre 1 til 5. Brug aldrig 1 ved alle afsnit.",
+    "live_interaction_rule": "Når den levende øvelse er startet, skal du spille modparten og vente på brugerens næste replik. Gentag ikke alle fem afsnit for hver tur.",
+    "preparation_rule": "I forberedelsesfasen vises kun de to forberedelsesspørgsmål uden den nummererede struktur."
+  },
+  "scenario_library": {
+    "excluded_ai_fields": [
+      "specialist_råd"
+    ],
+    "explicit_request_phrases": [
+      "vis eksisterende scenarier",
+      "vis rollespilsscenarier",
+      "brug et eksisterende scenarie",
+      "brug scenarie",
+      "scenariebibliotek",
+      "frikvarter_1",
+      "opgave_1"
     ]
   },
   "runtime": {
