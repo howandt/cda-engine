@@ -4425,6 +4425,7 @@ ${userText}`;
       if (startsRoleplay || startsIncidentAnalysis) {
         pendingAction = null;
         sessionStorage.removeItem("cda_pending_action");
+        clearActiveCaseContext();
       }
 
       fejl.textContent = "";
@@ -4494,6 +4495,9 @@ ${userText}`;
           return;
         }
 
+        const responseIsRoleplay =
+          useRoleplay || data.conversation_mode === "roleplay";
+
         if (useRoleplay) {
   const leavesRoleplay =
     data.action === "stop" ||
@@ -4515,7 +4519,9 @@ if (data.pending_action) {
   sessionStorage.removeItem("cda_pending_action");
 }
 
-        if (!useRoleplay) {
+        if (responseIsRoleplay) {
+          clearActiveCaseContext();
+        } else {
           updateActiveCaseContextAfterReply(tekst, data.reply, data);
         }
 
