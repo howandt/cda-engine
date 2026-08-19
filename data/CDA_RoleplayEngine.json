@@ -183,6 +183,19 @@
         "Brief learning point"
       ]
     },
+    "feedback_headings": {
+      "Dansk": [
+        "1. Hvad der hjalp",
+        "2. Hvad der stadig kan skabe modstand eller uklarhed",
+        "3. Én konkret forbedret formulering eller næste handling"
+      ],
+      "English": [
+        "1. What helped",
+        "2. What may still create resistance or uncertainty",
+        "3. One specific improved phrase or next action"
+      ]
+    },
+    "feedback_heading_rule": "Brug præcis de tre feedbackoverskrifter i den angivne rækkefølge som Markdown H2. Tallet skal være en del af selve overskriften. Brug ikke en automatisk nummereret liste.",
     "heading_rule": "Når et struktureret rollespil vises, skal overskrifterne skrives som H2 med de eksplicitte numre 1 til 5. Brug aldrig 1 ved alle afsnit.",
     "live_interaction_rule": "Når den levende øvelse er startet, skal du spille modparten og vente på brugerens næste replik. Gentag ikke alle fem afsnit for hver tur.",
     "preparation_rule": "I forberedelsesfasen vises kun de to forberedelsesspørgsmål uden den nummererede struktur."
