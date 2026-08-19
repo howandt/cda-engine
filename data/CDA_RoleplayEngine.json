@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "name": "CDA Roleplay Engine",
   "pending_action": "roleplay_active",
   "activation": {
@@ -72,6 +72,45 @@
       "parent meeting",
       "school home meeting"
     ]
+  },
+  "control_commands": {
+    "new_roleplay": {
+      "action": "new_roleplay",
+      "exact_phrases": [
+        "nyt rollespil",
+        "ny rollespil",
+        "start nyt rollespil",
+        "start et nyt rollespil",
+        "begynd nyt rollespil",
+        "begynd et nyt rollespil",
+        "stop rollespillet og begynd et nyt",
+        "stop det rollespil og begynd et nyt",
+        "afslut rollespillet og begynd et nyt"
+      ],
+      "prefix_phrases": [
+        "nyt rollespil",
+        "ny rollespil",
+        "start nyt rollespil",
+        "start et nyt rollespil",
+        "begynd nyt rollespil",
+        "begynd et nyt rollespil"
+      ]
+    },
+    "new_scene": {
+      "action": "new_scene",
+      "exact_phrases": [
+        "ny scene",
+        "nyt scenarie",
+        "start en ny scene",
+        "start et nyt scenarie"
+      ],
+      "prefix_phrases": [
+        "ny scene",
+        "nyt scenarie",
+        "start en ny scene",
+        "start et nyt scenarie"
+      ]
+    }
   },
   "entry_modes": {
     "incident": {
