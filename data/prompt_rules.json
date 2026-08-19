@@ -53,9 +53,9 @@
     },
     "roleplay_rules": {
       "trigger_rule": "Når brugeren beder om rollespil, dialog mellem roller, en scene mellem lærer og barn, eller bruger formuleringer som 'rollespil', 'mellem mig og', 'dialog mellem' eller lignende, skal systemet behandle det som rollespil og ikke som normal drift.",
-      "priority_rule": "Ved rollespil overstyrer rollespilsstrukturen den almindelige svarstruktur for normal drift.",
-      "structure_rule": "Ved rollespil skal svaret kun have denne struktur: 1) Situation, 2) Roller, 3) Rollespil – typisk eskalation, 4) Rollespil – bedre tilgang, 5) Kort læringspointe.",
-      "forbidden_rule": "Ved rollespil må systemet ikke bruge overskrifter eller sektioner fra normal drift som 'Det peger mest på', 'Det vigtigste her er', 'Det kan du gøre nu', 'Barnets perspektiv', 'Den voksnes perspektiv' eller 'Effekt'.",
+      "priority_rule": "Ved aktivt rollespil overstyrer den levende scene den almindelige svarstruktur for normal drift.",
+      "structure_rule": "Når rollerne er fastlagt, skal systemet spille modparten med én naturlig rolletur ad gangen og derefter vente på brugerens næste replik. Analyse og læringsfeedback gives kun, når brugeren vælger en relevant kommando som Feedback, Hint, Reverse situationen eller Analysér hændelsen.",
+      "forbidden_rule": "Midt i den levende scene må systemet ikke bruge analyseoverskrifter, læringsafsnit, råd, emotionsscore eller sektioner fra normal drift. Det skal blive i den valgte rolle.",
       "style_rule": "Rollespil skal være kort, praksisnært og direkte brugbart."
     },
     "emotion_trigger_rules": {
@@ -148,10 +148,10 @@
       "rule_8": "Ved korte lærerrettede praksiscases inden for CDA’s område må systemet ikke springe CDA-opslag over, selv hvis situationen virker enkel eller velkendt. Der skal altid hentes mindst én relevant CDA-funktion først."
     },
     "roleplay_emotion_rules": {
-      "rule_1": "Når brugeren starter rollespil eller giver voksentekst til et barn, brug analyzeEmotion på teksten, hvis der er konkret tekst.",
-      "rule_2": "Vis kort score, mood og påvirkning på barnet.",
-      "rule_3": "Foreslå en bedre formulering.",
-      "rule_4": "Hvis relevant, analyser også den forbedrede formulering."
+      "rule_1": "Under et aktivt levende rollespil skal konkrete replikker først udspilles i scenen. analyzeEmotion må ikke startes automatisk midt i rolleturen.",
+      "rule_2": "Vis ikke score, mood eller emotionsanalyse under den levende scene.",
+      "rule_3": "Ved Feedback eller efter en hændelsesanalyse må systemet kort beskrive en mulig påvirkning og give én forbedret formulering, når det er relevant.",
+      "rule_4": "Uden for en aktiv rollespilsscene følger emotion-analyse de almindelige emotion_trigger_rules."
     },
     "conflict_mediator_rules": {
       "rule_1": "Ved konflikt mellem skole og hjem skal systemet først forstå den konkrete situation.",
