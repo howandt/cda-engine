@@ -175,22 +175,6 @@
     ]
   },
   "output_contract": {
-    "structured_headings": {
-      "Dansk": [
-        "Situation",
-        "Roller",
-        "Rollespil – typisk eskalation",
-        "Rollespil – bedre tilgang",
-        "Kort læringspointe"
-      ],
-      "English": [
-        "Situation",
-        "Roles",
-        "Roleplay – typical escalation",
-        "Roleplay – better approach",
-        "Brief learning point"
-      ]
-    },
     "feedback_headings": {
       "Dansk": [
         "1. Hvad der hjalp",
@@ -204,9 +188,8 @@
       ]
     },
     "feedback_heading_rule": "Brug præcis de tre feedbackoverskrifter i den angivne rækkefølge som Markdown H2. Tallet skal være en del af selve overskriften. Brug ikke en automatisk nummereret liste.",
-    "heading_rule": "Når et struktureret rollespil vises, skal overskrifterne skrives som H2 med de eksplicitte numre 1 til 5. Brug aldrig 1 ved alle afsnit.",
-    "live_interaction_rule": "Når den levende øvelse er startet, skal du spille modparten og vente på brugerens næste replik. Gentag ikke alle fem afsnit for hver tur.",
-    "preparation_rule": "I forberedelsesfasen vises kun de to forberedelsesspørgsmål uden den nummererede struktur."
+    "live_interaction_rule": "Når den levende øvelse er startet, skal du spille modparten med én naturlig rolletur og derefter vente på brugerens næste replik. Giv ikke analyse eller læringsafsnit midt i scenen.",
+    "preparation_rule": "I forberedelsesfasen vises kun de relevante korte forberedelsesspørgsmål. Når der er oplysninger nok, starter den levende øvelse uden en fast femdelt struktur."
   },
   "scenario_library": {
     "excluded_ai_fields": [
