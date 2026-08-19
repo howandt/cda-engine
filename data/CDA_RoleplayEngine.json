@@ -1,0 +1,106 @@
+{
+  "version": "1.0",
+  "name": "CDA Roleplay Engine",
+  "pending_action": "roleplay_active",
+  "activation": {
+    "direct_phrases": [
+      "rollespil",
+      "rolleleg",
+      "perspektivskifte",
+      "dialog mellem",
+      "samtale mellem",
+      "scene mellem",
+      "mellem mig og",
+      "kør en hændelse",
+      "kør hændelsen",
+      "gennemgå en hændelse",
+      "gennemgå hændelsen",
+      "træn en situation",
+      "træn situationen",
+      "øve en samtale",
+      "øv en samtale",
+      "øve samtalen",
+      "øv samtalen"
+    ],
+    "practice_verbs": [
+      "jeg vil øve",
+      "jeg vil træne",
+      "jeg vil prøve",
+      "lad os øve",
+      "lad os træne",
+      "hjælp mig med at øve",
+      "hjælp mig med at træne"
+    ],
+    "practice_objects": [
+      "dialog",
+      "samtale",
+      "situation",
+      "hændelse",
+      "scene",
+      "skole hjem samtale",
+      "ppr møde",
+      "forældresamtale"
+    ]
+  },
+  "entry_modes": {
+    "incident": {
+      "label": "kør hændelse",
+      "phrases": [
+        "kør en hændelse",
+        "kør hændelsen",
+        "gennemgå en hændelse",
+        "gennemgå hændelsen",
+        "det skete",
+        "der skete"
+      ]
+    },
+    "situation": {
+      "label": "træn situation",
+      "phrases": [
+        "træn en situation",
+        "træne en situation",
+        "træn situationen",
+        "træne situationen",
+        "øve en situation",
+        "øv en situation"
+      ]
+    },
+    "conversation": {
+      "label": "øv samtale",
+      "phrases": [
+        "øve en samtale",
+        "øv en samtale",
+        "øve samtalen",
+        "øv samtalen",
+        "dialog mellem",
+        "samtale mellem",
+        "mellem mig og",
+        "skole hjem samtale",
+        "ppr møde",
+        "forældresamtale"
+      ]
+    }
+  },
+  "state": {
+    "marker": "[[PENDING_ACTION:ROLEPLAY_ACTIVE]]",
+    "exit_phrases": [
+      "afslut rollespillet",
+      "stop rollespillet",
+      "slut rollespillet",
+      "gå ud af rollespillet",
+      "tilbage til normal drift"
+    ]
+  },
+  "runtime": {
+    "model": "gpt-5.4-mini",
+    "reasoning_effort": "low",
+    "max_output_tokens": 1200,
+    "max_tool_rounds": 3,
+    "allowed_tools": [
+      "getEmotionAnalysis",
+      "getRollespil",
+      "getSpecialistPanel",
+      "getTemplates"
+    ]
+  }
+}

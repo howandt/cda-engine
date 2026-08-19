@@ -49,9 +49,8 @@ import {
   runPblFlow,
 } from "../lib/pblEngine.js";
 import {
-  buildRoleplayRuleInjection,
   getRollespil,
-  isRoleplayContextActive,
+  runRoleplayFlow,
 } from "../lib/roleplayEngine.js";
 import {
   getEmotionAnalysis,
@@ -664,9 +663,6 @@ function isReservedSpecializedRequest(message) {
     "specialistpanel",
     "specialist panel",
     "hvad siger specialisterne",
-    "rollespil",
-    "rolleleg",
-    "perspektivskifte",
     "lav et skema",
     "lav en skabelon",
     "vis en skabelon",
@@ -3318,18 +3314,8 @@ function cleanCdaReplyTail(replyText) {
 }
 
 function extractPendingAction(replyText) {
-  const roleplayMarker = "[[PENDING_ACTION:ROLEPLAY_ACTIVE]]";
-  const text = String(replyText || "");
-
-  if (text.includes(roleplayMarker)) {
-    return {
-      reply: text.replace(roleplayMarker, "").trim(),
-      pendingAction: "roleplay_active",
-    };
-  }
-
   return {
-    reply: text.trim(),
+    reply: String(replyText || "").trim(),
     pendingAction: null,
   };
 }
@@ -3394,9 +3380,6 @@ function isBornehavePracticeRequest(message) {
     "specialistpanel",
     "specialist panel",
     "hvad siger specialisterne",
-    "rollespil",
-    "rolleleg",
-    "perspektivskifte",
     "lav et skema",
     "lav en skabelon",
     "vis en skabelon",
@@ -3530,9 +3513,6 @@ function shouldUseSpecializedToolFlow(message) {
     "specialistperspektiv",
     "tværfaglig vurdering",
     "tvaerfaglig vurdering",
-    "rollespil",
-    "rolleleg",
-    "perspektivskifte",
     "lav et skema",
     "lav en skabelon",
     "vis en skabelon",
@@ -3863,125 +3843,42 @@ const contextualInput = buildContextualInput(message, activeCaseContext);
 try {
   const heidiPrompt = readHeidiPrompt();
 
-  // 23B.9O: Rollespil har forrang over ALT andet lokalt routing (case-søgning,
-  // skabeloner, diagnose, specialister, PBL, børnehave osv.), jf. roleplay_rules'
-  // egen priority_rule. Tjekkes derfor allerførst, før noget andet får chancen
-  // for at kapre en igangværende rollespil-samtale.
-  const roleplayContextActive = isRoleplayContextActive(message, pending_action);
+  const roleplayResult = await runRoleplayFlow({
+    openai,
+    model: "gpt-5.4-mini",
+    heidiPrompt,
+    audienceInstructions,
+    activeCaseInstructions,
+    contextualInput,
+    message,
+    pendingAction: pending_action,
+    responseStyle: response_style,
+    tools,
+    executeTool,
+  });
 
-  if (roleplayContextActive) {
-    const roleplayHeidiPrompt = heidiPrompt + buildRoleplayRuleInjection();
-
-    const roleplayInstructions = [
-      roleplayHeidiPrompt,
-      "",
-      audienceInstructions,
-      "",
-      activeCaseInstructions,
-      "",
-      `AKTUEL SVARSTIL: ${response_style}`,
-    ].filter(Boolean).join("\n");
-
-    let roleplayResponse = await openai.responses.create({
-      model: "gpt-5.4-mini",
-      reasoning: {
-        effort: "low",
-      },
-      instructions: roleplayInstructions,
-      input: contextualInput,
-      tools,
-      max_output_tokens: 1200,
-    });
-
-    let rpInputTokens = 0;
-    let rpOutputTokens = 0;
-    let rpTotalTokens = 0;
-    const rpUsageByCall = [];
-
-    function addRoleplayUsage(responseData, callNumber, phase, toolNames = []) {
-      const callInputTokens = Number(responseData?.usage?.input_tokens || 0);
-      const callOutputTokens = Number(responseData?.usage?.output_tokens || 0);
-      const callTotalTokens = Number(
-        responseData?.usage?.total_tokens || callInputTokens + callOutputTokens
-      );
-      rpInputTokens += callInputTokens;
-      rpOutputTokens += callOutputTokens;
-      rpTotalTokens += callTotalTokens;
-      rpUsageByCall.push({
-        call: callNumber,
-        phase,
-        tools_returned_to_model: toolNames,
-        input_tokens: callInputTokens,
-        output_tokens: callOutputTokens,
-        total_tokens: callTotalTokens,
-      });
-    }
-
-    addRoleplayUsage(roleplayResponse, 1, "roleplay_initial");
-
-    const roleplayUsedTools = [];
-    const roleplayToolDebug = [];
-
-    for (let round = 0; round < 3; round += 1) {
-      const toolCalls = roleplayResponse.output.filter(
-        (item) => item.type === "function_call"
-      );
-
-      if (toolCalls.length === 0) {
-        break;
-      }
-
-      const toolOutputs = toolCalls.map((toolCall) => {
-        const parsedArguments = JSON.parse(toolCall.arguments || "{}");
-        roleplayUsedTools.push(toolCall.name);
-        roleplayToolDebug.push({
-          name: toolCall.name,
-          arguments: parsedArguments,
-        });
-        return {
-          type: "function_call_output",
-          call_id: toolCall.call_id,
-          output: JSON.stringify(executeTool(toolCall)),
-        };
-      });
-
-      roleplayResponse = await openai.responses.create({
-        model: "gpt-5.4-mini",
-        reasoning: {
-          effort: "low",
-        },
-        instructions: roleplayInstructions,
-        previous_response_id: roleplayResponse.id,
-        input: toolOutputs,
-        tools,
-        max_output_tokens: 1200,
-      });
-
-      addRoleplayUsage(
-        roleplayResponse,
-        round + 2,
-        "roleplay_after_tool_output",
-        toolCalls.map((toolCall) => toolCall.name)
-      );
-    }
-
-    const roleplayReplyData = extractPendingAction(roleplayResponse.output_text);
+  if (roleplayResult) {
+    const usageByCall = roleplayResult.usage || [];
+    const totals = usageByCall.reduce(
+      (sum, item) => ({
+        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
+        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
+        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
+      }),
+      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
+    );
 
     console.log("CDA værktøjskald:", {
-      tools_used: roleplayUsedTools,
-      tool_debug: roleplayToolDebug,
+      tools_used: roleplayResult.usedTools,
+      tool_debug: roleplayResult.toolDebug,
     });
 
     console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: rpUsageByCall,
-      totals: {
-        input_tokens: rpInputTokens,
-        output_tokens: rpOutputTokens,
-        total_tokens: rpTotalTokens,
-      },
+      usage_by_call: usageByCall,
+      totals,
     });
 
-    if (adgangskode) {
+    if (adgangskode && totals.total_tokens > 0) {
       const supabase = getSupabase();
       const { error: forbrugsFejl } = await supabase
         .from("token_forbrug")
@@ -3989,10 +3886,10 @@ try {
           adgangskode: adgangskode.trim().toUpperCase(),
           system: "cda",
           udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: rpInputTokens,
-          output_tokens: rpOutputTokens,
-          samlet_tokens: rpTotalTokens,
+          model: roleplayResult.model,
+          input_tokens: totals.input_tokens,
+          output_tokens: totals.output_tokens,
+          samlet_tokens: totals.total_tokens,
         });
 
       if (forbrugsFejl) {
@@ -4002,14 +3899,15 @@ try {
 
     return res.status(200).json({
       success: true,
-      reply: roleplayReplyData.reply,
-      model: "gpt-5.4-mini",
-      tools_used: roleplayUsedTools,
-      tool_debug: roleplayToolDebug,
-      pending_action: roleplayReplyData.pendingAction,
+      reply: roleplayResult.reply,
+      model: roleplayResult.model,
+      tools_used: roleplayResult.usedTools,
+      tool_debug: roleplayResult.toolDebug,
+      used_data_sources: roleplayResult.usedDataSources,
+      conversation_mode: roleplayResult.conversationMode,
+      pending_action: roleplayResult.pendingAction,
     });
   }
-
   const templateResult = await runTemplateResourceFlow({
     openai,
     model: "gpt-5.4-mini",
@@ -4899,8 +4797,7 @@ try {
     }
   }
 
-  // Rollespil er allerede håndteret og returneret tidligere i denne funktion,
-  // hvis det var aktivt — herfra er roleplayContextActive altid false.
+  // Et aktivt rollespil er allerede håndteret af roleplayEngine ovenfor.
 
   if (isCdaInternalDataSourceQuestion(message)) {
     const reply = buildCdaInternalDataSourceReply();
