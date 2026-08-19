@@ -18,10 +18,9 @@ import {
   isExcludedFromDefaultSpecialistPanelFromEngine,
 } from "../lib/specialistEngine.js";
 import {
-  getDirectTemplateFileRequest,
-  getLocalTemplateRequest,
   getTemplates,
   normalizeTemplateSearch,
+  runTemplateResourceFlow,
 } from "../lib/templateResourceEngine.js";
 import {
   buildActiveLocalCaseFollowupReply,
@@ -4011,6 +4010,81 @@ try {
     });
   }
 
+  const templateResult = await runTemplateResourceFlow({
+    openai,
+    model: "gpt-5.4-mini",
+    message,
+    language,
+    role,
+    responseStyle: response_style,
+    heidiPrompt,
+    audienceInstructions,
+    allowRouting: !shouldBlockTemplateAutoRouting({
+      message,
+      activeCaseContext,
+    }),
+  });
+
+  if (templateResult) {
+    const usageByCall = templateResult.usage || [];
+    const totals = usageByCall.reduce(
+      (sum, item) => ({
+        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
+        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
+        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
+      }),
+      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
+    );
+
+    console.log("CDA værktøjskald:", {
+      tools_used: templateResult.usedTools,
+      tool_debug: templateResult.toolDebug,
+    });
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals,
+    });
+
+    if (adgangskode && totals.total_tokens > 0) {
+      const supabase = getSupabase();
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: templateResult.model,
+          input_tokens: totals.input_tokens,
+          output_tokens: totals.output_tokens,
+          samlet_tokens: totals.total_tokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+      }
+    }
+
+    const templateActiveLocalCase = resolveActiveLocalCase(
+      pending_action,
+      activeCaseContext
+    );
+
+    return res.status(200).json({
+      success: true,
+      reply: templateResult.reply,
+      model: templateResult.model,
+      tools_used: templateResult.usedTools,
+      tool_debug: templateResult.toolDebug,
+      used_data_sources: templateResult.usedDataSources,
+      conversation_mode: "template_resource",
+      pending_action: preserveActiveLocalCasePendingAction(
+        templateActiveLocalCase,
+        pending_action
+      ),
+    });
+  }
+
   if (isEmotionAnalysisRequest(message)) {
     const emotionResult = await runEmotionFlow({
       openai,
@@ -5551,290 +5625,6 @@ try {
       tools_used: usedTools,
       tool_debug: toolDebug,
       pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
-    });
-  }
-
-  const localTemplateRequest = shouldBlockTemplateAutoRouting({ message, activeCaseContext })
-    ? null
-    : getLocalTemplateRequest(message);
-
-  if (localTemplateRequest?.type === "list") {
-    const titles = Array.from(
-      new Set(
-        localTemplateRequest.templates
-          .map((template) => String(template?.title || "").trim())
-          .filter(Boolean)
-      )
-    );
-
-    const reply = [
-      language === "English"
-        ? `CDA's template bank contains ${titles.length} existing templates:`
-        : `CDA's templatebank indeholder ${titles.length} eksisterende skabeloner:`,
-      "",
-      ...titles.map((title) => `- ${title}`),
-    ].join("\n");
-
-    const usedTools = ["localTemplateRouting"];
-    const toolDebug = [
-      {
-        name: "localTemplateRouting",
-        action: "list_templates",
-        total_templates: titles.length,
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
-
-    return res.status(200).json({
-      success: true,
-      reply,
-      model: "local",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
-    });
-  }
-
-  if (localTemplateRequest?.type === "not_found") {
-    const titles = Array.from(
-      new Set(
-        localTemplateRequest.templates
-          .map((template) => String(template?.title || "").trim())
-          .filter(Boolean)
-      )
-    );
-
-    const reply = language === "English"
-      ? [
-          "I found no existing template in CDA's template bank that matches your request.",
-          titles.length > 0
-            ? `The template bank includes: ${titles.slice(0, 6).join(", ")}.`
-            : "The template bank contains no templates.",
-        ].join("\n\n")
-      : [
-          "Jeg fandt ingen eksisterende skabelon i CDA's templatebank, der matcher din forespørgsel.",
-          titles.length > 0
-            ? `Templatebanken indeholder blandt andet: ${titles.slice(0, 6).join(", ")}.`
-            : "Templatebanken indeholder ingen skabeloner.",
-        ].join("\n\n");
-
-    const usedTools = ["localTemplateRouting"];
-    const toolDebug = [
-      {
-        name: "localTemplateRouting",
-        action: "no_matching_template",
-        total_templates: localTemplateRequest.total,
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
-
-    return res.status(200).json({
-      success: true,
-      reply,
-      model: "local",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
-    });
-  }
-
-  if (localTemplateRequest?.type === "match") {
-    const directTemplateFile = getDirectTemplateFileRequest(
-      message,
-      localTemplateRequest.template,
-      {
-        allowIndirectResourceDisplay:
-          localTemplateRequest.indirectResourceRequest === true,
-      }
-    );
-
-    if (directTemplateFile) {
-      const usedTools = ["localTemplateRouting"];
-      const toolDebug = [
-        {
-          name: "localTemplateRouting",
-          action: "show_existing_template_direct_file",
-          template_id: localTemplateRequest.template?.id || null,
-          template_title: localTemplateRequest.template?.title || null,
-          content_file: directTemplateFile.contentFile,
-          match_score: localTemplateRequest.score,
-          matched_fields: localTemplateRequest.matchedFields,
-          matched_words: localTemplateRequest.matchedWords,
-          role,
-          response_style,
-        },
-      ];
-
-      const reply = directTemplateFile.content;
-
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      console.log("CDA tokenmåling pr. OpenAI-kald:", {
-        usage_by_call: [],
-        totals: {
-          input_tokens: 0,
-          output_tokens: 0,
-          total_tokens: 0,
-        },
-      });
-
-      return res.status(200).json({
-        success: true,
-        reply,
-        model: "local",
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-        pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
-      });
-    }
-
-    const templateInstructions = [
-      heidiPrompt,
-      "",
-      audienceInstructions,
-      "",
-      "LOKAL CDA-TEMPLATEROUTING",
-      "Brug kun den ene vedlagte eksisterende CDA-skabelon som grundlag for svaret.",
-      "Brugeren har udtrykkeligt bedt om en eksisterende skabelon fra CDA's templatebank. Sig derfor ikke, at templatebanken er utilgængelig.",
-      "Opfind ikke en ny skabelon, nye afsnit, nye faglige påstande eller manglende personoplysninger.",
-      "Når brugeren beder om at få skabelonen vist, skal du gengive dens praktiske indhold troværdigt og komplet.",
-      "Bevar tomme felter og pladsholdere, når brugeren ikke har givet værdier. Teknisk betingelsessyntaks må omskrives til tydelige valgfrie felter uden at ændre indholdet.",
-      "Vis ikke interne ids, matchscore, søgeord eller datastruktur.",
-      "Svar kort før selve skabelonen. Afslut uden et generisk tilbud om mere hjælp.",
-      "Svarstilen må ikke få dig til at udelade centrale dele af den eksisterende skabelon.",
-      `AKTUEL SVARSTIL: ${response_style}`,
-    ].join("\n");
-
-    const templateInput = [
-      "BRUGERENS SPØRGSMÅL:",
-      message,
-      "",
-      "DEN ENE MATCHENDE EKSISTERENDE CDA-SKABELON:",
-      JSON.stringify(localTemplateRequest.context, null, 2),
-    ].join("\n");
-
-    const response = await openai.responses.create({
-      model: "gpt-5.4-mini",
-      reasoning: {
-        effort: "low",
-      },
-      instructions: templateInstructions,
-      input: templateInput,
-      max_output_tokens: 1600,
-    });
-
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
-    const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
-    );
-
-    const usageByCall = [
-      {
-        call: 1,
-        phase: "template_local_routing",
-        tools_returned_to_model: [],
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    ];
-
-    const usedTools = ["localTemplateRouting"];
-    const toolDebug = [
-      {
-        name: "localTemplateRouting",
-        action: "show_existing_template",
-        template_id: localTemplateRequest.template?.id || null,
-        template_title: localTemplateRequest.template?.title || null,
-        match_score: localTemplateRequest.score,
-        matched_fields: localTemplateRequest.matchedFields,
-        matched_words: localTemplateRequest.matchedWords,
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
-
-    const templateReplyData = extractPendingAction(response.output_text);
-    const reply = cleanCdaReplyTail(templateReplyData.reply);
-
-    return res.status(200).json({
-      success: true,
-      reply,
-      model: "gpt-5.4-mini",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: templateReplyData.pendingAction,
     });
   }
 
