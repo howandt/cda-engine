@@ -1,3 +1,11 @@
 {
-  "version": 2
+  "version": 2,
+  "functions": {
+    "api/cda-chat.js": {
+      "includeFiles": "data/**"
+    },
+    "api/rollespil-chat.js": {
+      "includeFiles": "data/**"
+    }
+  }
 }
