@@ -2173,7 +2173,6 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
     const rolleValg = document.getElementById("rolleValg");
     const svarstilValg = document.getElementById("svarstilValg");
 
-    const ROLEPLAY_STATE_KEY = "cda_roleplay_state";
     const ACTIVE_CASE_CONTEXT_KEY = "cda_active_case_context";
 
     const navigationEntry = performance.getEntriesByType("navigation")[0];
@@ -2183,12 +2182,10 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
     if (pageWasReloaded) {
       sessionStorage.removeItem("cda_pending_action");
-      sessionStorage.removeItem(ROLEPLAY_STATE_KEY);
       sessionStorage.removeItem(ACTIVE_CASE_CONTEXT_KEY);
     }
 
     let pendingAction = sessionStorage.getItem("cda_pending_action");
-    let roleplayState = loadRoleplayState();
     let activeCaseContext = loadActiveCaseContext();
 
     function createEmptyActiveCaseContext() {
@@ -2389,116 +2386,6 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         used_data_sources: usedDataSources,
         conversation_mode: data.conversation_mode || existingContext.conversation_mode || "heidi_case",
       });
-    }
-
-    function loadRoleplayState() {
-      try {
-        const raw = sessionStorage.getItem(ROLEPLAY_STATE_KEY);
-        if (!raw) return null;
-
-        const parsed = JSON.parse(raw);
-        if (!parsed || typeof parsed !== "object" || parsed.status === "ended") {
-          sessionStorage.removeItem(ROLEPLAY_STATE_KEY);
-          return null;
-        }
-
-        return parsed;
-      } catch (error) {
-        sessionStorage.removeItem(ROLEPLAY_STATE_KEY);
-        return null;
-      }
-    }
-
-    function saveRoleplayState(state) {
-      if (!state || typeof state !== "object") return;
-
-      roleplayState = state;
-      sessionStorage.setItem(ROLEPLAY_STATE_KEY, JSON.stringify(state));
-    }
-
-    function clearRoleplayState() {
-      roleplayState = null;
-      sessionStorage.removeItem(ROLEPLAY_STATE_KEY);
-    }
-
-    function normalizeRoleplayTrigger(value) {
-      return String(value || "")
-        .toLowerCase()
-        .replace(/æ/g, "ae")
-        .replace(/ø/g, "o")
-        .replace(/å/g, "aa")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9\s-]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-    }
-
-    function isExplicitRoleplayStart(value) {
-      const text = normalizeRoleplayTrigger(value);
-      if (!text) return false;
-
-      if (
-        /\b(?:start|begynd)\s+(?:(?:et|en)\s+)?rollespil(?:let)?\b/.test(text) ||
-        /\b(?:start|aktiver)\s+(?:den\s+)?(?:separate\s+)?rollespilsmotor(?:en)?\b/.test(text) ||
-        /\b(?:start|begynd)\s+(?:(?:et|en)\s+)?(?:samtaletraening|moedetraening|konflikttraening)\b/.test(text) ||
-        /\bjeg\s+(?:vil|skal)\s+traene\s+(?:(?:en|et)\s+)?(?:samtale|moede|konflikt|rollespil)\b/.test(text)
-      ) {
-        return true;
-      }
-
-      const knownRole =
-        "(?:laerer(?:en)?|paedagog(?:en)?|foraelder(?:en)?|elev(?:en)?|barn(?:et)?|skoleleder(?:en)?|leder(?:en)?|psykolog(?:en)?|specialist(?:en)?|raadgiver(?:en)?|ppr-medarbejder(?:en)?|kollega(?:en)?|sagsbehandler(?:en)?|mentor(?:en)?|vejleder(?:en)?|socialraadgiver(?:en)?)";
-
-      const userPlaysFirst =
-        /\bjeg\s+spiller\s+.{1,120}\bdu\s+(?:spiller|er)\s+/.test(text);
-      const cdaPlaysFirst =
-        /\bdu\s+(?:spiller|er)\s+.{1,120}\bjeg\s+spiller\s+/.test(text);
-      const userIsKnownRoleFirst = new RegExp(
-        `\\bjeg\\s+er\\s+${knownRole}\\b.{0,100}\\bdu\\s+(?:spiller|er)\\s+`
-      ).test(text);
-      const cdaFirstUserIsKnownRole = new RegExp(
-        `\\bdu\\s+(?:spiller|er)\\s+.{1,120}\\bjeg\\s+er\\s+${knownRole}\\b`
-      ).test(text);
-
-      return (
-        userPlaysFirst ||
-        cdaPlaysFirst ||
-        userIsKnownRoleFirst ||
-        cdaFirstUserIsKnownRole
-      );
-    }
-
-    function isExplicitIncidentAnalysisStart(value) {
-      const text = normalizeRoleplayTrigger(value);
-      if (!text) return false;
-
-      return (
-        /\b(?:analyser|analyse)\s+(?:denne\s+)?(?:haendelse|haendelsen|situationen|konflikten|forloebet)\b/.test(text) ||
-        /\bjeg\s+vil\s+(?:gerne\s+)?analysere\s+(?:en\s+)?(?:haendelse|situation|konflikt)\b/.test(text) ||
-        /\bhjaelp\s+mig\s+med\s+at\s+analysere\s+(?:denne\s+)?(?:haendelse|situation|konflikt)\b/.test(text)
-      );
-    }
-
-    function isPausedRoleplayCommand(value) {
-      const text = normalizeRoleplayTrigger(value);
-      if (!text) return false;
-
-      if (["fortsaet", "continue", "stop", "reset", "nulstil"].includes(text)) {
-        return true;
-      }
-
-      return (
-        /\b(?:fortsaet|genoptag|continue)\s+(?:rollespil(?:let)?|scenen|traeningen|analysen)\b/.test(text) ||
-        /\b(?:stop|afslut)\s+(?:rollespil(?:let)?|scenen|traeningen|analysen)\b/.test(text) ||
-        /\b(?:nulstil|reset)\s+(?:rollespil(?:let)?|scenen|traeningen|analysen)\b/.test(text) ||
-        /\b(?:skift|byt)\s+(?:rolle|roller|rollerne)\b/.test(text) ||
-        /\b(?:giv|vis)\s+(?:mig\s+)?(?:et\s+)?hint\b/.test(text) ||
-        /\b(?:giv|vis)\s+(?:mig\s+)?feedback\b/.test(text) ||
-        /\breverse(?:r)?\s+(?:denne\s+)?(?:situation(?:en)?|haendelse(?:n)?|konflikt(?:en)?|forloeb(?:et)?)\b/.test(text) ||
-        /\bvis\s+(?:mig\s+)?(?:situationen|haendelsen|konflikten|forloebet)\s+fra\s+(?:barnets|elevens)\s+(?:perspektiv|side)\b/.test(text) ||
-        /^ny\s+scene\b/.test(text)
-      );
     }
 
     if (!adgangskode || !sprog || !rolle || !svarstil) {
@@ -4421,25 +4308,6 @@ ${userText}`;
         return;
       }
 
-      const startsRoleplay = !roleplayState && isExplicitRoleplayStart(tekst);
-      const startsIncidentAnalysis =
-        isExplicitIncidentAnalysisStart(tekst);
-      const pausedRoleplayCommand =
-        roleplayState?.status === "paused" && isPausedRoleplayCommand(tekst);
-      const activeRoleplay =
-        Boolean(roleplayState) && roleplayState.status !== "paused";
-      const useRoleplay =
-        startsRoleplay ||
-        startsIncidentAnalysis ||
-        activeRoleplay ||
-        pausedRoleplayCommand;
-
-      if (startsRoleplay || startsIncidentAnalysis) {
-        pendingAction = null;
-        sessionStorage.removeItem("cda_pending_action");
-        clearActiveCaseContext();
-      }
-
       fejl.textContent = "";
       sendKnap.disabled = true;
       sendKnap.textContent = "Arbejder...";
@@ -4460,31 +4328,17 @@ ${userText}`;
       );
 
       try {
-        const requestUrl = useRoleplay
-          ? "/api/rollespil-chat"
-          : "/api/cda-chat";
+        const requestUrl = "/api/cda-chat";
 
-        const requestBody = useRoleplay
-          ? {
-              message: apiMessage,
-              state: roleplayState,
-              language: sprog,
-              role: rolle,
-              ...(startsRoleplay
-                ? { action: "start" }
-                : startsIncidentAnalysis
-                  ? { action: "analyze_incident" }
-                  : {}),
-            }
-          : {
-              message: apiMessage,
-              language: sprog,
-              role: rolle,
-              response_style: svarstil,
-              adgangskode,
-              pending_action: pendingAction,
-              active_case_context: buildActiveCaseContextForRequest(tekst),
-            };
+        const requestBody = {
+          message: apiMessage,
+          language: sprog,
+          role: rolle,
+          response_style: svarstil,
+          adgangskode,
+          pending_action: pendingAction,
+          active_case_context: buildActiveCaseContextForRequest(tekst),
+        };
 
         const svar = await fetch(requestUrl, {
           method: "POST",
@@ -4499,29 +4353,11 @@ ${userText}`;
         typingRow.remove();
 
         if (!svar.ok) {
-          if (useRoleplay && data.state) {
-            saveRoleplayState(data.state);
-          }
-
           fejl.textContent = data.error || "CDA kunne ikke svare.";
           return;
         }
 
-        const responseIsRoleplay =
-          useRoleplay || data.conversation_mode === "roleplay";
-
-        if (useRoleplay) {
-  const leavesRoleplay =
-    data.action === "stop" ||
-    data.action === "reset" ||
-    data.state?.status === "ended";
-
-  if (leavesRoleplay) {
-    clearRoleplayState();
-  } else if (data.state) {
-    saveRoleplayState(data.state);
-  }
-}
+        const responseIsRoleplay = data.conversation_mode === "roleplay";
 
 if (data.pending_action) {
   pendingAction = data.pending_action;
@@ -4595,7 +4431,6 @@ if (data.pending_action) {
     function startNewConversation() {
       pendingAction = null;
       sessionStorage.removeItem("cda_pending_action");
-      clearRoleplayState();
       clearActiveCaseContext();
 
       chat.innerHTML = welcomeTemplate;
