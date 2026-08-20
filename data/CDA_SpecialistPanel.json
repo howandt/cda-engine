@@ -37,13 +37,14 @@
       "konkret observation",
       "elevens eller de voksnes udsagn",
       "foreløbig hypotese",
-      "faglig konklusion"
+      "hvad der fortsat er usikkert"
     ],
     "response_requirements": [
       "Tag direkte udgangspunkt i den aktive case.",
       "Peg kun på hypoteser, som casens oplysninger giver fagligt grundlag for.",
       "Gør de vigtigste manglende oplysninger synlige.",
       "Vælg højst tre realistiske næste skridt.",
+      "Brug betegnelsen foreløbig samlet faglig vurdering frem for faglig konklusion, når datagrundlaget er begrænset.",
       "Nævn kun en eksisterende CDA-guide eller skabelon, når den er konkret relevant for næste skridt."
     ],
     "template_fallback_search": "Observations- og indsatslog",
