@@ -48,10 +48,7 @@ import {
   getPblProjects,
   runPblFlow,
 } from "../lib/pblEngine.js";
-import {
-  getRollespil,
-  runRoleplayFlow,
-} from "../lib/roleplayEngine.js";
+import { runRoleplayFlow } from "../lib/roleplayEngine.js";
 import {
   getEmotionAnalysis,
   isEmotionAnalysisRequest,
@@ -3129,24 +3126,6 @@ const tools = [
 },
 {
   type: "function",
-  name: "getRollespil",
-  description:
-    "Henter eksisterende, faste CDA-rollespilsscenarier (kun et par stykker – et lille referencebibliotek, ikke selve rollespilsmotoren). Kald KUN dette værktøj, når brugeren tydeligt vil browse eller genbruge et eksisterende, navngivet scenarie, eller har givet en konkret nok situation til at der er noget at matche mod. Hvis brugerens ønske om rollespil er uklart, generelt eller kun nævner selve funktionen (fx 'rollespil', 'rollespilsmotor', 'vis mig rollespil'), skal du IKKE kalde dette værktøj — spørg i stedet kort, hvilken indgang brugeren vil bruge (kør en hændelse / træn en situation / øv en samtale), jf. roleplay_learning_rules. De fleste rollespil bygges bedst direkte ud fra brugerens egen beskrivelse, ikke ud fra dette lille bibliotek.",
-  parameters: {
-    type: "object",
-    properties: {
-      caseId: {
-        type: "string",
-        description:
-          "Hent et bestemt rollespilsscenarie via case-id.",
-      },
-    },
-    additionalProperties: false,
-  },
-  strict: false,
-},
-{
-  type: "function",
   name: "getSemanticSearch",
   description:
     "Søger semantisk i det eksisterende CDA-casearkiv og skelner mellem primær diagnose, komorbid diagnose og tekstmatch.",
@@ -3214,10 +3193,6 @@ if (toolCall.name === "getEmotionAnalysis") {
 
 if (toolCall.name === "getKomorbiditet") {
   return getKomorbiditet(args);
-}
-
-if (toolCall.name === "getRollespil") {
-  return getRollespil(args);
 }
 
 if (toolCall.name === "getSemanticSearch") {
