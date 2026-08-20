@@ -300,17 +300,5 @@
       "brug scenarie",
       "scenariebibliotek"
     ]
-  },
-  "runtime": {
-    "model": "gpt-5.4-mini",
-    "reasoning_effort": "low",
-    "max_output_tokens": 1200,
-    "max_tool_rounds": 3,
-    "allowed_tools": [
-      "getEmotionAnalysis",
-      "getRollespil",
-      "getSpecialistPanel",
-      "getTemplates"
-    ]
   }
 }
