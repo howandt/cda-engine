@@ -3820,18 +3820,10 @@ try {
 
   const roleplayResult = await runRoleplayFlow({
     openai,
-    model: "gpt-5.4-mini",
-    heidiPrompt,
-    audienceInstructions,
-    activeCaseInstructions,
-    contextualInput,
     message,
     pendingAction: pending_action,
     role,
     language,
-    responseStyle: response_style,
-    tools,
-    executeTool,
   });
 
   if (roleplayResult) {
