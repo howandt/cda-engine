@@ -8,15 +8,7 @@ import {
   runHeidiFlow,
   shouldBlockTemplateAutoRouting,
 } from "../lib/heidiFlow.js";
-import {
-  buildSpecialistSelectionContextFromEngine,
-  findNamedSpecialistInMessageFromEngine,
-  getRequestedSpecialistAngleFromEngine,
-  getTargetedSpecialistPanelFromEngine,
-  isCaseSpecialistsInvolvedRequestFromEngine,
-  isDirectSpecialistPanelRequestFromEngine,
-  isExcludedFromDefaultSpecialistPanelFromEngine,
-} from "../lib/specialistEngine.js";
+import { runSpecialistFlow } from "../lib/specialistEngine.js";
 import {
   getTemplates,
   normalizeTemplateSearch,
@@ -1744,290 +1736,6 @@ function buildAutomaticComorbidityContext(diagnosisMeta) {
 
 
 
-function getSpecialistPanel() {
-  const filePath = path.join(
-    process.cwd(),
-    "data",
-    "CDA_SpecialistPanel.json"
-  );
-
-  const data = readJsonFile(
-    filePath,
-    "data/CDA_SpecialistPanel.json blev ikke fundet"
-  );
-
-  return {
-    success: true,
-    source: "local",
-    data,
-  };
-}
-
-function getSpecialistsForEngine() {
-  const panelResult = getSpecialistPanel();
-  return Array.isArray(panelResult?.data?.specialists)
-    ? panelResult.data.specialists
-    : [];
-}
-
-function findNamedSpecialistInMessage(message) {
-  return findNamedSpecialistInMessageFromEngine(
-    message,
-    getSpecialistsForEngine()
-  );
-}
-
-function buildSingleSpecialistPanel(specialist) {
-  if (!specialist) {
-    return { specialistIds: [], specialistSummaries: [], indexText: "" };
-  }
-
-  const cleanValue = (value, max = 160) =>
-    limitSpecialistText(value, max)
-      .replace(/[|\r\n]+/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-  const keywords = Array.isArray(specialist?.keywords)
-    ? specialist.keywords.slice(0, 8).join(", ")
-    : "";
-
-  const row = [
-    cleanValue(specialist?.id, 80),
-    cleanValue(specialist?.name, 120),
-    cleanValue(specialist?.group, 120),
-    cleanValue(specialist?.function, 220),
-    cleanValue(keywords, 180),
-  ].join("|");
-
-  return {
-    specialistIds: [String(specialist?.id || "")].filter(Boolean),
-    specialistSummaries: [
-      {
-        id: String(specialist?.id || ""),
-        name: String(specialist?.name || ""),
-        group: String(specialist?.group || ""),
-        function: String(specialist?.function || ""),
-      },
-    ],
-    indexText: ["KOLONNER:id|navn|gruppe|funktion|keywords", row].join("\n"),
-  };
-}
-
-
-
-function isDirectSpecialistPanelRequest(message) {
-  return isDirectSpecialistPanelRequestFromEngine(
-    message,
-    getSpecialistsForEngine()
-  );
-}
-
-function isCaseSpecialistsInvolvedRequest(message) {
-  return isCaseSpecialistsInvolvedRequestFromEngine(message);
-}
-
-function limitSpecialistText(value, max = 260) {
-  const text = formatLocalCaseValue(value)
-    .replace(/\s+/g, " ")
-    .trim();
-
-  if (text.length <= max) {
-    return text;
-  }
-
-  return `${text.slice(0, max).trim()}…`;
-}
-
-function getRequestedSpecialistAngle(message) {
-  return getRequestedSpecialistAngleFromEngine(
-    message,
-    getSpecialistsForEngine()
-  );
-}
-
-function isExcludedFromDefaultSpecialistPanel(specialist) {
-  return isExcludedFromDefaultSpecialistPanelFromEngine(specialist);
-}
-
-function isLocalPprCaseAngleRequest(message) {
-  const text = normalizeDiagnosisPhrase(message);
-
-  if (!text.includes("ppr")) {
-    return false;
-  }
-
-  const pprPatterns = [
-    "ppr",
-    "hvad siger ppr",
-    "hvad ville ppr",
-    "hvad vil ppr",
-    "hvad ser ppr",
-    "hvad ville ppr se",
-    "hvad ville ppr kigge paa",
-    "hvad ville ppr kigge på",
-    "ppr vinkel",
-    "ppr-vinkel",
-    "ppr se",
-    "ppr spoerge",
-    "ppr spørge",
-  ];
-
-  return pprPatterns.some((pattern) => {
-    const normalizedPattern = normalizeDiagnosisPhrase(pattern);
-    return text === normalizedPattern || text.includes(normalizedPattern);
-  });
-}
-
-
-function buildLocalPprAngleReply(caseData, activeContext) {
-  const title = formatLocalCaseValue(
-    caseData?.titel || caseData?.title || caseData?.id || "Aktiv sag"
-  );
-  const problem = limitSpecialistText(
-    caseData?.problem ||
-      caseData?.kort_beskrivelse ||
-      caseData?.description ||
-      caseData?.beskrivelse ||
-      activeContext?.summary ||
-      activeContext?.last_user_message,
-    240
-  );
-
-  const lines = [];
-
-  if (title) {
-    lines.push(`**PPR-vinkel**`, `Ud fra ${title}${problem ? `: ${problem}` : ""}`);
-  } else {
-    lines.push("**PPR-vinkel**");
-  }
-
-  lines.push(
-    "",
-    "PPR ville især se på:",
-    "- Hvad sker lige før reaktionen?",
-    "- Hvor hurtigt eskalerer det, og hvad hjælper ned igen?",
-    "- Sker mønstret hos flere voksne/timer, eller kun i én situation?",
-    "- Hvornår lykkes barnet bedre?",
-    "",
-    "**Hav klar til PPR**",
-    "- 2-3 konkrete episoder med før-under-efter.",
-    "- Hvad de voksne gjorde.",
-    "- Hvad der virkede lidt.",
-    "- Hvor ofte og hvor det sker."
-  );
-
-  return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
-}
-
-function buildCompactSpecialistCaseContext(caseData, activeContext) {
-  if (caseData) {
-    const lines = [
-      "AKTIV CASE — KORT GRUNDLAG",
-      `id: ${limitSpecialistText(caseData.id, 80) || "-"}`,
-      `titel: ${limitSpecialistText(caseData.titel || caseData.title, 120) || "-"}`,
-    ];
-
-    const fields = [
-      ["alder", caseData.alder || caseData.age, 40],
-      ["diagnose/spor", caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser, 120],
-      ["tema", caseData.tema || caseData.theme || caseData.kategori, 160],
-      ["problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse, 360],
-      ["barnets oplevelse", caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice, 220],
-      ["typisk fejl", caseData.typisk_fejl || caseData.mistakes, 220],
-      ["løsning", caseData.løsning || caseData.loesning || caseData.solution, 300],
-      ["tiltag", caseData.tiltag || caseData.værktøjer || caseData.vaerktoejer || caseData.tools, 300],
-    ];
-
-    for (const [label, value, max] of fields) {
-      const text = limitSpecialistText(value, max);
-      if (text) {
-        lines.push(`${label}: ${text}`);
-      }
-    }
-
-    return lines.join("\n");
-  }
-
-  if (hasActiveCaseContext(activeContext)) {
-    return [
-      "AKTIV SAG — KORT GRUNDLAG",
-      activeContext.summary ? `sag: ${limitSpecialistText(activeContext.summary, 420)}` : "",
-      activeContext.known_context ? `kontekst: ${limitSpecialistText(activeContext.known_context, 220)}` : "",
-      activeContext.last_user_message ? `sidste brugerbesked: ${limitSpecialistText(activeContext.last_user_message, 260)}` : "",
-      activeContext.last_guidance_summary ? `seneste råd: ${limitSpecialistText(activeContext.last_guidance_summary, 260)}` : "",
-    ].filter(Boolean).join("\n");
-  }
-
-  return "";
-}
-
-function buildSpecialistSelectionContext(caseData, activeContext) {
-  return buildSpecialistSelectionContextFromEngine(caseData, activeContext);
-}
-
-function getTargetedSpecialistPanel(angle, message, extraText = "") {
-  return getTargetedSpecialistPanelFromEngine({
-    angle,
-    message,
-    extraText,
-    specialists: getSpecialistsForEngine(),
-  });
-}
-
-function getCompactSpecialistPanelIndex() {
-  const panelResult = getSpecialistPanel();
-  const specialists = Array.isArray(panelResult?.data?.specialists)
-    ? panelResult.data.specialists
-    : [];
-
-  const cleanValue = (value) =>
-    String(value || "")
-      .replace(/[|\r\n]+/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-  const rows = specialists.map((specialist) => {
-    const voiceProfile = specialist?.voice_profile || {};
-
-    return [
-      cleanValue(specialist?.id),
-      cleanValue(specialist?.name),
-      cleanValue(specialist?.category),
-      cleanValue(specialist?.group),
-      cleanValue(specialist?.function),
-      (Array.isArray(specialist?.keywords)
-        ? specialist.keywords
-        : []
-      )
-        .map((keyword) => cleanValue(keyword))
-        .filter(Boolean)
-        .join(","),
-      cleanValue(voiceProfile?.tone),
-      cleanValue(voiceProfile?.style),
-      cleanValue(specialist?.disclaimer),
-    ].join("|");
-  });
-
-  return {
-    specialistIds: specialists
-      .map((specialist) => String(specialist?.id || ""))
-      .filter(Boolean),
-    specialistSummaries: specialists
-      .map((specialist) => ({
-        id: String(specialist?.id || ""),
-        name: String(specialist?.name || ""),
-        group: String(specialist?.group || ""),
-        function: String(specialist?.function || ""),
-      }))
-      .filter((specialist) => specialist.id),
-    indexText: [
-      "KOLONNER:id|navn|kategori|gruppe|funktion|keywords|tone|stil|disclaimer",
-      ...rows,
-    ].join("\n"),
-  };
-}
-
 function isCdaInternalDataSourceQuestion(message) {
   const text = normalizeDiagnosisPhrase(message);
 
@@ -2072,67 +1780,6 @@ function buildCdaInternalDataSourceReply() {
   ].join("\n");
 }
 
-function isSpecialistPanelOverviewRequest(message) {
-  const text = normalizeDiagnosisPhrase(message);
-
-  if (!text) {
-    return false;
-  }
-
-  const overviewPatterns = [
-    "hvilke specialister sidder i specialistpanelet",
-    "hvem sidder i specialistpanelet",
-    "hvilke specialister er i specialistpanelet",
-    "hvem er i specialistpanelet",
-    "vis specialistpanelet",
-    "vis specialist panel",
-    "liste over specialister",
-    "list specialister",
-    "hvilke specialister har du",
-    "hvilke cda specialister",
-  ].map((pattern) => normalizeDiagnosisPhrase(pattern));
-
-  return overviewPatterns.some((pattern) => text.includes(pattern));
-}
-
-function buildLocalSpecialistPanelOverviewReply() {
-  const panelResult = getSpecialistPanel();
-  const specialists = Array.isArray(panelResult?.data?.specialists)
-    ? panelResult.data.specialists
-    : [];
-
-  if (specialists.length === 0) {
-    return "Jeg kan ikke finde specialistpanelet i de interne CDA-data lige nu.";
-  }
-
-  const byGroup = new Map();
-
-  for (const specialist of specialists) {
-    const group = String(specialist?.group || "Øvrige").trim() || "Øvrige";
-    const name = String(specialist?.name || "Ukendt specialist").trim();
-    const focus = String(specialist?.function || "Faglig specialistvinkel").trim();
-
-    if (!byGroup.has(group)) {
-      byGroup.set(group, []);
-    }
-
-    byGroup.get(group).push(`- ${name}: ${focus}`);
-  }
-
-  const lines = [
-    "Ja. Specialistpanelet ligger i CDA’s interne specialistdata.",
-    "",
-    `Der er ${specialists.length} specialister i panelet:`,
-  ];
-
-  for (const [group, rows] of byGroup.entries()) {
-    lines.push("", `**${group}**`, ...rows);
-  }
-
-  lines.push("", "Ved en konkret case vælger CDA normalt højst 3 relevante specialistvinkler.");
-
-  return lines.join("\n");
-}
 function isPracticalDayPlanRequest(message) {
   const text = normalizeTemplateSearch(message);
 
@@ -3199,10 +2846,6 @@ if (toolCall.name === "getSemanticSearch") {
   return getSemanticSearch(args);
 }
 
-if (toolCall.name === "getSpecialistPanel") {
-  return getSpecialistPanel();
-}
-
 if (toolCall.name === "getTemplates") {
   return getTemplates(args);
 }
@@ -3700,7 +3343,6 @@ function buildActiveCaseInstructions(context, message) {
   if (!hasActiveCaseContext(context)) return "";
 
   const continuation = isShortContinuationRequest(message);
-  const specialistAngle = isDirectSpecialistPanelRequest(message);
 
   return [
     "AKTIV SAGSHUKOMMELSE",
@@ -3710,7 +3352,6 @@ function buildActiveCaseInstructions(context, message) {
     "Gentag ikke lokale dataopslag, hvis used_data_sources allerede viser, at samme spor er dækket, medmindre brugerens nye besked åbner et reelt nyt fagligt spor.",
     "Ved 'uddyb' skal du uddybe samme sag og samme råd, ikke spørge hvad der skal uddybes.",
     continuation ? "DEN NYE BESKED ER EN FORTSÆTTELSE AF SAMME SAG." : "",
-    specialistAngle ? "DEN NYE BESKED BEDER OM SPECIALISTVINKEL PÅ SAMME SAG." : "",
   ].filter(Boolean).join("\n");
 }
 
@@ -4549,40 +4190,81 @@ try {
     });
   }
 
-  if (activeLocalCase && isLocalPprCaseAngleRequest(message)) {
-    const reply = buildLocalPprAngleReply(activeLocalCase, active_case_context);
-    const usedTools = ["localActiveCasePprAngle"];
-    const toolDebug = [
-      {
-        name: "localActiveCasePprAngle",
-        selected_case_id: activeLocalCase.id || null,
-        followup: message,
-        token_policy: "0_tokens_local_response",
-        routing: "returned_before_openai",
-      },
-    ];
+  const specialistActiveLocalCase = resolveActiveLocalCaseForSpecialistRequest(
+    pending_action,
+    activeCaseContext
+  );
+  const specialistPendingAction = getPendingActionForSpecialistResponse(
+    specialistActiveLocalCase,
+    activeCaseContext,
+    pending_action
+  );
+  const specialistContextSource = specialistActiveLocalCase
+    ? "active_local_case"
+    : shouldPreferActiveCaseContextForSpecialist(activeCaseContext)
+      ? "active_case_context_preferred"
+      : "active_case_context";
+
+  const specialistResult = await runSpecialistFlow({
+    openai,
+    message,
+    activeCase: specialistActiveLocalCase,
+    activeContext: activeCaseContext,
+    pendingAction: specialistPendingAction,
+    role,
+    responseStyle: response_style,
+    contextSource: specialistContextSource,
+  });
+
+  if (specialistResult) {
+    const usageByCall = specialistResult.usage || [];
+    const totals = usageByCall.reduce(
+      (sum, item) => ({
+        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
+        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
+        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
+      }),
+      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
+    );
 
     console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
+      tools_used: specialistResult.usedTools,
+      tool_debug: specialistResult.toolDebug,
     });
 
     console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
+      usage_by_call: usageByCall,
+      totals,
     });
+
+    if (adgangskode && totals.total_tokens > 0) {
+      const supabase = getSupabase();
+      const { error: forbrugsFejl } = await supabase
+        .from("token_forbrug")
+        .insert({
+          adgangskode: adgangskode.trim().toUpperCase(),
+          system: "cda",
+          udbyder: "openai",
+          model: specialistResult.model,
+          input_tokens: totals.input_tokens,
+          output_tokens: totals.output_tokens,
+          samlet_tokens: totals.total_tokens,
+        });
+
+      if (forbrugsFejl) {
+        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+      }
+    }
 
     return res.status(200).json({
       success: true,
-      reply,
-      model: "local",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: pending_action,
+      reply: cleanCdaReplyTail(specialistResult.reply),
+      model: specialistResult.model,
+      tools_used: specialistResult.usedTools,
+      tool_debug: specialistResult.toolDebug,
+      used_data_sources: specialistResult.usedDataSources,
+      conversation_mode: specialistResult.conversationMode,
+      pending_action: specialistResult.pendingAction,
     });
   }
 
@@ -4792,511 +4474,6 @@ try {
       tools_used: usedTools,
       tool_debug: toolDebug,
       pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
-    });
-  }
-
-  if (isSpecialistPanelOverviewRequest(message)) {
-    const reply = buildLocalSpecialistPanelOverviewReply();
-    const usedTools = ["localSpecialistPanelOverview"];
-    const toolDebug = [
-      {
-        name: "localSpecialistPanelOverview",
-        source: "data/CDA_SpecialistPanel.json",
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    return res.status(200).json({
-      success: true,
-      reply,
-      model: "local",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
-    });
-  }
-
-  if (isDirectSpecialistPanelRequest(message)) {
-    const requestedAngle = getRequestedSpecialistAngle(message);
-    const specialistActiveLocalCase = resolveActiveLocalCaseForSpecialistRequest(
-      pending_action,
-      activeCaseContext
-    );
-    const specialistPendingAction = getPendingActionForSpecialistResponse(
-      specialistActiveLocalCase,
-      activeCaseContext,
-      pending_action
-    );
-    const specialistContextSource = specialistActiveLocalCase
-      ? "active_local_case"
-      : shouldPreferActiveCaseContextForSpecialist(activeCaseContext)
-        ? "active_case_context_preferred"
-        : "active_case_context";
-
-    if (requestedAngle === "ppr" && (specialistActiveLocalCase || hasActiveCaseContext(activeCaseContext))) {
-      const reply = buildLocalPprAngleReply(specialistActiveLocalCase, activeCaseContext);
-      const usedTools = ["localPprAngleOnActiveCase"];
-      const toolDebug = [
-        {
-          name: "localPprAngleOnActiveCase",
-          active_local_case_id: specialistActiveLocalCase?.id || null,
-          specialist_context_source: specialistContextSource,
-          source: specialistContextSource,
-          role,
-          response_style,
-        },
-      ];
-
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      return res.status(200).json({
-        success: true,
-        reply,
-        model: "local",
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-        pending_action: specialistPendingAction,
-      });
-    }
-
-    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(specialistActiveLocalCase, activeCaseContext);
-    const specialistSelectionContext = buildSpecialistSelectionContext(specialistActiveLocalCase, activeCaseContext);
-    const specialistPanel =
-      requestedAngle === "named"
-        ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
-        : getTargetedSpecialistPanel(requestedAngle, message, specialistSelectionContext);
-
-    if (specialistPanel.specialistIds.length === 0) {
-      const reply = [
-        "**Heidis CDA-samling**",
-        "",
-        "Jeg finder ikke et sikkert specialistmatch ud fra de aktive specialist-keywords i denne case.",
-        "",
-        "Derfor vælger jeg ikke specialister som gæt. Specialistpanelet er sekundært og skal kun kobles på, når de lokale keywords peger tydeligt på relevante fagvinkler.",
-        "",
-        "Heidi/CDA kan stadig arbejde videre med casen i det almindelige rådgivningsflow."
-      ].join("\n");
-
-      return res.status(200).json({
-        success: true,
-        reply,
-        model: "local",
-        tools_used: ["specialistPanelNoKeywordMatch"],
-        tool_debug: [
-          {
-            name: "specialistPanelNoKeywordMatch",
-            requested_angle: requestedAngle || null,
-            active_local_case_id: specialistActiveLocalCase?.id || null,
-            specialist_context_source: specialistContextSource,
-            role,
-            response_style,
-          },
-        ],
-        pending_action: specialistPendingAction,
-      });
-    }
-
-    const headingInstruction =
-      requestedAngle === "named" || requestedAngle === "psychologist"
-        ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i specialistafsnittets overskrift. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
-        : requestedAngle === "ppr"
-          ? "Brug PPR-vinklen som særskilt specialistvinkel, men afslut stadig med fælles evaluering og Heidi/CDA-samling."
-          : "Brug specialistpanelets 360-graders struktur: først kort fælles retning, derefter op til 3 specialistvinkler, derefter fælles evaluering og til sidst Heidi/CDA-samling.";
-
-    const specialistInstructions = [
-      "Du er Heidi i CDA Engine.",
-      "Svar kun, fordi brugeren selv har bedt om specialistvinkel på den aktive case/sag.",
-      "Brug den aktive case/sag som konkret grundlag. Opfind ikke manglende casefelter.",
-      "Stil ikke diagnose. Giv ikke medicinråd. Beskriv kun støttebehov, mønstre og næste faglige skridt.",
-      "Brug kun specialister, navne, grupper og funktioner fra RELEVANT LOKAL SPECIALISTDATA. Opfind ikke specialister.",
-      "Udvælg højst 3 specialistvinkler. Hver specialist skal bidrage med sin egen faglige vinkel på netop denne case.",
-      "Skriv ikke faste specialisttekster. Formulér hvert afsnit ud fra specialistens funktion, de lokale data og den aktive case.",
-      "Svar med denne struktur: **Kort samlet specialistretning**, derefter ét afsnit pr. specialist med navn, fagligt fokus, hvad specialisten opdager i casen og 1 kort anbefaling, derefter **Fælles evaluering**, og til sidst **Heidis CDA-samling**.",
-      "Den fælles evaluering skal samle specialisternes opdagelser til et 360-graders blik. Heidi/CDA-samlingen skal gøre det praktisk for brugeren uden at overtage specialistrollerne.",
-      "Hold svaret lærer-nært og praktisk. Samlet må der højst være 3 konkrete næste handlinger.",
-      headingInstruction,
-      response_style === "Dyb"
-        ? "Svar lidt mere udførligt, men uden lange forklaringer."
-        : "Svar kort og direkte.",
-    ].join("\n");
-
-    const specialistInput = [
-      specialistCaseContextBlock,
-      "",
-      "BRUGERENS BESKED:",
-      message,
-      "",
-      "RELEVANT LOKAL SPECIALISTDATA:",
-      specialistPanel.indexText,
-    ].filter((part) => String(part || "").trim()).join("\n");
-
-    const response = await openai.responses.create({
-      model: "gpt-5.4-mini",
-      reasoning: {
-        effort: "low",
-      },
-      instructions: specialistInstructions,
-      input: specialistInput,
-      max_output_tokens:
-        response_style === "Dyb"
-          ? 3000
-          : response_style === "Kort"
-            ? 1600
-            : 2200,
-      text: {
-        format: {
-          type: "json_schema",
-          name: "cda_targeted_specialist_response",
-          strict: true,
-          schema: {
-            type: "object",
-            properties: {
-              selected_specialist_ids: {
-                type: "array",
-                items: {
-                  type: "string",
-                  enum: specialistPanel.specialistIds,
-                },
-              },
-              reply: {
-                type: "string",
-              },
-            },
-            required: ["selected_specialist_ids", "reply"],
-            additionalProperties: false,
-          },
-        },
-      },
-    });
-
-    if (response.status === "incomplete") {
-      throw new Error("Ufuldstændigt svar fra specialistpanelet");
-    }
-
-    const panelResponse = JSON.parse(response.output_text || "{}");
-    const validSpecialistIds = new Set(
-      specialistPanel.specialistIds
-    );
-    const selectedSpecialistIds = Array.from(
-      new Set(
-        (Array.isArray(panelResponse.selected_specialist_ids)
-          ? panelResponse.selected_specialist_ids
-          : []
-        ).filter((id) => validSpecialistIds.has(String(id)))
-      )
-    ).slice(0, requestedAngle === "specialists" ? 3 : 1);
-
-    const reply = cleanCdaReplyTail(panelResponse.reply);
-
-    if (!reply) {
-      throw new Error("Specialistpanelet returnerede intet svar");
-    }
-
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
-    const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
-    );
-
-    const usageByCall = [
-      {
-        call: 1,
-        phase: "targeted_specialist_on_active_case",
-        tools_returned_to_model: [],
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    ];
-
-    const usedTools = ["targetedLocalSpecialistRouting"];
-    const toolDebug = [
-      {
-        name: "targetedLocalSpecialistRouting",
-        requested_angle: requestedAngle || null,
-        active_local_case_id: specialistActiveLocalCase?.id || null,
-        specialist_context_source: specialistContextSource,
-        role,
-        response_style,
-        selected_specialists: selectedSpecialistIds.map((id) =>
-          specialistPanel.specialistSummaries.find(
-            (specialist) => specialist.id === id
-          )
-        ).filter(Boolean),
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
-
-    return res.status(200).json({
-      success: true,
-      reply,
-      model: "gpt-5.4-mini",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: specialistPendingAction,
-    });
-  }
-
-  if (isCaseSpecialistsInvolvedRequest(message)) {
-    const specialistActiveLocalCase = resolveActiveLocalCaseForSpecialistRequest(
-      pending_action,
-      activeCaseContext
-    );
-    const specialistPendingAction = getPendingActionForSpecialistResponse(
-      specialistActiveLocalCase,
-      activeCaseContext,
-      pending_action
-    );
-
-    if (!specialistActiveLocalCase && !hasActiveCaseContext(activeCaseContext)) {
-      const reply =
-        "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gå tilbage til en tidligere case, så kan jeg pege på hvilke CDA-specialister der er relevante.";
-      const usedTools = ["caseSpecialistsInvolvedNoActiveCase"];
-      const toolDebug = [
-        {
-          name: "caseSpecialistsInvolvedNoActiveCase",
-          role,
-          response_style,
-        },
-      ];
-
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      return res.status(200).json({
-        success: true,
-        reply,
-        model: "local",
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-        pending_action: null,
-      });
-    }
-
-    const caseText = [
-      specialistActiveLocalCase?.titel,
-      specialistActiveLocalCase?.title,
-      specialistActiveLocalCase?.problem,
-      specialistActiveLocalCase?.kort_beskrivelse,
-      specialistActiveLocalCase?.description,
-      specialistActiveLocalCase?.beskrivelse,
-      activeCaseContext?.summary,
-      activeCaseContext?.known_context,
-      activeCaseContext?.last_user_message,
-    ].filter(Boolean).join(" ");
-
-    const specialistPanel = getTargetedSpecialistPanel("case_team", message, caseText);
-    const specialistCaseContextBlock = buildCompactSpecialistCaseContext(specialistActiveLocalCase, activeCaseContext);
-
-    if (specialistPanel.specialistIds.length === 0) {
-      throw new Error("Specialistpanelet indeholder ingen specialister");
-    }
-
-    const caseTeamInstructions = [
-      "Du er Heidi i CDA Engine.",
-      "Brugeren spørger, hvilke CDA-specialister der har været relevante for den aktive case/sag.",
-      "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
-      "Stil ikke diagnose. Giv ikke medicinråd.",
-      "Vis hver relevant specialist på egen linje: **[specialistens fulde navn fra data]** efterfulgt af ét kort, case-specifikt fokuspunkt (1 linje).",
-      "Nævn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
-      "Afslut altid med én linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
-      "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
-    ].join("\n");
-
-    const caseTeamInput = [
-      specialistCaseContextBlock,
-      "",
-      "BRUGERENS BESKED:",
-      message,
-      "",
-      "RELEVANT LOKAL SPECIALISTDATA:",
-      specialistPanel.indexText,
-    ].filter((part) => String(part || "").trim()).join("\n");
-
-    const response = await openai.responses.create({
-      model: "gpt-5.4-mini",
-      reasoning: {
-        effort: "low",
-      },
-      instructions: caseTeamInstructions,
-      input: caseTeamInput,
-      max_output_tokens:
-        response_style === "Dyb" ? 750 : response_style === "Kort" ? 400 : 550,
-      text: {
-        format: {
-          type: "json_schema",
-          name: "cda_case_team_response",
-          strict: true,
-          schema: {
-            type: "object",
-            properties: {
-              selected_specialist_ids: {
-                type: "array",
-                items: {
-                  type: "string",
-                  enum: specialistPanel.specialistIds,
-                },
-              },
-              reply: {
-                type: "string",
-              },
-            },
-            required: ["selected_specialist_ids", "reply"],
-            additionalProperties: false,
-          },
-        },
-      },
-    });
-
-    if (response.status === "incomplete") {
-      throw new Error("Ufuldstændigt svar fra specialistpanelet");
-    }
-
-    const panelResponse = JSON.parse(response.output_text || "{}");
-    const validSpecialistIds = new Set(specialistPanel.specialistIds);
-    const selectedSpecialistIds = Array.from(
-      new Set(
-        (Array.isArray(panelResponse.selected_specialist_ids)
-          ? panelResponse.selected_specialist_ids
-          : []
-        ).filter((id) => validSpecialistIds.has(String(id)))
-      )
-    ).slice(0, 5);
-
-    const reply = cleanCdaReplyTail(panelResponse.reply);
-
-    if (!reply) {
-      throw new Error("Specialistpanelet returnerede intet svar");
-    }
-
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
-    const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
-    );
-
-    const usageByCall = [
-      {
-        call: 1,
-        phase: "case_specialists_involved",
-        tools_returned_to_model: [],
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    ];
-
-    const usedTools = ["caseSpecialistsInvolvedRouting"];
-    const toolDebug = [
-      {
-        name: "caseSpecialistsInvolvedRouting",
-        selected_specialists: selectedSpecialistIds.map((id) =>
-          specialistPanel.specialistSummaries.find(
-            (specialist) => specialist.id === id
-          )
-        ).filter(Boolean),
-        active_local_case_id: specialistActiveLocalCase?.id || null,
-        specialist_context_source: specialistActiveLocalCase
-          ? "active_local_case"
-          : shouldPreferActiveCaseContextForSpecialist(activeCaseContext)
-            ? "active_case_context_preferred"
-            : "active_case_context",
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
-
-    return res.status(200).json({
-      success: true,
-      reply,
-      model: "gpt-5.4-mini",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: specialistPendingAction,
     });
   }
 
