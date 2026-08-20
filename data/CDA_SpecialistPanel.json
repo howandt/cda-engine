@@ -23,6 +23,37 @@
     ],
     "disclaimer": "AI-baseret rådgivning – ikke klinisk eller juridisk afgørelse."
   },
+  "ppr_framework": {
+    "purpose": "At give en dynamisk, casebaseret PPR-vinkel, som hjælper brugeren med at skelne mellem det observerede, foreløbige faglige hypoteser, manglende oplysninger og relevante næste skridt.",
+    "case_dimensions": [
+      "situationer og udløsere",
+      "elevens deltagelse, trivsel og perspektiv",
+      "forskelle mellem fag, tidspunkter, miljøer og voksne",
+      "belastning, regulering og overgange",
+      "styrker og situationer hvor eleven lykkes",
+      "allerede afprøvede tiltag og deres observerede effekt"
+    ],
+    "required_distinctions": [
+      "konkret observation",
+      "elevens eller de voksnes udsagn",
+      "foreløbig hypotese",
+      "faglig konklusion"
+    ],
+    "response_requirements": [
+      "Tag direkte udgangspunkt i den aktive case.",
+      "Peg kun på hypoteser, som casens oplysninger giver fagligt grundlag for.",
+      "Gør de vigtigste manglende oplysninger synlige.",
+      "Vælg højst tre realistiske næste skridt.",
+      "Nævn kun en eksisterende CDA-guide eller skabelon, når den er konkret relevant for næste skridt."
+    ],
+    "template_fallback_search": "Observations- og indsatslog",
+    "guardrails": [
+      "Stil ikke diagnose og foretag ikke psykologisk eller juridisk afgørelse.",
+      "Brug ikke en generisk tjekliste som erstatning for en vurdering af den konkrete case.",
+      "Opfind ikke observationer, indsatser, effekter eller perspektiver, som ikke findes i casen.",
+      "Placér ikke ansvaret ensidigt hos barnet, hjemmet eller skolen."
+    ]
+  },
   "specialists": [
     {
       "id": "ai_psychologist_sara_holm",
