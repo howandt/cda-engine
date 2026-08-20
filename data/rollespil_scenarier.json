@@ -38,5 +38,21 @@
         "rolle": "Voksen"
       }
     ]
+  },
+  {
+    "id": "skolefravaer_1",
+    "titel": "Forælder oplever, at skolen lægger ansvaret for elevens fravær over på hjemmet",
+    "sted": "Skole-hjem-møde",
+    "tid": "Aftalt møde",
+    "roller": [
+      {
+        "id": "lærer",
+        "rolle": "Voksen"
+      },
+      {
+        "id": "forælder",
+        "rolle": "Voksen"
+      }
+    ]
   }
 ]
