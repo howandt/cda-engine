@@ -131,14 +131,6 @@
     "situation": {
       "label": "træn situation",
       "action": "start",
-      "preparation_questions": {
-        "Dansk": [
-          "Hvilken situation vil du træne, hvilken rolle vil du selv have, og hvilken rolle skal CDA spille?"
-        ],
-        "English": [
-          "Which situation would you like to practise, which role will you have, and which role should CDA play?"
-        ]
-      },
       "phrases": [
         "træn en situation",
         "træne en situation",
@@ -153,16 +145,6 @@
     "conversation": {
       "label": "øv samtale",
       "action": "start",
-      "preparation_questions": {
-        "Dansk": [
-          "Hvad er dit mål med samtalen?",
-          "Hvad er det sværeste, du forventer bliver sagt eller spurgt om?"
-        ],
-        "English": [
-          "What is your goal for the conversation?",
-          "What is the hardest thing you expect may be said or asked?"
-        ]
-      },
       "phrases": [
         "øve en samtale",
         "øv en samtale",
@@ -182,6 +164,83 @@
         "parent meeting",
         "school home meeting"
       ]
+    }
+  },
+  "setup_requirements": {
+    "default_mode": "situation",
+    "field_labels": {
+      "Dansk": {
+        "user_role": "din egen rolle",
+        "cda_role": "rollen CDA skal spille",
+        "situation": "den konkrete situation",
+        "topic": "samtalens konkrete emne eller baggrund",
+        "goal": "dit mål med samtalen",
+        "challenge": "det sværeste, du forventer bliver sagt eller spurgt om"
+      },
+      "English": {
+        "user_role": "your own role",
+        "cda_role": "the role CDA should play",
+        "situation": "the concrete situation",
+        "topic": "the concrete topic or background of the conversation",
+        "goal": "your goal for the conversation",
+        "challenge": "the hardest thing you expect may be said or asked"
+      }
+    },
+    "multiple_missing_template": {
+      "Dansk": "Før vi starter, mangler jeg: {fields}.",
+      "English": "Before we start, I still need: {fields}."
+    },
+    "modes": {
+      "situation": {
+        "required_fields": [
+          "user_role",
+          "cda_role",
+          "situation"
+        ],
+        "assessment_rule": "En konkret situation kræver mere end roller og en startkommando. Der skal stå, hvad der sker, skal trænes eller er vanskeligt. Opfind ikke manglende sceneoplysninger.",
+        "questions": {
+          "Dansk": {
+            "all": "Hvilken konkret situation vil du træne, hvilken rolle vil du selv have, og hvilken rolle skal CDA spille?",
+            "user_role": "Hvilken rolle vil du selv have i situationen?",
+            "cda_role": "Hvilken rolle skal CDA spille i situationen?",
+            "situation": "Hvilken konkret situation vil du træne? Beskriv kort, hvad der sker eller skal øves."
+          },
+          "English": {
+            "all": "Which concrete situation would you like to practise, which role will you have, and which role should CDA play?",
+            "user_role": "Which role will you have in the situation?",
+            "cda_role": "Which role should CDA play in the situation?",
+            "situation": "Which concrete situation would you like to practise? Briefly describe what is happening or needs to be practised."
+          }
+        }
+      },
+      "conversation": {
+        "required_fields": [
+          "user_role",
+          "cda_role",
+          "topic",
+          "goal",
+          "challenge"
+        ],
+        "assessment_rule": "En samtale er klar, når rollerne, det konkrete emne eller baggrunden, brugerens mål og den forventede vanskelige reaktion eller udfordring fremgår. En beskrivelse som 'skeptisk forælder' kan være en konkret forventet udfordring, men roller alene er ikke nok.",
+        "questions": {
+          "Dansk": {
+            "all": "Hvilken samtale vil du øve, hvilken rolle har du, hvilken rolle skal CDA spille, hvad er dit mål, og hvad er det sværeste, du forventer bliver sagt eller spurgt om?",
+            "user_role": "Hvilken rolle har du selv i samtalen?",
+            "cda_role": "Hvilken modpart skal CDA spille i samtalen?",
+            "topic": "Hvad handler den konkrete samtale om?",
+            "goal": "Hvad vil du gerne opnå med samtalen?",
+            "challenge": "Hvad er det sværeste, du forventer bliver sagt eller spurgt om?"
+          },
+          "English": {
+            "all": "Which conversation would you like to practise, what is your role, which role should CDA play, what is your goal, and what is the hardest thing you expect may be said or asked?",
+            "user_role": "What is your own role in the conversation?",
+            "cda_role": "Which counterpart should CDA play in the conversation?",
+            "topic": "What is the concrete conversation about?",
+            "goal": "What would you like to achieve in the conversation?",
+            "challenge": "What is the hardest thing you expect may be said or asked?"
+          }
+        }
+      }
     }
   },
   "state": {
