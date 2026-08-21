@@ -205,18 +205,6 @@ Kortet kan ændres ved at:
 
 ---
 
-## Enkel indkøringslog
-
-| Dato | Situation | Hvad øvede vi? | Elevens reaktion | Hvad skal justeres? |
-|---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-
-Loggen bruges kun til at forbedre aftalen.
-
----
-
 ## Tegn på, at kortet er ved at blive indarbejdet
 
 Det kan eksempelvis ses ved, at:

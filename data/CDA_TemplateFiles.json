@@ -1049,6 +1049,22 @@
             "indkøring",
             "øvelse"
           ],
+          "resource_type": "guide",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-indkoeringslog",
+          "title": "Enkel indkøringslog",
+          "content_file": "templates/trafiklyskort/04a-enkel-indkoeringslog.md",
+          "keywords": [
+            "indkøringslog",
+            "træning",
+            "afprøvning",
+            "justering"
+          ],
+          "resource_type": "worksheet",
+          "related_guide_id": "trafiklyskort-traening",
           "direct_display": true,
           "ai_required": false
         },
