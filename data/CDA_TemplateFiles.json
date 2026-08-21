@@ -1221,7 +1221,10 @@
         "forældre",
         "kontaktlog",
         "beskeder"
-      ]
+      ],
+      "resource_type": "worksheet",
+      "direct_display": true,
+      "ai_required": false
     },
     {
       "id": "observations-og-indsatslog",

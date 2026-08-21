@@ -1,118 +1,334 @@
 # Kommunikationslog skole ↔ hjem
 
+> **Formål**  
+> Brug ugearket til et neutralt og fælles overblik mellem skole/børnehave og hjem.  
+> Loggen er ikke en daglig karakterbog og skal ikke bruges til skyldplacering.
+
+---
+
+## Grundoplysninger
+
 **Barn:** ___________________________________________
 
 **Skole:** __________________________________________
 
-**Lærer/pædagog:** __________________________________
+**Lærer eller pædagog:** ____________________________
 
-**Forælder/værge:** _________________________________
+**Forælder eller værge:** ___________________________
 
 **Særligt fokus denne uge, hvis relevant:**
 
 ____________________________________________________
 
----
-
-## Uge af: ______________________________
-
-### Mandag ___/___
-
-**Fra skole/børnehave:**
-
-- Humør: 😄 😊 😐 😟 😢
-- Aktiviteter: _________________________________
-- Sociale interaktioner: ________________________
-- Udfordringer: ________________________________
-- Succeser: ____________________________________
-- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
-
-**Fra hjemmet:**
-
-- Nat/morgen: _________________________________
-- Særlige hændelser: ___________________________
-- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
-- Fokus i morgen: _____________________________
-
-### Tirsdag ___/___
-
-**Fra skole/børnehave:**
-
-- Humør: 😄 😊 😐 😟 😢
-- Aktiviteter: _________________________________
-- Sociale interaktioner: ________________________
-- Udfordringer: ________________________________
-- Succeser: ____________________________________
-- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
-
-**Fra hjemmet:**
-
-- Nat/morgen: _________________________________
-- Særlige hændelser: ___________________________
-- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
-- Fokus i morgen: _____________________________
-
-### Onsdag ___/___
-
-**Fra skole/børnehave:**
-
-- Humør: 😄 😊 😐 😟 😢
-- Aktiviteter: _________________________________
-- Sociale interaktioner: ________________________
-- Udfordringer: ________________________________
-- Succeser: ____________________________________
-- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
-
-**Fra hjemmet:**
-
-- Nat/morgen: _________________________________
-- Særlige hændelser: ___________________________
-- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
-- Fokus i morgen: _____________________________
-
-### Torsdag ___/___
-
-**Fra skole/børnehave:**
-
-- Humør: 😄 😊 😐 😟 😢
-- Aktiviteter: _________________________________
-- Sociale interaktioner: ________________________
-- Udfordringer: ________________________________
-- Succeser: ____________________________________
-- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
-
-**Fra hjemmet:**
-
-- Nat/morgen: _________________________________
-- Særlige hændelser: ___________________________
-- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
-- Fokus i morgen: _____________________________
-
-### Fredag ___/___
-
-**Fra skole/børnehave:**
-
-- Humør: 😄 😊 😐 😟 😢
-- Aktiviteter: _________________________________
-- Sociale interaktioner: ________________________
-- Udfordringer: ________________________________
-- Succeser: ____________________________________
-- Medicin givet, hvis relevant: ⬜ Ja ⬜ Nej Tid: _____
-
-**Fra hjemmet:**
-
-- Nat/morgen: _________________________________
-- Særlige hændelser: ___________________________
-- Medicin hjemme, hvis relevant: ⬜ Givet ⬜ Glemt Tid: _____
-- Fokus i morgen: _____________________________
+**Uge af:** _________________________________________
 
 ---
 
-## Ugemøde/opfølgning
+## Mandag
 
-**Dato:** _________________________________________
+**Dato:** ___________________________________________
 
-**Deltagere:** ____________________________________
+### Fra skole eller børnehave
+
+**Humør:**
+
+- [ ] 😄
+- [ ] 😊
+- [ ] 😐
+- [ ] 😟
+- [ ] 😢
+
+**Aktiviteter:**
+
+____________________________________________________
+
+**Sociale interaktioner:**
+
+____________________________________________________
+
+**Udfordringer:**
+
+____________________________________________________
+
+**Succeser:**
+
+____________________________________________________
+
+**Medicin givet, hvis relevant:**
+
+- [ ] Ja
+- [ ] Nej
+
+**Tid:** ____________________________________________
+
+### Fra hjemmet
+
+**Nat eller morgen:**
+
+____________________________________________________
+
+**Særlige hændelser:**
+
+____________________________________________________
+
+**Medicin hjemme, hvis relevant:**
+
+- [ ] Givet
+- [ ] Glemt
+
+**Tid:** ____________________________________________
+
+**Fokus i morgen:**
+
+____________________________________________________
+
+---
+
+## Tirsdag
+
+**Dato:** ___________________________________________
+
+### Fra skole eller børnehave
+
+**Humør:**
+
+- [ ] 😄
+- [ ] 😊
+- [ ] 😐
+- [ ] 😟
+- [ ] 😢
+
+**Aktiviteter:**
+
+____________________________________________________
+
+**Sociale interaktioner:**
+
+____________________________________________________
+
+**Udfordringer:**
+
+____________________________________________________
+
+**Succeser:**
+
+____________________________________________________
+
+**Medicin givet, hvis relevant:**
+
+- [ ] Ja
+- [ ] Nej
+
+**Tid:** ____________________________________________
+
+### Fra hjemmet
+
+**Nat eller morgen:**
+
+____________________________________________________
+
+**Særlige hændelser:**
+
+____________________________________________________
+
+**Medicin hjemme, hvis relevant:**
+
+- [ ] Givet
+- [ ] Glemt
+
+**Tid:** ____________________________________________
+
+**Fokus i morgen:**
+
+____________________________________________________
+
+---
+
+## Onsdag
+
+**Dato:** ___________________________________________
+
+### Fra skole eller børnehave
+
+**Humør:**
+
+- [ ] 😄
+- [ ] 😊
+- [ ] 😐
+- [ ] 😟
+- [ ] 😢
+
+**Aktiviteter:**
+
+____________________________________________________
+
+**Sociale interaktioner:**
+
+____________________________________________________
+
+**Udfordringer:**
+
+____________________________________________________
+
+**Succeser:**
+
+____________________________________________________
+
+**Medicin givet, hvis relevant:**
+
+- [ ] Ja
+- [ ] Nej
+
+**Tid:** ____________________________________________
+
+### Fra hjemmet
+
+**Nat eller morgen:**
+
+____________________________________________________
+
+**Særlige hændelser:**
+
+____________________________________________________
+
+**Medicin hjemme, hvis relevant:**
+
+- [ ] Givet
+- [ ] Glemt
+
+**Tid:** ____________________________________________
+
+**Fokus i morgen:**
+
+____________________________________________________
+
+---
+
+## Torsdag
+
+**Dato:** ___________________________________________
+
+### Fra skole eller børnehave
+
+**Humør:**
+
+- [ ] 😄
+- [ ] 😊
+- [ ] 😐
+- [ ] 😟
+- [ ] 😢
+
+**Aktiviteter:**
+
+____________________________________________________
+
+**Sociale interaktioner:**
+
+____________________________________________________
+
+**Udfordringer:**
+
+____________________________________________________
+
+**Succeser:**
+
+____________________________________________________
+
+**Medicin givet, hvis relevant:**
+
+- [ ] Ja
+- [ ] Nej
+
+**Tid:** ____________________________________________
+
+### Fra hjemmet
+
+**Nat eller morgen:**
+
+____________________________________________________
+
+**Særlige hændelser:**
+
+____________________________________________________
+
+**Medicin hjemme, hvis relevant:**
+
+- [ ] Givet
+- [ ] Glemt
+
+**Tid:** ____________________________________________
+
+**Fokus i morgen:**
+
+____________________________________________________
+
+---
+
+## Fredag
+
+**Dato:** ___________________________________________
+
+### Fra skole eller børnehave
+
+**Humør:**
+
+- [ ] 😄
+- [ ] 😊
+- [ ] 😐
+- [ ] 😟
+- [ ] 😢
+
+**Aktiviteter:**
+
+____________________________________________________
+
+**Sociale interaktioner:**
+
+____________________________________________________
+
+**Udfordringer:**
+
+____________________________________________________
+
+**Succeser:**
+
+____________________________________________________
+
+**Medicin givet, hvis relevant:**
+
+- [ ] Ja
+- [ ] Nej
+
+**Tid:** ____________________________________________
+
+### Fra hjemmet
+
+**Nat eller morgen:**
+
+____________________________________________________
+
+**Særlige hændelser:**
+
+____________________________________________________
+
+**Medicin hjemme, hvis relevant:**
+
+- [ ] Givet
+- [ ] Glemt
+
+**Tid:** ____________________________________________
+
+**Fokus i morgen:**
+
+____________________________________________________
+
+---
+
+## Ugemøde eller opfølgning
+
+**Dato:** ___________________________________________
+
+**Deltagere:** ______________________________________
 
 **Hvad ser ud til at hjælpe barnet?**
 
@@ -136,4 +352,5 @@ ____________________________________________________
 
 ---
 
-> Kommunikationsloggen skal skabe fælles overblik og færre misforståelser mellem skole/børnehave og hjem. Den skal ikke bruges til skyldplacering eller som daglig karakterbog for barnet.
+> Kommunikationsloggen bruges til fælles overblik, respektfuld koordinering og konkrete justeringer.
+
