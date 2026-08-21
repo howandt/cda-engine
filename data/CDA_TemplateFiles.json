@@ -1077,6 +1077,7 @@
             "trafiklys",
             "justering"
           ],
+          "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
         },

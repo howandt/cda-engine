@@ -151,14 +151,53 @@ ____________________________________________________
 
 ## Hvad så ud til at ske efter signalet?
 
-| Område | Ingen tydelig ændring | Delvis ændring | Tydelig ændring | Varierede | Ikke vurderbar |
-|---|---:|---:|---:|---:|---:|
-| Eleven fik støtte tidligere | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Eleven kunne vise behov uden mange ord | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Belastningen blev mindre | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Eleven kunne fortsætte efter støtte | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Tilbagevenden efter pause blev lettere | ☐ | ☐ | ☐ | ☐ | ☐ |
-| Samarbejdet mellem elev og voksen blev tydeligere | ☐ | ☐ | ☐ | ☐ | ☐ |
+### Eleven fik støtte tidligere
+
+- [ ] Ingen tydelig ændring
+- [ ] Delvis ændring
+- [ ] Tydelig ændring
+- [ ] Varierede
+- [ ] Ikke vurderbar
+
+### Eleven kunne vise behov uden mange ord
+
+- [ ] Ingen tydelig ændring
+- [ ] Delvis ændring
+- [ ] Tydelig ændring
+- [ ] Varierede
+- [ ] Ikke vurderbar
+
+### Belastningen blev mindre
+
+- [ ] Ingen tydelig ændring
+- [ ] Delvis ændring
+- [ ] Tydelig ændring
+- [ ] Varierede
+- [ ] Ikke vurderbar
+
+### Eleven kunne fortsætte efter støtte
+
+- [ ] Ingen tydelig ændring
+- [ ] Delvis ændring
+- [ ] Tydelig ændring
+- [ ] Varierede
+- [ ] Ikke vurderbar
+
+### Tilbagevenden efter pause blev lettere
+
+- [ ] Ingen tydelig ændring
+- [ ] Delvis ændring
+- [ ] Tydelig ændring
+- [ ] Varierede
+- [ ] Ikke vurderbar
+
+### Samarbejdet mellem elev og voksen blev tydeligere
+
+- [ ] Ingen tydelig ændring
+- [ ] Delvis ændring
+- [ ] Tydelig ændring
+- [ ] Varierede
+- [ ] Ikke vurderbar
 
 **Konkrete eksempler:**
 
