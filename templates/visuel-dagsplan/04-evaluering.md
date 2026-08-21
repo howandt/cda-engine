@@ -38,24 +38,123 @@ ____________________________________________________
 
 ## 3. Brug af planen
 
-| Område | Fungerer | Fungerer delvist | Skal ændres | Ikke vurderbar |
-|---|---:|---:|---:|---:|
-| Planen gennemgås | ☐ | ☐ | ☐ | ☐ |
-| Eleven kan finde planen | ☐ | ☐ | ☐ | ☐ |
-| Næste aktivitet er tydelig | ☐ | ☐ | ☐ | ☐ |
-| Pauser er synlige | ☐ | ☐ | ☐ | ☐ |
-| Afslutninger markeres | ☐ | ☐ | ☐ | ☐ |
-| Ændringer vises tydeligt | ☐ | ☐ | ☐ | ☐ |
-| De voksne bruger planen ens | ☐ | ☐ | ☐ | ☐ |
-| Planen er passende detaljeret | ☐ | ☐ | ☐ | ☐ |
+### Planen gennemgås
+
+- [ ] Fungerer
+- [ ] Fungerer delvist
+- [ ] Skal ændres
+- [ ] Ikke vurderbar
+
+### Eleven kan finde planen
+
+- [ ] Fungerer
+- [ ] Fungerer delvist
+- [ ] Skal ændres
+- [ ] Ikke vurderbar
+
+### Næste aktivitet er tydelig
+
+- [ ] Fungerer
+- [ ] Fungerer delvist
+- [ ] Skal ændres
+- [ ] Ikke vurderbar
+
+### Pauser er synlige
+
+- [ ] Fungerer
+- [ ] Fungerer delvist
+- [ ] Skal ændres
+- [ ] Ikke vurderbar
+
+### Afslutninger markeres
+
+- [ ] Fungerer
+- [ ] Fungerer delvist
+- [ ] Skal ændres
+- [ ] Ikke vurderbar
+
+### Ændringer vises tydeligt
+
+- [ ] Fungerer
+- [ ] Fungerer delvist
+- [ ] Skal ændres
+- [ ] Ikke vurderbar
+
+### De voksne bruger planen ens
+
+- [ ] Fungerer
+- [ ] Fungerer delvist
+- [ ] Skal ændres
+- [ ] Ikke vurderbar
+
+### Planen er passende detaljeret
+
+- [ ] Fungerer
+- [ ] Fungerer delvist
+- [ ] Skal ændres
+- [ ] Ikke vurderbar
 
 ## 4. Konkrete observationer
 
-| Dato | Situation | Hvordan blev planen brugt? | Elevens reaktion | Observeret effekt |
-|---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+### Observation 1
+
+**Dato:** ________________________________
+
+**Situation:**
+
+____________________________________________________
+
+**Hvordan blev planen brugt?**
+
+____________________________________________________
+
+**Elevens reaktion:**
+
+____________________________________________________
+
+**Observeret effekt:**
+
+____________________________________________________
+
+### Observation 2
+
+**Dato:** ________________________________
+
+**Situation:**
+
+____________________________________________________
+
+**Hvordan blev planen brugt?**
+
+____________________________________________________
+
+**Elevens reaktion:**
+
+____________________________________________________
+
+**Observeret effekt:**
+
+____________________________________________________
+
+### Observation 3
+
+**Dato:** ________________________________
+
+**Situation:**
+
+____________________________________________________
+
+**Hvordan blev planen brugt?**
+
+____________________________________________________
+
+**Elevens reaktion:**
+
+____________________________________________________
+
+**Observeret effekt:**
+
+____________________________________________________
 
 ## 5. Hvad ser ud til at hjælpe?
 
@@ -132,10 +231,29 @@ ____________________________________________________
 
 ## 9. Aftaler og ansvar
 
-| Handling | Ansvarlig | Startdato | Evalueres |
-|---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
+### Aftale 1
+
+**Handling:**
+
+____________________________________________________
+
+**Ansvarlig:** ________________________________
+
+**Startdato:** ________________________________
+
+**Evalueres:** ________________________________
+
+### Aftale 2
+
+**Handling:**
+
+____________________________________________________
+
+**Ansvarlig:** ________________________________
+
+**Startdato:** ________________________________
+
+**Evalueres:** ________________________________
 
 **Ny evalueringsdato:** ______________________________
 
