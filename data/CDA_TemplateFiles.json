@@ -1021,6 +1021,22 @@
             "handlevejledning",
             "voksenstøtte"
           ],
+          "resource_type": "guide",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-faelles-voksenpraksis",
+          "title": "Fælles voksenpraksis",
+          "content_file": "templates/trafiklyskort/03a-faelles-voksenpraksis.md",
+          "keywords": [
+            "voksenpraksis",
+            "fælles aftale",
+            "grøn orange rød",
+            "voksenstøtte"
+          ],
+          "resource_type": "worksheet",
+          "related_guide_id": "trafiklyskort-laerer",
           "direct_display": true,
           "ai_required": false
         },
