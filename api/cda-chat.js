@@ -64,6 +64,7 @@ import {
   isLocalDiagnosisTheoryFollowup,
   isLocalDiagnosisTheoryRequest,
   loadStructuredDiagnosis,
+  normalizeDiagnosisPhrase,
 } from "../lib/diagnosisEngine.js";
 
 const openai = new OpenAI({
@@ -3757,5 +3758,4 @@ try {
   });
 }
 }
-
 
