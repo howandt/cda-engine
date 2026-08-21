@@ -418,6 +418,7 @@
             "skift",
             "overblik"
           ],
+          "resource_type": "guide",
           "direct_display": true,
           "ai_required": false
         },
@@ -430,6 +431,8 @@
             "individuel aftale",
             "skift"
           ],
+          "resource_type": "worksheet",
+          "related_guide_id": "overgange-og-skift-overblik",
           "direct_display": true,
           "ai_required": false
         },

@@ -2626,6 +2626,49 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       ) || null;
     }
 
+    function getTemplateResourceType(template) {
+      const resourceType = String(template?.resource_type || "")
+        .trim()
+        .toLowerCase();
+
+      return ["guide", "worksheet", "action"].includes(resourceType)
+        ? resourceType
+        : "";
+    }
+
+    function getTemplateOpenButtonLabel(group, template) {
+      if (group?.isPromptGroup || template?.promptText) {
+        return "Indsæt tekst";
+      }
+
+      if (group?.isHelpGroup || template?.helpText) {
+        return "Vis hjælp";
+      }
+
+      const resourceType = getTemplateResourceType(template);
+
+      if (resourceType === "guide") {
+        return "Læs vejledning";
+      }
+
+      if (resourceType === "worksheet") {
+        return "Vis værktøj";
+      }
+
+      return "Vis skabelon";
+    }
+
+    function updateTemplateOpenButton() {
+      const group = getSelectedTemplateGroup();
+      const template = getSelectedTemplateFile();
+
+      templateOpenButton.disabled = !template;
+      templateOpenButton.textContent = getTemplateOpenButtonLabel(
+        group,
+        template
+      );
+    }
+
     function populateTemplateFiles() {
       const group = getSelectedTemplateGroup();
       const files = Array.isArray(group?.files) ? group.files : [];
@@ -2640,12 +2683,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       );
 
       templateFileSelect.disabled = files.length === 0;
-      templateOpenButton.disabled = true;
-      templateOpenButton.textContent = group?.isPromptGroup
-        ? "Indsæt tekst"
-        : group?.isHelpGroup
-          ? "Vis hjælp"
-          : "Vis skabelon";
+      updateTemplateOpenButton();
       templateShortcutStatus.textContent = "";
     }
 
@@ -2783,6 +2821,8 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         categoryTitle: selectedGroup?.title || "Skabelon",
         templateTitle: selectedTemplate.title,
         templateId: selectedTemplate.id,
+        resourceType: getTemplateResourceType(selectedTemplate),
+        relatedGuideId: selectedTemplate.related_guide_id || null,
       });
       landscapeFocusDismissed = false;
       templateFocusPending = true;
@@ -3020,8 +3060,56 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       return underlineFields.length >= 3 || placeholderFields.length >= 2;
     }
 
-    function attachTemplateWorkspaceAction(row, templateText) {
-      if (!row || !isFillableTemplateAssistantReply(templateText)) return;
+    function shouldAttachTemplateWorkspace(selection, templateText) {
+      if (!selection || selection.promptOnly) return false;
+
+      if (selection.resourceType === "guide") return false;
+      if (selection.resourceType === "worksheet") return true;
+
+      return isFillableTemplateAssistantReply(templateText);
+    }
+
+    function findRegisteredTemplate(templateId) {
+      const wantedId = String(templateId || "").trim();
+
+      if (!wantedId) return null;
+
+      for (const group of templateRegistryGroups) {
+        const template = (Array.isArray(group?.files) ? group.files : [])
+          .find((item) => item.id === wantedId);
+
+        if (template) {
+          return { group, template };
+        }
+      }
+
+      return null;
+    }
+
+    async function openRegisteredTemplate(templateId) {
+      const match = findRegisteredTemplate(templateId);
+
+      if (!match) {
+        templateShortcutStatus.textContent =
+          "Den tilknyttede vejledning blev ikke fundet.";
+        return;
+      }
+
+      templateCategorySelect.value = match.group.id;
+      populateTemplateFiles();
+      templateFileSelect.value = match.template.id;
+      updateTemplateOpenButton();
+      await openSelectedTemplate();
+    }
+
+    function attachTemplateWorkspaceAction(
+      row,
+      templateText,
+      selection = activeTemplateSelection
+    ) {
+      if (!row || !shouldAttachTemplateWorkspace(selection, templateText)) {
+        return;
+      }
 
       const bubble = row.querySelector(".message.assistant");
       if (!bubble) return;
@@ -3037,6 +3125,23 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       const status = document.createElement("span");
       status.className = "save-profile-status";
       status.textContent = "Udfyldes lokalt. Gemmes ikke.";
+
+      const relatedGuideId = String(selection?.relatedGuideId || "").trim();
+
+      if (relatedGuideId) {
+        const guideButton = document.createElement("button");
+        guideButton.className = "save-profile-button";
+        guideButton.type = "button";
+        guideButton.textContent = "Læs vejledning";
+
+        guideButton.addEventListener("click", async () => {
+          guideButton.disabled = true;
+          await openRegisteredTemplate(relatedGuideId);
+          guideButton.disabled = false;
+        });
+
+        actions.appendChild(guideButton);
+      }
 
       button.addEventListener("click", () => {
         if (bubble.querySelector(".template-workspace")) {
@@ -3100,7 +3205,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         scrollToBottom();
       });
 
-      actions.appendChild(button);
+      actions.prepend(button);
       actions.appendChild(status);
       bubble.appendChild(actions);
       scrollToBottom();
@@ -3465,13 +3570,17 @@ ${observationText}`;
         }
 
         const assistantRow = appendMessage("assistant", data.reply);
-        const shouldAttachTemplateWorkspace =
-          activeTemplateSelection &&
-          !activeTemplateSelection.promptOnly &&
-          isFillableTemplateAssistantReply(data.reply);
+        const shouldAttachWorkspace = shouldAttachTemplateWorkspace(
+          activeTemplateSelection,
+          data.reply
+        );
 
-        if (shouldAttachTemplateWorkspace) {
-          attachTemplateWorkspaceAction(assistantRow, data.reply);
+        if (shouldAttachWorkspace) {
+          attachTemplateWorkspaceAction(
+            assistantRow,
+            data.reply,
+            activeTemplateSelection
+          );
         }
 
         if (isStudentProfileAssistantReply(data.reply, data)) {
@@ -4374,13 +4483,17 @@ if (data.pending_action) {
         }
 
         const assistantRow = appendMessage("assistant", data.reply);
-        const shouldAttachTemplateWorkspace =
-          activeTemplateSelection &&
-          !activeTemplateSelection.promptOnly &&
-          isFillableTemplateAssistantReply(data.reply);
+        const shouldAttachWorkspace = shouldAttachTemplateWorkspace(
+          activeTemplateSelection,
+          data.reply
+        );
 
-        if (shouldAttachTemplateWorkspace) {
-          attachTemplateWorkspaceAction(assistantRow, data.reply);
+        if (shouldAttachWorkspace) {
+          attachTemplateWorkspaceAction(
+            assistantRow,
+            data.reply,
+            activeTemplateSelection
+          );
         }
 
         if (isStudentProfileAssistantReply(data.reply, data)) {
@@ -4497,7 +4610,7 @@ if (data.pending_action) {
     templateCategorySelect.addEventListener("change", populateTemplateFiles);
 
     templateFileSelect.addEventListener("change", () => {
-      templateOpenButton.disabled = !getSelectedTemplateFile();
+      updateTemplateOpenButton();
       templateShortcutStatus.textContent = "";
     });
 
