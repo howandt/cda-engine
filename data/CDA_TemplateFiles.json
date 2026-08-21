@@ -962,6 +962,7 @@
             "overblik",
             "signal"
           ],
+          "resource_type": "guide",
           "direct_display": true,
           "ai_required": false
         },
@@ -987,6 +988,25 @@
             "signal",
             "hjælp"
           ],
+          "resource_type": "worksheet",
+          "related_guide_id": "trafiklyskort-overblik",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-bordkort",
+          "title": "Lille bordkort",
+          "content_file": "templates/trafiklyskort/02a-lille-bordkort.md",
+          "keywords": [
+            "bordkort",
+            "grøn",
+            "orange",
+            "rød",
+            "signal",
+            "hjælp"
+          ],
+          "resource_type": "worksheet",
+          "related_guide_id": "trafiklyskort-overblik",
           "direct_display": true,
           "ai_required": false
         },

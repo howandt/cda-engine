@@ -704,6 +704,49 @@
       box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
     }
 
+    .worksheet-form-choice {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      align-items: start;
+      gap: 8px;
+      max-width: 640px;
+      color: var(--text);
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .worksheet-form-choice input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 1px 0 0;
+      accent-color: var(--primary);
+    }
+
+    .worksheet-form-choice-other {
+      display: grid;
+      grid-template-columns: auto minmax(160px, 360px);
+      align-items: center;
+      gap: 8px;
+    }
+
+    .worksheet-form-choice-other input[type="text"] {
+      width: 100%;
+      min-height: 36px;
+      padding: 7px 9px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      background: #ffffff;
+      font: inherit;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .worksheet-form-choice-other input[type="text"]:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
+    }
+
     .observation-review-list {
       display: grid;
       gap: 12px;
@@ -3248,6 +3291,34 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       return /[?.!]$/.test(label) ? label : `${label}:`;
     }
 
+    function getWorksheetUnderlineBlock(lines, startIndex) {
+      let lookAhead = startIndex;
+
+      while (lookAhead < lines.length && !lines[lookAhead].trim()) {
+        lookAhead += 1;
+      }
+
+      let underlineCount = 0;
+      let afterField = lookAhead;
+
+      while (
+        afterField < lines.length &&
+        /^_{8,}$/.test(lines[afterField].trim())
+      ) {
+        underlineCount += 1;
+        afterField += 1;
+
+        while (
+          afterField < lines.length &&
+          !lines[afterField].trim()
+        ) {
+          afterField += 1;
+        }
+      }
+
+      return { underlineCount, afterField };
+    }
+
     function parseTemplateWorksheet(templateText) {
       const lines = String(templateText || "")
         .replace(/\r\n/g, "\n")
@@ -3268,10 +3339,29 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         const headingMatch = trimmed.match(/^(#{1,6})\s+(.+)$/);
 
         if (headingMatch) {
+          const level = headingMatch[1].length;
+          const headingText = cleanWorksheetLabel(headingMatch[2]);
+          const underlineBlock = level >= 3
+            ? getWorksheetUnderlineBlock(lines, index + 1)
+            : { underlineCount: 0, afterField: index + 1 };
+
+          if (underlineBlock.underlineCount > 0) {
+            fieldNumber += 1;
+            blocks.push({
+              type: "field",
+              fieldType: "textarea",
+              id: `field-${fieldNumber}`,
+              label: headingText,
+              rows: underlineBlock.underlineCount > 1 ? 4 : 3,
+            });
+            index = underlineBlock.afterField;
+            continue;
+          }
+
           blocks.push({
             type: "heading",
-            level: headingMatch[1].length,
-            text: cleanWorksheetLabel(headingMatch[2]),
+            level,
+            text: headingText,
           });
           index += 1;
           continue;
@@ -3279,6 +3369,25 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
         const isNote = /^>+\s?/.test(trimmed);
         const content = trimmed.replace(/^>+\s?/, "");
+        const checkboxMatch = content.match(/^\-\s+\[\s*\]\s+(.+)$/);
+
+        if (checkboxMatch) {
+          const checkboxFieldMatch = checkboxMatch[1].match(
+            /^(.*?)(?:\s*:\s*)?(_{8,})\s*$/
+          );
+          fieldNumber += 1;
+          blocks.push({
+            type: "checkbox",
+            id: `field-${fieldNumber}`,
+            label: cleanWorksheetLabel(
+              checkboxFieldMatch?.[1] || checkboxMatch[1]
+            ),
+            hasTextInput: Boolean(checkboxFieldMatch),
+          });
+          index += 1;
+          continue;
+        }
+
         const inlineFieldMatch = content.match(
           /^\*\*(.+?)\*\*\s*(_{8,})\s*$/
         );
@@ -3298,32 +3407,8 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         const boldOnlyMatch = content.match(/^\*\*(.+?)\*\*\s*$/);
 
         if (boldOnlyMatch) {
-          let lookAhead = index + 1;
-
-          while (
-            lookAhead < lines.length &&
-            !lines[lookAhead].trim()
-          ) {
-            lookAhead += 1;
-          }
-
-          let underlineCount = 0;
-          let afterField = lookAhead;
-
-          while (
-            afterField < lines.length &&
-            /^_{8,}$/.test(lines[afterField].trim())
-          ) {
-            underlineCount += 1;
-            afterField += 1;
-
-            while (
-              afterField < lines.length &&
-              !lines[afterField].trim()
-            ) {
-              afterField += 1;
-            }
-          }
+          const { underlineCount, afterField } =
+            getWorksheetUnderlineBlock(lines, index + 1);
 
           if (underlineCount > 0) {
             fieldNumber += 1;
@@ -3408,6 +3493,44 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
           return;
         }
 
+        if (block.type === "checkbox") {
+          const wrapper = document.createElement("div");
+          wrapper.className = "worksheet-form-choice";
+
+          const checkbox = document.createElement("input");
+          const checkboxId = `${formId}-${block.id}`;
+          checkbox.type = "checkbox";
+          checkbox.id = checkboxId;
+          checkbox.name = block.id;
+
+          const choiceContent = document.createElement("div");
+          const label = document.createElement("label");
+          label.htmlFor = checkboxId;
+          label.textContent = block.label;
+          choiceContent.appendChild(label);
+
+          let textInput = null;
+
+          if (block.hasTextInput) {
+            choiceContent.className = "worksheet-form-choice-other";
+            textInput = document.createElement("input");
+            textInput.type = "text";
+            textInput.autocomplete = "off";
+            textInput.setAttribute(
+              "aria-label",
+              `${block.label} – skriv selv`
+            );
+            choiceContent.appendChild(textInput);
+          }
+
+          controls.set(block.id, { checkbox, textInput });
+          firstControl ||= checkbox;
+          wrapper.appendChild(checkbox);
+          wrapper.appendChild(choiceContent);
+          form.appendChild(wrapper);
+          return;
+        }
+
         if (block.type !== "field") return;
 
         const wrapper = document.createElement("div");
@@ -3456,6 +3579,18 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
               return;
             }
 
+            if (block.type === "checkbox") {
+              const entry = controls.get(block.id);
+              const textValue = String(entry?.textInput?.value || "").trim();
+
+              if (entry?.checkbox?.checked || textValue) {
+                parts.push(
+                  `[x] ${block.label}${textValue ? `: ${textValue}` : ""}`
+                );
+              }
+              return;
+            }
+
             if (block.type !== "field") return;
 
             const label = formatWorksheetCopyLabel(block.label);
@@ -3477,6 +3612,56 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       };
     }
 
+    function getTemplateWorksheetPreview(templateText) {
+      const lines = String(templateText || "")
+        .replace(/\r\n/g, "\n")
+        .split("\n");
+      const titleLine = lines.find((line) => /^#{1,6}\s+/.test(line.trim()));
+      const title = cleanWorksheetLabel(titleLine || "Arbejdsark");
+      let purpose = "Udfyld arbejdsarket lokalt. Intet sendes eller gemmes.";
+
+      const purposeIndex = lines.findIndex((line) =>
+        /^>+\s*\*\*(formål|brug)\*\*\s*$/i.test(line.trim())
+      );
+
+      if (purposeIndex >= 0) {
+        for (let index = purposeIndex + 1; index < lines.length; index += 1) {
+          const line = lines[index].trim();
+
+          if (!line) continue;
+          if (!/^>+\s?/.test(line)) break;
+
+          const candidate = cleanWorksheetLabel(line);
+
+          if (candidate) {
+            purpose = candidate;
+            break;
+          }
+        }
+      }
+
+      return { title, purpose };
+    }
+
+    function showCompactTemplateWorksheetPreview(bubble, templateText) {
+      const content = bubble?.querySelector(".message-content");
+
+      if (!content) return;
+
+      const preview = getTemplateWorksheetPreview(templateText);
+      const title = document.createElement("h3");
+      title.className = "worksheet-form-title";
+      title.textContent = preview.title;
+
+      const purpose = document.createElement("p");
+      purpose.className = "worksheet-form-text";
+      purpose.textContent = preview.purpose;
+
+      content.innerHTML = "";
+      content.appendChild(title);
+      content.appendChild(purpose);
+    }
+
     function attachTemplateWorkspaceAction(
       row,
       templateText,
@@ -3488,6 +3673,12 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
       const bubble = row.querySelector(".message.assistant");
       if (!bubble) return;
+
+      const resourceType = getTemplateSelectionResourceType(selection);
+
+      if (resourceType === "worksheet") {
+        showCompactTemplateWorksheetPreview(bubble, templateText);
+      }
 
       const actions = document.createElement("div");
       actions.className = "message-actions";
@@ -3525,7 +3716,6 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
         const workspace = document.createElement("div");
         workspace.className = "template-workspace";
-        const resourceType = getTemplateSelectionResourceType(selection);
         const structuredWorksheet = resourceType === "worksheet"
           ? createStructuredTemplateWorksheet(templateText)
           : null;
