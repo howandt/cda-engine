@@ -53,9 +53,11 @@ import {
   isStudentProfileRequest,
 } from "../lib/elevprofilEngine.js";
 import {
+  STRUCTURED_DIAGNOSIS_ALIASES,
   buildLocalDiagnosisSessionPrompt,
   buildLocalDiagnosisTheoryReply,
   buildStructuredDiagnosisContext,
+  containsDiagnosisPhrase,
   findStructuredDiagnosisMatches,
   getDiagnoser,
   getLocalDiagnosisSessionMeta,
@@ -3758,4 +3760,3 @@ try {
   });
 }
 }
-
