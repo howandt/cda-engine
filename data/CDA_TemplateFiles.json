@@ -1187,6 +1187,8 @@
             "vikar",
             "aflysning"
           ],
+          "resource_type": "worksheet",
+          "related_guide_id": "visuel-dagsplan-overblik",
           "direct_display": true,
           "ai_required": false
         },
