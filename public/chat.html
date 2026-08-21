@@ -594,11 +594,14 @@
     }
 
     .template-workspace {
-      margin-top: 12px;
+      width: 100%;
+      max-width: 760px;
+      margin: 12px auto 0;
       padding: 10px;
       border: 1px solid #d9e3ff;
       border-radius: 10px;
       background: #f7f9ff;
+      box-sizing: border-box;
     }
 
     .template-workspace textarea {
@@ -609,10 +612,11 @@
       border-radius: 9px;
       color: var(--text);
       background: #ffffff;
-      line-height: 1.45;
       resize: vertical;
       outline: none;
       white-space: pre-wrap;
+      line-height: 1.55;
+      box-sizing: border-box;
     }
 
     .template-workspace textarea:focus {
@@ -3102,6 +3106,34 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       await openSelectedTemplate();
     }
 
+    function prepareTemplateWorkspaceText(templateText) {
+      const source = String(templateText || "")
+        .replace(/\r\n/g, "\n")
+        .trim();
+
+      return source
+        .split("\n")
+        .map((line) => {
+          let next = line.trimEnd();
+
+          if (/^\s*---+\s*$/.test(next)) {
+            return "";
+          }
+
+          next = next
+            .replace(/^\s*>+\s?/, "")
+            .replace(/^\s*#{1,6}\s+/, "")
+            .replace(/\*\*/g, "")
+            .replace(/_{8,}/g, "")
+            .trimEnd();
+
+          return next;
+        })
+        .join("\n")
+        .replace(/\n{3,}/g, "\n\n")
+        .trim();
+    }
+
     function attachTemplateWorkspaceAction(
       row,
       templateText,
@@ -3152,7 +3184,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         workspace.className = "template-workspace";
 
         const textarea = document.createElement("textarea");
-        textarea.value = String(templateText || "").trim();
+        textarea.value = prepareTemplateWorkspaceText(templateText);
         textarea.setAttribute(
           "aria-label",
           "Udfyld skabelon lokalt"
