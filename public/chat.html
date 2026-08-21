@@ -550,6 +550,23 @@
       font-weight: 850;
     }
 
+    .markdown-note {
+      margin: 0;
+      padding: 10px 12px;
+      border-left: 3px solid #b9c8f5;
+      border-radius: 0 8px 8px 0;
+      background: #f5f7ff;
+      color: #40506b;
+    }
+
+    .markdown-note p {
+      margin: 0;
+    }
+
+    .markdown-note p + p {
+      margin-top: 5px;
+    }
+
     .message-actions {
       display: flex;
       flex-wrap: wrap;
@@ -3099,6 +3116,25 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         if (startsTable) {
           closeList();
           index = appendTable(index);
+          continue;
+        }
+
+        if (/^>\s?/.test(line)) {
+          closeList();
+          const note = document.createElement("blockquote");
+          note.className = "markdown-note";
+
+          while (index < lines.length && /^>\s?/.test(lines[index].trim())) {
+            const paragraph = document.createElement("p");
+            appendInlineMarkdown(
+              paragraph,
+              lines[index].trim().replace(/^>\s?/, "")
+            );
+            note.appendChild(paragraph);
+            index += 1;
+          }
+
+          container.appendChild(note);
           continue;
         }
 
