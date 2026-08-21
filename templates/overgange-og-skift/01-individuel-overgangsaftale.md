@@ -1,280 +1,77 @@
-# Overgange og skift – individuel overgangsaftale
+# Overgange og skift – kort overgangsaftale
 
 > **Formål**  
-> Denne aftale bruges til én konkret overgang, som eleven har brug for støtte til.  
-> Den tilpasses eleven, situationen og skolens rammer. Eksemplerne er inspiration og kan ændres.
+> Brug aftalen til én konkret overgang, som eleven har brug for støtte til.  
+> Udfyld kun de felter, der er relevante.
 
 ---
 
-## Grundoplysninger
+## 1. Elev og overgang
 
-**Elev:** ___________________________________________
+**Elev / arbejdsnavn:** ___________________________________________
 
-**Klasse eller tilbud:** ______________________________
+**Klasse / gruppe:** ______________________________________________
 
-**Overgang eller skift:** _____________________________
-
-**Ansvarlig voksen:** ________________________________
-
-**Startdato:** _______________________________________
-
-**Dato for evaluering:** ______________________________
-
----
-
-## Hvad er overgangen?
-
-**Fra:**
-
-____________________________________________________
-
-**Til:**
-
-____________________________________________________
-
-**Hvornår sker den typisk?**
-
-____________________________________________________
-
-**Hvor foregår den?**
+**Hvilken konkret overgang arbejder vi med?**
 
 ____________________________________________________
 
 ---
 
-## Elevens perspektiv
+## 2. Hvad ser vi?
 
-**Det er svært for mig, når:**
-
-____________________________________________________
+**Hvad sker der konkret, når overgangen bliver svær?**
 
 ____________________________________________________
-
-**Det hjælper mig, når:**
-
-____________________________________________________
-
-____________________________________________________
-
-**Sådan vil jeg helst have beskeden:**
-
-____________________________________________________
-
-**Sådan kan jeg bede om hjælp:**
 
 ____________________________________________________
 
 ---
 
-## Tegn på stigende belastning
+## 3. Før overgangen
 
-Mulige tegn kan være ændret kropssprog, gentagne spørgsmål, stilhed, uro, protest, tilbagetrækning eller forsøg på at undgå skiftet.
-
-**Tidlige tegn hos eleven:**
-
-____________________________________________________
-
-**Tegn på høj belastning:**
+**Sådan forbereder eller varsler vi eleven:**
 
 ____________________________________________________
 
 ---
 
-## Før overgangen
+## 4. Under overgangen
 
-Mulige støttemåder:
-
-- kort mundtlig besked
-- visuel markering
-- timer eller nedtælling
-- først–så-oversigt
-- mulighed for at afslutte en lille del
-- hjælp til at pakke sammen
-- kendt voksen
-- konkret beskrivelse af næste aktivitet
-
-**Sådan varsles eleven:**
-
-____________________________________________________
-
-**Hvad skal eleven vide?**
-
-____________________________________________________
-
-**Hvordan afsluttes den nuværende aktivitet?**
+**Sådan støtter den voksne eleven gennem skiftet:**
 
 ____________________________________________________
 
 ---
 
-## Under overgangen
+## 5. Efter overgangen
 
-**Hvem støtter eleven?**
-
-____________________________________________________
-
-**Hvordan foregår selve skiftet?**
-
-____________________________________________________
-
-**Kan eleven gå før eller efter gruppen?**
-
-____________________________________________________
-
-**Hvilket signal kan eleven bruge ved behov for hjælp?**
-
-____________________________________________________
-
-**Mulig støtte undervejs:**
+**Sådan hjælpes eleven i gang med det næste:**
 
 ____________________________________________________
 
 ---
 
-## Efter overgangen
+## 6. Elevens perspektiv
 
-**Hvor skal eleven begynde?**
-
-____________________________________________________
-
-**Første lille trin:**
-
-____________________________________________________
-
-**Hvem hjælper eleven i gang?**
-
-____________________________________________________
-
-**Er der behov for kort ro, pause eller alternativ start?**
+**Hvad siger eller viser eleven hjælper?**
 
 ____________________________________________________
 
 ---
 
-## Hvis planen ændres
+## 7. Ansvar
 
-**Sådan fortælles ændringen:**
-
-____________________________________________________
-
-**Det er stadig det samme:**
-
-____________________________________________________
-
-**Den nye korte plan er:**
-
-____________________________________________________
-
-**Muligt valg for eleven:**
-
-____________________________________________________
-
-**Reserveaftale:**
-
-____________________________________________________
+**Ansvarlig voksen:** ______________________________________________
 
 ---
 
-## Hvis belastningen bliver for høj
+## 8. Kort opfølgning
 
-**Sådan kan eleven vise det:**
+**Dato:** __________________________
 
-____________________________________________________
-
-**Det gør den voksne:**
+**Det ser vi efter:**
 
 ____________________________________________________
 
-**Mulig pause eller støtte:**
-
-____________________________________________________
-
-**Hvor foregår den?**
-
-____________________________________________________
-
-**Sådan hjælpes eleven tilbage:**
-
-____________________________________________________
-
----
-
-## Voksnes fælles praksis
-
-**Den besked bruger vi:**
-
-____________________________________________________
-
-**Den støtte tilbyder vi:**
-
-____________________________________________________
-
-**Det forsøger vi at undgå:**
-
-____________________________________________________
-
-**Hvis den ansvarlige voksen ikke er til stede:**
-
-____________________________________________________
-
----
-
-## Kort registrering
-
-| Dato | Overgang | Støtte brugt | Elevens reaktion | Observeret effekt | Justering |
-|---|---|---|---|---|---|
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-
----
-
-## Evaluering
-
-**Hvad ser ud til at hjælpe?**
-
-____________________________________________________
-
-**Hvad ser ud til at gøre overgangen sværere?**
-
-____________________________________________________
-
-**Forstår eleven aftalen?**
-
-____________________________________________________
-
-**Reagerer de voksne nogenlunde ens?**
-
-____________________________________________________
-
-**Skal varslingen ændres?**
-
-____________________________________________________
-
-**Skal første trin efter overgangen ændres?**
-
-____________________________________________________
-
-**Skal pause, signal eller reserveaftale ændres?**
-
-____________________________________________________
-
----
-
-## Næste aftale
-
-**Det fortsætter vi med:**
-
-____________________________________________________
-
-**Det ændrer vi:**
-
-____________________________________________________
-
-**Ansvarlig:** _______________________________________
-
-**Ny evalueringsdato:** ______________________________
-
----
-
-> Aftalen skal gøre overgangen mere forståelig og mulig at gennemføre. Hvis den ikke hjælper, justeres støtten, tidspunktet, kravene eller selve overgangen.
+> Aftalen skal gøre én konkret overgang lettere. Hvis den ikke hjælper, justeres støtten frem for blot at gentage den samme løsning.
