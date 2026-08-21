@@ -624,6 +624,86 @@
       box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
     }
 
+    .worksheet-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .worksheet-form-title {
+      margin: 0;
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .worksheet-form-section {
+      margin: 8px 0 0;
+      padding-top: 10px;
+      border-top: 1px solid #d9e3ff;
+      color: var(--text);
+      font-size: 0.94rem;
+      line-height: 1.35;
+    }
+
+    .worksheet-form-text,
+    .worksheet-form-note {
+      margin: 0;
+      color: #53647a;
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    .worksheet-form-note {
+      padding: 9px 10px;
+      border-left: 3px solid #b9c8f5;
+      background: #ffffff;
+    }
+
+    .worksheet-form-field {
+      display: grid;
+      gap: 6px;
+      max-width: 640px;
+    }
+
+    .worksheet-form-field label {
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .worksheet-form-field input,
+    .worksheet-form-field textarea {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      background: #ffffff;
+      font: inherit;
+      line-height: 1.45;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .worksheet-form-field input {
+      max-width: 440px;
+      min-height: 40px;
+    }
+
+    .template-workspace .worksheet-form-field textarea {
+      max-width: 640px;
+      min-height: 82px;
+      resize: vertical;
+      white-space: pre-wrap;
+    }
+
+    .worksheet-form-field input:focus,
+    .worksheet-form-field textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
+    }
+
     .observation-review-list {
       display: grid;
       gap: 12px;
@@ -2168,6 +2248,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
     let activeTemplateSelection = null;
     let templateFocusPending = false;
     let landscapeFocusDismissed = false;
+    let worksheetFormCounter = 0;
 
     const settingsToggle = document.getElementById("settingsToggle");
     const settingsPanel = document.getElementById("settingsPanel");
@@ -3067,8 +3148,10 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
     function shouldAttachTemplateWorkspace(selection, templateText) {
       if (!selection || selection.promptOnly) return false;
 
-      if (selection.resourceType === "guide") return false;
-      if (selection.resourceType === "worksheet") return true;
+      const resourceType = getTemplateSelectionResourceType(selection);
+
+      if (resourceType === "guide") return false;
+      if (resourceType === "worksheet") return true;
 
       return isFillableTemplateAssistantReply(templateText);
     }
@@ -3088,6 +3171,20 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       }
 
       return null;
+    }
+
+    function getTemplateSelectionResourceType(selection) {
+      const explicitType = String(selection?.resourceType || "")
+        .trim()
+        .toLowerCase();
+
+      if (["guide", "worksheet", "action"].includes(explicitType)) {
+        return explicitType;
+      }
+
+      const registered = findRegisteredTemplate(selection?.templateId);
+
+      return getTemplateResourceType(registered?.template);
     }
 
     async function openRegisteredTemplate(templateId) {
@@ -3132,6 +3229,252 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         .join("\n")
         .replace(/\n{3,}/g, "\n\n")
         .trim();
+    }
+
+    function cleanWorksheetLabel(value) {
+      return String(value || "")
+        .replace(/^\s*>+\s?/, "")
+        .replace(/^\s*#{1,6}\s+/, "")
+        .replace(/\*\*/g, "")
+        .replace(/_{8,}/g, "")
+        .replace(/:\s*$/, "")
+        .trim();
+    }
+
+    function formatWorksheetCopyLabel(value) {
+      const label = cleanWorksheetLabel(value);
+
+      if (!label) return "";
+      return /[?.!]$/.test(label) ? label : `${label}:`;
+    }
+
+    function parseTemplateWorksheet(templateText) {
+      const lines = String(templateText || "")
+        .replace(/\r\n/g, "\n")
+        .split("\n");
+      const blocks = [];
+      let fieldNumber = 0;
+      let index = 0;
+
+      while (index < lines.length) {
+        const rawLine = lines[index];
+        const trimmed = rawLine.trim();
+
+        if (!trimmed || /^---+$/.test(trimmed)) {
+          index += 1;
+          continue;
+        }
+
+        const headingMatch = trimmed.match(/^(#{1,6})\s+(.+)$/);
+
+        if (headingMatch) {
+          blocks.push({
+            type: "heading",
+            level: headingMatch[1].length,
+            text: cleanWorksheetLabel(headingMatch[2]),
+          });
+          index += 1;
+          continue;
+        }
+
+        const isNote = /^>+\s?/.test(trimmed);
+        const content = trimmed.replace(/^>+\s?/, "");
+        const inlineFieldMatch = content.match(
+          /^\*\*(.+?)\*\*\s*(_{8,})\s*$/
+        );
+
+        if (inlineFieldMatch) {
+          fieldNumber += 1;
+          blocks.push({
+            type: "field",
+            fieldType: "input",
+            id: `field-${fieldNumber}`,
+            label: cleanWorksheetLabel(inlineFieldMatch[1]),
+          });
+          index += 1;
+          continue;
+        }
+
+        const boldOnlyMatch = content.match(/^\*\*(.+?)\*\*\s*$/);
+
+        if (boldOnlyMatch) {
+          let lookAhead = index + 1;
+
+          while (
+            lookAhead < lines.length &&
+            !lines[lookAhead].trim()
+          ) {
+            lookAhead += 1;
+          }
+
+          let underlineCount = 0;
+          let afterField = lookAhead;
+
+          while (
+            afterField < lines.length &&
+            /^_{8,}$/.test(lines[afterField].trim())
+          ) {
+            underlineCount += 1;
+            afterField += 1;
+
+            while (
+              afterField < lines.length &&
+              !lines[afterField].trim()
+            ) {
+              afterField += 1;
+            }
+          }
+
+          if (underlineCount > 0) {
+            fieldNumber += 1;
+            blocks.push({
+              type: "field",
+              fieldType: "textarea",
+              id: `field-${fieldNumber}`,
+              label: cleanWorksheetLabel(boldOnlyMatch[1]),
+              rows: underlineCount > 1 ? 4 : 3,
+            });
+            index = afterField;
+            continue;
+          }
+
+          blocks.push({
+            type: "heading",
+            level: 3,
+            text: cleanWorksheetLabel(boldOnlyMatch[1]),
+          });
+          index += 1;
+          continue;
+        }
+
+        if (/^_{8,}$/.test(content)) {
+          index += 1;
+          continue;
+        }
+
+        const plainText = cleanWorksheetLabel(content);
+
+        if (plainText) {
+          blocks.push({
+            type: isNote ? "note" : "text",
+            text: plainText,
+          });
+        }
+
+        index += 1;
+      }
+
+      return {
+        blocks,
+        fieldCount: fieldNumber,
+      };
+    }
+
+    function createStructuredTemplateWorksheet(templateText) {
+      const parsed = parseTemplateWorksheet(templateText);
+
+      if (parsed.fieldCount === 0) return null;
+
+      worksheetFormCounter += 1;
+      const formId = `worksheet-form-${worksheetFormCounter}`;
+      const form = document.createElement("div");
+      form.className = "worksheet-form";
+      form.setAttribute("role", "form");
+      form.setAttribute("aria-label", "Udfyld arbejdsark lokalt");
+
+      const controls = new Map();
+      let firstControl = null;
+
+      parsed.blocks.forEach((block) => {
+        if (block.type === "heading") {
+          const heading = document.createElement(
+            block.level === 1 ? "h3" : "h4"
+          );
+          heading.className = block.level === 1
+            ? "worksheet-form-title"
+            : "worksheet-form-section";
+          heading.textContent = block.text;
+          form.appendChild(heading);
+          return;
+        }
+
+        if (block.type === "text" || block.type === "note") {
+          const paragraph = document.createElement("p");
+          paragraph.className = block.type === "note"
+            ? "worksheet-form-note"
+            : "worksheet-form-text";
+          paragraph.textContent = block.text;
+          form.appendChild(paragraph);
+          return;
+        }
+
+        if (block.type !== "field") return;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "worksheet-form-field";
+
+        const label = document.createElement("label");
+        const controlId = `${formId}-${block.id}`;
+        label.htmlFor = controlId;
+        label.textContent = block.label;
+
+        const control = document.createElement(
+          block.fieldType === "input" ? "input" : "textarea"
+        );
+        control.id = controlId;
+        control.name = block.id;
+        control.autocomplete = "off";
+        control.setAttribute("aria-label", block.label);
+
+        if (control.tagName === "TEXTAREA") {
+          control.rows = block.rows || 3;
+        } else {
+          control.type = "text";
+        }
+
+        controls.set(block.id, control);
+        firstControl ||= control;
+        wrapper.appendChild(label);
+        wrapper.appendChild(control);
+        form.appendChild(wrapper);
+      });
+
+      return {
+        element: form,
+        firstControl,
+        getText() {
+          const parts = [];
+
+          parsed.blocks.forEach((block) => {
+            if (block.type === "heading") {
+              parts.push(block.text);
+              return;
+            }
+
+            if (block.type === "text" || block.type === "note") {
+              parts.push(block.text);
+              return;
+            }
+
+            if (block.type !== "field") return;
+
+            const label = formatWorksheetCopyLabel(block.label);
+            const value = String(controls.get(block.id)?.value || "").trim();
+
+            parts.push(
+              block.fieldType === "input"
+                ? `${label}${value ? ` ${value}` : ""}`
+                : `${label}${value ? `\n${value}` : ""}`
+            );
+          });
+
+          return parts
+            .filter(Boolean)
+            .join("\n\n")
+            .replace(/\n{3,}/g, "\n\n")
+            .trim();
+        },
+      };
     }
 
     function attachTemplateWorkspaceAction(
@@ -3182,13 +3525,29 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
         const workspace = document.createElement("div");
         workspace.className = "template-workspace";
+        const resourceType = getTemplateSelectionResourceType(selection);
+        const structuredWorksheet = resourceType === "worksheet"
+          ? createStructuredTemplateWorksheet(templateText)
+          : null;
+        let fallbackTextarea = null;
+        let getWorkspaceValue = null;
+        let firstControl = null;
 
-        const textarea = document.createElement("textarea");
-        textarea.value = prepareTemplateWorkspaceText(templateText);
-        textarea.setAttribute(
-          "aria-label",
-          "Udfyld skabelon lokalt"
-        );
+        if (structuredWorksheet) {
+          workspace.appendChild(structuredWorksheet.element);
+          getWorkspaceValue = structuredWorksheet.getText;
+          firstControl = structuredWorksheet.firstControl;
+        } else {
+          fallbackTextarea = document.createElement("textarea");
+          fallbackTextarea.value = prepareTemplateWorkspaceText(templateText);
+          fallbackTextarea.setAttribute(
+            "aria-label",
+            "Udfyld skabelon lokalt"
+          );
+          workspace.appendChild(fallbackTextarea);
+          getWorkspaceValue = () => fallbackTextarea.value.trim();
+          firstControl = fallbackTextarea;
+        }
 
         const workspaceActions = document.createElement("div");
         workspaceActions.className = "message-actions";
@@ -3203,12 +3562,12 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         copyStatus.textContent = "Intet sendes eller gemmes.";
 
         copyButton.addEventListener("click", async () => {
-          const value = textarea.value.trim();
+          const value = String(getWorkspaceValue?.() || "").trim();
 
           if (!value) {
             copyStatus.classList.add("error");
             copyStatus.textContent = "Der er ingen tekst at kopiere.";
-            textarea.focus();
+            firstControl?.focus();
             return;
           }
 
@@ -3217,23 +3576,24 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
             copyStatus.classList.remove("error");
             copyStatus.textContent = "Kopieret.";
           } catch {
-            textarea.focus();
-            textarea.select();
             copyStatus.classList.add("error");
-            copyStatus.textContent = "Markeret. Kopiér med Ctrl+C.";
+            copyStatus.textContent =
+              "Kopiering blev blokeret. Prøv igen eller brug browserens kopifunktion.";
+            firstControl?.focus();
           }
         });
 
         workspaceActions.appendChild(copyButton);
         workspaceActions.appendChild(copyStatus);
-        workspace.appendChild(textarea);
         workspace.appendChild(workspaceActions);
         bubble.appendChild(workspace);
 
         button.disabled = true;
         button.textContent = "Arbejdsark åbnet";
-        status.textContent = "Ret teksten direkte og kopiér bagefter.";
-        textarea.focus({ preventScroll: true });
+        status.textContent = structuredWorksheet
+          ? "Udfyld felterne og kopiér bagefter."
+          : "Ret teksten direkte og kopiér bagefter.";
+        firstControl?.focus({ preventScroll: true });
         scrollToBottom();
       });
 
