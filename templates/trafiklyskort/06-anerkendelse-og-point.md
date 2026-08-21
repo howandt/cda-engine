@@ -82,18 +82,6 @@ Der behøver ikke gives point hele dagen.
 
 ---
 
-## Eksempel på enkel registrering
-
-| Dato eller time | Aftalt mål | Brugte eleven strategien? | Point eller anerkendelse | Kort bemærkning |
-|---|---|---|---|---|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-
-Registreringen bør være hurtig og overskuelig. Hvis systemet kræver meget administration, bliver det svært at bruge stabilt.
-
----
-
 ## Mulige former for anerkendelse
 
 Anerkendelse behøver ikke altid være en præmie.
@@ -229,70 +217,6 @@ Når strategien bliver mere kendt, kan man eksempelvis gå fra:
 - til almindelig feedback og elevens egen registrering
 
 Der er ingen fast tidsplan. Ændringen sker ud fra elevens reaktion og det, der fungerer.
-
----
-
-## Individuel aftale
-
-**Elev:** ___________________________________________
-
-**Det mål, vi arbejder med:**
-
-____________________________________________________
-
-**Sådan kan eleven vise indsats eller bruge strategien:**
-
-____________________________________________________
-
-**Hvornår kan der gives point eller anerkendelse?**
-
-____________________________________________________
-
-**Hvor ofte registreres det?**
-
-____________________________________________________
-
-**Sådan gives feedback:**
-
-____________________________________________________
-
-**Mulige belønninger eller valg:**
-
-____________________________________________________
-
-**Hvem registrerer?**
-
-____________________________________________________
-
-**Dato for evaluering:** ______________________________
-
----
-
-## Kort evaluering
-
-**Forstår eleven aftalen?**
-
-____________________________________________________
-
-**Virker målet realistisk?**
-
-____________________________________________________
-
-**Hvad ser ud til at motivere?**
-
-____________________________________________________
-
-**Skaber systemet pres, konflikt eller misforståelser?**
-
-____________________________________________________
-
-**Skal mål, point eller belønning ændres?**
-
-____________________________________________________
-
-**Skal systemet fortsætte, nedtrappes eller afsluttes?**
-
-____________________________________________________
 
 ---
 

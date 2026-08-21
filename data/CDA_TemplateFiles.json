@@ -1091,6 +1091,36 @@
             "belønning",
             "progression"
           ],
+          "resource_type": "guide",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-pointregistrering",
+          "title": "Enkel pointregistrering",
+          "content_file": "templates/trafiklyskort/06a-enkel-pointregistrering.md",
+          "keywords": [
+            "pointregistrering",
+            "registrering",
+            "anerkendelse"
+          ],
+          "resource_type": "worksheet",
+          "related_guide_id": "trafiklyskort-point",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort-pointaftale",
+          "title": "Individuel pointaftale",
+          "content_file": "templates/trafiklyskort/06b-individuel-pointaftale.md",
+          "keywords": [
+            "pointaftale",
+            "individuel aftale",
+            "mål",
+            "anerkendelse"
+          ],
+          "resource_type": "worksheet",
+          "related_guide_id": "trafiklyskort-point",
           "direct_display": true,
           "ai_required": false
         }
