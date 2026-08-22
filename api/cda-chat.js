@@ -48,6 +48,7 @@ import {
   shouldPreferActiveCaseContextForSpecialist,
 } from "../lib/localCaseEngine.js";
 import {
+  findLocalPblSignals,
   getPblProjects,
   runPblFlow,
 } from "../lib/pblEngine.js";
@@ -1728,302 +1729,6 @@ try {
 
   const structuredDiagnosisMeta = getSingleStructuredDiagnosisMatch(message);
 
-  const automaticComorbidityContext =
-    structuredDiagnosisMeta &&
-    isConcreteKnownDiagnosisCase(message)
-      ? buildAutomaticComorbidityContext(structuredDiagnosisMeta)
-      : null;
-
-  if (structuredDiagnosisMeta && automaticComorbidityContext) {
-    const structuredDiagnosis = loadStructuredDiagnosis(
-      structuredDiagnosisMeta
-    );
-
-    const {
-      context: diagnosisContext,
-      selectedSections,
-    } = buildStructuredDiagnosisContext(
-      structuredDiagnosis,
-      message,
-      role
-    );
-
-    const automaticComorbidityInstructions = [
-      heidiPrompt,
-      "",
-      audienceInstructions,
-      "",
-      "AUTOMATISK CDA-SAMMENLIGNING VED KENDT DIAGNOSE",
-      "Dette flow bruges kun, fordi brugeren beskriver en konkret elev eller et konkret barn med en kendt diagnose.",
-      "Sammenhold observationerne med den kendte diagnose og de vedlagte komorbiditetsdata i ét samlet fagligt svar.",
-      "Vurder først, om observationerne kan forklares rimeligt inden for den kendte diagnose. Hvis de kan, skal du ikke gøre komorbiditet til et tema.",
-      "Brug kun komorbiditetsdata, når observationerne tydeligt ligger ud over eller afviger fra det forventede billede ved den kendte diagnose.",
-      "Sig aldrig, at CDA eller brugeren har fundet eller påvist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'måske autisme', 'måske depression' eller tilsvarende på baggrund af en kort beskrivelse.",
-      "Omsæt de interne spor til neutrale observationsområder som fx bekymring og undgåelse, social belastning, energifald og funktionsændring, rigiditet, sansning eller vedvarende konfliktmønstre.",
-      "Når noget ligger tydeligt uden for den kendte diagnose, beskriv afvigelsen forsigtigt og anbefal konkrete observationer samt drøftelse med relevante lærere/team, PPR eller en relevant specialist. Pres ikke på for udredning; formålet er bedre forståelse og støtte.",
-      "Brug ikke specialistpanelet i dette flow. Udfør ikke Analyse-systemets fulde analyse.",
-      role === "Specialist"
-        ? "Svar fagperson til fagperson. Skeln tydeligt mellem observation, hypotese og konklusion, og henvis ikke automatisk brugeren til PPR."
-        : role === "Forælder"
-          ? "Svar i forældrevenligt sprog. Antag ikke, at barnet viser det samme hjemme og i skole, og respekter bekymring for stempling eller udredning."
-          : "Svar praksisnært til læreren og gør næste observation eller handling tydelig.",
-      "I kort normal drift: giv højst 3 konkrete handlinger. Undgå generiske tilbud om mere hjælp. Ét konkret opklarende spørgsmål er tilladt, hvis svaret er nødvendigt for at bringe sagen fagligt videre.",
-      `AKTUEL SVARSTIL: ${response_style}`,
-      response_style === "Kort"
-        ? "Svar kort og direkte."
-        : response_style === "Dyb"
-          ? "Uddyb de relevante forskelle mellem kendt diagnose, afvigende observationer og nødvendige næste skridt uden at diagnosticere."
-          : "Giv en kort faglig forklaring og konkrete næste skridt.",
-    ].join("\n");
-
-    const automaticComorbidityInput = [
-      "BRUGERENS SPØRGSMÅL:",
-      message,
-      "",
-      "RELEVANTE STRUKTUREREDE DATA OM DEN KENDTE DIAGNOSE:",
-      JSON.stringify(diagnosisContext, null, 2),
-      "",
-      "RELEVANTE CDA-DATA TIL AUTOMATISK OBSERVATIONSSAMMENLIGNING:",
-      JSON.stringify(automaticComorbidityContext, null, 2),
-    ].join("\n");
-
-    const response = await openai.responses.create({
-      model: "gpt-5.4-mini",
-      reasoning: {
-        effort: "low",
-      },
-      instructions: automaticComorbidityInstructions,
-      input: automaticComorbidityInput,
-      max_output_tokens:
-        response_style === "Dyb"
-          ? 1000
-          : response_style === "Kort"
-            ? 600
-            : 800,
-    });
-
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
-    const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
-    );
-
-    const usageByCall = [
-      {
-        call: 1,
-        phase: "automatic_comorbidity_local_routing",
-        tools_returned_to_model: [],
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    ];
-
-    const usedTools = ["localAutomaticComorbidityRouting"];
-    const toolDebug = [
-      {
-        name: "localAutomaticComorbidityRouting",
-        diagnosis_id: structuredDiagnosisMeta.id,
-        diagnosis_file: structuredDiagnosisMeta.fil,
-        diagnosis_sections: selectedSections,
-        comorbidity_source: automaticComorbidityContext.source,
-        observation_pattern_count:
-          automaticComorbidityContext.observation_patterns.length,
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
-
-    const comorbidityReplyData = extractPendingAction(response.output_text);
-    return res.status(200).json({
-      success: true,
-      reply: cleanCdaReplyTail(comorbidityReplyData.reply),
-      model: "gpt-5.4-mini",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: comorbidityReplyData.pendingAction,
-    });
-  }
-
-  if (isBornehavePracticeRequest(message)) {
-    const age = extractBornehaveAge(message);
-    const routing = getBornehaveRouting({
-      text: message,
-      age,
-      tags: [],
-    });
-    const bornehaveContext = buildBornehavePracticeContext(routing);
-
-    const bornehaveInstructions = [
-      heidiPrompt,
-      "",
-      audienceInstructions,
-      "",
-      "LOKALT CDA-BØRNEHAVESPOR",
-      "Disse regler har forrang, når de kolliderer med almindelige lærer- eller forældreregler.",
-      "Brug den vedlagte børnehaveskabelon og de udvalgte praksisafsnit som fagligt grundlag. Brug kun de dele, der er relevante for spørgsmålet.",
-      "Svar naturligt og praksisnært. Vis ikke filnavne, interne ids, tags, scores eller datastruktur.",
-      "Børnehavesporet observerer og støtter; det diagnosticerer ikke. Beskriv konkrete mønstre, barnets mulige oplevelse, hvad der kan afprøves, og hvornår observationerne bør løftes videre.",
-      "Skeln mellem almindelig udviklingsvariation og vedvarende mønstre, der påvirker trivsel, deltagelse, relationer eller sikkerhed. Konkludér aldrig diagnose ud fra en kort beskrivelse.",
-      "Når brugeren arbejder i børnehaven, skal svaret rettes til pædagogen eller børnehavepersonalet — ikke til en klasselærer.",
-      "Ved spørgsmål om skolestart eller overlevering skal styrker, triggere, det der virker, det der ikke virker, relationer, kommunikation og støttebehov fremgå tydeligt, så skolen kan starte rigtigt fra første dag.",
-      "Ved spørgsmål om forældresamtaler skal observationer deles neutralt og samarbejdende uden etiketter eller skjulte diagnoselignende konklusioner.",
-      "Giv højst 3 konkrete handlinger i normal kort drift. Ét målrettet fagligt opfølgende spørgsmål er tilladt, når det er nødvendigt; afslut ikke med et generisk tilbud om mere hjælp.",
-      "Brug ikke cases, PBL, specialistpanel, rollespil eller komorbiditet i dette flow, medmindre brugeren udtrykkeligt har bedt om det — sådanne forespørgsler håndteres i andre flows.",
-      `AKTUEL SVARSTIL: ${response_style}`,
-      response_style === "Kort"
-        ? "Svar kort og direkte."
-        : response_style === "Dyb"
-          ? "Uddyb de relevante pædagogiske sammenhænge uden unødvendig teori eller gentagelser."
-          : "Giv en kort faglig forklaring og konkrete næste skridt.",
-    ].join("\n");
-
-    const bornehaveInput = [
-      "BRUGERENS SPØRGSMÅL:",
-      message,
-      "",
-      "RELEVANTE CDA-DATA FRA BØRNEHAVESPOR:",
-      JSON.stringify(bornehaveContext, null, 2),
-    ].join("\n");
-
-    const response = await openai.responses.create({
-      model: "gpt-5.4-mini",
-      reasoning: {
-        effort: "low",
-      },
-      instructions: bornehaveInstructions,
-      input: bornehaveInput,
-      max_output_tokens:
-        response_style === "Dyb"
-          ? 900
-          : response_style === "Kort"
-            ? 500
-            : 700,
-    });
-
-    const inputTokens = Number(response?.usage?.input_tokens || 0);
-    const outputTokens = Number(response?.usage?.output_tokens || 0);
-    const totalTokens = Number(
-      response?.usage?.total_tokens || inputTokens + outputTokens
-    );
-
-    const usageByCall = [
-      {
-        call: 1,
-        phase: "bornehave_practice_local_routing",
-        tools_returned_to_model: [],
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    ];
-
-    const usedTools = ["localBornehavePracticeRouting"];
-    const toolDebug = [
-      {
-        name: "localBornehavePracticeRouting",
-        primary_template: routing?.primary_template || null,
-        included_templates: bornehaveContext.templates.map(
-          (template) => template.id
-        ),
-        selected_knowledge_entries:
-          routing?.practice_knowledge?.selected_entry_ids || [],
-        matched_behavior_tags:
-          routing?.matched_behavior_tags || [],
-        handover_ready: Boolean(routing?.handover_ready),
-        age,
-        role,
-        response_style,
-      },
-    ];
-
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
-
-    const bornehaveReplyData = extractPendingAction(response.output_text);
-    const reply = cleanCdaReplyTail(bornehaveReplyData.reply);
-
-    return res.status(200).json({
-      success: true,
-      reply,
-      model: "gpt-5.4-mini",
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-      pending_action: bornehaveReplyData.pendingAction,
-    });
-  }
-
   if (structuredDiagnosisMeta) {
     const structuredDiagnosis = loadStructuredDiagnosis(
       structuredDiagnosisMeta
@@ -2038,6 +1743,26 @@ try {
       role
     );
 
+    // Fast raekkefoelge, hver gang en diagnose genkendes i en konkret
+    // sammenhaeng (ikke et rent teori-spoergsmaal, det er allerede
+    // besvaret 0-tokens lokalt tidligere i flowet): diagnose- og
+    // komorbiditets-data hentes ALTID, uafhaengigt af formulering.
+    // Om komorbiditet rent faktisk naevnes i svaret, styres stadig af
+    // comorbidity_rules i prompt_rules.json (kun naar det giver mening,
+    // aldrig som fast saetning, aldrig som halv diagnose).
+    const automaticComorbidityContext = buildAutomaticComorbidityContext(
+      structuredDiagnosisMeta
+    );
+
+    // PBL-signaler: gratis, lokalt opslag i jeres 61 forloeb, matchet paa
+    // diagnose og eventuelle interesse-/styrke-ord i selve beskeden (fx
+    // "teknik"). Tom liste, hvis intet reelt signal findes - saa naevnes
+    // PBL slet ikke, for at undgaa stoej.
+    const localPblSignals = findLocalPblSignals(
+      message,
+      structuredDiagnosisMeta
+    );
+
     const diagnosisInstructions = [
       heidiPrompt,
       "",
@@ -2048,19 +1773,36 @@ try {
       "Besvar brugerens konkrete spørgsmål dynamisk. Gengiv ikke data mekanisk, og vis ikke interne feltnavne eller datastruktur.",
       "Brug kun de dele af datagrundlaget, der er relevante for spørgsmålet og rollen.",
       "Kobl ikke en konkret elev til en diagnose uden formel udredning. Ved en kendt diagnose må du forklare relevante mønstre og hensyn uden at genvurdere diagnosen.",
-      "Udfør ikke Analyse-systemets fulde caseanalyse og foretag ikke komorbiditetstest i dette flow.",
+      "Udfør ikke Analyse-systemets fulde caseanalyse i dette flow.",
+      "Hvis brugeren spørger, om noget KAN VÆRE en bestemt diagnose (fx 'kan det være ADHD?'), skal du aldrig svare ja eller nej. Beskriv i stedet, om det beskrevne mønster minder om eller kan tyde på det, ud fra CDA-data. Hvis mønsteret er tydeligt og vedvarende, anbefal at sagen tages op med AKT, PPR eller en relevant specialist. Vær forsigtig og understøttende, ikke bekræftende eller afvisende.",
+      "",
+      "KOMORBIDITET (vedlagt nedenfor)",
+      "Vurder først, om observationerne kan forklares rimeligt inden for den kendte diagnose. Hvis de kan, skal du ikke gøre komorbiditet til et tema.",
+      "Brug kun komorbiditetsdata, når observationerne tydeligt ligger ud over eller afviger fra det forventede billede ved den kendte diagnose.",
+      "Sig aldrig, at CDA eller brugeren har fundet eller påvist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'måske autisme', 'måske depression' eller tilsvarende på baggrund af en kort beskrivelse.",
+      "Omsæt de interne spor til neutrale observationsområder som fx bekymring og undgåelse, social belastning, energifald og funktionsændring, rigiditet, sansning eller vedvarende konfliktmønstre.",
+      "Ved rene teori-/definitionsspørgsmål (fx 'hvad er autisme') må komorbiditet ALDRIG nævnes, uanset hvad der er vedlagt. Det gælder kun konkrete situationer.",
+      localPblSignals.length > 0
+        ? [
+            "",
+            "PBL-FORLØB (vedlagt nedenfor)",
+            "Hvis beskeden tydeligt afslører en reel interesse eller styrke hos barnet (fx et konkret emne, eleven fordyber sig i), kan du kort nævne 1 relevant forløb fra listen som en mulig vej at gå.",
+            "Nævn det kun, hvis det giver ægte mening ud fra det, brugeren faktisk har skrevet. Opfind ikke en interesse, brugeren ikke har nævnt. Beskriv det som en mulighed, ikke en anbefaling eller konklusion.",
+            "Start ikke selve PBL-forløbet her. Bed brugeren om selv at bede om det, hvis relevant.",
+          ].join("\n")
+        : "",
       role === "Specialist"
-        ? "Svar fagperson til fagperson med præcist specialistsprog, men hold dig til det konkrete spørgsmål og lav ikke en fuld Analyse-vurdering."
+        ? "Svar fagperson til fagperson med præcist specialistsprog, men hold dig til det konkrete spørgsmål og lav ikke en fuld Analyse-vurdering. Skeln tydeligt mellem observation, hypotese og konklusion, og henvis ikke automatisk brugeren til PPR."
         : role === "Forælder"
           ? "Forældresvaret skal tage udgangspunkt i hjemmet og familiens hverdag. Antag aldrig, at barnet viser samme adfærd hjemme og i skolen. Skolen må kun nævnes kort som en mulig sammenligning, fx at spørge læreren, hvad læreren ser. Forskelle mellem hjem og skole kan have mange forklaringer og må ikke tolkes sikkert. Giv højst 3 konkrete råd og afslut uden et generisk tilbud eller et automatisk spørgsmål."
-          : "Hold svaret praksisnært og direkte anvendeligt for den valgte rolle.",
+          : "Hold svaret praksisnært og direkte anvendeligt for den valgte rolle. I kort normal drift: giv højst 3 konkrete handlinger.",
       `AKTUEL SVARSTIL: ${response_style}`,
       response_style === "Kort"
         ? "Svar kort og direkte."
         : response_style === "Dyb"
           ? "Uddyb relevante faglige sammenhænge, men undgå unødvendig teori og gentagelser."
           : "Giv en kort forklaring og konkrete relevante hensyn.",
-    ].join("\n");
+    ].filter(Boolean).join("\n");
 
     const diagnosisInput = [
       "BRUGERENS SPØRGSMÅL:",
@@ -2068,7 +1810,21 @@ try {
       "",
       "RELEVANTE STRUKTUREREDE CDA-DIAGNOSEDATA:",
       JSON.stringify(diagnosisContext, null, 2),
-    ].join("\n");
+      automaticComorbidityContext
+        ? [
+            "",
+            "RELEVANTE CDA-DATA TIL OBSERVATIONSSAMMENLIGNING (komorbiditet):",
+            JSON.stringify(automaticComorbidityContext, null, 2),
+          ].join("\n")
+        : "",
+      localPblSignals.length > 0
+        ? [
+            "",
+            "RELEVANTE PBL-FORLØB (kun til orientering, brug kun hvis det giver mening):",
+            JSON.stringify(localPblSignals, null, 2),
+          ].join("\n")
+        : "",
+    ].filter(Boolean).join("\n");
 
     const response = await openai.responses.create({
       model: "gpt-5.4-mini",
@@ -2079,10 +1835,10 @@ try {
       input: diagnosisInput,
       max_output_tokens:
         response_style === "Dyb"
-          ? 900
+          ? 1000
           : response_style === "Kort"
-            ? 500
-            : 700,
+            ? 600
+            : 800,
     });
 
     const inputTokens = Number(response?.usage?.input_tokens || 0);
@@ -2102,13 +1858,19 @@ try {
       },
     ];
 
-    const usedTools = ["localStructuredDiagnosisRouting"];
+    const usedTools = [
+      "localStructuredDiagnosisRouting",
+      ...(automaticComorbidityContext ? ["localAutomaticComorbidityRouting"] : []),
+      ...(localPblSignals.length > 0 ? ["localPblSignalRouting"] : []),
+    ];
     const toolDebug = [
       {
         name: "localStructuredDiagnosisRouting",
         diagnosis_id: structuredDiagnosisMeta.id,
         diagnosis_file: structuredDiagnosisMeta.fil,
         selected_sections: selectedSections,
+        comorbidity_available: Boolean(automaticComorbidityContext),
+        pbl_signal_count: localPblSignals.length,
         role,
         response_style,
       },
@@ -2163,6 +1925,7 @@ try {
       pending_action: diagnosisReplyData.pendingAction,
     });
   }
+
 
   if (!shouldUseSpecializedToolFlow(message)) {
     const heidiFlowResult = await runHeidiFlow({
