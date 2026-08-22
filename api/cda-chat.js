@@ -423,6 +423,260 @@ if (toolCall.name === "getTemplates") {
   }
 }
 
+const tools = [
+  {
+    type: "function",
+    name: "getPromptRules",
+    description:
+      "Henter dynamiske prompt-regler til CDA. response_style_rules, mode_switch_rules, source_priority_rules, general_rule og practice_situations er allerede indlæst og skal ikke hentes igen. Øvrige tilgængelige sektioner: domain_scope, specialist_trigger_rules, template_trigger_rules, case_trigger_rules, diagnosis_trigger_rules, roleplay_rules, emotion_trigger_rules, bornehave_trigger_rules, cda_training_rules, roleplay_learning_rules, action_rules, roleplay_emotion_rules, conflict_mediator_rules, comorbidity_rules, school_home_dialogue_rules. Hent den sektion der matcher situationen, fx comorbidity_rules ved mulig komorbiditet, school_home_dialogue_rules ved skole-hjem-kommunikation, eller specialist_trigger_rules/template_trigger_rules før specialister eller skabeloner bruges.",
+    parameters: {
+      type: "object",
+      properties: {
+        section: {
+          type: "string",
+          description:
+            "Præcist sektionsnavn fra listen ovenfor, fx comorbidity_rules, source_priority_rules eller conflict_mediator_rules.",
+        },
+      },
+      additionalProperties: false,
+    },
+    strict: false,
+  },
+  {
+    type: "function",
+    name: "getPblProjects",
+    description:
+      "Henter og matcher PBL-projekter fra CDA. Brug ved elevinteresser, praktiske styrker, uro, kort koncentration, lav motivation eller behov for aktivering.",
+    parameters: {
+      type: "object",
+      properties: {
+        search: {
+          type: "string",
+          description:
+            "Direkte elevinteresse eller fritekstsøgning, fx cykel, dyr, Minecraft eller træarbejde.",
+        },
+        diagnosis: {
+          type: "string",
+          description:
+            "Diagnosefilter, fx ADHD, autisme eller DCD.",
+        },
+        level: {
+          type: "string",
+          description:
+            "Projektets niveau, fx Junior, Intermediate eller Advanced.",
+        },
+        social: {
+          type: "string",
+          description:
+            "Social belastning, fx Lav, Moderat eller Gruppe.",
+        },
+        structure: {
+          type: "string",
+          description:
+            "Behov for struktur, fx Lav, Moderat eller Høj.",
+        },
+        stimuli: {
+          type: "string",
+          description:
+            "Foretrukken stimulustype, fx Taktil, Visuel eller Kinæstetisk.",
+        },
+        id: {
+          type: "string",
+          description:
+            "Hent et bestemt PBL-projekt via projekt-id.",
+        },
+      },
+      additionalProperties: false,
+    },
+    strict: false,
+  },
+  {
+  type: "function",
+  name: "getCases",
+  description:
+    "Henter eksisterende CDA-cases. Brug ved forespørgsler om cases, træningscases, konkrete skolesituationer, diagnoser, temaer eller kategorier.",
+  parameters: {
+    type: "object",
+    properties: {
+      id: {
+        type: "string",
+        description: "Hent en bestemt case via case-id.",
+      },
+      search: {
+        type: "string",
+        description:
+          "Fritekstsøgning i casebiblioteket, fx uro, konflikt, skolevægring eller gruppearbejde.",
+      },
+      tema: {
+        type: "string",
+        description: "Filtrér cases efter tema.",
+      },
+      diagnose: {
+        type: "string",
+        description: "Filtrér cases efter diagnose.",
+      },
+      kategori: {
+        type: "string",
+        description: "Filtrér cases efter kategori.",
+      },
+    },
+    additionalProperties: false,
+  },
+    strict: false,
+},
+{
+  type: "function",
+  name: "getBornehaveRouting",
+  description:
+    "Henter eksisterende CDA-børnehaverouting. Brug ved børn i børnehave, observation, adfærd, overlevering til skole eller valg af børnehaveskabelon.",
+  parameters: {
+    type: "object",
+    properties: {
+      text: {
+        type: "string",
+        description: "Beskrivelse af barnet eller situationen.",
+      },
+      age: {
+        type: "number",
+        description: "Barnets alder.",
+      },
+      category: {
+        type: "string",
+        description: "Valgfri kategori.",
+      },
+      tags: {
+        type: "array",
+        items: {
+          type: "string",
+        },
+        description: "Valgfrie observationstags.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
+{
+  type: "function",
+  name: "getDiagnoser",
+  description:
+    "Henter eksisterende CDA-diagnosedata. Brug ved spørgsmål om diagnoser, symptombilleder, kategorier eller komorbiditet.",
+  parameters: {
+    type: "object",
+    properties: {
+      id: {
+        type: "string",
+        description: "Hent en bestemt diagnose via diagnose-id.",
+      },
+      search: {
+        type: "string",
+        description:
+          "Søg efter diagnose via navn, fuldt navn, nøgleord eller kategori.",
+      },
+      kategori: {
+        type: "string",
+        description: "Filtrér diagnoser efter kategori.",
+      },
+      komorbiditet: {
+        type: "string",
+        description:
+          "Filtrér diagnoser efter kobling til en mulig komorbiditet.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
+{
+  type: "function",
+  name: "getEmotionAnalysis",
+  description:
+    "Analyserer eksisterende CDA-kommunikation for tone, pres, empati, validering og kommandoer.",
+  parameters: {
+    type: "object",
+    properties: {
+      text: {
+        type: "string",
+        description: "Den tekst eller formulering, der skal analyseres.",
+      },
+      context: {
+        type: "string",
+        description: "Valgfri kontekst for kommunikationen.",
+      },
+    },
+    required: ["text"],
+    additionalProperties: false,
+  },
+  strict: false,
+},
+{
+  type: "function",
+  name: "getKomorbiditet",
+  description:
+    "Henter eksisterende CDA-komorbiditetsdata. Brug ved spørgsmål om mulig komorbiditet, primær diagnose eller konkrete triggertegn.",
+  parameters: {
+    type: "object",
+    properties: {
+      primary: {
+        type: "string",
+        description:
+          "Primær diagnose, fx ADHD eller autisme.",
+      },
+      id: {
+        type: "string",
+        description:
+          "Hent en bestemt komorbiditet via id.",
+      },
+      trigger: {
+        type: "string",
+        description:
+          "Søg efter komorbiditet ud fra et konkret triggertegn.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
+{
+  type: "function",
+  name: "getSemanticSearch",
+  description:
+    "Søger semantisk i det eksisterende CDA-casearkiv og skelner mellem primær diagnose, komorbid diagnose og tekstmatch.",
+  parameters: {
+    type: "object",
+    properties: {
+      search: {
+        type: "string",
+        description:
+          "Søgetekst, diagnose, tema eller problemstilling.",
+      },
+    },
+    required: ["search"],
+    additionalProperties: false,
+  },
+  strict: false,
+},
+{
+  type: "function",
+  name: "getTemplates",
+  description:
+    "Henter eksisterende CDA-skabeloner og søgeindeks. Brug ved forespørgsler om skabeloner, rapporter, skole-hjem-kommunikation, møder eller overlevering.",
+  parameters: {
+    type: "object",
+    properties: {
+      type: {
+        type: "string",
+        description:
+          "Brug værdien index for kun at hente skabelonernes søgeindeks.",
+      },
+    },
+    additionalProperties: false,
+  },
+  strict: false,
+},
+];
+
+
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -1786,7 +2040,7 @@ try {
         ? [
             "",
             "PBL-FORLØB (vedlagt nedenfor)",
-            "Hvis beskeden tydeligt afslører en reel interesse eller styrke hos barnet (fx et konkret emne, eleven fordyber sig i), kan du kort nævne 1 relevant forløb fra listen som en mulig vej at gå.",
+            "Hvis beskeden tydeligt afslører en reel interesse eller styrke hos barnet (fx et konkret emne, eleven fordyber sig i), SKAL du afslutte svaret med et kort, tydeligt afsnit om det under overskriften 'Mulig PBL-retning' — ikke kun væve interessen ind i de øvrige råd. Navngiv ét konkret forløb fra listen.",
             "Nævn det kun, hvis det giver ægte mening ud fra det, brugeren faktisk har skrevet. Opfind ikke en interesse, brugeren ikke har nævnt. Beskriv det som en mulighed, ikke en anbefaling eller konklusion.",
             "Start ikke selve PBL-forløbet her. Bed brugeren om selv at bede om det, hvis relevant.",
           ].join("\n")
