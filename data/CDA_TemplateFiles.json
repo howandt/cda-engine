@@ -4,73 +4,100 @@
   "description": "Kort, aktivt skabelonbibliotek. Erstatter det store arkiv (77 filer) i templates_archive/, som var for tungt til daglig brug. Hver skabelon er ét samlet dokument, ikke opdelt i flere delfiler.",
   "direct_display_default": true,
   "ai_required_for_direct_display": false,
-  "categories": [],
-  "standalone": [
+  "categories": [
     {
-      "id": "skolevaegering",
-      "title": "Trinvis skolevægringsguide",
-      "description": "Kort guide og notatark til skolevægring og tilbagevenden. Testet og virker efter hensigten.",
-      "content_file": "templates/skolevaegering.md",
+      "id": "skole-hjem-kommunikation",
+      "title": "Skole-hjem kommunikation",
+      "description": "Kalibreret kommunikation mellem skole og hjem — den løbende log og selve samtalen.",
       "keywords": [
-        "skolevægring",
-        "skolefravær",
-        "tilbagevenden",
-        "trinvis plan",
-        "fravær"
-      ],
-      "resource_type": "worksheet",
-      "direct_display": true,
-      "ai_required": false
-    },
-    {
-      "id": "kommunikationslog",
-      "title": "Kommunikationslog skole ↔ hjem",
-      "description": "Neutral og struktureret log til skole-hjem-kommunikation.",
-      "content_file": "templates/kommunikationslog.md",
-      "keywords": [
-        "kommunikationslog",
         "skole hjem",
         "forældre",
-        "kontaktlog",
-        "beskeder"
+        "kommunikation",
+        "samtale",
+        "kontakt"
       ],
-      "resource_type": "worksheet",
-      "direct_display": true,
-      "ai_required": false
+      "files": [
+        {
+          "id": "kommunikationslog",
+          "title": "Kommunikationslog skole ↔ hjem",
+          "description": "Neutral og struktureret log til skole-hjem-kommunikation.",
+          "content_file": "templates/kommunikationslog.md",
+          "keywords": [
+            "kommunikationslog",
+            "skole hjem",
+            "forældre",
+            "kontaktlog",
+            "beskeder"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "foraeldresamtale",
+          "title": "Forældresamtale-guide",
+          "description": "Strukturerer selve forældresamtalen, så tone og indhold er ens uanset hvilken lærer der holder den.",
+          "content_file": "templates/foraeldresamtale.md",
+          "keywords": [
+            "forældresamtale",
+            "samtale",
+            "skole hjem",
+            "forældre",
+            "møde med forældre",
+            "dagsorden"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     },
     {
-      "id": "dagplansbygger",
-      "title": "Dagplanbygger",
-      "description": "Bygger en kort visuel dagsplan med fokus på overgange, pauser og forudsigelighed.",
-      "content_file": "templates/dagplansbygger.md",
+      "id": "struktur-og-hverdag",
+      "title": "Struktur og hverdag",
+      "description": "Forudsigelighed, overgange og trinvise forløb i hverdagen.",
       "keywords": [
-        "dagplan",
-        "dagplansbygger",
-        "visuel dagsplan",
         "struktur",
+        "hverdag",
         "overgange",
         "rutiner"
       ],
-      "resource_type": "worksheet",
-      "direct_display": true,
-      "ai_required": false
-    },
-    {
-      "id": "foraeldresamtale",
-      "title": "Forældresamtale-guide",
-      "description": "Strukturerer selve forældresamtalen, så tone og indhold er ens uanset hvilken lærer der holder den.",
-      "content_file": "templates/foraeldresamtale.md",
-      "keywords": [
-        "forældresamtale",
-        "samtale",
-        "skole hjem",
-        "forældre",
-        "møde med forældre",
-        "dagsorden"
-      ],
-      "resource_type": "worksheet",
-      "direct_display": true,
-      "ai_required": false
+      "files": [
+        {
+          "id": "dagplansbygger",
+          "title": "Dagplanbygger",
+          "description": "Bygger en kort visuel dagsplan med fokus på overgange, pauser og forudsigelighed.",
+          "content_file": "templates/dagplansbygger.md",
+          "keywords": [
+            "dagplan",
+            "dagplansbygger",
+            "visuel dagsplan",
+            "struktur",
+            "overgange",
+            "rutiner"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "skolevaegering",
+          "title": "Trinvis skolevægringsguide",
+          "description": "Kort guide og notatark til skolevægring og tilbagevenden. Testet og virker efter hensigten.",
+          "content_file": "templates/skolevaegering.md",
+          "keywords": [
+            "skolevægring",
+            "skolefravær",
+            "tilbagevenden",
+            "trinvis plan",
+            "fravær"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
-  ]
+  ],
+  "standalone": []
 }
