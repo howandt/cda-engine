@@ -245,7 +245,19 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
-        },
+        }
+      ]
+    },
+    {
+      "id": "elevprofil",
+      "title": "Elevprofil",
+      "description": "Kort, fælles overblik over eleven, som flere voksne kan bruge som samme grundlag. Plads til flere varianter senere (fx vikarprofil).",
+      "keywords": [
+        "elevprofil",
+        "profil",
+        "overblik"
+      ],
+      "files": [
         {
           "id": "elevprofil",
           "title": "Elevprofil",
