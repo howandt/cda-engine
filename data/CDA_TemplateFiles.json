@@ -125,6 +125,35 @@
           "ai_required": false
         }
       ]
+    },
+    {
+      "id": "overlevering-mellem-laerere",
+      "title": "Overlevering mellem lærere",
+      "description": "Sikrer at det, der virker for en elev, ikke går tabt ved skift af lærer, klasse eller vikar.",
+      "keywords": [
+        "overlevering",
+        "vikar",
+        "skift",
+        "ny lærer"
+      ],
+      "files": [
+        {
+          "id": "overlevering",
+          "title": "Overleveringsskema",
+          "description": "Lærer til lærer/vikar: hurtigt overblik plus uddybende viden om eleven, hvad der virker, og faste aftaler.",
+          "content_file": "templates/overlevering.md",
+          "keywords": [
+            "overlevering",
+            "overleveringsskema",
+            "vikar",
+            "ny lærer",
+            "skift af klasse"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
   ],
   "standalone": []
