@@ -54,6 +54,23 @@
       "resource_type": "worksheet",
       "direct_display": true,
       "ai_required": false
+    },
+    {
+      "id": "foraeldresamtale",
+      "title": "Forældresamtale-guide",
+      "description": "Strukturerer selve forældresamtalen, så tone og indhold er ens uanset hvilken lærer der holder den.",
+      "content_file": "templates/foraeldresamtale.md",
+      "keywords": [
+        "forældresamtale",
+        "samtale",
+        "skole hjem",
+        "forældre",
+        "møde med forældre",
+        "dagsorden"
+      ],
+      "resource_type": "worksheet",
+      "direct_display": true,
+      "ai_required": false
     }
   ]
 }
