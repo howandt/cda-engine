@@ -213,6 +213,22 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "mestringsmappe-laesestoette",
+          "title": "Elevens Mestringsmappe – læse- og skrivestøtte",
+          "description": "Elevens perspektiv, konkrete observationer og fungerende støtte ved læsning og skrivning.",
+          "content_file": "templates/mestringsmappe-laesestoette.md",
+          "keywords": [
+            "mestringsmappe",
+            "læsestøtte",
+            "skrivestøtte",
+            "ordblindhed",
+            "læsevanskeligheder"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     }
