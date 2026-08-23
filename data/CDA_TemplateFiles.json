@@ -96,6 +96,35 @@
           "ai_required": false
         }
       ]
+    },
+    {
+      "id": "kommunikation-med-ppr",
+      "title": "Kommunikation med PPR",
+      "description": "Kort og konkret overdragelse til PPR, så de får det nødvendige første gang.",
+      "keywords": [
+        "ppr",
+        "henvisning",
+        "overdragelse",
+        "sparring"
+      ],
+      "files": [
+        {
+          "id": "laerer-ppr-henvisning",
+          "title": "Lærer → PPR-henvisning",
+          "description": "Kort og konkret henvisning: observationer, allerede afprøvede tiltag og hvad der ønskes belyst.",
+          "content_file": "templates/laerer-ppr-henvisning.md",
+          "keywords": [
+            "ppr",
+            "henvisning",
+            "ppr henvisning",
+            "overdragelse",
+            "sparring"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
   ],
   "standalone": []
