@@ -1,9 +1,59 @@
 {
-  "version": "1.1",
+  "version": "2.0",
   "name": "CDA Template Files",
-  "description": "Arkiveret 2026-08-22. Fuldt register ligger i templates_archive/CDA_TemplateFiles.json. Denne fil holdes bevidst tom, så api/templates.js og templateResourceEngine.js ikke fejler, mens skabelonbiblioteket er ude af aktiv brug.",
+  "description": "Kort, aktivt skabelonbibliotek. Erstatter det store arkiv (77 filer) i templates_archive/, som var for tungt til daglig brug. Hver skabelon er ét samlet dokument, ikke opdelt i flere delfiler.",
   "direct_display_default": true,
   "ai_required_for_direct_display": false,
   "categories": [],
-  "standalone": []
+  "standalone": [
+    {
+      "id": "skolevaegering",
+      "title": "Trinvis skolevægringsguide",
+      "description": "Kort guide og notatark til skolevægring og tilbagevenden. Testet og virker efter hensigten.",
+      "content_file": "templates/skolevaegering.md",
+      "keywords": [
+        "skolevægring",
+        "skolefravær",
+        "tilbagevenden",
+        "trinvis plan",
+        "fravær"
+      ],
+      "resource_type": "worksheet",
+      "direct_display": true,
+      "ai_required": false
+    },
+    {
+      "id": "kommunikationslog",
+      "title": "Kommunikationslog skole ↔ hjem",
+      "description": "Neutral og struktureret log til skole-hjem-kommunikation.",
+      "content_file": "templates/kommunikationslog.md",
+      "keywords": [
+        "kommunikationslog",
+        "skole hjem",
+        "forældre",
+        "kontaktlog",
+        "beskeder"
+      ],
+      "resource_type": "worksheet",
+      "direct_display": true,
+      "ai_required": false
+    },
+    {
+      "id": "dagplansbygger",
+      "title": "Dagplanbygger",
+      "description": "Bygger en kort visuel dagsplan med fokus på overgange, pauser og forudsigelighed.",
+      "content_file": "templates/dagplansbygger.md",
+      "keywords": [
+        "dagplan",
+        "dagplansbygger",
+        "visuel dagsplan",
+        "struktur",
+        "overgange",
+        "rutiner"
+      ],
+      "resource_type": "worksheet",
+      "direct_display": true,
+      "ai_required": false
+    }
+  ]
 }

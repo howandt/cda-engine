@@ -1,0 +1,161 @@
+api\cda-chat.js:813: "lav en skabelon",
+api\cda-chat.js:814: "vis en skabelon",
+api\cda-chat.js:2124: "CDA_Templates.json"
+api\cda-chat.js:2129: "data/CDA_Templates.json blev ikke fundet"
+api\cda-chat.js:2181: "templatebank",
+api\cda-chat.js:2182: "skabelonbank",
+api\cda-chat.js:2183: "cda templatebank",
+api\cda-chat.js:2185: "cda skabelonbank",
+api\cda-chat.js:2188: "cda skabelon",
+api\cda-chat.js:2190: "eksisterende skabelon",
+api\cda-chat.js:2197: "hvilke skabeloner",
+api\cda-chat.js:2250: "skabelon",
+api\cda-chat.js:2251: "skabelonen",
+api\cda-chat.js:2252: "skabeloner",
+api\cda-chat.js:2255: "templatebank",
+api\cda-chat.js:2256: "skabelonbank",
+api\cda-chat.js:2712: "Henter eksisterende CDA-børnehaverouting. Brug ved børn i børnehave, observation, adfærd, overlevering til skole eller valg af børnehaveskabelon.",
+api\cda-chat.js:2862: "Henter eksisterende CDA-skabeloner og søgeindeks. Brug ved forespørgsler om skabeloner, rapporter, skole-hjem-kommunikation, møder eller overlevering.",
+api\cda-chat.js:2869: "Brug værdien index for kun at hente skabelonernes søgeindeks.",
+api\cda-chat.js:3605: "lav en skabelon",
+api\cda-chat.js:3606: "vis en skabelon",
+api\cda-chat.js:3607: "udfyld en skabelon",
+api\cda-chat.js:3741: "lav en skabelon",
+api\cda-chat.js:3742: "vis en skabelon",
+api\cda-chat.js:4234: reply: "PBL kunne være relevant her, men jeg vil ikke foreslå et konkret projekt uden en kort elevprofil. Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, støttebehov, arbejdsform, sikkerhed og fagligt mål. Vil du have den korte elevprofilskabelon?",
+api\cda-chat.js:4539: : `CDA's templatebank indeholder ${titles.length} eksisterende skabeloner:`,
+api\cda-chat.js:4592: "Jeg fandt ingen eksisterende skabelon i CDA's templatebank, der matcher din forespørgsel.",
+api\cda-chat.js:4594: ? `Templatebanken indeholder blandt andet: ${titles.slice(0, 6).join(", ")}.`
+api\cda-chat.js:4595: : "Templatebanken indeholder ingen skabeloner.",
+api\cda-chat.js:4688: "Brug kun den ene vedlagte eksisterende CDA-skabelon som grundlag for svaret.",
+api\cda-chat.js:4689: "Brugeren har udtrykkeligt bedt om en eksisterende skabelon fra CDA's templatebank. Sig derfor ikke, at templatebanken er utilgængelig.",
+api\cda-chat.js:4690: "Opfind ikke en ny skabelon, nye afsnit, nye faglige påstande eller manglende personoplysninger.",
+api\cda-chat.js:4691: "Når brugeren beder om at få skabelonen vist, skal du gengive dens praktiske indhold troværdigt og komplet.",
+api\cda-chat.js:4694: "Svar kort før selve skabelonen. Afslut uden et generisk tilbud om mere hjælp.",
+api\cda-chat.js:4695: "Svarstilen må ikke få dig til at udelade centrale dele af den eksisterende skabelon.",
+api\cda-chat.js:4703: "DEN ENE MATCHENDE EKSISTERENDE CDA-SKABELON:",
+api\cda-chat.js:4971: "Brug den vedlagte børnehaveskabelon og de udvalgte praksisafsnit som fagligt grundlag. Brug kun de dele, der er relevante for spørgsmålet.",
+api\cda-chat.js:5266: "Brug ikke cases, PBL, specialistpanel, rollespil, skabeloner eller komorbiditet, medmindre brugeren udtrykkeligt beder om det.",
+api\cda-chat.js:5269: "Hvis PBL efter din faglige vurdering kan være en relevant senere mulighed, må du højst nævne det kort og spørge præcist: 'PBL kunne være relevant her. Vil du have en kort elevprofilskabelon?'",
+api\templates.js:33: const templatesPath = path.join(process.cwd(), "data", "CDA_Templates.json");
+CDA\cases\laerer\adhd_klasseovergange_10-12.json:17: "Overgangsplan-skabelon (getTemplates)",
+CDA\knowledge\bornehave\CDA_Bornehave_Praksisguide.json:40: "active_template_module": "CDA/templates/bornehave/"
+CDA\knowledge\bornehave\CDA_Bornehave_Praksisguide.json:66: "Kombinér efter behov med højst relevante børnehaveskabeloner og cases."
+CDA\knowledge\bornehave\CDA_Bornehave_Praksisguide.json:760: "Returnér højst 1-3 entries sammen med relevante børnehaveskabeloner.",
+CDA\templates\bornehave\bornehave_templates_index.json:4: "description": "Index over børnehavesporets skabeloner i CDA. Bruges til opslag, routing og senere kobling til motoren.",
+CDA\templates\bornehave\bornehave_templates_index.json:5: "base_path": "CDA/templates/bornehave/",
+data\CDA_Diagnoser.json:41: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:106: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:175: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:179: "social-historie-skabelon",
+data\CDA_Diagnoser.json:248: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:320: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:382: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:448: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:514: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:582: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:648: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:713: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:778: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:845: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:913: "relaterede_skabeloner": [
+data\CDA_Diagnoser.json:984: "relaterede_skabeloner": [
+data\CDA_PBL_Projects.json:19: "usage": "Systemet giver lærere og forældre en ramme med forslag, matching, progression og skabeloner. Det konkrete forløb formes omkring barnet og justeres undervejs."
+data\CDA_PBL_Projects.json:1475: "Lav en samlet driftsplan i digital skabelon"
+data\CDA_Templates.json:89: "Skabelon Dagplan",
+data\CDA_Templates.json:151: "purpose": "Brugervenlig skabelon med valgfunktion: vælg aktiviteter fra liste og skab individuel visuel dagsplan",
+data\CDA_Templates.json:352: "Skabelon til tilbagevenden til skole",
+data\CDA_Templates.json:400: "content_file": "templates/skolevaegering.md"
+data\CDA_Templates.json:583: "content_file": "templates/kommunikationslog.md"
+data\CDA_Templates.json:664: "Skabelon ugeplan",
+data\CDA_Templates.json:825: "teacher_experience": "rt: 'Dreng med autisme lærte at læse sociale signaler - nu har han sin første rigtige ven efter social relationer skabelon'"
+data\CDA_Templates.json:858: "template_markdown": "# ?? Sociale Relationer for {child_name}\n\n**Barn:** {child_name}, {child_age} år\n**Støtteperson:** {support_person ? {support_person} : forælder/lærer}\n\n{social_challenges ? **Særlige udfordringer:** {social_challenges} : }\n\n---\n\n## ?? Mine Sociale Mål:\n{friend_goals ? {friend_goals} : \n- Sige hej til mindst én person hver dag\n- Spørge om at være med til leg\n- Lytte når andre taler\n}\n\n## ??? Samtale-starterne jeg kan bruge:\n- \"Hvad laver du?\"\n- \"Det ser sjovt ud - må jeg være med?\"\n- \"Jeg kan godt lide din [ting de har på/laver]\"\n- \"Vil du lege med mig?\"\n\n## ?? Sådan lytter jeg godt:\n- Kig på personen når de taler\n- Vent til de er færdige med at tale\n- Spørg: \"Hvad skete der så?\"\n- Husk hvad de fortalte\n\n## ?? Når jeg vil være med i leg:\n1. **Gå hen** til gruppen\n2. **Se hvad de laver** først\n3. **Spørg:** \"Må jeg være med?\"\n4. **Acceptér** deres regler\n5. **Vær sød** også selvom jeg taber\n\n## ?? Hvis nogen er ubehagelige:\n- Gå væk og find en voksen\n- Sig: \"Det kan jeg ikke lide\"\n- Husk: Det er ikke min skyld\n- Find nogen andre at lege med\n\n## ?? Min Venskabs-dagbog:\n\n| **Dato** | **Hvem snakkede jeg med?** | **Hvad lavede vi?** | **Hvordan følte jeg mig?** |\n|----------|----------------------------|---------------------|---------------------------|\n|          |                            |                     |                           |\n|          |                            |                     |                           |\n|          |                            |                     |                           |\n\n---\n\n## ?? Ugentlig Check:\n**Denne uge lykkedes det mig at:** _________________________\n**Næste uge vil jeg prøve at:** ____________________________\n\n?? **Lærer-erfaring (rt):** *\"Dreng med autisme lærte at læse sociale signaler - nu har han sin første rigtige ven efter social relationer skabelon\"*"
+data\CDA_Templates.json:913: "teacher_experience": "nh: 'Pige der kun spiste 4 madvarer udviklede sit repertoire til 12 madvarer på 2 måneder med spisning skabelonen'"
+data\CDA_Templates.json:946: "template_markdown": "# ?? Spisning og Måltider for {child_name}\n\n**Barn:** {child_name}, {child_age} år\n**Startdato:** ___________\n\n{current_foods ? **Mad {child_name} spiser nu:** {current_foods} : }\n{problem_foods ? **Mad der er svær:** {problem_foods} : }\n{sensory_issues ? **Sensoriske udfordringer:** {sensory_issues} : }\n\n---\n\n## ?? Måltidsmål:\n{meal_goals ? {meal_goals} : \n- Prøve 1 ny madtype hver uge\n- Sidde ved bordet under hele måltidet\n- Bruge bestik korrekt\n}\n\n## ?? Trinvis Plan:\n\n### Uge 1-2: Grundlag\n- **Jeg sidder** ved bordet i hele måltidet\n- **Jeg bruger** min tallerken og bestik\n- **Jeg prøver** en lille bid af det jeg allerede kan lide\n\n### Uge 3-4: Udforske\n- **Jeg rører** ved ny mad med fingeren\n- **Jeg lugter** til ny mad\n- **Jeg tager** en lille bid på gaflen (må spytte ud)\n\n### Uge 5-6: Udvide\n- **Jeg tygger** ny mad én gang\n- **Jeg blander** mad jeg kender med lidt nyt\n- **Jeg spiser** mindst 2 bidder af noget nyt\n\n## ?? Måltids-tracking:\n\n| **Dato** | **Morgenmad** | **Frokost** | **Aftensmad** | **Nye ting prøvet** |\n|----------|---------------|-------------|---------------|---------------------|\n|          | ??????       | ??????     | ??????       |                     |\n|          | ??????       | ??????     | ??????       |                     |\n|          | ??????       | ??????     | ??????       |                     |\n\n## ?? Belønningssystem:\n- **Sidder hele måltidet:** ? 1 stjerne\n- **Prøver ny mad (selv én bid):** ?? 2 stjerner  \n- **Spiser uden brok:** ? 1 stjerne\n\n**5 stjerner = lille belønning**\n**10 stjerner = stor belønning**\n\n## ?? Tips til forældre:\n- Ingen pres - tilbyd, men tvang ikke\n- Lad {child_name} hjælpe med madlavning\n- Spis sammen og vær et godt eksempel\n- Fejr små fremskridt!\n\n?? **Lærer-erfaring (nh):** *\"Pige der kun spiste 4 madvarer udviklede sit repertoire til 12 madvarer på 2 måneder med spisning skabelonen\"*"
+data\CDA_Templates.json:1194: "lang observationsskabelon",
+data\CDA_Templates.json:1195: "fuld observationsskabelon"
+data\CDA_Templates.json:1201: "Skabelon til PPR-dokumentation",
+data\CDA_Templates.json:1203: "Vis den lange observationsskabelon"
+data\CDA_Templates.json:1223: "cda_synthesis": "Skabelonen bruges til konkret observation og pædagogisk dokumentation. Observationer, udsagn og hypoteser skal holdes adskilt. Dokumentet må ikke bruges til at stille eller afkræfte en diagnose.",
+data\CDA_Templates.json:1224: "content_file": "templates/observations-og-indsatslog.md",
+data\CDA_Templates.json:1236: "description": "Skabeloner der skaber forudsigelige rammer og rutiner"
+data\CDA_Templates.json:1651: "Skabelonbibliotek": "Vis alle tilgængelige skabeloner kategoriseret",
+data\CDA_Templates.json:1652: "Skabelonvælger": "Start intelligent skabelonvælger med 5 spørgsmål",
+data\CDA_Templates.json:1657: "Skabelon [navn]": "Hent specifik skabelon",
+data\CDA_Templates.json:1658: "Specialist [navn]": "Vis AI-specialist og relaterede skabeloner",
+data\CDA_Templates.json:1659: "Diagnose [navn]": "Vis alle skabeloner relevante for specifik diagnose",
+data\CDA_Templates.json:1660: "Alder [tal]": "Vis skabeloner passende for specifik alder"
+data\prompt_rules.json:32: "trigger_rule": "Templates bør bruges ved skole-hjem-beskeder, mødeformuleringer, bekymringsformuleringer, konfliktnedtrapning, observationstekster, overlevering eller andre situationer, hvor brugeren har brug for ordlyd eller skabelonstøtte.",
+data\prompt_rules.json:128: "getTemplates": "Brug ved behov for skabeloner, støtteværktøjer, konfliktprincipper eller skole-hjem-formuleringer.",
+public\CDA\cases\CDA_Cases_ADHD.json:46: "tiltag": "Skabelon: visuel dagsplan ('køre – klip – hjem – belønning'). Aftaleskema mellem barn og voksen. Belønningskort: positiv forudsigelse. Valgkort – barnet vælger rækkefølge og belønning.",
+public\data\semantic_engine.json:18: "jeg skal bruge en skabelon til [miljø]"
+public\chat.html:987: <summary>Hvordan finder jeg en guide eller skabelon?</summary>
+public\chat.html:992: <button class="faq-prompt" type="button" data-prompt="Hent en skabelon til skole-hjem-samtale.">Hent en skabelon til skole-hjem-samtale.</button>
+public\index.html:86: <article class="card white"><div class="icon">D</div><h3>Guides og skabeloner</h3><ul><li>Modtagelse af nye elever</li><li>Skolevægring og elevfravær</li><li>Observations- og samtaleskabeloner</li><li>Cases, praksisguides og arbejdsark</li></ul></article>
+templates\anerkendelse-motivation-og-maal\01-individuel-aftale.md:4: > Denne skabelon bruges til at lave én tydelig og realistisk aftale sammen med eleven.
+templates\anerkendelse-motivation-og-maal\02-uge-og-delmaal.md:4: > Denne skabelon hjælper med at dele et større mål op i små, realistiske trin.
+templates\foelelser-og-regulering\03-refleksion-efter-haendelse.md:4: > Denne skabelon bruges efter en hændelse, når eleven og de voksne er klar.
+templates\laese-og-skrivestoette\00-overblik.md:131: - skabelon eller skriveplan
+templates\laese-og-skrivestoette\01-individuel-profil.md:225: - [ ] Skriveplan eller skabelon
+templates\sensorisk-behovsprofil\02-observation-og-afproevning.md:4: > Denne skabelon bruges til at undersøge én konkret situation og én støtte eller tilpasning ad gangen.
+templates\sensorisk-behovsprofil\02-observation-og-afproevning.md:6: > Skabelonen stiller ikke diagnose.
+templates\sociale-relationer-og-samarbejde\02-gruppearbejde-og-roller.md:4: > Denne skabelon hjælper med at planlægge gruppearbejde, så roller, opgave, støtte og afslutning er tydelige.
+templates\sociale-relationer-og-samarbejde\03-konflikt-og-reparation.md:4: > Denne skabelon bruges til at forstå en konflikt og finde et realistisk næste skridt.
+templates\spisning-og-maaltider\02-observation-og-afproevning.md:4: > Denne skabelon bruges til at undersøge én konkret situation og én støtte ad gangen.
+templates\spisning-og-maaltider\03-skole-hjem-og-faglig-sparring.md:4: > Denne skabelon hjælper med neutral og anvendelig kommunikation om måltider mellem skole, hjem og relevante fagpersoner.
+templates\tal-til-ro-og-voksenkommunikation\02-svaere-samtaler.md:4: > Denne skabelon hjælper den voksne med at forberede og gennemføre en vanskelig samtale med en elev uden at gå direkte til skyld, forsvar eller konklusion.
+templates\toilet-og-hygiejne\02-rutine-og-visuel-stoette.md:4: > Denne skabelon hjælper med at gøre en rutine tydelig og overskuelig.
+templates\toilet-og-hygiejne\03-uheld-og-opfoelgning.md:4: > Denne skabelon hjælper voksne med at håndtere et uheld roligt, diskret og værdigt.
+templates\toilet-og-hygiejne\04-skole-hjem-og-faglig-sparring.md:4: > Denne skabelon hjælper med neutral og fortrolig kommunikation mellem skole, hjem og relevante fagpersoner.
+templates\visuel-dagsplan\01-dagplansbygger.md:4: > Denne skabelon bruges til at bygge en dagsplan, der passer til elevens eller klassens konkrete behov.
+templates\visuel-dagsplan\03-aendringer-og-reserveplan.md:4: > Denne skabelon hjælper med at gøre ændringer i en plan tydelige og overskuelige.
+cda-chat-before-ae99993.js:1251: "CDA_Templates.json"
+cda-chat-before-ae99993.js:1256: "data/CDA_Templates.json blev ikke fundet"
+cda-chat-before-ae99993.js:1394: "Henter eksisterende CDA-b+©rnehaverouting. Brug ved b+©rn i b+©rnehave, observation, adf+ªrd, overlevering til skole eller valg af b+©rnehaveskabelon.",
+cda-chat-before-ae99993.js:1556: "Henter eksisterende CDA-skabeloner og s+©geindeks. Brug ved foresp+©rgsler om skabeloner, rapporter, skole-hjem-kommunikation, m+©der eller overlevering.",
+cda-chat-before-ae99993.js:1563: "Brug v+ªrdien index for kun at hente skabelonernes s+©geindeks.",
+cda-chat-before-ae99993.js:1798: "Vil du have den korte elevprofilskabelon?"
+cda-chat-before-ae99993.js:1831: "lav en skabelon",
+cda-chat-before-ae99993.js:1832: "vis en skabelon",
+cda-chat-before-ae99993.js:2098: "Brug ikke cases, PBL, specialistpanel, rollespil, skabeloner eller komorbiditet, medmindre brugeren udtrykkeligt beder om det.",
+cda-chat-before-ae99993.js:2102: "Hvis PBL efter din faglige vurdering kan v+ªre en relevant senere mulighed, m+Ñ du h+©jst n+ªvne det kort og sp+©rge pr+ªcist: 'PBL kunne v+ªre relevant her. Vil du have en kort elevprofilskabelon?'",
+cda-chat-clean-before-roleplay.js:813: "lav en skabelon",
+cda-chat-clean-before-roleplay.js:814: "vis en skabelon",
+cda-chat-clean-before-roleplay.js:2124: "CDA_Templates.json"
+cda-chat-clean-before-roleplay.js:2129: "data/CDA_Templates.json blev ikke fundet"
+cda-chat-clean-before-roleplay.js:2181: "templatebank",
+cda-chat-clean-before-roleplay.js:2182: "skabelonbank",
+cda-chat-clean-before-roleplay.js:2183: "cda templatebank",
+cda-chat-clean-before-roleplay.js:2185: "cda skabelonbank",
+cda-chat-clean-before-roleplay.js:2188: "cda skabelon",
+cda-chat-clean-before-roleplay.js:2190: "eksisterende skabelon",
+cda-chat-clean-before-roleplay.js:2197: "hvilke skabeloner",
+cda-chat-clean-before-roleplay.js:2250: "skabelon",
+cda-chat-clean-before-roleplay.js:2251: "skabelonen",
+cda-chat-clean-before-roleplay.js:2252: "skabeloner",
+cda-chat-clean-before-roleplay.js:2255: "templatebank",
+cda-chat-clean-before-roleplay.js:2256: "skabelonbank",
+cda-chat-clean-before-roleplay.js:2712: "Henter eksisterende CDA-b+©rnehaverouting. Brug ved b+©rn i b+©rnehave, observation, adf+ªrd, overlevering til skole eller valg af b+©rnehaveskabelon.",
+cda-chat-clean-before-roleplay.js:2862: "Henter eksisterende CDA-skabeloner og s+©geindeks. Brug ved foresp+©rgsler om skabeloner, rapporter, skole-hjem-kommunikation, m+©der eller overlevering.",
+cda-chat-clean-before-roleplay.js:2869: "Brug v+ªrdien index for kun at hente skabelonernes s+©geindeks.",
+cda-chat-clean-before-roleplay.js:3605: "lav en skabelon",
+cda-chat-clean-before-roleplay.js:3606: "vis en skabelon",
+cda-chat-clean-before-roleplay.js:3607: "udfyld en skabelon",
+cda-chat-clean-before-roleplay.js:3741: "lav en skabelon",
+cda-chat-clean-before-roleplay.js:3742: "vis en skabelon",
+cda-chat-clean-before-roleplay.js:4234: reply: "PBL kunne v+ªre relevant her, men jeg vil ikke foresl+Ñ et konkret projekt uden en kort elevprofil. Profilen skal blandt andet afklare alder, interesser, styrker, koncentration, st+©ttebehov, arbejdsform, sikkerhed og fagligt m+Ñl. Vil du have den korte elevprofilskabelon?",
+cda-chat-clean-before-roleplay.js:4539: : `CDA's templatebank indeholder ${titles.length} eksisterende skabeloner:`,
+cda-chat-clean-before-roleplay.js:4592: "Jeg fandt ingen eksisterende skabelon i CDA's templatebank, der matcher din foresp+©rgsel.",
+cda-chat-clean-before-roleplay.js:4594: ? `Templatebanken indeholder blandt andet: ${titles.slice(0, 6).join(", ")}.`
+cda-chat-clean-before-roleplay.js:4595: : "Templatebanken indeholder ingen skabeloner.",
+cda-chat-clean-before-roleplay.js:4688: "Brug kun den ene vedlagte eksisterende CDA-skabelon som grundlag for svaret.",
+cda-chat-clean-before-roleplay.js:4689: "Brugeren har udtrykkeligt bedt om en eksisterende skabelon fra CDA's templatebank. Sig derfor ikke, at templatebanken er utilg+ªngelig.",
+cda-chat-clean-before-roleplay.js:4690: "Opfind ikke en ny skabelon, nye afsnit, nye faglige p+Ñstande eller manglende personoplysninger.",
+cda-chat-clean-before-roleplay.js:4691: "N+Ñr brugeren beder om at f+Ñ skabelonen vist, skal du gengive dens praktiske indhold trov+ªrdigt og komplet.",
+cda-chat-clean-before-roleplay.js:4694: "Svar kort f+©r selve skabelonen. Afslut uden et generisk tilbud om mere hj+ªlp.",
+cda-chat-clean-before-roleplay.js:4695: "Svarstilen m+Ñ ikke f+Ñ dig til at udelade centrale dele af den eksisterende skabelon.",
+cda-chat-clean-before-roleplay.js:4703: "DEN ENE MATCHENDE EKSISTERENDE CDA-SKABELON:",
+cda-chat-clean-before-roleplay.js:4971: "Brug den vedlagte b+©rnehaveskabelon og de udvalgte praksisafsnit som fagligt grundlag. Brug kun de dele, der er relevante for sp+©rgsm+Ñlet.",
+cda-chat-clean-before-roleplay.js:5266: "Brug ikke cases, PBL, specialistpanel, rollespil, skabeloner eller komorbiditet, medmindre brugeren udtrykkeligt beder om det.",
+cda-chat-clean-before-roleplay.js:5269: "Hvis PBL efter din faglige vurdering kan v+ªre en relevant senere mulighed, m+Ñ du h+©jst n+ªvne det kort og sp+©rge pr+ªcist: 'PBL kunne v+ªre relevant her. Vil du have en kort elevprofilskabelon?'",
+README.md:28: | `/templates/` | Skabeloner til intervention, støtte og struktur |

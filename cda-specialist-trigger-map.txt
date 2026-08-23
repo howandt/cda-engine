@@ -1,0 +1,3733 @@
+﻿CDA Engine 24B.4A - specialist trigger inspection
+READ ONLY: Scriptet Ã¦ndrer ingen filer.
+File: api\cda-chat.js
+Matches: 233
+
+--- context lines 1-14 ---
+        1: import fs from "fs";
+        2: import path from "path";
+        3: import OpenAI from "openai";
+        4: import { createClient } from "@supabase/supabase-js";
+        5: import { routeBornehaveInput } from "../lib/bornehaveRouter.js";
+>>>     6: import { specialistEngineHealthcheck } from "../lib/specialistEngine.js";
+        7: import {
+        8:   isContextualDiagnosisFollowup,
+        9:   runHeidiFlow,
+       10:   shouldBlockTemplateAutoRouting,
+       11: } from "../lib/heidiFlow.js";
+       12: 
+       13: const openai = new OpenAI({
+       14:   apiKey: process.env.OPENAI_API_KEY,
+
+--- context lines 824-837 ---
+      824:     "case med",
+      825:     "pbl",
+      826:     "projektbaseret laering",
+      827:     "lav et projekt",
+      828:     "find et projekt",
+>>>   829:     "specialistpanel",
+      830:     "specialist panel",
+      831:     "hvad siger specialisterne",
+      832:     "rollespil",
+      833:     "rolleleg",
+      834:     "perspektivskifte",
+      835:     "lav et skema",
+      836:     "lav en skabelon",
+      837:     "vis en skabelon",
+
+--- context lines 825-838 ---
+      825:     "pbl",
+      826:     "projektbaseret laering",
+      827:     "lav et projekt",
+      828:     "find et projekt",
+      829:     "specialistpanel",
+>>>   830:     "specialist panel",
+      831:     "hvad siger specialisterne",
+      832:     "rollespil",
+      833:     "rolleleg",
+      834:     "perspektivskifte",
+      835:     "lav et skema",
+      836:     "lav en skabelon",
+      837:     "vis en skabelon",
+      838:     "handleplan",
+
+--- context lines 826-839 ---
+      826:     "projektbaseret laering",
+      827:     "lav et projekt",
+      828:     "find et projekt",
+      829:     "specialistpanel",
+      830:     "specialist panel",
+>>>   831:     "hvad siger specialisterne",
+      832:     "rollespil",
+      833:     "rolleleg",
+      834:     "perspektivskifte",
+      835:     "lav et skema",
+      836:     "lav en skabelon",
+      837:     "vis en skabelon",
+      838:     "handleplan",
+      839:     "stotteplan",
+
+--- context lines 1059-1072 ---
+     1059:   if (role === "ForÃ¦lder" && diagnosisKeyMatches(normalizedKey, groups.home)) {
+     1060:     score += 5;
+     1061:   }
+     1062: 
+     1063:   if (
+>>>  1064:     role === "Specialist" &&
+     1065:     diagnosisKeyMatches(normalizedKey, [
+     1066:       ...groups.definition,
+     1067:       ...groups.symptoms,
+     1068:       ...groups.assessment,
+     1069:       "komorbid",
+     1070:     ])
+     1071:   ) {
+     1072:     score += 3;
+
+--- context lines 1092-1105 ---
+     1092:     hvad_er_det: shortView.hvad_er_det || null,
+     1093:     hvordan_viser_det_sig: shortView.hvordan_viser_det_sig || null,
+     1094:     hvad_misforstaas_ofte: shortView.hvad_misforstaas_ofte || null,
+     1095:   };
+     1096: 
+>>>  1097:   if (role !== "Specialist" || intent.support) {
+     1098:     selectedShort.hvad_kan_den_voksne_gore =
+     1099:       shortView.hvad_kan_den_voksne_gore || null;
+     1100:   }
+     1101: 
+     1102:   const entries = Object.entries(longView)
+     1103:     .map(([key, value]) => ({
+     1104:       key,
+     1105:       value,
+
+--- context lines 1152-1165 ---
+     1152:       "sociale relationer",
+     1153:       "socialt og hjemme",
+     1154:     ]);
+     1155:   }
+     1156: 
+>>>  1157:   if (intent.assessment || role === "Specialist") {
+     1158:     addRequiredKey(["diagnose", "vurdering", "udredning", "dsm"]);
+     1159:   }
+     1160: 
+     1161:   if (intent.causes) {
+     1162:     addRequiredKey([
+     1163:       "aarsag",
+     1164:       "hvorfor",
+     1165:       "risiko",
+
+--- context lines 1194-1207 ---
+     1194: 
+     1195:   if (intent.social) {
+     1196:     addRequiredKey(["social", "relation", "hverdagen"]);
+     1197:   }
+     1198: 
+>>>  1199:   const maxSections = role === "Specialist" ? 4 : 3;
+     1200:   const maxCharacters = role === "Specialist" ? 6800 : 5600;
+     1201:   const selectedKeys = [];
+     1202: 
+     1203:   for (const key of requiredKeys) {
+     1204:     if (!selectedKeys.includes(key)) {
+     1205:       selectedKeys.push(key);
+     1206:     }
+     1207:   }
+
+--- context lines 1195-1208 ---
+     1195:   if (intent.social) {
+     1196:     addRequiredKey(["social", "relation", "hverdagen"]);
+     1197:   }
+     1198: 
+     1199:   const maxSections = role === "Specialist" ? 4 : 3;
+>>>  1200:   const maxCharacters = role === "Specialist" ? 6800 : 5600;
+     1201:   const selectedKeys = [];
+     1202: 
+     1203:   for (const key of requiredKeys) {
+     1204:     if (!selectedKeys.includes(key)) {
+     1205:       selectedKeys.push(key);
+     1206:     }
+     1207:   }
+     1208: 
+
+--- context lines 1482-1495 ---
+     1482:   const localIntent = getLocalDiagnosisTheoryIntent(message, responseStyle);
+     1483:   const wantsDeep = localIntent.endsWith("_deep");
+     1484: 
+     1485:   const title = entry?.navn || entry?.fuld_navn || entry?.id || "Diagnose";
+     1486:   const audienceLine =
+>>>  1487:     role === "Specialist"
+     1488:       ? "Fagligt niveau: specialist â€” prÃ¦cist, datanÃ¦rt og uden diagnosekonklusion pÃ¥ enkeltsag."
+     1489:       : role === "ForÃ¦lder"
+     1490:         ? "Fagligt niveau: forÃ¦lder â€” roligt, konkret og hverdagsnÃ¦rt."
+     1491:         : "Fagligt niveau: lÃ¦rer â€” praksisnÃ¦rt, direkte og anvendeligt i morgen.";
+     1492: 
+     1493:   const blocks = [String(title).toUpperCase(), audienceLine, ""];
+     1494: 
+     1495:   if (localIntent.startsWith("definition")) {
+
+--- context lines 1483-1496 ---
+     1483:   const wantsDeep = localIntent.endsWith("_deep");
+     1484: 
+     1485:   const title = entry?.navn || entry?.fuld_navn || entry?.id || "Diagnose";
+     1486:   const audienceLine =
+     1487:     role === "Specialist"
+>>>  1488:       ? "Fagligt niveau: specialist â€” prÃ¦cist, datanÃ¦rt og uden diagnosekonklusion pÃ¥ enkeltsag."
+     1489:       : role === "ForÃ¦lder"
+     1490:         ? "Fagligt niveau: forÃ¦lder â€” roligt, konkret og hverdagsnÃ¦rt."
+     1491:         : "Fagligt niveau: lÃ¦rer â€” praksisnÃ¦rt, direkte og anvendeligt i morgen.";
+     1492: 
+     1493:   const blocks = [String(title).toUpperCase(), audienceLine, ""];
+     1494: 
+     1495:   if (localIntent.startsWith("definition")) {
+     1496:     const what = formatLimitedLocalDiagnosisBlock(
+
+--- context lines 3221-3234 ---
+     3221:   );
+     3222: 
+     3223:   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+     3224: }
+     3225: 
+>>>  3226: function buildLocalCaseSpecialistContextBlock(caseData) {
+     3227:   if (!caseData) {
+     3228:     return "";
+     3229:   }
+     3230: 
+     3231:   const title = formatLocalCaseValue(caseData.titel || caseData.title || caseData.id || "Aktiv case");
+     3232:   const lines = [
+     3233:     "AKTIV LOKAL CASE",
+     3234:     "Denne case er valgt fra den lokale CDA-casebank. Brug den som konkret grundlag for specialistvinklen. Stil ikke diagnose, giv ikke medicinrÃ¥d, og opfind ikke manglende casefelter.",
+
+--- context lines 3229-3242 ---
+     3229:   }
+     3230: 
+     3231:   const title = formatLocalCaseValue(caseData.titel || caseData.title || caseData.id || "Aktiv case");
+     3232:   const lines = [
+     3233:     "AKTIV LOKAL CASE",
+>>>  3234:     "Denne case er valgt fra den lokale CDA-casebank. Brug den som konkret grundlag for specialistvinklen. Stil ikke diagnose, giv ikke medicinrÃ¥d, og opfind ikke manglende casefelter.",
+     3235:     `case_id: ${formatLocalCaseValue(caseData.id) || "-"}`,
+     3236:     `titel: ${title}`,
+     3237:   ];
+     3238: 
+     3239:   const fields = [
+     3240:     ["alder", caseData.alder || caseData.age],
+     3241:     ["diagnoser_i_casen", caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser],
+     3242:     ["miljÃ¸", caseData.miljÃ¸ || caseData.contexts || caseData.kontekst],
+
+--- context lines 3258-3271 ---
+     3258:   }
+     3259: 
+     3260:   return lines.join("\n");
+     3261: }
+     3262: 
+>>>  3263: function getSpecialistPanel() {
+     3264:   const filePath = path.join(
+     3265:     process.cwd(),
+     3266:     "data",
+     3267:     "CDA_SpecialistPanel.json"
+     3268:   );
+     3269: 
+     3270:   const data = readJsonFile(
+     3271:     filePath,
+
+--- context lines 3262-3275 ---
+     3262: 
+     3263: function getSpecialistPanel() {
+     3264:   const filePath = path.join(
+     3265:     process.cwd(),
+     3266:     "data",
+>>>  3267:     "CDA_SpecialistPanel.json"
+     3268:   );
+     3269: 
+     3270:   const data = readJsonFile(
+     3271:     filePath,
+     3272:     "data/CDA_SpecialistPanel.json blev ikke fundet"
+     3273:   );
+     3274: 
+     3275:   return {
+
+--- context lines 3267-3280 ---
+     3267:     "CDA_SpecialistPanel.json"
+     3268:   );
+     3269: 
+     3270:   const data = readJsonFile(
+     3271:     filePath,
+>>>  3272:     "data/CDA_SpecialistPanel.json blev ikke fundet"
+     3273:   );
+     3274: 
+     3275:   return {
+     3276:     success: true,
+     3277:     source: "local",
+     3278:     data,
+     3279:   };
+     3280: }
+
+--- context lines 3277-3290 ---
+     3277:     source: "local",
+     3278:     data,
+     3279:   };
+     3280: }
+     3281: 
+>>>  3282: function findNamedSpecialistInMessage(message) {
+     3283:   const panelResult = getSpecialistPanel();
+     3284:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3285:     ? panelResult.data.specialists
+     3286:     : [];
+     3287: 
+     3288:   const text = normalizeDiagnosisPhrase(message);
+     3289:   if (!text) {
+     3290:     return null;
+
+--- context lines 3278-3291 ---
+     3278:     data,
+     3279:   };
+     3280: }
+     3281: 
+     3282: function findNamedSpecialistInMessage(message) {
+>>>  3283:   const panelResult = getSpecialistPanel();
+     3284:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3285:     ? panelResult.data.specialists
+     3286:     : [];
+     3287: 
+     3288:   const text = normalizeDiagnosisPhrase(message);
+     3289:   if (!text) {
+     3290:     return null;
+     3291:   }
+
+--- context lines 3279-3292 ---
+     3279:   };
+     3280: }
+     3281: 
+     3282: function findNamedSpecialistInMessage(message) {
+     3283:   const panelResult = getSpecialistPanel();
+>>>  3284:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3285:     ? panelResult.data.specialists
+     3286:     : [];
+     3287: 
+     3288:   const text = normalizeDiagnosisPhrase(message);
+     3289:   if (!text) {
+     3290:     return null;
+     3291:   }
+     3292: 
+
+--- context lines 3280-3293 ---
+     3280: }
+     3281: 
+     3282: function findNamedSpecialistInMessage(message) {
+     3283:   const panelResult = getSpecialistPanel();
+     3284:   const specialists = Array.isArray(panelResult?.data?.specialists)
+>>>  3285:     ? panelResult.data.specialists
+     3286:     : [];
+     3287: 
+     3288:   const text = normalizeDiagnosisPhrase(message);
+     3289:   if (!text) {
+     3290:     return null;
+     3291:   }
+     3292: 
+     3293:   const withPersonalName = specialists
+
+--- context lines 3288-3301 ---
+     3288:   const text = normalizeDiagnosisPhrase(message);
+     3289:   if (!text) {
+     3290:     return null;
+     3291:   }
+     3292: 
+>>>  3293:   const withPersonalName = specialists
+     3294:     .map((specialist) => {
+     3295:       const fullName = String(specialist?.name || "").trim();
+     3296:       const parts = fullName.split(/\s+/).filter(Boolean);
+     3297:       const personalName = parts.slice(-2).join(" ");
+     3298:       const lastName = parts.slice(-1).join(" ");
+     3299:       return { specialist, personalName, lastName };
+     3300:     })
+     3301:     .filter((item) => item.personalName);
+
+--- context lines 3289-3302 ---
+     3289:   if (!text) {
+     3290:     return null;
+     3291:   }
+     3292: 
+     3293:   const withPersonalName = specialists
+>>>  3294:     .map((specialist) => {
+     3295:       const fullName = String(specialist?.name || "").trim();
+     3296:       const parts = fullName.split(/\s+/).filter(Boolean);
+     3297:       const personalName = parts.slice(-2).join(" ");
+     3298:       const lastName = parts.slice(-1).join(" ");
+     3299:       return { specialist, personalName, lastName };
+     3300:     })
+     3301:     .filter((item) => item.personalName);
+     3302: 
+
+--- context lines 3290-3303 ---
+     3290:     return null;
+     3291:   }
+     3292: 
+     3293:   const withPersonalName = specialists
+     3294:     .map((specialist) => {
+>>>  3295:       const fullName = String(specialist?.name || "").trim();
+     3296:       const parts = fullName.split(/\s+/).filter(Boolean);
+     3297:       const personalName = parts.slice(-2).join(" ");
+     3298:       const lastName = parts.slice(-1).join(" ");
+     3299:       return { specialist, personalName, lastName };
+     3300:     })
+     3301:     .filter((item) => item.personalName);
+     3302: 
+     3303:   const fullNameMatch = withPersonalName.find(
+
+--- context lines 3294-3307 ---
+     3294:     .map((specialist) => {
+     3295:       const fullName = String(specialist?.name || "").trim();
+     3296:       const parts = fullName.split(/\s+/).filter(Boolean);
+     3297:       const personalName = parts.slice(-2).join(" ");
+     3298:       const lastName = parts.slice(-1).join(" ");
+>>>  3299:       return { specialist, personalName, lastName };
+     3300:     })
+     3301:     .filter((item) => item.personalName);
+     3302: 
+     3303:   const fullNameMatch = withPersonalName.find(
+     3304:     (item) =>
+     3305:       normalizeDiagnosisPhrase(item.personalName).length > 0 &&
+     3306:       text.includes(normalizeDiagnosisPhrase(item.personalName))
+     3307:   );
+
+--- context lines 3304-3317 ---
+     3304:     (item) =>
+     3305:       normalizeDiagnosisPhrase(item.personalName).length > 0 &&
+     3306:       text.includes(normalizeDiagnosisPhrase(item.personalName))
+     3307:   );
+     3308:   if (fullNameMatch) {
+>>>  3309:     return fullNameMatch.specialist;
+     3310:   }
+     3311: 
+     3312:   const lastNameMatches = withPersonalName.filter(
+     3313:     (item) =>
+     3314:       item.lastName.length >= 4 &&
+     3315:       text.includes(normalizeDiagnosisPhrase(item.lastName))
+     3316:   );
+     3317:   if (lastNameMatches.length === 1) {
+
+--- context lines 3313-3326 ---
+     3313:     (item) =>
+     3314:       item.lastName.length >= 4 &&
+     3315:       text.includes(normalizeDiagnosisPhrase(item.lastName))
+     3316:   );
+     3317:   if (lastNameMatches.length === 1) {
+>>>  3318:     return lastNameMatches[0].specialist;
+     3319:   }
+     3320: 
+     3321:   return null;
+     3322: }
+     3323: 
+     3324: function buildSingleSpecialistPanel(specialist) {
+     3325:   if (!specialist) {
+     3326:     return { specialistIds: [], specialistSummaries: [], indexText: "" };
+
+--- context lines 3319-3332 ---
+     3319:   }
+     3320: 
+     3321:   return null;
+     3322: }
+     3323: 
+>>>  3324: function buildSingleSpecialistPanel(specialist) {
+     3325:   if (!specialist) {
+     3326:     return { specialistIds: [], specialistSummaries: [], indexText: "" };
+     3327:   }
+     3328: 
+     3329:   const cleanValue = (value, max = 160) =>
+     3330:     limitSpecialistText(value, max)
+     3331:       .replace(/[|\r\n]+/g, " ")
+     3332:       .replace(/\s+/g, " ")
+
+--- context lines 3320-3333 ---
+     3320: 
+     3321:   return null;
+     3322: }
+     3323: 
+     3324: function buildSingleSpecialistPanel(specialist) {
+>>>  3325:   if (!specialist) {
+     3326:     return { specialistIds: [], specialistSummaries: [], indexText: "" };
+     3327:   }
+     3328: 
+     3329:   const cleanValue = (value, max = 160) =>
+     3330:     limitSpecialistText(value, max)
+     3331:       .replace(/[|\r\n]+/g, " ")
+     3332:       .replace(/\s+/g, " ")
+     3333:       .trim();
+
+--- context lines 3321-3334 ---
+     3321:   return null;
+     3322: }
+     3323: 
+     3324: function buildSingleSpecialistPanel(specialist) {
+     3325:   if (!specialist) {
+>>>  3326:     return { specialistIds: [], specialistSummaries: [], indexText: "" };
+     3327:   }
+     3328: 
+     3329:   const cleanValue = (value, max = 160) =>
+     3330:     limitSpecialistText(value, max)
+     3331:       .replace(/[|\r\n]+/g, " ")
+     3332:       .replace(/\s+/g, " ")
+     3333:       .trim();
+     3334: 
+
+--- context lines 3325-3338 ---
+     3325:   if (!specialist) {
+     3326:     return { specialistIds: [], specialistSummaries: [], indexText: "" };
+     3327:   }
+     3328: 
+     3329:   const cleanValue = (value, max = 160) =>
+>>>  3330:     limitSpecialistText(value, max)
+     3331:       .replace(/[|\r\n]+/g, " ")
+     3332:       .replace(/\s+/g, " ")
+     3333:       .trim();
+     3334: 
+     3335:   const keywords = Array.isArray(specialist?.keywords)
+     3336:     ? specialist.keywords.slice(0, 8).join(", ")
+     3337:     : "";
+     3338: 
+
+--- context lines 3330-3343 ---
+     3330:     limitSpecialistText(value, max)
+     3331:       .replace(/[|\r\n]+/g, " ")
+     3332:       .replace(/\s+/g, " ")
+     3333:       .trim();
+     3334: 
+>>>  3335:   const keywords = Array.isArray(specialist?.keywords)
+     3336:     ? specialist.keywords.slice(0, 8).join(", ")
+     3337:     : "";
+     3338: 
+     3339:   const row = [
+     3340:     cleanValue(specialist?.id, 80),
+     3341:     cleanValue(specialist?.name, 120),
+     3342:     cleanValue(specialist?.group, 120),
+     3343:     cleanValue(specialist?.function, 220),
+
+--- context lines 3331-3344 ---
+     3331:       .replace(/[|\r\n]+/g, " ")
+     3332:       .replace(/\s+/g, " ")
+     3333:       .trim();
+     3334: 
+     3335:   const keywords = Array.isArray(specialist?.keywords)
+>>>  3336:     ? specialist.keywords.slice(0, 8).join(", ")
+     3337:     : "";
+     3338: 
+     3339:   const row = [
+     3340:     cleanValue(specialist?.id, 80),
+     3341:     cleanValue(specialist?.name, 120),
+     3342:     cleanValue(specialist?.group, 120),
+     3343:     cleanValue(specialist?.function, 220),
+     3344:     cleanValue(keywords, 180),
+
+--- context lines 3335-3348 ---
+     3335:   const keywords = Array.isArray(specialist?.keywords)
+     3336:     ? specialist.keywords.slice(0, 8).join(", ")
+     3337:     : "";
+     3338: 
+     3339:   const row = [
+>>>  3340:     cleanValue(specialist?.id, 80),
+     3341:     cleanValue(specialist?.name, 120),
+     3342:     cleanValue(specialist?.group, 120),
+     3343:     cleanValue(specialist?.function, 220),
+     3344:     cleanValue(keywords, 180),
+     3345:   ].join("|");
+     3346: 
+     3347:   return {
+     3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+
+--- context lines 3336-3349 ---
+     3336:     ? specialist.keywords.slice(0, 8).join(", ")
+     3337:     : "";
+     3338: 
+     3339:   const row = [
+     3340:     cleanValue(specialist?.id, 80),
+>>>  3341:     cleanValue(specialist?.name, 120),
+     3342:     cleanValue(specialist?.group, 120),
+     3343:     cleanValue(specialist?.function, 220),
+     3344:     cleanValue(keywords, 180),
+     3345:   ].join("|");
+     3346: 
+     3347:   return {
+     3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+     3349:     specialistSummaries: [
+
+--- context lines 3337-3350 ---
+     3337:     : "";
+     3338: 
+     3339:   const row = [
+     3340:     cleanValue(specialist?.id, 80),
+     3341:     cleanValue(specialist?.name, 120),
+>>>  3342:     cleanValue(specialist?.group, 120),
+     3343:     cleanValue(specialist?.function, 220),
+     3344:     cleanValue(keywords, 180),
+     3345:   ].join("|");
+     3346: 
+     3347:   return {
+     3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+     3349:     specialistSummaries: [
+     3350:       {
+
+--- context lines 3338-3351 ---
+     3338: 
+     3339:   const row = [
+     3340:     cleanValue(specialist?.id, 80),
+     3341:     cleanValue(specialist?.name, 120),
+     3342:     cleanValue(specialist?.group, 120),
+>>>  3343:     cleanValue(specialist?.function, 220),
+     3344:     cleanValue(keywords, 180),
+     3345:   ].join("|");
+     3346: 
+     3347:   return {
+     3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+     3349:     specialistSummaries: [
+     3350:       {
+     3351:         id: String(specialist?.id || ""),
+
+--- context lines 3343-3356 ---
+     3343:     cleanValue(specialist?.function, 220),
+     3344:     cleanValue(keywords, 180),
+     3345:   ].join("|");
+     3346: 
+     3347:   return {
+>>>  3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+     3349:     specialistSummaries: [
+     3350:       {
+     3351:         id: String(specialist?.id || ""),
+     3352:         name: String(specialist?.name || ""),
+     3353:         group: String(specialist?.group || ""),
+     3354:         function: String(specialist?.function || ""),
+     3355:       },
+     3356:     ],
+
+--- context lines 3344-3357 ---
+     3344:     cleanValue(keywords, 180),
+     3345:   ].join("|");
+     3346: 
+     3347:   return {
+     3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+>>>  3349:     specialistSummaries: [
+     3350:       {
+     3351:         id: String(specialist?.id || ""),
+     3352:         name: String(specialist?.name || ""),
+     3353:         group: String(specialist?.group || ""),
+     3354:         function: String(specialist?.function || ""),
+     3355:       },
+     3356:     ],
+     3357:     indexText: ["KOLONNER:id|navn|gruppe|funktion|keywords", row].join("\n"),
+
+--- context lines 3346-3359 ---
+     3346: 
+     3347:   return {
+     3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+     3349:     specialistSummaries: [
+     3350:       {
+>>>  3351:         id: String(specialist?.id || ""),
+     3352:         name: String(specialist?.name || ""),
+     3353:         group: String(specialist?.group || ""),
+     3354:         function: String(specialist?.function || ""),
+     3355:       },
+     3356:     ],
+     3357:     indexText: ["KOLONNER:id|navn|gruppe|funktion|keywords", row].join("\n"),
+     3358:   };
+     3359: }
+
+--- context lines 3347-3360 ---
+     3347:   return {
+     3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+     3349:     specialistSummaries: [
+     3350:       {
+     3351:         id: String(specialist?.id || ""),
+>>>  3352:         name: String(specialist?.name || ""),
+     3353:         group: String(specialist?.group || ""),
+     3354:         function: String(specialist?.function || ""),
+     3355:       },
+     3356:     ],
+     3357:     indexText: ["KOLONNER:id|navn|gruppe|funktion|keywords", row].join("\n"),
+     3358:   };
+     3359: }
+     3360: 
+
+--- context lines 3348-3361 ---
+     3348:     specialistIds: [String(specialist?.id || "")].filter(Boolean),
+     3349:     specialistSummaries: [
+     3350:       {
+     3351:         id: String(specialist?.id || ""),
+     3352:         name: String(specialist?.name || ""),
+>>>  3353:         group: String(specialist?.group || ""),
+     3354:         function: String(specialist?.function || ""),
+     3355:       },
+     3356:     ],
+     3357:     indexText: ["KOLONNER:id|navn|gruppe|funktion|keywords", row].join("\n"),
+     3358:   };
+     3359: }
+     3360: 
+     3361: function isRoleplayTriggerMessage(message) {
+
+--- context lines 3349-3362 ---
+     3349:     specialistSummaries: [
+     3350:       {
+     3351:         id: String(specialist?.id || ""),
+     3352:         name: String(specialist?.name || ""),
+     3353:         group: String(specialist?.group || ""),
+>>>  3354:         function: String(specialist?.function || ""),
+     3355:       },
+     3356:     ],
+     3357:     indexText: ["KOLONNER:id|navn|gruppe|funktion|keywords", row].join("\n"),
+     3358:   };
+     3359: }
+     3360: 
+     3361: function isRoleplayTriggerMessage(message) {
+     3362:   const text = normalizeDiagnosisPhrase(message);
+
+--- context lines 3412-3425 ---
+     3412:     "Marker-regel: skal du afslutte dit svar med [[PENDING_ACTION:ROLEPLAY_ACTIVE]] som allersidste tegn i ALLE svar i dette spor â€” inklusive dette allerfÃ¸rste svar, under afklaring/forberedelse, og under selve Ã¸velsen. Der findes ingen 'opstartsfase' uden markÃ¸ren; fra fÃ¸rste rollespil-relaterede svar og indtil det er helt slut, skal markÃ¸ren altid med. MarkÃ¸ren vises ikke til brugeren. Udelad KUN markÃ¸ren i det svar, hvor rollespillet/trÃ¦ningen reelt afsluttes, eller hvis brugeren tydeligt skifter emne til noget der intet har med rollespillet at gÃ¸re.",
+     3413:     "Opfind aldrig egne kommandoer, motornavne eller statusbeskeder (fx 'rollespillet er ikke aktivt'). Brug kun de kommandoer og den struktur, der faktisk er beskrevet i roleplay_rules og roleplay_learning_rules herover.",
+     3414:   ].join("\n");
+     3415: }
+     3416: 
+>>>  3417: function isDirectSpecialistPanelRequest(message) {
+     3418:   const text = normalizeDiagnosisPhrase(message);
+     3419:   const directPatterns = [
+     3420:     "specialistpanel",
+     3421:     "specialist panel",
+     3422:     "hvad siger specialisterne",
+     3423:     "specialistperspektiv",
+     3424:     "tvÃ¦rfaglig vurdering",
+     3425:     "tvaerfaglig vurdering",
+
+--- context lines 3415-3428 ---
+     3415: }
+     3416: 
+     3417: function isDirectSpecialistPanelRequest(message) {
+     3418:   const text = normalizeDiagnosisPhrase(message);
+     3419:   const directPatterns = [
+>>>  3420:     "specialistpanel",
+     3421:     "specialist panel",
+     3422:     "hvad siger specialisterne",
+     3423:     "specialistperspektiv",
+     3424:     "tvÃ¦rfaglig vurdering",
+     3425:     "tvaerfaglig vurdering",
+     3426:     "hvad siger psykologen",
+     3427:     "psykologens vinkel",
+     3428:     "psykologvinkel",
+
+--- context lines 3416-3429 ---
+     3416: 
+     3417: function isDirectSpecialistPanelRequest(message) {
+     3418:   const text = normalizeDiagnosisPhrase(message);
+     3419:   const directPatterns = [
+     3420:     "specialistpanel",
+>>>  3421:     "specialist panel",
+     3422:     "hvad siger specialisterne",
+     3423:     "specialistperspektiv",
+     3424:     "tvÃ¦rfaglig vurdering",
+     3425:     "tvaerfaglig vurdering",
+     3426:     "hvad siger psykologen",
+     3427:     "psykologens vinkel",
+     3428:     "psykologvinkel",
+     3429:     "hvad ville psykologen sige",
+
+--- context lines 3417-3430 ---
+     3417: function isDirectSpecialistPanelRequest(message) {
+     3418:   const text = normalizeDiagnosisPhrase(message);
+     3419:   const directPatterns = [
+     3420:     "specialistpanel",
+     3421:     "specialist panel",
+>>>  3422:     "hvad siger specialisterne",
+     3423:     "specialistperspektiv",
+     3424:     "tvÃ¦rfaglig vurdering",
+     3425:     "tvaerfaglig vurdering",
+     3426:     "hvad siger psykologen",
+     3427:     "psykologens vinkel",
+     3428:     "psykologvinkel",
+     3429:     "hvad ville psykologen sige",
+     3430:     "hvad siger ppr",
+
+--- context lines 3418-3431 ---
+     3418:   const text = normalizeDiagnosisPhrase(message);
+     3419:   const directPatterns = [
+     3420:     "specialistpanel",
+     3421:     "specialist panel",
+     3422:     "hvad siger specialisterne",
+>>>  3423:     "specialistperspektiv",
+     3424:     "tvÃ¦rfaglig vurdering",
+     3425:     "tvaerfaglig vurdering",
+     3426:     "hvad siger psykologen",
+     3427:     "psykologens vinkel",
+     3428:     "psykologvinkel",
+     3429:     "hvad ville psykologen sige",
+     3430:     "hvad siger ppr",
+     3431:     "ppr vinkel",
+
+--- context lines 3421-3434 ---
+     3421:     "specialist panel",
+     3422:     "hvad siger specialisterne",
+     3423:     "specialistperspektiv",
+     3424:     "tvÃ¦rfaglig vurdering",
+     3425:     "tvaerfaglig vurdering",
+>>>  3426:     "hvad siger psykologen",
+     3427:     "psykologens vinkel",
+     3428:     "psykologvinkel",
+     3429:     "hvad ville psykologen sige",
+     3430:     "hvad siger ppr",
+     3431:     "ppr vinkel",
+     3432:     "ppr-vinkel",
+     3433:   ];
+     3434: 
+
+--- context lines 3425-3438 ---
+     3425:     "tvaerfaglig vurdering",
+     3426:     "hvad siger psykologen",
+     3427:     "psykologens vinkel",
+     3428:     "psykologvinkel",
+     3429:     "hvad ville psykologen sige",
+>>>  3430:     "hvad siger ppr",
+     3431:     "ppr vinkel",
+     3432:     "ppr-vinkel",
+     3433:   ];
+     3434: 
+     3435:   if (directPatterns.some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)))) {
+     3436:     return true;
+     3437:   }
+     3438: 
+
+--- context lines 3434-3447 ---
+     3434: 
+     3435:   if (directPatterns.some((pattern) => text.includes(normalizeDiagnosisPhrase(pattern)))) {
+     3436:     return true;
+     3437:   }
+     3438: 
+>>>  3439:   return Boolean(findNamedSpecialistInMessage(message));
+     3440: }
+     3441: 
+     3442: function isCaseSpecialistsInvolvedRequest(message) {
+     3443:   const text = normalizeDiagnosisPhrase(message);
+     3444:   const directPatterns = [
+     3445:     "hvilke specialister har vÃ¦ret inde over",
+     3446:     "hvilke specialister har set pÃ¥",
+     3447:     "hvilke specialister har vÃ¦ret involveret",
+
+--- context lines 3437-3450 ---
+     3437:   }
+     3438: 
+     3439:   return Boolean(findNamedSpecialistInMessage(message));
+     3440: }
+     3441: 
+>>>  3442: function isCaseSpecialistsInvolvedRequest(message) {
+     3443:   const text = normalizeDiagnosisPhrase(message);
+     3444:   const directPatterns = [
+     3445:     "hvilke specialister har vÃ¦ret inde over",
+     3446:     "hvilke specialister har set pÃ¥",
+     3447:     "hvilke specialister har vÃ¦ret involveret",
+     3448:     "hvilke specialister er relevante for denne case",
+     3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+
+--- context lines 3440-3453 ---
+     3440: }
+     3441: 
+     3442: function isCaseSpecialistsInvolvedRequest(message) {
+     3443:   const text = normalizeDiagnosisPhrase(message);
+     3444:   const directPatterns = [
+>>>  3445:     "hvilke specialister har vÃ¦ret inde over",
+     3446:     "hvilke specialister har set pÃ¥",
+     3447:     "hvilke specialister har vÃ¦ret involveret",
+     3448:     "hvilke specialister er relevante for denne case",
+     3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+     3451:     "hvem har kigget pÃ¥ denne sag",
+     3452:     "specialister involveret i denne sag",
+     3453:     "specialister involveret i denne case",
+
+--- context lines 3441-3454 ---
+     3441: 
+     3442: function isCaseSpecialistsInvolvedRequest(message) {
+     3443:   const text = normalizeDiagnosisPhrase(message);
+     3444:   const directPatterns = [
+     3445:     "hvilke specialister har vÃ¦ret inde over",
+>>>  3446:     "hvilke specialister har set pÃ¥",
+     3447:     "hvilke specialister har vÃ¦ret involveret",
+     3448:     "hvilke specialister er relevante for denne case",
+     3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+     3451:     "hvem har kigget pÃ¥ denne sag",
+     3452:     "specialister involveret i denne sag",
+     3453:     "specialister involveret i denne case",
+     3454:     "hvilket specialistteam",
+
+--- context lines 3442-3455 ---
+     3442: function isCaseSpecialistsInvolvedRequest(message) {
+     3443:   const text = normalizeDiagnosisPhrase(message);
+     3444:   const directPatterns = [
+     3445:     "hvilke specialister har vÃ¦ret inde over",
+     3446:     "hvilke specialister har set pÃ¥",
+>>>  3447:     "hvilke specialister har vÃ¦ret involveret",
+     3448:     "hvilke specialister er relevante for denne case",
+     3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+     3451:     "hvem har kigget pÃ¥ denne sag",
+     3452:     "specialister involveret i denne sag",
+     3453:     "specialister involveret i denne case",
+     3454:     "hvilket specialistteam",
+     3455:   ];
+
+--- context lines 3443-3456 ---
+     3443:   const text = normalizeDiagnosisPhrase(message);
+     3444:   const directPatterns = [
+     3445:     "hvilke specialister har vÃ¦ret inde over",
+     3446:     "hvilke specialister har set pÃ¥",
+     3447:     "hvilke specialister har vÃ¦ret involveret",
+>>>  3448:     "hvilke specialister er relevante for denne case",
+     3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+     3451:     "hvem har kigget pÃ¥ denne sag",
+     3452:     "specialister involveret i denne sag",
+     3453:     "specialister involveret i denne case",
+     3454:     "hvilket specialistteam",
+     3455:   ];
+     3456: 
+
+--- context lines 3444-3457 ---
+     3444:   const directPatterns = [
+     3445:     "hvilke specialister har vÃ¦ret inde over",
+     3446:     "hvilke specialister har set pÃ¥",
+     3447:     "hvilke specialister har vÃ¦ret involveret",
+     3448:     "hvilke specialister er relevante for denne case",
+>>>  3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+     3451:     "hvem har kigget pÃ¥ denne sag",
+     3452:     "specialister involveret i denne sag",
+     3453:     "specialister involveret i denne case",
+     3454:     "hvilket specialistteam",
+     3455:   ];
+     3456: 
+     3457:   return directPatterns.some((pattern) =>
+
+--- context lines 3447-3460 ---
+     3447:     "hvilke specialister har vÃ¦ret involveret",
+     3448:     "hvilke specialister er relevante for denne case",
+     3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+     3451:     "hvem har kigget pÃ¥ denne sag",
+>>>  3452:     "specialister involveret i denne sag",
+     3453:     "specialister involveret i denne case",
+     3454:     "hvilket specialistteam",
+     3455:   ];
+     3456: 
+     3457:   return directPatterns.some((pattern) =>
+     3458:     text.includes(normalizeDiagnosisPhrase(pattern))
+     3459:   );
+     3460: }
+
+--- context lines 3448-3461 ---
+     3448:     "hvilke specialister er relevante for denne case",
+     3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+     3451:     "hvem har kigget pÃ¥ denne sag",
+     3452:     "specialister involveret i denne sag",
+>>>  3453:     "specialister involveret i denne case",
+     3454:     "hvilket specialistteam",
+     3455:   ];
+     3456: 
+     3457:   return directPatterns.some((pattern) =>
+     3458:     text.includes(normalizeDiagnosisPhrase(pattern))
+     3459:   );
+     3460: }
+     3461: 
+
+--- context lines 3449-3462 ---
+     3449:     "hvilke specialister er relevante for denne sag",
+     3450:     "hvem har kigget pÃ¥ denne case",
+     3451:     "hvem har kigget pÃ¥ denne sag",
+     3452:     "specialister involveret i denne sag",
+     3453:     "specialister involveret i denne case",
+>>>  3454:     "hvilket specialistteam",
+     3455:   ];
+     3456: 
+     3457:   return directPatterns.some((pattern) =>
+     3458:     text.includes(normalizeDiagnosisPhrase(pattern))
+     3459:   );
+     3460: }
+     3461: 
+     3462: function limitSpecialistText(value, max = 260) {
+
+--- context lines 3457-3470 ---
+     3457:   return directPatterns.some((pattern) =>
+     3458:     text.includes(normalizeDiagnosisPhrase(pattern))
+     3459:   );
+     3460: }
+     3461: 
+>>>  3462: function limitSpecialistText(value, max = 260) {
+     3463:   const text = formatLocalCaseValue(value)
+     3464:     .replace(/\s+/g, " ")
+     3465:     .trim();
+     3466: 
+     3467:   if (text.length <= max) {
+     3468:     return text;
+     3469:   }
+     3470: 
+
+--- context lines 3469-3482 ---
+     3469:   }
+     3470: 
+     3471:   return `${text.slice(0, max).trim()}â€¦`;
+     3472: }
+     3473: 
+>>>  3474: function getRequestedSpecialistAngle(message) {
+     3475:   const text = normalizeDiagnosisPhrase(message);
+     3476: 
+     3477:   if (findNamedSpecialistInMessage(message)) {
+     3478:     return "named";
+     3479:   }
+     3480: 
+     3481:   if (text.includes("psykolog")) {
+     3482:     return "psychologist";
+
+--- context lines 3472-3485 ---
+     3472: }
+     3473: 
+     3474: function getRequestedSpecialistAngle(message) {
+     3475:   const text = normalizeDiagnosisPhrase(message);
+     3476: 
+>>>  3477:   if (findNamedSpecialistInMessage(message)) {
+     3478:     return "named";
+     3479:   }
+     3480: 
+     3481:   if (text.includes("psykolog")) {
+     3482:     return "psychologist";
+     3483:   }
+     3484: 
+     3485:   if (text.includes("ppr")) {
+
+--- context lines 3484-3497 ---
+     3484: 
+     3485:   if (text.includes("ppr")) {
+     3486:     return "ppr";
+     3487:   }
+     3488: 
+>>>  3489:   return "specialists";
+     3490: }
+     3491: 
+     3492: function isLocalPprCaseAngleRequest(message) {
+     3493:   const text = normalizeDiagnosisPhrase(message);
+     3494: 
+     3495:   if (!text.includes("ppr")) {
+     3496:     return false;
+     3497:   }
+
+--- context lines 3496-3509 ---
+     3496:     return false;
+     3497:   }
+     3498: 
+     3499:   const pprPatterns = [
+     3500:     "ppr",
+>>>  3501:     "hvad siger ppr",
+     3502:     "hvad ville ppr",
+     3503:     "hvad vil ppr",
+     3504:     "hvad ser ppr",
+     3505:     "hvad ville ppr se",
+     3506:     "hvad ville ppr kigge paa",
+     3507:     "hvad ville ppr kigge pÃ¥",
+     3508:     "ppr vinkel",
+     3509:     "ppr-vinkel",
+
+--- context lines 3521-3534 ---
+     3521: 
+     3522: function buildLocalPprAngleReply(caseData, activeContext) {
+     3523:   const title = formatLocalCaseValue(
+     3524:     caseData?.titel || caseData?.title || caseData?.id || "Aktiv sag"
+     3525:   );
+>>>  3526:   const problem = limitSpecialistText(
+     3527:     caseData?.problem ||
+     3528:       caseData?.kort_beskrivelse ||
+     3529:       caseData?.description ||
+     3530:       caseData?.beskrivelse ||
+     3531:       activeContext?.summary ||
+     3532:       activeContext?.last_user_message,
+     3533:     240
+     3534:   );
+
+--- context lines 3557-3570 ---
+     3557:   );
+     3558: 
+     3559:   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+     3560: }
+     3561: 
+>>>  3562: function buildCompactSpecialistCaseContext(caseData, activeContext) {
+     3563:   if (caseData) {
+     3564:     const lines = [
+     3565:       "AKTIV CASE â€” KORT GRUNDLAG",
+     3566:       `id: ${limitSpecialistText(caseData.id, 80) || "-"}`,
+     3567:       `titel: ${limitSpecialistText(caseData.titel || caseData.title, 120) || "-"}`,
+     3568:     ];
+     3569: 
+     3570:     const fields = [
+
+--- context lines 3561-3574 ---
+     3561: 
+     3562: function buildCompactSpecialistCaseContext(caseData, activeContext) {
+     3563:   if (caseData) {
+     3564:     const lines = [
+     3565:       "AKTIV CASE â€” KORT GRUNDLAG",
+>>>  3566:       `id: ${limitSpecialistText(caseData.id, 80) || "-"}`,
+     3567:       `titel: ${limitSpecialistText(caseData.titel || caseData.title, 120) || "-"}`,
+     3568:     ];
+     3569: 
+     3570:     const fields = [
+     3571:       ["alder", caseData.alder || caseData.age, 40],
+     3572:       ["diagnose/spor", caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser, 120],
+     3573:       ["tema", caseData.tema || caseData.theme || caseData.kategori, 160],
+     3574:       ["problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse, 360],
+
+--- context lines 3562-3575 ---
+     3562: function buildCompactSpecialistCaseContext(caseData, activeContext) {
+     3563:   if (caseData) {
+     3564:     const lines = [
+     3565:       "AKTIV CASE â€” KORT GRUNDLAG",
+     3566:       `id: ${limitSpecialistText(caseData.id, 80) || "-"}`,
+>>>  3567:       `titel: ${limitSpecialistText(caseData.titel || caseData.title, 120) || "-"}`,
+     3568:     ];
+     3569: 
+     3570:     const fields = [
+     3571:       ["alder", caseData.alder || caseData.age, 40],
+     3572:       ["diagnose/spor", caseData.diagnoser || caseData.diagnoses || caseData.relevante_diagnoser, 120],
+     3573:       ["tema", caseData.tema || caseData.theme || caseData.kategori, 160],
+     3574:       ["problem", caseData.problem || caseData.kort_beskrivelse || caseData.description || caseData.beskrivelse, 360],
+     3575:       ["barnets oplevelse", caseData.barnets_oplevelse || caseData.barnets_perspektiv || caseData.childVoice, 220],
+
+--- context lines 3577-3590 ---
+     3577:       ["lÃ¸sning", caseData.lÃ¸sning || caseData.loesning || caseData.solution, 300],
+     3578:       ["tiltag", caseData.tiltag || caseData.vÃ¦rktÃ¸jer || caseData.vaerktoejer || caseData.tools, 300],
+     3579:     ];
+     3580: 
+     3581:     for (const [label, value, max] of fields) {
+>>>  3582:       const text = limitSpecialistText(value, max);
+     3583:       if (text) {
+     3584:         lines.push(`${label}: ${text}`);
+     3585:       }
+     3586:     }
+     3587: 
+     3588:     return lines.join("\n");
+     3589:   }
+     3590: 
+
+--- context lines 3589-3602 ---
+     3589:   }
+     3590: 
+     3591:   if (hasActiveCaseContext(activeContext)) {
+     3592:     return [
+     3593:       "AKTIV SAG â€” KORT GRUNDLAG",
+>>>  3594:       activeContext.summary ? `sag: ${limitSpecialistText(activeContext.summary, 420)}` : "",
+     3595:       activeContext.known_context ? `kontekst: ${limitSpecialistText(activeContext.known_context, 220)}` : "",
+     3596:       activeContext.last_user_message ? `sidste brugerbesked: ${limitSpecialistText(activeContext.last_user_message, 260)}` : "",
+     3597:       activeContext.last_guidance_summary ? `seneste rÃ¥d: ${limitSpecialistText(activeContext.last_guidance_summary, 260)}` : "",
+     3598:     ].filter(Boolean).join("\n");
+     3599:   }
+     3600: 
+     3601:   return "";
+     3602: }
+
+--- context lines 3590-3603 ---
+     3590: 
+     3591:   if (hasActiveCaseContext(activeContext)) {
+     3592:     return [
+     3593:       "AKTIV SAG â€” KORT GRUNDLAG",
+     3594:       activeContext.summary ? `sag: ${limitSpecialistText(activeContext.summary, 420)}` : "",
+>>>  3595:       activeContext.known_context ? `kontekst: ${limitSpecialistText(activeContext.known_context, 220)}` : "",
+     3596:       activeContext.last_user_message ? `sidste brugerbesked: ${limitSpecialistText(activeContext.last_user_message, 260)}` : "",
+     3597:       activeContext.last_guidance_summary ? `seneste rÃ¥d: ${limitSpecialistText(activeContext.last_guidance_summary, 260)}` : "",
+     3598:     ].filter(Boolean).join("\n");
+     3599:   }
+     3600: 
+     3601:   return "";
+     3602: }
+     3603: 
+
+--- context lines 3591-3604 ---
+     3591:   if (hasActiveCaseContext(activeContext)) {
+     3592:     return [
+     3593:       "AKTIV SAG â€” KORT GRUNDLAG",
+     3594:       activeContext.summary ? `sag: ${limitSpecialistText(activeContext.summary, 420)}` : "",
+     3595:       activeContext.known_context ? `kontekst: ${limitSpecialistText(activeContext.known_context, 220)}` : "",
+>>>  3596:       activeContext.last_user_message ? `sidste brugerbesked: ${limitSpecialistText(activeContext.last_user_message, 260)}` : "",
+     3597:       activeContext.last_guidance_summary ? `seneste rÃ¥d: ${limitSpecialistText(activeContext.last_guidance_summary, 260)}` : "",
+     3598:     ].filter(Boolean).join("\n");
+     3599:   }
+     3600: 
+     3601:   return "";
+     3602: }
+     3603: 
+     3604: function getTargetedSpecialistPanel(angle, message, extraText = "") {
+
+--- context lines 3592-3605 ---
+     3592:     return [
+     3593:       "AKTIV SAG â€” KORT GRUNDLAG",
+     3594:       activeContext.summary ? `sag: ${limitSpecialistText(activeContext.summary, 420)}` : "",
+     3595:       activeContext.known_context ? `kontekst: ${limitSpecialistText(activeContext.known_context, 220)}` : "",
+     3596:       activeContext.last_user_message ? `sidste brugerbesked: ${limitSpecialistText(activeContext.last_user_message, 260)}` : "",
+>>>  3597:       activeContext.last_guidance_summary ? `seneste rÃ¥d: ${limitSpecialistText(activeContext.last_guidance_summary, 260)}` : "",
+     3598:     ].filter(Boolean).join("\n");
+     3599:   }
+     3600: 
+     3601:   return "";
+     3602: }
+     3603: 
+     3604: function getTargetedSpecialistPanel(angle, message, extraText = "") {
+     3605:   const panelResult = getSpecialistPanel();
+
+--- context lines 3599-3612 ---
+     3599:   }
+     3600: 
+     3601:   return "";
+     3602: }
+     3603: 
+>>>  3604: function getTargetedSpecialistPanel(angle, message, extraText = "") {
+     3605:   const panelResult = getSpecialistPanel();
+     3606:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3607:     ? panelResult.data.specialists
+     3608:     : [];
+     3609: 
+     3610:   const text = normalizeDiagnosisPhrase(`${message} ${extraText}`);
+     3611:   const words = new Set(text.split(" ").filter((word) => word.length >= 4));
+     3612: 
+
+--- context lines 3600-3613 ---
+     3600: 
+     3601:   return "";
+     3602: }
+     3603: 
+     3604: function getTargetedSpecialistPanel(angle, message, extraText = "") {
+>>>  3605:   const panelResult = getSpecialistPanel();
+     3606:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3607:     ? panelResult.data.specialists
+     3608:     : [];
+     3609: 
+     3610:   const text = normalizeDiagnosisPhrase(`${message} ${extraText}`);
+     3611:   const words = new Set(text.split(" ").filter((word) => word.length >= 4));
+     3612: 
+     3613:   const anglePatterns = {
+
+--- context lines 3601-3614 ---
+     3601:   return "";
+     3602: }
+     3603: 
+     3604: function getTargetedSpecialistPanel(angle, message, extraText = "") {
+     3605:   const panelResult = getSpecialistPanel();
+>>>  3606:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3607:     ? panelResult.data.specialists
+     3608:     : [];
+     3609: 
+     3610:   const text = normalizeDiagnosisPhrase(`${message} ${extraText}`);
+     3611:   const words = new Set(text.split(" ").filter((word) => word.length >= 4));
+     3612: 
+     3613:   const anglePatterns = {
+     3614:     psychologist: ["psykolog", "psykologisk", "psykologi", "ppr"],
+
+--- context lines 3602-3615 ---
+     3602: }
+     3603: 
+     3604: function getTargetedSpecialistPanel(angle, message, extraText = "") {
+     3605:   const panelResult = getSpecialistPanel();
+     3606:   const specialists = Array.isArray(panelResult?.data?.specialists)
+>>>  3607:     ? panelResult.data.specialists
+     3608:     : [];
+     3609: 
+     3610:   const text = normalizeDiagnosisPhrase(`${message} ${extraText}`);
+     3611:   const words = new Set(text.split(" ").filter((word) => word.length >= 4));
+     3612: 
+     3613:   const anglePatterns = {
+     3614:     psychologist: ["psykolog", "psykologisk", "psykologi", "ppr"],
+     3615:     ppr: ["ppr", "skolepsykolog", "raadgivning", "rÃ¥dgivning", "observation", "indstilling"],
+
+--- context lines 3611-3624 ---
+     3611:   const words = new Set(text.split(" ").filter((word) => word.length >= 4));
+     3612: 
+     3613:   const anglePatterns = {
+     3614:     psychologist: ["psykolog", "psykologisk", "psykologi", "ppr"],
+     3615:     ppr: ["ppr", "skolepsykolog", "raadgivning", "rÃ¥dgivning", "observation", "indstilling"],
+>>>  3616:     specialists: [],
+     3617:     case_team: [],
+     3618:   };
+     3619: 
+     3620:   const specialistText = (specialist) => normalizeDiagnosisPhrase([
+     3621:     specialist?.id,
+     3622:     specialist?.name,
+     3623:     specialist?.category,
+     3624:     specialist?.group,
+
+--- context lines 3615-3628 ---
+     3615:     ppr: ["ppr", "skolepsykolog", "raadgivning", "rÃ¥dgivning", "observation", "indstilling"],
+     3616:     specialists: [],
+     3617:     case_team: [],
+     3618:   };
+     3619: 
+>>>  3620:   const specialistText = (specialist) => normalizeDiagnosisPhrase([
+     3621:     specialist?.id,
+     3622:     specialist?.name,
+     3623:     specialist?.category,
+     3624:     specialist?.group,
+     3625:     specialist?.function,
+     3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+
+--- context lines 3616-3629 ---
+     3616:     specialists: [],
+     3617:     case_team: [],
+     3618:   };
+     3619: 
+     3620:   const specialistText = (specialist) => normalizeDiagnosisPhrase([
+>>>  3621:     specialist?.id,
+     3622:     specialist?.name,
+     3623:     specialist?.category,
+     3624:     specialist?.group,
+     3625:     specialist?.function,
+     3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+
+--- context lines 3617-3630 ---
+     3617:     case_team: [],
+     3618:   };
+     3619: 
+     3620:   const specialistText = (specialist) => normalizeDiagnosisPhrase([
+     3621:     specialist?.id,
+>>>  3622:     specialist?.name,
+     3623:     specialist?.category,
+     3624:     specialist?.group,
+     3625:     specialist?.function,
+     3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+     3630:   const scored = specialists.map((specialist, index) => {
+
+--- context lines 3618-3631 ---
+     3618:   };
+     3619: 
+     3620:   const specialistText = (specialist) => normalizeDiagnosisPhrase([
+     3621:     specialist?.id,
+     3622:     specialist?.name,
+>>>  3623:     specialist?.category,
+     3624:     specialist?.group,
+     3625:     specialist?.function,
+     3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+     3630:   const scored = specialists.map((specialist, index) => {
+     3631:     const haystack = specialistText(specialist);
+
+--- context lines 3619-3632 ---
+     3619: 
+     3620:   const specialistText = (specialist) => normalizeDiagnosisPhrase([
+     3621:     specialist?.id,
+     3622:     specialist?.name,
+     3623:     specialist?.category,
+>>>  3624:     specialist?.group,
+     3625:     specialist?.function,
+     3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+     3630:   const scored = specialists.map((specialist, index) => {
+     3631:     const haystack = specialistText(specialist);
+     3632:     let score = 0;
+
+--- context lines 3620-3633 ---
+     3620:   const specialistText = (specialist) => normalizeDiagnosisPhrase([
+     3621:     specialist?.id,
+     3622:     specialist?.name,
+     3623:     specialist?.category,
+     3624:     specialist?.group,
+>>>  3625:     specialist?.function,
+     3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+     3630:   const scored = specialists.map((specialist, index) => {
+     3631:     const haystack = specialistText(specialist);
+     3632:     let score = 0;
+     3633: 
+
+--- context lines 3621-3634 ---
+     3621:     specialist?.id,
+     3622:     specialist?.name,
+     3623:     specialist?.category,
+     3624:     specialist?.group,
+     3625:     specialist?.function,
+>>>  3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+     3630:   const scored = specialists.map((specialist, index) => {
+     3631:     const haystack = specialistText(specialist);
+     3632:     let score = 0;
+     3633: 
+     3634:     for (const pattern of anglePatterns[angle] || []) {
+
+--- context lines 3622-3635 ---
+     3622:     specialist?.name,
+     3623:     specialist?.category,
+     3624:     specialist?.group,
+     3625:     specialist?.function,
+     3626:     specialist?.disclaimer,
+>>>  3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+     3630:   const scored = specialists.map((specialist, index) => {
+     3631:     const haystack = specialistText(specialist);
+     3632:     let score = 0;
+     3633: 
+     3634:     for (const pattern of anglePatterns[angle] || []) {
+     3635:       if (haystack.includes(normalizeDiagnosisPhrase(pattern))) {
+
+--- context lines 3625-3638 ---
+     3625:     specialist?.function,
+     3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+>>>  3630:   const scored = specialists.map((specialist, index) => {
+     3631:     const haystack = specialistText(specialist);
+     3632:     let score = 0;
+     3633: 
+     3634:     for (const pattern of anglePatterns[angle] || []) {
+     3635:       if (haystack.includes(normalizeDiagnosisPhrase(pattern))) {
+     3636:         score += 40;
+     3637:       }
+     3638:     }
+
+--- context lines 3626-3639 ---
+     3626:     specialist?.disclaimer,
+     3627:     ...(Array.isArray(specialist?.keywords) ? specialist.keywords : []),
+     3628:   ].filter(Boolean).join(" "));
+     3629: 
+     3630:   const scored = specialists.map((specialist, index) => {
+>>>  3631:     const haystack = specialistText(specialist);
+     3632:     let score = 0;
+     3633: 
+     3634:     for (const pattern of anglePatterns[angle] || []) {
+     3635:       if (haystack.includes(normalizeDiagnosisPhrase(pattern))) {
+     3636:         score += 40;
+     3637:       }
+     3638:     }
+     3639: 
+
+--- context lines 3641-3654 ---
+     3641:       if (haystack.includes(word)) {
+     3642:         score += 3;
+     3643:       }
+     3644:     }
+     3645: 
+>>>  3646:     return { specialist, score, index };
+     3647:   }).sort((a, b) => b.score - a.score || a.index - b.index);
+     3648: 
+     3649:   const maxCount = angle === "case_team" ? 5 : angle === "specialists" ? 3 : 1;
+     3650:   let selected = scored.filter((item) => item.score > 0).slice(0, maxCount);
+     3651: 
+     3652:   if (selected.length === 0 && specialists.length > 0) {
+     3653:     selected = scored.slice(0, maxCount);
+     3654:   }
+
+--- context lines 3644-3657 ---
+     3644:     }
+     3645: 
+     3646:     return { specialist, score, index };
+     3647:   }).sort((a, b) => b.score - a.score || a.index - b.index);
+     3648: 
+>>>  3649:   const maxCount = angle === "case_team" ? 5 : angle === "specialists" ? 3 : 1;
+     3650:   let selected = scored.filter((item) => item.score > 0).slice(0, maxCount);
+     3651: 
+     3652:   if (selected.length === 0 && specialists.length > 0) {
+     3653:     selected = scored.slice(0, maxCount);
+     3654:   }
+     3655: 
+     3656:   const cleanValue = (value, max = 160) =>
+     3657:     limitSpecialistText(value, max)
+
+--- context lines 3647-3660 ---
+     3647:   }).sort((a, b) => b.score - a.score || a.index - b.index);
+     3648: 
+     3649:   const maxCount = angle === "case_team" ? 5 : angle === "specialists" ? 3 : 1;
+     3650:   let selected = scored.filter((item) => item.score > 0).slice(0, maxCount);
+     3651: 
+>>>  3652:   if (selected.length === 0 && specialists.length > 0) {
+     3653:     selected = scored.slice(0, maxCount);
+     3654:   }
+     3655: 
+     3656:   const cleanValue = (value, max = 160) =>
+     3657:     limitSpecialistText(value, max)
+     3658:       .replace(/[|\r\n]+/g, " ")
+     3659:       .replace(/\s+/g, " ")
+     3660:       .trim();
+
+--- context lines 3652-3665 ---
+     3652:   if (selected.length === 0 && specialists.length > 0) {
+     3653:     selected = scored.slice(0, maxCount);
+     3654:   }
+     3655: 
+     3656:   const cleanValue = (value, max = 160) =>
+>>>  3657:     limitSpecialistText(value, max)
+     3658:       .replace(/[|\r\n]+/g, " ")
+     3659:       .replace(/\s+/g, " ")
+     3660:       .trim();
+     3661: 
+     3662:   const rows = selected.map(({ specialist }) => {
+     3663:     const keywords = Array.isArray(specialist?.keywords)
+     3664:       ? specialist.keywords.slice(0, 8).join(", ")
+     3665:       : "";
+
+--- context lines 3657-3670 ---
+     3657:     limitSpecialistText(value, max)
+     3658:       .replace(/[|\r\n]+/g, " ")
+     3659:       .replace(/\s+/g, " ")
+     3660:       .trim();
+     3661: 
+>>>  3662:   const rows = selected.map(({ specialist }) => {
+     3663:     const keywords = Array.isArray(specialist?.keywords)
+     3664:       ? specialist.keywords.slice(0, 8).join(", ")
+     3665:       : "";
+     3666: 
+     3667:     return [
+     3668:       cleanValue(specialist?.id, 80),
+     3669:       cleanValue(specialist?.name, 120),
+     3670:       cleanValue(specialist?.group, 120),
+
+--- context lines 3658-3671 ---
+     3658:       .replace(/[|\r\n]+/g, " ")
+     3659:       .replace(/\s+/g, " ")
+     3660:       .trim();
+     3661: 
+     3662:   const rows = selected.map(({ specialist }) => {
+>>>  3663:     const keywords = Array.isArray(specialist?.keywords)
+     3664:       ? specialist.keywords.slice(0, 8).join(", ")
+     3665:       : "";
+     3666: 
+     3667:     return [
+     3668:       cleanValue(specialist?.id, 80),
+     3669:       cleanValue(specialist?.name, 120),
+     3670:       cleanValue(specialist?.group, 120),
+     3671:       cleanValue(specialist?.function, 220),
+
+--- context lines 3659-3672 ---
+     3659:       .replace(/\s+/g, " ")
+     3660:       .trim();
+     3661: 
+     3662:   const rows = selected.map(({ specialist }) => {
+     3663:     const keywords = Array.isArray(specialist?.keywords)
+>>>  3664:       ? specialist.keywords.slice(0, 8).join(", ")
+     3665:       : "";
+     3666: 
+     3667:     return [
+     3668:       cleanValue(specialist?.id, 80),
+     3669:       cleanValue(specialist?.name, 120),
+     3670:       cleanValue(specialist?.group, 120),
+     3671:       cleanValue(specialist?.function, 220),
+     3672:       cleanValue(keywords, 180),
+
+--- context lines 3663-3676 ---
+     3663:     const keywords = Array.isArray(specialist?.keywords)
+     3664:       ? specialist.keywords.slice(0, 8).join(", ")
+     3665:       : "";
+     3666: 
+     3667:     return [
+>>>  3668:       cleanValue(specialist?.id, 80),
+     3669:       cleanValue(specialist?.name, 120),
+     3670:       cleanValue(specialist?.group, 120),
+     3671:       cleanValue(specialist?.function, 220),
+     3672:       cleanValue(keywords, 180),
+     3673:     ].join("|");
+     3674:   });
+     3675: 
+     3676:   return {
+
+--- context lines 3664-3677 ---
+     3664:       ? specialist.keywords.slice(0, 8).join(", ")
+     3665:       : "";
+     3666: 
+     3667:     return [
+     3668:       cleanValue(specialist?.id, 80),
+>>>  3669:       cleanValue(specialist?.name, 120),
+     3670:       cleanValue(specialist?.group, 120),
+     3671:       cleanValue(specialist?.function, 220),
+     3672:       cleanValue(keywords, 180),
+     3673:     ].join("|");
+     3674:   });
+     3675: 
+     3676:   return {
+     3677:     specialistIds: selected
+
+--- context lines 3665-3678 ---
+     3665:       : "";
+     3666: 
+     3667:     return [
+     3668:       cleanValue(specialist?.id, 80),
+     3669:       cleanValue(specialist?.name, 120),
+>>>  3670:       cleanValue(specialist?.group, 120),
+     3671:       cleanValue(specialist?.function, 220),
+     3672:       cleanValue(keywords, 180),
+     3673:     ].join("|");
+     3674:   });
+     3675: 
+     3676:   return {
+     3677:     specialistIds: selected
+     3678:       .map(({ specialist }) => String(specialist?.id || ""))
+
+--- context lines 3666-3679 ---
+     3666: 
+     3667:     return [
+     3668:       cleanValue(specialist?.id, 80),
+     3669:       cleanValue(specialist?.name, 120),
+     3670:       cleanValue(specialist?.group, 120),
+>>>  3671:       cleanValue(specialist?.function, 220),
+     3672:       cleanValue(keywords, 180),
+     3673:     ].join("|");
+     3674:   });
+     3675: 
+     3676:   return {
+     3677:     specialistIds: selected
+     3678:       .map(({ specialist }) => String(specialist?.id || ""))
+     3679:       .filter(Boolean),
+
+--- context lines 3672-3685 ---
+     3672:       cleanValue(keywords, 180),
+     3673:     ].join("|");
+     3674:   });
+     3675: 
+     3676:   return {
+>>>  3677:     specialistIds: selected
+     3678:       .map(({ specialist }) => String(specialist?.id || ""))
+     3679:       .filter(Boolean),
+     3680:     specialistSummaries: selected
+     3681:       .map(({ specialist }) => ({
+     3682:         id: String(specialist?.id || ""),
+     3683:         name: String(specialist?.name || ""),
+     3684:         group: String(specialist?.group || ""),
+     3685:         function: String(specialist?.function || ""),
+
+--- context lines 3673-3686 ---
+     3673:     ].join("|");
+     3674:   });
+     3675: 
+     3676:   return {
+     3677:     specialistIds: selected
+>>>  3678:       .map(({ specialist }) => String(specialist?.id || ""))
+     3679:       .filter(Boolean),
+     3680:     specialistSummaries: selected
+     3681:       .map(({ specialist }) => ({
+     3682:         id: String(specialist?.id || ""),
+     3683:         name: String(specialist?.name || ""),
+     3684:         group: String(specialist?.group || ""),
+     3685:         function: String(specialist?.function || ""),
+     3686:       }))
+
+--- context lines 3675-3688 ---
+     3675: 
+     3676:   return {
+     3677:     specialistIds: selected
+     3678:       .map(({ specialist }) => String(specialist?.id || ""))
+     3679:       .filter(Boolean),
+>>>  3680:     specialistSummaries: selected
+     3681:       .map(({ specialist }) => ({
+     3682:         id: String(specialist?.id || ""),
+     3683:         name: String(specialist?.name || ""),
+     3684:         group: String(specialist?.group || ""),
+     3685:         function: String(specialist?.function || ""),
+     3686:       }))
+     3687:       .filter((specialist) => specialist.id),
+     3688:     indexText: [
+
+--- context lines 3676-3689 ---
+     3676:   return {
+     3677:     specialistIds: selected
+     3678:       .map(({ specialist }) => String(specialist?.id || ""))
+     3679:       .filter(Boolean),
+     3680:     specialistSummaries: selected
+>>>  3681:       .map(({ specialist }) => ({
+     3682:         id: String(specialist?.id || ""),
+     3683:         name: String(specialist?.name || ""),
+     3684:         group: String(specialist?.group || ""),
+     3685:         function: String(specialist?.function || ""),
+     3686:       }))
+     3687:       .filter((specialist) => specialist.id),
+     3688:     indexText: [
+     3689:       "KOLONNER:id|navn|gruppe|funktion|keywords",
+
+--- context lines 3677-3690 ---
+     3677:     specialistIds: selected
+     3678:       .map(({ specialist }) => String(specialist?.id || ""))
+     3679:       .filter(Boolean),
+     3680:     specialistSummaries: selected
+     3681:       .map(({ specialist }) => ({
+>>>  3682:         id: String(specialist?.id || ""),
+     3683:         name: String(specialist?.name || ""),
+     3684:         group: String(specialist?.group || ""),
+     3685:         function: String(specialist?.function || ""),
+     3686:       }))
+     3687:       .filter((specialist) => specialist.id),
+     3688:     indexText: [
+     3689:       "KOLONNER:id|navn|gruppe|funktion|keywords",
+     3690:       ...rows,
+
+--- context lines 3678-3691 ---
+     3678:       .map(({ specialist }) => String(specialist?.id || ""))
+     3679:       .filter(Boolean),
+     3680:     specialistSummaries: selected
+     3681:       .map(({ specialist }) => ({
+     3682:         id: String(specialist?.id || ""),
+>>>  3683:         name: String(specialist?.name || ""),
+     3684:         group: String(specialist?.group || ""),
+     3685:         function: String(specialist?.function || ""),
+     3686:       }))
+     3687:       .filter((specialist) => specialist.id),
+     3688:     indexText: [
+     3689:       "KOLONNER:id|navn|gruppe|funktion|keywords",
+     3690:       ...rows,
+     3691:     ].join("\n"),
+
+--- context lines 3679-3692 ---
+     3679:       .filter(Boolean),
+     3680:     specialistSummaries: selected
+     3681:       .map(({ specialist }) => ({
+     3682:         id: String(specialist?.id || ""),
+     3683:         name: String(specialist?.name || ""),
+>>>  3684:         group: String(specialist?.group || ""),
+     3685:         function: String(specialist?.function || ""),
+     3686:       }))
+     3687:       .filter((specialist) => specialist.id),
+     3688:     indexText: [
+     3689:       "KOLONNER:id|navn|gruppe|funktion|keywords",
+     3690:       ...rows,
+     3691:     ].join("\n"),
+     3692:   };
+
+--- context lines 3680-3693 ---
+     3680:     specialistSummaries: selected
+     3681:       .map(({ specialist }) => ({
+     3682:         id: String(specialist?.id || ""),
+     3683:         name: String(specialist?.name || ""),
+     3684:         group: String(specialist?.group || ""),
+>>>  3685:         function: String(specialist?.function || ""),
+     3686:       }))
+     3687:       .filter((specialist) => specialist.id),
+     3688:     indexText: [
+     3689:       "KOLONNER:id|navn|gruppe|funktion|keywords",
+     3690:       ...rows,
+     3691:     ].join("\n"),
+     3692:   };
+     3693: }
+
+--- context lines 3682-3695 ---
+     3682:         id: String(specialist?.id || ""),
+     3683:         name: String(specialist?.name || ""),
+     3684:         group: String(specialist?.group || ""),
+     3685:         function: String(specialist?.function || ""),
+     3686:       }))
+>>>  3687:       .filter((specialist) => specialist.id),
+     3688:     indexText: [
+     3689:       "KOLONNER:id|navn|gruppe|funktion|keywords",
+     3690:       ...rows,
+     3691:     ].join("\n"),
+     3692:   };
+     3693: }
+     3694: 
+     3695: function getCompactSpecialistPanelIndex() {
+
+--- context lines 3690-3703 ---
+     3690:       ...rows,
+     3691:     ].join("\n"),
+     3692:   };
+     3693: }
+     3694: 
+>>>  3695: function getCompactSpecialistPanelIndex() {
+     3696:   const panelResult = getSpecialistPanel();
+     3697:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3698:     ? panelResult.data.specialists
+     3699:     : [];
+     3700: 
+     3701:   const cleanValue = (value) =>
+     3702:     String(value || "")
+     3703:       .replace(/[|\r\n]+/g, " ")
+
+--- context lines 3691-3704 ---
+     3691:     ].join("\n"),
+     3692:   };
+     3693: }
+     3694: 
+     3695: function getCompactSpecialistPanelIndex() {
+>>>  3696:   const panelResult = getSpecialistPanel();
+     3697:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3698:     ? panelResult.data.specialists
+     3699:     : [];
+     3700: 
+     3701:   const cleanValue = (value) =>
+     3702:     String(value || "")
+     3703:       .replace(/[|\r\n]+/g, " ")
+     3704:       .replace(/\s+/g, " ")
+
+--- context lines 3692-3705 ---
+     3692:   };
+     3693: }
+     3694: 
+     3695: function getCompactSpecialistPanelIndex() {
+     3696:   const panelResult = getSpecialistPanel();
+>>>  3697:   const specialists = Array.isArray(panelResult?.data?.specialists)
+     3698:     ? panelResult.data.specialists
+     3699:     : [];
+     3700: 
+     3701:   const cleanValue = (value) =>
+     3702:     String(value || "")
+     3703:       .replace(/[|\r\n]+/g, " ")
+     3704:       .replace(/\s+/g, " ")
+     3705:       .trim();
+
+--- context lines 3693-3706 ---
+     3693: }
+     3694: 
+     3695: function getCompactSpecialistPanelIndex() {
+     3696:   const panelResult = getSpecialistPanel();
+     3697:   const specialists = Array.isArray(panelResult?.data?.specialists)
+>>>  3698:     ? panelResult.data.specialists
+     3699:     : [];
+     3700: 
+     3701:   const cleanValue = (value) =>
+     3702:     String(value || "")
+     3703:       .replace(/[|\r\n]+/g, " ")
+     3704:       .replace(/\s+/g, " ")
+     3705:       .trim();
+     3706: 
+
+--- context lines 3702-3715 ---
+     3702:     String(value || "")
+     3703:       .replace(/[|\r\n]+/g, " ")
+     3704:       .replace(/\s+/g, " ")
+     3705:       .trim();
+     3706: 
+>>>  3707:   const rows = specialists.map((specialist) => {
+     3708:     const voiceProfile = specialist?.voice_profile || {};
+     3709: 
+     3710:     return [
+     3711:       cleanValue(specialist?.id),
+     3712:       cleanValue(specialist?.name),
+     3713:       cleanValue(specialist?.category),
+     3714:       cleanValue(specialist?.group),
+     3715:       cleanValue(specialist?.function),
+
+--- context lines 3703-3716 ---
+     3703:       .replace(/[|\r\n]+/g, " ")
+     3704:       .replace(/\s+/g, " ")
+     3705:       .trim();
+     3706: 
+     3707:   const rows = specialists.map((specialist) => {
+>>>  3708:     const voiceProfile = specialist?.voice_profile || {};
+     3709: 
+     3710:     return [
+     3711:       cleanValue(specialist?.id),
+     3712:       cleanValue(specialist?.name),
+     3713:       cleanValue(specialist?.category),
+     3714:       cleanValue(specialist?.group),
+     3715:       cleanValue(specialist?.function),
+     3716:       (Array.isArray(specialist?.keywords)
+
+--- context lines 3706-3719 ---
+     3706: 
+     3707:   const rows = specialists.map((specialist) => {
+     3708:     const voiceProfile = specialist?.voice_profile || {};
+     3709: 
+     3710:     return [
+>>>  3711:       cleanValue(specialist?.id),
+     3712:       cleanValue(specialist?.name),
+     3713:       cleanValue(specialist?.category),
+     3714:       cleanValue(specialist?.group),
+     3715:       cleanValue(specialist?.function),
+     3716:       (Array.isArray(specialist?.keywords)
+     3717:         ? specialist.keywords
+     3718:         : []
+     3719:       )
+
+--- context lines 3707-3720 ---
+     3707:   const rows = specialists.map((specialist) => {
+     3708:     const voiceProfile = specialist?.voice_profile || {};
+     3709: 
+     3710:     return [
+     3711:       cleanValue(specialist?.id),
+>>>  3712:       cleanValue(specialist?.name),
+     3713:       cleanValue(specialist?.category),
+     3714:       cleanValue(specialist?.group),
+     3715:       cleanValue(specialist?.function),
+     3716:       (Array.isArray(specialist?.keywords)
+     3717:         ? specialist.keywords
+     3718:         : []
+     3719:       )
+     3720:         .map((keyword) => cleanValue(keyword))
+
+--- context lines 3708-3721 ---
+     3708:     const voiceProfile = specialist?.voice_profile || {};
+     3709: 
+     3710:     return [
+     3711:       cleanValue(specialist?.id),
+     3712:       cleanValue(specialist?.name),
+>>>  3713:       cleanValue(specialist?.category),
+     3714:       cleanValue(specialist?.group),
+     3715:       cleanValue(specialist?.function),
+     3716:       (Array.isArray(specialist?.keywords)
+     3717:         ? specialist.keywords
+     3718:         : []
+     3719:       )
+     3720:         .map((keyword) => cleanValue(keyword))
+     3721:         .filter(Boolean)
+
+--- context lines 3709-3722 ---
+     3709: 
+     3710:     return [
+     3711:       cleanValue(specialist?.id),
+     3712:       cleanValue(specialist?.name),
+     3713:       cleanValue(specialist?.category),
+>>>  3714:       cleanValue(specialist?.group),
+     3715:       cleanValue(specialist?.function),
+     3716:       (Array.isArray(specialist?.keywords)
+     3717:         ? specialist.keywords
+     3718:         : []
+     3719:       )
+     3720:         .map((keyword) => cleanValue(keyword))
+     3721:         .filter(Boolean)
+     3722:         .join(","),
+
+--- context lines 3710-3723 ---
+     3710:     return [
+     3711:       cleanValue(specialist?.id),
+     3712:       cleanValue(specialist?.name),
+     3713:       cleanValue(specialist?.category),
+     3714:       cleanValue(specialist?.group),
+>>>  3715:       cleanValue(specialist?.function),
+     3716:       (Array.isArray(specialist?.keywords)
+     3717:         ? specialist.keywords
+     3718:         : []
+     3719:       )
+     3720:         .map((keyword) => cleanValue(keyword))
+     3721:         .filter(Boolean)
+     3722:         .join(","),
+     3723:       cleanValue(voiceProfile?.tone),
+
+--- context lines 3711-3724 ---
+     3711:       cleanValue(specialist?.id),
+     3712:       cleanValue(specialist?.name),
+     3713:       cleanValue(specialist?.category),
+     3714:       cleanValue(specialist?.group),
+     3715:       cleanValue(specialist?.function),
+>>>  3716:       (Array.isArray(specialist?.keywords)
+     3717:         ? specialist.keywords
+     3718:         : []
+     3719:       )
+     3720:         .map((keyword) => cleanValue(keyword))
+     3721:         .filter(Boolean)
+     3722:         .join(","),
+     3723:       cleanValue(voiceProfile?.tone),
+     3724:       cleanValue(voiceProfile?.style),
+
+--- context lines 3712-3725 ---
+     3712:       cleanValue(specialist?.name),
+     3713:       cleanValue(specialist?.category),
+     3714:       cleanValue(specialist?.group),
+     3715:       cleanValue(specialist?.function),
+     3716:       (Array.isArray(specialist?.keywords)
+>>>  3717:         ? specialist.keywords
+     3718:         : []
+     3719:       )
+     3720:         .map((keyword) => cleanValue(keyword))
+     3721:         .filter(Boolean)
+     3722:         .join(","),
+     3723:       cleanValue(voiceProfile?.tone),
+     3724:       cleanValue(voiceProfile?.style),
+     3725:       cleanValue(specialist?.disclaimer),
+
+--- context lines 3720-3733 ---
+     3720:         .map((keyword) => cleanValue(keyword))
+     3721:         .filter(Boolean)
+     3722:         .join(","),
+     3723:       cleanValue(voiceProfile?.tone),
+     3724:       cleanValue(voiceProfile?.style),
+>>>  3725:       cleanValue(specialist?.disclaimer),
+     3726:     ].join("|");
+     3727:   });
+     3728: 
+     3729:   return {
+     3730:     specialistIds: specialists
+     3731:       .map((specialist) => String(specialist?.id || ""))
+     3732:       .filter(Boolean),
+     3733:     specialistSummaries: specialists
+
+--- context lines 3725-3738 ---
+     3725:       cleanValue(specialist?.disclaimer),
+     3726:     ].join("|");
+     3727:   });
+     3728: 
+     3729:   return {
+>>>  3730:     specialistIds: specialists
+     3731:       .map((specialist) => String(specialist?.id || ""))
+     3732:       .filter(Boolean),
+     3733:     specialistSummaries: specialists
+     3734:       .map((specialist) => ({
+     3735:         id: String(specialist?.id || ""),
+     3736:         name: String(specialist?.name || ""),
+     3737:         group: String(specialist?.group || ""),
+     3738:         function: String(specialist?.function || ""),
+
+--- context lines 3726-3739 ---
+     3726:     ].join("|");
+     3727:   });
+     3728: 
+     3729:   return {
+     3730:     specialistIds: specialists
+>>>  3731:       .map((specialist) => String(specialist?.id || ""))
+     3732:       .filter(Boolean),
+     3733:     specialistSummaries: specialists
+     3734:       .map((specialist) => ({
+     3735:         id: String(specialist?.id || ""),
+     3736:         name: String(specialist?.name || ""),
+     3737:         group: String(specialist?.group || ""),
+     3738:         function: String(specialist?.function || ""),
+     3739:       }))
+
+--- context lines 3728-3741 ---
+     3728: 
+     3729:   return {
+     3730:     specialistIds: specialists
+     3731:       .map((specialist) => String(specialist?.id || ""))
+     3732:       .filter(Boolean),
+>>>  3733:     specialistSummaries: specialists
+     3734:       .map((specialist) => ({
+     3735:         id: String(specialist?.id || ""),
+     3736:         name: String(specialist?.name || ""),
+     3737:         group: String(specialist?.group || ""),
+     3738:         function: String(specialist?.function || ""),
+     3739:       }))
+     3740:       .filter((specialist) => specialist.id),
+     3741:     indexText: [
+
+--- context lines 3729-3742 ---
+     3729:   return {
+     3730:     specialistIds: specialists
+     3731:       .map((specialist) => String(specialist?.id || ""))
+     3732:       .filter(Boolean),
+     3733:     specialistSummaries: specialists
+>>>  3734:       .map((specialist) => ({
+     3735:         id: String(specialist?.id || ""),
+     3736:         name: String(specialist?.name || ""),
+     3737:         group: String(specialist?.group || ""),
+     3738:         function: String(specialist?.function || ""),
+     3739:       }))
+     3740:       .filter((specialist) => specialist.id),
+     3741:     indexText: [
+     3742:       "KOLONNER:id|navn|kategori|gruppe|funktion|keywords|tone|stil|disclaimer",
+
+--- context lines 3730-3743 ---
+     3730:     specialistIds: specialists
+     3731:       .map((specialist) => String(specialist?.id || ""))
+     3732:       .filter(Boolean),
+     3733:     specialistSummaries: specialists
+     3734:       .map((specialist) => ({
+>>>  3735:         id: String(specialist?.id || ""),
+     3736:         name: String(specialist?.name || ""),
+     3737:         group: String(specialist?.group || ""),
+     3738:         function: String(specialist?.function || ""),
+     3739:       }))
+     3740:       .filter((specialist) => specialist.id),
+     3741:     indexText: [
+     3742:       "KOLONNER:id|navn|kategori|gruppe|funktion|keywords|tone|stil|disclaimer",
+     3743:       ...rows,
+
+--- context lines 3731-3744 ---
+     3731:       .map((specialist) => String(specialist?.id || ""))
+     3732:       .filter(Boolean),
+     3733:     specialistSummaries: specialists
+     3734:       .map((specialist) => ({
+     3735:         id: String(specialist?.id || ""),
+>>>  3736:         name: String(specialist?.name || ""),
+     3737:         group: String(specialist?.group || ""),
+     3738:         function: String(specialist?.function || ""),
+     3739:       }))
+     3740:       .filter((specialist) => specialist.id),
+     3741:     indexText: [
+     3742:       "KOLONNER:id|navn|kategori|gruppe|funktion|keywords|tone|stil|disclaimer",
+     3743:       ...rows,
+     3744:     ].join("\n"),
+
+--- context lines 3732-3745 ---
+     3732:       .filter(Boolean),
+     3733:     specialistSummaries: specialists
+     3734:       .map((specialist) => ({
+     3735:         id: String(specialist?.id || ""),
+     3736:         name: String(specialist?.name || ""),
+>>>  3737:         group: String(specialist?.group || ""),
+     3738:         function: String(specialist?.function || ""),
+     3739:       }))
+     3740:       .filter((specialist) => specialist.id),
+     3741:     indexText: [
+     3742:       "KOLONNER:id|navn|kategori|gruppe|funktion|keywords|tone|stil|disclaimer",
+     3743:       ...rows,
+     3744:     ].join("\n"),
+     3745:   };
+
+--- context lines 3733-3746 ---
+     3733:     specialistSummaries: specialists
+     3734:       .map((specialist) => ({
+     3735:         id: String(specialist?.id || ""),
+     3736:         name: String(specialist?.name || ""),
+     3737:         group: String(specialist?.group || ""),
+>>>  3738:         function: String(specialist?.function || ""),
+     3739:       }))
+     3740:       .filter((specialist) => specialist.id),
+     3741:     indexText: [
+     3742:       "KOLONNER:id|navn|kategori|gruppe|funktion|keywords|tone|stil|disclaimer",
+     3743:       ...rows,
+     3744:     ].join("\n"),
+     3745:   };
+     3746: }
+
+--- context lines 3735-3748 ---
+     3735:         id: String(specialist?.id || ""),
+     3736:         name: String(specialist?.name || ""),
+     3737:         group: String(specialist?.group || ""),
+     3738:         function: String(specialist?.function || ""),
+     3739:       }))
+>>>  3740:       .filter((specialist) => specialist.id),
+     3741:     indexText: [
+     3742:       "KOLONNER:id|navn|kategori|gruppe|funktion|keywords|tone|stil|disclaimer",
+     3743:       ...rows,
+     3744:     ].join("\n"),
+     3745:   };
+     3746: }
+     3747: function getTemplates(args = {}) {
+     3748:   const filePath = path.join(
+
+--- context lines 5543-5556 ---
+     5543: const tools = [
+     5544:   {
+     5545:     type: "function",
+     5546:     name: "getPromptRules",
+     5547:     description:
+>>>  5548:       "Henter dynamiske prompt-regler til CDA. response_style_rules, mode_switch_rules, source_priority_rules, general_rule og practice_situations er allerede indlÃ¦st og skal ikke hentes igen. Ã˜vrige tilgÃ¦ngelige sektioner: domain_scope, specialist_trigger_rules, template_trigger_rules, case_trigger_rules, diagnosis_trigger_rules, roleplay_rules, emotion_trigger_rules, bornehave_trigger_rules, cda_training_rules, roleplay_learning_rules, action_rules, roleplay_emotion_rules, conflict_mediator_rules, comorbidity_rules, school_home_dialogue_rules. Hent den sektion der matcher situationen, fx comorbidity_rules ved mulig komorbiditet, school_home_dialogue_rules ved skole-hjem-kommunikation, eller specialist_trigger_rules/template_trigger_rules fÃ¸r specialister eller skabeloner bruges.",
+     5549:     parameters: {
+     5550:       type: "object",
+     5551:       properties: {
+     5552:         section: {
+     5553:           type: "string",
+     5554:           description:
+     5555:             "PrÃ¦cist sektionsnavn fra listen ovenfor, fx comorbidity_rules, source_priority_rules eller conflict_mediator_rules.",
+     5556:         },
+
+--- context lines 5849-5862 ---
+     5849: 
+     5850: if (toolCall.name === "getSemanticSearch") {
+     5851:   return getSemanticSearch(args);
+     5852: }
+     5853: 
+>>>  5854: if (toolCall.name === "getSpecialistPanel") {
+     5855:   return getSpecialistPanel();
+     5856: }
+     5857: 
+     5858: if (toolCall.name === "getTemplates") {
+     5859:   return getTemplates(args);
+     5860: }
+     5861: 
+     5862:     return {
+
+--- context lines 5850-5863 ---
+     5850: if (toolCall.name === "getSemanticSearch") {
+     5851:   return getSemanticSearch(args);
+     5852: }
+     5853: 
+     5854: if (toolCall.name === "getSpecialistPanel") {
+>>>  5855:   return getSpecialistPanel();
+     5856: }
+     5857: 
+     5858: if (toolCall.name === "getTemplates") {
+     5859:   return getTemplates(args);
+     5860: }
+     5861: 
+     5862:     return {
+     5863:       error: `Ukendt funktion: ${toolCall.name}`,
+
+--- context lines 6537-6550 ---
+     6537:     "har andre provet",
+     6538:     "pbl",
+     6539:     "projektbaseret laering",
+     6540:     "find et projekt",
+     6541:     "lav et projekt",
+>>>  6542:     "specialistpanel",
+     6543:     "specialist panel",
+     6544:     "hvad siger specialisterne",
+     6545:     "rollespil",
+     6546:     "rolleleg",
+     6547:     "perspektivskifte",
+     6548:     "lav et skema",
+     6549:     "lav en skabelon",
+     6550:     "vis en skabelon",
+
+--- context lines 6538-6551 ---
+     6538:     "pbl",
+     6539:     "projektbaseret laering",
+     6540:     "find et projekt",
+     6541:     "lav et projekt",
+     6542:     "specialistpanel",
+>>>  6543:     "specialist panel",
+     6544:     "hvad siger specialisterne",
+     6545:     "rollespil",
+     6546:     "rolleleg",
+     6547:     "perspektivskifte",
+     6548:     "lav et skema",
+     6549:     "lav en skabelon",
+     6550:     "vis en skabelon",
+     6551:     "udfyld en skabelon",
+
+--- context lines 6539-6552 ---
+     6539:     "projektbaseret laering",
+     6540:     "find et projekt",
+     6541:     "lav et projekt",
+     6542:     "specialistpanel",
+     6543:     "specialist panel",
+>>>  6544:     "hvad siger specialisterne",
+     6545:     "rollespil",
+     6546:     "rolleleg",
+     6547:     "perspektivskifte",
+     6548:     "lav et skema",
+     6549:     "lav en skabelon",
+     6550:     "vis en skabelon",
+     6551:     "udfyld en skabelon",
+     6552:     "lav en overlevering",
+
+--- context lines 6670-6683 ---
+     6670:     "gÃ¥ i dybden med en case",
+     6671:     "pbl",
+     6672:     "projektbaseret lÃ¦ring",
+     6673:     "lav et projekt",
+     6674:     "find et projekt",
+>>>  6675:     "specialistpanel",
+     6676:     "specialist panel",
+     6677:     "hvad siger specialisterne",
+     6678:     "specialistperspektiv",
+     6679:     "tvÃ¦rfaglig vurdering",
+     6680:     "tvaerfaglig vurdering",
+     6681:     "rollespil",
+     6682:     "rolleleg",
+     6683:     "perspektivskifte",
+
+--- context lines 6671-6684 ---
+     6671:     "pbl",
+     6672:     "projektbaseret lÃ¦ring",
+     6673:     "lav et projekt",
+     6674:     "find et projekt",
+     6675:     "specialistpanel",
+>>>  6676:     "specialist panel",
+     6677:     "hvad siger specialisterne",
+     6678:     "specialistperspektiv",
+     6679:     "tvÃ¦rfaglig vurdering",
+     6680:     "tvaerfaglig vurdering",
+     6681:     "rollespil",
+     6682:     "rolleleg",
+     6683:     "perspektivskifte",
+     6684:     "lav et skema",
+
+--- context lines 6672-6685 ---
+     6672:     "projektbaseret lÃ¦ring",
+     6673:     "lav et projekt",
+     6674:     "find et projekt",
+     6675:     "specialistpanel",
+     6676:     "specialist panel",
+>>>  6677:     "hvad siger specialisterne",
+     6678:     "specialistperspektiv",
+     6679:     "tvÃ¦rfaglig vurdering",
+     6680:     "tvaerfaglig vurdering",
+     6681:     "rollespil",
+     6682:     "rolleleg",
+     6683:     "perspektivskifte",
+     6684:     "lav et skema",
+     6685:     "lav en skabelon",
+
+--- context lines 6673-6686 ---
+     6673:     "lav et projekt",
+     6674:     "find et projekt",
+     6675:     "specialistpanel",
+     6676:     "specialist panel",
+     6677:     "hvad siger specialisterne",
+>>>  6678:     "specialistperspektiv",
+     6679:     "tvÃ¦rfaglig vurdering",
+     6680:     "tvaerfaglig vurdering",
+     6681:     "rollespil",
+     6682:     "rolleleg",
+     6683:     "perspektivskifte",
+     6684:     "lav et skema",
+     6685:     "lav en skabelon",
+     6686:     "vis en skabelon",
+
+--- context lines 6891-6904 ---
+     6891: 
+     6892: function buildActiveCaseInstructions(context, message) {
+     6893:   if (!hasActiveCaseContext(context)) return "";
+     6894: 
+     6895:   const continuation = isShortContinuationRequest(message);
+>>>  6896:   const specialistAngle = isDirectSpecialistPanelRequest(message);
+     6897: 
+     6898:   return [
+     6899:     "AKTIV SAGSHUKOMMELSE",
+     6900:     "Brug active_case_context til at holde samme barn/situation Ã¥ben pÃ¥ tvÃ¦rs af beskeder.",
+     6901:     "Korte opfÃ¸lgninger som 'uddyb', 'forklar mere', 'hvad nu' eller 'det virkede ikke' handler som udgangspunkt om samme aktive sag.",
+     6902:     "Hvis brugeren spÃ¸rger 'hvad siger psykologen?', 'hvad siger PPR?' eller lignende, skal du give en faglig specialistvinkel pÃ¥ samme aktive sag â€” ikke bede om en ekstern psykolograpport, medmindre brugeren specifikt henviser til en konkret rapport.",
+     6903:     "Gentag ikke lokale dataopslag, hvis used_data_sources allerede viser, at samme spor er dÃ¦kket, medmindre brugerens nye besked Ã¥bner et reelt nyt fagligt spor.",
+     6904:     "Ved 'uddyb' skal du uddybe samme sag og samme rÃ¥d, ikke spÃ¸rge hvad der skal uddybes.",
+
+--- context lines 6897-6910 ---
+     6897: 
+     6898:   return [
+     6899:     "AKTIV SAGSHUKOMMELSE",
+     6900:     "Brug active_case_context til at holde samme barn/situation Ã¥ben pÃ¥ tvÃ¦rs af beskeder.",
+     6901:     "Korte opfÃ¸lgninger som 'uddyb', 'forklar mere', 'hvad nu' eller 'det virkede ikke' handler som udgangspunkt om samme aktive sag.",
+>>>  6902:     "Hvis brugeren spÃ¸rger 'hvad siger psykologen?', 'hvad siger PPR?' eller lignende, skal du give en faglig specialistvinkel pÃ¥ samme aktive sag â€” ikke bede om en ekstern psykolograpport, medmindre brugeren specifikt henviser til en konkret rapport.",
+     6903:     "Gentag ikke lokale dataopslag, hvis used_data_sources allerede viser, at samme spor er dÃ¦kket, medmindre brugerens nye besked Ã¥bner et reelt nyt fagligt spor.",
+     6904:     "Ved 'uddyb' skal du uddybe samme sag og samme rÃ¥d, ikke spÃ¸rge hvad der skal uddybes.",
+     6905:     continuation ? "DEN NYE BESKED ER EN FORTSÃ†TTELSE AF SAMME SAG." : "",
+     6906:     specialistAngle ? "DEN NYE BESKED BEDER OM SPECIALISTVINKEL PÃ… SAMME SAG." : "",
+     6907:   ].filter(Boolean).join("\n");
+     6908: }
+     6909: 
+     6910: function buildContextualInput(message, context) {
+
+--- context lines 6901-6914 ---
+     6901:     "Korte opfÃ¸lgninger som 'uddyb', 'forklar mere', 'hvad nu' eller 'det virkede ikke' handler som udgangspunkt om samme aktive sag.",
+     6902:     "Hvis brugeren spÃ¸rger 'hvad siger psykologen?', 'hvad siger PPR?' eller lignende, skal du give en faglig specialistvinkel pÃ¥ samme aktive sag â€” ikke bede om en ekstern psykolograpport, medmindre brugeren specifikt henviser til en konkret rapport.",
+     6903:     "Gentag ikke lokale dataopslag, hvis used_data_sources allerede viser, at samme spor er dÃ¦kket, medmindre brugerens nye besked Ã¥bner et reelt nyt fagligt spor.",
+     6904:     "Ved 'uddyb' skal du uddybe samme sag og samme rÃ¥d, ikke spÃ¸rge hvad der skal uddybes.",
+     6905:     continuation ? "DEN NYE BESKED ER EN FORTSÃ†TTELSE AF SAMME SAG." : "",
+>>>  6906:     specialistAngle ? "DEN NYE BESKED BEDER OM SPECIALISTVINKEL PÃ… SAMME SAG." : "",
+     6907:   ].filter(Boolean).join("\n");
+     6908: }
+     6909: 
+     6910: function buildContextualInput(message, context) {
+     6911:   const contextBlock = buildActiveCaseContextBlock(context);
+     6912: 
+     6913:   if (!contextBlock) return message;
+     6914: 
+
+--- context lines 6956-6969 ---
+     6956:     error: "Feltet message mangler",
+     6957:   });
+     6958: }
+     6959: 
+     6960: const allowedLanguages = ["Dansk", "English"];
+>>>  6961: const allowedRoles = ["LÃ¦rer", "PÃ¦dagog", "ForÃ¦lder", "Specialist", "Andet"];
+     6962: const allowedResponseStyles = ["Kort", "Mellem", "Dyb"];
+     6963: 
+     6964: if (!allowedLanguages.includes(language)) {
+     6965:   return res.status(400).json({
+     6966:     error: "language skal vÃ¦re Dansk eller English",
+     6967:   });
+     6968: }
+     6969: 
+
+--- context lines 6967-6980 ---
+     6967:   });
+     6968: }
+     6969: 
+     6970: if (!allowedRoles.includes(role)) {
+     6971:   return res.status(400).json({
+>>>  6972:     error: "role skal vÃ¦re LÃ¦rer, PÃ¦dagog, ForÃ¦lder, Specialist eller Andet",
+     6973:   });
+     6974: }
+     6975: 
+     6976: if (!allowedResponseStyles.includes(response_style)) {
+     6977:   return res.status(400).json({
+     6978:     error: "response_style skal vÃ¦re Kort, Mellem eller Dyb",
+     6979:   });
+     6980: }
+
+--- context lines 6988-7001 ---
+     6988:   LÃ¦rer:
+     6989:     "Tilpas svaret til en lÃ¦rer: fokusÃ©r pÃ¥ forstÃ¥else, klassepraksis, observation og realistiske handlinger i skoledagen.",
+     6990:   PÃ¦dagog:
+     6991:     "Tilpas svaret til en pÃ¦dagog: fokusÃ©r pÃ¥ observation, relationer, miljÃ¸, struktur og realistiske pÃ¦dagogiske handlinger. Antag ikke automatisk bÃ¸rnehave; lad brugerens konkrete spÃ¸rgsmÃ¥l afgÃ¸re, om konteksten er dagtilbud, SFO, skole eller andet.",
+     6992:   ForÃ¦lder:
+>>>  6993:     "Tilpas svaret til en forÃ¦lder: fokusÃ©r pÃ¥ observationer i hverdagen, stÃ¸tte hjemme og samarbejde med skole eller relevante fagpersoner.",
+     6994:   Specialist:
+     6995:     "Tilpas svaret til en psykolog, PPR-medarbejder, skolekonsulent eller anden specialist. Brug specialistfagligt sprog og fokusÃ©r pÃ¥ bÃ¦rende mÃ¸nstre, forelÃ¸bige faglige hypoteser, datamangler, kontekstforskelle, relevante observationer og nÃ¦ste faglige skridt. Skeln tydeligt mellem observation, hypotese og konklusion. Giv ikke almindelige lÃ¦rer- eller forÃ¦ldrerÃ¥d, medmindre specialisten direkte beder om konkrete tiltag til skole eller hjem. UdfÃ¸r ikke en fuld Analyse-vurdering og stil ikke diagnose.",
+     6996:   Andet:
+     6997:     "Tilpas svaret til den konkrete situation uden at antage, at brugeren er lÃ¦rer, forÃ¦lder eller specialist.",
+     6998: };
+     6999: 
+     7000: const audienceInstructions = [
+     7001:   `AKTUELT SPROG: ${language}`,
+
+--- context lines 6989-7002 ---
+     6989:     "Tilpas svaret til en lÃ¦rer: fokusÃ©r pÃ¥ forstÃ¥else, klassepraksis, observation og realistiske handlinger i skoledagen.",
+     6990:   PÃ¦dagog:
+     6991:     "Tilpas svaret til en pÃ¦dagog: fokusÃ©r pÃ¥ observation, relationer, miljÃ¸, struktur og realistiske pÃ¦dagogiske handlinger. Antag ikke automatisk bÃ¸rnehave; lad brugerens konkrete spÃ¸rgsmÃ¥l afgÃ¸re, om konteksten er dagtilbud, SFO, skole eller andet.",
+     6992:   ForÃ¦lder:
+     6993:     "Tilpas svaret til en forÃ¦lder: fokusÃ©r pÃ¥ observationer i hverdagen, stÃ¸tte hjemme og samarbejde med skole eller relevante fagpersoner.",
+>>>  6994:   Specialist:
+     6995:     "Tilpas svaret til en psykolog, PPR-medarbejder, skolekonsulent eller anden specialist. Brug specialistfagligt sprog og fokusÃ©r pÃ¥ bÃ¦rende mÃ¸nstre, forelÃ¸bige faglige hypoteser, datamangler, kontekstforskelle, relevante observationer og nÃ¦ste faglige skridt. Skeln tydeligt mellem observation, hypotese og konklusion. Giv ikke almindelige lÃ¦rer- eller forÃ¦ldrerÃ¥d, medmindre specialisten direkte beder om konkrete tiltag til skole eller hjem. UdfÃ¸r ikke en fuld Analyse-vurdering og stil ikke diagnose.",
+     6996:   Andet:
+     6997:     "Tilpas svaret til den konkrete situation uden at antage, at brugeren er lÃ¦rer, forÃ¦lder eller specialist.",
+     6998: };
+     6999: 
+     7000: const audienceInstructions = [
+     7001:   `AKTUELT SPROG: ${language}`,
+     7002:   languageInstruction,
+
+--- context lines 6990-7003 ---
+     6990:   PÃ¦dagog:
+     6991:     "Tilpas svaret til en pÃ¦dagog: fokusÃ©r pÃ¥ observation, relationer, miljÃ¸, struktur og realistiske pÃ¦dagogiske handlinger. Antag ikke automatisk bÃ¸rnehave; lad brugerens konkrete spÃ¸rgsmÃ¥l afgÃ¸re, om konteksten er dagtilbud, SFO, skole eller andet.",
+     6992:   ForÃ¦lder:
+     6993:     "Tilpas svaret til en forÃ¦lder: fokusÃ©r pÃ¥ observationer i hverdagen, stÃ¸tte hjemme og samarbejde med skole eller relevante fagpersoner.",
+     6994:   Specialist:
+>>>  6995:     "Tilpas svaret til en psykolog, PPR-medarbejder, skolekonsulent eller anden specialist. Brug specialistfagligt sprog og fokusÃ©r pÃ¥ bÃ¦rende mÃ¸nstre, forelÃ¸bige faglige hypoteser, datamangler, kontekstforskelle, relevante observationer og nÃ¦ste faglige skridt. Skeln tydeligt mellem observation, hypotese og konklusion. Giv ikke almindelige lÃ¦rer- eller forÃ¦ldrerÃ¥d, medmindre specialisten direkte beder om konkrete tiltag til skole eller hjem. UdfÃ¸r ikke en fuld Analyse-vurdering og stil ikke diagnose.",
+     6996:   Andet:
+     6997:     "Tilpas svaret til den konkrete situation uden at antage, at brugeren er lÃ¦rer, forÃ¦lder eller specialist.",
+     6998: };
+     6999: 
+     7000: const audienceInstructions = [
+     7001:   `AKTUELT SPROG: ${language}`,
+     7002:   languageInstruction,
+     7003:   `AKTUEL ROLLE: ${role}`,
+
+--- context lines 6992-7005 ---
+     6992:   ForÃ¦lder:
+     6993:     "Tilpas svaret til en forÃ¦lder: fokusÃ©r pÃ¥ observationer i hverdagen, stÃ¸tte hjemme og samarbejde med skole eller relevante fagpersoner.",
+     6994:   Specialist:
+     6995:     "Tilpas svaret til en psykolog, PPR-medarbejder, skolekonsulent eller anden specialist. Brug specialistfagligt sprog og fokusÃ©r pÃ¥ bÃ¦rende mÃ¸nstre, forelÃ¸bige faglige hypoteser, datamangler, kontekstforskelle, relevante observationer og nÃ¦ste faglige skridt. Skeln tydeligt mellem observation, hypotese og konklusion. Giv ikke almindelige lÃ¦rer- eller forÃ¦ldrerÃ¥d, medmindre specialisten direkte beder om konkrete tiltag til skole eller hjem. UdfÃ¸r ikke en fuld Analyse-vurdering og stil ikke diagnose.",
+     6996:   Andet:
+>>>  6997:     "Tilpas svaret til den konkrete situation uden at antage, at brugeren er lÃ¦rer, forÃ¦lder eller specialist.",
+     6998: };
+     6999: 
+     7000: const audienceInstructions = [
+     7001:   `AKTUELT SPROG: ${language}`,
+     7002:   languageInstruction,
+     7003:   `AKTUEL ROLLE: ${role}`,
+     7004:   roleInstructions[role],
+     7005: ].join("\n");
+
+--- context lines 7010-7023 ---
+     7010: 
+     7011: try {
+     7012:   const heidiPrompt = readHeidiPrompt();
+     7013: 
+     7014:   // 23B.9O: Rollespil har forrang over ALT andet lokalt routing (case-sÃ¸gning,
+>>>  7015:   // skabeloner, diagnose, specialister, PBL, bÃ¸rnehave osv.), jf. roleplay_rules'
+     7016:   // egen priority_rule. Tjekkes derfor allerfÃ¸rst, fÃ¸r noget andet fÃ¥r chancen
+     7017:   // for at kapre en igangvÃ¦rende rollespil-samtale.
+     7018:   const roleplayContextActive = isRoleplayContextActive(message, pending_action);
+     7019: 
+     7020:   if (roleplayContextActive) {
+     7021:     const roleplayHeidiPrompt = heidiPrompt + buildRoleplayRuleInjection();
+     7022: 
+     7023:     const roleplayInstructions = [
+
+--- context lines 8211-8224 ---
+     8211:   }
+     8212: 
+     8213:   // Rollespil er allerede hÃ¥ndteret og returneret tidligere i denne funktion,
+     8214:   // hvis det var aktivt â€” herfra er roleplayContextActive altid false.
+     8215: 
+>>>  8216:   if (isDirectSpecialistPanelRequest(message)) {
+     8217:     const requestedAngle = getRequestedSpecialistAngle(message);
+     8218: 
+     8219:     if (requestedAngle === "ppr" && (activeLocalCase || hasActiveCaseContext(activeCaseContext))) {
+     8220:       const reply = buildLocalPprAngleReply(activeLocalCase, activeCaseContext);
+     8221:       const usedTools = ["localPprAngleOnActiveCase"];
+     8222:       const toolDebug = [
+     8223:         {
+     8224:           name: "localPprAngleOnActiveCase",
+
+--- context lines 8212-8225 ---
+     8212: 
+     8213:   // Rollespil er allerede hÃ¥ndteret og returneret tidligere i denne funktion,
+     8214:   // hvis det var aktivt â€” herfra er roleplayContextActive altid false.
+     8215: 
+     8216:   if (isDirectSpecialistPanelRequest(message)) {
+>>>  8217:     const requestedAngle = getRequestedSpecialistAngle(message);
+     8218: 
+     8219:     if (requestedAngle === "ppr" && (activeLocalCase || hasActiveCaseContext(activeCaseContext))) {
+     8220:       const reply = buildLocalPprAngleReply(activeLocalCase, activeCaseContext);
+     8221:       const usedTools = ["localPprAngleOnActiveCase"];
+     8222:       const toolDebug = [
+     8223:         {
+     8224:           name: "localPprAngleOnActiveCase",
+     8225:           active_local_case_id: activeLocalCase?.id || null,
+
+--- context lines 8242-8255 ---
+     8242:         tool_debug: toolDebug,
+     8243:         pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : pending_action || null,
+     8244:       });
+     8245:     }
+     8246: 
+>>>  8247:     const specialistPanel =
+     8248:       requestedAngle === "named"
+     8249:         ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
+     8250:         : getTargetedSpecialistPanel(requestedAngle, message);
+     8251:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8252: 
+     8253:     if (specialistPanel.specialistIds.length === 0) {
+     8254:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8255:     }
+
+--- context lines 8244-8257 ---
+     8244:       });
+     8245:     }
+     8246: 
+     8247:     const specialistPanel =
+     8248:       requestedAngle === "named"
+>>>  8249:         ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
+     8250:         : getTargetedSpecialistPanel(requestedAngle, message);
+     8251:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8252: 
+     8253:     if (specialistPanel.specialistIds.length === 0) {
+     8254:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8255:     }
+     8256: 
+     8257:     const headingInstruction =
+
+--- context lines 8245-8258 ---
+     8245:     }
+     8246: 
+     8247:     const specialistPanel =
+     8248:       requestedAngle === "named"
+     8249:         ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
+>>>  8250:         : getTargetedSpecialistPanel(requestedAngle, message);
+     8251:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8252: 
+     8253:     if (specialistPanel.specialistIds.length === 0) {
+     8254:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8255:     }
+     8256: 
+     8257:     const headingInstruction =
+     8258:       requestedAngle === "named" || requestedAngle === "psychologist"
+
+--- context lines 8246-8259 ---
+     8246: 
+     8247:     const specialistPanel =
+     8248:       requestedAngle === "named"
+     8249:         ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
+     8250:         : getTargetedSpecialistPanel(requestedAngle, message);
+>>>  8251:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8252: 
+     8253:     if (specialistPanel.specialistIds.length === 0) {
+     8254:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8255:     }
+     8256: 
+     8257:     const headingInstruction =
+     8258:       requestedAngle === "named" || requestedAngle === "psychologist"
+     8259:         ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
+
+--- context lines 8248-8261 ---
+     8248:       requestedAngle === "named"
+     8249:         ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
+     8250:         : getTargetedSpecialistPanel(requestedAngle, message);
+     8251:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8252: 
+>>>  8253:     if (specialistPanel.specialistIds.length === 0) {
+     8254:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8255:     }
+     8256: 
+     8257:     const headingInstruction =
+     8258:       requestedAngle === "named" || requestedAngle === "psychologist"
+     8259:         ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
+     8260:         : requestedAngle === "ppr"
+     8261:           ? "Brug prÃ¦cis disse markdown-overskrifter: **PPR-vinkel** og **NÃ¦ste observationer**."
+
+--- context lines 8249-8262 ---
+     8249:         ? buildSingleSpecialistPanel(findNamedSpecialistInMessage(message))
+     8250:         : getTargetedSpecialistPanel(requestedAngle, message);
+     8251:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8252: 
+     8253:     if (specialistPanel.specialistIds.length === 0) {
+>>>  8254:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8255:     }
+     8256: 
+     8257:     const headingInstruction =
+     8258:       requestedAngle === "named" || requestedAngle === "psychologist"
+     8259:         ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
+     8260:         : requestedAngle === "ppr"
+     8261:           ? "Brug prÃ¦cis disse markdown-overskrifter: **PPR-vinkel** og **NÃ¦ste observationer**."
+     8262:           : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **NÃ¦ste skridt**.";
+
+--- context lines 8254-8267 ---
+     8254:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8255:     }
+     8256: 
+     8257:     const headingInstruction =
+     8258:       requestedAngle === "named" || requestedAngle === "psychologist"
+>>>  8259:         ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
+     8260:         : requestedAngle === "ppr"
+     8261:           ? "Brug prÃ¦cis disse markdown-overskrifter: **PPR-vinkel** og **NÃ¦ste observationer**."
+     8262:           : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **NÃ¦ste skridt**.";
+     8263: 
+     8264:     const specialistInstructions = [
+     8265:       "Du er Heidi i CDA Engine.",
+     8266:       "Svar kun, fordi brugeren selv har bedt om specialistvinkel pÃ¥ den aktive case/sag.",
+     8267:       "Brug den aktive case/sag som konkret grundlag. Opfind ikke manglende casefelter.",
+
+--- context lines 8257-8270 ---
+     8257:     const headingInstruction =
+     8258:       requestedAngle === "named" || requestedAngle === "psychologist"
+     8259:         ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
+     8260:         : requestedAngle === "ppr"
+     8261:           ? "Brug prÃ¦cis disse markdown-overskrifter: **PPR-vinkel** og **NÃ¦ste observationer**."
+>>>  8262:           : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **NÃ¦ste skridt**.";
+     8263: 
+     8264:     const specialistInstructions = [
+     8265:       "Du er Heidi i CDA Engine.",
+     8266:       "Svar kun, fordi brugeren selv har bedt om specialistvinkel pÃ¥ den aktive case/sag.",
+     8267:       "Brug den aktive case/sag som konkret grundlag. Opfind ikke manglende casefelter.",
+     8268:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d. Beskriv kun stÃ¸ttebehov, mÃ¸nstre og nÃ¦ste faglige skridt.",
+     8269:       "Svar lÃ¦rer-nÃ¦rt, praktisk og kort. HÃ¸jst 3 konkrete handlinger.",
+     8270:       headingInstruction,
+
+--- context lines 8259-8272 ---
+     8259:         ? "Brug specialistens fulde navn fra RELEVANT LOKAL SPECIALISTDATA i overskrifterne, fx '**[navn]s vurdering**' og '**[navn]s startforslag**'. Brug kun en generisk rolle-overskrift, hvis intet navn findes i data."
+     8260:         : requestedAngle === "ppr"
+     8261:           ? "Brug prÃ¦cis disse markdown-overskrifter: **PPR-vinkel** og **NÃ¦ste observationer**."
+     8262:           : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **NÃ¦ste skridt**.";
+     8263: 
+>>>  8264:     const specialistInstructions = [
+     8265:       "Du er Heidi i CDA Engine.",
+     8266:       "Svar kun, fordi brugeren selv har bedt om specialistvinkel pÃ¥ den aktive case/sag.",
+     8267:       "Brug den aktive case/sag som konkret grundlag. Opfind ikke manglende casefelter.",
+     8268:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d. Beskriv kun stÃ¸ttebehov, mÃ¸nstre og nÃ¦ste faglige skridt.",
+     8269:       "Svar lÃ¦rer-nÃ¦rt, praktisk og kort. HÃ¸jst 3 konkrete handlinger.",
+     8270:       headingInstruction,
+     8271:       response_style === "Dyb"
+     8272:         ? "Svar lidt mere udfÃ¸rligt, men uden lange forklaringer."
+
+--- context lines 8261-8274 ---
+     8261:           ? "Brug prÃ¦cis disse markdown-overskrifter: **PPR-vinkel** og **NÃ¦ste observationer**."
+     8262:           : "Brug korte markdown-overskrifter med fed skrift, fx **Specialistvinkel** og **NÃ¦ste skridt**.";
+     8263: 
+     8264:     const specialistInstructions = [
+     8265:       "Du er Heidi i CDA Engine.",
+>>>  8266:       "Svar kun, fordi brugeren selv har bedt om specialistvinkel pÃ¥ den aktive case/sag.",
+     8267:       "Brug den aktive case/sag som konkret grundlag. Opfind ikke manglende casefelter.",
+     8268:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d. Beskriv kun stÃ¸ttebehov, mÃ¸nstre og nÃ¦ste faglige skridt.",
+     8269:       "Svar lÃ¦rer-nÃ¦rt, praktisk og kort. HÃ¸jst 3 konkrete handlinger.",
+     8270:       headingInstruction,
+     8271:       response_style === "Dyb"
+     8272:         ? "Svar lidt mere udfÃ¸rligt, men uden lange forklaringer."
+     8273:         : "Svar kort og direkte.",
+     8274:     ].join("\n");
+
+--- context lines 8271-8284 ---
+     8271:       response_style === "Dyb"
+     8272:         ? "Svar lidt mere udfÃ¸rligt, men uden lange forklaringer."
+     8273:         : "Svar kort og direkte.",
+     8274:     ].join("\n");
+     8275: 
+>>>  8276:     const specialistInput = [
+     8277:       specialistCaseContextBlock,
+     8278:       "",
+     8279:       "BRUGERENS BESKED:",
+     8280:       message,
+     8281:       "",
+     8282:       "RELEVANT LOKAL SPECIALISTDATA:",
+     8283:       specialistPanel.indexText,
+     8284:     ].filter((part) => String(part || "").trim()).join("\n");
+
+--- context lines 8272-8285 ---
+     8272:         ? "Svar lidt mere udfÃ¸rligt, men uden lange forklaringer."
+     8273:         : "Svar kort og direkte.",
+     8274:     ].join("\n");
+     8275: 
+     8276:     const specialistInput = [
+>>>  8277:       specialistCaseContextBlock,
+     8278:       "",
+     8279:       "BRUGERENS BESKED:",
+     8280:       message,
+     8281:       "",
+     8282:       "RELEVANT LOKAL SPECIALISTDATA:",
+     8283:       specialistPanel.indexText,
+     8284:     ].filter((part) => String(part || "").trim()).join("\n");
+     8285: 
+
+--- context lines 8277-8290 ---
+     8277:       specialistCaseContextBlock,
+     8278:       "",
+     8279:       "BRUGERENS BESKED:",
+     8280:       message,
+     8281:       "",
+>>>  8282:       "RELEVANT LOKAL SPECIALISTDATA:",
+     8283:       specialistPanel.indexText,
+     8284:     ].filter((part) => String(part || "").trim()).join("\n");
+     8285: 
+     8286:     const response = await openai.responses.create({
+     8287:       model: "gpt-5.4-mini",
+     8288:       reasoning: {
+     8289:         effort: "low",
+     8290:       },
+
+--- context lines 8278-8291 ---
+     8278:       "",
+     8279:       "BRUGERENS BESKED:",
+     8280:       message,
+     8281:       "",
+     8282:       "RELEVANT LOKAL SPECIALISTDATA:",
+>>>  8283:       specialistPanel.indexText,
+     8284:     ].filter((part) => String(part || "").trim()).join("\n");
+     8285: 
+     8286:     const response = await openai.responses.create({
+     8287:       model: "gpt-5.4-mini",
+     8288:       reasoning: {
+     8289:         effort: "low",
+     8290:       },
+     8291:       instructions: specialistInstructions,
+
+--- context lines 8286-8299 ---
+     8286:     const response = await openai.responses.create({
+     8287:       model: "gpt-5.4-mini",
+     8288:       reasoning: {
+     8289:         effort: "low",
+     8290:       },
+>>>  8291:       instructions: specialistInstructions,
+     8292:       input: specialistInput,
+     8293:       max_output_tokens:
+     8294:         response_style === "Dyb"
+     8295:           ? 650
+     8296:           : response_style === "Kort"
+     8297:             ? 320
+     8298:             : 450,
+     8299:       text: {
+
+--- context lines 8287-8300 ---
+     8287:       model: "gpt-5.4-mini",
+     8288:       reasoning: {
+     8289:         effort: "low",
+     8290:       },
+     8291:       instructions: specialistInstructions,
+>>>  8292:       input: specialistInput,
+     8293:       max_output_tokens:
+     8294:         response_style === "Dyb"
+     8295:           ? 650
+     8296:           : response_style === "Kort"
+     8297:             ? 320
+     8298:             : 450,
+     8299:       text: {
+     8300:         format: {
+
+--- context lines 8297-8310 ---
+     8297:             ? 320
+     8298:             : 450,
+     8299:       text: {
+     8300:         format: {
+     8301:           type: "json_schema",
+>>>  8302:           name: "cda_targeted_specialist_response",
+     8303:           strict: true,
+     8304:           schema: {
+     8305:             type: "object",
+     8306:             properties: {
+     8307:               selected_specialist_ids: {
+     8308:                 type: "array",
+     8309:                 items: {
+     8310:                   type: "string",
+
+--- context lines 8302-8315 ---
+     8302:           name: "cda_targeted_specialist_response",
+     8303:           strict: true,
+     8304:           schema: {
+     8305:             type: "object",
+     8306:             properties: {
+>>>  8307:               selected_specialist_ids: {
+     8308:                 type: "array",
+     8309:                 items: {
+     8310:                   type: "string",
+     8311:                   enum: specialistPanel.specialistIds,
+     8312:                 },
+     8313:               },
+     8314:               reply: {
+     8315:                 type: "string",
+
+--- context lines 8306-8319 ---
+     8306:             properties: {
+     8307:               selected_specialist_ids: {
+     8308:                 type: "array",
+     8309:                 items: {
+     8310:                   type: "string",
+>>>  8311:                   enum: specialistPanel.specialistIds,
+     8312:                 },
+     8313:               },
+     8314:               reply: {
+     8315:                 type: "string",
+     8316:               },
+     8317:             },
+     8318:             required: ["selected_specialist_ids", "reply"],
+     8319:             additionalProperties: false,
+
+--- context lines 8313-8326 ---
+     8313:               },
+     8314:               reply: {
+     8315:                 type: "string",
+     8316:               },
+     8317:             },
+>>>  8318:             required: ["selected_specialist_ids", "reply"],
+     8319:             additionalProperties: false,
+     8320:           },
+     8321:         },
+     8322:       },
+     8323:     });
+     8324: 
+     8325:     if (response.status === "incomplete") {
+     8326:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+
+--- context lines 8321-8334 ---
+     8321:         },
+     8322:       },
+     8323:     });
+     8324: 
+     8325:     if (response.status === "incomplete") {
+>>>  8326:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+     8327:     }
+     8328: 
+     8329:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8330:     const validSpecialistIds = new Set(
+     8331:       specialistPanel.specialistIds
+     8332:     );
+     8333:     const selectedSpecialistIds = Array.from(
+     8334:       new Set(
+
+--- context lines 8324-8337 ---
+     8324: 
+     8325:     if (response.status === "incomplete") {
+     8326:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+     8327:     }
+     8328: 
+>>>  8329:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8330:     const validSpecialistIds = new Set(
+     8331:       specialistPanel.specialistIds
+     8332:     );
+     8333:     const selectedSpecialistIds = Array.from(
+     8334:       new Set(
+     8335:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8336:           ? panelResponse.selected_specialist_ids
+     8337:           : []
+
+--- context lines 8325-8338 ---
+     8325:     if (response.status === "incomplete") {
+     8326:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+     8327:     }
+     8328: 
+     8329:     const panelResponse = JSON.parse(response.output_text || "{}");
+>>>  8330:     const validSpecialistIds = new Set(
+     8331:       specialistPanel.specialistIds
+     8332:     );
+     8333:     const selectedSpecialistIds = Array.from(
+     8334:       new Set(
+     8335:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8336:           ? panelResponse.selected_specialist_ids
+     8337:           : []
+     8338:         ).filter((id) => validSpecialistIds.has(String(id)))
+
+--- context lines 8326-8339 ---
+     8326:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+     8327:     }
+     8328: 
+     8329:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8330:     const validSpecialistIds = new Set(
+>>>  8331:       specialistPanel.specialistIds
+     8332:     );
+     8333:     const selectedSpecialistIds = Array.from(
+     8334:       new Set(
+     8335:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8336:           ? panelResponse.selected_specialist_ids
+     8337:           : []
+     8338:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8339:       )
+
+--- context lines 8328-8341 ---
+     8328: 
+     8329:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8330:     const validSpecialistIds = new Set(
+     8331:       specialistPanel.specialistIds
+     8332:     );
+>>>  8333:     const selectedSpecialistIds = Array.from(
+     8334:       new Set(
+     8335:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8336:           ? panelResponse.selected_specialist_ids
+     8337:           : []
+     8338:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8339:       )
+     8340:     ).slice(0, requestedAngle === "specialists" ? 3 : 1);
+     8341: 
+
+--- context lines 8330-8343 ---
+     8330:     const validSpecialistIds = new Set(
+     8331:       specialistPanel.specialistIds
+     8332:     );
+     8333:     const selectedSpecialistIds = Array.from(
+     8334:       new Set(
+>>>  8335:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8336:           ? panelResponse.selected_specialist_ids
+     8337:           : []
+     8338:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8339:       )
+     8340:     ).slice(0, requestedAngle === "specialists" ? 3 : 1);
+     8341: 
+     8342:     const reply = String(panelResponse.reply || "").trim();
+     8343: 
+
+--- context lines 8331-8344 ---
+     8331:       specialistPanel.specialistIds
+     8332:     );
+     8333:     const selectedSpecialistIds = Array.from(
+     8334:       new Set(
+     8335:         (Array.isArray(panelResponse.selected_specialist_ids)
+>>>  8336:           ? panelResponse.selected_specialist_ids
+     8337:           : []
+     8338:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8339:       )
+     8340:     ).slice(0, requestedAngle === "specialists" ? 3 : 1);
+     8341: 
+     8342:     const reply = String(panelResponse.reply || "").trim();
+     8343: 
+     8344:     if (!reply) {
+
+--- context lines 8333-8346 ---
+     8333:     const selectedSpecialistIds = Array.from(
+     8334:       new Set(
+     8335:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8336:           ? panelResponse.selected_specialist_ids
+     8337:           : []
+>>>  8338:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8339:       )
+     8340:     ).slice(0, requestedAngle === "specialists" ? 3 : 1);
+     8341: 
+     8342:     const reply = String(panelResponse.reply || "").trim();
+     8343: 
+     8344:     if (!reply) {
+     8345:       throw new Error("Specialistpanelet returnerede intet svar");
+     8346:     }
+
+--- context lines 8335-8348 ---
+     8335:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8336:           ? panelResponse.selected_specialist_ids
+     8337:           : []
+     8338:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8339:       )
+>>>  8340:     ).slice(0, requestedAngle === "specialists" ? 3 : 1);
+     8341: 
+     8342:     const reply = String(panelResponse.reply || "").trim();
+     8343: 
+     8344:     if (!reply) {
+     8345:       throw new Error("Specialistpanelet returnerede intet svar");
+     8346:     }
+     8347: 
+     8348:     const inputTokens = Number(response?.usage?.input_tokens || 0);
+
+--- context lines 8337-8350 ---
+     8337:           : []
+     8338:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8339:       )
+     8340:     ).slice(0, requestedAngle === "specialists" ? 3 : 1);
+     8341: 
+>>>  8342:     const reply = String(panelResponse.reply || "").trim();
+     8343: 
+     8344:     if (!reply) {
+     8345:       throw new Error("Specialistpanelet returnerede intet svar");
+     8346:     }
+     8347: 
+     8348:     const inputTokens = Number(response?.usage?.input_tokens || 0);
+     8349:     const outputTokens = Number(response?.usage?.output_tokens || 0);
+     8350:     const totalTokens = Number(
+
+--- context lines 8340-8353 ---
+     8340:     ).slice(0, requestedAngle === "specialists" ? 3 : 1);
+     8341: 
+     8342:     const reply = String(panelResponse.reply || "").trim();
+     8343: 
+     8344:     if (!reply) {
+>>>  8345:       throw new Error("Specialistpanelet returnerede intet svar");
+     8346:     }
+     8347: 
+     8348:     const inputTokens = Number(response?.usage?.input_tokens || 0);
+     8349:     const outputTokens = Number(response?.usage?.output_tokens || 0);
+     8350:     const totalTokens = Number(
+     8351:       response?.usage?.total_tokens || inputTokens + outputTokens
+     8352:     );
+     8353: 
+
+--- context lines 8352-8365 ---
+     8352:     );
+     8353: 
+     8354:     const usageByCall = [
+     8355:       {
+     8356:         call: 1,
+>>>  8357:         phase: "targeted_specialist_on_active_case",
+     8358:         tools_returned_to_model: [],
+     8359:         input_tokens: inputTokens,
+     8360:         output_tokens: outputTokens,
+     8361:         total_tokens: totalTokens,
+     8362:       },
+     8363:     ];
+     8364: 
+     8365:     const usedTools = ["targetedLocalSpecialistRouting"];
+
+--- context lines 8360-8373 ---
+     8360:         output_tokens: outputTokens,
+     8361:         total_tokens: totalTokens,
+     8362:       },
+     8363:     ];
+     8364: 
+>>>  8365:     const usedTools = ["targetedLocalSpecialistRouting"];
+     8366:     const toolDebug = [
+     8367:       {
+     8368:         name: "targetedLocalSpecialistRouting",
+     8369:         requested_angle: requestedAngle,
+     8370:         selected_specialists: selectedSpecialistIds.map((id) =>
+     8371:           specialistPanel.specialistSummaries.find(
+     8372:             (specialist) => specialist.id === id
+     8373:           )
+
+--- context lines 8363-8376 ---
+     8363:     ];
+     8364: 
+     8365:     const usedTools = ["targetedLocalSpecialistRouting"];
+     8366:     const toolDebug = [
+     8367:       {
+>>>  8368:         name: "targetedLocalSpecialistRouting",
+     8369:         requested_angle: requestedAngle,
+     8370:         selected_specialists: selectedSpecialistIds.map((id) =>
+     8371:           specialistPanel.specialistSummaries.find(
+     8372:             (specialist) => specialist.id === id
+     8373:           )
+     8374:         ).filter(Boolean),
+     8375:         active_local_case_id: activeLocalCase?.id || null,
+     8376:         role,
+
+--- context lines 8365-8378 ---
+     8365:     const usedTools = ["targetedLocalSpecialistRouting"];
+     8366:     const toolDebug = [
+     8367:       {
+     8368:         name: "targetedLocalSpecialistRouting",
+     8369:         requested_angle: requestedAngle,
+>>>  8370:         selected_specialists: selectedSpecialistIds.map((id) =>
+     8371:           specialistPanel.specialistSummaries.find(
+     8372:             (specialist) => specialist.id === id
+     8373:           )
+     8374:         ).filter(Boolean),
+     8375:         active_local_case_id: activeLocalCase?.id || null,
+     8376:         role,
+     8377:         response_style,
+     8378:       },
+
+--- context lines 8366-8379 ---
+     8366:     const toolDebug = [
+     8367:       {
+     8368:         name: "targetedLocalSpecialistRouting",
+     8369:         requested_angle: requestedAngle,
+     8370:         selected_specialists: selectedSpecialistIds.map((id) =>
+>>>  8371:           specialistPanel.specialistSummaries.find(
+     8372:             (specialist) => specialist.id === id
+     8373:           )
+     8374:         ).filter(Boolean),
+     8375:         active_local_case_id: activeLocalCase?.id || null,
+     8376:         role,
+     8377:         response_style,
+     8378:       },
+     8379:     ];
+
+--- context lines 8367-8380 ---
+     8367:       {
+     8368:         name: "targetedLocalSpecialistRouting",
+     8369:         requested_angle: requestedAngle,
+     8370:         selected_specialists: selectedSpecialistIds.map((id) =>
+     8371:           specialistPanel.specialistSummaries.find(
+>>>  8372:             (specialist) => specialist.id === id
+     8373:           )
+     8374:         ).filter(Boolean),
+     8375:         active_local_case_id: activeLocalCase?.id || null,
+     8376:         role,
+     8377:         response_style,
+     8378:       },
+     8379:     ];
+     8380: 
+
+--- context lines 8423-8436 ---
+     8423:       tool_debug: toolDebug,
+     8424:       pending_action: activeLocalCase?.id ? `local_case:${activeLocalCase.id}` : null,
+     8425:     });
+     8426:   }
+     8427: 
+>>>  8428:   if (isCaseSpecialistsInvolvedRequest(message)) {
+     8429:     if (!activeLocalCase && !hasActiveCaseContext(activeCaseContext)) {
+     8430:       const reply =
+     8431:         "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gÃ¥ tilbage til en tidligere case, sÃ¥ kan jeg pege pÃ¥ hvilke CDA-specialister der er relevante.";
+     8432:       const usedTools = ["caseSpecialistsInvolvedNoActiveCase"];
+     8433:       const toolDebug = [
+     8434:         {
+     8435:           name: "caseSpecialistsInvolvedNoActiveCase",
+     8436:           role,
+
+--- context lines 8426-8439 ---
+     8426:   }
+     8427: 
+     8428:   if (isCaseSpecialistsInvolvedRequest(message)) {
+     8429:     if (!activeLocalCase && !hasActiveCaseContext(activeCaseContext)) {
+     8430:       const reply =
+>>>  8431:         "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gÃ¥ tilbage til en tidligere case, sÃ¥ kan jeg pege pÃ¥ hvilke CDA-specialister der er relevante.";
+     8432:       const usedTools = ["caseSpecialistsInvolvedNoActiveCase"];
+     8433:       const toolDebug = [
+     8434:         {
+     8435:           name: "caseSpecialistsInvolvedNoActiveCase",
+     8436:           role,
+     8437:           response_style,
+     8438:         },
+     8439:       ];
+
+--- context lines 8427-8440 ---
+     8427: 
+     8428:   if (isCaseSpecialistsInvolvedRequest(message)) {
+     8429:     if (!activeLocalCase && !hasActiveCaseContext(activeCaseContext)) {
+     8430:       const reply =
+     8431:         "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gÃ¥ tilbage til en tidligere case, sÃ¥ kan jeg pege pÃ¥ hvilke CDA-specialister der er relevante.";
+>>>  8432:       const usedTools = ["caseSpecialistsInvolvedNoActiveCase"];
+     8433:       const toolDebug = [
+     8434:         {
+     8435:           name: "caseSpecialistsInvolvedNoActiveCase",
+     8436:           role,
+     8437:           response_style,
+     8438:         },
+     8439:       ];
+     8440: 
+
+--- context lines 8430-8443 ---
+     8430:       const reply =
+     8431:         "Jeg har ikke en aktiv case at knytte specialister til lige nu. Beskriv situationen, eller gÃ¥ tilbage til en tidligere case, sÃ¥ kan jeg pege pÃ¥ hvilke CDA-specialister der er relevante.";
+     8432:       const usedTools = ["caseSpecialistsInvolvedNoActiveCase"];
+     8433:       const toolDebug = [
+     8434:         {
+>>>  8435:           name: "caseSpecialistsInvolvedNoActiveCase",
+     8436:           role,
+     8437:           response_style,
+     8438:         },
+     8439:       ];
+     8440: 
+     8441:       console.log("CDA vÃ¦rktÃ¸jskald:", {
+     8442:         tools_used: usedTools,
+     8443:         tool_debug: toolDebug,
+
+--- context lines 8463-8476 ---
+     8463:       activeCaseContext?.summary,
+     8464:       activeCaseContext?.known_context,
+     8465:       activeCaseContext?.last_user_message,
+     8466:     ].filter(Boolean).join(" ");
+     8467: 
+>>>  8468:     const specialistPanel = getTargetedSpecialistPanel("case_team", message, caseText);
+     8469:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8470: 
+     8471:     if (specialistPanel.specialistIds.length === 0) {
+     8472:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8473:     }
+     8474: 
+     8475:     const caseTeamInstructions = [
+     8476:       "Du er Heidi i CDA Engine.",
+
+--- context lines 8464-8477 ---
+     8464:       activeCaseContext?.known_context,
+     8465:       activeCaseContext?.last_user_message,
+     8466:     ].filter(Boolean).join(" ");
+     8467: 
+     8468:     const specialistPanel = getTargetedSpecialistPanel("case_team", message, caseText);
+>>>  8469:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8470: 
+     8471:     if (specialistPanel.specialistIds.length === 0) {
+     8472:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8473:     }
+     8474: 
+     8475:     const caseTeamInstructions = [
+     8476:       "Du er Heidi i CDA Engine.",
+     8477:       "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+
+--- context lines 8466-8479 ---
+     8466:     ].filter(Boolean).join(" ");
+     8467: 
+     8468:     const specialistPanel = getTargetedSpecialistPanel("case_team", message, caseText);
+     8469:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8470: 
+>>>  8471:     if (specialistPanel.specialistIds.length === 0) {
+     8472:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8473:     }
+     8474: 
+     8475:     const caseTeamInstructions = [
+     8476:       "Du er Heidi i CDA Engine.",
+     8477:       "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+     8478:       "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
+     8479:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d.",
+
+--- context lines 8467-8480 ---
+     8467: 
+     8468:     const specialistPanel = getTargetedSpecialistPanel("case_team", message, caseText);
+     8469:     const specialistCaseContextBlock = buildCompactSpecialistCaseContext(activeLocalCase, activeCaseContext);
+     8470: 
+     8471:     if (specialistPanel.specialistIds.length === 0) {
+>>>  8472:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8473:     }
+     8474: 
+     8475:     const caseTeamInstructions = [
+     8476:       "Du er Heidi i CDA Engine.",
+     8477:       "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+     8478:       "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
+     8479:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d.",
+     8480:       "Vis hver relevant specialist pÃ¥ egen linje: **[specialistens fulde navn fra data]** efterfulgt af Ã©t kort, case-specifikt fokuspunkt (1 linje).",
+
+--- context lines 8472-8485 ---
+     8472:       throw new Error("Specialistpanelet indeholder ingen specialister");
+     8473:     }
+     8474: 
+     8475:     const caseTeamInstructions = [
+     8476:       "Du er Heidi i CDA Engine.",
+>>>  8477:       "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+     8478:       "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
+     8479:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d.",
+     8480:       "Vis hver relevant specialist pÃ¥ egen linje: **[specialistens fulde navn fra data]** efterfulgt af Ã©t kort, case-specifikt fokuspunkt (1 linje).",
+     8481:       "NÃ¦vn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
+     8482:       "Afslut altid med Ã©n linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
+     8483:       "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
+     8484:     ].join("\n");
+     8485: 
+
+--- context lines 8473-8486 ---
+     8473:     }
+     8474: 
+     8475:     const caseTeamInstructions = [
+     8476:       "Du er Heidi i CDA Engine.",
+     8477:       "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+>>>  8478:       "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
+     8479:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d.",
+     8480:       "Vis hver relevant specialist pÃ¥ egen linje: **[specialistens fulde navn fra data]** efterfulgt af Ã©t kort, case-specifikt fokuspunkt (1 linje).",
+     8481:       "NÃ¦vn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
+     8482:       "Afslut altid med Ã©n linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
+     8483:       "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
+     8484:     ].join("\n");
+     8485: 
+     8486:     const caseTeamInput = [
+
+--- context lines 8475-8488 ---
+     8475:     const caseTeamInstructions = [
+     8476:       "Du er Heidi i CDA Engine.",
+     8477:       "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+     8478:       "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
+     8479:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d.",
+>>>  8480:       "Vis hver relevant specialist pÃ¥ egen linje: **[specialistens fulde navn fra data]** efterfulgt af Ã©t kort, case-specifikt fokuspunkt (1 linje).",
+     8481:       "NÃ¦vn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
+     8482:       "Afslut altid med Ã©n linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
+     8483:       "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
+     8484:     ].join("\n");
+     8485: 
+     8486:     const caseTeamInput = [
+     8487:       specialistCaseContextBlock,
+     8488:       "",
+
+--- context lines 8476-8489 ---
+     8476:       "Du er Heidi i CDA Engine.",
+     8477:       "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+     8478:       "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
+     8479:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d.",
+     8480:       "Vis hver relevant specialist pÃ¥ egen linje: **[specialistens fulde navn fra data]** efterfulgt af Ã©t kort, case-specifikt fokuspunkt (1 linje).",
+>>>  8481:       "NÃ¦vn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
+     8482:       "Afslut altid med Ã©n linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
+     8483:       "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
+     8484:     ].join("\n");
+     8485: 
+     8486:     const caseTeamInput = [
+     8487:       specialistCaseContextBlock,
+     8488:       "",
+     8489:       "BRUGERENS BESKED:",
+
+--- context lines 8477-8490 ---
+     8477:       "Brugeren spÃ¸rger, hvilke CDA-specialister der har vÃ¦ret relevante for den aktive case/sag.",
+     8478:       "Brug kun den aktive case/sag og RELEVANT LOKAL SPECIALISTDATA som grundlag. Opfind ikke manglende casefelter, specialister eller citater.",
+     8479:       "Stil ikke diagnose. Giv ikke medicinrÃ¥d.",
+     8480:       "Vis hver relevant specialist pÃ¥ egen linje: **[specialistens fulde navn fra data]** efterfulgt af Ã©t kort, case-specifikt fokuspunkt (1 linje).",
+     8481:       "NÃ¦vn kun specialister som RELEVANT LOKAL SPECIALISTDATA faktisk indeholder. Hvis en specialist kun er indirekte relevant (fx kun ved mistanke om komorbiditet), skriv det kort.",
+>>>  8482:       "Afslut altid med Ã©n linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
+     8483:       "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
+     8484:     ].join("\n");
+     8485: 
+     8486:     const caseTeamInput = [
+     8487:       specialistCaseContextBlock,
+     8488:       "",
+     8489:       "BRUGERENS BESKED:",
+     8490:       message,
+
+--- context lines 8482-8495 ---
+     8482:       "Afslut altid med Ã©n linje: 'Start her: [navn] + [navn]' med de 1-2 mest presserende specialister for netop denne case.",
+     8483:       "Svar kort og konkret, uden lange forklaringer mellem punkterne.",
+     8484:     ].join("\n");
+     8485: 
+     8486:     const caseTeamInput = [
+>>>  8487:       specialistCaseContextBlock,
+     8488:       "",
+     8489:       "BRUGERENS BESKED:",
+     8490:       message,
+     8491:       "",
+     8492:       "RELEVANT LOKAL SPECIALISTDATA:",
+     8493:       specialistPanel.indexText,
+     8494:     ].filter((part) => String(part || "").trim()).join("\n");
+     8495: 
+
+--- context lines 8487-8500 ---
+     8487:       specialistCaseContextBlock,
+     8488:       "",
+     8489:       "BRUGERENS BESKED:",
+     8490:       message,
+     8491:       "",
+>>>  8492:       "RELEVANT LOKAL SPECIALISTDATA:",
+     8493:       specialistPanel.indexText,
+     8494:     ].filter((part) => String(part || "").trim()).join("\n");
+     8495: 
+     8496:     const response = await openai.responses.create({
+     8497:       model: "gpt-5.4-mini",
+     8498:       reasoning: {
+     8499:         effort: "low",
+     8500:       },
+
+--- context lines 8488-8501 ---
+     8488:       "",
+     8489:       "BRUGERENS BESKED:",
+     8490:       message,
+     8491:       "",
+     8492:       "RELEVANT LOKAL SPECIALISTDATA:",
+>>>  8493:       specialistPanel.indexText,
+     8494:     ].filter((part) => String(part || "").trim()).join("\n");
+     8495: 
+     8496:     const response = await openai.responses.create({
+     8497:       model: "gpt-5.4-mini",
+     8498:       reasoning: {
+     8499:         effort: "low",
+     8500:       },
+     8501:       instructions: caseTeamInstructions,
+
+--- context lines 8508-8521 ---
+     8508:           name: "cda_case_team_response",
+     8509:           strict: true,
+     8510:           schema: {
+     8511:             type: "object",
+     8512:             properties: {
+>>>  8513:               selected_specialist_ids: {
+     8514:                 type: "array",
+     8515:                 items: {
+     8516:                   type: "string",
+     8517:                   enum: specialistPanel.specialistIds,
+     8518:                 },
+     8519:               },
+     8520:               reply: {
+     8521:                 type: "string",
+
+--- context lines 8512-8525 ---
+     8512:             properties: {
+     8513:               selected_specialist_ids: {
+     8514:                 type: "array",
+     8515:                 items: {
+     8516:                   type: "string",
+>>>  8517:                   enum: specialistPanel.specialistIds,
+     8518:                 },
+     8519:               },
+     8520:               reply: {
+     8521:                 type: "string",
+     8522:               },
+     8523:             },
+     8524:             required: ["selected_specialist_ids", "reply"],
+     8525:             additionalProperties: false,
+
+--- context lines 8519-8532 ---
+     8519:               },
+     8520:               reply: {
+     8521:                 type: "string",
+     8522:               },
+     8523:             },
+>>>  8524:             required: ["selected_specialist_ids", "reply"],
+     8525:             additionalProperties: false,
+     8526:           },
+     8527:         },
+     8528:       },
+     8529:     });
+     8530: 
+     8531:     if (response.status === "incomplete") {
+     8532:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+
+--- context lines 8527-8540 ---
+     8527:         },
+     8528:       },
+     8529:     });
+     8530: 
+     8531:     if (response.status === "incomplete") {
+>>>  8532:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+     8533:     }
+     8534: 
+     8535:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8536:     const validSpecialistIds = new Set(specialistPanel.specialistIds);
+     8537:     const selectedSpecialistIds = Array.from(
+     8538:       new Set(
+     8539:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8540:           ? panelResponse.selected_specialist_ids
+
+--- context lines 8530-8543 ---
+     8530: 
+     8531:     if (response.status === "incomplete") {
+     8532:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+     8533:     }
+     8534: 
+>>>  8535:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8536:     const validSpecialistIds = new Set(specialistPanel.specialistIds);
+     8537:     const selectedSpecialistIds = Array.from(
+     8538:       new Set(
+     8539:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8540:           ? panelResponse.selected_specialist_ids
+     8541:           : []
+     8542:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8543:       )
+
+--- context lines 8531-8544 ---
+     8531:     if (response.status === "incomplete") {
+     8532:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+     8533:     }
+     8534: 
+     8535:     const panelResponse = JSON.parse(response.output_text || "{}");
+>>>  8536:     const validSpecialistIds = new Set(specialistPanel.specialistIds);
+     8537:     const selectedSpecialistIds = Array.from(
+     8538:       new Set(
+     8539:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8540:           ? panelResponse.selected_specialist_ids
+     8541:           : []
+     8542:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8543:       )
+     8544:     ).slice(0, 5);
+
+--- context lines 8532-8545 ---
+     8532:       throw new Error("UfuldstÃ¦ndigt svar fra specialistpanelet");
+     8533:     }
+     8534: 
+     8535:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8536:     const validSpecialistIds = new Set(specialistPanel.specialistIds);
+>>>  8537:     const selectedSpecialistIds = Array.from(
+     8538:       new Set(
+     8539:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8540:           ? panelResponse.selected_specialist_ids
+     8541:           : []
+     8542:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8543:       )
+     8544:     ).slice(0, 5);
+     8545: 
+
+--- context lines 8534-8547 ---
+     8534: 
+     8535:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8536:     const validSpecialistIds = new Set(specialistPanel.specialistIds);
+     8537:     const selectedSpecialistIds = Array.from(
+     8538:       new Set(
+>>>  8539:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8540:           ? panelResponse.selected_specialist_ids
+     8541:           : []
+     8542:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8543:       )
+     8544:     ).slice(0, 5);
+     8545: 
+     8546:     const reply = String(panelResponse.reply || "").trim();
+     8547: 
+
+--- context lines 8535-8548 ---
+     8535:     const panelResponse = JSON.parse(response.output_text || "{}");
+     8536:     const validSpecialistIds = new Set(specialistPanel.specialistIds);
+     8537:     const selectedSpecialistIds = Array.from(
+     8538:       new Set(
+     8539:         (Array.isArray(panelResponse.selected_specialist_ids)
+>>>  8540:           ? panelResponse.selected_specialist_ids
+     8541:           : []
+     8542:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8543:       )
+     8544:     ).slice(0, 5);
+     8545: 
+     8546:     const reply = String(panelResponse.reply || "").trim();
+     8547: 
+     8548:     if (!reply) {
+
+--- context lines 8537-8550 ---
+     8537:     const selectedSpecialistIds = Array.from(
+     8538:       new Set(
+     8539:         (Array.isArray(panelResponse.selected_specialist_ids)
+     8540:           ? panelResponse.selected_specialist_ids
+     8541:           : []
+>>>  8542:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8543:       )
+     8544:     ).slice(0, 5);
+     8545: 
+     8546:     const reply = String(panelResponse.reply || "").trim();
+     8547: 
+     8548:     if (!reply) {
+     8549:       throw new Error("Specialistpanelet returnerede intet svar");
+     8550:     }
+
+--- context lines 8541-8554 ---
+     8541:           : []
+     8542:         ).filter((id) => validSpecialistIds.has(String(id)))
+     8543:       )
+     8544:     ).slice(0, 5);
+     8545: 
+>>>  8546:     const reply = String(panelResponse.reply || "").trim();
+     8547: 
+     8548:     if (!reply) {
+     8549:       throw new Error("Specialistpanelet returnerede intet svar");
+     8550:     }
+     8551: 
+     8552:     const inputTokens = Number(response?.usage?.input_tokens || 0);
+     8553:     const outputTokens = Number(response?.usage?.output_tokens || 0);
+     8554:     const totalTokens = Number(
+
+--- context lines 8544-8557 ---
+     8544:     ).slice(0, 5);
+     8545: 
+     8546:     const reply = String(panelResponse.reply || "").trim();
+     8547: 
+     8548:     if (!reply) {
+>>>  8549:       throw new Error("Specialistpanelet returnerede intet svar");
+     8550:     }
+     8551: 
+     8552:     const inputTokens = Number(response?.usage?.input_tokens || 0);
+     8553:     const outputTokens = Number(response?.usage?.output_tokens || 0);
+     8554:     const totalTokens = Number(
+     8555:       response?.usage?.total_tokens || inputTokens + outputTokens
+     8556:     );
+     8557: 
+
+--- context lines 8556-8569 ---
+     8556:     );
+     8557: 
+     8558:     const usageByCall = [
+     8559:       {
+     8560:         call: 1,
+>>>  8561:         phase: "case_specialists_involved",
+     8562:         tools_returned_to_model: [],
+     8563:         input_tokens: inputTokens,
+     8564:         output_tokens: outputTokens,
+     8565:         total_tokens: totalTokens,
+     8566:       },
+     8567:     ];
+     8568: 
+     8569:     const usedTools = ["caseSpecialistsInvolvedRouting"];
+
+--- context lines 8564-8577 ---
+     8564:         output_tokens: outputTokens,
+     8565:         total_tokens: totalTokens,
+     8566:       },
+     8567:     ];
+     8568: 
+>>>  8569:     const usedTools = ["caseSpecialistsInvolvedRouting"];
+     8570:     const toolDebug = [
+     8571:       {
+     8572:         name: "caseSpecialistsInvolvedRouting",
+     8573:         selected_specialists: selectedSpecialistIds.map((id) =>
+     8574:           specialistPanel.specialistSummaries.find(
+     8575:             (specialist) => specialist.id === id
+     8576:           )
+     8577:         ).filter(Boolean),
+
+--- context lines 8567-8580 ---
+     8567:     ];
+     8568: 
+     8569:     const usedTools = ["caseSpecialistsInvolvedRouting"];
+     8570:     const toolDebug = [
+     8571:       {
+>>>  8572:         name: "caseSpecialistsInvolvedRouting",
+     8573:         selected_specialists: selectedSpecialistIds.map((id) =>
+     8574:           specialistPanel.specialistSummaries.find(
+     8575:             (specialist) => specialist.id === id
+     8576:           )
+     8577:         ).filter(Boolean),
+     8578:         active_local_case_id: activeLocalCase?.id || null,
+     8579:         role,
+     8580:         response_style,
+
+--- context lines 8568-8581 ---
+     8568: 
+     8569:     const usedTools = ["caseSpecialistsInvolvedRouting"];
+     8570:     const toolDebug = [
+     8571:       {
+     8572:         name: "caseSpecialistsInvolvedRouting",
+>>>  8573:         selected_specialists: selectedSpecialistIds.map((id) =>
+     8574:           specialistPanel.specialistSummaries.find(
+     8575:             (specialist) => specialist.id === id
+     8576:           )
+     8577:         ).filter(Boolean),
+     8578:         active_local_case_id: activeLocalCase?.id || null,
+     8579:         role,
+     8580:         response_style,
+     8581:       },
+
+--- context lines 8569-8582 ---
+     8569:     const usedTools = ["caseSpecialistsInvolvedRouting"];
+     8570:     const toolDebug = [
+     8571:       {
+     8572:         name: "caseSpecialistsInvolvedRouting",
+     8573:         selected_specialists: selectedSpecialistIds.map((id) =>
+>>>  8574:           specialistPanel.specialistSummaries.find(
+     8575:             (specialist) => specialist.id === id
+     8576:           )
+     8577:         ).filter(Boolean),
+     8578:         active_local_case_id: activeLocalCase?.id || null,
+     8579:         role,
+     8580:         response_style,
+     8581:       },
+     8582:     ];
+
+--- context lines 8570-8583 ---
+     8570:     const toolDebug = [
+     8571:       {
+     8572:         name: "caseSpecialistsInvolvedRouting",
+     8573:         selected_specialists: selectedSpecialistIds.map((id) =>
+     8574:           specialistPanel.specialistSummaries.find(
+>>>  8575:             (specialist) => specialist.id === id
+     8576:           )
+     8577:         ).filter(Boolean),
+     8578:         active_local_case_id: activeLocalCase?.id || null,
+     8579:         role,
+     8580:         response_style,
+     8581:       },
+     8582:     ];
+     8583: 
+
+--- context lines 9140-9153 ---
+     9140:       "Sammenhold observationerne med den kendte diagnose og de vedlagte komorbiditetsdata i Ã©t samlet fagligt svar.",
+     9141:       "Vurder fÃ¸rst, om observationerne kan forklares rimeligt inden for den kendte diagnose. Hvis de kan, skal du ikke gÃ¸re komorbiditet til et tema.",
+     9142:       "Brug kun komorbiditetsdata, nÃ¥r observationerne tydeligt ligger ud over eller afviger fra det forventede billede ved den kendte diagnose.",
+     9143:       "Sig aldrig, at CDA eller brugeren har fundet eller pÃ¥vist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'mÃ¥ske autisme', 'mÃ¥ske depression' eller tilsvarende pÃ¥ baggrund af en kort beskrivelse.",
+     9144:       "OmsÃ¦t de interne spor til neutrale observationsomrÃ¥der som fx bekymring og undgÃ¥else, social belastning, energifald og funktionsÃ¦ndring, rigiditet, sansning eller vedvarende konfliktmÃ¸nstre.",
+>>>  9145:       "NÃ¥r noget ligger tydeligt uden for den kendte diagnose, beskriv afvigelsen forsigtigt og anbefal konkrete observationer samt drÃ¸ftelse med relevante lÃ¦rere/team, PPR eller en relevant specialist. Pres ikke pÃ¥ for udredning; formÃ¥let er bedre forstÃ¥else og stÃ¸tte.",
+     9146:       "Brug ikke specialistpanelet i dette flow. UdfÃ¸r ikke Analyse-systemets fulde analyse.",
+     9147:       role === "Specialist"
+     9148:         ? "Svar fagperson til fagperson. Skeln tydeligt mellem observation, hypotese og konklusion, og henvis ikke automatisk brugeren til PPR."
+     9149:         : role === "ForÃ¦lder"
+     9150:           ? "Svar i forÃ¦ldrevenligt sprog. Antag ikke, at barnet viser det samme hjemme og i skole, og respekter bekymring for stempling eller udredning."
+     9151:           : "Svar praksisnÃ¦rt til lÃ¦reren og gÃ¸r nÃ¦ste observation eller handling tydelig.",
+     9152:       "I kort normal drift: giv hÃ¸jst 3 konkrete handlinger. UndgÃ¥ generiske tilbud om mere hjÃ¦lp. Ã‰t konkret opklarende spÃ¸rgsmÃ¥l er tilladt, hvis svaret er nÃ¸dvendigt for at bringe sagen fagligt videre.",
+     9153:       `AKTUEL SVARSTIL: ${response_style}`,
+
+--- context lines 9141-9154 ---
+     9141:       "Vurder fÃ¸rst, om observationerne kan forklares rimeligt inden for den kendte diagnose. Hvis de kan, skal du ikke gÃ¸re komorbiditet til et tema.",
+     9142:       "Brug kun komorbiditetsdata, nÃ¥r observationerne tydeligt ligger ud over eller afviger fra det forventede billede ved den kendte diagnose.",
+     9143:       "Sig aldrig, at CDA eller brugeren har fundet eller pÃ¥vist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'mÃ¥ske autisme', 'mÃ¥ske depression' eller tilsvarende pÃ¥ baggrund af en kort beskrivelse.",
+     9144:       "OmsÃ¦t de interne spor til neutrale observationsomrÃ¥der som fx bekymring og undgÃ¥else, social belastning, energifald og funktionsÃ¦ndring, rigiditet, sansning eller vedvarende konfliktmÃ¸nstre.",
+     9145:       "NÃ¥r noget ligger tydeligt uden for den kendte diagnose, beskriv afvigelsen forsigtigt og anbefal konkrete observationer samt drÃ¸ftelse med relevante lÃ¦rere/team, PPR eller en relevant specialist. Pres ikke pÃ¥ for udredning; formÃ¥let er bedre forstÃ¥else og stÃ¸tte.",
+>>>  9146:       "Brug ikke specialistpanelet i dette flow. UdfÃ¸r ikke Analyse-systemets fulde analyse.",
+     9147:       role === "Specialist"
+     9148:         ? "Svar fagperson til fagperson. Skeln tydeligt mellem observation, hypotese og konklusion, og henvis ikke automatisk brugeren til PPR."
+     9149:         : role === "ForÃ¦lder"
+     9150:           ? "Svar i forÃ¦ldrevenligt sprog. Antag ikke, at barnet viser det samme hjemme og i skole, og respekter bekymring for stempling eller udredning."
+     9151:           : "Svar praksisnÃ¦rt til lÃ¦reren og gÃ¸r nÃ¦ste observation eller handling tydelig.",
+     9152:       "I kort normal drift: giv hÃ¸jst 3 konkrete handlinger. UndgÃ¥ generiske tilbud om mere hjÃ¦lp. Ã‰t konkret opklarende spÃ¸rgsmÃ¥l er tilladt, hvis svaret er nÃ¸dvendigt for at bringe sagen fagligt videre.",
+     9153:       `AKTUEL SVARSTIL: ${response_style}`,
+     9154:       response_style === "Kort"
+
+--- context lines 9142-9155 ---
+     9142:       "Brug kun komorbiditetsdata, nÃ¥r observationerne tydeligt ligger ud over eller afviger fra det forventede billede ved den kendte diagnose.",
+     9143:       "Sig aldrig, at CDA eller brugeren har fundet eller pÃ¥vist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'mÃ¥ske autisme', 'mÃ¥ske depression' eller tilsvarende pÃ¥ baggrund af en kort beskrivelse.",
+     9144:       "OmsÃ¦t de interne spor til neutrale observationsomrÃ¥der som fx bekymring og undgÃ¥else, social belastning, energifald og funktionsÃ¦ndring, rigiditet, sansning eller vedvarende konfliktmÃ¸nstre.",
+     9145:       "NÃ¥r noget ligger tydeligt uden for den kendte diagnose, beskriv afvigelsen forsigtigt og anbefal konkrete observationer samt drÃ¸ftelse med relevante lÃ¦rere/team, PPR eller en relevant specialist. Pres ikke pÃ¥ for udredning; formÃ¥let er bedre forstÃ¥else og stÃ¸tte.",
+     9146:       "Brug ikke specialistpanelet i dette flow. UdfÃ¸r ikke Analyse-systemets fulde analyse.",
+>>>  9147:       role === "Specialist"
+     9148:         ? "Svar fagperson til fagperson. Skeln tydeligt mellem observation, hypotese og konklusion, og henvis ikke automatisk brugeren til PPR."
+     9149:         : role === "ForÃ¦lder"
+     9150:           ? "Svar i forÃ¦ldrevenligt sprog. Antag ikke, at barnet viser det samme hjemme og i skole, og respekter bekymring for stempling eller udredning."
+     9151:           : "Svar praksisnÃ¦rt til lÃ¦reren og gÃ¸r nÃ¦ste observation eller handling tydelig.",
+     9152:       "I kort normal drift: giv hÃ¸jst 3 konkrete handlinger. UndgÃ¥ generiske tilbud om mere hjÃ¦lp. Ã‰t konkret opklarende spÃ¸rgsmÃ¥l er tilladt, hvis svaret er nÃ¸dvendigt for at bringe sagen fagligt videre.",
+     9153:       `AKTUEL SVARSTIL: ${response_style}`,
+     9154:       response_style === "Kort"
+     9155:         ? "Svar kort og direkte."
+
+--- context lines 9143-9156 ---
+     9143:       "Sig aldrig, at CDA eller brugeren har fundet eller pÃ¥vist en komorbiditet. Stil aldrig en ny diagnose, og skriv ikke 'mÃ¥ske autisme', 'mÃ¥ske depression' eller tilsvarende pÃ¥ baggrund af en kort beskrivelse.",
+     9144:       "OmsÃ¦t de interne spor til neutrale observationsomrÃ¥der som fx bekymring og undgÃ¥else, social belastning, energifald og funktionsÃ¦ndring, rigiditet, sansning eller vedvarende konfliktmÃ¸nstre.",
+     9145:       "NÃ¥r noget ligger tydeligt uden for den kendte diagnose, beskriv afvigelsen forsigtigt og anbefal konkrete observationer samt drÃ¸ftelse med relevante lÃ¦rere/team, PPR eller en relevant specialist. Pres ikke pÃ¥ for udredning; formÃ¥let er bedre forstÃ¥else og stÃ¸tte.",
+     9146:       "Brug ikke specialistpanelet i dette flow. UdfÃ¸r ikke Analyse-systemets fulde analyse.",
+     9147:       role === "Specialist"
+>>>  9148:         ? "Svar fagperson til fagperson. Skeln tydeligt mellem observation, hypotese og konklusion, og henvis ikke automatisk brugeren til PPR."
+     9149:         : role === "ForÃ¦lder"
+     9150:           ? "Svar i forÃ¦ldrevenligt sprog. Antag ikke, at barnet viser det samme hjemme og i skole, og respekter bekymring for stempling eller udredning."
+     9151:           : "Svar praksisnÃ¦rt til lÃ¦reren og gÃ¸r nÃ¦ste observation eller handling tydelig.",
+     9152:       "I kort normal drift: giv hÃ¸jst 3 konkrete handlinger. UndgÃ¥ generiske tilbud om mere hjÃ¦lp. Ã‰t konkret opklarende spÃ¸rgsmÃ¥l er tilladt, hvis svaret er nÃ¸dvendigt for at bringe sagen fagligt videre.",
+     9153:       `AKTUEL SVARSTIL: ${response_style}`,
+     9154:       response_style === "Kort"
+     9155:         ? "Svar kort og direkte."
+     9156:         : response_style === "Dyb"
+
+--- context lines 9286-9299 ---
+     9286:       "Skeln mellem almindelig udviklingsvariation og vedvarende mÃ¸nstre, der pÃ¥virker trivsel, deltagelse, relationer eller sikkerhed. KonkludÃ©r aldrig diagnose ud fra en kort beskrivelse.",
+     9287:       "NÃ¥r brugeren arbejder i bÃ¸rnehaven, skal svaret rettes til pÃ¦dagogen eller bÃ¸rnehavepersonalet â€” ikke til en klasselÃ¦rer.",
+     9288:       "Ved spÃ¸rgsmÃ¥l om skolestart eller overlevering skal styrker, triggere, det der virker, det der ikke virker, relationer, kommunikation og stÃ¸ttebehov fremgÃ¥ tydeligt, sÃ¥ skolen kan starte rigtigt fra fÃ¸rste dag.",
+     9289:       "Ved spÃ¸rgsmÃ¥l om forÃ¦ldresamtaler skal observationer deles neutralt og samarbejdende uden etiketter eller skjulte diagnoselignende konklusioner.",
+     9290:       "Giv hÃ¸jst 3 konkrete handlinger i normal kort drift. Ã‰t mÃ¥lrettet fagligt opfÃ¸lgende spÃ¸rgsmÃ¥l er tilladt, nÃ¥r det er nÃ¸dvendigt; afslut ikke med et generisk tilbud om mere hjÃ¦lp.",
+>>>  9291:       "Brug ikke cases, PBL, specialistpanel, rollespil eller komorbiditet i dette flow, medmindre brugeren udtrykkeligt har bedt om det â€” sÃ¥danne forespÃ¸rgsler hÃ¥ndteres i andre flows.",
+     9292:       `AKTUEL SVARSTIL: ${response_style}`,
+     9293:       response_style === "Kort"
+     9294:         ? "Svar kort og direkte."
+     9295:         : response_style === "Dyb"
+     9296:           ? "Uddyb de relevante pÃ¦dagogiske sammenhÃ¦nge uden unÃ¸dvendig teori eller gentagelser."
+     9297:           : "Giv en kort faglig forklaring og konkrete nÃ¦ste skridt.",
+     9298:     ].join("\n");
+     9299: 
+
+--- context lines 9431-9444 ---
+     9431:       "Brug de vedlagte strukturerede CDA-diagnosedata som det faglige grundlag for svaret.",
+     9432:       "Besvar brugerens konkrete spÃ¸rgsmÃ¥l dynamisk. Gengiv ikke data mekanisk, og vis ikke interne feltnavne eller datastruktur.",
+     9433:       "Brug kun de dele af datagrundlaget, der er relevante for spÃ¸rgsmÃ¥let og rollen.",
+     9434:       "Kobl ikke en konkret elev til en diagnose uden formel udredning. Ved en kendt diagnose mÃ¥ du forklare relevante mÃ¸nstre og hensyn uden at genvurdere diagnosen.",
+     9435:       "UdfÃ¸r ikke Analyse-systemets fulde caseanalyse og foretag ikke komorbiditetstest i dette flow.",
+>>>  9436:       role === "Specialist"
+     9437:         ? "Svar fagperson til fagperson med prÃ¦cist specialistsprog, men hold dig til det konkrete spÃ¸rgsmÃ¥l og lav ikke en fuld Analyse-vurdering."
+     9438:         : role === "ForÃ¦lder"
+     9439:           ? "ForÃ¦ldresvaret skal tage udgangspunkt i hjemmet og familiens hverdag. Antag aldrig, at barnet viser samme adfÃ¦rd hjemme og i skolen. Skolen mÃ¥ kun nÃ¦vnes kort som en mulig sammenligning, fx at spÃ¸rge lÃ¦reren, hvad lÃ¦reren ser. Forskelle mellem hjem og skole kan have mange forklaringer og mÃ¥ ikke tolkes sikkert. Giv hÃ¸jst 3 konkrete rÃ¥d og afslut uden et generisk tilbud eller et automatisk spÃ¸rgsmÃ¥l."
+     9440:           : "Hold svaret praksisnÃ¦rt og direkte anvendeligt for den valgte rolle.",
+     9441:       `AKTUEL SVARSTIL: ${response_style}`,
+     9442:       response_style === "Kort"
+     9443:         ? "Svar kort og direkte."
+     9444:         : response_style === "Dyb"
+
+--- context lines 9432-9445 ---
+     9432:       "Besvar brugerens konkrete spÃ¸rgsmÃ¥l dynamisk. Gengiv ikke data mekanisk, og vis ikke interne feltnavne eller datastruktur.",
+     9433:       "Brug kun de dele af datagrundlaget, der er relevante for spÃ¸rgsmÃ¥let og rollen.",
+     9434:       "Kobl ikke en konkret elev til en diagnose uden formel udredning. Ved en kendt diagnose mÃ¥ du forklare relevante mÃ¸nstre og hensyn uden at genvurdere diagnosen.",
+     9435:       "UdfÃ¸r ikke Analyse-systemets fulde caseanalyse og foretag ikke komorbiditetstest i dette flow.",
+     9436:       role === "Specialist"
+>>>  9437:         ? "Svar fagperson til fagperson med prÃ¦cist specialistsprog, men hold dig til det konkrete spÃ¸rgsmÃ¥l og lav ikke en fuld Analyse-vurdering."
+     9438:         : role === "ForÃ¦lder"
+     9439:           ? "ForÃ¦ldresvaret skal tage udgangspunkt i hjemmet og familiens hverdag. Antag aldrig, at barnet viser samme adfÃ¦rd hjemme og i skolen. Skolen mÃ¥ kun nÃ¦vnes kort som en mulig sammenligning, fx at spÃ¸rge lÃ¦reren, hvad lÃ¦reren ser. Forskelle mellem hjem og skole kan have mange forklaringer og mÃ¥ ikke tolkes sikkert. Giv hÃ¸jst 3 konkrete rÃ¥d og afslut uden et generisk tilbud eller et automatisk spÃ¸rgsmÃ¥l."
+     9440:           : "Hold svaret praksisnÃ¦rt og direkte anvendeligt for den valgte rolle.",
+     9441:       `AKTUEL SVARSTIL: ${response_style}`,
+     9442:       response_style === "Kort"
+     9443:         ? "Svar kort og direkte."
+     9444:         : response_style === "Dyb"
+     9445:           ? "Uddyb relevante faglige sammenhÃ¦nge, men undgÃ¥ unÃ¸dvendig teori og gentagelser."
+
+--- context lines 9561-9574 ---
+     9561:       message,
+     9562:       language,
+     9563:       role,
+     9564:       responseStyle: response_style,
+     9565:       activeCaseContext,
+>>>  9566:       mode: role === "Specialist" ? "specialist_without_analysis_module" : "normal",
+     9567:     });
+     9568: 
+     9569:     const heidiFlowReplyData = extractPendingAction(heidiFlowResult.outputText);
+     9570:     const normalReply = String(heidiFlowReplyData.reply || "")
+     9571:       .replace(/\s*(?:(?:Hvis du vil,\s*kan jeg(?: ogsÃ¥)?)|(?:Vil du have)|(?:If you want,\s*I can(?: also)?))[^.!?]*(?:[.!?]|$)\s*$/i, "")
+     9572:       .trim();
+     9573: 
+     9574:     const inputTokens = Number(heidiFlowResult.response?.usage?.input_tokens || 0);
+
+--- context lines 9590-9603 ---
+     9590: 
+     9591:     const usedTools = ["heidiFlowV1"];
+     9592:     const toolDebug = [
+     9593:       {
+     9594:         name: "heidiFlowV1",
+>>>  9595:         action: role === "Specialist" ? "specialist_without_analysis_module" : "normal",
+     9596:         ...heidiFlowResult.debug,
+     9597:       },
+     9598:     ];
+     9599: 
+     9600:     console.log("CDA vÃ¦rktÃ¸jskald:", {
+     9601:       tools_used: usedTools,
+     9602:       tool_debug: toolDebug,
+     9603:     });
+
