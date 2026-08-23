@@ -94,6 +94,22 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "trafiklyskort",
+          "title": "Trafiklyskort",
+          "description": "Signal- og selvreguleringsværktøj med farver: hvordan det virker, plus individuel aftale om betydning og reaktion.",
+          "content_file": "templates/trafiklyskort.md",
+          "keywords": [
+            "trafiklys",
+            "trafiklyskort",
+            "signalkort",
+            "selvregulering",
+            "farvekort"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     },
