@@ -764,6 +764,47 @@
       box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
     }
 
+    .worksheet-form-table-wrapper {
+      overflow-x: auto;
+      margin: 6px 0 14px;
+    }
+
+    .worksheet-form-table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 480px;
+      font-size: 13px;
+    }
+
+    .worksheet-form-table th,
+    .worksheet-form-table td {
+      border: 1px solid var(--line);
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .worksheet-form-table th {
+      background: #f4f5f8;
+      font-weight: 600;
+    }
+
+    .worksheet-form-table td input[type="text"] {
+      width: 100%;
+      min-width: 90px;
+      border: none;
+      background: transparent;
+      font: inherit;
+      color: var(--text);
+      outline: none;
+      padding: 2px;
+    }
+
+    .worksheet-form-table td input[type="text"]:focus {
+      background: rgba(49, 87, 213, 0.06);
+      border-radius: 4px;
+    }
+
     .observation-review-list {
       display: grid;
       gap: 12px;
@@ -3355,6 +3396,57 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       return { underlineCount, afterField };
     }
 
+    function splitWorksheetTableRow(line) {
+      const trimmed = String(line || "").trim();
+      const withoutEdges = trimmed.replace(/^\|/, "").replace(/\|$/, "");
+
+      return withoutEdges.split("|").map((cell) => cell.trim());
+    }
+
+    function isWorksheetTableRowLine(line) {
+      const trimmed = String(line || "").trim();
+      return /^\|.*\|$/.test(trimmed);
+    }
+
+    function isWorksheetTableSeparatorLine(line) {
+      const trimmed = String(line || "").trim();
+      if (!isWorksheetTableRowLine(trimmed)) return false;
+
+      return splitWorksheetTableRow(trimmed).every((cell) =>
+        /^:?-+:?$/.test(cell)
+      );
+    }
+
+    function parseWorksheetTableBlock(lines, startIndex) {
+      const headerCells = splitWorksheetTableRow(lines[startIndex]).map(
+        (cell) => cleanWorksheetLabel(cell)
+      );
+      let index = startIndex + 2; // skip header + separator
+      const rows = [];
+
+      while (index < lines.length && isWorksheetTableRowLine(lines[index])) {
+        const rawCells = splitWorksheetTableRow(lines[index]);
+        rows.push(
+          rawCells.map((cell) => {
+            const cleaned = cell.trim();
+
+            if (cleaned === "☐" || cleaned === "[ ]") {
+              return { kind: "checkbox", text: "" };
+            }
+
+            if (!cleaned) {
+              return { kind: "editable", text: "" };
+            }
+
+            return { kind: "fixed", text: cleanWorksheetLabel(cleaned) };
+          })
+        );
+        index += 1;
+      }
+
+      return { headerCells, rows, afterTable: index };
+    }
+
     function parseTemplateWorksheet(templateText) {
       const lines = String(templateText || "")
         .replace(/\r\n/g, "\n")
@@ -3400,6 +3492,32 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
             text: headingText,
           });
           index += 1;
+          continue;
+        }
+
+        if (
+          isWorksheetTableRowLine(trimmed) &&
+          isWorksheetTableSeparatorLine(lines[index + 1])
+        ) {
+          const table = parseWorksheetTableBlock(lines, index);
+          const tableId = `table-${fieldNumber + 1}`;
+
+          table.rows.forEach((row) => {
+            row.forEach((cell) => {
+              if (cell.kind !== "fixed") {
+                fieldNumber += 1;
+                cell.id = `field-${fieldNumber}`;
+              }
+            });
+          });
+
+          blocks.push({
+            type: "table",
+            id: tableId,
+            headerCells: table.headerCells,
+            rows: table.rows,
+          });
+          index = table.afterTable;
           continue;
         }
 
@@ -3567,6 +3685,61 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
           return;
         }
 
+        if (block.type === "table") {
+          const tableWrapper = document.createElement("div");
+          tableWrapper.className = "worksheet-form-table-wrapper";
+
+          const table = document.createElement("table");
+          table.className = "worksheet-form-table";
+
+          const thead = document.createElement("thead");
+          const headRow = document.createElement("tr");
+          block.headerCells.forEach((headerText) => {
+            const th = document.createElement("th");
+            th.textContent = headerText;
+            headRow.appendChild(th);
+          });
+          thead.appendChild(headRow);
+          table.appendChild(thead);
+
+          const tbody = document.createElement("tbody");
+          block.rows.forEach((row) => {
+            const tr = document.createElement("tr");
+
+            row.forEach((cell) => {
+              const td = document.createElement("td");
+
+              if (cell.kind === "fixed") {
+                td.textContent = cell.text;
+              } else if (cell.kind === "checkbox") {
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.setAttribute("aria-label", "Afkryds");
+                controls.set(cell.id, { checkbox });
+                firstControl ||= checkbox;
+                td.appendChild(checkbox);
+              } else {
+                const input = document.createElement("input");
+                input.type = "text";
+                input.autocomplete = "off";
+                input.setAttribute("aria-label", "Udfyld felt");
+                controls.set(cell.id, input);
+                firstControl ||= input;
+                td.appendChild(input);
+              }
+
+              tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+          });
+          table.appendChild(tbody);
+
+          tableWrapper.appendChild(table);
+          form.appendChild(tableWrapper);
+          return;
+        }
+
         if (block.type !== "field") return;
 
         const wrapper = document.createElement("div");
@@ -3598,9 +3771,84 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         form.appendChild(wrapper);
       });
 
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function getHtml() {
+        const htmlParts = [];
+
+        parsed.blocks.forEach((block) => {
+          if (block.type === "heading") {
+            const tag = block.level <= 2 ? "h2" : "h3";
+            htmlParts.push(`<${tag}>${escapeHtml(block.text)}</${tag}>`);
+            return;
+          }
+
+          if (block.type === "text" || block.type === "note") {
+            htmlParts.push(`<p>${escapeHtml(block.text)}</p>`);
+            return;
+          }
+
+          if (block.type === "checkbox") {
+            const entry = controls.get(block.id);
+            const textValue = String(entry?.textInput?.value || "").trim();
+            const mark = entry?.checkbox?.checked ? "☑" : "☐";
+            htmlParts.push(
+              `<p>${mark} ${escapeHtml(block.label)}${textValue ? `: ${escapeHtml(textValue)}` : ""}</p>`
+            );
+            return;
+          }
+
+          if (block.type === "table") {
+            const headRow = block.headerCells
+              .map((cell) => `<th>${escapeHtml(cell)}</th>`)
+              .join("");
+            const bodyRows = block.rows
+              .map((row) => {
+                const cells = row
+                  .map((cell) => {
+                    if (cell.kind === "fixed") {
+                      return `<td>${escapeHtml(cell.text)}</td>`;
+                    }
+
+                    const entry = controls.get(cell.id);
+
+                    if (cell.kind === "checkbox") {
+                      return `<td>${entry?.checkbox?.checked ? "☑" : "☐"}</td>`;
+                    }
+
+                    return `<td>${escapeHtml(String(entry?.value || "").trim())}</td>`;
+                  })
+                  .join("");
+                return `<tr>${cells}</tr>`;
+              })
+              .join("");
+
+            htmlParts.push(
+              `<table border="1" cellspacing="0" cellpadding="4"><thead><tr>${headRow}</tr></thead><tbody>${bodyRows}</tbody></table>`
+            );
+            return;
+          }
+
+          if (block.type !== "field") return;
+
+          const value = String(controls.get(block.id)?.value || "").trim();
+          htmlParts.push(
+            `<p><strong>${escapeHtml(block.label)}</strong>${value ? `: ${escapeHtml(value)}` : ""}</p>`
+          );
+        });
+
+        return htmlParts.join("\n");
+      }
+
       return {
         element: form,
         firstControl,
+        getHtml,
         getText() {
           const parts = [];
 
@@ -3624,6 +3872,27 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
                   `[x] ${block.label}${textValue ? `: ${textValue}` : ""}`
                 );
               }
+              return;
+            }
+
+            if (block.type === "table") {
+              parts.push(block.headerCells.join(" | "));
+
+              block.rows.forEach((row) => {
+                const cellTexts = row.map((cell) => {
+                  if (cell.kind === "fixed") return cell.text;
+
+                  const entry = controls.get(cell.id);
+
+                  if (cell.kind === "checkbox") {
+                    return entry?.checkbox?.checked ? "x" : "";
+                  }
+
+                  return String(entry?.value || "").trim();
+                });
+
+                parts.push(cellTexts.join(" | "));
+              });
               return;
             }
 
@@ -3696,6 +3965,47 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       content.innerHTML = "";
       content.appendChild(title);
       content.appendChild(purpose);
+    }
+
+    function slugifyWorksheetFilename(title) {
+      const base = String(title || "skabelon")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+      return `${base || "skabelon"}.doc`;
+    }
+
+    function downloadWorksheetAsWord(title, bodyHtml) {
+      const escapedTitle = String(title || "Skabelon").replace(
+        /[<>&]/g,
+        (char) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[char])
+      );
+
+      const document_ = [
+        "<html xmlns:o='urn:schemas-microsoft-com:office:office' ",
+        "xmlns:w='urn:schemas-microsoft-com:office:word' ",
+        "xmlns='http://www.w3.org/TR/REC-html40'>",
+        "<head><meta charset='utf-8'>",
+        `<title>${escapedTitle}</title></head>`,
+        "<body style='font-family:Calibri,Arial,sans-serif;font-size:12pt;'>",
+        bodyHtml,
+        "</body></html>",
+      ].join("");
+
+      const blob = new Blob(["\ufeff", document_], {
+        type: "application/msword",
+      });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = slugifyWorksheetFilename(title);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     }
 
     function attachTemplateWorkspaceAction(
@@ -3809,7 +4119,36 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
           }
         });
 
+        const downloadButton = document.createElement("button");
+        downloadButton.className = "save-profile-button";
+        downloadButton.type = "button";
+        downloadButton.textContent = "Download som Word";
+
+        downloadButton.addEventListener("click", () => {
+          const textValue = String(getWorkspaceValue?.() || "").trim();
+
+          if (!textValue) {
+            copyStatus.classList.add("error");
+            copyStatus.textContent = "Der er ingen tekst at downloade.";
+            firstControl?.focus();
+            return;
+          }
+
+          const preview = getTemplateWorksheetPreview(templateText);
+          const bodyHtml = structuredWorksheet
+            ? structuredWorksheet.getHtml()
+            : textValue
+                .split("\n")
+                .map((line) => `<p>${line || "&nbsp;"}</p>`)
+                .join("\n");
+
+          downloadWorksheetAsWord(preview.title, bodyHtml);
+          copyStatus.classList.remove("error");
+          copyStatus.textContent = "Word-dokument downloadet.";
+        });
+
         workspaceActions.appendChild(copyButton);
+        workspaceActions.appendChild(downloadButton);
         workspaceActions.appendChild(copyStatus);
         workspace.appendChild(workspaceActions);
         bubble.appendChild(workspace);
