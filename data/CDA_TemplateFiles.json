@@ -170,6 +170,35 @@
           "ai_required": false
         }
       ]
+    },
+    {
+      "id": "profil-og-trivsel",
+      "title": "Profil og trivsel",
+      "description": "Elevprofiler der samler perspektiv, styrker og fungerende støtte på et konkret område.",
+      "keywords": [
+        "profil",
+        "trivsel",
+        "sociale relationer",
+        "styrker"
+      ],
+      "files": [
+        {
+          "id": "sociale-relationer",
+          "title": "Sociale relationer og samarbejde",
+          "description": "Elevens perspektiv, hvad der fungerer og er svært socialt, tidlige tegn og konkret støtte.",
+          "content_file": "templates/sociale-relationer.md",
+          "keywords": [
+            "sociale relationer",
+            "samarbejde",
+            "gruppearbejde",
+            "venskaber",
+            "social profil"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
   ],
   "standalone": []
