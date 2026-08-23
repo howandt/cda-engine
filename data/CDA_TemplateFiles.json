@@ -197,6 +197,22 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "mestringsprofil",
+          "title": "Min Mestringsprofil",
+          "description": "Styrkebaseret profil: elevens styrker, interesser, læringsstrategier og hvad der motiverer.",
+          "content_file": "templates/mestringsprofil.md",
+          "keywords": [
+            "mestringsprofil",
+            "styrker",
+            "styrkeprofil",
+            "interesser",
+            "motivation"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     }
