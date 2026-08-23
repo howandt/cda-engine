@@ -3276,6 +3276,26 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       return isFillableTemplateAssistantReply(templateText);
     }
 
+    function buildTemplateSelectionFromReply(data) {
+      if (data?.conversation_mode !== "template_resource") return null;
+
+      const toolDebug = Array.isArray(data?.tool_debug) ? data.tool_debug : [];
+      const entry = toolDebug.find(
+        (item) =>
+          item?.name === "templateResourceEngineV2" &&
+          (item.action === "show_existing_template" ||
+            item.action === "show_existing_template_direct_file")
+      );
+
+      if (!entry?.template_id) return null;
+
+      return {
+        templateId: entry.template_id,
+        templateTitle: entry.template_title || "Skabelon",
+        promptOnly: false,
+      };
+    }
+
     function findRegisteredTemplate(templateId) {
       const wantedId = String(templateId || "").trim();
 
@@ -5440,8 +5460,10 @@ if (data.pending_action) {
         }
 
         const assistantRow = appendMessage("assistant", data.reply);
+        const inferredTemplateSelection =
+          activeTemplateSelection || buildTemplateSelectionFromReply(data);
         const shouldAttachWorkspace = shouldAttachTemplateWorkspace(
-          activeTemplateSelection,
+          inferredTemplateSelection,
           data.reply
         );
 
@@ -5449,7 +5471,7 @@ if (data.pending_action) {
           attachTemplateWorkspaceAction(
             assistantRow,
             data.reply,
-            activeTemplateSelection
+            inferredTemplateSelection
           );
         }
 
