@@ -110,6 +110,22 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "motivation-beloenning",
+          "title": "Motivation og belønningsstrategier",
+          "description": "Konkret pointsystem: hvad giver point, hvad udløser det, og faste principper der beskytter eleven mod at miste optjente point.",
+          "content_file": "templates/motivation-beloenning.md",
+          "keywords": [
+            "motivation",
+            "belønning",
+            "point",
+            "pointsystem",
+            "anerkendelse"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     },
