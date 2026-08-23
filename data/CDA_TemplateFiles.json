@@ -245,6 +245,21 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "elevprofil",
+          "title": "Elevprofil",
+          "description": "Kort, fælles overblik: hvordan eleven fungerer, hvad der er svært, og hvad der hjælper.",
+          "content_file": "templates/elevprofil.md",
+          "keywords": [
+            "elevprofil",
+            "profil",
+            "overblik",
+            "vikarprofil"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     }
