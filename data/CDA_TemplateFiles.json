@@ -317,6 +317,21 @@
           "resource_type": "guide",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "barnets-indsigtkort",
+          "title": "Barnets Indsigtkort",
+          "description": "Hurtigt indblik, læses på under 2 minutter — ikke en fuld profil.",
+          "content_file": "templates/barnets-indsigtkort.md",
+          "keywords": [
+            "indsigtkort",
+            "barnets indsigtkort",
+            "hurtigt overblik",
+            "kort overblik"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     }
