@@ -277,11 +277,11 @@
     },
     {
       "id": "ny-elev-og-opstart",
-      "title": "Ny elev og opstart",
-      "description": "Til den første tid med en ny elev med diagnose — særligt nyttig for en lærer der ikke ved, hvor han skal starte.",
+      "title": "Ny elev med diagnose – opstart",
+      "description": "Til den første tid med en ny elev med diagnose — ikke nye elever generelt. Særligt nyttig for en lærer der ikke ved, hvor han skal starte.",
       "keywords": [
         "opstart",
-        "ny elev",
+        "ny elev med diagnose",
         "nyt skoleår",
         "modtagelse"
       ],
