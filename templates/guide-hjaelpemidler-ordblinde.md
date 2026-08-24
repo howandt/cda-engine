@@ -1,37 +1,42 @@
 # Hjælpemidler til ordblinde
 
-> Kort overblik over de mest almindelige digitale hjælpemidler til ordblindhed og læse-/skrivevanskeligheder — ikke en komplet liste, og ikke en anbefaling af bestemte produkter. Brug *Elevens Mestringsmappe – læse- og skrivestøtte* til at registrere, hvad der konkret virker for en elev.
+> Kort, samlet overblik — værktøjer, relevante CDA-skabeloner og konkrete undervisningstips. Ikke en komplet liste, og ikke en anbefaling af bestemte produkter.
 
 ---
 
-**Oplæsning / tekst-til-tale**
+## Digitale værktøjer
 
-Læser skærmtekst, PDF'er eller fotograferede tekster højt. Det mest grundlæggende hjælpemiddel ved ordblindhed — gør adgang til tekst uafhængig af egen læsefærdighed.
+**Oplæsning / tekst-til-tale** — læser skærmtekst, PDF'er eller fotograferede tekster højt. Det mest grundlæggende hjælpemiddel ved ordblindhed.
 
----
+**Stavehjælp og ordforslag** — forstår fonetiske fejl (fx skrevet som det lyder), i modsætning til almindelig stavekontrol.
 
-**Stavehjælp og ordforslag**
+**Tale-til-tekst (diktering)** — nyttigt, når mundtlig formulering er stærkere end skriftlig.
 
-Foreslår ord undervejs i skrivningen og retter stavefejl. Vigtigt ved ordblindhed: gode ordblinde-værktøjer forstår fonetiske fejl (fx skrevet som det lyder), i modsætning til almindelig stavekontrol.
-
----
-
-**Tale-til-tekst (diktering)**
-
-Omsætter tale til skrevet tekst. Nyttigt, når mundtlig formulering er stærkere end skriftlig — ofte tilfældet ved ordblindhed.
+**OCR — tekstgenkendelse af billeder** — gør fotograferet eller scannet tekst om til noget, en oplæsningsfunktion kan læse højt.
 
 ---
 
-**OCR — tekstgenkendelse af billeder**
+## Relevante CDA-skabeloner
 
-Gør fotograferet eller scannet tekst (fx en bog eller et ark) om til tekst, en oplæsningsfunktion kan læse højt. Afgørende for adgang til trykt undervisningsmateriale.
-
----
-
-**Sådan vælges det rigtige hjælpemiddel**
-
-Tag udgangspunkt i, hvad der konkret er svært — læsning, skrivning, eller begge dele. Afprøv ét hjælpemiddel ad gangen, i en tryg situation, med en kendt voksen de første gange.
+- ***Elevens Mestringsmappe – læse- og skrivestøtte*** — start her: elevens perspektiv, hvad der er svært, og fungerende støtte
+- ***Digitale hjælpemidler – brug og strategi*** — hvilke værktøjer eleven bruger, hvornår, og hvor selvstændigt
+- ***Min Mestringsprofil*** — styrker og interesser, som modvægt til udfordringerne
+- ***Dagplanbygger*** — hvis opgavemængde eller overblik i sig selv er en del af udfordringen
 
 ---
 
-> Skolens IT-vejleder eller læsevejleder kender ofte de konkrete produkter, kommunen stiller til rådighed. Brug denne guide til at vide, hvad du skal spørge efter.
+## I undervisningen
+
+- Giv tekster digitalt, så oplæsning er muligt
+- Lad eleven lytte i stedet for kun at læse
+- Lad eleven svare mundtligt eller med billeder, når det er muligt
+- Giv ekstra tid
+- Brug korte, konkrete instruktioner
+- Undgå at eleven skal læse højt uforberedt
+- Bedøm faglig viden — ikke stavning, medmindre det er det, der undervises i
+
+---
+
+## Start her som lærer
+
+Brug først *Elevens Mestringsmappe*, dernæst *Digitale hjælpemidler – brug og strategi*. Skolens IT-vejleder eller læsevejleder kender ofte de konkrete produkter, kommunen stiller til rådighed.
