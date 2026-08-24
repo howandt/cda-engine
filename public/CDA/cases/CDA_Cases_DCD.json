@@ -113,6 +113,28 @@
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
       "sidst_opdateret": "2025-11-14"
+    },
+    {
+      "id": "case-import-076",
+      "titel": "Kasper, 7 år – Motorisk Uro og Lav Selvtillid",
+      "alder": 7,
+      "diagnoser": [
+        "DCD"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "DCD1 - professionel case",
+      "problem": "Kasper vælter ofte ting, skriver meget langsomt, og nægter opgaver der kræver finmotorik. Han siger: “jeg kan ikke” og vil ofte sidde alene. Han er sød, men virker udenfor i pauser, og reagerer med vrede ved drilleri.",
+      "barnets_oplevelse": "De andre kan det hele. Jeg gider ikke, for jeg laver det forkert.",
+      "typisk_fejl": "Han virker opgivende og undvigende – men han er ikke uinteresseret.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "DCD",
+      "kort_beskrivelse": "Kasper vælter ofte ting, skriver meget langsomt, og nægter opgaver der kræver finmotorik. Han siger: “jeg kan ikke” og vil ofte sidde alene. Han er sø...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
     }
   ]
 }

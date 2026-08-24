@@ -189,6 +189,224 @@
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
       "sidst_opdateret": "2025-11-14"
+    },
+    {
+      "id": "case-import-009",
+      "titel": "Lea 13 år – overgang og sensory meltdowns",
+      "alder": 13,
+      "diagnoser": [
+        "ADHD",
+        "autisme",
+        "angst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Ungdomsskole, overgang, sanser",
+      "problem": "Lea er startet på ungdomsskole og oplever daglige sammenbrud. Kombinationen af nye omgivelser, mere støj, skiftende lærere og social kompleksitet sender hende i konstant alarmberedskab. Hun får \"meltdowns\" flere gange ugentligt.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Behandler diagnoserne hver for sig i stedet for som et samspil * Forventer hurtig tilpasning uden graduel transition * Misforstår meltdowns som \"dårlig opførsel\"",
+      "løsning": "* Anerkend den triple-diagnose som kompleks kombination * Skab struktur der tager højde for alle tre udfordringer * Lav graduel eksponering med mange exit-muligheder",
+      "tiltag": "* Sansekort over skolen: støjniveauer, sikre zoner * Fast \"base\" hun kan trække sig til ved overstimulering * Visuel støtte til skemaer og lokaleændringer * Tryghedsperson hun kan kontakte ved kriser * Reduceret timetal i overgangsfase",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Lea er startet på ungdomsskole og oplever daglige sammenbrud. Kombinationen af nye omgivelser, mere støj, skiftende lærere og social kompleksitet send...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-025",
+      "titel": "Mia 6 år – hyperaktivitet møder rutinebehov",
+      "alder": 6,
+      "diagnoser": [
+        "ADHD (hyperaktiv type)",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Rutiner vs. impulsivitet, struktur vs. bevægelse",
+      "problem": "Mia har brug for faste rutiner (autism) men kan ikke sidde stille længe nok til at følge dem (ADHD). Hun bliver frustreret når rutiner brydes, men bryder dem selv konstant ved at rejse sig og bevæge sig rundt.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Bevægelses-integrerede rutiner:** - Rutiner der inkluderede bevægelse som fast del - \"Bevægelses-pauser\" indbygget i strukturen hver 10 minut - Visuelle rutiner hun kunne følge mens hun bevægede sig - Alternative siddepladser: balance-bold, ståpult, gulvplads - Rutiner der kunne udføres på forskellige måder men samme rækkefølge - \"Rutine-kort\" hun kunne tage med sig når hun bevægede sig",
+      "tiltag": "",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Mia har brug for faste rutiner (autism) men kan ikke sidde stille længe nok til at følge dem (ADHD). Hun bliver frustreret når rutiner brydes, men bry...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-026",
+      "titel": "Oliver 9 år – sociale regler og impulsiv kommunikation",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD",
+        "Autisme (mild)"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Social kommunikation, impulsivitet, regler",
+      "problem": "Oliver forstår sociale regler intellektuelt (autism) men kan ikke stoppe sig selv fra at bryde dem impulsivt (ADHD). Han afbryder konstant, siger upassende ting og forstår ikke hvorfor andre bliver irriterede.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Konkrete sociale værktøjer til impulsiv hjerne:** - \"Pause-knap\" strategi: fysisk berøring af egen arm før han talte - Korte, konkrete sociale scripts han kunne huske under pres - Visuelle kort med sociale regler han kunne se under samtaler - \"Tanke-timer\" hvor han måtte sige alt uden sociale regler - Rollespil hvor han øvede sociale situationer i rolige omgivelser - \"Social buddy\" der kunne giv",
+      "tiltag": "",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Oliver forstår sociale regler intellektuelt (autism) men kan ikke stoppe sig selv fra at bryde dem impulsivt (ADHD). Han afbryder konstant, siger upas...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-027",
+      "titel": "Emma 12 år – sensorisk overload og opmærksomhedsproblemer",
+      "alder": 12,
+      "diagnoser": [
+        "ADHD (inattentiv type)",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Sanser, opmærksomhed, overstimulering",
+      "problem": "Emma kan ikke koncentrere sig om opgaver når der er den mindste lyd (autism), men ADHD gør at hun konstant leder efter stimuli. Hun er fanget mellem at have brug for ro og at søge distraktioner.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Balanceret sensorisk miljø:** - Noise-cancelling høretelefoner med lav baggrundsmusik (white noise) - Kontrollerede stimuli: fidget-tools der ikke lavede lyd - Korte koncentrationsperioder (10-15 min) med sensoriske pauser - \"Stimuli-menu\" Emma kunne vælge fra når hun havde brug for mere input - Separate områder til forskellige aktiviteter: \"roligt hjørne\" vs. \"aktiv zone\" - Medicin-timing koord",
+      "tiltag": "",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Emma kan ikke koncentrere sig om opgaver når der er den mindste lyd (autism), men ADHD gør at hun konstant leder efter stimuli. Hun er fanget mellem a...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-028",
+      "titel": "Lucas 15 år – social masking og udbrændthed",
+      "alder": 15,
+      "diagnoser": [
+        "ADHD",
+        "Autisme (sent diagnosticeret)"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Masking, udbrændthed, autenticitet",
+      "problem": "Lucas har brugt år på at \"maskere\" sin autism ved at kopiere andres adfærd, men ADHD gør det enormt energikrævende. Han er totalt udbrændt, ved ikke hvem han egentlig er, og kan ikke længere opretholde facaden.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Gradvis autenticitet og energi-forvaltning:** - Psykologisk støtte til at forstå masking og dens omkostninger - \"Autenticitets-øvelser\" hvor Lucas kunne være sig selv i trygge rum - Energi-budgettering: prioritering af hvornår han \"maskerede\" - ADHD-strategier der respekterede hans autistiske behov - Åben kommunikation med udvalgte venner om hans diagnoser - Skole-tilpasninger der reducerede beh",
+      "tiltag": "",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Lucas har brugt år på at \"maskere\" sin autism ved at kopiere andres adfærd, men ADHD gør det enormt energikrævende. Han er totalt udbrændt, ved ikke h...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-029",
+      "titel": "Noah 10 år – rigid tænkning og impulsive handlinger",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Kognitiv fleksibilitet, impulsivitet, frustrationstoleranse",
+      "problem": "Noah har meget stive ideer om hvordan ting skal gøres (autism) men handler impulsivt når hans planer ikke virker (ADHD). Han kan ikke tænke kreativt under pres og eksploderer i frustrationer når ting ikke går som forventet.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Struktureret fleksibilitet og frustrations-håndtering:** - \"Plan A, B, C\" strategi forberedt på forhånd for almindelige situationer - Visuelle \"hvis-så\" kort for alternative løsninger - \"Frustrations-termometer\" så Noah kunne mærke når han nærmede sig overload - \"Pause og plan\" øvelser før han handlede impulsivt - Rollespil med forskellige løsninger på samme problem - \"Eksperiment-mindset\": prøv",
+      "tiltag": "",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Noah har meget stive ideer om hvordan ting skal gøres (autism) men handler impulsivt når hans planer ikke virker (ADHD). Han kan ikke tænke kreativt u...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-036",
+      "titel": "Marcus 12 år – fysisk mobning pga. meltdowns",
+      "alder": 12,
+      "diagnoser": [
+        "Autisme",
+        "ADHD"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Fysisk mobning, meltdowns, sårbarhed",
+      "problem": "Marcus bliver skubbet, sparket og \"testet\" af ældre drenge, især når han er overstimuleret. De ved at hvis de provokerer ham, får han et meltdown, som de filmer og deler. Han er begyndt at være aggressiv præventivt.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Beskyttelse og forebyggelse kombineret med konsekvenser:** - Øget voksent tilsyn i \"højrisiko\" områder og tidspunkter - Identifikation og konfrontation af mobberne med konsekvenser - Meltdown-forebyggelse: tidlige varselsignaler og exit-strategier - \"Sikre zoner\" Marcus kunne søge til ved overstimulering - Undervisning af personale i at genkende provokation vs. spontane meltdowns - Klare konsekv",
+      "tiltag": "",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Marcus bliver skubbet, sparket og \"testet\" af ældre drenge, især når han er overstimuleret. De ved at hvis de provokerer ham, får han et meltdown, som...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-056",
+      "titel": "Oliver, 9 år – Sociale Regler og Impulsiv Kommunikation",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "AA2 - professionel case",
+      "problem": "Oliver har svært ved sociale signaler. Han afbryder andre, griner ved forkerte tidspunkter og reagerer fysisk, især når han føler sig uretfærdigt behandlet – han har flere gange slået piger eller kradset drenge. Han mangler sociale grænser og reagerer stærkt på strukturbrud.",
+      "barnets_oplevelse": "Jeg forstår ikke, hvorfor de bliver sure. Jeg prøvede bare at sige noget.",
+      "typisk_fejl": "Han gør det igen – han slog en pige midt i gruppearbejdet. Det kom ud af det blå.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Oliver har svært ved sociale signaler. Han afbryder andre, griner ved forkerte tidspunkter og reagerer fysisk, især når han føler sig uretfærdigt beha...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-081",
+      "titel": "Selma, 13 år – Akademisk kompensering og følelsesnedlukning",
+      "alder": 13,
+      "diagnoser": [
+        "DCD",
+        "OCD",
+        "ADHD",
+        "Selektiv mutisme",
+        "Angst",
+        "Depression",
+        "Autisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "ASF3 - professionel case",
+      "problem": "Selma scorer højt fagligt, men deltager ikke i socialt samspil. Hun virker kold, kontrolleret og siger “det er ligegyldigt”. Hun reagerer ikke på feedback, og skriver noter om sig selv i stikord. Hun er rolig, men utilgængelig.",
+      "barnets_oplevelse": "Jeg ved, hvad der virker – men jeg siger ikke noget, for det er for meget.",
+      "typisk_fejl": "Hun virker lukket. Vi ved ikke, hvad der foregår.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "ADHD & Autisme",
+      "kort_beskrivelse": "Selma scorer højt fagligt, men deltager ikke i socialt samspil. Hun virker kold, kontrolleret og siger “det er ligegyldigt”. Hun reagerer ikke på feed...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
     }
   ]
 }

@@ -918,6 +918,543 @@
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
       "sidst_opdateret": "2025-11-14"
+    },
+    {
+      "id": "case-import-002",
+      "titel": "Alex 8 år – uro ved klipning",
+      "alder": 8,
+      "diagnoser": [
+        "ADHD"
+      ],
+      "miljø": [
+        "Fagfolk"
+      ],
+      "tema": "Frisør, bevægelse, opmærksomhed",
+      "problem": "Alex har svært ved at sidde stille under hårklip og mister hurtigt fokus. Det gør frisørbesøget stressende for både ham og de voksne.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Forlanger stillesiddende ro i lang tid uden strategi * Overser behovet for bevægelse og stimuli",
+      "løsning": "* Brug lege eller tælleopgaver som distraktion * Beløn roligt samarbejde med ros og pauser * Planlæg korte tider og tydelige mål",
+      "tiltag": "* \"Klip-tæl\"-lege undervejs * Korte klippeaftaler * Ros og belønning efter små dele er gennemført * Brug af fidget eller snack i ventetid",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Alex har svært ved at sidde stille under hårklip og mister hurtigt fokus. Det gør frisørbesøget stressende for både ham og de voksne.",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-010",
+      "titel": "Oliver 15 år – perfektionisme og panikangst",
+      "alder": 15,
+      "diagnoser": [
+        "ADHD",
+        "OCD",
+        "angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Eksamen, perfektionisme, stress",
+      "problem": "Oliver er fanget i en ond cirkel hvor hans ADHD gør det svært at koncentrere sig, hans OCD kræver at alt skal være perfekt, og hans angst eskalerer når han ikke kan leve op til sine egne standarder. Især omkring eksamen får han panikangst.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Fokuserer kun på én diagnose ad gangen * Forsøger at \"slukke\" perfektionismen i stedet for at kanalisere den * Øger presset i stedet for at reducere det",
+      "løsning": "* Anerkend at alle tre diagnoser påvirker hinanden * Brug strukturerede metoder der imødekommer alle behov * Skab realistiske mål og fejlacceptance",
+      "tiltag": "* Pomodoro-teknik tilpasset ADHD (korte intervaller) * \"God nok\"-standarder defineret på forhånd * Angstforebyggende rutiner før eksamen * Medicinsk opfølgning på alle tre diagnoser koordineret * Eksamenslettelser baseret på den samlede problematik",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Oliver er fanget i en ond cirkel hvor hans ADHD gør det svært at koncentrere sig, hans OCD kræver at alt skal være perfekt, og hans angst eskalerer nå...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-012",
+      "titel": "Ethan 14 år – vold og impulsregulering",
+      "alder": 14,
+      "diagnoser": [
+        "ADHD",
+        "adfærdsforstyrrelse"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Vold, impulsivitet, konsekvenser",
+      "problem": "Ethan reagerer med fysisk aggression når han bliver frustreret eller provokeret. Hans ADHD gør at han reagerer før han tænker, og adfærdsforstyrrelsen betyder at han har svært ved at forstå eller acceptere konsekvenser. Skolen overvejer bortvisning.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Fokuserer kun på konsekvenser uden at forstå triggers * Ignorerer neurobiologiske årsager til impulsivitet * Ekskluderer i stedet for at skabe struktureret støtte",
+      "løsning": "* Identificer triggers og skab forebyggende strategier * Anerkend at hans hjerne fungerer anderledes * Kombiner klare grænser med empatisk støtte",
+      "tiltag": "* Trigger-kortlægning: hvad sker der lige før vold? * Alternativ adfærd: fysisk udfoldelse før frustration eskalerer * Øjeblikkelig de-eskalering: trygge rum og strategier * Medicinsk udredning af ADHD-behandling * Restorative justice: genoprettelse efter konflikter",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Ethan reagerer med fysisk aggression når han bliver frustreret eller provokeret. Hans ADHD gør at han reagerer før han tænker, og adfærdsforstyrrelsen...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-013",
+      "titel": "Maya 16 år – selvskade og følelsesregulering",
+      "alder": 16,
+      "diagnoser": [
+        "ADHD",
+        "borderline personality traits"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem",
+        "Venner"
+      ],
+      "tema": "Selvskade, følelser, relationer",
+      "problem": "Maya bruger selvskade til at regulere intense følelser. Hendes ADHD gør følelserne endnu mere overvældende, og borderline-træk betyder at hendes relationer er intense og ustabile. Hun skifter mellem at elske og hade de samme personer.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Fokuserer kun på at stoppe selvskaden uden at give alternativer * Ignorerer sammenhængen mellem ADHD og følelsesregulering * Mister tålmodigheden med hendes \"op-og-ned\" adfærd",
+      "løsning": "* Lær alternative følelsesreguleringsstrategier * Anerkend at hendes følelser er reelt intense, ikke \"overdrivne\" * Skab stabile relationer der kan holde til hendes udsving",
+      "tiltag": "* DBT-færdigheder tilpasset ADHD: korte, konkrete teknikker * Alternative til selvskade: is, elastik, intens motion * Følelsesdagbog med ADHD-venlig struktur * Stabile voksne der ikke tager hendes udsving personligt * Medicinsk behandling der tager højde for begge diagnoser",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Maya bruger selvskade til at regulere intense følelser. Hendes ADHD gør følelserne endnu mere overvældende, og borderline-træk betyder at hendes relat...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-014",
+      "titel": "Mia 7 år – mild læseangst og koncentrationsbesvær",
+      "alder": 7,
+      "diagnoser": [
+        "ADHD (mild)",
+        "angst (specifik - læsning)"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Læseangst, opmærksomhed, selvværd",
+      "problem": "Mia får angst når hun skal læse højt og mister helt fokus. Hun fidler med pennen, kigger ud af vinduet og begynder at græde når det er hendes tur.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Tvinger hende til at læse højt \"for at vænne sig til det\" * Ignorerer at angsten blokerer for ADHD-medicin og strategier * Fokuserer kun på læsefærdigheder, ikke på angst-ADHD spiralen",
+      "løsning": "* Anerkend at angst og ADHD forstærker hinanden * Skab tryghed først, læsning kommer derefter * Brug ADHD-venlige angst-strategier",
+      "tiltag": "* **Familie Jensen:** \"Vi øvede læsning hjemme med stopuret - 2 min af gangen. Mia kunne stoppe når som helst.\" * **Lærer Anne:** \"Mia fik lov at læse for mig alene først, så klassekammerater bagefter.\" * **Mor til Mia:** \"Vi lavede 'fejl-fest' hvor vi læste forkert med vilje og grinede af det.\" * **Speciallærer:** \"Brugte fidget-bold mens hun læste - hjalp både angst og koncentration.\"",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Mia får angst når hun skal læse højt og mister helt fokus. Hun fidler med pennen, kigger ud af vinduet og begynder at græde når det er hendes tur.",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-015",
+      "titel": "Oliver 11 år – social angst og impulsiv adfærd",
+      "alder": 11,
+      "diagnoser": [
+        "ADHD (moderat)",
+        "social angst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Social angst, impulsivitet, venskaber",
+      "problem": "Oliver vil gerne være med, men når han bliver nervøs, siger han impulsivt ting der støder andre fra sig. Jo mere de trækker sig, jo mere desperat og impulsiv bliver han.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Beder ham \"tænke sig om\" uden at hjælpe med strategier * Fokuserer kun på impulsivitet, ignorerer den underliggende angst * Straffer den impulsive adfærd uden at forstå årsagen",
+      "løsning": "* Anerkend at hans impulsivitet kommer af social angst * Giv ham konkrete sociale scripts og øvemuligheder * Skab succeser i mindre grupper først",
+      "tiltag": "* **Far til Oliver:** \"Vi øvede 'pause-knappen' - han lærte at sige 'lige et øjeblik' i stedet for at tale impulsivt.\" * **Lærer Thomas:** \"Oliver fik en 'social buddy' de første uger - en rolig klassekammerat der hjalp ham ind i lege.\" * **Mor til Oliver:** \"Vi spillede rollespil hjemme - øvede forskellige sociale situationer.\" * **Skolesocialrådgiver:** \"Lavede 'venskabsgruppe' med 3 andre børn hvor de øvede at være sammen.\"",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Oliver vil gerne være med, men når han bliver nervøs, siger han impulsivt ting der støder andre fra sig. Jo mere de trækker sig, jo mere desperat og i...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-016",
+      "titel": "Emma 14 år – panikangst og totalt fokustab",
+      "alder": 14,
+      "diagnoser": [
+        "ADHD (svær)",
+        "panikangst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Panikangst, eksamen, selvværd",
+      "problem": "Emma får panikangst ved eksamen og prøver, hvilket gør hendes allerede svære ADHD endnu værre. Hun kan ikke huske noget, får fysiske symptomer og overvejer at droppe ud.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Øger presset for at \"motivere\" hende * Behandler ADHD og panikangst separat * Afviser hendes fysiske symptomer som \"bare nervøsitet\"",
+      "løsning": "* Anerkend at panikangst kan lamme ADHD-kompensationsstrategier totalt * Arbejd med angst-forebyggelse før man tackle ADHD-udfordringer * Kombiner medicinske og pædagogiske tilgange",
+      "tiltag": "* **Familie Nielsen:** \"Emma fik lov at tage prøver i lille rum med pause-muligheder hver 20. minut.\" * **Lærer Maria:** \"Vi lavede 'mini-prøver' ugentligt så hun vandt tillid til sin viden gradvist.\" * **Emmas psykolog:** \"Lærte vejrtrækningsøvelser specifikt tilpasset ADHD - korte, konkrete teknikker.\" * **Mor til Emma:** \"Vi filmede Emma når hun kunne stoffet hjemme - så hun kunne se hun faktisk kunne det.\"",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Emma får panikangst ved eksamen og prøver, hvilket gør hendes allerede svære ADHD endnu værre. Hun kan ikke huske noget, får fysiske symptomer og over...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-017",
+      "titel": "Marcus 9 år – generaliseret angst og hyperaktivitet",
+      "alder": 9,
+      "diagnoser": [
+        "ADHD (hyperaktiv type)",
+        "generaliseret angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Konstant uro, bekymringer, søvn",
+      "problem": "Marcus er konstant i bevægelse og konstant bekymret. Hans angst gør ham endnu mere rastløs, og hans hyperaktivitet gør angsten værre. Han sover dårligt og er udmattet.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Forsøger at få ham til at \"slappe af\" uden at forstå ADHD * Ignorerer at hyperaktivitet kan være angst-respons * Medicin fokus uden adfærdsstrategier",
+      "løsning": "* Anerkend at bevægelse kan være hans måde at håndtere angst på * Find konstruktive kanaler for både uro og bekymringer * Koordiner medicin og miljøtilpasninger",
+      "tiltag": "* **Familie Andersen:** \"Marcus fik trampolin i haven - 10 min hop når angsten blev for stor.\" * **Lærer Klaus:** \"Lavede 'bekymringsboks' hvor Marcus kunne skrive bekymringer ned og smide dem væk.\" * **Mor til Marcus:** \"Aftensrutine med fysisk aktivitet INDEN ro-tid - det virkede bedre end omvendt.\" * **Speciallærer:** \"Marcus blev 'bevægelsesassistent' - fik lov at rejse sig og hjælpe andre som del af undervisningen.\"",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Marcus er konstant i bevægelse og konstant bekymret. Hans angst gør ham endnu mere rastløs, og hans hyperaktivitet gør angsten værre. Han sover dårlig...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-018",
+      "titel": "Sofia 16 år – præstationsangst og prokrastination",
+      "alder": 16,
+      "diagnoser": [
+        "ADHD (inattentiv type)",
+        "præstationsangst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Prokrastination, perfektionisme, fremtidsangst",
+      "problem": "Sofia udsætter alt fordi hun er bange for ikke at være god nok. Hendes ADHD gør det svært at komme i gang, og angsten gør det endnu sværere. Hun ender i en ond cirkel af udsættelse og selvkritik.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Kalder det \"dovenskab\" i stedet for at se angst-ADHD spiralen * Øger deadline-pres i stedet for at hjælpe med opstart * Fokuserer på resultater i stedet for proces",
+      "løsning": "* Anerkend at prokrastination ofte er angst + ADHD-kombination * Nedbryd opgaver så de bliver håndterbare for både angst og opmærksomhed * Fokuser på at komme i gang, ikke på at være perfekt",
+      "tiltag": "* **Familie Larsen:** \"Sofia skrev bare ÉT ord for at starte - så kunne hun altid stoppe igen.\" * **Studievejleder:** \"Lavede 'fejl-fest' hvor Sofia skulle lave 10 stavefejl med vilje i første udkast.\" * **Mor til Sofia:** \"Timer-teknik: 15 min arbejde, så pause - gentag. Ingen forventning om at færdiggøre.\" * **Klassekammerat:** \"Study-buddy system hvor de sad sammen og arbejdede - Sofia turde starte når anden var der.\"",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Sofia udsætter alt fordi hun er bange for ikke at være god nok. Hendes ADHD gør det svært at komme i gang, og angsten gør det endnu sværere. Hun ender...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-019",
+      "titel": "Jonathan 12 år – medicin-kompliceret angst og ADHD",
+      "alder": 12,
+      "diagnoser": [
+        "ADHD",
+        "angst (medicin-kompliceret)"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Medicin-bivirkninger, balance, symptom-håndtering",
+      "problem": "Jonathans ADHD-medicin hjælper på koncentrationen men forværrer hans angst. Angst-medicin hjælper på angsten men gør ADHD-symptomerne værre. Familie og skole føler sig magtesløse.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Fokuserer kun på medicin-tilpasning uden adfærdsstrategier * Behandler diagnnoserne uafhængigt af hinanden * Giver op på medicin i stedet for at finde balance",
+      "løsning": "* Anerkend kompleksiteten og brug multifacetteret tilgang * Kombiner medicin-timing med adfærdsstrategier * Involver både læge, skole og familie i koordineret plan",
+      "tiltag": "* **Familie Christensen:** \"Jonathan tog ADHD-medicin kun til skole, brugte angst-strategier hjemme.\" * **Lærer Susanne:** \"Lavede 'medicin-skema' så Jonathan vidste hvornår han kunne forvente hvilke udfordringer.\" * **Mor til Jonathan:** \"Timing: ADHD-medicin om morgenen, angst-øvelser om eftermiddagen når medicin aftog.\" * **Børnepsykiater:** \"Lavede 'symptom-dagbog' så vi kunne finde den rigtige balance mellem medicin og miljø.\"",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Jonathans ADHD-medicin hjælper på koncentrationen men forværrer hans angst. Angst-medicin hjælper på angsten men gør ADHD-symptomerne værre. Familie o...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-023",
+      "titel": "Oliver 10 år – ADHD og akademisk frustration",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "læse- og skrivevanskeligheder"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "Akademisk stress, selvværd, frustration",
+      "problem": "Oliver nægter at gå i skole fordi han \"er dum og kan ikke følge med\". Hans ADHD gør det svært at koncentrere sig, og læse-skrive vanskeligheder får ham til at føle sig som en fiasko. Han får raserianfald ved lektie-tid.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Differentiereret undervisning og selvværds-genopbygning:** - Tilpassede opgaver der matchede Olivers niveau - Brug af hans styrker (mundtlig fremstilling, kreativitet) - Korte arbejdsperioder med hyppige pauser - Teknologisk støtte: oplæsningsprogrammer, voice-to-text - \"Succesoplevelser\" hver dag gennem målrettede opgaver - Lektiehjælp der fokuserede på strategier frem for indhold",
+      "tiltag": "",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Oliver nægter at gå i skole fordi han \"er dum og kan ikke følge med\". Hans ADHD gør det svært at koncentrere sig, og læse-skrive vanskeligheder får ha...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-037",
+      "titel": "Sofia 14 år – relationel mobning og social manipulation",
+      "alder": 14,
+      "diagnoser": [
+        "ADHD",
+        "social angst"
+      ],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Relationel mobning, rygter, social manipulation",
+      "problem": "Sofia bliver udsat for sofistikeret relationel mobning: rygter, social isolation, online chikane. Andre piger bruger hendes ADHD-impulsivitet til at få hende til at sige eller gøre ting, som de så bruger imod hende.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Kompleks intervention i relationel dynamik:** - Direkte konfrontation af ringleader-piger med konsekvenser - Hjælp til Sofia med at identificere manipulation-taktikker - Digital literacy: hvordan man håndterer online mobning - \"Pause og tænk\" strategier før hun reagerede impulsivt - Opbygning af alternative venskaber uden for mobber-gruppen - Voksen-medieret konfliktløsning med restorative justi",
+      "tiltag": "",
+      "kategori": "ADHD & Angst",
+      "kort_beskrivelse": "Sofia bliver udsat for sofistikeret relationel mobning: rygter, social isolation, online chikane. Andre piger bruger hendes ADHD-impulsivitet til at f...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-038",
+      "titel": "Oliver 10 år – fra offer til mobber",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "adfærdsvanskeligheder"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Offer-til-mobber cyklus, selvforsvar vs. aggression",
+      "problem": "Oliver blev mobbet i årevis og har nu \"vendt den om\" ved selv at blive aggressiv og mobbe svagere børn. Han siger \"Nu er det min tur\" og viser samme hensynsløse adfærd som dem der mobbede ham.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Trauma-informeret tilgang med ansvarliggørelse:** - Anerkendelse af hans tidligere trauma fra mobning - Klare grænser og konsekvenser for hans aggressive adfærd - Terapi til at bearbejde hans egne mobning-oplevelser - Alternative måder at få magt og kontrol på - Empati-træning: hjælp ham til at se andres perspektiv - Restorative justice: genoprettelse overfor dem han har skadet",
+      "tiltag": "",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Oliver blev mobbet i årevis og har nu \"vendt den om\" ved selv at blive aggressiv og mobbe svagere børn. Han siger \"Nu er det min tur\" og viser samme h...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-052",
+      "titel": "Marcus 6 år – skolestart og struktur-chok",
+      "alder": 6,
+      "diagnoser": [
+        "ADHD",
+        "vanskeligheder med struktur og opmærksomhed"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Strukturelle ændringer, akademiske krav, selvregulering",
+      "problem": "Marcus var i top-form i børnehaven men er totalt overvældet af skole-strukturen. Han kan ikke sidde stille i 45 minutter, glemmer alle instruktioner og får daglige sammenbrud over lektier og skole-regler.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Graduel skole-tilpasning med børnehave-bro elementer:** - Første måned: halvdage med tidlig afhentning - Bevægelsespauser hver 15 minutter indtil han vændede sig til det - \"Børnehave-elementer\" i skolen: leg-baseret læring, bevægelse - Visuel støtte til alle skole-rutiner og regler - Tæt kommunikation mellem skole og hjem om samme strategier - Bevarelse af børnehave-venskaber i fritiden for kont",
+      "tiltag": "**Første trin:** Graduel struktur-introduktion - Start med kortere skoledag og færre krav - Bevar positive elementer fra børnehave - Øg struktur-kravene gradvist **Andet trin:** Skole-færdigheder opbygning - Lær specifikke skole-færdigheder (sidde stille, lytte, følge instruktioner) - Øv hjemme i korte perioder - Positive forstærkninger for små fremskridt **Tredje trin:** Selvstændig skole-mestring - Marcus lærer at bruge hjælpemidler selv - Udvikler egne strategier til at håndtere skole-krav - ",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Marcus var i top-form i børnehaven men er totalt overvældet af skole-strukturen. Han kan ikke sidde stille i 45 minutter, glemmer alle instruktioner o...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-054",
+      "titel": "Liam 6 år – morgen-rutiner og tidspres-sammenbrud",
+      "alder": 6,
+      "diagnoser": [
+        "ADHD",
+        "vanskeligheder med tidsforståelse og planlægning"
+      ],
+      "miljø": [
+        "Hjem"
+      ],
+      "tema": "Executive function, rutiner, familiedynamik",
+      "problem": "Liam kan ikke håndtere skole-morgenens tidspres og struktur-krav. Han \"forsvinder\" mentalt midt i påklædning, glemmer hvad han skulle gøre og får sammenbrud når familien stresser. Morgenerne bliver til daglige kampe.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Ekstern struktur og visual støtte til executive function:** - Morgen-rutine nedbrudt i micro-steps med billeder - Timer og visuelle tidsmarkører: \"Når den lille viser på 7...\" - \"Morgen-kasse\" med alt klart aftenen før - Én opgave ad gangen med check-off system - Familie starter 30 minutter tidligere for at fjerne tidspres - \"Morgen-musik\" der hjalp ham gennem rutinen",
+      "tiltag": "**Første trin:** Eliminér chaos og skab struktur - Simplificér morgenrutinen til kerneaktiviteter - Forbered alt muligt aftenen før - Fjern tidspres ved at starte tidligere **Andet trin:** Ekstern støtte til intern planlægning - Visuelle hjælpemidler han kan følge selv - Timere og struktureret progression - Positive forstærkninger for små fremskridt **Tredje trin:** Selvstændig rutine-mestring - Gradvis øgning af ansvar - Liam lærer at bruge hjælpemidler selv - Udvikler interne strategier til pl",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Liam kan ikke håndtere skole-morgenens tidspres og struktur-krav. Han \"forsvinder\" mentalt midt i påklædning, glemmer hvad han skulle gøre og får samm...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-055",
+      "titel": "Lucas, 5 år – Impulsiv Aggression og Grænseproblemer",
+      "alder": 5,
+      "diagnoser": [
+        "ADHD"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "BH3 - professionel case",
+      "problem": "Lucas reagerer fysisk på både drenge og piger: han kradser, skubber og slår uden varsel. Især pigerne bliver ofre for voldsom adfærd ved afvisning, mens drengekonflikter ofte handler om dominans og afbrydelser i leg. Personalet oplever, at Lucas \"eksploderer\" hurtigt – og har svært ved at fornemme hvornår det sker.",
+      "barnets_oplevelse": "eksploderer",
+      "typisk_fejl": "Han går direkte efter pigerne – vi ved ikke, hvornår han eksploderer. Det virker uforudsigeligt.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Lucas reagerer fysisk på både drenge og piger: han kradser, skubber og slår uden varsel. Især pigerne bliver ofre for voldsom adfærd ved afvisning, me...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-064",
+      "titel": "Mads, 15 år – Affekt og Voksenmodstand",
+      "alder": 15,
+      "diagnoser": [
+        "ODD",
+        "ADHD"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "TE3 - professionel case",
+      "problem": "Mads har gentagne affektsammenbrud i undervisningen. Han nægter opgaver, går ofte ud, kalder lærere navne og skaber uro. Men han har også timer, hvor han arbejder fokuseret. Lærerne oplever uforudsigelighed og kontrolkamp.",
+      "barnets_oplevelse": "De bestemmer alting. Jeg får aldrig vælge. Hvis jeg ikke siger fra, bliver jeg sur.",
+      "typisk_fejl": "Han går fra 0 til 100. Vi kan ikke sige noget uden, at han eksploderer.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Mads har gentagne affektsammenbrud i undervisningen. Han nægter opgaver, går ofte ud, kalder lærere navne og skaber uro. Men han har også timer, hvor ...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-068",
+      "titel": "Noah, 7 år – Søgende og Motorisk Sanseprofil",
+      "alder": 7,
+      "diagnoser": [
+        "ADHD",
+        "DCD"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "SP2 - professionel case",
+      "problem": "",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-070",
+      "titel": "Elias, 8 år – Jalouxi og Eksplosioner mod Søster",
+      "alder": 8,
+      "diagnoser": [
+        "ADHD"
+      ],
+      "miljø": [
+        "Hjem"
+      ],
+      "tema": "SH1 - professionel case",
+      "problem": "Elias mister besindelsen, når hans lillesøster får ros eller opmærksomhed. Han skubber, håner eller nægter at være i samme rum. Forældrene føler sig magtesløse og pendler mellem trøst og vrede. Elias kan være kærlig, men skifter pludseligt.",
+      "barnets_oplevelse": "Hvad kan jeg gøre i stedet?",
+      "typisk_fejl": "Han eksploderer, bare vi nævner hendes navn. Vi tør ikke sige noget positivt om hende.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Elias mister besindelsen, når hans lillesøster får ros eller opmærksomhed. Han skubber, håner eller nægter at være i samme rum. Forældrene føler sig m...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-077",
+      "titel": "Asger, 10 år – Udadagerende ved Fysisk Udfordring",
+      "alder": 10,
+      "diagnoser": [
+        "ADHD",
+        "DCD"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "DCD2 - professionel case",
+      "problem": "Asger bliver vred og råber, når han skal deltage i fysiske aktiviteter. Han siger “det er åndssvagt” og går ofte ud. Lærere oplever, at han søger dominans – men han fejler ofte i fysiske opgaver og griner selvnedladende.",
+      "barnets_oplevelse": "Jeg hader, når de ser, jeg ikke kan. Så går jeg bare først.",
+      "typisk_fejl": "Det ligner modstand – men måske handler det om usikkerhed.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Asger bliver vred og råber, når han skal deltage i fysiske aktiviteter. Han siger “det er åndssvagt” og går ofte ud. Lærere oplever, at han søger domi...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-084",
+      "titel": "Klasseovergange og fokus – elev med ADHD (10–12 år)",
+      "alder": "10-12",
+      "diagnoser": [
+        "Adhd"
+      ],
+      "miljø": [
+        "skole"
+      ],
+      "tema": "overgange",
+      "problem": "Ved fag- og lokale-skift bliver eleven forvirret og urolig. Læreren oplever, at verbal guidning ikke virker, og eleven ender ofte i konflikt med klassekammerater eller læreren.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "Gentage instruktionen højere, så eleven hører det; Give verbal irettesættelse, hvis eleven ikke reagerer",
+      "løsning": "Brug visuel dagsplan på tavlen med farvekoder for fag; 5-minutters varsling før fag- og lokale-skift; Tydelig overgangsstruktur: 'Nu pakker vi sammen – så går vi i ro til næste lokale'; Korte pauser med bevægelse mellem lektioner",
+      "tiltag": "Overgangsplan-skabelon (getTemplates); Fokus-kort til elevens bord; Ugeskema med markering af skift",
+      "resultat": "Konflikter ved skift faldt markant. Eleven begyndte selv at følge visuelle signaler og bevare fokus i starten af nye timer.",
+      "refleksion": "Visuelle og fysiske signaler virkede bedre end verbal påmindelse. Overgangene blev forudsigelige, og eleven fik bedre kontrol over energi og fokus.",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Ved fag- og lokale-skift bliver eleven forvirret og urolig. Læreren oplever, at verbal guidning ikke virker, og eleven ender ofte i konflikt med klass...",
+      "kilde": "Importeret fra ældre case-mappe (CDA/cases/laerer/adhd_klasseovergange_10-12.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-085",
+      "titel": "Overgange i hjemmet – barn med ADHD (10–12 år)",
+      "alder": "10-12",
+      "diagnoser": [
+        "Adhd"
+      ],
+      "miljø": [
+        "hjem"
+      ],
+      "tema": "overgange",
+      "problem": "Barnet reagerer med vrede eller nægtelse ved skift i hverdagen – især om morgenen og ved lektier. Forældrene prøver at tale roligt, men det eskalerer ofte.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "Gentage verbalt, at barnet skal skynde sig; Ignorere modstanden for at vise, hvem der bestemmer",
+      "løsning": "Visuel morgenrutineplan med billeder og rækkefølge; Tidsangivelse på plan (fx 5 min til tøj, 10 min morgenmad); Belønningssystem for rolig overgang (små succeser markeres)",
+      "tiltag": "Hjemmerutine-skema (getTemplates); Belønningskort; Følelseskort til samtale efter konflikt",
+      "resultat": "Barnet begynder at følge planen mere selvstændigt. Konflikter falder, og forældrene oplever mere ro og struktur i morgenerne.",
+      "refleksion": "Visuel støtte skaber forudsigelighed, og små belønninger motiverer uden at skabe pres. Barnet lærer gradvist at mestre skift uden konflikter.",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Barnet reagerer med vrede eller nægtelse ved skift i hverdagen – især om morgenen og ved lektier. Forældrene prøver at tale roligt, men det eskalerer ...",
+      "kilde": "Importeret fra ældre case-mappe (CDA/cases/familiesager/adhd_hjemme_overgange_10-12.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-086",
+      "titel": "Overgange i skoledagen – dreng med ADHD (10-12 år)",
+      "alder": "10-12",
+      "diagnoser": [
+        "Adhd"
+      ],
+      "miljø": [
+        "skole"
+      ],
+      "tema": "overgange",
+      "problem": "Gentagne konflikter opstår ved fag- og lokale-skift. Eleven reagerer med modstand eller forlader klassen.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "Giv ekstra verbal forklaring under overgangen; Ignorer små urohandlinger for ikke at skabe konflikt",
+      "løsning": "Visuel dagsplan med farvekoder for skift; 5-minutters varsling før overgang; Fysisk støttepunkt ved klasselokalet (’ankersted’)",
+      "tiltag": "Pausekort; Overgangsskema (fra getTemplates); Mini-mål for overgange (ugeplan)",
+      "resultat": "Efter tre uger reduceres konflikter, eleven tager selv initiativ til overgang.",
+      "refleksion": "Struktur og varsling mindsker utryghed. Læreren oplever, at små forudsigelige signaler virker bedre end verbal instruktion.",
+      "kategori": "ADHD",
+      "kort_beskrivelse": "Gentagne konflikter opstår ved fag- og lokale-skift. Eleven reagerer med modstand eller forlader klassen.",
+      "kilde": "Importeret fra ældre case-mappe (CDA/cases/born/adhd_overgange_10-12.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
     }
   ]
 }

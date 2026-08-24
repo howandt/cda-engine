@@ -435,6 +435,353 @@
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
       "sidst_opdateret": "2025-11-14"
+    },
+    {
+      "id": "case-import-003",
+      "titel": "Emma 5 år – angst for hårklip",
+      "alder": 5,
+      "diagnoser": [
+        "Angst"
+      ],
+      "miljø": [
+        "Fagfolk"
+      ],
+      "tema": "Tryghed, frisør, forklaring",
+      "problem": "Emma er bange for at få klippet hår og forestiller sig smerte eller fejl. Hun trækker sig og bliver utryg ved selve situationen.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Forklarer ikke hvad der sker * Starter uden demonstration",
+      "løsning": "* Brug forklarende og legende sprog * Vis processen på en dukke først * Giv barnet kontrol og positiv ramme",
+      "tiltag": "* Brug af dukkefrisør * Forklar med analogier: \"dansende sakse\" * Tæl-strategi og vejrtrækning * Beløn mod og samarbejde bagefter",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Emma er bange for at få klippet hår og forestiller sig smerte eller fejl. Hun trækker sig og bliver utryg ved selve situationen.",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-005",
+      "titel": "Sophie 11 år – generthed hos frisøren",
+      "alder": 11,
+      "diagnoser": [
+        "Social angst"
+      ],
+      "miljø": [
+        "Fagfolk"
+      ],
+      "tema": "Udtryk, kropssprog, selvværd",
+      "problem": "Sophie bliver genert og usikker hos frisøren. Hun føler sig iagttaget og undgår at sige sin mening.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Tvinger barnet til at sige noget højt * Undlader at forberede barnets valg på forhånd",
+      "løsning": "* Giv barnet et billede at pege på i stedet * Giv valgfrihed for verbalt eller nonverbalt svar * Forbered sammen hjemmefra",
+      "tiltag": "* Vælg frisørbilleder hjemme og print dem * Lav frisørkort: \"kortere i spidserne\" osv. * Brug nik/peg i stedet for at tale",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Sophie bliver genert og usikker hos frisøren. Hun føler sig iagttaget og undgår at sige sin mening.",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-007",
+      "titel": "Emil 11 år – usynlig mobning og eksklusion",
+      "alder": 11,
+      "diagnoser": [
+        "ASF",
+        "social angst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Skjult mobning, klassekultur",
+      "problem": "Emil bliver systematisk ignoreret. Når han rækker hånden op, overses han. Han bliver ikke nævnt i legeaftaler, og bag hans ryg griner nogle elever, når han siger noget.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Antager det er social usikkerhed og ikke andres handlinger * Ignorerer \"manglende invitation\" som passiv mobning",
+      "løsning": "* Tal højt om usynlig mobning i klassen * Aktivér voksne i gruppearbejde og klassekultur * Sæt ord på mikrohandlinger (fx udeladelser, blikke)",
+      "tiltag": "* Klassefællesskabsdag med samarbejdsøvelser * Læreren sammensætter grupper med inkluderende fokus * Sociale kort til klasseaktiviteter: \"Spørg én, du ikke plejer\" * Trivselssamtaler med anonym input fra hele klassen",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Emil bliver systematisk ignoreret. Når han rækker hånden op, overses han. Han bliver ikke nævnt i legeaftaler, og bag hans ryg griner nogle elever, nå...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-020",
+      "titel": "Anna 8 år – angst-baseret skolevægring",
+      "alder": 8,
+      "diagnoser": [
+        "Generaliseret angst",
+        "separationsangst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Angst, separation, tryghed",
+      "problem": "Anna kan ikke forlade hjemmet om morgenen uden at få panikangst. Hun græder, kaster op og klynger sig til mor. Efter 6 uger hjemme bliver situationen værre hver dag.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Graduel eksponering kombineret med trygheds-strategier:** - Start med 30 minutter på skolen uden undervisning - Fast kontaktperson der mødte Anna ved indgang - \"Mor-telefon\" hver time de første uger - Visuel plan over dagen så Anna vidste hvornår hun kom hjem - Hjemme-skole koordination om samme besked: \"Du er tryg\"",
+      "tiltag": "",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Anna kan ikke forlade hjemmet om morgenen uden at få panikangst. Hun græder, kaster op og klynger sig til mor. Efter 6 uger hjemme bliver situationen ...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-022",
+      "titel": "Emma 14 år – social angst og mobning-traumer",
+      "alder": 14,
+      "diagnoser": [
+        "Social angst",
+        "depression (udviklet efter mobning)"
+      ],
+      "miljø": [
+        "Skole",
+        "Venner"
+      ],
+      "tema": "Mobning, tillid, sociale relationer",
+      "problem": "Emma blev mobbet intensivt i 7.-8. klasse og udviklede så svær social angst at hun ikke kan være i samme rum som andre unge. Hun har været hjemme i 4 måneder og isolerer sig totalt.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Trauma-informeret tilgang med tillids-genopbygning:** - Start med online-undervisning for at bevare akademisk progress - Individuel terapi før gruppe-eksponering - Mikro-eksponeringer: først én person, så to, osv. - Valg af \"sikre\" personer til første kontakter - Klassen blev undervist i mobning og inklusion uden Emma til stede - Gradvis integration med fast støtteperson",
+      "tiltag": "",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Emma blev mobbet intensivt i 7.-8. klasse og udviklede så svær social angst at hun ikke kan være i samme rum som andre unge. Hun har været hjemme i 4 ...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-024",
+      "titel": "Sofia 16 år – perfektionisme og udbrændthed",
+      "alder": 16,
+      "diagnoser": [
+        "Angst",
+        "perfektionistiske træk",
+        "mild depression"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Perfektionisme, stress, udbrændthed",
+      "problem": "Sofia var altid den \"dygtige elev\" men begyndte pludselig at blive hjemme fordi hun ikke kunne leve op til sine egne standarder. Hun arbejdede til langt ud på natten, blev aldrig færdig og følte sig som en fiasko.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Gradueret eksponering og \"god nok\" standarder:** - Definerede \"god nok\" kriterier for hver opgave - Tidsbegrænsede opgaver - stop efter aftalt tid uanset \"færdighed\" - Eksplicit undervisning i \"konstruktive fejl\" - Støtte til at aflevere \"ufærdige\" opgaver for feedback - Samtaler om at læring sker gennem proces, ikke perfektion - Stress-management og søvnhygiejne",
+      "tiltag": "",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Sofia var altid den \"dygtige elev\" men begyndte pludselig at blive hjemme fordi hun ikke kunne leve op til sine egne standarder. Hun arbejdede til lan...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-050",
+      "titel": "Oliver 3 år – morgen-sammenbrud og separationsangst",
+      "alder": 3,
+      "diagnoser": [
+        "Mulig angst",
+        "sensitivitet overfor forandring"
+      ],
+      "miljø": [
+        "Hjem"
+      ],
+      "tema": "Separationsangst, morgen-rutiner, tryghed",
+      "problem": "Oliver har ekstreme sammenbrud hver morgen når han skal afleveres i børnehave. Han græder, skriger, klynger sig til mor og kaster sig på gulvet. Det tager 30-45 minutter at få ham afleveret, og han er opløst i timevis bagefter.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Gradueret separations-træning med trygheds-ritualer:** - Kortere ophold (1-2 timer) bygget gradvist op - Fast afskeds-ritual der altid var det samme - \"Mor-genstand\" (trøjens lugt, familiefoto) han kunne have med - Samme pædagog mødte ham hver dag med samme velkomst - Visuel plan over dagen så han vidste hvornår mor kom - Telefon-ritual: pædagog ringede til mor efter 1 time så Oliver kunne høre ",
+      "tiltag": "**Første trin:** Byg grundlæggende tryghed - Start med meget korte besøg (30 min) med mor tilstede - Etablér fast rutine og kendt pædagog - Lav forudsigelig afskeds-ritual **Andet trin:** Graduel forlængelse - Øg opholdstid med 30 min ad gangen - Bevar alle tryghed-elementer - Fejr små fremskridt dagligt **Tredje trin:** Selvstændig tryghed - Hjælp Oliver til at trøste sig selv - Reducer gradvist \"tryghed-genstande\" - Byg hans selvtillid til at klare separationer",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Oliver har ekstreme sammenbrud hver morgen når han skal afleveres i børnehave. Han græder, skriger, klynger sig til mor og kaster sig på gulvet. Det t...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-057",
+      "titel": "Jonas, 7 år – Fysisk mod drenge, frygt for piger",
+      "alder": 7,
+      "diagnoser": [
+        "ODD",
+        "Angst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "IN1 - professionel case",
+      "problem": "Jonas slår eller skubber drengekammerater, især i konkurrencesituationer. Han undgår kontakt med piger og bliver urolig, når han skal arbejde i blandede grupper. Han reagerer stærkt på krav om samarbejde og virker usikker i frikvarterer.",
+      "barnets_oplevelse": "Jeg ville bare have bolden. De sagde, jeg ikke måtte være med.",
+      "typisk_fejl": "Han går i affekt lynhurtigt og tør ikke engang være i samme gruppe som pigerne. Det er svært at vide, hvad han reagerer på.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Jonas slår eller skubber drengekammerater, især i konkurrencesituationer. Han undgår kontakt med piger og bliver urolig, når han skal arbejde i blande...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-058",
+      "titel": "Nora, 4 år – Mutisme og Klæbning i Børnehaven",
+      "alder": 4,
+      "diagnoser": [
+        "Angst",
+        "Selektiv mutisme"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "BS5 - professionel case",
+      "problem": "Nora siger ikke noget i institutionen. Hun klynger sig til én voksen og bliver stiv i kroppen ved nye aktiviteter eller sociale krav. Hun siger ja med hovedet, men svarer ikke verbalt, heller ikke i små grupper. Forældrene beskriver hende som snakkende og fantasifuld hjemme.",
+      "barnets_oplevelse": "Jeg tør ikke sige noget. Hvis jeg siger noget, kigger de på mig.",
+      "typisk_fejl": "Hun er sød – men det er som om hun forsvinder. Vi ved ikke, hvordan vi kan nå hende.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Nora siger ikke noget i institutionen. Hun klynger sig til én voksen og bliver stiv i kroppen ved nye aktiviteter eller sociale krav. Hun siger ja med...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-059",
+      "titel": "Elias, 10 år – Mavepine og Skjult Undgåelse",
+      "alder": 10,
+      "diagnoser": [
+        "Angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "SV2 - professionel case",
+      "problem": "Elias melder sig ofte syg, især om morgenen. Når han er i skole, sidder han passivt og skriver lidt, men deltager ikke i fællesaktiviteter. Han får ondt i maven op til præsentationer eller skift. Forældrene beskriver ham som glad og energisk i weekenden.",
+      "barnets_oplevelse": "Jeg får ondt i maven i skolen. Jeg vil hellere være derhjemme.",
+      "typisk_fejl": "Han virker sød og stille – men han glider ud. Han har ondt i maven hver tirsdag.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Elias melder sig ofte syg, især om morgenen. Når han er i skole, sidder han passivt og skriver lidt, men deltager ikke i fællesaktiviteter. Han får on...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-066",
+      "titel": "Emil, 16 år – Selvskade og Indre Kaos",
+      "alder": 16,
+      "diagnoser": [
+        "Angst",
+        "Depression"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "TE5 - professionel case",
+      "problem": "",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "Angst",
+      "kort_beskrivelse": "",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-072",
+      "titel": "Jonathan, 12 år – Udbrud og Familiesammenbrud",
+      "alder": 12,
+      "diagnoser": [
+        "ODD",
+        "Angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "SH3 - professionel case",
+      "problem": "Jonathan råber, skubber og smækker døre i konflikter med sine to yngre søskende. Forældrene forsøger at mægle, men han nægter regler og siger de andre børn provokerer ham med vilje. Han har kastet med ting og truet med at stikke af.",
+      "barnets_oplevelse": "De irriterer mig med vilje. Jeg har sagt, de skal lade mig være. Men ingen lytter.",
+      "typisk_fejl": "Vi er bange for, hvornår det eksploderer. Vi går på æggeskaller.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Jonathan råber, skubber og smækker døre i konflikter med sine to yngre søskende. Forældrene forsøger at mægle, men han nægter regler og siger de andre...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-073",
+      "titel": "Liva, 5 år – Separationsangst og mavepine",
+      "alder": 5,
+      "diagnoser": [
+        "Angst"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "AN1 - professionel case",
+      "problem": "Liva græder dagligt ved aflevering. Hun holder fast i forælder, siger hun har ondt i maven, og nægter ofte aktiviteter. Hun følger pædagoger som “skygge” og bryder sammen ved skift af voksen.",
+      "barnets_oplevelse": "Jeg vil ikke være alene. Jeg ved ikke, hvad der skal ske.",
+      "typisk_fejl": "Hun er sød og kærlig – men hun tør ikke noget selv.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Liva græder dagligt ved aflevering. Hun holder fast i forælder, siger hun har ondt i maven, og nægter ofte aktiviteter. Hun følger pædagoger som “skyg...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-074",
+      "titel": "Emilie, 9 år – Præstationsangst og undgåelse",
+      "alder": 9,
+      "diagnoser": [
+        "Angst"
+      ],
+      "miljø": [
+        "Skole",
+        "Hjem"
+      ],
+      "tema": "AN2 - professionel case",
+      "problem": "Emilie bliver bleg, stille og forsøger at undgå præstation. Hun siger hun “glemmer det” eller “kan ikke”. Ved krav lukker hun ned, sidder passivt eller bliver fysisk dårlig. Hun har svært ved gruppearbejde og nye faglige opgaver.",
+      "barnets_oplevelse": "Hvis jeg fejler, ser de det. Jeg kan ikke lade være med at tænke på det.",
+      "typisk_fejl": "Hun virker så stille – men vi ser hun kæmper.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Emilie bliver bleg, stille og forsøger at undgå præstation. Hun siger hun “glemmer det” eller “kan ikke”. Ved krav lukker hun ned, sidder passivt elle...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-075",
+      "titel": "Mathias, 13 år – Panik og Overkontrol",
+      "alder": 13,
+      "diagnoser": [
+        "Angst",
+        "DCD"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "AN3 - professionel case",
+      "problem": "Mathias får åndenød, sveder, bliver bleg og nægter at gå i skole ved ændringer. Han kræver plan, gennemgår dagen i detaljer og reagerer med vrede, hvis noget afviger. Han siger “jeg får ondt i brystet” og “det hele går galt”.",
+      "barnets_oplevelse": "Hvis jeg ikke ved det hele, går det galt. Så kan jeg ikke trække vejret.",
+      "typisk_fejl": "Han virker intelligent – men alt handler om kontrol.",
+      "løsning": "",
+      "tiltag": "Struktureret støtteforløb med konkrete tiltag - se fuld dokumentation",
+      "kategori": "Angst",
+      "kort_beskrivelse": "Mathias får åndenød, sveder, bliver bleg og nægter at gå i skole ved ændringer. Han kræver plan, gennemgår dagen i detaljer og reagerer med vrede, hvi...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
     }
   ]
 }

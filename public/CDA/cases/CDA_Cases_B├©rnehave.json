@@ -1,0 +1,594 @@
+{
+  "category": "Børnehave",
+  "description": "Tidlige varselstegn hos børn 3-6 år. For pædagoger og børnehavepersonale.",
+  "note": "Disse cases beskriver ADFÆRD og TEGN - ikke diagnoser. Se pædagogisk guide for forskelle mellem normale og bekymrende tegn.",
+  "total_cases": 12,
+  "cases": [
+    {
+      "id": "case-bh-001",
+      "titel": "Emil 3 år",
+      "alder": 3,
+      "adfærd": [
+        "Hyperaktivitet",
+        "Impulsivitet",
+        "Rastløshed"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Tidlige varselstegn, ekstrem uro",
+      "problem": "Emil kan ikke sidde stille i mere end 30 sekunder. Han rejser sig under måltider, forlader aktiviteter konstant, klatrer på møbler og løber væk fra voksne.",
+      "barnets_oplevelse": "Jeg SKAL bevæge mig! Mine ben siger løb, løb, løb!",
+      "typisk_fejl": "Sammenligner med rolige børn, konstant 'nej' og 'sid stille'",
+      "løsning": "Bevægelses-integreret børnehave-dag med korte aktiviteter, bevægelses-jobs, alternative siddepladser.",
+      "tiltag": "Korte aktiviteter (2-5 min) med pauser. Bevægelses-jobs. Alternative siddepladser. Klare instruktioner med visuel støtte.",
+      "værktøjer": "Trin 1: Observation. Trin 2: Miljø-tilpasning. Trin 3: Forældre-kommunikation.",
+      "kategori": "Børnehave - ADHD tegn",
+      "kort_beskrivelse": "Ekstrem rastløshed, kan ikke sidde stille.",
+      "kompleksitet": "moderat",
+      "refleksion": "Uroen påvirker læring. Strategier viste forbedring.",
+      "resultat": "Emil fik bevægelses-tilpasset dag. Forældre søgte vurdering som bekræftede ADHD.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bh-002",
+      "titel": "Maja 4 år",
+      "alder": 4,
+      "adfærd": [
+        "Opmærksomhedsproblemer",
+        "Dagdrømmeri"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Stille ADHD-tegn",
+      "problem": "Maja forsvinder mentalt midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn, glemmer instruktioner.",
+      "barnets_oplevelse": "Der er så mange ting at tænke på! Hvad sagde de lige?",
+      "typisk_fejl": "Kalder hende doven, for komplekse instruktioner",
+      "løsning": "Øjenkontakt før instruktioner, korte beskeder (max 2 trin), visuelle støttemidler, check-in hver 5 minut.",
+      "tiltag": "Øjenkontakt før instruktioner. Visuelle kort. Check-in hver 5 minut. Opmærksomheds-signaler.",
+      "værktøjer": "Trin 1: Opmærksomheds-mapping. Trin 2: Struktureret støtte. Trin 3: Opfølgning.",
+      "kategori": "Børnehave - ADHD tegn",
+      "kort_beskrivelse": "Forsvinder mentalt, reagerer ikke på navn.",
+      "kompleksitet": "moderat",
+      "refleksion": "Struktureret støtte gav forbedring.",
+      "resultat": "Maja kunne deltage bedre. Forældre valgte vurdering før skolestart.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bh-003",
+      "titel": "Lucas 5 år",
+      "alder": 5,
+      "adfærd": [
+        "Impulsiv aggression",
+        "Konflikter"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Impulsiv aggression, sociale konsekvenser",
+      "problem": "Lucas slår og skubber andre børn næsten dagligt. Han virker bagefter ked af det og forstår ikke hvorfor andre ikke vil lege med ham.",
+      "barnets_oplevelse": "Jeg blev så vred at mine hænder bare gjorde det!",
+      "typisk_fejl": "Kun straffer uden at lære alternativer",
+      "løsning": "Stop og tænk øvelser, visuelle kort med alternativer, strukturerede lege, ro-hjørne.",
+      "tiltag": "Stop og tænk. Visuelle kort. Strukturerede lege. Ro-hjørne. Rolleleg.",
+      "værktøjer": "Trin 1: Sikkerhed. Trin 2: Lær alternativer. Trin 3: Social integration.",
+      "kategori": "Børnehave - ADHD tegn",
+      "kort_beskrivelse": "Slår og skubber dagligt. Impulsiv uden evne til at stoppe.",
+      "kompleksitet": "høj",
+      "refleksion": "Strategier reducerede impulsivitet.",
+      "resultat": "Lucas lærte pause-strategier og fik bedre relationer.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bh-004",
+      "titel": "Ida 6 år",
+      "alder": 6,
+      "adfærd": [
+        "Hyperaktivitet ved skolestart",
+        "Daglige sammenbrud"
+      ],
+      "miljø": [
+        "Skole",
+        "Overgang"
+      ],
+      "tema": "Skolestart og forværrede symptomer",
+      "problem": "Ida klarede sig i børnehave, men eksploderede efter skolestart. Kan ikke sidde stille, glemmer alt, daglige sammenbrud.",
+      "barnets_oplevelse": "Alt er anderledes! Jeg skal sidde så længe!",
+      "typisk_fejl": "Forventer normal tilpasning, øger presset",
+      "løsning": "Kortere skoledag, bevægelsespauser, visuel støtte, sikker base person, børnehave-elementer.",
+      "tiltag": "Kortere skoledag. Bevægelsespauser. Visuel støtte. Sikker base. Børnehave-rutiner.",
+      "værktøjer": "Trin 1: Reducér stress. Trin 2: Gradvis øgning. Trin 3: Langsigtet plan.",
+      "kategori": "Børnehave - Overgang",
+      "kort_beskrivelse": "Fungerede i børnehave, eksploderer ved skolestart.",
+      "kompleksitet": "høj",
+      "refleksion": "Struktur-chok. Graduel tilpasning nødvendig.",
+      "resultat": "Modificeret skoledag. Vurdering førte til ADHD-diagnose og støtte.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bh-005",
+      "titel": "Noah 4 år",
+      "alder": 4,
+      "adfærd": [
+        "Sensorisk-søgende",
+        "Hyperaktivitet"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Sensoriske behov og hyperaktivitet",
+      "problem": "Noah søger konstant sensorisk input: kører rundt, råber, klatrer, putter ting i munden. Andre børn bliver overvældede.",
+      "barnets_oplevelse": "Mit krop hungrer efter at mærke ALT!",
+      "typisk_fejl": "Stopper al sensorisk input, ignorerer sikkerhed",
+      "løsning": "Sensorisk diæt: planlagte aktiviteter, tunge arbejde, fidget tools, klare grænser, ro-område.",
+      "tiltag": "Sensoriske aktiviteter. Tunge arbejde. Fidget tools. Klare grænser. Ro-område.",
+      "værktøjer": "Trin 1: Sensorisk kortlægning. Trin 2: Struktureret støtte. Trin 3: Ergoterapeut.",
+      "kategori": "Børnehave - ADHD og sensorik",
+      "kort_beskrivelse": "Uophørlig sensorisk søgen. Farlig risikovillighed.",
+      "kompleksitet": "høj",
+      "refleksion": "ADHD og sensorik kræver integreret tilgang.",
+      "resultat": "Sensorisk terapi og ADHD-vurdering. Integreret behandling.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bs-001",
+      "titel": "Sofie 3 år",
+      "alder": 3,
+      "adfærd": [
+        "Social isolation",
+        "Ingen interesse for andre børn"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Parallel leg, manglende social interesse",
+      "problem": "Sofie leger altid alene eller parallelt uden at interagere. Hun viser ingen interesse for andre børns aktiviteter, deler ikke og reagerer ikke når andre forsøger at inkludere hende.",
+      "barnets_oplevelse": "Jeg kan bedst lide at lege med mine egne ting.",
+      "typisk_fejl": "Tvinger social interaktion, fratager hendes eneleg",
+      "løsning": "Graduel integration: side-by-side aktiviteter, voksenstyret parallel leg, enkle turn-taking lege, sociale historier.",
+      "tiltag": "Side-by-side aktiviteter. Voksenstyret parallel leg. Turn-taking med præfereret legetøj. Sociale historier.",
+      "værktøjer": "Trin 1: Observér leg-præferencer. Trin 2: Byg broer til social leg. Trin 3: Vurdér udvikling.",
+      "kategori": "Børnehave - Sociale tegn",
+      "kort_beskrivelse": "Ingen interesse for andre børn. Kun eneleg.",
+      "kompleksitet": "moderat",
+      "refleksion": "Gradvis interesse udviklede sig gennem strukturerede aktiviteter.",
+      "resultat": "Sofie udviklede første venskaber gennem struktureret leg.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bs-002",
+      "titel": "Marcus 4 år",
+      "alder": 4,
+      "adfærd": [
+        "Aggressiv leg",
+        "Ødelægger andres aktiviteter"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Aggressive leg-strategier, konflikter",
+      "problem": "Marcus vil lege med andre, men hans leg bliver hurtigt for intens og fysisk. Han ødelægger andres byggeværker, overtager rollespil og bliver aggressiv når andre siger fra.",
+      "barnets_oplevelse": "Jeg vil bare gøre legen mere spændende!",
+      "typisk_fejl": "Udelukker ham fra al leg, kun stopper uden at lære",
+      "løsning": "Struktureret leg med regler: visuelle leg-regler, voksenstyret leg, hjælper-rolle, pause-strategier, positive leg-oplevelser.",
+      "tiltag": "Visuelle leg-regler. Voksenstyret leg. Hjælper-rolle. Pause-strategier. Social feedback.",
+      "værktøjer": "Trin 1: Lær leg-regler. Trin 2: Faciliteret leg. Trin 3: Selvstændig leg.",
+      "kategori": "Børnehave - Sociale tegn",
+      "kort_beskrivelse": "For intens leg. Ødelægger andres aktiviteter.",
+      "kompleksitet": "moderat",
+      "refleksion": "Strukturerede regler gav bedre samarbejde.",
+      "resultat": "Marcus lærte samarbejdende leg og fik venskaber.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bs-003",
+      "titel": "Emma 5 år",
+      "alder": 5,
+      "adfærd": [
+        "Perfekt opførsel",
+        "Aldrig spontan"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Social angst, perfektionisme, masking",
+      "problem": "Emma er altid sød og artig men deltager aldrig spontant. Hun følger alle regler perfekt, men virker anspændt og bliver opløst af små fejl.",
+      "barnets_oplevelse": "Jeg skal være god og ikke lave fejl.",
+      "typisk_fejl": "Roser hendes perfekte opførsel, presser til spontanitet",
+      "løsning": "Tillids-opbygning: fejl-fest, små valg, lege-eksperimenter, en-til-en tid, gradvis mindre struktur.",
+      "tiltag": "Fejl-fest. Små valg i leg. Lege uden rigtig/forkert. En-til-en tid. Positive reaktioner på følelser.",
+      "værktøjer": "Trin 1: Tryghed for autenticitet. Trin 2: Gradvis spontanitet. Trin 3: Social autenticitet.",
+      "kategori": "Børnehave - Angst tegn",
+      "kort_beskrivelse": "Perfekt opførsel dækker over angst. Aldrig spontan.",
+      "kompleksitet": "høj",
+      "refleksion": "Relationel tryghed reducerede perfektionisme.",
+      "resultat": "Emma blev mere autentisk og udviklede ægte venskaber.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bs-004",
+      "titel": "Liam 6 år",
+      "alder": 6,
+      "adfærd": [
+        "Social manipulation",
+        "Dominans"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Manipulation, empati-mangel",
+      "problem": "Liam er karismatisk og får andre børn til at gøre hvad han vil. Han bruger trusler, ekskludering og belønninger til at kontrollere leg og venskaber.",
+      "barnets_oplevelse": "Jeg er god til at få tingene som jeg vil.",
+      "typisk_fejl": "Belønner manipulation ved at give efter, isolerer ham totalt",
+      "løsning": "Empati-udvikling: konfrontation med konsekvenser, empati-træning, omdirigering til positive formål, samarbejds-situationer.",
+      "tiltag": "Konfrontation af manipulation. Empati-træning. Pro-social lederskab. Samarbejde som lige. Klare grænser.",
+      "værktøjer": "Trin 1: Stop manipulation. Trin 2: Lær empati. Trin 3: Vurdér og planlæg.",
+      "kategori": "Børnehave - Sociale tegn",
+      "kort_beskrivelse": "Systematisk manipulation. Ingen empati.",
+      "kompleksitet": "meget høj",
+      "refleksion": "Struktureret træning udviklede empati.",
+      "resultat": "Liam brugte lederskab positivt og udviklede empati.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-bs-005",
+      "titel": "Nora 4 år",
+      "alder": 4,
+      "adfærd": [
+        "Selektiv mutisme",
+        "Social tilbagetrækning"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Kommunikation, angst, tavshed",
+      "problem": "Nora taler normalt hjemme men er helt tavs i børnehaven. Hun deltager ikke, gemmer sig bag voksne og bliver panisk hvis hun skal svare.",
+      "barnets_oplevelse": "Ordene sidder fast inde i mig når der er andre til stede.",
+      "typisk_fejl": "Presser hende til at tale, skaber opmærksomhed på tavshed",
+      "løsning": "Graduel eksponering: fjern krav om tale, acceptér nonverbal kommunikation, hviske-ven strategi, små grupper, koordination med forældre.",
+      "tiltag": "Ingen krav om tale. Nonverbal kommunikation OK. Hviske-ven. Aktiviteter uden talekrav. Små grupper.",
+      "værktøjer": "Trin 1: Reducer pres. Trin 2: Gradvis kommunikation. Trin 3: Social integration.",
+      "kategori": "Børnehave - Angst tegn",
+      "kort_beskrivelse": "Fuldstændig tavshed i børnehave. Panik ved talekrav.",
+      "kompleksitet": "høj",
+      "refleksion": "Pres-reducering åbnede for gradvis kommunikation.",
+      "resultat": "Nora begyndte at hviske til udvalgte børn og deltog nonverbalt.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-to-001",
+      "titel": "Oliver 3 år",
+      "alder": 3,
+      "adfærd": [
+        "Separationsangst",
+        "Morgen-sammenbrud"
+      ],
+      "miljø": [
+        "Børnehave",
+        "Aflevering"
+      ],
+      "tema": "Separationsangst, morgen-rutiner",
+      "problem": "Oliver har ekstreme sammenbrud hver morgen ved aflevering. Han græder, skriger, klynger sig til mor. Det tager 30-45 minutter, og han er opløst i timevis bagefter.",
+      "barnets_oplevelse": "Hvad hvis mor ikke kommer tilbage?",
+      "typisk_fejl": "Sniger sig væk, bliver for længe, bagatelliserer frygt",
+      "løsning": "Gradueret separations-træning: kortere ophold bygget op, fast afskeds-ritual, mor-genstand, samme pædagog, visuel plan, telefon-ritual.",
+      "tiltag": "Korte ophold (1-2 timer). Fast afskeds-ritual. Mor-genstand. Samme pædagog. Visuel plan. Telefon efter 1 time.",
+      "værktøjer": "Trin 1: Byg tryghed. Trin 2: Graduel forlængelse. Trin 3: Selvstændig tryghed.",
+      "kategori": "Børnehave - Overgang",
+      "kort_beskrivelse": "Ekstreme morgen-sammenbrud. Kan ikke trøstes i timevis.",
+      "kompleksitet": "høj",
+      "refleksion": "Graduel træning over 10 uger nødvendig.",
+      "resultat": "Oliver kunne afleveres roligt efter 10 uger.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-to-002",
+      "titel": "Emma 4 år",
+      "alder": 4,
+      "adfærd": [
+        "Rutine-sammenbrud",
+        "Kan ikke skifte aktivitet"
+      ],
+      "miljø": [
+        "Børnehave"
+      ],
+      "tema": "Rutiner, overgange, fleksibilitet",
+      "problem": "Emma får totale sammenbrud når aktiviteter skifter eller planer ændres. Hun kan ikke stoppe en aktivitet, bliver rasende ved uforudsete ændringer.",
+      "barnets_oplevelse": "Jeg var ikke færdig! Det skulle være sådan her!",
+      "typisk_fejl": "Fjerner al struktur, uforudsete ændringer",
+      "løsning": "Struktur med fleksibilitets-træning: visuel dagsoverblik, 5-3-1 advarsler, afslutnings-ritualer, ændrings-kort, planlagte små ændringer.",
+      "tiltag": "Visuel dagsoverblik. 5-3-1 minut advarsler. Afslutnings-ritualer. Ændrings-kort. Fleksibilitets-øvelser.",
+      "værktøjer": "Trin 1: Maksimal forudsigelighed. Trin 2: Micro-fleksibilitet. Trin 3: Selvstændig tilpasning.",
+      "kategori": "Børnehave - Overgang",
+      "kort_beskrivelse": "Sammenbrud ved aktivitetsskift. Panik ved ændringer.",
+      "kompleksitet": "høj",
+      "refleksion": "Gradvis fleksibilitets-træning gav forbedring.",
+      "resultat": "Emma håndterede aktivitetsskift med visuel støtte.",
+      "kilde": "Børnehave guide 2025",
+      "version": "1.0",
+      "sidst_opdateret": "2025-12-07",
+      "pædagogisk_guide": "Se CDA/knowledge/bornehave/CDA_Bornehave_Praksisguide.json for struktureret vejledning"
+    },
+    {
+      "id": "case-import-040",
+      "titel": "Emil 3 år – ekstrem rastløshed og impulsivitet",
+      "alder": 3,
+      "diagnoser": [],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Tidlige varselstegn, normal vs. bekymrende uro",
+      "problem": "Emil kan ikke sidde stille i mere end 30 sekunder. Han rejser sig under måltider, forlader aktiviteter konstant, klatrer på møbler og løber væk fra voksne. Andre 3-årige kan sidde og lytte til en historie - Emil kan ikke.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Bevægelses-integreret børnehave-dag:** - Korte aktiviteter (2-5 min) med bevægelsespauser - \"Bevægelses-jobs\": Emil henter ting, rydder op, hjælper - Alternative siddepladser: bold, ståpult, gulvplads - Struktureret udendørs tid flere gange dagligt - Klare, korte instruktioner med visuel støtte - \"Energi-udløb\" aktiviteter før rolige aktiviteter",
+      "tiltag": "**Første trin:** Observation og dokumentation - Dokumenter specifikke situationer og varighed - Sammenlign med andre børn på samme alder - Noter hvad der hjælper og hvad der forværrer **Andet trin:** Tilpasning af miljø - Skab struktur der imødekommer hans bevægelsesbehov - Test forskellige strategier og dokumenter resultater - Involver ham i at finde løsninger **Tredje trin:** Kommunikation med forældre - Del observationer objektivt uden diagnoser - Foreslå fælles strategier hjemme og i børneha",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Emil kan ikke sidde stille i mere end 30 sekunder. Han rejser sig under måltider, forlader aktiviteter konstant, klatrer på møbler og løber væk fra vo...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-041",
+      "titel": "Maja 4 år – opmærksomhedsproblemer og dagdrømmeri",
+      "alder": 4,
+      "diagnoser": [],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Stille ADHD-tegn, opmærksomhedsvanskeligheder",
+      "problem": "Maja \"forsvinder\" mentalt midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn, og glemmer instruktioner med det samme. Andre børn færdiggør aktiviteter - Maja sidder ofte med det samme puslespil i timevis uden fremgang.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Opmærksomheds-støttende struktur:** - Øjenkontakt før alle instruktioner - Korte, enkle besked (maks 2 trin ad gangen) - Visuelle støttemidler og billeder - \"Check-in\" hver 5. minut under aktiviteter - Strukturerede aktiviteter med klar start og slut - \"Opmærksomheds-signaler\" (klap, musik) for at genforene gruppen",
+      "tiltag": "**Første trin:** Opmærksomheds-mapping - Identificer hvornår opmærksomheden er bedst/værst - Test forskellige måder at fange hendes opmærksomhed - Dokumenter hvad der virker og hvor længe **Andet trin:** Struktureret støtte - Implementer opmærksomheds-hjælpemidler - Byg rutiner der hjælper hende med at være tilstede - Lær hende selv at mærke når hun \"forsvinder\" **Tredje trin:** Kommunikation og opfølgning - Del observationer med forældre - Fælles strategier for hjemme og børnehave - Evaluér om ",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Maja \"forsvinder\" mentalt midt i aktiviteter. Hun stirrer ud i luften, reagerer ikke på sit navn, og glemmer instruktioner med det samme. Andre børn f...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-042",
+      "titel": "Lucas 5 år – impulsiv aggression og konflikter",
+      "alder": 5,
+      "diagnoser": [],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Impulsiv aggression, sociale konsekvenser",
+      "problem": "Lucas slår og skubber andre børn næsten dagligt, især når han ikke får sin vilje eller når lege ikke går som han vil. Han virker bagefter ked af det og forstår ikke hvorfor andre ikke vil lege med ham.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Impulskontrol og konflikt-forebyggelse:** - \"Stop og tænk\" øvelser før alle aktiviteter - Visuelle kort med alternative reaktioner - Strukturerede lege med klare regler og voksen-støtte - \"Ro-hjørne\" hvor Lucas kunne gå når han mærkede vrede - Rolleleg hvor han øvede at håndtere frustrationer - Positive peer-interaktioner med guidning",
+      "tiltag": "**Første trin:** Sikkerhed og øjeblikkelig intervention - Stop aggressiv adfærd øjeblikkeligt - Beskyt andre børn og bevar Lucas' værdighed - Hjælp ham til at forstå konsekvenser **Andet trin:** Lær alternative strategier - Øv \"pause\" before handling impulsivt - Konkrete værktøjer til håndtering af frustration - Rolleleg med forskellige konflikt-scenarier **Tredje trin:** Social genintegration - Facilitér positive interaktioner med andre børn - Hjælp gruppens dynamik og forståelse - Byg Lucas' s",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Lucas slår og skubber andre børn næsten dagligt, især når han ikke får sin vilje eller når lege ikke går som han vil. Han virker bagefter ked af det o...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-043",
+      "titel": "Ida 6 år – overgang til skole og forværrede symptomer",
+      "alder": 6,
+      "diagnoser": [],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Stress-forværring, strukturelle ændringer",
+      "problem": "Ida klarede sig relativt godt i børnehave, men efter skolestart er hun eksploderet i hyperaktivitet og opmærksomhedsproblemer. Hun kan ikke sidde stille i klassen, glemmer alt og får daglige sammenbrud.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Graduel skole-tilpasning med børnehave-elementer:** - Kortere skoledag første måneder - Bevægelsespauser indbygget i undervisning - Visuel støtte til alle rutiner og regler - \"Sikker base\" person Ida kunne søge til - Tæt kommunikation mellem skole og hjem - Bevarelse af nogle børnehave-rutiner under overgangen",
+      "tiltag": "**Første trin:** Reducér stress og pres - Tilpas forventninger til hendes udviklingsniveau - Skab forudsigelighed og tryghed - Bevar positive elementer fra børnehave **Andet trin:** Gradvis øgning af krav - Langsom introduktion af skole-strukturer - Fejr små fremskridt frem for at fokusere på mangler - Individuel tilgang til læring og deltagelse **Tredje trin:** Langsigtet planlægning - Evaluér om skolestrukturen matcher hendes behov - Planlæg for eventuel diagnose og støtte-tiltag - Forbered sk",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Ida klarede sig relativt godt i børnehave, men efter skolestart er hun eksploderet i hyperaktivitet og opmærksomhedsproblemer. Hun kan ikke sidde stil...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-044",
+      "titel": "Noah 4 år – sensorisk søgende adfærd og hyperaktivitet",
+      "alder": 4,
+      "diagnoser": [],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Sensorisk-søgende vs. hyperaktivitet, komorbiditet",
+      "problem": "Noah søger konstant sensorisk input: han kører rundt, råber, klatrer, putter ting i munden, og kan aldrig få nok stimulering. Andre børn bliver overvældede af hans intensitet og energi.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Struktureret sensorisk diæt kombineret med ADHD-støtte:** - Planlagte sensoriske aktiviteter flere gange dagligt - \"Tunge arbejde\" (skubbe, trække, løfte) for at mætte systemet - Alternative sensoriske input: fidget tools, tygge-lege - Klare grænser for farlig sensorisk-søgende adfærd - Sensorisk ro-område når han blev overstimuleret - Koordination med ergoterapeut for sensorisk vurdering",
+      "tiltag": "**Første trin:** Sensorisk kortlægning - Identificer hvilke input han søger og undgår - Observér mønstre i hans sensorisk-søgende adfærd - Test forskellige former for input og deres effekt **Andet trin:** Struktureret sensorisk støtte - Implementer daglig \"sensorisk diæt\" - Giv acceptable alternativer til farlig adfærd - Balancér stimulering og ro-tid **Tredje trin:** Faglig koordination - Samarbejd med ergoterapeut om sensorisk vurdering - Koordinér ADHD- og sensorisk støtte - Forbered på poten",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Noah søger konstant sensorisk input: han kører rundt, råber, klatrer, putter ting i munden, og kan aldrig få nok stimulering. Andre børn bliver overvæ...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-045",
+      "titel": "Sofie 3 år – parallel leg og manglende social interesse",
+      "alder": 3,
+      "diagnoser": [],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Social isolation, leg-udvikling, kommunikation",
+      "problem": "Sofie leger altid alene eller parallelt med andre uden at interagere. Hun viser ingen interesse for andre børns aktiviteter, deler ikke legetøj og reagerer ikke når andre børn forsøger at inkludere hende.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Graduel social leg-integration:** - Start med \"side-by-side\" aktiviteter uden krav om interaktion - Voksenstyret parallel leg hvor Sofie kunne observere andre - Enkle \"turn-taking\" lege med præfereret legetøj - \"Social leg-historier\" med billeder af leg og venskab - Strukturerede aktiviteter med klare roller for hvert barn - Positive forstærkning af selv små sociale bevægelser",
+      "tiltag": "**Første trin:** Observér og forstå hendes leg-præferencer - Identificer aktiviteter hun virkelig nyder - Observér om hun faktisk observerer andre børn - Test om hun responderer på simple sociale tilbud **Andet trin:** Byg broer til social leg - Brug hendes interesser som indgang til social leg - Faciliter simple, strukturerede interaktioner - Gradvis øgning af sociale krav **Tredje trin:** Vurdér udvikling og behov - Dokumentér fremskridt i social interesse - Kommunikér med forældre om observat",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Sofie leger altid alene eller parallelt med andre uden at interagere. Hun viser ingen interesse for andre børns aktiviteter, deler ikke legetøj og rea...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-046",
+      "titel": "Marcus 4 år – aggressiv leg og venskabsproblemer",
+      "alder": 4,
+      "diagnoser": [],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Aggressive leg-strategier, konflikthåndtering",
+      "problem": "Marcus ønsker at lege med andre, men hans leg bliver hurtigt for intens og fysisk. Han ødelægger andres byggeværker, \"overtager\" rollespil og bliver aggressiv når andre siger fra. Børnene begynder at undgå ham.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Struktureret leg med sociale regler:** - \"Leg-regler\" visualiseret med billeder og øvet dagligt - Voksenstyret leg hvor Marcus kunne øve at følge andres ideer - \"Hjælper-rolle\" hvor han assisterede i stedet for at overtage - Pause-strategier når leg blev for intens - Positive leg-oplevelser med børn der kunne matche hans energi - Social feedback: \"Se hvor glade de blev da du spurgte først!\"",
+      "tiltag": "**Første trin:** Lær grundlæggende leg-regler - Konkrete, visuelle regler for hvordan man leger sammen - Øvelse i at spørge før man \"hjælper\" - \"Pause\" signaler han kan bruge når leg bliver for intens **Andet trin:** Faciliteret social leg - Voksne faciliterer leg så det ikke eskalerer - Strukturerede lege med klare roller og turer - Positive feedback når han følger sociale regler **Tredje trin:** Selvstændig social leg - Gradvis reduktion af voksen-støtte - Hjælp ham til at læse sociale signale",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Marcus ønsker at lege med andre, men hans leg bliver hurtigt for intens og fysisk. Han ødelægger andres byggeværker, \"overtager\" rollespil og bliver a...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-047",
+      "titel": "Emma 5 år – perfekt opførsel og skjult social angst",
+      "alder": 5,
+      "diagnoser": [],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Social angst, pligtopfyldelse, autenticitet",
+      "problem": "Emma er altid \"sød og artig\" men deltager aldrig spontant i leg. Hun følger alle regler perfekt, men virker anspændt og bliver opløst af små fejl. Hun leger kun når voksne organiserer det og initierer aldrig selv sociale kontakter.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Tillids-opbygning og autenticitets-træning:** - \"Fejl-fest\" hvor børnene lavede sjove fejl med vilje - Små valg i leg hvor Emma måtte beslutte - \"Lege-eksperimenter\" hvor der ikke var rigtige/forkerte måder - En-til-en tid med trygge voksne hvor hun kunne \"være sig selv\" - Gradvis introduktion af mindre strukturerede aktiviteter - Positive reaktioner når hun viste autentiske følelser",
+      "tiltag": "**Første trin:** Skab tryghed for autenticitet - Vis at fejl er OK og normale - Giv muligheder for valg uden \"rigtige\" svar - Ros forsøg og deltagelse frem for perfektion **Andet trin:** Gradvis spontanitet - Små, sikre muligheder for at tage initiativ - Leg uden regler hvor hun kan eksperimentere - En-til-en situationer hvor hun kan øve at være sig selv **Tredje trin:** Social autenticitet - Hjælp hende til at udtrykke præferencer og ønsker - Faciliter venskaber baseret på hendes ægte interesse",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Emma er altid \"sød og artig\" men deltager aldrig spontant i leg. Hun følger alle regler perfekt, men virker anspændt og bliver opløst af små fejl. Hun...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-048",
+      "titel": "Liam 6 år – social manipulation og dominans",
+      "alder": 6,
+      "diagnoser": [],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Manipulation, empati-mangel, magtstrukturer",
+      "problem": "Liam er karismatisk og dygtig til at få andre børn til at gøre hvad han vil. Han bruger trusler, ekskludering og belønninger til at kontrollere leg og venskaber. Andre børn er både tiltrukket af og bange for ham.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Empati-udvikling og pro-social lederskab:** - Direkte konfrontation af manipulativ adfærd med konsekvenser - Empati-træning: \"Hvordan tror du Marcus har det nu?\" - Omdirigering af lederskabs-evner til positive formål - Strukturerede situationer hvor han måtte samarbejde som lige - \"Hjælper-roller\" hvor han brugte sine evner til at støtte andre - Klare grænser for acceptabel adfærd i gruppen",
+      "tiltag": "**Første trin:** Stop manipulation og beskyt andre - Øjeblikkeligt indgriben når manipulation observeres - Klare konsekvenser for trusler og ekskludering - Beskyt sårbare børn fra hans påvirkning **Andet trin:** Lær empati og gensidighed - Konkrete øvelser i at se andres perspektiv - Strukturerede situationer hvor han må samarbejde - Positive anvendelse af hans lederskabs-evner **Tredje trin:** Vurdér og planlæg - Evaluér om der er tegn på antisociale tendenser - Kommunikér bekymringer med foræl",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Liam er karismatisk og dygtig til at få andre børn til at gøre hvad han vil. Han bruger trusler, ekskludering og belønninger til at kontrollere leg og...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-049",
+      "titel": "Nora 4 år – selektiv mutisme og social tilbagetrækning",
+      "alder": 4,
+      "diagnoser": [],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Kommunikation, angst, social deltagelse",
+      "problem": "Nora taler normalt hjemme men er helt tavs i børnehaven. Hun deltager ikke i aktiviteter, gemmer sig bag voksne og bliver panisk hvis hun skal svare på spørgsmål. Andre børn prøver at inkludere hende, men hun trækker sig væk.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Graduel ekspositon og pres-reducering:** - Fjernelse af alle krav om verbal kommunikation - Acceptér nonverbal kommunikation (nik, peg, tegning) - \"Hviske-ven\" strategi hvor hun hviskede til en ven som talte for hende - Aktiviteter hvor hun kunne \"bidrage\" uden tale (tegne, pege, vise) - Små grupper og en-til-en situationer med gradvis øgning - Tæt koordination med forældre om samme approach",
+      "tiltag": "**Første trin:** Reducer pres og byg tryghed - Fjern alle forventninger om verbal kommunikation - Skab sikre rum hvor hun kan være afslappet - Anerkend hendes nonverbale bidrag **Andet trin:** Gradvis kommunikations-støtte - Start med hviske, derefter lav tale - Brug aktiviteter hvor tale er naturligt (sang, rolleleg) - Små skridt med meget ros og anerkendelse **Tredje trin:** Social integration - Hjælp andre børn til at forstå og inkludere hende - Faciliter leg hvor verbal kommunikation ikke er",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Nora taler normalt hjemme men er helt tavs i børnehaven. Hun deltager ikke i aktiviteter, gemmer sig bag voksne og bliver panisk hvis hun skal svare p...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-053",
+      "titel": "Sofie 5 år – social overgang og venskabs-tab",
+      "alder": 5,
+      "diagnoser": [
+        "Social sårbarhed",
+        "tilknytningsvanskeligheder"
+      ],
+      "miljø": [
+        "Venner"
+      ],
+      "tema": "Sociale overgange, venskabs-kontinuitet, tilpasning",
+      "problem": "Sofie har endelig fundet sin plads i børnehave-gruppen og er bange for at miste sine venner når de starter i forskellige skoler. Hun bliver ekstremt ked af det ved tanken om sociale ændringer og klynger sig til kendte relationer.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "",
+      "løsning": "**Venskabs-kontinuitet og nye sociale muligheder:** - Planlægning af private legeaftaler med børnehave-venner - \"Skole-besøg\" hvor Sofie mødte nye klassekammerater før start - \"Venskabs-bog\" med billeder og kontakt-info fra børnehave-venner - Sociale historier om hvordan man får nye venner - \"Bro-aktiviteter\" hvor børnehave- og skole-venner kunne mødes - Støtte fra pædagoger til at identificere po",
+      "tiltag": "**Første trin:** Anerkend og normaliser bekymringer - Valider hendes følelser omkring sociale forandringer - Hjælp hende til at forstå at det er normalt at være nervøs - Plan for hvordan hun kan bevare vigtige venskaber **Andet trin:** Byg sociale selvtillid - Øv sociale færdigheder i nye situationer - Hjælp hende til at identificere sine sociale styrker - Gradvis eksponering for nye sociale grupper **Tredje trin:** Facilitér nye relationer - Støt hende i at engagere sig med nye klassekammerater",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Sofie har endelig fundet sin plads i børnehave-gruppen og er bange for at miste sine venner når de starter i forskellige skoler. Hun bliver ekstremt k...",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    },
+    {
+      "id": "case-import-082",
+      "titel": "Overgange i garderoben – barn med autisme (3-6 år)",
+      "alder": "3-6",
+      "diagnoser": [
+        "Autisme"
+      ],
+      "miljø": [
+        "børnehave"
+      ],
+      "tema": "overgange",
+      "problem": "Barnet nægter at tage tøj på, gemmer sig eller græder ved overgangen fra fri leg til garderoben. Personalet oplever det som trods, men barnet bliver reelt overvældet af kravskiftet.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "Give verbal kommando med fastere tone; Starte garderobetid pludseligt for at 'få det overstået'",
+      "løsning": "Visuel rækkefølgeplan for garderoben (billeder af tøjet i rækkefølge); Forberedende signal fem minutter før garderobetid; Tildeling af fast voksenstøtte under skiftet",
+      "tiltag": "Piktogramkort til garderobe; Mini-timer (nedtælling); Rolig overgangssang som auditivt signal",
+      "resultat": "Barnet accepterer nu garderobetid med minimal protest, følger planen og begynder selv at tage tøj på i rækkefølge.",
+      "refleksion": "Visuel og auditiv støtte gav barnet kontrol over situationen. Pædagogernes forudsigelige struktur reducerede stress og modstand.",
+      "kategori": "Børnehave",
+      "kort_beskrivelse": "Barnet nægter at tage tøj på, gemmer sig eller græder ved overgangen fra fri leg til garderoben. Personalet oplever det som trods, men barnet bliver r...",
+      "kilde": "Importeret fra ældre case-mappe (CDA/cases/paedagoger/bornehave/autisme_garderobe_overgang_3-6.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
+    }
+  ]
+}

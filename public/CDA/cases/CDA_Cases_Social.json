@@ -170,6 +170,28 @@
       "kilde": "Git master 2025-11-14",
       "version": "1.0",
       "sidst_opdateret": "2025-11-14"
+    },
+    {
+      "id": "case-import-006",
+      "titel": "Nora 10 år – kaldt navne og ekskluderet",
+      "alder": 10,
+      "diagnoser": [
+        "Social sårbarhed"
+      ],
+      "miljø": [
+        "Skole"
+      ],
+      "tema": "Mobning, følelsesmæssig skade",
+      "problem": "Nora bliver kaldt øgenavne og systematisk udelukket fra lege og gruppesnak. Hun trækker sig mere og mere og mister troen på, at nogen vil hende.",
+      "barnets_oplevelse": "",
+      "typisk_fejl": "* Undlader at handle, fordi det ikke er \"fysisk mobning\" * Beder Nora selv \"sige fra\" uden at klæde hende på",
+      "løsning": "* Anerkend mobning som mønster, ikke enkelthændelse * Skab alliancer og voksne der griber ind tidligt * Tilbyd trygge fællesskaber hvor Nora kan blomstre",
+      "tiltag": "* Observation og dokumentation af mønstre * Social historie om at være med uden at præstere * Fast tryghedsgruppe i frikvarteret * Kontaktperson/rollemodel-elev",
+      "kategori": "Social",
+      "kort_beskrivelse": "Nora bliver kaldt øgenavne og systematisk udelukket fra lege og gruppesnak. Hun trækker sig mere og mere og mister troen på, at nogen vil hende.",
+      "kilde": "Importeret fra ældre case-bibliotek (public/data/CDA_Cases_Index.json)",
+      "version": "1.0",
+      "sidst_opdateret": "2026-08-24"
     }
   ]
 }
