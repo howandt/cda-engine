@@ -126,6 +126,22 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "overgange-og-skift",
+          "title": "Overgange og skift",
+          "description": "Dedikeret til én konkret svær overgang, med før/under/efter-struktur.",
+          "content_file": "templates/overgange-og-skift.md",
+          "keywords": [
+            "overgange",
+            "skift",
+            "overgang",
+            "hvis så",
+            "skift mellem fag"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     },
