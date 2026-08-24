@@ -523,6 +523,21 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "mit-vredeskort",
+          "title": "Mit Vredeskort",
+          "description": "Specifikt til vrede: optrapningsniveauer, hvad der hjælper, og hvordan der repareres bagefter.",
+          "content_file": "templates/mit-vredeskort.md",
+          "keywords": [
+            "vredeskort",
+            "vrede",
+            "udbrud",
+            "affekthåndtering"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     }
