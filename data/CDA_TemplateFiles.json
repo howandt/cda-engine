@@ -142,6 +142,21 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "ugeplan-maal-beloenning",
+          "title": "Ugeplan med mål og belønning",
+          "description": "Bryder ét mål ned i et konkret ugentligt delmål, med daglig log over øvelse og erfaring.",
+          "content_file": "templates/ugeplan-maal-beloenning.md",
+          "keywords": [
+            "ugeplan",
+            "delmål",
+            "ugentligt mål",
+            "ugens log"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     },
