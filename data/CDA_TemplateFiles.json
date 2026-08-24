@@ -480,6 +480,21 @@
           "resource_type": "guide",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "guide-affekttrappen",
+          "title": "Affekttrappen",
+          "description": "Pædagogisk model for optrapning: fire faser, og hvad der virker på hver.",
+          "content_file": "templates/guide-affekttrappen.md",
+          "keywords": [
+            "affekttrappen",
+            "affekttrappe",
+            "optrapning",
+            "faser"
+          ],
+          "resource_type": "guide",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     },
