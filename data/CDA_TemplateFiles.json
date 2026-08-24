@@ -274,6 +274,35 @@
           "ai_required": false
         }
       ]
+    },
+    {
+      "id": "ny-elev-og-opstart",
+      "title": "Ny elev og opstart",
+      "description": "Til den første tid med en ny elev med diagnose — særligt nyttig for en lærer der ikke ved, hvor han skal starte.",
+      "keywords": [
+        "opstart",
+        "ny elev",
+        "nyt skoleår",
+        "modtagelse"
+      ],
+      "files": [
+        {
+          "id": "opstartspakke",
+          "title": "Opstartspakke – ny elev med diagnose",
+          "description": "Trinvis guide over de første uger, der peger på de relevante skabeloner undervejs.",
+          "content_file": "templates/opstartspakke.md",
+          "keywords": [
+            "opstartspakke",
+            "ny elev",
+            "ny elev med diagnose",
+            "opstart",
+            "nyt skoleår"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
   ],
   "standalone": []
