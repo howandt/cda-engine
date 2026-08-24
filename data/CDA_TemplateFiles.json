@@ -610,6 +610,22 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "rollefordelingskort",
+          "title": "Rollefordelingskort",
+          "description": "Konkrete roller til gruppearbejde, så eleven ikke selv skal finde ud af, hvad der forventes.",
+          "content_file": "templates/rollefordelingskort.md",
+          "keywords": [
+            "rollefordelingskort",
+            "rollekort",
+            "roller",
+            "gruppearbejde roller",
+            "gruppearbejde"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     }
