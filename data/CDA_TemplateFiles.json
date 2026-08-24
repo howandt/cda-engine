@@ -334,6 +334,96 @@
           "ai_required": false
         }
       ]
+    },
+    {
+      "id": "vikar",
+      "title": "Vikar",
+      "description": "Alt en vikar har brug for ét sted: hvad der er vigtigt at vide om eleven, og hvad der skal observeres og afleveres tilbage.",
+      "keywords": [
+        "vikar",
+        "vikarprofil",
+        "vikardag"
+      ],
+      "files": [
+        {
+          "id": "barnets-indsigtkort",
+          "title": "Barnets Indsigtkort",
+          "description": "Hurtigt indblik, læses på under 2 minutter — ikke en fuld profil.",
+          "content_file": "templates/barnets-indsigtkort.md",
+          "keywords": [
+            "indsigtkort",
+            "barnets indsigtkort",
+            "hurtigt overblik",
+            "kort overblik"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "trafiklyskort",
+          "title": "Trafiklyskort",
+          "description": "Signal- og selvreguleringsværktøj med farver: hvordan det virker, plus individuel aftale om betydning og reaktion.",
+          "content_file": "templates/trafiklyskort.md",
+          "keywords": [
+            "trafiklys",
+            "trafiklyskort",
+            "signalkort",
+            "selvregulering",
+            "farvekort"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "dagplansbygger",
+          "title": "Dagplanbygger",
+          "description": "Bygger en kort visuel dagsplan med fokus på overgange, pauser og forudsigelighed.",
+          "content_file": "templates/dagplansbygger.md",
+          "keywords": [
+            "dagplan",
+            "dagplansbygger",
+            "struktur",
+            "overgange",
+            "rutiner"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "overlevering",
+          "title": "Overleveringsskema",
+          "description": "Lærer til lærer/vikar: hurtigt overblik plus uddybende viden om eleven, hvad der virker, og faste aftaler.",
+          "content_file": "templates/overlevering.md",
+          "keywords": [
+            "overlevering",
+            "overleveringsskema",
+            "vikar",
+            "ny lærer",
+            "skift af klasse"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
+          "id": "vikar-observationsguide",
+          "title": "Vikar – Observationsguide",
+          "description": "Kort log vikaren udfylder i løbet af dagen og afleverer til den faste lærer bagefter.",
+          "content_file": "templates/vikar-observationsguide.md",
+          "keywords": [
+            "vikar observation",
+            "observationsguide",
+            "vikardag",
+            "vikarlog"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
   ],
   "standalone": []
