@@ -12,38 +12,38 @@
 
 ---
 
-## Det vigtigste at vide med det samme
+**Diagnose eller kendt udfordring:**
+
+______________________________________________________
+
+**Det vigtigste at vide med det samme:**
 
 ______________________________________________________
 
 ______________________________________________________
 
----
-
-## Hvad hjælper barnet
+**Hvad hjælper barnet:**
 
 ______________________________________________________
 
----
-
-## Hvad presser barnet
+**Hvad presser barnet:**
 
 ______________________________________________________
 
----
-
-## Sådan viser barnet, at det er blevet for meget
+**Sådan viser barnet, at det er blevet for meget:**
 
 ______________________________________________________
 
----
-
-## Hvad gør vi, når det sker
+**Hvad gør vi, når det sker:**
 
 ______________________________________________________
 
 ---
 
-## Kontakt ved bekymring
+**Kontaktperson ved bekymring:**
 
-**Navn:** ___________  **Hvordan:** ______________________
+______________________________________________________
+
+**Sådan kontaktes vedkommende:**
+
+______________________________________________________
