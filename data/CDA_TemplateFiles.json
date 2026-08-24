@@ -582,16 +582,15 @@
       ],
       "files": [
         {
-          "id": "hvad-findes-der",
-          "title": "Digitale hjælpemidler – hvad findes der",
-          "description": "Kort overblik over typer af hjælpemidler (oplæsning, stavehjælp, diktering, OCR, struktur), til brug før skabelonen udfyldes.",
-          "content_file": "templates/guide-digitale-hjaelpemidler.md",
+          "id": "hjaelpemidler-ordblinde",
+          "title": "Hjælpemidler til ordblinde",
+          "description": "Kort overblik over digitale hjælpemidler til ordblindhed og læse-/skrivevanskeligheder (oplæsning, stavehjælp, diktering, OCR).",
+          "content_file": "templates/guide-hjaelpemidler-ordblinde.md",
           "keywords": [
-            "digitale hjælpemidler",
+            "hjælpemidler til ordblinde",
+            "ordblindhed hjælpemidler",
             "hvad findes der",
-            "hvilke hjælpemidler",
-            "digitale hjælpemidler oversigt",
-            "hjælpemidler oversigt"
+            "hvilke hjælpemidler"
           ],
           "resource_type": "guide",
           "direct_display": true,
