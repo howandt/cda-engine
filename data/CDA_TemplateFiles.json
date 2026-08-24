@@ -570,6 +570,33 @@
           "ai_required": false
         }
       ]
+    },
+    {
+      "id": "faglig-stoette",
+      "title": "Faglig støtte",
+      "description": "Konkrete redskaber til faglig deltagelse: hjælpemidler, roller og strategi.",
+      "keywords": [
+        "faglig støtte",
+        "hjælpemidler",
+        "roller"
+      ],
+      "files": [
+        {
+          "id": "digitale-hjaelpemidler",
+          "title": "Digitale hjælpemidler – brug og strategi",
+          "description": "Overblik over hjælpemidler i brug, hvornår de bruges, og strategi for at indføre nye.",
+          "content_file": "templates/digitale-hjaelpemidler.md",
+          "keywords": [
+            "digitale hjælpemidler",
+            "it hjælpemidler",
+            "hjælpemidler",
+            "assistive tech"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
   ],
   "standalone": []
