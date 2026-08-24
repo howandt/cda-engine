@@ -508,6 +508,21 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "hvis-jeg-foeler-kort",
+          "title": "Hvis-jeg-føler-kort",
+          "description": "Kobler konkrete følelser til konkrete strategier, klar til brug i selve øjeblikket.",
+          "content_file": "templates/hvis-jeg-foeler-kort.md",
+          "keywords": [
+            "hvis jeg føler",
+            "følerkort",
+            "coping kort",
+            "strategikort"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     }
