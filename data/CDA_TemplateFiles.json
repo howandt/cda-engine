@@ -455,6 +455,33 @@
           "ai_required": false
         }
       ]
+    },
+    {
+      "id": "korte-guides",
+      "title": "Korte guides",
+      "description": "Kort, praktisk info at læse — ikke felter, der skal udfyldes. Tænk brugervejledning, ikke lærebog.",
+      "keywords": [
+        "guide",
+        "info",
+        "diagnose",
+        "hvad er"
+      ],
+      "files": [
+        {
+          "id": "guide-adhd",
+          "title": "ADHD i klassen",
+          "description": "Kort guide: hvad er det, hvordan viser det sig, og hvad kan du gøre.",
+          "content_file": "templates/guide-adhd.md",
+          "keywords": [
+            "adhd",
+            "adhd i klassen",
+            "opmærksomhedsforstyrrelse"
+          ],
+          "resource_type": "guide",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
   ],
   "standalone": []
