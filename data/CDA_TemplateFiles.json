@@ -301,6 +301,22 @@
           "resource_type": "worksheet",
           "direct_display": true,
           "ai_required": false
+        },
+        {
+          "id": "introduktionsbrev-foraeldre",
+          "title": "Introduktionsbrev til forældre",
+          "description": "Klar-til-afsendelse brev, læreren sender tidligt og neutralt ved opstart af en ny elev med diagnose.",
+          "content_file": "templates/introduktionsbrev-foraeldre.md",
+          "keywords": [
+            "introduktionsbrev",
+            "brev",
+            "brev til forældre",
+            "opstartsbrev",
+            "kontakt forældre"
+          ],
+          "resource_type": "guide",
+          "direct_display": true,
+          "ai_required": false
         }
       ]
     }
