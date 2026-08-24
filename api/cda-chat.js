@@ -103,6 +103,65 @@ function getSupabase() {
   );
 }
 
+// 24C.5: disse tre hjælpefunktioner samler logik, der tidligere var
+// kopieret næsten ordret 15+ gange spredt ud over hele filen (optælling af
+// tokenforbrug, konsol-logning og gemning i Supabase). Al opførsel er
+// uændret i forhold til det, de enkelte grene gjorde hver for sig - eneste
+// reelle ændring er, at ">0 tokens"-tjekket før gemning i Supabase (som de
+// fleste grene allerede havde) nu gælder ensartet alle steder, så ingen
+// gren kan afvige ved en fejl.
+const ZERO_TOKEN_TOTALS = Object.freeze({
+  input_tokens: 0,
+  output_tokens: 0,
+  total_tokens: 0,
+});
+
+function computeUsageTotals(usageByCall) {
+  return (usageByCall || []).reduce(
+    (sum, item) => ({
+      input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
+      output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
+      total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
+    }),
+    { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
+  );
+}
+
+function logCdaCallMetrics({ usedTools, toolDebug, usageByCall, totals }) {
+  console.log("CDA værktøjskald:", {
+    tools_used: usedTools,
+    tool_debug: toolDebug,
+  });
+
+  console.log("CDA tokenmåling pr. OpenAI-kald:", {
+    usage_by_call: usageByCall,
+    totals,
+  });
+}
+
+async function recordTokenUsage({ adgangskode, model, totals }) {
+  if (!adgangskode || !totals || totals.total_tokens <= 0) {
+    return;
+  }
+
+  const supabase = getSupabase();
+  const { error: forbrugsFejl } = await supabase
+    .from("token_forbrug")
+    .insert({
+      adgangskode: adgangskode.trim().toUpperCase(),
+      system: "cda",
+      udbyder: "openai",
+      model,
+      input_tokens: totals.input_tokens,
+      output_tokens: totals.output_tokens,
+      samlet_tokens: totals.total_tokens,
+    });
+
+  if (forbrugsFejl) {
+    console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
+  }
+}
+
 function readTextFile(filePath, errorMessage) {
   if (!fs.existsSync(filePath)) {
     throw new Error(errorMessage);
@@ -773,43 +832,11 @@ try {
 
   if (roleplayResult) {
     const usageByCall = roleplayResult.usage || [];
-    const totals = usageByCall.reduce(
-      (sum, item) => ({
-        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
-        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
-        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
-      }),
-      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
-    );
+    const totals = computeUsageTotals(usageByCall);
 
-    console.log("CDA værktøjskald:", {
-      tools_used: roleplayResult.usedTools,
-      tool_debug: roleplayResult.toolDebug,
-    });
+    logCdaCallMetrics({ usedTools: roleplayResult.usedTools, toolDebug: roleplayResult.toolDebug, usageByCall: usageByCall, totals });
 
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals,
-    });
-
-    if (adgangskode && totals.total_tokens > 0) {
-      const supabase = getSupabase();
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: roleplayResult.model,
-          input_tokens: totals.input_tokens,
-          output_tokens: totals.output_tokens,
-          samlet_tokens: totals.total_tokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
-      }
-    }
+    await recordTokenUsage({ adgangskode, model: roleplayResult.model, totals });
 
     return res.status(200).json({
       success: true,
@@ -839,43 +866,11 @@ try {
 
   if (templateResult) {
     const usageByCall = templateResult.usage || [];
-    const totals = usageByCall.reduce(
-      (sum, item) => ({
-        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
-        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
-        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
-      }),
-      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
-    );
+    const totals = computeUsageTotals(usageByCall);
 
-    console.log("CDA værktøjskald:", {
-      tools_used: templateResult.usedTools,
-      tool_debug: templateResult.toolDebug,
-    });
+    logCdaCallMetrics({ usedTools: templateResult.usedTools, toolDebug: templateResult.toolDebug, usageByCall: usageByCall, totals });
 
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals,
-    });
-
-    if (adgangskode && totals.total_tokens > 0) {
-      const supabase = getSupabase();
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: templateResult.model,
-          input_tokens: totals.input_tokens,
-          output_tokens: totals.output_tokens,
-          samlet_tokens: totals.total_tokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
-      }
-    }
+    await recordTokenUsage({ adgangskode, model: templateResult.model, totals });
 
     const templateActiveLocalCase = resolveActiveLocalCase(
       pending_action,
@@ -937,42 +932,24 @@ try {
       tool_debug: toolDebug,
     });
 
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [
-        {
-          call: 1,
-          phase: "emotion_engine_v2",
-          tools_returned_to_model: [],
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          total_tokens: totalTokens,
-        },
-      ],
-      totals: {
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "emotion_engine_v2",
+        tools_returned_to_model: [],
         input_tokens: inputTokens,
         output_tokens: outputTokens,
         total_tokens: totalTokens,
       },
+    ];
+    const totals = computeUsageTotals(usageByCall);
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", {
+      usage_by_call: usageByCall,
+      totals,
     });
 
-    if (adgangskode) {
-      const supabase = getSupabase();
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
-      }
-    }
+    await recordTokenUsage({ adgangskode, model: "gpt-5.4-mini", totals });
 
     return res.status(200).json({
       success: true,
@@ -995,43 +972,11 @@ try {
 
   if (pblResult) {
     const usageByCall = pblResult.usage || [];
-    const totals = usageByCall.reduce(
-      (sum, item) => ({
-        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
-        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
-        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
-      }),
-      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
-    );
+    const totals = computeUsageTotals(usageByCall);
 
-    console.log("CDA værktøjskald:", {
-      tools_used: pblResult.usedTools,
-      tool_debug: pblResult.toolDebug,
-    });
+    logCdaCallMetrics({ usedTools: pblResult.usedTools, toolDebug: pblResult.toolDebug, usageByCall: usageByCall, totals });
 
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals,
-    });
-
-    if (adgangskode && totals.total_tokens > 0) {
-      const supabase = getSupabase();
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: pblResult.model,
-          input_tokens: totals.input_tokens,
-          output_tokens: totals.output_tokens,
-          samlet_tokens: totals.total_tokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
-      }
-    }
+    await recordTokenUsage({ adgangskode, model: pblResult.model, totals });
 
     return res.status(200).json({
       success: true,
@@ -1102,39 +1047,9 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
-      }
-    }
+    const totals = computeUsageTotals(usageByCall);
+    logCdaCallMetrics({ usedTools, toolDebug, usageByCall, totals });
+    await recordTokenUsage({ adgangskode, model: "gpt-5.4-mini", totals });
 
     return res.status(200).json({
       success: true,
@@ -1178,19 +1093,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1245,19 +1148,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1284,19 +1175,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1323,19 +1202,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1370,19 +1237,7 @@ try {
         },
       ];
 
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      console.log("CDA tokenmåling pr. OpenAI-kald:", {
-        usage_by_call: [],
-        totals: {
-          input_tokens: 0,
-          output_tokens: 0,
-          total_tokens: 0,
-        },
-      });
+      logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
       return res.status(200).json({
         success: true,
@@ -1432,19 +1287,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1470,19 +1313,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1522,43 +1353,11 @@ try {
 
   if (specialistResult) {
     const usageByCall = specialistResult.usage || [];
-    const totals = usageByCall.reduce(
-      (sum, item) => ({
-        input_tokens: sum.input_tokens + Number(item.input_tokens || 0),
-        output_tokens: sum.output_tokens + Number(item.output_tokens || 0),
-        total_tokens: sum.total_tokens + Number(item.total_tokens || 0),
-      }),
-      { input_tokens: 0, output_tokens: 0, total_tokens: 0 }
-    );
+    const totals = computeUsageTotals(usageByCall);
 
-    console.log("CDA værktøjskald:", {
-      tools_used: specialistResult.usedTools,
-      tool_debug: specialistResult.toolDebug,
-    });
+    logCdaCallMetrics({ usedTools: specialistResult.usedTools, toolDebug: specialistResult.toolDebug, usageByCall: usageByCall, totals });
 
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals,
-    });
-
-    if (adgangskode && totals.total_tokens > 0) {
-      const supabase = getSupabase();
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: specialistResult.model,
-          input_tokens: totals.input_tokens,
-          output_tokens: totals.output_tokens,
-          samlet_tokens: totals.total_tokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error("Kunne ikke gemme tokenforbrug:", forbrugsFejl);
-      }
-    }
+    await recordTokenUsage({ adgangskode, model: specialistResult.model, totals });
 
     return res.status(200).json({
       success: true,
@@ -1585,19 +1384,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1621,19 +1408,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1704,42 +1479,9 @@ try {
         },
       ];
 
-      console.log("CDA værktøjskald:", {
-        tools_used: usedTools,
-        tool_debug: toolDebug,
-      });
-
-      console.log("CDA tokenmåling pr. OpenAI-kald:", {
-        usage_by_call: usageByCall,
-        totals: {
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          total_tokens: totalTokens,
-        },
-      });
-
-      if (adgangskode) {
-        const supabase = getSupabase();
-
-        const { error: forbrugsFejl } = await supabase
-          .from("token_forbrug")
-          .insert({
-            adgangskode: adgangskode.trim().toUpperCase(),
-            system: "cda",
-            udbyder: "openai",
-            model: "gpt-5.4-mini",
-            input_tokens: inputTokens,
-            output_tokens: outputTokens,
-            samlet_tokens: totalTokens,
-          });
-
-        if (forbrugsFejl) {
-          console.error(
-            "Kunne ikke gemme tokenforbrug:",
-            forbrugsFejl
-          );
-        }
-      }
+      const totals = computeUsageTotals(usageByCall);
+      logCdaCallMetrics({ usedTools, toolDebug, usageByCall, totals });
+      await recordTokenUsage({ adgangskode, model: "gpt-5.4-mini", totals });
 
       return res.status(200).json({
         success: true,
@@ -1796,19 +1538,7 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: [],
-      totals: {
-        input_tokens: 0,
-        output_tokens: 0,
-        total_tokens: 0,
-      },
-    });
+    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
 
     return res.status(200).json({
       success: true,
@@ -1969,42 +1699,9 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
+    const totals = computeUsageTotals(usageByCall);
+    logCdaCallMetrics({ usedTools, toolDebug, usageByCall, totals });
+    await recordTokenUsage({ adgangskode, model: "gpt-5.4-mini", totals });
 
     const diagnosisReplyData = extractPendingAction(response.output_text);
     const diagnosisReply = cleanCdaReplyTail(diagnosisReplyData.reply);
@@ -2065,42 +1762,9 @@ try {
       },
     ];
 
-    console.log("CDA værktøjskald:", {
-      tools_used: usedTools,
-      tool_debug: toolDebug,
-    });
-
-    console.log("CDA tokenmåling pr. OpenAI-kald:", {
-      usage_by_call: usageByCall,
-      totals: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        total_tokens: totalTokens,
-      },
-    });
-
-    if (adgangskode) {
-      const supabase = getSupabase();
-
-      const { error: forbrugsFejl } = await supabase
-        .from("token_forbrug")
-        .insert({
-          adgangskode: adgangskode.trim().toUpperCase(),
-          system: "cda",
-          udbyder: "openai",
-          model: "gpt-5.4-mini",
-          input_tokens: inputTokens,
-          output_tokens: outputTokens,
-          samlet_tokens: totalTokens,
-        });
-
-      if (forbrugsFejl) {
-        console.error(
-          "Kunne ikke gemme tokenforbrug:",
-          forbrugsFejl
-        );
-      }
-    }
+    const totals = computeUsageTotals(usageByCall);
+    logCdaCallMetrics({ usedTools, toolDebug, usageByCall, totals });
+    await recordTokenUsage({ adgangskode, model: "gpt-5.4-mini", totals });
 
     return res.status(200).json({
       success: true,
@@ -2226,42 +1890,9 @@ try {
     );
   }
 
-  console.log("CDA værktøjskald:", {
-    tools_used: usedTools,
-    tool_debug: toolDebug,
-  });
-
-  console.log("CDA tokenmåling pr. OpenAI-kald:", {
-    usage_by_call: usageByCall,
-    totals: {
-      input_tokens: inputTokens,
-      output_tokens: outputTokens,
-      total_tokens: totalTokens,
-    },
-  });
-
-  if (adgangskode) {
-    const supabase = getSupabase();
-
-    const { error: forbrugsFejl } = await supabase
-      .from("token_forbrug")
-      .insert({
-        adgangskode: adgangskode.trim().toUpperCase(),
-        system: "cda",
-        udbyder: "openai",
-        model: "gpt-5.4-mini",
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-        samlet_tokens: totalTokens,
-      });
-
-    if (forbrugsFejl) {
-      console.error(
-        "Kunne ikke gemme tokenforbrug:",
-        forbrugsFejl
-      );
-    }
-  }
+  const totals = computeUsageTotals(usageByCall);
+  logCdaCallMetrics({ usedTools, toolDebug, usageByCall, totals });
+  await recordTokenUsage({ adgangskode, model: "gpt-5.4-mini", totals });
 
   const runtimeReplyData = extractPendingAction(response.output_text);
 
