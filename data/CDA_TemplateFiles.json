@@ -482,6 +482,34 @@
           "ai_required": false
         }
       ]
+    },
+    {
+      "id": "foelelser-og-affekt",
+      "title": "Følelser og affekt",
+      "description": "Individuelle coping- og signalkort til følelser, vrede og pauser.",
+      "keywords": [
+        "følelser",
+        "affekt",
+        "vrede",
+        "pause"
+      ],
+      "files": [
+        {
+          "id": "foelelsesbarometer",
+          "title": "Følelsesbarometer",
+          "description": "Skala, eleven kan bruge til at vise, hvordan det går lige nu, med individuel aftalt betydning.",
+          "content_file": "templates/foelelsesbarometer.md",
+          "keywords": [
+            "følelsesbarometer",
+            "følelser",
+            "skala",
+            "hvordan har jeg det"
+          ],
+          "resource_type": "worksheet",
+          "direct_display": true,
+          "ai_required": false
+        }
+      ]
     }
   ],
   "standalone": []
