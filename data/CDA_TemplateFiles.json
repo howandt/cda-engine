@@ -582,6 +582,21 @@
       ],
       "files": [
         {
+          "id": "guide-digitale-hjaelpemidler",
+          "title": "Digitale hjælpemidler – hvad findes der",
+          "description": "Kort overblik over typer af hjælpemidler (oplæsning, stavehjælp, diktering, OCR, struktur), til brug før skabelonen udfyldes.",
+          "content_file": "templates/guide-digitale-hjaelpemidler.md",
+          "keywords": [
+            "hvad findes der",
+            "hvilke hjælpemidler",
+            "digitale hjælpemidler oversigt",
+            "hjælpemidler oversigt"
+          ],
+          "resource_type": "guide",
+          "direct_display": true,
+          "ai_required": false
+        },
+        {
           "id": "digitale-hjaelpemidler",
           "title": "Digitale hjælpemidler – brug og strategi",
           "description": "Overblik over hjælpemidler i brug, hvornår de bruges, og strategi for at indføre nye.",
