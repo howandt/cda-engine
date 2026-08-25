@@ -44,6 +44,7 @@ import {
   buildParentDayPlanMessageReply,
   buildPracticalDayPlanReply,
   getPracticalDayPlanMode,
+  isDayPlanFollowupRequest,
   isParentDayPlanMessageRequest,
   isPracticalDayPlanRequest,
 } from "../lib/dayPlanEngine.js";
@@ -1542,7 +1543,7 @@ try {
 
 
 
-  if (isPracticalDayPlanRequest(message)) {
+  if (isPracticalDayPlanRequest(message) || isDayPlanFollowupRequest(message, activeCaseContext)) {
     const dayPlanMode = getPracticalDayPlanMode(message);
     const practicalDayPlanResult = await buildPracticalDayPlanReply({
       openai,
@@ -1597,6 +1598,7 @@ try {
       model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
+      conversation_mode: "day_plan",
       pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
     });
   }
