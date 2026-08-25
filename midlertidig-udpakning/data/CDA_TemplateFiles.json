@@ -1,9 +1,0 @@
-{
-  "version": "1.1",
-  "name": "CDA Template Files",
-  "description": "Arkiveret 2026-08-22. Fuldt register ligger i templates_archive/CDA_TemplateFiles.json. Denne fil holdes bevidst tom, så api/templates.js og templateResourceEngine.js ikke fejler, mens skabelonbiblioteket er ude af aktiv brug.",
-  "direct_display_default": true,
-  "ai_required_for_direct_display": false,
-  "categories": [],
-  "standalone": []
-}

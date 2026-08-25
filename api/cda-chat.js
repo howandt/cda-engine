@@ -16,7 +16,6 @@ import {
 import { runSpecialistFlow } from "../lib/specialistEngine.js";
 import {
   getTemplates,
-  normalizeTemplateSearch,
   runTemplateResourceFlow,
 } from "../lib/templateResourceEngine.js";
 import {
@@ -28,7 +27,6 @@ import {
   encodeLocalCaseNavState,
   findBestDirectLocalCase,
   findBestOtherExperienceCase,
-  formatLocalCaseValue,
   getPendingActionForSpecialistResponse,
   getSemanticSearch,
   isDirectLocalCaseRequest,
@@ -59,7 +57,6 @@ import {
   buildLocalDiagnosisSessionPrompt,
   buildLocalDiagnosisTheoryReply,
   buildStructuredDiagnosisContext,
-  findStructuredDiagnosisMatches,
   getDiagnoser,
   getKomorbiditet,
   getLocalDiagnosisSessionMeta,
@@ -70,10 +67,7 @@ import {
   isLocalDiagnosisTheoryRequest,
   loadStructuredDiagnosis,
 } from "../lib/diagnosisEngine.js";
-import {
-  containsDiagnosisPhrase,
-  normalizeDiagnosisPhrase,
-} from "../lib/textNormalize.js";
+import { normalizeDiagnosisPhrase } from "../lib/textNormalize.js";
 import {
   getEmotionAnalysis,
   isEmotionAnalysisRequest,
@@ -82,7 +76,6 @@ import {
 import {
   cleanCdaReplyTail,
   extractPendingAction,
-  normalizeReplyIntent,
   shouldUseSpecializedToolFlow,
 } from "../lib/replyIntent.js";
 import {
