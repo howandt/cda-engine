@@ -2,12 +2,7 @@ import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 import { createClient } from "@supabase/supabase-js";
-import {
-  buildBornehavePracticeContext,
-  extractBornehaveAge,
-  isBornehavePracticeRequest,
-  routeBornehaveInput,
-} from "../lib/bornehaveRouter.js";
+import { routeBornehaveInput } from "../lib/bornehaveRouter.js";
 import {
   isContextualDiagnosisFollowup,
   runHeidiFlow,
@@ -1365,24 +1360,53 @@ try {
   }
 
   if (isParentDayPlanMessageRequest(message)) {
-    const reply = buildParentDayPlanMessageReply(activeLocalCase, language);
+    const parentDayPlanResult = await buildParentDayPlanMessageReply({
+      openai,
+      message,
+      activeLocalCase,
+      activeCaseContext,
+      language,
+    });
+    const reply = cleanCdaReplyTail(parentDayPlanResult.reply);
+
+    const inputTokens = Number(parentDayPlanResult.response?.usage?.input_tokens || 0);
+    const outputTokens = Number(parentDayPlanResult.response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      parentDayPlanResult.response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
     const usedTools = ["localParentDayPlanMessage"];
     const toolDebug = [
       {
         name: "localParentDayPlanMessage",
         action: "build_copy_ready_parent_message_with_home_day_plan",
         selected_case_id: activeLocalCase?.id || null,
-        token_policy: "0_tokens_local_response",
         routing: "returned_before_local_case_followup",
       },
     ];
 
-    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
+    console.log("CDA værktøjskald:", { tools_used: usedTools, tool_debug: toolDebug });
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "parent_day_plan_message",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+    const totals = computeUsageTotals(usageByCall);
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", { usage_by_call: usageByCall, totals });
+
+    await recordTokenUsage({ adgangskode, model: "gpt-5.4-mini", totals });
 
     return res.status(200).json({
       success: true,
       reply,
-      model: "local",
+      model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
       pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
@@ -1519,24 +1543,58 @@ try {
 
 
   if (isPracticalDayPlanRequest(message)) {
-    const reply = buildPracticalDayPlanReply(message, language);
+    const dayPlanMode = getPracticalDayPlanMode(message);
+    const practicalDayPlanResult = await buildPracticalDayPlanReply({
+      openai,
+      message,
+      mode: dayPlanMode,
+      activeLocalCase,
+      activeCaseContext,
+      role,
+      language,
+    });
+    const reply = cleanCdaReplyTail(practicalDayPlanResult.reply);
+
+    const inputTokens = Number(practicalDayPlanResult.response?.usage?.input_tokens || 0);
+    const outputTokens = Number(practicalDayPlanResult.response?.usage?.output_tokens || 0);
+    const totalTokens = Number(
+      practicalDayPlanResult.response?.usage?.total_tokens || inputTokens + outputTokens
+    );
+
     const usedTools = ["localPracticalDayPlan"];
     const toolDebug = [
       {
         name: "localPracticalDayPlan",
         action: "build_copy_ready_visual_day_plan",
-        mode: getPracticalDayPlanMode(message),
+        mode: dayPlanMode,
+        selected_case_id: activeLocalCase?.id || null,
         role,
         response_style,
       },
     ];
 
-    logCdaCallMetrics({ usedTools: usedTools, toolDebug: toolDebug, usageByCall: [], totals: ZERO_TOKEN_TOTALS });
+    console.log("CDA værktøjskald:", { tools_used: usedTools, tool_debug: toolDebug });
+
+    const usageByCall = [
+      {
+        call: 1,
+        phase: "practical_day_plan",
+        tools_returned_to_model: [],
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        total_tokens: totalTokens,
+      },
+    ];
+    const totals = computeUsageTotals(usageByCall);
+
+    console.log("CDA tokenmåling pr. OpenAI-kald:", { usage_by_call: usageByCall, totals });
+
+    await recordTokenUsage({ adgangskode, model: "gpt-5.4-mini", totals });
 
     return res.status(200).json({
       success: true,
       reply,
-      model: "local",
+      model: "gpt-5.4-mini",
       tools_used: usedTools,
       tool_debug: toolDebug,
       pending_action: preserveActiveLocalCasePendingAction(activeLocalCase, pending_action),
