@@ -143,7 +143,7 @@
       "rule_3": "Brug ikke kun generel rådgivning, hvis relevante CDA-data sandsynligvis findes.",
       "rule_4": "Brug ikke cases automatisk, medmindre brugeren beder om case eller lignende eksempel.",
       "rule_5": "Brug kun getSpecialister i normal drift, når problemet er tydeligt komplekst, fastlåst eller ikke meningsfuldt kan forstås gennem almindelige CDA-data alene. Ved korte, aktuelle lærer-cases skal specialistvinkler som udgangspunkt ikke bruges.",
-      "rule_6": "Brug getTemplates ved skole-hjem-problemer eller behov for formulering.",
+      "rule_6": "Når brugeren har brug for en konkret formulering eller besked (fx en kort besked til forældre), skal du skrive teksten direkte i svaret - ikke kun henvise til en skabelon. Brug getTemplates, når brugeren har brug for et udfyldeligt dokument, skema eller en mere omfattende skabelon at arbejde videre i.",
       "rule_7": "Brug analyzeEmotion ved konkret voksentekst.",
       "rule_8": "Ved korte lærerrettede praksiscases inden for CDA’s område må systemet ikke springe CDA-opslag over, selv hvis situationen virker enkel eller velkendt. Der skal altid hentes mindst én relevant CDA-funktion først."
     },
