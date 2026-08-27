@@ -1060,6 +1060,24 @@
       box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
     }
 
+    .template-shortcut-search {
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--text);
+      background: #ffffff;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    .template-shortcut-search:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10);
+    }
+
     #templateOpenButton {
       min-height: 40px;
       padding: 8px 14px;
@@ -1916,6 +1934,14 @@
         </div>
 
         <div class="template-shortcut-panel" id="templateShortcutPanel">
+          <input
+            type="text"
+            class="template-shortcut-search"
+            id="templateSearchInput"
+            placeholder="Søg efter skabelon, fx 'dagsplan' eller 'forældre'..."
+            autocomplete="off"
+          />
+
           <div class="template-shortcut-grid">
             <label for="templateCategorySelect">
               Kategori
@@ -1998,6 +2024,7 @@
     const templateChangeButton = document.getElementById("templateChangeButton");
     const templateCategorySelect = document.getElementById("templateCategorySelect");
     const templateFileSelect = document.getElementById("templateFileSelect");
+    const templateSearchInput = document.getElementById("templateSearchInput");
     const templateOpenButton = document.getElementById("templateOpenButton");
     const templateShortcutStatus = document.getElementById("templateShortcutStatus");
     let templateRegistryGroups = [];
@@ -2671,9 +2698,67 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
     }
 
     function getSelectedTemplateGroup() {
-      return templateRegistryGroups.find(
+      const bySelectedCategory = templateRegistryGroups.find(
         (group) => group.id === templateCategorySelect.value
-      ) || null;
+      );
+
+      if (bySelectedCategory) return bySelectedCategory;
+
+      // Ved søgning er kategori-feltet ikke sat - find gruppen ud fra
+      // den valgte skabelon i stedet, så det virker på tværs af kategorier.
+      const registered = findRegisteredTemplate(templateFileSelect.value);
+
+      return registered?.group || null;
+    }
+
+    function normalizeTemplateSearchText(value) {
+      return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function applyTemplateSearchFilter() {
+      const query = normalizeTemplateSearchText(templateSearchInput.value).trim();
+
+      if (!query) {
+        templateCategorySelect.disabled = templateRegistryGroups.length === 0;
+        templateCategorySelect.value = "";
+        populateTemplateFiles();
+        return;
+      }
+
+      templateCategorySelect.value = "";
+      templateCategorySelect.disabled = true;
+
+      const matches = [];
+
+      templateRegistryGroups.forEach((group) => {
+        (Array.isArray(group.files) ? group.files : []).forEach((file) => {
+          const haystack = normalizeTemplateSearchText(
+            `${file.title || ""} ${group.title || ""}`
+          );
+
+          if (haystack.includes(query)) {
+            matches.push({ group, file });
+          }
+        });
+      });
+
+      setTemplateSelectOptions(
+        templateFileSelect,
+        matches.map(({ group, file }) => ({
+          value: file.id,
+          label: `${file.title} — ${group.title}`,
+        })),
+        matches.length ? "Vælg skabelon" : "Ingen match"
+      );
+
+      templateFileSelect.disabled = matches.length === 0;
+      updateTemplateOpenButton();
+      templateShortcutStatus.textContent = matches.length
+        ? `${matches.length} match på "${templateSearchInput.value.trim()}"`
+        : "Ingen skabeloner matcher søgningen";
     }
 
     function getTemplateResourceType(template) {
@@ -4273,6 +4358,7 @@ if (data.pending_action) {
     });
 
     templateCategorySelect.addEventListener("change", populateTemplateFiles);
+    templateSearchInput.addEventListener("input", applyTemplateSearchFilter);
 
     templateFileSelect.addEventListener("change", () => {
       updateTemplateOpenButton();
