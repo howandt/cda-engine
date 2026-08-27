@@ -747,6 +747,7 @@ export default async function handler(req, res) {
   role = "Lærer",
   response_style = "Mellem",
   adgangskode,
+  user_name = "",
   pending_action = null,
   active_case_context = null,
 } = req.body || {};
@@ -809,7 +810,10 @@ const activeCaseInstructions = buildActiveCaseInstructions(activeCaseContext, me
 const contextualInput = buildContextualInput(message, activeCaseContext);
 
 try {
-  const heidiPrompt = readHeidiPrompt();
+  const baseHeidiPrompt = readHeidiPrompt();
+  const heidiPrompt = user_name
+    ? `${baseHeidiPrompt}\n\nBRUGERENS NAVN: ${user_name}\nDu må bruge navnet sparsomt og naturligt, hvor det passer - fx i en hilsen. Brug det aldrig i hver besked, og tving det ikke ind.`
+    : baseHeidiPrompt;
 
   const roleplayResult = await runRoleplayFlow({
     openai,

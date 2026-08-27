@@ -1728,6 +1728,11 @@
         <div class="settings-heading">Indstillinger for næste svar</div>
 
         <div class="settings-grid">
+          <label class="field-label" for="navnValg">
+            Dit navn
+            <input type="text" id="navnValg" maxlength="40" placeholder="Hvad må vi kalde dig?" />
+          </label>
+
           <label class="field-label" for="sprogValg">
             Sprog
             <select id="sprogValg">
@@ -1998,6 +2003,8 @@
     let sprog = localStorage.getItem("cda_sprog");
     let rolle = localStorage.getItem("cda_rolle");
     let svarstil = localStorage.getItem("cda_response_style");
+    let brugerNavn = localStorage.getItem("cda_navn");
+    let awaitingNameAnswer = !brugerNavn;
 
     const appShell = document.getElementById("appShell");
     const landscapeTemplateToolbar = document.getElementById("landscapeTemplateToolbar");
@@ -2249,6 +2256,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
     const sprogValg = document.getElementById("sprogValg");
     const rolleValg = document.getElementById("rolleValg");
     const svarstilValg = document.getElementById("svarstilValg");
+    const navnValg = document.getElementById("navnValg");
 
     const ACTIVE_CASE_CONTEXT_KEY = "cda_active_case_context";
 
@@ -2505,6 +2513,7 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       sprogValg.value = sprog;
       rolleValg.value = rolle;
       svarstilValg.value = svarstil;
+      navnValg.value = brugerNavn || "";
     }
 
     function setSettingsOpen(open) {
@@ -2528,10 +2537,18 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       sprog = sprogValg.value;
       rolle = rolleValg.value;
       svarstil = svarstilValg.value;
+      brugerNavn = navnValg.value.trim().slice(0, 40);
+      awaitingNameAnswer = false;
 
       localStorage.setItem("cda_sprog", sprog);
       localStorage.setItem("cda_rolle", rolle);
       localStorage.setItem("cda_response_style", svarstil);
+
+      if (brugerNavn) {
+        localStorage.setItem("cda_navn", brugerNavn);
+      } else {
+        localStorage.removeItem("cda_navn");
+      }
 
       updateSessionDisplay();
       setSettingsOpen(false);
@@ -3002,6 +3019,24 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
 
       newConversationButton.hidden = false;
       backToStartWrap.hidden = false;
+    }
+
+    function showNameOnboardingIfNeeded() {
+      if (!awaitingNameAnswer) return;
+
+      if (welcome) {
+        welcome.remove();
+      }
+
+      activateConversationLayout();
+
+      appendMessage(
+        "assistant",
+        "Hej 👋 Jeg hedder Heidi, og jeg er her for at hjælpe dig i hverdagen med børnene og de udfordringer, der følger med. Hvad må jeg kalde dig?"
+      );
+
+      besked.placeholder = "Skriv dit navn her...";
+      besked.focus();
     }
 
     function scrollToBottom() {
@@ -4176,7 +4211,6 @@ ${userText}`;
 
     async function sendMessage() {
       const tekst = besked.value.trim();
-      const apiMessage = buildTemplateMessage(tekst);
 
       if (!tekst || sendKnap.disabled) {
         if (!tekst) {
@@ -4184,6 +4218,28 @@ ${userText}`;
         }
         return;
       }
+
+      if (awaitingNameAnswer) {
+        const navn = tekst.slice(0, 40);
+
+        awaitingNameAnswer = false;
+        brugerNavn = navn;
+        localStorage.setItem("cda_navn", navn);
+
+        appendMessage("user", tekst);
+        besked.value = "";
+        besked.placeholder = "Skriv dit spørgsmål eller din situation her...";
+
+        appendMessage(
+          "assistant",
+          `Godt at møde dig, ${navn}! Så er vi klar - skriv endelig løs, når du har en situation eller et spørgsmål.`
+        );
+
+        besked.focus();
+        return;
+      }
+
+      const apiMessage = buildTemplateMessage(tekst);
 
       const sentFromLandscapeTemplate =
         document.documentElement.classList.contains("landscape-template-mode");
@@ -4228,6 +4284,7 @@ ${userText}`;
           role: rolle,
           response_style: svarstil,
           adgangskode,
+          user_name: brugerNavn || "",
           pending_action: pendingAction,
           active_case_context: buildActiveCaseContextForRequest(tekst),
         };
@@ -4342,6 +4399,7 @@ if (data.pending_action) {
 
     bindFaqPrompts();
     loadTemplateShortcut();
+    showNameOnboardingIfNeeded();
 
     setTemplateShortcutOpen(false);
 
