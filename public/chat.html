@@ -2745,6 +2745,18 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
         });
       });
 
+      // Skabeloner hvor titlen starter med søgeordet er formentlig det, man
+      // leder efter - vis dem først, og vælg det bedste match automatisk,
+      // så "Vis skabelon" er klar til brug med det samme.
+      matches.sort((a, b) => {
+        const aStarts = normalizeTemplateSearchText(a.file.title || "").startsWith(query);
+        const bStarts = normalizeTemplateSearchText(b.file.title || "").startsWith(query);
+
+        if (aStarts !== bStarts) return aStarts ? -1 : 1;
+
+        return String(a.file.title || "").localeCompare(String(b.file.title || ""), "da");
+      });
+
       setTemplateSelectOptions(
         templateFileSelect,
         matches.map(({ group, file }) => ({
@@ -2755,9 +2767,14 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
       );
 
       templateFileSelect.disabled = matches.length === 0;
+
+      if (matches.length > 0) {
+        templateFileSelect.value = matches[0].file.id;
+      }
+
       updateTemplateOpenButton();
       templateShortcutStatus.textContent = matches.length
-        ? `${matches.length} match på "${templateSearchInput.value.trim()}"`
+        ? `${matches.length} match på "${templateSearchInput.value.trim()}" - klar til at vise`
         : "Ingen skabeloner matcher søgningen";
     }
 
@@ -2839,17 +2856,22 @@ Jeg er presset i dag, og klassen er urolig. Hvordan kommer jeg igennem dagen ude
           throw new Error(data.error || "Skabelonoversigten kunne ikke hentes.");
         }
 
+        const sortByDanishTitle = (a, b) =>
+          String(a.title || "").localeCompare(String(b.title || ""), "da");
+
         const categoryGroups = (Array.isArray(data.categories)
           ? data.categories
           : []
         ).map((category) => ({
           id: category.id,
           title: category.title,
-          files: Array.isArray(category.files) ? category.files : [],
-        }));
+          files: (Array.isArray(category.files) ? category.files : [])
+            .slice()
+            .sort(sortByDanishTitle),
+        })).sort(sortByDanishTitle);
 
         const standaloneFiles = Array.isArray(data.standalone)
-          ? data.standalone
+          ? data.standalone.slice().sort(sortByDanishTitle)
           : [];
 
         templateRegistryGroups = [...localTemplateGroups, ...categoryGroups];
